@@ -1,0 +1,455 @@
+<html>
+
+<head>
+<title>DATA DRIVEN AUTOMATION </title>
+</head>
+
+<body>
+
+<h1 align="center">DATA DRIVEN AUTOMATION </h1>
+
+<p>The following online discussion on Data Driven Automation was held the week of May 17 -
+21, 1999. It is about 7 pages in length in MS Word but contains excellent information on
+how (and how not) to implement Data Driven Automation using Rational Robot (or nearly any
+automation tool). </p>
+
+<p>To get a visual of one possible architecture used in Data Driven Automation view the <a HREF="DataDrivenTestAutomationFrameworks.htm#KeywordDrivenAutomationFrameworkModel" target="_blank">Architecture Notes</a>. </p>
+
+<pre>
+Named participants:
+Carl Nagle	SAS Institute, Inc.
+Dan Mosley	CSST Technologies
+Elfriede Dustin	Computer Sciences Corp.
+Gerry Kirk	TradeMark Technologies (?)
+Mark Butler	Frank Russell Co.
+Mike Tierney	Integrated Health Services, Inc.
+Sarah Gleaton	Inmar Inc.
+</pre>
+
+<dl>
+  <dt>Carl: </dt>
+  <dd>Just got back from the STAR conference in Orlando and am curious to hear about successes
+    or failures in developing the data driven engines described by Edward Kit and Linda Hayes
+    and others at the conference. It sounds very promising, but wonder who has tried it or
+    expanded on it and how well it has worked for you. Does it really get rid of writing all
+    these scripts or does it just move them to a different part of the automation effort? </dd>
+  <dt>Mike: </dt>
+  <dd>I have a couple of test engines which accept GUI inputs only from .csv files. They're
+    working pretty good. Its totally obvious to me what actions the input file is for without
+    the use of action words, verbs, etc. <p>I have not gotten into the action word thing yet.
+    Its just myself and a couple of others running the scripts and we are all script savvy.
+    The advantage of the data driven engines for us is they eliminate all the calls to the
+    re-useable procs we used to have in driving scripts. This makes maintenance easier and
+    cuts down on the number of scripts we have. </p>
+    <p>I think testing with action words might be worth it if you had a large end user type
+    tester population who did not deal well with scripting. In other cases like ours it might
+    just increase script maintance. If our whole suite had been designed as data driven with
+    action words from the start it might be a different story. </p>
+  </dd>
+  <dt>Gerry: </dt>
+  <dd>We have implemented much of the framework to do &quot;procedural-driven&quot; or TM4
+    testing, whatever you want to call it, although its first real test will come later this
+    week. Basically, the person writing the tests does not have to know (virtually) anything
+    about SQA. The tester uses a concise verb dictionary to instruct the test engine what to
+    do at each step: navigate to something, input something, click something, verify
+    something. The weaknesses right now are with <p>a) verifying object data lists, e.g.,
+    contents of a list - don't have a nice way to maintain such things <br>
+    b) creating a GUI map of the application - right now, the tester must use a tool like SQA
+    Inspector to get control ids of text boxes, etc. and then type them in a constants file. <br>
+    c) syntax errors - the tester must type in the verb commands, constant names and ensure
+    proper verb command structure. We've written a syntax checker tool that looks for
+    mistakes, which should help (haven't used it yet). </p>
+    <p>All test scripts and constant files are maintained in Excel. A lot of time is saved
+    converting a test plan to test scripts, because the test plan IS the test script. I'll let
+    you know how the first real test goes. </p>
+  </dd>
+  <dt>Carl: </dt>
+  <dd>Using TeamTest, have you been very successful recognizing and automating the use of any
+    custom objects with this type of engine? Or are all of your objects already known to
+    TeamTest? <p>I am looking at implementing a Data-Driven/TM4/Next-Generation engine as well
+    and I know that I will have custom objects not immediately recognizable to TeamTest. Since
+    the goal of this engine is to make any object application/window independent I am
+    interested to find out if others have dealt with this successfully and what methods were
+    used. </p>
+  </dd>
+  <dt>Mark: </dt>
+  <dd>I have recently used data driven automation with great success and believe it has its
+    place. There are many benefits to Data Driven Automation. BUT there are some negatives. It
+    is those negatives I want you to think about. <p>Basic data driven automation consists of
+    action steps along the line of &quot;Click the Button&quot; or &quot;Enter Text&quot;.
+    This basic level does little true testing but is where some people stop their development.
+    The next level of data driven automation includes comparison values within the instruction
+    set. The action steps to execute are followed by an instruction to compare a value in the
+    input data file with that in one of the controls on the screen. </p>
+    <p>Maybe file comparisons would also be included. A more sophisticated level will allow
+    for the retrieval and comparison of additional object properties and the inclusion of
+    comment lines in the log file. I contend that this level is the minimum for good testing.
+    An advanced implementation of data driven testing will allow the user to perform complex
+    multi-object, multi-property comparisons. This would include list and data table
+    comparisons. </p>
+    <p>In data driven automation the steps that are to be executed and any comparison values
+    are kept external to the automated tool. When using a tool like Visual Test that's all
+    fine an dandy. There is also no problem when you use it with Robot but use Robot like
+    Visual Test. </p>
+    <p>But TeamTest is a suite of tools. There is the ability to create and describe an
+    association between different parts of the test suite. A test requirement can be
+    associated to a script. The development, execution, and the success or failure of that
+    scripts execution can be tracked within the tool also. A comparison baseline, a.k.a. TC or
+    VP, is kept within the tool and its existence and configuration is controlled by the tool.
+    The pass/fail results of a comparison can be directly tracked to the baseline of the
+    comparison and to the instruction(s) that led up to that comparison from the resulting
+    test log. You give up most, if not all, of this when you use data driven automation. Other
+    items I believe are negatives to data driven automation: </p>
+    <p>- I do not believe conditional statements or looping instructions can be successfully
+    implemented with data driven automation. If the test case designer wishes to instruct the
+    application to repeat a series of steps then each of those repetitions must be indicated
+    in the input data file. <br>
+    - There is a lot of startup work required before useful results are to be realized. (There
+    are contract test developers that have libraries that they have created that greatly
+    reduce this startup time. I'm not one of them.) <br>
+    - Data driven automation, like many types of test automation, is often not completely
+    understood and, because of that, is not implemented to a sophisticated enough level. <br>
+    - As mentioned above, you lose the ability to associate test assets to each other and to
+    track their status through the cycle in a single place. </p>
+    <p>When I originally looked into data driven automation I felt it had no place in an
+    environment where there was an intention to use TeamTest. Within a few months of stating
+    that conviction I came across a situation where data driven automation was the best
+    solution. I was very glad to have it at my disposal. </p>
+    <p>One good place I know of for data driven automation are applications like a Human
+    Resources system where there can be a great number of combinations of scenarios. With data
+    driven automation a subject matter expert can create these combinations during the
+    original implementation, or later on, to see if the system will handle, and continue to
+    handle, a particular scenario as expected. When used in combination with other test
+    automation techniques a thorough test of the application can be accomplished. </p>
+    <p>Some proponents of data driven automation maintain that it is the best solution to all
+    situations. It isn't. It is a good one with a variety of advantages. I recommend that you
+    look into, and understand, what this approach to test automation means to your situation. </p>
+  </dd>
+  <dt>Carl: </dt>
+  <dd>Thanks for your perspective on this. Your points are well taken and were discussed at
+    the conference. <p>Generally, if you do use the playback tool in the manner we have
+    described, you *do* lose many of the nice hooks into the rest of the TeamTest product
+    offerings (Planning, Organizing, Defect Tracking etc.). </p>
+    <p>However, my situation does lend itself to implementing a data-driven engine in a
+    variety of ways. And actually, I may need to implement a few. </p>
+    <p>I will be working with application testers to help automate as much as is possible
+    while their traditional testing goes on. I will be doing this across several different
+    unrelated applications and more than likely on more than one automation toolset. (We have
+    internal tools capable of automation.) </p>
+    <p>One of my goals is to make the application/tool-independent test framework as universal
+    as possible so that testers can move from one project to another with minimal impact on
+    productivity. Thus if their data table structure, dictionary, and other core features are
+    similar across toolsets and applications we hope to have a jump on these transitions. </p>
+    <p>Additionally, we use an in-house Defect Tracking system and Requirements are yet to be
+    discovered in this corner of the company. So our implementation of automation is generally
+    going to be effective use of the playback engine(s) and other sources (Flat File, Excel,
+    SAS, Napkins) for planning, data, and metrics. </p>
+    <p>We'll just have to see how well this works out and how workable this scenario really
+    is. </p>
+  </dd>
+  <dt>Dan: </dt>
+  <dd>The concept of data-driven testing as Bruce Posey and I teach it (and I know you are not
+    referring to our class so I am not being defensive here) is not as superficial as you have
+    described. Data-Driven really refers to two things; control data (what button to click
+    next,etc.) and test data (testing GUI, server, and database level validations). <p>The
+    heart of this approach is in the test data not the control data. The type of testing you
+    refer to below is not what we do. We only use SQA's built-in test cases when necessary.
+    The majority of our tests are built into the test data itself. In fact, we use one test
+    script for basic GUI tests to be sure of the applications operability, and another that
+    does object test on the GUI, but these are not data-driven. We run functional test scripts
+    that are data-driven. They are data-driven in the sense that the test data causes the
+    program to behave in a specific and expected way. The test results are how the application
+    reacts to our test data. </p>
+    <p>The following objectives are but a sample of what you can use to set up data-driven
+    test data. <br>
+    </p>
+    <pre>
+For Each GUI Screen Include Data Input Records That Cover The Following
+Conditions:
+1. At least one GOOD record where all fields contain valid data (Passes all GUI and Server-level 
+edits)
+2. Include at least one GOOD Duplicate record
+3. Include one INVALID record for GUI edit defined in the test requirements
+4. Include one INVALID record for each server edit (Business Rule) defined in the test requirements
+5. Include one or more records for each type of special processing described in the test requirements
+6. Include one or more records for each type of Y2K date processing
+described in the test requirements
+
+The following format is used for input data records to SQA scripts:
+*	An input data record is considered to be one line in a text file.
+*	The first five fields of each data record are used for control
+purposes and the remaining fields are for data to be input to a given
+screen.
+*	Each field is enclosed in double quotes &quot;x&quot; and is delimited from
+the next by a comma (example: &quot;field 1&quot;,&quot;field 2&quot;,&quot;field 3&quot;)
+Field 1 Record Type
+Field 2 Control 1
+Field 3 Control 2
+Field 4 Data Field Count, where data record field 6 is the first data field.
+Field 5 Comment
+Field 6 through Field x are data fields.
+Example Data
+&quot;H&quot;,&quot;Ctl1&quot;,&quot;Ctl2&quot;,&quot;3&quot;,&quot;Comment&quot;,&quot;fld1-deal status&quot;,&quot;fld2-approverId&quot;,&quot;fld3-deal number&quot;
+&quot;G&quot;,&quot;New&quot;,&quot;Ctl2&quot;,&quot;3&quot;,&quot;New Deal WIP&quot;,&quot;DEAL&quot;,&quot;tester1&quot;,&quot;00000001&quot;
+&quot;H&quot;,&quot;Tab&quot;,&quot;Ctl2&quot;,&quot;11&quot;,&quot;Comment&quot;,&quot;start date&quot;,&quot;Expire
+date&quot;,&quot;initiator&quot;,&quot;Category&quot;,&quot;Type&quot;,&quot;Duration&quot;,&quot;sell comp&quot;,&quot;sell
+trader&quot;,&quot;buy comp&quot;,&quot;buy                 trader&quot;,&quot;notes&quot;
+&quot;G&quot;,&quot;Deals&quot;,&quot;Ctl2&quot;,&quot;11&quot;,&quot;fill in deals 
+tab&quot;,&quot;10/13/1998&quot;,&quot;10/30/1998&quot;,&quot;us&quot;,&quot;product&quot;,&quot;sell&quot;,&quot;longterm&quot;,&quot;clark&quot;,&quot;ed_
+w&quot;,&quot;ayers&quot;,&quot;bob_a&quot;,&quot;NOTES&quot;
+&quot;G&quot;,&quot;New&quot;,&quot;Ctl2&quot;,&quot;3&quot;,&quot;New Deal WIP&quot;,&quot;WIP&quot;,&quot;tester1&quot;,&quot;00000001&quot;
+&quot;G&quot;,&quot;New&quot;,&quot;Ctl2&quot;,&quot;3&quot;,&quot;New Deal WIP&quot;,&quot;TEMPLATE&quot;,&quot;tester1&quot;,&quot;00000001&quot;
+</pre>
+    <p>You are right when you say there is a big up front investment if you are going to
+    implement data- driven automated testing. As you can see from the short example above, the
+    majority of the work is in capturing test requirements and developing test data based on
+    those requirements. Writing the test scripts is simple and reasonably quick because they
+    are many similarities across scripts for different applications and for screens within the
+    same application. The control fields serve only to navigate the application under test and
+    the majority of SQA test cases are used to verify the test script's location in the AUT,
+    or that a particular test case elicits a response that we expect, etc.. We go into much
+    more detail with examples in our seminar, but this should be enough to demonstrate how our
+    scripts work. We do most of the verification by writing to the test log, by file
+    comparisons, and by opening the database and downloading the updates tables to
+    spreadsheets. </p>
+  </dd>
+  <dt>Elfriede: </dt>
+  <dd>I have to agree with Mark, in that there is a time for data driven testing and then
+    there isn't. I will always use data driven testing using &quot;test data&quot; (see
+    www.autotestco.com for one example of how we've used Robot for Y2K data testing), but very
+    rarely will use data driven testing using &quot;control data.&quot; The reason being is
+    that it's tedious to implement and the effort only pays off if the test can be reused many
+    times over in subsequent releases. <p>I inquired with Ed Kit after his presentation at the
+    STAR and he agreed with me that the efforts of implementing this approach often don't pay
+    off until after the 17th run. (Yes, that's the number he gave). </p>
+    <p>A while back, one of my coworkers in a previous job had just received training on this
+    data driven testing approach. It took that person 3 weeks to implement the data driven
+    approach. There were lots of nice tables with commands/controls and data to read. But in
+    the end it boiled down to that the test would have been much more efficient using simple
+    record and playback and modification of the recorded script, since the test wasn't used
+    repeatedly. The effort in this case was a waste of time. You will have to use your
+    judgement and remember that it does not always pay off to implement a complex data driven
+    framework for automated testing. </p>
+  </dd>
+  <dt>Carl: </dt>
+  <dd>I would have to agree on almost every aspect of this, but must also argue that no amount
+    of automation is cost effective if it is not *INTENDED* to be repeated. In fact, to break
+    even on a 17th iteration sounds great. On a build verification performed nightly that's 17
+    business days (or less) and all in the same release! </dd>
+  <dt>Dan: </dt>
+  <dd>I beg disagree with you (Elfriede). Data-driven testing does require the up front
+    investment that you indicated, but it does pay off big dividends during build-level
+    regression testing. I have been there and I have seen it. We had to test 100+ transaction
+    screens (each one was a window in itself) for a financial application. We developed over
+    7000+ data-driven tests which each took approximately 3 to 5 days to create and debug, but
+    which ran in 1-2 hours when played back between builds. We usually received one build a
+    week and we were able to replay 100+ test scripts and 7000+ test records each week and
+    finish on time. <p>We did not attempt to build all of the test scripts and data records at
+    once. As the application functionality was developed, we created data-driven tests for the
+    features that were delivered. As we progressed over time we ended up with the large number
+    of test scripts and test data records. My point is that it is important to start
+    developing test scripts and test data early in the development process even though you
+    have to put up with feature creep. Furthermore, we could not have handled the ensuing
+    changes to the AUT and completed our testing if we had not chosen a data-driven approach. </p>
+    <p>I do not agree with Ed Kit's approach in that he develops a test script that
+    preprocesses the test data in the Excel spreadsheet before it can be used in the test
+    script proper. His approach adds to the overall test script maintenance burden. Control
+    data is the only way to go! It reduces test script maintenance and as long as you have
+    guidelines as to how to code the control data it is not a big deal. The most time
+    consuming portion of data-driven testing is the creation of the test data itself. Adding
+    control data negates the need to have a pre-processor test script and does not add that
+    much to the test data development overhead. Believe me I know as I am the one who designs
+    and creates our test data. </p>
+    <p>I don't mean to offend any one, but all of the critical comments about data-driven
+    testing seem to be coming from people who have very little experience with it, or who have
+    not been able to successfully implement it. I think that it is getting a bad rap when it
+    the best, most effective and most efficient way to do automated software testing. I would
+    say to those of you who have not tried it, or have not been able to make it work, you
+    really need to attend a formal training class or to work with someone who has perfected
+    it. It is not as simple as everyone seems to think. If you do not use a structured
+    scripting technique with the data-driven approach, you can create very convoluted and
+    ineffective data-driven tests and test scripts. </p>
+    <p>Bruce Posey and I independently evolved into data-driven testing out of necessity three
+    years ago and have been using it since. We were using it before it became the trend and we
+    didn't even know there was such a concept as data-driven when we first began. We did it
+    because it was the only way to do testing that was more than just GUI testing. If GUI
+    testing is all a tester does, the application is not being tested very well at all. The
+    GUI is secondary to the application functionality (if you don't believe me, ask all of the
+    developers and project managers I have worked for). What is most important is to test the
+    breadth and depth of the application functionality. </p>
+    <p>We test the GUI once after each build with a single test script. To test the GUI
+    further is counter productive. </p>
+    <p>To test application functionality, you develop test data records that are
+    &quot;functional variations&quot; of the baseline feature. Some must contain valid data,
+    but the majority must be invalid variations of the data. If you attempt to do this using a
+    record only approach you must record one test script for each functional variation. If you
+    do it in a data driven manner, you must develop one test script that is a combination of
+    recording writing and one data file that has one record for each functional variation you
+    want to test. This is a lot less time consuming and there is a lot less script
+    maintenance. I can develop my data-driven test data a hundred times faster that I can
+    record and debug multiple variations of the same test script. The maintenance is really
+    keeping the data up to date in between changes to the application. Occasionally a change
+    in the AUT will require a change in the test script, but that change is usually minimal. </p>
+  </dd>
+  <dt>Mike: </dt>
+  <dd>Dan- By control data, do you just mean a field in your spreadsheet or csv file that has
+    a code or explanation for the specific test being performed? Can you give an example of
+    what you mean by control data ? </dd>
+  <dt>Dan: </dt>
+  <dd>In the example I sent yesterday, the first six fields are used to identify the test data
+    record's intent (Field 1: record type. good data v. functional variant bad data), to tell
+    the test script where to go in the UAT (Field 2: CTL1 ), and to tell the script what to do
+    when it is in the correct window/dialog box (Field 3: CTL2), To tell the script how many
+    data fields to read (Field 4: Data field count ), to comment on the data record's purpose
+    (Field 5: Comments), Field 6 through Field x: (These fields will contain the data to be
+    input). By using control field 4 we can enter variable length data records. <p>We use
+    pre-coded functions and subroutines that are available to all test scripts via SBL files
+    and define everything in SBH files. The test script calls these routines which decipher
+    the codes and control the test script's navigational behavior and how much data it enters.
+    The same test script can go to different windows and enter different data without being
+    modified. </p>
+  </dd>
+  <dt>Mark: </dt>
+  <dd>I'm really glad I took the time to say what I did in that earlier message. If I had the
+    forethought to attempt to elicit a response then I would have tried to get the one Dan
+    sent first. Dan clearly described how he and Bruce implement Data Driven Testing. Those of
+    us that are paying attention can use that information to understand when and where the
+    method should be used in our situations. There is no question that Dan and Bruce are
+    pushing the envelope. <p>The main point I was trying to make with my initial posting was
+    that few people understand the process well enough to make good use of it. Truth is, many
+    people don't understand how to make the most effective use of test automation. I have to
+    admit that I think I'm one of those. I've learned the ropes but I'm not yet an expert. A
+    good example of this is right in this thread. The example Elfriede gave of the test that
+    was developed but hardly repeated. Why was it automated at all if it wasn't going to be
+    repeated? Let alone in a method that was new to the test developer? (Don't get me wrong.
+    I'm not pointing fingers. I know that if I'm pointing one finger at you then there are
+    three more pointing right back at me.) </p>
+    <p>What it amounts to is: Don't expect miraculous results from data driven testing, or any
+    other automated testing for that matter, unless you understand what your are doing. That
+    doesn't mean you can't get good results while learning but you do have to LEARN. I'll put
+    this out for the world to see. I will, someday, take the class offered by Dan and Bruce.
+    Because it's a well thought out method that I know I will be using. It's obvious that Dan
+    knows what he's talking about. </p>
+    <p>Dan left out a bunch of good things about the method. Most of the effort is in creating
+    the data. If you change test tools you just have to recreate the logic in the language of
+    the new tool. It also works cross platform. </p>
+    <p>Recreate the logic in a test tool that works on the different platform and you can use
+    the same test data. As the test data gets modified you probably wouldn't have to make any
+    platform specific changes. Also, the data can be developed by subject matter experts and
+    not test tool experts that have only a foggy idea of what the application is supposed to
+    do. Once created, the expert in the test tool can be working on scripts that don't lend
+    themselves to the data driven approach. If a scenario needs change then the subject matter
+    expert does it. </p>
+  </dd>
+  <dt>Sarah: </dt>
+  <dd>I was remiss when I posted my class comparisons regarding RTTS and CSST Technologies,
+    and regret doing so, as this data driven testing approach was the main reason I wanted to
+    attend training with Dan &amp; Bruce. They are true masters of this approach, and as you
+    can see, are quite passionate when they tell you how effective it is to use. Although you
+    will find people on either side of the fence when it comes to implementing a data driven
+    approach (and no one on the middle of the fence), it appears that those who are the most
+    against it have never successfully implemented this and are going by what others in the
+    field tell them. <p>Please don't get me wrong, I do appreciate everyone's opinions - but
+    there are many people on this list who are unsure of how to proceed with training in this
+    field, and they should not be discouraged from pursuing all options! It is my suggestion
+    that training be pursued - versus reading about it in a book, as Dan &amp; Bruce really
+    gear this toward &quot;real life&quot;, and many benefits can be gained by attaining more
+    knowledge. </p>
+    <p>I know the data driven approach was just what we were looking when I attended the
+    training in Sept., and this approach really streamlined and perfected all our scripts. For
+    those of you who don't agree, you are entitled to your opinions as well, but I don't think
+    it's always a good idea to &quot;poo poo&quot; approaches that have and will help a lot of
+    testing professionals perform their scripting/testing in a better overall way. </p>
+  </dd>
+  <dt>Dan: </dt>
+  <dd>What we do to link up our data with the rest of the info in SQA's repository are several
+    things. First of all, we link the test plan, test requirements, and test data docs through
+    the SQA Assets&gt;Test plan menu selection. Any type of document including spreadsheets
+    can be opened via the Test Plan Selector window. It is also project specific so you will
+    see the test data files, etc. only for the project you have open. Second, we write lots of
+    messages to the test log that document when and what happened for each failed data record.
+    From there you can automatically generate a defect. Third we enter test requirements into
+    SQA via the Assets&gt;Test Requirements menu selection. From there we associate a specific
+    requirement to the test log entries. We also document the software structure so that we
+    can relate specific defects back to the software components in which they occurred. <p>Writing
+    messages to the test log allows us to generate test log reports, various defect reports,
+    Test requirements/defect reports that are linked to our entries into the test log which
+    are in turn linked to specific data records in the CSV file the script ran. We can even
+    run the one report that lists all of the docs we have associated through the test plan
+    selector. </p>
+    <p>Unfortunately, some of SQA's built in limitations, such as not being able to associate
+    a test procedure with multiple requirements, force us to document some relationships
+    outside of the SQA repository. As I mentioned above, when we do so, we link those
+    documents so that we can open and examine them while in SQA Manager. </p>
+    <p>I would also say that you are absolutely correct when you say that data-driven testing
+    is not some cure-all for automated testing aliments. It does work when used correctly and
+    when used appropriately. </p>
+    <p>For some testing, which may involve recording/writing a small number of test scripts
+    and for which a not lot of test data is needed, the approach is over-kill. The real trick
+    is to know when it can and should be used. In fact, in some situations test automation in
+    any form is over-kill. </p>
+    <p>The incident that Elfriede referred to was one in which data-driven testing may have
+    involved too much effort and resources for the task at hand and that is why it did not pay
+    off. In that instance simple record and playback may have worked. I have learned a very
+    important lesson from our discussions and that is Bruce and I must update our seminar
+    material to include a discussion of when to use data-driven testing and when not to use
+    it. </p>
+  </dd>
+  <dt>Mike: </dt>
+  <dd>(Dan, on your record format for record types, what are those &quot;G&quot;s and
+    &quot;H&quot;s?) </dd>
+  <dt>Dan: </dt>
+  <dd>The purpose of the record type is to identify good records from error records, and to
+    mark records we do not want to execute during a test run. <p>You can use any code you like
+    as long as the script is coded to recognize it. We used &quot;G&quot; for good data
+    records, &quot;E&quot; for error records, and &quot;H&quot; to skip data records or to
+    insert comment records. The codes allow us to process some records while skipping others,
+    and to invoke special processing for exceptions. The advantage is that if a particular
+    record causes an error to occur, you change the code to &quot;H&quot; and you can run the
+    data set again continue testing. We also found that you can use these codes to stop
+    processing when you hit a certain record. We used &quot;X&quot; as the code. The
+    &quot;E&quot; code was used for records we expected to cause error conditions to inform
+    the script to look for and handle those conditions (error message boxes etc.). CTL1 is
+    used to identify the window&gt;child window&gt;dialog box&gt;tab where the test will
+    occur. The test scripts have built in intelligence in that they check the next data record
+    for location codes before they begin processing it. They determine if the data relates to
+    the window/dialog box/tab that is the current test context and process accordingly. </p>
+    <p>In this manner the script does not needlessly navigate the around the GUI from object
+    to object. Context of the test only changes when it needs to change. </p>
+    <p>As for looping, it depends on where the looping occurs. Of course we use a read loop to
+    put the data into the app and save it, to update, to delete it. </p>
+    <p>Now if you are talking about testing looping logic in the application it self, it is
+    possible, but questionable. First, data-driven testing is really black box testing that we
+    do at the build/integration testing level. Second, unit testing (which is where loop
+    testing occurs)is by its nature white box testing and the data-driven approach lends
+    itself best to black box. This is not to say that it can't be used to develop and execute
+    unit test data. In our testing, we have used it for build/integration testing after the
+    system has been installed in the test environment. </p>
+    <p>Testing loops tends to be something that is quite time consuming and can generate 10s
+    of 1000s of combinations and permutations of the test data. </p>
+    <p>Using McCabe's Basis testing approach to create the test data and then executing the
+    data via a data- driven test script that reads the data from a CSV file would be one
+    technique I would try. It would assure that the loop was exercised and it would introduce
+    a basis set of functional variations (One in each data record) for each iteration of the
+    loop. There are many articles in the Computer Science testing literature that specifically
+    address testing loops . Try searching one of the databases on the net I think STORM has
+    links to several database search engines on their web site. </p>
+  </dd>
+  <dt>Gerry: </dt>
+  <dd>Correct me if I'm wrong, but I think what was meant by the term &quot;looping&quot; is
+    the ability to repeat a set of actions in a test. <p>The approach we've taken is to enable
+    testers with no coding background to build their test plans and get test scripts with
+    minimal extra effort. We designed a business-like language to write scripts to aid in
+    readability and understanding for anyone building or reviewing a test plan. Yes, it's
+    quite low-level details - the tester has to guide Robot by saying select this menu item,
+    click this button, input this text, etc. However, because the language is small and
+    intuitive, so far we've found people with minimal programming background can pick it up
+    quickly. </p>
+    <p>The way looping is handled in the language is by using a keyword &quot;RunTest&quot;,
+    which takes a test id as a parameter. We have found this very useful when trying to build
+    complex tests out of smaller ones. This could be easily extended to 'repeat' a series of
+    steps by taking in a parameter to re-run, say the previous 3 steps. </p>
+  </dd>
+</dl>
+</body>
+</html>
