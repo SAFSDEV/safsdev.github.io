@@ -1,0 +1,22 @@
+{
+    "SMDVersion": "2.0",
+    "id": "iDesigner/FileDatastoreService.php",
+    "description": "iDesigner Datastore API",
+
+    transport: "JSONP",
+    envelope: "URL",
+    additionalParameters: true,
+    target: "/iDesigner/FileDatastoreService.php",
+    
+    parameters: [{ name: "format", optional: false, "default": "json" }],
+
+    services: {
+        query: {
+            parameters: [
+                { name: "action", type: "string", "default": "query" },
+                { name: "text", type: "string", optional: true }
+            ]
+        }
+    }
+}
+
