@@ -1,0 +1,24 @@
+ [
+	{"userid": "U01", "postcode": "60622", "address": "1941 W. Augusta Blvd. Chicago, IL"},
+	{"userid": "U02", "postcode": "02116", "address": "276 Tremont Street, Boston, MA" },
+	{"userid": "U03", "postcode": "94103", "address": "1310 Mission Street San Francisco, CA"},
+	{"userid": "U04", "postcode": "89130", "address": "4933 W. Craig Rd. Suite 291 Las Vegas, NV"},
+	{"userid": "U05", "postcode": "94103", "address": "1072 Folsom Street, #470 San Francisco, CA"},
+	{"userid": "U06", "postcode": "92114", "address": "1250 Weaver Street, San Diego CA"},
+	{"userid": "U07", "postcode": "90086", "address": "PO Box 86605 Los Angeles, CA"},
+	{"userid": "U08", "postcode": "95959", "address": "228 Commercial St. # 88 Nevada Ctiy, CA"},
+	{"userid": "U09", "postcode": "95112", "address": "565 North Fifth Street San Jose, CA"},
+	{"userid": "U10", "postcode": "10016", "address": "244 Madison Ave. #277 New York , NY"},
+	{"userid": "U11", "postcode": "60625", "address": "3010 W Wilson Apt 3 Chicago IL"},
+	{"userid": "U12", "postcode": "10001", "address": "109 West 27th Street, Suite 9A New York, NY"},
+	{"userid": "U13", "postcode": "96813", "address": "46 Merchant Street Honolulu, Hawaii"},
+	{"userid": "U14", "postcode": "55454", "address": "1501 S. 4th St. Minneapolis, MN"},
+	{"userid": "U15", "postcode": "01003", "address": "100 Hicks Way, Room 16 Curry Hicks, University of Massachusetts, Amherst, MA"},
+	{"userid": "U16", "postcode": "10001", "address": "16 West 32 Street, 10th Floor, New York, NY"},
+	{"userid": "U17", "postcode": "20835", "address": "P.O. Box 65069 Washington, D.C."},
+	{"userid": "U18", "postcode": "10013", "address": "22 Howard Street, Suite 3B New York, NY"},
+	{"userid": "U19", "postcode": "11373", "address": "51-60 Van Kleeck St. 2F Elmhurst, NY"},
+	{"userid": "U20", "postcode": "98122", "address": "1122 E Pike Street #1111 Seattle WA"},
+	{"userid": "U21", "postcode": "90024", "address": "914 Westwood Blvd PMB 140 Los Angeles, CA"}
+
+]
