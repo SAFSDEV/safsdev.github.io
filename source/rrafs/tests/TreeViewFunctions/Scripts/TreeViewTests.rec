@@ -1,0 +1,38 @@
+OPTION EXPLICIT
+
+'VBTryIt and PBTryIt must be running and at Welcome screen!
+'==========================================================
+
+'$INCLUDE: "DDEngine.sbh"
+    
+Sub Main
+    Dim status As Integer
+    Dim msgID As Integer
+    Dim logfile As String
+    Dim statusInfo as AUStatusInfo
+    
+    DDU_EXPRESSIONS_MODE = 1    'turn on advanced expressions
+
+    MainLog.logid = "TreeViewTests"    
+    logfile = GetDDELogsDirectory() & MainLog.logid
+    on error resume next
+    kill logfile &".txt"
+    on error goto 0
+    
+    'caution, resource intensive and new log formats automatically work.
+    InitLogFacility (CONSOLE_ENABLED or TEXTLOG_ENABLED), MainLog
+
+    SDStepDriver "TreeViewTests.SDD", "_", MainLog
+    CDCycleDriver "TreeViewTestCycle.CDD", Chr$(9), MainLog, MainLog, MainLog
+    
+    'closedown any apps started
+    AUTerminateAllApps
+    
+    'close the logs
+    CloseAllLogs MainLog, 1
+    Reset
+
+    'StartApplication "notepad.exe "& MainLog.textlog
+
+End Sub
+    
