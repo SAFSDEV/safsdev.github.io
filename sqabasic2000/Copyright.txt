@@ -1,0 +1,14 @@
+Copyright (2001,2002) SAS Institute Inc. All rights reserved.
+NOTICE: Permission to use, copy, modify and distribute this code and its
+documentation, if any, for any purpose and without fee is hereby granted, 
+subject to the following conditions: 
+
+The above copyright notice and this permission notice must appear in all 
+copies of the code and any related documentation. 
+ 
+THIS CODE IS PROVIDED "AS IS", AND SAS MAKES NO REPRESENTATIONS OR WARRANTIES, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR ANY PARTICULAR PURPOSE, AND NONINFRINGEMENT.  IN NO EVENT SHALL 
+SAS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING IN CONNECTION 
+WITH THE CODE OR ITS USE.
+===============================================================================

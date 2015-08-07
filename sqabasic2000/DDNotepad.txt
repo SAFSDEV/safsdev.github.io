@@ -1,0 +1,53 @@
+Option Explicit
+
+'NOTE: Robot must be configured as follows:
+'      Tools/Playback Options:
+'               Playback->Put Robot In Background  (or minimized)
+'               ErrorRecover->Continue Execution on both Script Failures AND VP Failures.
+
+'$Include: "DDEngine.SBH"
+Const SaveASFile = "C:\TEMP\MyNotes.txt"
+
+Sub Main
+    Dim status As Integer
+    Dim msgID As Integer
+    Dim logFile as String
+
+    'where should our text log go?
+    logFile = SQAGetDir(SQA_DIR_PROJECT) &"\Datapool\Logs\NotepadTest.txt"
+
+    'delete any preexisting text logfile and our TEMP test output file
+    on error resume next
+    Kill logfile
+    Kill SaveASFile
+    on error goto 0
+
+    'enable all log options
+    msgID = (TEXTLOG_ENABLED OR SQALOG_ENABLED OR CONSOLE_ENABLED)
+    InitLogFacility msgId, MainLog, logFile
+    
+    '****************************************************************
+    LogMessage "Begin Notepad Testing", MainLog, START_PROCEDURE
+    
+    SDStepDriver "NotepadStepFile.txt", ";", MainLog
+    
+    LogMessage "End Notepad Testing", MainLog, END_PROCEDURE
+    '****************************************************************
+    
+    'closedown any apps started
+    AUTerminateAllApps
+    
+    LogMessage " ", MainLog
+    
+    'must evaluate Global StepDriverInfo for results
+    LULogStatusInfo StepDriverInfo, MainLog, "Final Test Results"    
+    
+    LogMessage " ", MainLog
+
+    'close the text log
+    CloseTextLog MainLog, 1
+    Reset
+    
+    StartApplication "notepad.exe "& MainLog.textlog
+    
+End Sub
