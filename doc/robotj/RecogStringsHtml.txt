@@ -1,0 +1,110 @@
+Note on Recognition Strings for the RobotJ version of the engine.
+
+Because I could not get RobotJ to provide a suitable 'caption' through
+it's API, I was forced to require that the caption be specified as:
+Caption=Html.HtmlBrowser
+Which is really the Type, but until the RobotJ API can be mastered
+into providing the real caption of the web page, this is the work
+around.  Because of this limitation, the top-most web page will be
+fetched at runtime.
+
+Additionally, the Types as provided by RobotJ are as follows:
+
+Html.HtmlBrowser	:Component
+Html.HtmlDocument	:Component
+Html.IMG		:Component
+Html.B			:Component
+Html.BODY		:Component
+Html.BR			:Component
+Html.CENTER		:Component
+Html.FONT		:Component
+Html.FORM		:Component
+Html.HEAD		:Component
+Html.HTML		:Component
+Html.META		:Component
+Html.P			:Component
+Html.SCRIPT		:Component
+Html.SPAN		:Component
+Html.STYLE		:Component
+Html.TBODY		:Component
+Html.TD			:Component
+Html.TITLE		:Component
+Html.TR			:Component
+
+Html.TABLE		:HtmlTable
+
+Html.A			:HtmlLink
+
+Html.INPUT.button	:Button
+Html.INPUT.submit	:Button
+Html.HtmlBrowser.ToolbarButton :Button
+
+Html.SELECT		:List
+Html.TEXTAREA		:Text
+Html.INPUT.text		:Text
+Html.INPUT.hidden	:Text
+
+
+The above types can be used directly in the recognition strings when
+using RobotJ.  For www.google.com, here are some recognition strings I
+manually put together.  Note that the RobotJ version of
+ProcessContainer does not yet generate recognition strings for web
+pages, although that wouldn't be a difficult task for a developer to
+do. Notice that the 'Name=' part is used for many of these strings.
+For instance, the 'GoogleDoc' string is used to do these keywords
+
+HTMLDocumentFunctions::ClickLinkBeginning
+HTMLDocumentFunctions::ClickLinkContaining
+
+For the RobotJ implementation it was necessary to specify Name=*
+to implement those keywords.
+
+Specific links can be done using the exact name of the link itself.
+For instance 'LinkPreferences', 'LinkGroups' and 'LinkNews are
+all of type Html.A and use the Name= notation with the link contents itself.
+
+To recognize DHTML components, like edit boxes, buttons and select
+controls, the Name= can be used as well, or, if the index is known,
+that can always be used, but is less robust.  In this example
+'Text', 'Search', 'Back', 'Forward' and 'ListLang' are examples
+of these.
+
+To recognize Tables, TR and TD components, that can be done as shown
+in the examples as well.  Any of those can be 'click'ed using the
+click keyword. Just now ready for this release, the
+HTMLTableFunctions should conform to the keywords for the
+JavaTableFunctions. This eliminates the need to generate
+recognition strings for the TR and TD components themselves, although
+that is always an alternative.
+
+Here is the example:
+
+
+[Google]
+Google="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser"
+GoogleDoc="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.A;Name=*"
+LinkAdvancedSearch="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.A;Name=Advanced Search"
+LinkPreferences="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.A;Name=Preferences"
+LinkGroups="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.A;Name=Groups"
+LinkNews="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.A;Name=News"
+Text="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.INPUT.text;Name=q"
+Search="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.INPUT.submit;Name=btnG"
+Back="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.HtmlBrowser.ToolbarButton;Name=Back"
+Forward="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.HtmlBrowser.ToolbarButton;Name=Forward"
+popupMenu="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=PopupMenu;Index=1"
+Table="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.TABLE;Index=2"
+Tr="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.TR;Index=3"
+Td11="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.TD;Index=11"
+Td13="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.TD;Index=13"
+
+[Browser]
+Browser="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser"
+ListLang="Type=Html.HtmlBrowser;Caption=Html.HtmlBrowser;\;Type=Html.SELECT;Name=language"
+
+
+And here is a test step for the google page:
+
+T, Google, Table, VerifyCellTextFind, News, find, 10, 4, Images, 8, Directory, 6, Groups, 2, Web, 10, News
+
+After this passes, the variable 'find' should have value 1
+for row 1, which matches the specs.

@@ -1,0 +1,18 @@
+Preferences->Rational RobotJ
+  Multiply all time options by 1.5
+
+Preferences->Rational RobotJ->Playback->Delays
+
+ Delay before mouse up: 0.1
+ Delay before mouse move: 0.1
+ Delay before mouse down: 0.1
+ Delay before key up : 0.01 (default)
+ Delay when hover : 1.0 (default)
+ Delay after top level window activates: 1.0
+ Delay before key down: 0.0010 (default)
+ Delay before performing TestObject action : 0.1
+
+Preferences->Rational RobotJ->Playback->Recognition Scores
+
+ Maximum acceptable recognition score: 12000
+ (rest default)

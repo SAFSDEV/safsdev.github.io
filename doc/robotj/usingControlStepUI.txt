@@ -1,0 +1,124 @@
+I have developed a very rudimentary, from a SAFS standpoint,
+controller myself which is capable of processing either one
+step command, or a series of step commands placed in a text file.
+It cannot do any of the fancier stuff, such as parsing Cycle
+or Suite tables, variable substitution, etc.  It does have a GUI,
+however, and is useful for quick testing of RobotJ Step functions
+and is quite useful to determine if Application Map entries are
+correct.
+
+It is interesting from the standpoint of what kind of functions
+might be supported by a controller.  It even
+uses several threads so that the GUI is not frozen, and makes use
+of the standard java Observer/Observable pattern to communicate
+between the View (the GUI) and the Control portion.
+
+There are two classes that do this:
+org.safs.control.ControlStep.java  (control)
+org.safs.control.swing.ControlStepUI.java (UI)
+
+Run the GUI as follows:
+
+java -classpath safs.jar;C:/staf/bin/jstaf.jar org.safs.control.ControlStep 
+
+The GUI will pop up and you will see several panels.
+At the top of the GUI are the Driver, Timeout and Delimiter
+entry areas.  The Driver can be either SAFS/RobotJ,
+SAFS/DriverCommands or any new engines which become available.
+The first panel lets you specify a Window, Component, Action and
+Parameter(s) which can be used to test either a component function
+keyword or an Application Map entry.  The second panel is similar,
+it lets you specify a file with multiple component function step commands
+(T) or driver commands (C).  It will process each one in turn by sending
+them to the engine much as the Robot classic controller does.  The only
+thing is that it cannot handle flow control driver commands, or do
+variable substitution.  But is good for testing multiple application
+map entries or rudimentary sequences of commands without the variable
+substitution.
+
+The third area lets you open an application map, or get an item from that
+map and the result will be shown in the 'Item Value' of the Results panel.
+The Status Code and Input Record areas of the Results panel show each
+test step that is being executed, in real time and the status code of each.
+
+Instructions for using the ControlStepUI
+
+Run the bat file ControlStep.bat
+
+It assumes that safs.jar is in your classpath.
+
+Make sure you already have RobotJ TestScript running in
+the background, and the 3 safs services started.
+
+You will need to specify your AppMap in the UI and
+click OpenMap.
+
+For instance, if you loaded the safsmaps like this:
+
+STAF LOCAL SERVICE ADD SERVICE safsmaps LIBRARY jstaf EXECUTE c:/org/safsmaps.jar PARMS dir C:\CycleTest\Datapool
+
+Then the Application Map you type into the
+UI needs to be the name of the file (without the .map)
+in that directory (C:\CycleTest\Datapool)
+
+The output of the UI will be on the command window where
+you opened it.  But there is a StatusCode field to show
+the output in the UI.
+
+To execute an action, type in the name of a window and
+the name of a component, both from the application map
+you opened, and click Submit.
+
+While the command is processing, the bottom will show
+
+"Processing Command..."  you will need to wait until that
+goes away.
+
+As the commands are being processed, the Input Record
+is sown in the Results panel.
+
+You can also test using a step file in that panel.
+The C or T commands are placed in a file and can be
+processed sequentially.
+
+The Status Code will show the result, either OK: -1,
+SCRIPT_NOT_EXECUTED: 4, or GENERAL_SCRIPT_FAILURE: 0.
+
+If the received result is 4, then it either couldn't find
+the window/component or the action.
+
+To view the debugging info, do the following:
+
+Start a new command prompt.
+Type the following:
+
+java org.safs.Log
+
+Then in another command prompt, pick the debugging level
+which should best suit you.  Level2 is best for testing
+AppMap entries, because it does not print out too much info,
+just enough to see it searching through a hierarchical
+tree of GUI objects it is trying to recognize.
+
+type: level2
+
+Then control through the GUI.
+
+The GUI also lets you fetch an item from an AppMap with
+"Get Item".
+
+The timeout specifies how long the GUI will wait for the engine
+to respond.  If the wrong driver was entered, or if the
+driver is not started, then that timeout will be used.
+The delimiter is used between the fields, currently the
+only limitation is that it be one character long. The
+delimiter is less important if you are
+using the Panel "Test one AppMap entry", but if you are
+using the "Test using step file" Panel, then make sure that
+the delimiter specified in the GUI and in the step file
+match.
+
+
+
+
+
