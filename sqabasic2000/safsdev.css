@@ -1,0 +1,70 @@
+
+body {
+   font-size: 18px;
+   font-weight: normal;
+}
+
+header.banner {
+   background-color: #D0E0FF;
+   border-style: solid;
+   border-width: 2px;
+   border-color: #0000FF;
+   margin: 10px 10px;
+   text-align: center;
+}
+.doctitle {
+   padding: 10px 0;
+   font-size: 40px;
+   font-weight: bold;
+}
+.docmodified {
+   font-size: 14px;
+   font-weight: bold;
+   padding: 10px 0;
+}
+
+section.intro {
+   padding: 10px 15px;
+}
+
+section.requirements {
+   padding: 10px 10px;
+   margin: 10px 10px;
+   border-style: solid;
+   border-width: 1px;
+   border-color: #909090;
+   background-color: #E0E0E0;
+}
+.requirementstitle {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px 0px;
+    text-decoration:underline;
+}
+
+section.usage {
+   padding: 10px 15px;
+}
+.usagetitle {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px 0px;
+}
+article.subsection {
+  padding: 10px 15px;
+}
+.subsectiontitle {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+}
+code {
+    font-size: 16px;
+}
+.itemnote {
+    font-size: 14px;
+}
+footer {
+   border-top: 2px;
+   border-top-style: solid;
+}

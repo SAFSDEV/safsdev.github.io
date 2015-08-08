@@ -1,0 +1,38 @@
+;Sample Application Map for Notepad
+
+[ApplicationConstants]
+Executable="Notepad.exe"
+
+[UntitledNotepad]
+UntitledNotepad="Type=Window;Caption={Untitled*}"
+
+[MyNotes]
+MyNotes="Type=Window;Caption={MyNotes*}"
+
+[NotepadMsg]
+NotepadMsg="Type=Window;Caption=Notepad"
+OKButton="Type=PushButton;Text=OK"
+GraphicSymbol="Type=Generic;ObjectIndex=1"
+MessageLabel="Type=Label;ObjectIndex=1"
+
+[SaveAsWin]
+SaveAsWin="Type=Window;Caption=Save As"
+SaveInLabel="Type=Label;Text=Save in:"
+PathComboBox="Type=ComboBox;Label=Save in:"
+PathListBox="Type=ListBox;ObjectIndex=1"
+FilesPanel="Type=Generic;Class=SHELLDLL_DefView;ClassIndex=1"
+FilesListView="Type=ListView;ObjectIndex=1"
+FilenameLable="Type=Label;Text=File name:"
+
+;FilenameEditBox might be a EditBox or ComboEditBox on some OS\Apps
+FilenameEditBox="Type=ComboEditBox;ObjectIndex=3"
+;FilenameEditBox="Type=EditBox;ObjectIndex=1"
+
+AsTypeLabel="Type=Label;Text=Save as type:"
+AsTypeComboBox="Type=ComboBox;Label=Save as type:"
+SaveButton="Type=PushButton;Text=Save"
+CancelButton="Type=PushButton;Text=Cancel"
+HelpButton="Type=PushButton;Text=Help"
+Toolbar="Type=Toolbar;ObjectIndex=1"
+UnicodeCheckBox="Type=CheckBox;Text=Save as Unicode"
+MsgBox="Type=Generic;Class=#32770;ClassIndex=1"

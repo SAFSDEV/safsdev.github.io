@@ -1,0 +1,78 @@
+package org.safs.model.examples;
+
+import org.safs.model.CycleTestTable;
+import org.safs.model.ProjectCommand;
+import org.safs.model.StepTestTable;
+import org.safs.model.SuiteTestTable;
+import org.safs.model.commands.DDDriverCommands;
+import org.safs.model.commands.JavaMenuFunctions;
+
+/**
+ * A hypothetical example of JSAFS "Design-time" Java Code
+ */
+public class MyAppTest {
+   
+    static private String MAIN_WINDOW = "RCMainWindow";
+    static private String MAIN_MENU = "MainMenu";
+
+    static public void main(String[] args) {
+
+    	System.out.println("start...");
+
+        /*
+         * Create step-level tests
+         */
+        StepTestTable helpMenuTests = new StepTestTable("HelpMenuTests");
+        
+        helpMenuTests.add(JavaMenuFunctions.selectMenuItem(MAIN_WINDOW, MAIN_MENU, "\"Help->About MyApp\""));
+
+        StepTestTable viewMenuTests = new StepTestTable("ViewMenuTests");
+        
+        viewMenuTests.add(JavaMenuFunctions.selectMenuItem(MAIN_WINDOW, MAIN_MENU, "\"View->Cycles\""));
+        viewMenuTests.add(JavaMenuFunctions.selectMenuItem(MAIN_WINDOW, MAIN_MENU, "\"View->Reports\""));
+
+        /*
+         * Package step-level tests into suites
+         */
+        SuiteTestTable generalTests = new SuiteTestTable("GeneralTests");
+        
+        generalTests.add(new LogOn("myuserid", "password1234"));
+        generalTests.add(viewMenuTests);
+        generalTests.add(helpMenuTests);
+
+        SuiteTestTable reportsTests = new SuiteTestTable("ReportsTests");
+        // TODO: create tests for MyApp's Reports feature
+
+        SuiteTestTable cycleTests = new SuiteTestTable("CycleTests");
+        // TODO: create tests for MyApp's Cycles feature
+
+        SuiteTestTable rateTests = new SuiteTestTable("RateTests");
+        // TODO: create tests for MyApp's Rates workspace
+
+        SuiteTestTable modelTests = new SuiteTestTable("ModelTests");
+        // TODO: create tests for MyApp's Models workspace
+
+        SuiteTestTable formTests = new SuiteTestTable("FormTests");
+        // TODO: create tests for MyApp's Forms workspace
+
+        /*
+         * Package test suites into a cycle
+         */
+        CycleTestTable regressionTests = new CycleTestTable("Package");
+        regressionTests.add(DDDriverCommands.expressions("ON"));
+        regressionTests.add(DDDriverCommands.setApplicationMap("MyApp.MAP"));
+        regressionTests.add(generalTests);
+        regressionTests.add(reportsTests);
+        regressionTests.add(cycleTests);
+        regressionTests.add(rateTests);
+        regressionTests.add(modelTests);
+        regressionTests.add(formTests);
+
+        /*
+         * Generate SAFS test tables for cycle
+         */
+        regressionTests.exportToCSV(directoryPath);
+
+        System.out.println("...done");
+    }
+}

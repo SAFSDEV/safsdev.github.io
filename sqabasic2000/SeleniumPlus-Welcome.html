@@ -1,0 +1,700 @@
+<html>
+<head>
+<title>Intro to SeleniumPlus</title>
+<style>
+
+.appmap {
+    border:2px solid black;
+    background-color: #C0C0C0;
+    padding-left:6px;
+    color: black;
+    width: 500px;
+}
+</style>
+<script>
+function hideAllContentPanels(){
+    document.getElementById("welcome").style.display="none";
+    document.getElementById("sample-install").style.display="none";
+    document.getElementById("project-create").style.display="none";
+    document.getElementById("appmaps").style.display="none";
+    document.getElementById("project-edit").style.display="none";
+    document.getElementById("tests-run").style.display="none";
+    document.getElementById("tests-backup").style.display="none";
+    document.getElementById("tests-checkout").style.display="none";
+    document.getElementById("advanced").style.display="none";
+    document.getElementById("references").style.display="none";
+    document.getElementById("iesetup").style.display="none";
+
+    document.getElementById("href-welcome").style.fontWeight="normal";
+	document.getElementById("href-sample-install").style.fontWeight="normal";
+	document.getElementById("href-project-create").style.fontWeight="normal";
+	document.getElementById("href-appmaps").style.fontWeight="normal";
+	document.getElementById("href-project-edit").style.fontWeight="normal";
+	document.getElementById("href-tests-run").style.fontWeight="normal";
+	document.getElementById("href-tests-backup").style.fontWeight="normal";
+	document.getElementById("href-tests-checkout").style.fontWeight="normal";
+	document.getElementById("href-advanced").style.fontWeight="normal";
+	document.getElementById("href-references").style.fontWeight="normal";
+    document.getElementById("href-iesetup").style.fontWeight="normal";
+
+
+}
+function showWelcome(){
+	hideAllContentPanels();
+    document.getElementById("welcome").style.display="block";
+	document.getElementById("href-welcome").style.fontWeight="900";
+}
+function newSample(){
+	hideAllContentPanels();
+    document.getElementById("sample-install").style.display="block";
+    document.getElementById("href-sample-install").style.fontWeight="900";
+}
+function newProject(){
+	hideAllContentPanels();
+    document.getElementById("project-create").style.display="block";
+    document.getElementById("href-project-create").style.fontWeight="900";
+}
+function editAppMaps(){
+	hideAllContentPanels();
+    document.getElementById("appmaps").style.display="block";
+    document.getElementById("href-appmaps").style.fontWeight="900";
+}
+function editTests(){
+	hideAllContentPanels();
+    document.getElementById("project-edit").style.display="block";
+    document.getElementById("href-project-edit").style.fontWeight="900";
+}
+function runTests(){
+	hideAllContentPanels();
+    document.getElementById("tests-run").style.display="block";
+    document.getElementById("href-tests-run").style.fontWeight="900";
+}
+function backupTests(){
+	hideAllContentPanels();
+    document.getElementById("tests-backup").style.display="block";
+    document.getElementById("href-tests-backup").style.fontWeight="900";
+}
+function checkoutTests(){
+	hideAllContentPanels();
+    document.getElementById("tests-checkout").style.display="block";
+    document.getElementById("href-tests-checkout").style.fontWeight="900";
+}
+function showAdvanced(){
+	hideAllContentPanels();
+    document.getElementById("advanced").style.display="block";
+    document.getElementById("href-advanced").style.fontWeight="900";
+}
+function showReferences(){
+	hideAllContentPanels();
+    document.getElementById("references").style.display="block";
+    document.getElementById("href-references").style.fontWeight="900";
+}
+function showIESetup(){
+	hideAllContentPanels();
+    document.getElementById("iesetup").style.display="block";
+    document.getElementById("href-iesetup").style.fontWeight="900";
+}
+</script>
+
+</head>
+<body>
+<h1>Intro to SeleniumPlus</h1>
+<div id="menu" class="panelselector">
+<hr>
+<a href="#" onclick="showWelcome()" id ="href-welcome" >Welcome</a>&nbsp;&nbsp;
+<a href="#" onclick="newSample()" id="href-sample-install" >Sample Project</a>&nbsp;&nbsp;
+<a href="#" onclick="newProject()" id="href-project-create" >Create New Project</a>&nbsp;&nbsp;
+<a href="#" onclick="editAppMaps()" id="href-appmaps" >Edit AppMaps</a>&nbsp;&nbsp;
+<a href="#" onclick="editTests()" id="href-project-edit">Edit Tests</a>&nbsp;&nbsp;
+<a href="#" onclick="runTests()" id ="href-tests-run" >Run Tests</a>&nbsp;&nbsp;
+<a href="#" onclick="backupTests()" id ="href-tests-backup" >CVS/Check-in</a>&nbsp;&nbsp;
+<a href="#" onclick="checkoutTests()" id ="href-tests-checkout" >CVS/Check-out</a>&nbsp;&nbsp;
+<a href="#" onclick="showAdvanced()" id ="href-advanced" >Advanced Users</a>&nbsp;&nbsp;
+<a href="#" onclick="showReferences()" id="href-references" >References</a>&nbsp;&nbsp;
+<a href="#" onclick="showIESetup()" id="href-iesetup" >Setup Browser</a>
+<hr>
+</div>
+<p>
+<!--------------------------------->
+<!-- Welcome Content -->
+<!--------------------------------->
+<div id="welcome" style="display:block" >
+<h2>SeleniumPlus Welcome</h2>
+<p>
+Thanks for giving SeleniumPlus a try!
+<p>
+Select any of the links above to go directly to an area of interest.
+<p>
+We welcome any feedback (both good and bad) that can help us make the test automation experience better!
+<p> <br>
+<p>
+The SAFS/SeleniumPlus Development Team
+<ul>
+    Carl Nagle<br>
+    Dharmesh Patel<br>
+    Lei Wang</br>
+    Junwu Ma
+</ul>
+</div>
+
+<!--------------------------------->
+<!-- Sample Project Instructions -->
+<!--------------------------------->
+<div id="sample-install"  style="display: none;">
+<h2>Try a SAMPLE Project</h2>
+<ol><h3>Create the Sample Project</h3>
+    <li>Right-click in the Package Explorer view.
+    <li>Select "New->Project..." in the popup menu.
+    <p><img src="images/PackageExplorer_NewProject.png"/>
+	<li>Select "Selenium+ ->Selenium+ Sample Project" in the New Project dialog and click "Next".
+    <p><img src="images/NewProject_SampleProject.png"/>
+	<li>Make sure "Use default location" is selected and click "Finish" in the dialog.
+	<li>If prompted to Associate the project with the Selenium+ perspective select the "Remember my decision" CheckBox and click "Yes".
+	<p><img src="images/AssociatePerspective.png"/>
+	<li>The SAMPLE project should now be installed for your review and experimentation.
+	<p>
+	<img src="images/SAMPLEProject_Installed.png"/>
+</ol>
+<p>
+<ol><h3>Review the Sample Project</h3>
+	The SAMPLE project shows one desirable way to put together a suite of tests.
+	<p>
+	<li>The root SAMPLE folder will contain the project's "test.ini" configuration file.
+	<li>The TestCases package can hold one or more classes of simple testcase actions as shown in the TestCase1.java class.
+	<li>The TestRuns package can hold one or more classes that piece together test suites that run testcases in any desired sequence as shown in the TestRun1.java class.
+	<li>The Actuals folder may receive captured runtime files, data, or images.
+	<li>The Benchmark folder will contain benchmark files, data, or images when required.
+	<li>The Diffs folder may receive runtime compare differences in files, data, or images.
+	<li>The Logs folder will receive test log(s) at the end of a test.
+	<li>The Maps folder will contain tester-defined App Map files and the AppMap.order file used during testing.
+	<p>
+	<img src="images/SAMPLEProject_Installed.png"/>
+</ol>
+<p>
+<ol><h3>Run the Sample Project</h3>
+	<li>In the Package Explorer, right-click on "SAMPLE->Test->TestRuns->TestRun1.java"
+	<li>In the subsequent popup menu, select "Run As->Selenium+ Test".<br>
+	(The test should automatically start and run with Google in Firefox.)
+	<li>When the test completes, Package Explorer should show a "SAMPLE.txt" file in the "SAMPLE->Logs" folder.<br>
+	(You may have to hit Refresh(F5) for the Package Explorer to update.)
+	<li>Double-click "SAMPLE.txt" or right-click it to "Open With...->Text Editor" to see the test results.
+</ol>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- Create Project Instructions -->
+<!--------------------------------->
+<div id="project-create" style="display: none;">
+<h2>Create and Review a New Project</h2>
+<ol><h3>Create a New Project</h3>
+    <li>Right-click in the Package Explorer view.
+    <li>Select "New->Project..." in the popup menu.
+    <p><img src="images/PackageExplorer_NewProject.png"/>
+	<li>Select "Selenium+ ->Selenium+ Project" in the New Project dialog and click "Next".
+	<li>Enter a name for the project and click "Finish" in the dialog.
+	<li>If prompted to Associate the project with the Selenium+ perspective,<br>
+	select the "Remember my decision" CheckBox and click "Yes".
+	<p><img src="images/AssociatePerspective.png"/>
+	<li>The new project should now be created for your review and experimentation.
+	<p>
+	<img src="images/SAMPLEProject_Installed.png"/>
+</ol>
+<p>
+<ol><h3>Review the New Project</h3>
+	The new project provides a way to put together a suite of tests.
+	<p>
+	<li>The root project folder will contain the project's "test.ini" configuration file.
+	<li>The TestCases package can hold one or more classes of simple testcase actions.<br>
+	An empty TestCase1.java class is initially provided.
+	<li>The TestRuns package can hold one or more classes that piece together test suites that run testcases in any desired sequence.<br>
+	An empty TestRun1.java class is initially provided.
+	<li>The Actuals folder may receive captured runtime files, data, or images.
+	<li>The Benchmark folder will contain benchmark files, data, or images when required.
+	<li>The Diffs folder may receive runtime compare differences in files, data, or images.
+	<li>The Logs folder will receive test log(s) at the end of a test.
+	<li>The Maps folder will contain tester-defined App Map files and the AppMap.order file used during testing.
+	<p>
+	<img src="images/SAMPLEProject_Installed.png"/>
+</ol>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- Edit AppMaps                -->
+<!--------------------------------->
+<div id="appmaps" style="display: none;">
+<h2><p>
+	AppMaps provide a key single point of maintenance for important data and component recognition.
+	<p></h2>
+<p>
+<ol><h3>Create new App map</h3>
+	<p>
+	 Right click on Maps folder of the project, click "Selenium+->Create Map" to create new App map.
+	 <br/>New App map will be created with .map extension.  User can create multiple map files to separate language specific component recognition string.
+	 <br/>Example: newAppMap_en.map, newAppMap_fr.map or newAppMap_es-CO.map. Please see App map order section for how to load maps.
+	</p>
+</ol>
+<ol><h3>The AppMap.order File</h3>
+	<p>
+	In general, there is a "primary" App Map which holds the bulk of all recognition strings and Application Constants.  Then, there can be one or more localizable App Maps containing language-specific values used by or overriding the primary App Map values.
+	<p>
+	The <b>AppMap.order</b> file is a means to chain multiple App Maps to be loaded in a specific order.<br>
+	<br/> Example:
+<div class="appmap"><pre>
+;
+; Order App Maps Last In First Out (LIFO) for "chaining"
+;
+App.map
+App_fr.map
+</pre></div>
+</ol>
+<ol><h3>The App map details</h3>
+	<p>
+	Normally, App map consists main two sections, Application constants and Component recognition.
+	<br /> Application constants keeps all application constants and other data while Component recognition sections keep component recognition string.  
+	<p>Example: 
+	<br/>In component recognition section, root component recognition is optional. e.g Google="id=viewport" is optional, see [Login] there are no Login root component.
+	</p>
+	<div class="appmap"><pre>
+;
+; Constants and other data.
+;
+[ApplicationConstants]
+nlsSearch="Search"
+url="http://www.google.com"
+username="anonymous"
+password="newpassword"
+</pre></div>
+<br/>
+
+<div class="appmap"><pre>
+;
+; Component recognition:
+;
+; Google main page window/component recognition
+;
+[Google]
+Apps="title=Apps"
+Search="text={^nlsSearch}"
+Google="id=viewport"
+
+;
+; Google's Login window/component recognition
+;
+[Login]
+UserName="name=Email"
+Password="name=Passwd"
+SignIn="id=signIn"
+</pre></div>
+</ol>
+<ol><h3>Component Recognition String or Object Locator</h3>
+	There are many ways to create component recognition string. The RS must be unique for the page. Following are examples for how to make unique string.
+	<p>Example:
+
+<ul>Identify the proper FRAME, if present:
+     <p><ul><pre>
+     FRAMEINDEX=N;\; (1-based, 1 means the first frame)
+     FRAMEID=id;\;
+     FRAMENAME=name;\;     
+     (note: parent/child elements separated by ";\;" )
+     (note: FRAMEINDEX is NOT ready for using )
+     </pre></ul>
+ <p>Identify any supported "domain" class qualifier, if desired:
+     <p><ul><pre>
+     DOJOTabControl;
+     DOJOToolbar;
+     SAPTabControl;
+     SAPToolbar;
+     </pre></ul>
+<p>Identify unique element attribute identifiers like:
+     <p><ul><pre>
+     ID=id;
+     CLASS=class;
+     NAME=name;
+     TEXT=text;
+     TITLE=title;
+     LINK=linkInfo;
+     PARTIALLINK=partialLinkInfo;
+     TAG=tagname;
+     INDEX=n; (1-based nth match)
+     (note: multiple attribute identifiers separated by semi-colons)
+     (Example: CLASS=class;TEXT=text)
+     </pre></ul>     
+ <p>Alternatively, identify explicit XPATH or CSS recognition:
+     <p><ul><pre>
+     XPATH=explicit xpath
+     CSS=explicit css path
+     </pre></ul>
+ </ul>
+ <p>
+</ol>
+
+<ol><h3>Capture Recognition Strings - Browser Tools</h3>
+	<p>
+	Generally, the 3 major browsers seem to support the same or similar mechanism for inspecting web page elements.
+	<p>
+	<li>Navigate to the desired application in the browser.
+	<li>Press <b>"F12"</b> to display the browser Object Inspector.<br>
+	If "F12" does not do it then try <b>Ctrl+Shift+C</b> or <b>Ctrl+Shift+I</b> or
+	consult your browser documentation for launching the Inspector.
+	<li>Click the Inspector tool and then Click the desired application component.
+	<p>FireFox:<br><img src="images/FireFoxInspector.png"/>
+	<p>Chrome:<br><img src="images/ChromeInspector.png"/>
+	<p>IExplore:<br><img src="images/IExploreInspector.png"/>
+	<li>The Inspector panels should now show detailed information about the selected application component highlighted in the console.
+	<li>If present, click the Inspector's "Attributes" tab (or equivalent) to see attributes (name="value" properties) for the component.
+	<p>
+	<li>Common attributes to use for recognition are:<b> name, type, id, title, value, and text</b>.<br>
+	<ul>
+		<li>'text' is not a real 'attribute', but we support it as such.
+		<li>Whenever using visible (and localizable) text as part of the recognition string, be sure to parameterize the recognition string in the App Map as discussed in the <a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm" title="App Map Test Design Guidelines" alt="App Map Test Design Guidelines">Test Design Guidelines</a>.
+	</ul>
+	<p>
+	<li>Identify one or more attributes that together uniquely identify the component.
+	<li>Multiple attributes can be used in the AppMap recognition string when separated by a semi-colon:
+	<p><ul>
+	    Format:<br>
+		ComponentName=<b>"&lt;recognition>"</b>
+		<p>
+		<li>OK=<b>"id=btnK"</b>
+	    <li>OK=<b>"id=btnK;class=btn;name=OK"</b>
+	</ul>
+<p>
+A Primary App Map hypothetically for Google (<b>App.map</b>):<br>
+<div class="appmap"><pre>
+;
+; Constants and other data.
+;
+[ApplicationConstants]
+nlsSearch="Search"
+
+;
+; Main Google window/component recognition
+;
+[Google]
+Google="id=viewport"
+Apps="title=Apps"
+Search="text={^nlsSearch}"
+
+;
+; Google's Login window/compoent recognition
+;
+[Login]
+Login="id=viewport"
+UserName="name=Email"
+Password="name=Passwd"
+SignIn="id=signIn"
+</pre></div>
+<p>
+A French App Map to override the "Search" text in the Primary App Map (<b>App_fr.map</b>):<br>
+<div class="appmap"><pre>
+;
+; Constants and other data.
+;
+[ApplicationConstants]
+nlsSearch="Recherche"
+</pre></div>
+<p>
+</ol>
+<p>
+<ol><h3>Capture Recognition Strings - Selenium ProcessContainer</h3>
+	<p>
+	There is a <a href="UsingSeleniumProcessContainer.html" target="_blank" alt="Selenium ProcessContainer Doc" title="Selenium ProcessContainer Doc">SeleniumPlus ProcessContainer</a> tool that can be used to interactively capture,
+	modify, and test recognition strings natively using the SAFS/Selenium engine with the Selenium WebDriver.
+	This can be used instead of--or in addition to--the Browser Tools mentioned above.
+	<p>
+	<img src="./images/WebDriverProcessContainer.png" alt="Selenium ProcessContainer Tool" title="Selenium ProcessContainer Tool"/>
+	<p>
+</ol>
+<p>
+
+<ul><p>
+<a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm" title="App Map Test Design Guidelines" alt="App Map Test Design Guidelines">Test Design Guidelines</a><br>
+<a href="http://safsdev.sourceforge.net/sqabasic2000/CreateAppMap.htm" title="Detailed App Map Info" alt="Detailed App Map Info">App Map Format Info</a><br>
+<a href="http://safsdev.sourceforge.net/doc/org/safs/GuiObjectRecognition.html" title="Generic Object-Based Recognition Info" alt="Generic Object-Based Recognition Info">Historic App Map Info</a>
+<p>
+Specific "Categories" and "Qualifiers" in the above docs are NOT yet supported with SeleniumPlus.
+</ul>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- Edit Tests Instructions     -->
+<!--------------------------------->
+<div id="project-edit" style="display: none;">
+<h2>Adding and Editing Tests</h2>
+<p>
+<ol><h3>Adding TestCase Classes</h3>
+	<li>In the Package Explorer,<br>
+	right-click on the <b>TestCases</b> package folder in your Project and select "Selenium+ ->Create Test File" in the popup menu.
+	<li>Enter a unique Test Class name (Ex: "Login") for the new class and click OK.
+	<li>A new TestCase class (Ex: "Login.java") should now exist in the <b>TestCases</b> package folder.
+</ol>
+<p>
+<ol><h3>Adding TestCase Methods</h3>
+	<li>Make sure the target TestCase class is open for editing in the main content view of Eclipse.
+	<li>Click inside the TestCase class file on the line where you wish to insert the new testcase method.<br>
+	(Do NOT insert it in the ignored runTest() method of the the TestCase class!)
+	<li>Right-click on the insertion line and select "Selenium+ ->Insert Test".
+	<li>A new test method is inserted ("Test01" by default).
+	<li>Rename the method as desired. (Ex: EnterUserID() instead of Test01())
+</ol>
+<p>
+<ol><h3>Referencing AppMap Constants</h3>
+    <li>There is a <b>Map</b> class that provides access to the ApplicationConstants stored in your AppMaps.
+    <li>Sample AppMap ApplicationConstants entry:
+    <p>
+<div class="appmap"><pre>
+;
+; Constants and other data.
+;
+[ApplicationConstants]
+GoogleURL="http://www.google.com"
+</pre></div>
+    <p>
+    <li>To reference the <b>NAME</b> of the GoogleURL variable (not the value):
+    <p>
+    <ul><b>Map.GoogleURL</b></ul>
+    <p>
+    <li>To reference the <b>VALUE</b> of the GoogleURL variable (not the name):
+    <p>
+    <ul><b>Map.GoogleURL()</b></ul>
+    <p>
+    <li>Note: The value of a given item is retrieved at runtime via GetVariableValue calls.
+    <li>It is possible for a test to alter the value of these "constants" at runtime.
+    <li>Thus, at runtime, the value might NOT be the value as originally stored in the AppMap.
+</ol>
+<p>
+<ol><h3>Calling SeleniumPlus Actions and Commands</h3>
+	<li>To see a list of ALL available SeleniumPlus Actions and Commands:
+	<p>
+	<ol>
+	    <li>Place the edit cursor where you wish to insert the call in your TestCase method.
+	    <li>Type "SeleniumPlus."  (the dot is explicitly needed to show the list.)
+	    <li>A list of commands and subclasses of commands will display.
+	    <li>Single-click an item in the list to get detailed help and information.
+	    <li>Click inside the displayed help to scroll and view all available information.
+	    <li>Double-click the item in the list to insert the call into your code.
+	    <li>If selecting a subclass of commands (ComboBox, EditBox, Files, etc..),<br>you will need to press the dot (.) again to see and select from the list of commands provided by the subclass.<br>
+	    Example: "SeleniumPlus.EditBox." to show the list of EditBox commands.
+	    <p>
+	    (Note: Once you are familiar with the commands and subclasses, you don't have to type the "SeleniumPlus." prefix.<br>
+	    You can just type the command name or subclass name directly.)
+	    <li>Provide the needed values or variables to any parameters needed by the command.
+	    <li>Remember, every program statement must end with a semi-colon.
+	</ol>
+	<p>
+	<li>To see a list of only the immediate SeleniumPlus Actions and Commands:
+	<p>
+	<ol>
+	    <li>Place the edit cursor where you wish to insert the call.
+	    <li>Hold down the Ctrl key and press SPACE.
+	    <li>A list of commands and subclasses of commands will display.
+	    <li>Single-click an item in the list to get detailed help and information.
+	    <li>Click inside the displayed help to be able to scroll or view all information.
+	    <li>Double-click the item in the list to insert the call into your code.
+	    <li>Provide the needed values or variables to any parameters needed by the command.
+	    <li>Remember, every program statement must end with a semi-colon.
+	</ol>
+</ol>
+<p>
+<ol><h3>Adding TestRun Classes</h3>
+	<li>In the Package Explorer,<br>
+	right-click on the <b>TestRuns</b> package folder in your Project and select "Selenium+ ->Create Test File" in the popup menu.
+	<li>Enter a unique Test Class name (Ex: "SmokeTest") for the new class and click OK.
+	<li>A new TestRun class (Ex: "SmokeTest.java") should now exist in the <b>TestRuns</b> package folder.
+	<br/>(Note: TestRun class calls many TestCase's methods, like main file)
+</ol>
+<p>
+<ol><h3>Calling TestCases from your TestRun classes</h3>
+	<li>
+	<li>To see a list of ALL methods in a given TestCase class:
+	<p>
+	<ol>
+	    <li>Place the edit cursor where you wish to insert the TestCase call in your TestRun runTest() method.
+	    <li>Type "&lt;testcaseclass>."  (the dot is explicitly needed to show the list.)<br>
+	    Ex: "TestCase1."
+	    <li>A list of testcases (methods) of the TestCase1 class will display.
+	    <li>Single-click an item in the list to get detailed help and information.
+	    <li>Click inside the displayed help to scroll and view all available information.
+	    <li>Double-click the item in the list to insert the call into your runTest() method.
+	    <li>Provide the needed values or variables to any parameters needed by the command.
+	    <li>Remember, every program statement must end with a semi-colon.
+	</ol>
+</ol>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- Run Tests Instructions      -->
+<!--------------------------------->
+<div id="tests-run" style="display: none;">
+<h2>Running Tests</h2>
+<p>
+<ol><h3>Run a Project TestRun Class</h3>
+	<li>Only SeleniumPlus subclasses with executable content in the runTest() method can be executed as tests.
+	<li>In the Package Explorer, right-click on the desired <b>TestRun</b> Java file in your Project.
+	<li>In the subsequent popup menu, select "Run As->Selenium+ Test".<br>
+	(The test should automatically start.)
+	<li>When the test completes, Package Explorer should show the resulting log file in the Project's <b>Logs</b> folder.<br>
+	(You may have to hit Refresh(F5) for the Package Explorer to update.)
+	<li>Double-click the log file or right-click it to "Open With...->Text Editor" to see the logged results.
+</ol>
+<ol><h3>Command-line TestRun</h3>
+	<li>Open your project's runAutomation.bat in text editor. (e.g: C:\SeleniumPlus\SAMPLE\runAutomation.bat)
+	<li>Replace "&lt; package name>" with actual package name. (e.g: sample.testruns.TestRun1)
+	<li>open command-line window.
+	<li>cd to the project dir.
+	<li>run runAutomation.bat file.
+	<p>
+	example: 
+	<ul>From cmd window
+<pre>
+cd c:\SeleniumPlus\SAMPLE
+runAutomation.bat 
+</pre>
+</ul>	
+ <p>
+ Note: See runAutomation.bat file for how to override App Map varibales and App Map order.	
+</ol>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- Backup Tests Instructions      -->
+<!--------------------------------->
+<div id="tests-backup" style="display: none;">
+<h2>Backup Tests with CVS</h2>
+<p>
+<ol><h3>Check-in project into CVS repository</h3>
+    <li>Right click on the project to be checked-in.
+    <p><img src="images/share_project.png"/>
+	<li>Select "CVS"" and "Next".
+    <p><img src="images/cvs.png"/>   
+	<li>Enter CVS host, repository path, uname, password and click "Next"".	
+	<p><img src="images/enter_cvsinfo.png"/>
+	<li>Create or Use existing repository and click "Next".
+    <p><img src="images/create_cvs.png"/>
+	<li>Enter project name as module name.
+	<p><img src="images/enter_cvsinfo_module.png"/>
+	<li>Verify check in resources.
+	<p><img src="images/cvs_share_finished.png"/>
+	<li>Enter inital check-in comment and click "Finish".
+	<p><img src="images/cvs_share_finished_comment.png"/>
+</ol>
+<p>
+<ol><h3>Exmaple: Check-in, Check-out or Compare tests against CVS</h3>
+	<li> Right click on File or Project. 
+	<p><img src="images/cvs_checkin_out.png"/> 	
+</ol>
+<p>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- Checkout Tests Instructions      -->
+<!--------------------------------->
+<div id="tests-checkout" style="display: none;">
+<h2>Check-out Tests from CVS</h2>
+<p>
+<ol><h3>Check-out project from CVS repository</h3>
+    <li>Right click on the Package Explorer area to import the project.
+    <p><img src="images/import.png"/>
+	<li>Select "CVS->Projects from CVS" and "Next".
+    <p><img src="images/import_cvs.png"/>   
+	<li>Enter CVS host, repository path, uname, password and click "Next"".	
+	<p><img src="images/enter_cvsinfo.png"/>
+	<li>Select module/project and click "Next".
+    <p><img src="images/import_cvs_module.png"/>
+	<li>Check-out project and click "Finish".
+	<p><img src="images/import_cvs_checkoutas.png"/>
+	<li>Check-out project assets .
+	<p><img src="images/import_cvs_project.png"/>
+	<li>(Optional) If the project shows compile error then correct java build path, Right click on the Project->Properties.
+	<p><img src="images/import_buidpath.png"/>
+	<li>Update or Verify DriverRoot location in test.ini file.
+		
+		<pre>
+		[SAFS_DRIVER]
+		DriverRoot="c:\seleniumplus\extra\automation"
+		</pre>
+</ol>
+<p>
+<ol><h3>Exmaple: Check-in, Check-out or Compare tests against CVS</h3>
+	<li> Right click on File or Project. 
+	<p><img src="images/cvs_checkin_out.png"/> 	
+</ol>
+<hr>
+</div>
+
+
+<!--------------------------------->
+<!-- Advanced Information        -->
+<!--------------------------------->
+<div id="advanced" style="display: none;">
+<h2>Advanced Users</h2>
+<p>
+The modified SeleniumPlus Eclipse IDE with the SeleniumPlus PlugIn provides many convenience features and a simplified interface for novice programmers.  This includes certain levels of Eclipse interface filtering or hiding that may not be desirable for developers already comfortable with the Eclipse IDE--or even some other Java development environments.
+<p>
+It is possible to develop SeleniumPlus tests without these conveniences in your existing Eclipse environment or other Java IDE.
+<p>
+<h3>Primary concerns for standard IDE <u>development</u>:</h3>
+<ol>
+    <li>Appropriate SAFS and Selenium JAR files included in the Build Path for the project.
+    <li>Ideally, App Map text files to be visible and editable within the IDE.
+    <li>The manual or automatic execution of the <a href="http://safsdev.sourceforge.net/doc/org/safs/model/tools/ComponentGenerator.html" title="Dynamic Map.java Generator" alt="Dynamic Map.java Generator">Dynamic Map.java Generator</a> program any time the text App Map files are edited or modified.
+</ol>
+<p>
+<h3>Primary concerns for test <u>execution</u>:</h3>
+<ol>
+    <li>SAFS (and its STAF dependency) must be installed and configured for SAFS execution.
+    <li>A SAFS Project or similar SeleniumPlus Project must exist with all necessary test files--primarily:
+    <ul>
+        <li>AppMap and AppMap.order files,
+        <li>test.ini, or other test configuration file.
+    </ul>
+    <li>The test configuration file (test.ini) must be configured to match the SAFS/SeleniumPlus Project location to be used.
+    <li>The command-line invocation must invoke the desired SeleniumPlus subclass to execute and the test configuration file (test.ini) to be used for test configuration.
+</ol>
+<hr>
+</div>
+
+<p>
+<!--------------------------------->
+<!-- Setup Internet Explorer     -->
+<!--------------------------------->
+<div id="iesetup" style="display: none;">
+<h2>Setup Internet Explorer</h2>
+<p>
+There is no special setup needed for Firefox.  For Internet Explorer the user should make sure the "Protected Mode" is disabled.
+<p><ol>
+	<li>In the Internet Explorer Tools menu, or via the Internet Options in Control Panel,<br>
+	access the Internet Options dialog.
+	<li>Select the Security Tab.
+	<li>Make sure the <b>"Enable Protected Mode"</b> item is disabled--NOT selected.
+	<li>Click "OK" to save the setting and close the dialog.
+	<li>This may require a restart of Internet Explorer if the mode was changed.
+    <p>
+    <img src="images/IExploreProtectedMode.png">
+</ol>
+<hr>
+</div>
+
+<!--------------------------------->
+<!-- References                  -->
+<!--------------------------------->
+<div id="references" style="display: none;">
+<h2>Important References</h2>
+<p>
+<a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/webdriver/SeleniumPlus.html" title="SeleniumPlus Class JavaDoc" alt="SeleniumPlus Class JavaDoc">SeleniumPlus Class JavaDoc</a><br>
+<a href="http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/WebDriver.html" title="Selenium WebDriver API" alt="Selenium WebDriver API">Selenium WebDriver API</a><br>
+<p>
+<a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php" title="SAFS Keyword Reference" alt="SAFS Keyword Reference">SAFS Keywords Reference</a><br>
+<a href="http://safsdev.sourceforge.net" title="SAFS SourceForge Home" alt="SAFS SourceForge Home">SAFS Homepage on SourceForge</a><br>
+<a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm" title="SAFS Test Design Guidelines" alt="SAFS Test Design Guidelines">SAFS Test Design Guidelines</a><br>
+<a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" title="SAFS Image-Based Testing" alt="SAFS Image-Based Testing">SAFS Image-Based Testing</a><br>
+<hr>
+</div>
+</body>
+</html>

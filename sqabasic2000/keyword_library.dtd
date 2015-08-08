@@ -1,0 +1,215 @@
+<!--                                                                            -->
+<!-- Keyword Driven Automation Documentation DTD Version 1.0			-->
+<!-- Keyword Driven Automation may also be known as Data Driven Automation or	-->
+<!-- Table Driven Automation.							-->
+<!-- Placed in Public Domain by Carl Nagle of SAS Institute, Inc., 2001		-->
+<!-- Additional information on Keyword Driven Automation available at		-->
+<!--   http://groups.yahoo.com/group/RobotDDEUsers/files/Doc/Default.htm	-->
+<!-- Comments: RobotDDEUsers@yahoogroups.com	(join and contribute!)		-->
+<!--                                                                            -->
+
+<!--                                                                            -->
+<!--Root element contains information on the libraryType, libraryInfo, runtime, -->
+<!--and one or more keywords supported by the library.				-->
+<!--                                                                            -->
+   <!ELEMENT keyword_library ( libraryType, libraryInfo, runtime, keywords* ) >
+
+
+<!--                                                                            -->
+<!--libraryType element identifies the type of keyword library documented.	-->
+<!--Attribute values are typically 'DRIVER' or 'COMPONENT'.			-->
+<!--										-->
+<!--A DRIVER library defines keywords associated with the automation drivers.	-->
+<!--A COMPONENT library defines keywords for a component manipulated by the 	-->
+<!--automation drivers.								-->
+<!--                                                                            -->
+   <!ELEMENT libraryType EMPTY>
+   <!ATTLIST libraryType type (DRIVER|COMPONENT) #REQUIRED>
+
+
+<!--                                                                            -->
+<!--libraryInfo element provides information on the name of the keyword library,-->
+<!--an optional class, an optional subClass definition, a description, and the	-->
+<!--sourcecode filename, if any.						-->
+<!--                                                                            -->
+   <!ELEMENT libraryInfo (description?)>
+
+<!--                                                                            -->
+<!--name attribute provides a given name or common name for its parent element.	-->
+<!--For example, we may define a common driver library named 'Driver Commands'.	-->
+<!--A component library for EditBox components might be 'EditBox Functions'.	-->
+<!--                                                                            -->
+   <!ATTLIST libraryInfo name CDATA #REQUIRED>
+
+<!--                                                                            -->
+<!--class attribute defines a common class/type of a driver or component.	-->
+<!--Driver libraries will only provide a class if the keywords they provide are -->
+<!--not shared by all the drivers in the same runtime environment.  In that 	-->
+<!--case, the class will identify the name of the associated driver.  For 	-->
+<!--example, 'DriverX' or 'DriverY'.						-->
+<!--										-->
+<!--Component libraries will always provide a class and may also provide a 	-->
+<!--subClass.  Some examples of possible classes:				-->
+<!--	class='EditBox'								-->
+<!--	class='Printer'								-->
+<!--	class='Database'							-->
+<!--                                                                            -->
+   <!ATTLIST libraryInfo class CDATA #IMPLIED>
+
+<!--                                                                            -->
+<!--subClass attribute defines an optional subClass/subType of a common class.	-->
+<!--When a particular class or type of a common component requires a special	-->
+<!--handler you would define a 2nd library with a different component subClass.	-->
+<!--Keywords of the common class are not shared by the subClass and vice versa.	-->
+<!--										-->
+<!--For example, we may have a library of keywords that act on most 'Printer' 	-->
+<!--components.  However, we can choose to implement a 2nd library to provide	-->
+<!--more functionality for a specific Printer.					-->
+<!--										-->
+<!--	class='Printer' subClass='HPColor'					-->
+<!--										-->
+<!--                                                                            -->
+   <!ATTLIST libraryInfo subClass CDATA #IMPLIED>
+
+<!--                                                                            -->
+<!--doc attribute provides the filename/URL for the library documentation.	-->
+<!--(If there is any.)								-->
+<!--                                                                            -->
+   <!ATTLIST libraryInfo doc CDATA #IMPLIED>
+
+<!--                                                                            -->
+<!--sourcecode attribute provides the filename/URL for the library sourcecode.	-->
+<!--(If there is any.)								-->
+<!--                                                                            -->
+   <!ATTLIST libraryInfo sourcecode CDATA #IMPLIED>
+
+
+<!--                                                                            -->
+<!--description element provides a detailed description and/or a short          -->
+<!--description.  The short description should be suitable for storage in a     -->
+<!--database field.                                                             -->
+<!--                                                                            -->
+   <!ELEMENT description (detailed_desc | short_desc)? >
+
+
+<!--                                                                            -->
+<!--detailed_desc element provides a detailed description of its parent element.-->
+<!--The parsed character data will generally conform to standards for simple    -->
+<!--content formatting.  This can include HTML tags like:                       -->
+<!--    br  p  code  ol(li)  ul(li)  dl(dt,dd)					-->
+<!--                                                                            -->
+   <!ELEMENT detailed_desc (#PCDATA) >
+
+
+<!--                                                                            -->
+<!--short_desc element provides a short description of its parent element.      -->
+<!--This short description should be suitable for storage in a database field.  -->
+<!--The parsed character data will generally conform to standards for simple    -->
+<!--content formatting.  This can include HTML tags like:                       -->
+<!--    br  p  code  ol(li)  ul(li)  dl(dt,dd)					-->
+<!--Although the short description should be so short that content formatting   -->
+<!--may not be required.                                                        -->
+<!--                                                                            -->
+   <!ELEMENT short_desc (#PCDATA) >
+
+
+<!--                                                                            -->
+<!--runtime element defines the platform and engine of this library.		-->
+<!--                                                                            -->
+   <!ELEMENT runtime EMPTY>
+
+<!--                                                                            -->
+<!--platform attribute defines the Operating System platform for the library.	-->
+<!--Values might be HPUX, Solaris, Windows, W98, WNT, W2K, MVS, JAVA etc.	-->
+<!--                                                                            -->
+   <!ATTLIST runtime platform CDATA #REQUIRED>
+
+<!--                                                                            -->
+<!--engine attribute defines the name of the runtime engine vendor or tool.	-->
+<!--Values might be Robot, WinRunner, VisualTest, LoadRunner, Silk etc.		-->
+<!--                                                                            -->
+   <!ATTLIST runtime engine CDATA #REQUIRED>
+
+<!--                                                                            -->
+<!--The optional version attribute of the engine needed for this library.	-->
+<!--The library may work in all versions, or at least the version currently 	-->
+<!--deployed.  We may want to use this to specify a MINIMUM engine version 	-->
+<!--required for the library.							-->
+<!--                                                                            -->
+   <!ATTLIST runtime version CDATA #IMPLIED>
+
+
+<!--                                                                            -->
+<!--keywords element defines one or more keywords.				-->
+<!--                                                                            -->
+   <!ELEMENT keywords ( keyword+ )>
+ 
+<!--                                                                            -->
+<!--keyword element defines the name, displaytext, description, and the 	-->
+<!--list of parameters and/or examples for the keyword - if any.                -->
+<!--                                                                            -->
+   <!ELEMENT keyword ( description, (parameters | examples)? )>
+
+<!--                                                                            -->
+<!--name attribute provides a given name or common name for its parent element.	-->
+<!--                                                                            -->
+   <!ATTLIST keyword name CDATA #REQUIRED>
+
+<!--                                                                            -->
+<!--displayText attribute defines the displayed text of the parent element.	-->
+<!--Normally only provided if different than the name.				-->
+<!--                                                                            -->
+   <!ATTLIST keyword displayText CDATA #IMPLIED>
+
+
+<!--                                                                            -->
+<!--examples element defines zero or more examples for the keyword usage.       -->
+<!--                                                                            -->
+   <!ELEMENT examples ( example* )>
+
+<!--                                                                            -->
+<!--example element defines the usage example and a description of the usage.	-->
+<!--                                                                            -->
+   <!ELEMENT example ( usage | description )? >
+
+<!--                                                                            -->
+<!--usage element contains the text of the example keyword usage.               -->
+<!--                                                                            -->
+   <!ELEMENT usage (#PCDATA) >
+
+
+<!--                                                                            -->
+<!--parameters element defines zero or more parameters for the keyword.		-->
+<!--                                                                            -->
+   <!ELEMENT parameters ( parameter* ) >
+
+
+<!--                                                                            -->
+<!--parameter element defines the name, displayText, and description for a 	-->
+<!--keyword parameter.								-->
+<!--                                                                            -->
+   <!ELEMENT parameter ( description )>
+
+
+<!--                                                                            -->
+<!--name attribute provides a given name or common name for its parent element.	-->
+<!--                                                                            -->
+   <!ATTLIST parameter name CDATA #REQUIRED>
+
+<!--                                                                            -->
+<!--displayText attribute defines the displayed text of the parent element.	-->
+<!--Normally only provided if different than the name.				-->
+<!--                                                                            -->
+   <!ATTLIST parameter displayText CDATA #IMPLIED>
+
+<!--                                                                            -->
+<!--optional parameter Attribute specifies if the parameter is optional.	-->
+<!--By default, all keyword parameters are required.				-->
+<!--                                                                            -->
+   <!ATTLIST parameter optional (YES|Yes|yes|Y|y|NO|No|no|N|n) #IMPLIED>
+
+<!--                                                                            -->
+<!--default parameter Attribute provides a default value for the parameter.	-->
+<!--By default, keyword parameters do not have default values.			-->
+<!--                                                                            -->
+   <!ATTLIST parameter default CDATA #IMPLIED>

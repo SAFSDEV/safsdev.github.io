@@ -1,0 +1,73 @@
+	/**
+	 * Self-Test some JSAFSDriver functionality.
+	 * <p>
+	 * java -Dsafs.project.config="C:\SAFS\Project\JSAFSExample.ini" _<br>
+	 *      -Dmain_map="NLSBridgeTest.MAP" _<br>
+	 *      -Dlocalized="NLSBridgeTest_en.MAP" or -Dlocalized="NLSBridgeTest_ja.MAP" _<br>
+	 *      org.safs.tools.drivers.JSAFSDriver
+	 * <p>
+	 * @param args
+	 */
+	public static void main(String[] args){
+
+		log_self("Commencing JSAFS Self-Test...");
+
+		JSAFSDriver jsafs = new JSAFSDriver("JSAFS");
+		jsafs.run();
+
+		log_self("JSAFS Self-Test initializing App Map Chaining and Expression Processing...");
+		TestRecordHelper trd = jsafs.runDriverCommand(DDDriverCommands.appMapChaining("ON"));
+		trd = jsafs.runDriverCommand(DDDriverCommands.appMapResolve("ON"));
+		trd = jsafs.runDriverCommand(DDDriverCommands.expressions("ON"));
+
+		log_self("JSAFS Self-Test evaluating -D App Map Properties passed in for NLS support...");		
+		String mainmap = System.getProperty("main_map", "NLSBridgeTest.MAP");
+		String localmap = System.getProperty("localized", "NLSBridgeTest_en.MAP");
+
+		log_self("JSAFS Self-Test main_map  is: "+ mainmap);
+		log_self("JSAFS Self-Test local_map is: "+ localmap);
+
+		log_self("JSAFS Self-Test setting App Map chaining order...");		
+		trd = jsafs.runDriverCommand(DriverCommands.setApplicationMap(mainmap));
+		trd = jsafs.runDriverCommand(DriverCommands.setApplicationMap(localmap));
+
+		log_self("JSAFS Self-Test verifying variable to app map look-thru...");		
+		String appconst = jsafs.getVariable("MainWin");		
+		log_self("JSAFS Self-Test Variable MainWin resolved to: "+ appconst);
+
+		log_self("JSAFS Self-Test verifying app map to variable resolve...");
+
+		String resolve = jsafs.getMappedValue(null, "MainWin", "MainWin");
+		log_self("JSAFS Self-Test MainWin:MainWin resolved to: "+ resolve);
+
+		resolve = jsafs.getMappedValue(null, "MainWin", "Comp");
+		log_self("JSAFS Self-Test MainWin:Comp resolved to localized: "+ resolve);
+
+		log_self("JSAFS Self-Test verifying variable override of ApplicationConstant...");
+		jsafs.setVariable("MainWin", "*** ApplicationConstant MainWin has been overridden by Variable ***");
+
+		resolve = jsafs.getMappedValue(null, "MainWin", "MainWin");
+		log_self("JSAFS Self-Test MainWin:MainWin now resolves to: "+ resolve);
+
+		log_self("JSAFS Self-Test verifying override of ApplicationConstant can be cancelled...");
+		jsafs.getVarsInterface().deleteVariable("MainWin");
+		resolve = jsafs.getMappedValue(null, "MainWin", "MainWin");
+		log_self("JSAFS Self-Test MainWin:MainWin now resolves to: "+ resolve);
+
+		log_self("JSAFS Self-Test verifying processExpression...");
+
+		String expression = jsafs.processExpression("^val=(2+3)*(2+3)");
+		log_self("JSAFS Self-Test expression ^val=(2+3)*(2+3) resolved to: "+ expression);
+
+		appconst = jsafs.getVariable("val");
+		log_self("JSAFS Self-Test ^val was stored as: "+ appconst);
+
+		expression = jsafs.processExpression("(2+3)*(2+3)");
+		log_self("JSAFS Self-Test expression (2+3)*(2+3) resolved to: "+ expression);
+		expression = jsafs.processExpression("\"(2+3)*(2+3)\"");
+		log_self("JSAFS Self-Test expression \"(2+3)*(2+3)\" resolved to: "+ expression);
+
+		jsafs.shutdown();
+		log_self("Ended JSAFS Self-Test...");
+	}
+}

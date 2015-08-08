@@ -1,0 +1,30 @@
+
+' Data Table Sample for NOTEPAD using NotepadMap.txt AppMap
+' Some StepDriver Record Types:
+' B = Define a Named Block within the file
+' C = StepDriver Command
+' S = SKIP this Record
+' T = Perform a ComponentFunction action or test
+
+'Log this as Version 1.0 of our data table
+c; Version ; "1.0"
+c; SetApplicationMap ; "NotepadMap.txt"
+c; LaunchApplication ; "Notepad" ; Executable
+
+;' Verify we get an error message if we try to save with no text
+;t; UntitledNotepad ; UntitledNotepad ; SelectMenuItemContains ; File->Save
+;t; NotepadMsg ; MessageLabel ; VerifyProperty ; Text ; "You have not entered any text to be saved. Type some text, and then try again."
+;t; NotepadMsg ;   OKButton   ;     Click
+
+'Type some text and save the file
+t; UntitledNotepad ; UntitledNotepad ; InputKeys ; Some text
+t; UntitledNotepad ; UntitledNotepad ; SelectMenuItemContains ; "File->Save"
+t;    SaveAsWin    ; FilenameEditBox ;  SetTextValue  ; "c:\Temp\MyNotes.txt"
+t;    SaveAsWin	   ;   SaveButton    ;    Click
+
+'Verify UntitledNotepad is now MyNotes.
+c;    WaitForGUI   ; MyNotes ; MyNotes ; 10
+
+'Exit Notepad
+t;  MyNotes  ;  MyNotes  ; SelectMenuItemContains ; "File->Exit"
+
