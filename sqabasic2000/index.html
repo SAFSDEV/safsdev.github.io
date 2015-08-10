@@ -1,0 +1,121 @@
+<!-- LeiWang AUG 10, 2015-->
+<!-- Converted from SAFS Reference.php, .php file cannot be interpreted on github -->
+<!-- Javascript doesn't work yet, still need to be finished. Just create a static page, it seems that the links -->
+<!-- can show the content in the correct frame, so I comment out the javascript. -->
+<HTML>
+
+<HEAD>
+<TITLE>SAFS Reference</TITLE>
+
+<!--script type="text/javascript">
+	function $_GET(q, s) {
+		s = s ? s : window.location.search;
+		var re = new RegExp('&' + q + '(?:=([^&]*))?(?=&|$)', 'i');
+		return (s = s.replace(/^?/, '&').match(re)) ? (typeof s[1] == 'undefined' ? ''
+				: decodeURIComponent(s[1]))
+				: undefined;
+	}
+	
+	function empty(value){
+		return (value==undefined || value=="");
+	}
+	var $ref = "";
+	var $rt = "ComponentFunctionsList.htm";
+	var $lib = "GenericMasterFunctions";
+	var $cmd = "Reference.htm";
+	function startup(){
+		/*
+		 * $ref displays desired relative url in main content pane
+		 * This overrides any $lib setting that may also be provided.
+		 * ex: ?ref=SAFSReferenceKey.htm
+		 */
+		$ref = $_GET['ref'];
+
+		/*
+		 * $rt displays toc2 list of either DriverCommands or ComponentFunctions
+		 *  rt=C displays DriverCommandsList.htm
+		 *  anything else displays the ComponentFunctionsList.htm
+		 * ex: &rt=C
+		 */
+		 alert($rt);
+		$rt  = $_GET['rt'];
+		if ( empty( $rt ) ) {
+			$rt = "ComponentFunctionsList.htm";
+		}elseif ( $rt=="C" ) {
+			$rt = "DriverCommandsList.htm";
+		}elseif ( $rt=="E" ) {
+			$rt = "EngineCommandsList.htm";
+		}else{
+			$rt = "ComponentFunctionsList.htm";
+		}
+
+		/*
+		 * $lib displays toc3 list of keywords for desired library
+		 *  lib=DDDriverFileCommands displays DDDriverFileCommandsList.htm
+		 *  This is also used to specify which library Reference to show
+		 *  in the main content pain.
+		 * ex: &lib=DDDriverFileCommands
+		 * This will display DDDriverFileCommandsList.htm in toc2 AND it will
+		 * display the DDDriverFileCommandsReference.htm in the content pane.
+		 * NOTE: if $ref is provided then the content pane will NOT be loaded
+		 * with the desired lib reference.  Instead it will be loaded with the
+		 * specified $ref reference.
+		 */
+		$lib = $_GET['lib'];
+		if ( empty( $lib ) )
+			$lib = "GenericMasterFunctions";
+
+		/*
+		 * $cmd may force the scroll to a specific library command in the lib reference.
+		 *  cmd=FindSqaFile will specify to scroll to the FindSqaFile command reference
+		 *  in the DDDriverFileCommandsReference loaded by 'lib' above.
+		 * ex: &cmd=FindSqaFile
+		 */
+		$cmd = $_GET['cmd'];
+		if ( empty( $cmd ) ) {
+			$cmd = "Reference.htm";
+		}else{
+			$cmd = "Reference.htm#detail_".$cmd;
+		}
+	}
+	
+	function content_src(){
+		if(empty($ref)){
+			return $lib+$cmd;
+		}else{
+			return $ref;
+		}
+	}
+	startup();
+</script-->
+</HEAD>
+
+<FRAMESET FRAMEBORDER="YES" BORDER="2" FRAMESPACING="4" COLS="250,*">
+	<FRAMESET FRAMEBORDER="YES" BORDER="2" FRAMESPACING="4" ROWS="280,*">
+		<FRAME NAME="toc1" SRC="DDFramesIndex.htm" TARGET="toc2">
+		<FRAME NAME="toc2" SRC='ComponentFunctionsList.htm' TARGET="toc3">
+		<!--script>
+      		//document.write("<FRAME NAME='toc2' SRC='"+$rt+"' TARGET='toc3'>");
+    	</script-->
+		​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+	</FRAMESET>
+	<FRAMESET FRAMEBORDER="YES" BORDER="2" FRAMESPACING="4" COLS="640,350">
+		<!-- script>
+	  		document.write("<FRAME NAME='content' SRC='"+content_src()+"'>");
+	  		document.write("<FRAME NAME='toc3' SRC='"+$lib+"Index.htm' TARGET='content'>");
+		</script-->
+		<FRAME NAME='content' SRC='GenericMasterFunctionsReference.htm'>
+	  	<FRAME NAME='toc3' SRC='GenericMasterFunctionsIndex.htm' TARGET='content'>
+	</FRAMESET>
+	<NOFRAMES>
+		<BODY>
+			<P>
+				This page does not support HTML Frames.<BR> <A href="DDFramesIndex.htm">Reference Index</A>
+			</P>
+		</BODY>
+	</NOFRAMES>
+</FRAMESET>
+<SCRIPT>
+   window.resizeTo(1024,768);
+</SCRIPT>
+</HTML>
