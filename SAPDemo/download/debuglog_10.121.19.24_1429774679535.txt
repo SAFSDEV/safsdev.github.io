@@ -1,0 +1,8 @@
+04-23-2015 03:37:59: lidiya.controller.js.getJSONModel():  ajax requesting json data from 'data/employeePersonalInfo.json'.
+04-23-2015 03:38:00: lidiya.controller.js.getJSONModel():  success get json data.
+04-23-2015 03:38:00: lidiya.controller.js.getJSONModel():  ajax requesting json data from 'data/employeesid.json'.
+04-23-2015 03:38:01: lidiya.controller.js.getJSONModel():  success get json data.
+04-23-2015 03:38:01: lidiya.controller.js.getJSONModel():  ajax requesting json data from 'data/organization.json'.
+04-23-2015 03:38:01: lidiya.controller.js.getJSONModel():  success get json data.
+04-23-2015 03:38:02: lidiya.controller.js.getJSONModel():  ajax requesting json data from 'data/employees.json'.
+04-23-2015 03:38:02: lidiya.controller.js.getJSONModel():  success get json data.

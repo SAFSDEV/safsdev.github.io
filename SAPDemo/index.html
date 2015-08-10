@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>
+	       
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.ui.commons, sap.ui.table"
+				data-sap-ui-theme="sap_bluecrystal">
+		</script>
+		<!-- add sap.ui.table,sap.ui.ux3 and/or other libraries to 'data-sap-ui-libs' if required -->
+
+		<!-- localResources() will indicate to load view and controller from 'sapdemo' folder -->
+		<script>
+				sap.ui.localResources("sapdemo");
+				var view = sap.ui.view({id:"idlidiya1", viewName:"sapdemo.lidiya", type:sap.ui.core.mvc.ViewType.JS});
+				view.placeAt("content");
+		</script>
+		
+		<link rel="stylesheet" type="text/css" href="res/mystyle.css">
+
+	</head>
+	<body class="sapUiBody" role="application">
+		<div id="content"></div>
+	</body>
+</html>
