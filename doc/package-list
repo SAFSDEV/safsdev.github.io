@@ -13,6 +13,7 @@ org.safs.android.engine.processor
 org.safs.android.messenger
 org.safs.android.messenger.client
 org.safs.android.remotecontrol
+org.safs.autoit
 org.safs.control
 org.safs.control.swing
 org.safs.cukes
