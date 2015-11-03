@@ -1,0 +1,2 @@
+# Consider .mp4 as large file
+*.mp4 filter=lfs diff=lfs merge=lfs -text
