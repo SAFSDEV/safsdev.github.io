@@ -1,7 +1,7 @@
 	/**
 	 * Self-Test some JSAFSDriver functionality.
 	 * <p>
-	 * java -Dsafs.project.config="C:\SAFS\Project\JSAFSExample.ini" _<br>
+	 * %SAFSDIR%\jre\bin\java -Dsafs.project.config="C:\SAFS\Project\JSAFSExample.ini" _<br>
 	 *      -Dmain_map="NLSBridgeTest.MAP" _<br>
 	 *      -Dlocalized="NLSBridgeTest_en.MAP" or -Dlocalized="NLSBridgeTest_ja.MAP" _<br>
 	 *      org.safs.tools.drivers.JSAFSDriver
