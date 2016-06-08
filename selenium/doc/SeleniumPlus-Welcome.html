@@ -11,6 +11,21 @@
     width: 500px;
 }
 
+pre.SourceCode { margin: 0; }
+pre.LineNumbers {
+    margin: 0;
+    float: left;
+    padding-right:2px;
+    border-right: solid 1px black;
+    margin-right:7px;
+}
+
+div.CodeBox {
+    border: solid 1px ;
+    padding:1px;
+    background-color: #BFD1E4;
+}
+
 </style>
 <script>
 function hideAllContentPanels(){
@@ -29,6 +44,7 @@ function hideAllContentPanels(){
     document.getElementById("advanced").style.display="none";
     document.getElementById("references").style.display="none";
     document.getElementById("iesetup").style.display="none";
+    document.getElementById("startwebbrowser").style.display="none";
     document.getElementById("updatesoftware").style.display="none";
     document.getElementById("assets").style.display="none";
     document.getElementById("enable-safs").style.display="none";
@@ -49,6 +65,7 @@ function hideAllContentPanels(){
 	document.getElementById("href-advanced").style.fontWeight="normal";
 	document.getElementById("href-references").style.fontWeight="normal";
     document.getElementById("href-iesetup").style.fontWeight="normal";
+    document.getElementById("href-startwebbrowser").style.fontWeight="normal";
     document.getElementById("href-updatesoftware").style.fontWeight="normal";
 	document.getElementById("href-assets").style.fontWeight="normal";
 	document.getElementById("href-enable-safs").style.fontWeight="normal";
@@ -129,6 +146,11 @@ function showIESetup(){
     document.getElementById("iesetup").style.display="block";
     document.getElementById("href-iesetup").style.fontWeight="900";
 }
+function startWebBrowser(){
+	hideAllContentPanels();
+    document.getElementById("startwebbrowser").style.display="block";
+    document.getElementById("href-startwebbrowser").style.fontWeight="900";
+}
 function updateSoftware(){
 	hideAllContentPanels();
     document.getElementById("updatesoftware").style.display="block";
@@ -173,6 +195,7 @@ function remoteServers(){
 <a href="#" onclick="checkoutTests()" id ="href-tests-checkout" >CVS/Check-out</a>&nbsp;&nbsp;
 <a href="#" onclick="showAdvanced()" id ="href-advanced" >Advanced Users</a>&nbsp;&nbsp;
 <a href="#" onclick="showIESetup()" id="href-iesetup" >Setup Browser</a>&nbsp;&nbsp;
+<a href="#" onclick="startWebBrowser()" id="href-startwebbrowser" >Start Browser</a>&nbsp;&nbsp;
 <a href="#" onclick="updateSoftware()" id="href-updatesoftware" >Update SeleniumPlus</a>&nbsp;&nbsp;
 <a href="#" onclick="projectAssets()" id="href-assets" >Project Assets</a>&nbsp;&nbsp;
 <a href="#" onclick="enableSAFS()" id="href-enable-safs" >Enable SAFS</a>&nbsp;&nbsp;
@@ -1134,13 +1157,211 @@ For accurate coordinate calculations of components the Status Bar in Internet Ex
 </div>
 
 <!--------------------------------->
+<!-- Start Web Browser           -->
+<!--------------------------------->
+<div id="startwebbrowser" style="display: none;">
+<h2>About Profile and Preferences</h2>
+The Profile/Preferences is used to control the browser's looks, behaviors etc.
+Normally, SeleniumPlus will start browser with a new default profile, which means any preferences user sets manually will not be kept, this default profile is temporary.
+If user wants to start browser with some specific settings, SeleniumPlus provides 2 ways.
+<ol>
+    <li>Start web browser with <a href="#startwebbrowser_profile">persistent custom profile</a>.
+    <li>Start web browser with default profile and <a href="#startwebbrowser_preferences">set the preferences at runtime</a>.
+</ol>
+
+<h3 id="startwebbrowser_profile">Using custom profile</h3>
+<ol>
+	<li><h3>Start Firefox</h3>
+	   <ul>
+	   <li>Prepare the profile
+            <ol>
+                <li>Run "<b>firefox.exe -ProfileManager -no-remote</b>" in Windows Start "Search" input box.
+                <li>Create custom profile "<b>myprofile</b>" and <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles">configure custom setting</a>
+                    <br><img src="images/firefox_create_profile.png"/>
+           </ol>
+        <li>Examples:<br>
+            <ol>
+                <li>Start Firefox with the custom profile "<b>myprofile</b>"
+                    <div class="CodeBox">
+<pre class="LineNumbers">
+1
+2
+</pre>
+<pre class="SourceCode">
+String profile = "myprofile";
+StartWebBrowser(URL, ID, SelectBrowser.BROWSER_NAME_FIREFOX, "30", "true", SelectBrowser.<b>KEY_FIREFOX_PROFILE</b>, profile);
+</pre>
+                    </div>
+            </ol>
+        </ul><p>
+	<li><h3>Start Chrome</h3>
+        Chrome's profile is a little different from Firefox's. There is a "user data pool" and under that "data pool" there are multiple users.
+        Among these users, there is a <b>Default</b> user. SeleniumPlus can start browser with a "user data pool" and a certain "user". If the "user" is
+        not specified, then the <b>Last Active</b> user will be used.<p>
+        <ul>
+        <li>Prepare the profile
+            <ol>
+                <li><a href="http://www.chromium.org/developers/creating-and-using-profiles">Create custom data pool</a> by running "<b>chrome.exe --user-data-dir=c:\chrome_custom_data</b>".
+                    This command will start up a chrome browser and a new folder c:\chrome_custom_data will be created.
+                    Under that folder there is a sub folder <b>Default</b>, which is for the default user.
+                <li>Create multiple users, then under folder c:\chrome_custom_data, there will be sub folder "Profile 1", "Profile 2" etc. for those new added users.<br>
+                    <ul>
+                    <li>Open chrome settings: click the button <img src="images/chrome_customize_control_button.png"/> to show a pop-up menu, and then click the item "Settings".<br>
+                        <img src="images/chrome_open_settings.png"/>
+                    <li>Add new person: click the button "Add person..." <br>
+                        <img src="images/chrome_add_person.png">
+                    </ul>
+                <li>Modify chrome settings (chrome://settings/ or chrome://flags/) manually, and the new settings will be kept in this custom profile for <b>current active user</b>.
+                    As this chrome is started the first time by "<b>chrome.exe --user-data-dir=c:\chrome_custom_data</b>", the current active user will be <b>Default</b> user. Refer to
+                    the following snapshot, the <b>Default</b> user is "Person 1" marked with <b>(current)</b>, which means it is active. Later, with more users added, the active user could be anyone.
+                    <br>
+                    <img src="images/current_active_user.png"><br>
+                    If we want to change the settings for another user, we need to start chrome with the option <b>profile-directory</b>, for example,
+                    run <b>chrome.exe --user-data-dir=c:\chrome_custom_data <font color="red">--profile-directory</font>="Profile 1"</b>, and then modify the chrome settings manually for him.<br>
+                <p>
+            </ol>
+        <li>Examples:<br>
+            <ol>
+                <li>Start Chrome with the custom data pool "c:\chrome_custom_data" and <b>Last Active</b> user, the <b>Last Active</b> could be "Default User" or any other one.
+                    <div class="CodeBox">
+<pre class="LineNumbers">
+1
+2
+</pre>
+<pre class="SourceCode">
+String datapool = "c:\\chrome_custom_data";
+StartWebBrowser(URL, ID, SelectBrowser.BROWSER_NAME_CHROME, "30", "true", quote(SelectBrowser.<b>KEY_CHROME_USER_DATA_DIR</b>), datapool);
+</pre>
+                    </div>
+                <p>
+                <li>Start Chrome with the custom data pool "c:\chrome_custom_data" and <b>Default</b> user
+                    <div class="CodeBox">
+<pre class="LineNumbers">
+1
+2
+3
+</pre>
+<pre class="SourceCode">
+String datapool = "c:\\chrome_custom_data";
+String user = "Default";
+StartWebBrowser(URL, ID, SelectBrowser.BROWSER_NAME_CHROME, "30", "true", quote(SelectBrowser.<b>KEY_CHROME_USER_DATA_DIR</b>), datapool, quote(SelectBrowser.<b>KEY_CHROME_PROFILE_DIR</b>), user);
+</pre>
+                    </div>
+                <p>
+                <li>Start Chrome with the custom data pool "c:\chrome_custom_data" and the second user "<b>Profile 1</b>".
+                    <div class="CodeBox">
+<pre class="LineNumbers">
+1
+2
+3
+</pre>
+<pre class="SourceCode">
+String datapool = "c:\\chrome_custom_data";
+String user = "Profile 1";
+StartWebBrowser(URL, ID, SelectBrowser.BROWSER_NAME_CHROME, "30", "true", quote(SelectBrowser.<b>KEY_CHROME_USER_DATA_DIR</b>), datapool, quote(SelectBrowser.<b>KEY_CHROME_PROFILE_DIR</b>), user);
+</pre>
+                    </div>
+                <p>
+            </ol>
+        </ul>
+
+</ol>
+
+<h3 id="startwebbrowser_preferences">Using preferences</h3>
+<ol>
+    <li><h3>Start Firefox</h3>
+       <ul>
+       <li>Prepare the json data file
+            <ol>
+                <li>Create a new json data file, for example c:\Pref.json.dat
+                <li>Write the preferences into this json file, for example,
+<pre>
+{
+    #The line begins with # is considered as comment
+    #The <b>preference</b> is given as key:value, <b>there are 3 kinds of value: string, boolean and integer</b>.
+    #The string value is quoted with double-quote, while boolean and integer are not quoted.
+    "intl.accept_languages":"zh-cn",
+    "accessibility.accesskeycausesactivation":false,
+    "browser.download.folderList":2
+}
+</pre>
+           </ol>
+        <li>Examples:<br>
+            <ol>
+                <li>Start Firefox with the custom preferences data file "<b>c:\Pref.json.dat</b>"
+                    <div class="CodeBox">
+<pre class="LineNumbers">
+1
+2
+</pre>
+<pre class="SourceCode">
+String preferenceDataFile = "c:\\Pref.json.dat";
+StartWebBrowser(URL, ID, SelectBrowser.BROWSER_NAME_FIREFOX, "30", "true", SelectBrowser.<b>KEY_FIREFOX_PROFILE_PREFERENCE</b>, preferenceDataFile);
+</pre>
+                    </div>
+            </ol>
+        </ul><p>
+    <li><h3>Start Chrome</h3>
+        Chrome's json data file is a little different from Firefox's. There are 2 kinds of settings:
+        <a href="http://peter.sh/experiments/chromium-command-line-switches/"><b>command line options</b></a> and
+        <a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/pref_names.cc"><b>chrome preferences</b></a>.<br>
+        The <b>command line options</b> will be defined normally as key : value pair in the json file, while <b>chrome preferences</b>
+        will be defined as value of key "<b>seplus.chrome.preference.json.key</b>".
+        <p>
+        <ul>
+        <li>Prepare the json data file
+            <ol>
+                <li>Create a new json data file, for example c:\Pref.json.dat
+                <li>Write the preferences and/or command-line-options into this json file, for example,
+<pre>
+{
+    #The line begins with # is considered as comment
+    #Define <b>command-line-options</b> as key:value
+    "lang":"en",
+    #If the command-line-options doesn't need a value, then provide an empty value as key:""
+    "start-maximized":"",
+    #"disable-smooth-scrolling":"",
+
+    #Define <b>preferences</b> as value of key "seplus.chrome.preference.json.key"
+    "<b>seplus.chrome.preference.json.key</b>":
+    {
+        #The preferences are given as key:value
+        "intl.accept_languages" :"zh-CN-pseudo",
+        "intl.charset_default"  :"utf-8"
+    }
+}
+</pre>
+           </ol>
+        <li>Examples:<br>
+            <ol>
+                <li>Start Chrome with the custom preferences data file "<b>c:\Pref.json.dat</b>"
+                    <div class="CodeBox">
+<pre class="LineNumbers">
+1
+2
+</pre>
+<pre class="SourceCode">
+String preferenceDataFile = "c:\\Pref.json.dat";
+StartWebBrowser(URL, ID, SelectBrowser.BROWSER_NAME_CHROME, "30", "true", quote(SelectBrowser.<b>KEY_CHROME_PREFERENCE</b>), preferenceDataFile);
+</pre>
+                    </div>
+                <p>
+            </ol>
+        </ul>
+
+</ol>
+    <p>
+<hr>
+</div>
+
+<!--------------------------------->
 <!-- References                  -->
 <!--------------------------------->
 <div id="references" style="display: none;">
 <h2>Important References</h2>
 <p>
 <a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/webdriver/SeleniumPlus.html" title="SeleniumPlus Class JavaDoc" alt="SeleniumPlus Class JavaDoc">SeleniumPlus Class JavaDoc</a><br>
-<a href="http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/WebDriver.html" title="Selenium WebDriver API" alt="Selenium WebDriver API">Selenium WebDriver API</a><br>
+<a href="http://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/WebDriver.html" title="Selenium WebDriver API" alt="Selenium WebDriver API">Selenium WebDriver API</a><br>
 <p>
 <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php" title="SAFS Keyword Reference" alt="SAFS Keyword Reference">SAFS Keywords Reference</a><br>
 <a href="http://safsdev.sourceforge.net" title="SAFS SourceForge Home" alt="SAFS SourceForge Home">SAFS Homepage on SourceForge</a><br>
