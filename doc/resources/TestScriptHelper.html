@@ -85,7 +85,13 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>RationalTestScript</li>
+<li>com.rational.test.ft.script.DatapoolScriptSupport</li>
+<li>
+<ul class="inheritance">
+<li>com.rational.test.ft.script.SubitemFactory</li>
+<li>
+<ul class="inheritance">
+<li>com.rational.test.ft.script.RationalTestScript</li>
 <li>
 <ul class="inheritance">
 <li><a href="../org/safs/rational/Script.html" title="class in org.safs.rational">org.safs.rational.Script</a></li>
@@ -99,9 +105,17 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd>com.rational.test.ft.script.IObjectManagerEventListener, com.rational.test.ft.script.RationalTestScriptConstants</dd>
+</dl>
 <hr>
 <br>
 <pre>public abstract class <span class="strong">TestScriptHelper</span>
@@ -132,6 +146,27 @@ extends <a href="../org/safs/rational/Script.html" title="class in org.safs.rati
 </a>
 <h3>Fields inherited from class&nbsp;org.safs.rational.<a href="../org/safs/rational/Script.html" title="class in org.safs.rational">Script</a></h3>
 <code><a href="../org/safs/rational/Script.html#_hook">_hook</a>, <a href="../org/safs/rational/Script.html#_logUtils">_logUtils</a>, <a href="../org/safs/rational/Script.html#count">count</a>, <a href="../org/safs/rational/Script.html#info">info</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_com.rational.test.ft.script.RationalTestScript">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;com.rational.test.ft.script.RationalTestScript</h3>
+<code>ANY, DEFAULT_ARGS</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_com.rational.test.ft.script.DatapoolScriptSupport">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;com.rational.test.ft.script.DatapoolScriptSupport</h3>
+<code>DP_ALL, DP_DEFAULT_EQUIVALENCE_CLASS, DP_SHARE_CURRENT_RECORD</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_com.rational.test.ft.script.RationalTestScriptConstants">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;com.rational.test.ft.script.RationalTestScriptConstants</h3>
+<code>ALT_LEFT, ALT_MIDDLE, ALT_RIGHT, ALT_SHIFT_LEFT, ALT_SHIFT_MIDDLE, ALT_SHIFT_RIGHT, ARROW, BACK_BUTTON, BACKGROUND, BOTTOM_EDGE, CAPTION, CHECK, CHECKBOX, CLOSE_BUTTON, COLLAPSE, COLLAPSE_AND_EXTEND_SELECT, COLLAPSE_AND_SELECT, CONTEXTHELP_BUTTON, CTRL_ALT_LEFT, CTRL_ALT_MIDDLE, CTRL_ALT_RIGHT, CTRL_ALT_SHIFT_LEFT, CTRL_ALT_SHIFT_MIDDLE, CTRL_ALT_SHIFT_RIGHT, CTRL_LEFT, CTRL_MIDDLE, CTRL_RIGHT, CTRL_SHIFT_LEFT, CTRL_SHIFT_MIDDLE, CTRL_SHIFT_RIGHT, DEFAULT, DEFAULT_FLAGS, DESELECT, DESELECT_ALL, DISABLE_LOGGING, DISABLED, DROPDOWN, ENABLE_LOGGING, ENABLED, EXPAND, EXPAND_AND_EXTEND_SELECT, EXPAND_AND_SELECT, EXTEND_SELECT, HEADER_ICON, INDETERMINATE, LEFT, LEFT_EDGE, LOADED, LOADING, LOG_DISABLE_GUI_ACTION, LOG_DISABLE_GUI_SNAPSHOT_ACTION, LOG_ENABLE_GUI_ACTION, LOG_ENABLE_GUI_SNAPSHOT_ACTION, LOG_FAILURES, LOG_FAILURES_WARNINGS, LOG_FAILURES_WARNINGS_PASS, LOG_FAILURES_WARNINGS_PASS_INFO, MAXIMIZE_BUTTON, MAY_EXIT, MIDDLE, MINIMIZE_BUTTON, MONTH, NO_FLAGS, NO_STATE, NOT_SELECTED, NOT_SHOWING, PARENTROWS, PLUS_MINUS, POPUP, READY, RIGHT, RIGHT_EDGE, SCROLL_DOWN, SCROLL_DOWNBUTTON, SCROLL_ELEVATOR, SCROLL_HORIZONTAL_ELEVATOR, SCROLL_LEFT, SCROLL_LEFTBUTTON, SCROLL_LINEDOWN, SCROLL_LINELEFT, SCROLL_LINERIGHT, SCROLL_LINEUP, SCROLL_PAGEDOWN, SCROLL_PAGELEFT, SCROLL_PAGERIGHT, SCROLL_PAGEUP, SCROLL_RIGHT, SCROLL_RIGHTBUTTON, SCROLL_UP, SCROLL_UPBUTTON, SCROLL_VERTICAL_ELEVATOR, SELECT, SELECTED, SHIFT_LEFT, SHIFT_MIDDLE, SHIFT_RIGHT, SHOWHIDE_BUTTON, SHOWING, SINGLE_SELECT, SYSTEM_MENU, THUMB, TODAY, TOP_EDGE, UNCHECK, UNDETERMINED, UNINITIALIZED, VERSION, YEAR</code></li>
 </ul>
 </li>
 </ul>
@@ -165,7 +200,28 @@ extends <a href="../org/safs/rational/Script.html" title="class in org.safs.rati
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.rational.<a href="../org/safs/rational/Script.html" title="class in org.safs.rational">Script</a></h3>
-<code><a href="../org/safs/rational/Script.html#Dummy_contentsVP()">Dummy_contentsVP</a>, <a href="../org/safs/rational/Script.html#Dummy_contentsVP(TestObject)">Dummy_contentsVP</a>, <a href="../org/safs/rational/Script.html#getGuiUtilities()">getGuiUtilities</a>, <a href="../org/safs/rational/Script.html#getLogUtilities()">getLogUtilities</a>, <a href="../org/safs/rational/Script.html#getRobotJHook()">getRobotJHook</a>, <a href="../org/safs/rational/Script.html#getSTAFHelper()">getSTAFHelper</a>, <a href="../org/safs/rational/Script.html#getTestRecordData()">getTestRecordData</a>, <a href="../org/safs/rational/Script.html#localAtCell(Column,%20Row)">localAtCell</a>, <a href="../org/safs/rational/Script.html#localAtColumn(int)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String,%20java.lang.Object)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtIndex(int)">localAtIndex</a>, <a href="../org/safs/rational/Script.html#localAtPath(java.lang.String)">localAtPath</a>, <a href="../org/safs/rational/Script.html#localAtPoint(int,%20int)">localAtPoint</a>, <a href="../org/safs/rational/Script.html#localAtRow(int)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtRow(java.lang.String,%20java.lang.Object)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtRow(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtRow(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtText(java.lang.String)">localAtText</a>, <a href="../org/safs/rational/Script.html#localCallScript(java.lang.String)">localCallScript</a>, <a href="../org/safs/rational/Script.html#localGetenv(java.lang.String)">localGetenv</a>, <a href="../org/safs/rational/Script.html#localLogError(java.lang.String)">localLogError</a>, <a href="../org/safs/rational/Script.html#localLogInfo(java.lang.String)">localLogInfo</a>, <a href="../org/safs/rational/Script.html#localLogTestResult(java.lang.String,%20boolean)">localLogTestResult</a>, <a href="../org/safs/rational/Script.html#localLogTestResult(java.lang.String,%20boolean,%20java.lang.String)">localLogTestResult</a>, <a href="../org/safs/rational/Script.html#localLogWarning(java.lang.String)">localLogWarning</a>, <a href="../org/safs/rational/Script.html#localRun(java.lang.String,%20java.lang.String)">localRun</a>, <a href="../org/safs/rational/Script.html#localRunJava(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">localRunJava</a>, <a href="../org/safs/rational/Script.html#localUnregister(java.lang.Object[])">localUnregister</a>, <a href="../org/safs/rational/Script.html#localUnregisterAll()">localUnregisterAll</a>, <a href="../org/safs/rational/Script.html#localVp(java.lang.String)">localVp</a>, <a href="../org/safs/rational/Script.html#processArgs(java.lang.Object[])">processArgs</a>, <a href="../org/safs/rational/Script.html#testMain(java.lang.Object[])">testMain</a></code></li>
+<code><a href="../org/safs/rational/Script.html#Dummy_contentsVP()">Dummy_contentsVP</a>, <a href="../org/safs/rational/Script.html#Dummy_contentsVP(com.rational.test.ft.object.interfaces.TestObject)">Dummy_contentsVP</a>, <a href="../org/safs/rational/Script.html#getGuiUtilities()">getGuiUtilities</a>, <a href="../org/safs/rational/Script.html#getLogUtilities()">getLogUtilities</a>, <a href="../org/safs/rational/Script.html#getRobotJHook()">getRobotJHook</a>, <a href="../org/safs/rational/Script.html#getSTAFHelper()">getSTAFHelper</a>, <a href="../org/safs/rational/Script.html#getTestRecordData()">getTestRecordData</a>, <a href="../org/safs/rational/Script.html#localAtCell(com.rational.test.ft.script.Column,%20com.rational.test.ft.script.Row)">localAtCell</a>, <a href="../org/safs/rational/Script.html#localAtColumn(int)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String,%20java.lang.Object)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtColumn(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtColumn</a>, <a href="../org/safs/rational/Script.html#localAtIndex(int)">localAtIndex</a>, <a href="../org/safs/rational/Script.html#localAtPath(java.lang.String)">localAtPath</a>, <a href="../org/safs/rational/Script.html#localAtPoint(int,%20int)">localAtPoint</a>, <a href="../org/safs/rational/Script.html#localAtRow(int)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtRow(java.lang.String,%20java.lang.Object)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtRow(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtRow(java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object,%20java.lang.String,%20java.lang.Object)">localAtRow</a>, <a href="../org/safs/rational/Script.html#localAtText(java.lang.String)">localAtText</a>, <a href="../org/safs/rational/Script.html#localCallScript(java.lang.String)">localCallScript</a>, <a href="../org/safs/rational/Script.html#localGetenv(java.lang.String)">localGetenv</a>, <a href="../org/safs/rational/Script.html#localLogError(java.lang.String)">localLogError</a>, <a href="../org/safs/rational/Script.html#localLogInfo(java.lang.String)">localLogInfo</a>, <a href="../org/safs/rational/Script.html#localLogTestResult(java.lang.String,%20boolean)">localLogTestResult</a>, <a href="../org/safs/rational/Script.html#localLogTestResult(java.lang.String,%20boolean,%20java.lang.String)">localLogTestResult</a>, <a href="../org/safs/rational/Script.html#localLogWarning(java.lang.String)">localLogWarning</a>, <a href="../org/safs/rational/Script.html#localRun(java.lang.String,%20java.lang.String)">localRun</a>, <a href="../org/safs/rational/Script.html#localRunJava(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">localRunJava</a>, <a href="../org/safs/rational/Script.html#localUnregister(java.lang.Object[])">localUnregister</a>, <a href="../org/safs/rational/Script.html#localUnregisterAll()">localUnregisterAll</a>, <a href="../org/safs/rational/Script.html#localVp(java.lang.String)">localVp</a>, <a href="../org/safs/rational/Script.html#processArgs(java.lang.Object[])">processArgs</a>, <a href="../org/safs/rational/Script.html#testMain(java.lang.Object[])">testMain</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_com.rational.test.ft.script.RationalTestScript">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.rational.test.ft.script.RationalTestScript</h3>
+<code>callScript, callScript, callScript, callScript, callScript, callScript, cleanup, derefAll, doesVariablesManagerExist, downloadProjectFiles, dpNext, find, find, getApplications, getBrowsers, getCurrentBrowser, getCurrentJVM, getCurrentProject, getCurrentScriptIterationCount, getDomains, getenv, getJVMs, getLineNumber, getLineNumber, getMap, getMap, getMappedTestObject, getOperatingSystem, getOption, getProject, getProjectByLocation, getRegisteredTestObjects, getRootTestObject, getScreen, getScriptArgs, getScriptCaller, getScriptDefinition, getScriptName, getSimplifiedAction, getSimplifiedScriptLine, getSystemClipboard, getTimerValue, getTopScript, getTopScriptLineNumber, getTopScriptName, getTopWindows, getVariablesManager, getVersion, getVisualScriptTestElements, isApplicationDefined, isBrowserDefined, isJVMDefined, isMainScript, logError, logError, logException, logInfo, logInfo, logTestResult, logTestResult, logWarning, logWarning, objectAtPoint, onAmbiguousRecognition, onCallScriptException, onInitialize, onObjectNotFound, onRecognitionWarning, onRun, onSubitemNotFound, onTerminate, onTestObjectMethodException, onUnexpectedActiveWindow, onUnhandledException, onVpFailure, resetInvocationTimeout, resetOption, resetTOCreationUnregisterCounts, run, runJava, runMain, runMain, runMain, runMain, runMain, runMain, setCurrentBrowser, setCurrentJVM, setCurrentLogFilter, setDatapool, setenv, setInvocationTimeout, setOption, setOption, setOption, setOption, setOption, setOption, setScriptName, setSimplifiedScriptLine, shellExecute, sleep, startApp, startApp, startBrowser, startBrowser, stop, stopTimer, timerStart, timerStop, trimStackTrace, unregister, unregisterAll, unsetenv, updateTOCreationCount, updateTOUnregisterCount, vp, vp, vpDynamic, vpDynamic, vpManual, vpManual</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_com.rational.test.ft.script.SubitemFactory">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.rational.test.ft.script.SubitemFactory</h3>
+<code>_S, atArea, atButton, atButton, atCell, atCell, atChild, atChild, atChild, atColor, atColumn, atColumn, atColumn, atColumn, atColumn, atColumn, atColumn, atColumnHeader, atDate, atDate, atDescendant, atDescendant, atDescendant, atDPoint, atDPosition, atFile, atFile, atHeader, atHref, atId, atImage, atImage, atIndex, atLink, atLink, atList, atList, atList, atList, atList, atLocation, atModifiers, atName, atName, atPath, atPoint, atPosition, atProperty, atRecognitionIndex, atRow, atRow, atRow, atRow, atRow, atRow, atRow, atRowColumnIndex, atRowHeader, atSeparator, atText, atText, atTextPosition, atToolTipText, atToolTipText, atTopLeftHeader, atValue, atWeek, atWeekDay, delay, keyDown, keyUp, leftMouseButtonDown, leftMouseButtonUp, middleMouseButtonDown, middleMouseButtonUp, mouseMove, mouseWheel, rightMouseButtonDown, rightMouseButtonUp, toScreenPoint</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_com.rational.test.ft.script.DatapoolScriptSupport">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;com.rational.test.ft.script.DatapoolScriptSupport</h3>
+<code>dpBoolean, dpBoolean, dpBoolean, dpByte, dpByte, dpByte, dpChar, dpChar, dpChar, dpCurrent, dpDone, dpDouble, dpDouble, dpDouble, dpFactory, dpFloat, dpFloat, dpFloat, dpInitialization, dpInitialization, dpInitialize, dpInt, dpInt, dpInt, dpLong, dpLong, dpLong, dpReset, dpShort, dpShort, dpShort, dpString, dpString, dpString, dpTermination, dpValue, dpValue, dpValue, getDatapool, setCurrentdp, setDatapool, storeDatapool, unsetDatapool</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">

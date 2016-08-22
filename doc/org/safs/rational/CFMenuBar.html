@@ -307,7 +307,7 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.util.List</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#captureObjectData(TestObject)">captureObjectData</a></strong>(TestObject&nbsp;guiObj)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#captureObjectData(com.rational.test.ft.object.interfaces.TestObject)">captureObjectData</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;guiObj)</code>
 <div class="block">Turn the menu to a tree, and return each level of the tree node.</div>
 </td>
 </tr>
@@ -344,7 +344,7 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#getPropertyText(TestObject)">getPropertyText</a></strong>(TestObject&nbsp;menuObject)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#getPropertyText(com.rational.test.ft.object.interfaces.TestObject)">getPropertyText</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)</code>
 <div class="block"><em>Note:</em>          Try to get The value of "text" property of a menuitem.</div>
 </td>
 </tr>
@@ -358,32 +358,32 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.Integer</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#getSubMenuItemCount(TestObject)">getSubMenuItemCount</a></strong>(TestObject&nbsp;aMenuObj)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#getSubMenuItemCount(com.rational.test.ft.object.interfaces.TestObject)">getSubMenuItemCount</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;aMenuObj)</code>
 <div class="block">Return the number of immediate child Menus or MenuItems from the provided JMenuBar or JMenu.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected GuiSubitemTestObject</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#getSubMenuItemFullPath(TestObject,%20java.lang.StringBuffer)">getSubMenuItemFullPath</a></strong>(TestObject&nbsp;theObj,
+<td class="colFirst"><code>protected com.rational.test.ft.object.interfaces.GuiSubitemTestObject</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#getSubMenuItemFullPath(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.StringBuffer)">getSubMenuItemFullPath</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;theObj,
                       java.lang.StringBuffer&nbsp;path)</code>
 <div class="block">theObj is expected to be a JMenu TestObject proxy (Usually a ToggleGUITestObject).</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#isMenuBar(TestObject)">isMenuBar</a></strong>(TestObject&nbsp;menuObject)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#isMenuBar(com.rational.test.ft.object.interfaces.TestObject)">isMenuBar</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)</code>
 <div class="block"><em>Note:</em>          Needed to be override in subclass.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#isMenuItem(TestObject)">isMenuItem</a></strong>(TestObject&nbsp;menuObject)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#isMenuItem(com.rational.test.ft.object.interfaces.TestObject)">isMenuItem</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)</code>
 <div class="block"><em>Note:</em>                  Needed to be override in subclass.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#isPopupMenu(TestObject)">isPopupMenu</a></strong>(TestObject&nbsp;menuObject)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#isPopupMenu(com.rational.test.ft.object.interfaces.TestObject)">isPopupMenu</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
@@ -394,7 +394,7 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#selectMenuBar(TestObject,%20java.lang.String,%20boolean,%20boolean)">selectMenuBar</a></strong>(TestObject&nbsp;menuObj,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#selectMenuBar(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String,%20boolean,%20boolean)">selectMenuBar</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObj,
              java.lang.String&nbsp;menuItemPath,
              boolean&nbsp;fuzzy,
              boolean&nbsp;verify)</code>
@@ -417,12 +417,12 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#selectMenuItemWithoutVerification(GuiSubitemTestObject,%20java.lang.String)">selectMenuItemWithoutVerification</a></strong>(GuiSubitemTestObject&nbsp;guiObj,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#selectMenuItemWithoutVerification(com.rational.test.ft.object.interfaces.GuiSubitemTestObject,%20java.lang.String)">selectMenuItemWithoutVerification</a></strong>(com.rational.test.ft.object.interfaces.GuiSubitemTestObject&nbsp;guiObj,
                                  java.lang.String&nbsp;path)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#selectMenuItemWithVerification(GuiSubitemTestObject,%20java.lang.String,%20boolean)">selectMenuItemWithVerification</a></strong>(GuiSubitemTestObject&nbsp;guiObj,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/CFMenuBar.html#selectMenuItemWithVerification(com.rational.test.ft.object.interfaces.GuiSubitemTestObject,%20java.lang.String,%20boolean)">selectMenuItemWithVerification</a></strong>(com.rational.test.ft.object.interfaces.GuiSubitemTestObject&nbsp;guiObj,
                               java.lang.String&nbsp;path,
                               boolean&nbsp;fuzzy)</code>&nbsp;</td>
 </tr>
@@ -480,7 +480,7 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.rational.<a href="../../../org/safs/rational/CFComponent.html" title="class in org.safs.rational">CFComponent</a></h3>
-<code><a href="../../../org/safs/rational/CFComponent.html#_maximize()">_maximize</a>, <a href="../../../org/safs/rational/CFComponent.html#_minimize()">_minimize</a>, <a href="../../../org/safs/rational/CFComponent.html#_restore()">_restore</a>, <a href="../../../org/safs/rational/CFComponent.html#_setPosition(java.awt.Point)">_setPosition</a>, <a href="../../../org/safs/rational/CFComponent.html#_setSize(java.awt.Dimension)">_setSize</a>, <a href="../../../org/safs/rational/CFComponent.html#captureObjectDataToFile()">captureObjectDataToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#capturePropertiesToFile()">capturePropertiesToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#capturePropertyToFile()">capturePropertyToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#clearAppMapCache()">clearAppMapCache</a>, <a href="../../../org/safs/rational/CFComponent.html#closeWindow()">closeWindow</a>, <a href="../../../org/safs/rational/CFComponent.html#componentClick()">componentClick</a>, <a href="../../../org/safs/rational/CFComponent.html#convertObjectValueToString(java.lang.Object)">convertObjectValueToString</a>, <a href="../../../org/safs/rational/CFComponent.html#exist()">exist</a>, <a href="../../../org/safs/rational/CFComponent.html#extractTreeItemsSub(java.lang.Object)">extractTreeItemsSub</a>, <a href="../../../org/safs/rational/CFComponent.html#findMenuBars(TestObject)">findMenuBars</a>, <a href="../../../org/safs/rational/CFComponent.html#formatObjectData(java.util.List)">formatObjectData</a>, <a href="../../../org/safs/rational/CFComponent.html#getAppletsBrowser(GuiTestObject)">getAppletsBrowser</a>, <a href="../../../org/safs/rational/CFComponent.html#getComponentRectangle()">getComponentRectangle</a>, <a href="../../../org/safs/rational/CFComponent.html#getComponentRectangleOnScreen()">getComponentRectangleOnScreen</a>, <a href="../../../org/safs/rational/CFComponent.html#getHelpers()">getHelpers</a>, <a href="../../../org/safs/rational/CFComponent.html#getKeepEncodingConsistent()">getKeepEncodingConsistent</a>, <a href="../../../org/safs/rational/CFComponent.html#getObjectProperty(TestObject,%20java.lang.String)">getObjectProperty</a>, <a href="../../../org/safs/rational/CFComponent.html#getObjectPropertyFromProperties(TestObject,%20java.lang.String)">getObjectPropertyFromProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#getProperties()">getProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#getPropertyObject(java.lang.String)">getPropertyObject</a>, <a href="../../../org/safs/rational/CFComponent.html#getUserObject(java.lang.Object,%20java.lang.Integer)">getUserObject</a>, <a href="../../../org/safs/rational/CFComponent.html#getWindowRectangleOnScreen()">getWindowRectangleOnScreen</a>, <a href="../../../org/safs/rational/CFComponent.html#inputKeystrokes()">inputKeystrokes</a>, <a href="../../../org/safs/rational/CFComponent.html#isDotnetDomain(TestObject)">isDotnetDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isFlexDomain(TestObject)">isFlexDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isHtmlDomain(TestObject)">isHtmlDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isJavaDomain(TestObject)">isJavaDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isSwtDomain(TestObject)">isSwtDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isSWTWidget(TestObject)">isSWTWidget</a>, <a href="../../../org/safs/rational/CFComponent.html#isWinDomain(TestObject)">isWinDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#listAllProperties(TestObject)">listAllProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#listAllProperties(TestObject,%20java.lang.String)">listAllProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#listMethods(TestObject)">listMethods</a>, <a href="../../../org/safs/rational/CFComponent.html#listNonValueProperties(TestObject)">listNonValueProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#listProperties(TestObject)">listProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#matchedPathOfMenuItem(GuiTestObject,%20java.lang.String,%20boolean,%20java.lang.String)">matchedPathOfMenuItem</a>, <a href="../../../org/safs/rational/CFComponent.html#mouseClick(GuiTestObject,%20java.awt.Point)">mouseClick</a>, <a href="../../../org/safs/rational/CFComponent.html#parseWhereInfo(java.lang.String)">parseWhereInfo</a>, <a href="../../../org/safs/rational/CFComponent.html#performClick(java.lang.Object)">performClick</a>, <a href="../../../org/safs/rational/CFComponent.html#performDrag()">performDrag</a>, <a href="../../../org/safs/rational/CFComponent.html#performHoverMouse(java.awt.Point,%20int)">performHoverMouse</a>, <a href="../../../org/safs/rational/CFComponent.html#performScorll()">performScorll</a>, <a href="../../../org/safs/rational/CFComponent.html#process()">process</a>, <a href="../../../org/safs/rational/CFComponent.html#selectMenuItem(boolean)">selectMenuItem</a>, <a href="../../../org/safs/rational/CFComponent.html#sendEvent()">sendEvent</a>, <a href="../../../org/safs/rational/CFComponent.html#sendFlexEvent()">sendFlexEvent</a>, <a href="../../../org/safs/rational/CFComponent.html#setKeepEncodingConsistent()">setKeepEncodingConsistent</a>, <a href="../../../org/safs/rational/CFComponent.html#setPropertyValue()">setPropertyValue</a>, <a href="../../../org/safs/rational/CFComponent.html#tobj(TestObject)">tobj</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyClipboardToFile()">verifyClipboardToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyFileToFile(boolean)">verifyFileToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyMenuItem(boolean)">verifyMenuItem</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyObjectDataToFile()">verifyObjectDataToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyPropertyContains()">verifyPropertyContains</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyPropertyToFile(boolean)">verifyPropertyToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyValueContains()">verifyValueContains</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyValues()">verifyValues</a></code></li>
+<code><a href="../../../org/safs/rational/CFComponent.html#_maximize()">_maximize</a>, <a href="../../../org/safs/rational/CFComponent.html#_minimize()">_minimize</a>, <a href="../../../org/safs/rational/CFComponent.html#_restore()">_restore</a>, <a href="../../../org/safs/rational/CFComponent.html#_setPosition(java.awt.Point)">_setPosition</a>, <a href="../../../org/safs/rational/CFComponent.html#_setSize(java.awt.Dimension)">_setSize</a>, <a href="../../../org/safs/rational/CFComponent.html#captureObjectDataToFile()">captureObjectDataToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#capturePropertiesToFile()">capturePropertiesToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#capturePropertyToFile()">capturePropertyToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#clearAppMapCache()">clearAppMapCache</a>, <a href="../../../org/safs/rational/CFComponent.html#closeWindow()">closeWindow</a>, <a href="../../../org/safs/rational/CFComponent.html#componentClick()">componentClick</a>, <a href="../../../org/safs/rational/CFComponent.html#convertObjectValueToString(java.lang.Object)">convertObjectValueToString</a>, <a href="../../../org/safs/rational/CFComponent.html#exist()">exist</a>, <a href="../../../org/safs/rational/CFComponent.html#extractTreeItemsSub(java.lang.Object)">extractTreeItemsSub</a>, <a href="../../../org/safs/rational/CFComponent.html#findMenuBars(com.rational.test.ft.object.interfaces.TestObject)">findMenuBars</a>, <a href="../../../org/safs/rational/CFComponent.html#formatObjectData(java.util.List)">formatObjectData</a>, <a href="../../../org/safs/rational/CFComponent.html#getAppletsBrowser(com.rational.test.ft.object.interfaces.GuiTestObject)">getAppletsBrowser</a>, <a href="../../../org/safs/rational/CFComponent.html#getComponentRectangle()">getComponentRectangle</a>, <a href="../../../org/safs/rational/CFComponent.html#getComponentRectangleOnScreen()">getComponentRectangleOnScreen</a>, <a href="../../../org/safs/rational/CFComponent.html#getHelpers()">getHelpers</a>, <a href="../../../org/safs/rational/CFComponent.html#getKeepEncodingConsistent()">getKeepEncodingConsistent</a>, <a href="../../../org/safs/rational/CFComponent.html#getObjectProperty(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">getObjectProperty</a>, <a href="../../../org/safs/rational/CFComponent.html#getObjectPropertyFromProperties(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">getObjectPropertyFromProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#getProperties()">getProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#getPropertyObject(java.lang.String)">getPropertyObject</a>, <a href="../../../org/safs/rational/CFComponent.html#getUserObject(java.lang.Object,%20java.lang.Integer)">getUserObject</a>, <a href="../../../org/safs/rational/CFComponent.html#getWindowRectangleOnScreen()">getWindowRectangleOnScreen</a>, <a href="../../../org/safs/rational/CFComponent.html#inputKeystrokes()">inputKeystrokes</a>, <a href="../../../org/safs/rational/CFComponent.html#isDotnetDomain(com.rational.test.ft.object.interfaces.TestObject)">isDotnetDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isFlexDomain(com.rational.test.ft.object.interfaces.TestObject)">isFlexDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isHtmlDomain(com.rational.test.ft.object.interfaces.TestObject)">isHtmlDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isJavaDomain(com.rational.test.ft.object.interfaces.TestObject)">isJavaDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isSwtDomain(com.rational.test.ft.object.interfaces.TestObject)">isSwtDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#isSWTWidget(com.rational.test.ft.object.interfaces.TestObject)">isSWTWidget</a>, <a href="../../../org/safs/rational/CFComponent.html#isWinDomain(com.rational.test.ft.object.interfaces.TestObject)">isWinDomain</a>, <a href="../../../org/safs/rational/CFComponent.html#listAllProperties(com.rational.test.ft.object.interfaces.TestObject)">listAllProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#listAllProperties(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">listAllProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#listMethods(com.rational.test.ft.object.interfaces.TestObject)">listMethods</a>, <a href="../../../org/safs/rational/CFComponent.html#listNonValueProperties(com.rational.test.ft.object.interfaces.TestObject)">listNonValueProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#listProperties(com.rational.test.ft.object.interfaces.TestObject)">listProperties</a>, <a href="../../../org/safs/rational/CFComponent.html#matchedPathOfMenuItem(com.rational.test.ft.object.interfaces.GuiTestObject,%20java.lang.String,%20boolean,%20java.lang.String)">matchedPathOfMenuItem</a>, <a href="../../../org/safs/rational/CFComponent.html#mouseClick(com.rational.test.ft.object.interfaces.GuiTestObject,%20java.awt.Point)">mouseClick</a>, <a href="../../../org/safs/rational/CFComponent.html#parseWhereInfo(java.lang.String)">parseWhereInfo</a>, <a href="../../../org/safs/rational/CFComponent.html#performClick(java.lang.Object)">performClick</a>, <a href="../../../org/safs/rational/CFComponent.html#performDrag()">performDrag</a>, <a href="../../../org/safs/rational/CFComponent.html#performHoverMouse(java.awt.Point,%20int)">performHoverMouse</a>, <a href="../../../org/safs/rational/CFComponent.html#performScorll()">performScorll</a>, <a href="../../../org/safs/rational/CFComponent.html#process()">process</a>, <a href="../../../org/safs/rational/CFComponent.html#selectMenuItem(boolean)">selectMenuItem</a>, <a href="../../../org/safs/rational/CFComponent.html#sendEvent()">sendEvent</a>, <a href="../../../org/safs/rational/CFComponent.html#sendFlexEvent()">sendFlexEvent</a>, <a href="../../../org/safs/rational/CFComponent.html#setKeepEncodingConsistent()">setKeepEncodingConsistent</a>, <a href="../../../org/safs/rational/CFComponent.html#setPropertyValue()">setPropertyValue</a>, <a href="../../../org/safs/rational/CFComponent.html#tobj(com.rational.test.ft.object.interfaces.TestObject)">tobj</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyClipboardToFile()">verifyClipboardToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyFileToFile(boolean)">verifyFileToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyMenuItem(boolean)">verifyMenuItem</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyObjectDataToFile()">verifyObjectDataToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyPropertyContains()">verifyPropertyContains</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyPropertyToFile(boolean)">verifyPropertyToFile</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyValueContains()">verifyValueContains</a>, <a href="../../../org/safs/rational/CFComponent.html#verifyValues()">verifyValues</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_org.safs.ComponentFunction">
@@ -845,13 +845,13 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
 </ul>
-<a name="selectMenuBar(TestObject, java.lang.String, boolean, boolean)">
+<a name="selectMenuBar(com.rational.test.ft.object.interfaces.TestObject, java.lang.String, boolean, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>selectMenuBar</h4>
-<pre>protected&nbsp;void&nbsp;selectMenuBar(TestObject&nbsp;menuObj,
+<pre>protected&nbsp;void&nbsp;selectMenuBar(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObj,
                  java.lang.String&nbsp;menuItemPath,
                  boolean&nbsp;fuzzy,
                  boolean&nbsp;verify)
@@ -883,24 +883,24 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
 </ul>
-<a name="selectMenuItemWithoutVerification(GuiSubitemTestObject, java.lang.String)">
+<a name="selectMenuItemWithoutVerification(com.rational.test.ft.object.interfaces.GuiSubitemTestObject, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>selectMenuItemWithoutVerification</h4>
-<pre>protected&nbsp;void&nbsp;selectMenuItemWithoutVerification(GuiSubitemTestObject&nbsp;guiObj,
+<pre>protected&nbsp;void&nbsp;selectMenuItemWithoutVerification(com.rational.test.ft.object.interfaces.GuiSubitemTestObject&nbsp;guiObj,
                                      java.lang.String&nbsp;path)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>guiObj,</code> - TestObject may be JMenuBar or JPopupMenu</dd><dd><code>path,</code> - String is the full path of some MenuItem on which a click action will take place</dd></dl>
 </li>
 </ul>
-<a name="selectMenuItemWithVerification(GuiSubitemTestObject, java.lang.String, boolean)">
+<a name="selectMenuItemWithVerification(com.rational.test.ft.object.interfaces.GuiSubitemTestObject, java.lang.String, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>selectMenuItemWithVerification</h4>
-<pre>protected&nbsp;void&nbsp;selectMenuItemWithVerification(GuiSubitemTestObject&nbsp;guiObj,
+<pre>protected&nbsp;void&nbsp;selectMenuItemWithVerification(com.rational.test.ft.object.interfaces.GuiSubitemTestObject&nbsp;guiObj,
                                   java.lang.String&nbsp;path,
                                   boolean&nbsp;fuzzy)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>guiObj,</code> - TestObject may be JMenuBar or JPopupMenu</dd><dd><code>path,</code> - String is the full path of some MenuItem on which a click action will take place</dd><dd><code>fuzzy,</code> - boolean, If true, we will do a non-exact verification of existance of path</dd></dl>
@@ -930,13 +930,13 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dl><dt><span class="strong">Returns:</span></dt><dd>String the menuitem status to be verified which is an optional parameter.</dd></dl>
 </li>
 </ul>
-<a name="getSubMenuItemCount(TestObject)">
+<a name="getSubMenuItemCount(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getSubMenuItemCount</h4>
-<pre>protected&nbsp;java.lang.Integer&nbsp;getSubMenuItemCount(TestObject&nbsp;aMenuObj)</pre>
+<pre>protected&nbsp;java.lang.Integer&nbsp;getSubMenuItemCount(com.rational.test.ft.object.interfaces.TestObject&nbsp;aMenuObj)</pre>
 <div class="block">Return the number of immediate child Menus or MenuItems from the provided JMenuBar or JMenu.
  The routine will look for both the itemCount property and menuCount property--whichever it 
  finds to be present.</div>
@@ -944,15 +944,15 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dt><span class="strong">Returns:</span></dt><dd>Integer -- the number of child Menus or MenuItems or 0.</dd></dl>
 </li>
 </ul>
-<a name="getSubMenuItemFullPath(TestObject, java.lang.StringBuffer)">
+<a name="getSubMenuItemFullPath(com.rational.test.ft.object.interfaces.TestObject, java.lang.StringBuffer)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getSubMenuItemFullPath</h4>
-<pre>protected&nbsp;GuiSubitemTestObject&nbsp;getSubMenuItemFullPath(TestObject&nbsp;theObj,
-                                          java.lang.StringBuffer&nbsp;path)
-                                               throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
+<pre>protected&nbsp;com.rational.test.ft.object.interfaces.GuiSubitemTestObject&nbsp;getSubMenuItemFullPath(com.rational.test.ft.object.interfaces.TestObject&nbsp;theObj,
+                                                                                 java.lang.StringBuffer&nbsp;path)
+                                                                                      throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">theObj is expected to be a JMenu TestObject proxy (Usually a ToggleGUITestObject).
  Path information (might not have length > 0).  
  <p>
@@ -1040,13 +1040,13 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dt><span class="strong">Returns:</span></dt><dd>Map, contains path as key and status as value</dd></dl>
 </li>
 </ul>
-<a name="isMenuBar(TestObject)">
+<a name="isMenuBar(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isMenuBar</h4>
-<pre>protected&nbsp;boolean&nbsp;isMenuBar(TestObject&nbsp;menuObject)
+<pre>protected&nbsp;boolean&nbsp;isMenuBar(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)
                      throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block"><em>Note:</em>          Needed to be override in subclass. "uIClassID" is a property specific for java swing object,
                                                 we use this property to test what UI Component it is. This can only work for swing.</div>
@@ -1056,13 +1056,13 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
 </ul>
-<a name="isMenuItem(TestObject)">
+<a name="isMenuItem(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isMenuItem</h4>
-<pre>protected&nbsp;boolean&nbsp;isMenuItem(TestObject&nbsp;menuObject)
+<pre>protected&nbsp;boolean&nbsp;isMenuItem(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)
                       throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block"><em>Note:</em>                  Needed to be override in subclass. We just call isMenuBar() to make the test.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>menuObject</code> - A TestObject represents a MenuBar or PopupMenu or Menu or MenuItem</dd>
@@ -1071,13 +1071,13 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
 </ul>
-<a name="isPopupMenu(TestObject)">
+<a name="isPopupMenu(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isPopupMenu</h4>
-<pre>protected&nbsp;boolean&nbsp;isPopupMenu(TestObject&nbsp;menuObject)
+<pre>protected&nbsp;boolean&nbsp;isPopupMenu(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)
                        throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>menuObject</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>True if the menuObject is a popupMenu; False otherwise.</dd>
@@ -1085,13 +1085,13 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
 </ul>
-<a name="getPropertyText(TestObject)">
+<a name="getPropertyText(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPropertyText</h4>
-<pre>protected&nbsp;java.lang.String&nbsp;getPropertyText(TestObject&nbsp;menuObject)</pre>
+<pre>protected&nbsp;java.lang.String&nbsp;getPropertyText(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObject)</pre>
 <div class="block"><em>Note:</em>          Try to get The value of "text" property of a menuitem.
                                                 Needed to be overrided for other application than Swing.
                                                 For example: For java, "text" is the text property. But for .NET, "Text" is.</div>
@@ -1124,19 +1124,19 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
                                                         a DotNetMenuTreeNode for .NET application.</dd></dl>
 </li>
 </ul>
-<a name="captureObjectData(TestObject)">
+<a name="captureObjectData(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>captureObjectData</h4>
-<pre>protected&nbsp;java.util.List&nbsp;captureObjectData(TestObject&nbsp;guiObj)
+<pre>protected&nbsp;java.util.List&nbsp;captureObjectData(com.rational.test.ft.object.interfaces.TestObject&nbsp;guiObj)
                                     throws java.lang.IllegalArgumentException,
                                            <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Turn the menu to a tree, and return each level of the tree node.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
-<dd><code><a href="../../../org/safs/rational/CFComponent.html#captureObjectData(TestObject)">captureObjectData</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/safs/rational/CFComponent.html" title="class in org.safs.rational">CFComponent</a></code></dd>
+<dd><code><a href="../../../org/safs/rational/CFComponent.html#captureObjectData(com.rational.test.ft.object.interfaces.TestObject)">captureObjectData</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/safs/rational/CFComponent.html" title="class in org.safs.rational">CFComponent</a></code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>guiObj</code> - GuiTestObject to snapshot data from.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>List of a menu tree
  
@@ -1155,7 +1155,7 @@ extends <a href="../../../org/safs/rational/CFComponent.html" title="class in or
  Edit->Paste</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd>
-<dd><code>java.lang.IllegalArgumentException</code> - if table is not an acceptable GuiTestObject.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/CFComponent.html#captureObjectData(TestObject)"><code>CFComponent.captureObjectData(TestObject)</code></a>, 
+<dd><code>java.lang.IllegalArgumentException</code> - if table is not an acceptable GuiTestObject.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/CFComponent.html#captureObjectData(com.rational.test.ft.object.interfaces.TestObject)"><code>CFComponent.captureObjectData(TestObject)</code></a>, 
 <a href="../../../org/safs/rational/CFComponent.html#formatObjectData(java.util.List)"><code>CFComponent.formatObjectData(java.util.List)</code></a></dd></dl>
 </li>
 </ul>

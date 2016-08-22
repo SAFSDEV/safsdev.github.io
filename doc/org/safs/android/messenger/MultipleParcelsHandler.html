@@ -85,7 +85,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>Handler</li>
+<li>android.os.Handler</li>
 <li>
 <ul class="inheritance">
 <li>org.safs.android.messenger.MultipleParcelsHandler</li>
@@ -104,7 +104,7 @@
 <hr>
 <br>
 <pre>public abstract class <span class="strong">MultipleParcelsHandler</span>
-extends Handler</pre>
+extends android.os.Handler</pre>
 <div class="block">This class contains methods to handle message of big size.<br>
  At the message-sender side, the message will be divided to multiples parcels. These multiples<br>
  parcels contain an ID to indicate to which message they belong; They contains an index to<br>
@@ -156,6 +156,13 @@ extends Handler</pre>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="nested_classes_inherited_from_class_android.os.Handler">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;android.os.Handler</h3>
+<code>android.os.Handler.Callback</code></li>
+</ul>
 </li>
 </ul>
 <!-- =========== FIELD SUMMARY =========== -->
@@ -203,7 +210,7 @@ extends Handler</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#MultipleParcelsHandler(Looper,%20org.safs.android.messenger.MultipleParcelListener)">MultipleParcelsHandler</a></strong>(Looper&nbsp;looper,
+<td class="colOne"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#MultipleParcelsHandler(android.os.Looper,%20org.safs.android.messenger.MultipleParcelListener)">MultipleParcelsHandler</a></strong>(android.os.Looper&nbsp;looper,
                       <a href="../../../../org/safs/android/messenger/MultipleParcelListener.html" title="interface in org.safs.android.messenger">MultipleParcelListener</a>&nbsp;multipleParcelListener)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -226,7 +233,7 @@ extends Handler</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(Message)">assembleSmallParcels</a></strong>(Message&nbsp;msg)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(android.os.Message)">assembleSmallParcels</a></strong>(android.os.Message&nbsp;msg)</code>
 <div class="block">This method will accumulate small parcels of one message, store them into<br>
  a cache for future assembly.<br>
  
@@ -262,8 +269,8 @@ extends Handler</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#debug(java.lang.String)">debug</a></strong>(java.lang.String&nbsp;message)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.List&lt;Message&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(Message,%20char[])">divideMessageIntoSmallPieces</a></strong>(Message&nbsp;msg,
+<td class="colFirst"><code>protected java.util.List&lt;android.os.Message&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(android.os.Message,%20char[])">divideMessageIntoSmallPieces</a></strong>(android.os.Message&nbsp;msg,
                             char[]&nbsp;buffer)</code>
 <div class="block">Divide message's content into small parcels if the message content size is too large.<br>
  If the content size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>, it will<br>
@@ -273,8 +280,8 @@ extends Handler</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.util.List&lt;Message&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(Message,%20java.util.Properties)">divideMessageIntoSmallPieces</a></strong>(Message&nbsp;msg,
+<td class="colFirst"><code>protected java.util.List&lt;android.os.Message&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(android.os.Message,%20java.util.Properties)">divideMessageIntoSmallPieces</a></strong>(android.os.Message&nbsp;msg,
                             java.util.Properties&nbsp;props)</code>
 <div class="block">Divide message's content into small parcels if the message content size is too large.<br>
  If the content size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>, it will<br>
@@ -284,8 +291,8 @@ extends Handler</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.List&lt;Message&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(Message,%20java.lang.String)">divideMessageIntoSmallPieces</a></strong>(Message&nbsp;msg,
+<td class="colFirst"><code>protected java.util.List&lt;android.os.Message&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(android.os.Message,%20java.lang.String)">divideMessageIntoSmallPieces</a></strong>(android.os.Message&nbsp;msg,
                             java.lang.String&nbsp;message)</code>
 <div class="block">Divide message's content into small parcels if the message content size is too large.<br>
  If the content size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>, it will<br>
@@ -295,14 +302,14 @@ extends Handler</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected Message[]</code></td>
+<td class="colFirst"><code>protected android.os.Message[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String)">getParcelMessage</a></strong>(java.lang.String&nbsp;messageID)</code>
 <div class="block">According to messageId to get a set of parcels of a whole messagefrom<br>
  the cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a>.<br></div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected Message</code></td>
+<td class="colFirst"><code>protected android.os.Message</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String,%20int)">getParcelMessage</a></strong>(java.lang.String&nbsp;messageID,
                 int&nbsp;index)</code>
 <div class="block">According to messageId and index to get one parcel of a whole message from<br>
@@ -326,14 +333,14 @@ extends Handler</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleMessage(Message)">handleMessage</a></strong>(Message&nbsp;msg)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleMessage(android.os.Message)">handleMessage</a></strong>(android.os.Message&nbsp;msg)</code>
 <div class="block">Override method from <code>Handler</code>
  We will handle the small parcels of a whole message.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected abstract void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleWholeMessage(Message)">handleWholeMessage</a></strong>(Message&nbsp;msg)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleWholeMessage(android.os.Message)">handleWholeMessage</a></strong>(android.os.Message&nbsp;msg)</code>
 <div class="block">The subclass of this class must implement this method to handle message.<br></div>
 </td>
 </tr>
@@ -348,8 +355,8 @@ extends Handler</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(Messenger,%20Message,%20java.lang.Object)">sendMessageAsMultipleParcels</a></strong>(Messenger&nbsp;mService,
-                            Message&nbsp;msg,
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(android.os.Messenger,%20android.os.Message,%20java.lang.Object)">sendMessageAsMultipleParcels</a></strong>(android.os.Messenger&nbsp;mService,
+                            android.os.Message&nbsp;msg,
                             java.lang.Object&nbsp;object)</code>
 <div class="block">If the messag's size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>,<br>
  Send the message as multiple parcels<br>
@@ -357,12 +364,12 @@ extends Handler</pre>
  timeout <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#TIMEOUT_WAIT_FOR_PARCEL_ACKNOWLEDGMENT">5000</a>, all the parcels in cache<br>
  <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a> of a message will be re-sent out.<br>
  
- At the message-receiver side, the parcels will be assembled by method <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(Message)"><code>assembleSmallParcels(Message)</code></a><br></div>
+ At the message-receiver side, the parcels will be assembled by method <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(android.os.Message)"><code>assembleSmallParcels(Message)</code></a><br></div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(Messenger,%20java.lang.String)">sendMessageOfLostParcel</a></strong>(Messenger&nbsp;mService,
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(android.os.Messenger,%20java.lang.String)">sendMessageOfLostParcel</a></strong>(android.os.Messenger&nbsp;mService,
                        java.lang.String&nbsp;messageID)</code>
 <div class="block">According to the messageID, we will get the message from cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a><br>
  and send it out.<br>
@@ -372,7 +379,7 @@ extends Handler</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(Messenger,%20java.lang.String,%20int)">sendMessageOfLostParcel</a></strong>(Messenger&nbsp;mService,
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(android.os.Messenger,%20java.lang.String,%20int)">sendMessageOfLostParcel</a></strong>(android.os.Messenger&nbsp;mService,
                        java.lang.String&nbsp;messageID,
                        int&nbsp;index)</code>
 <div class="block">According to the messageID and index, we will get the message from cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a><br>
@@ -383,20 +390,27 @@ extends Handler</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#storeParcelMessage(Message)">storeParcelMessage</a></strong>(Message&nbsp;parcel)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#storeParcelMessage(android.os.Message)">storeParcelMessage</a></strong>(android.os.Message&nbsp;parcel)</code>
 <div class="block">Store parcel (part of a message) into a cache according to the message ID.<br>
  If the parcel is not a part of a whole message, it will not be stored in the cache<br>
- We use <a href="../../../../org/safs/android/messenger/MessageUtil.html#isSmallParcelOfWholeMessage(Bundle)"><code>MessageUtil.isSmallParcelOfWholeMessage(Bundle)</code></a> to test if this<br>
+ We use <a href="../../../../org/safs/android/messenger/MessageUtil.html#isSmallParcelOfWholeMessage(android.os.Bundle)"><code>MessageUtil.isSmallParcelOfWholeMessage(Bundle)</code></a> to test if this<br>
  parcel is a part of message.<br></div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.os.Handler">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.os.Handler</h3>
+<code>dispatchMessage, dump, getLooper, getMessageName, hasMessages, hasMessages, obtainMessage, obtainMessage, obtainMessage, obtainMessage, obtainMessage, post, postAtFrontOfQueue, postAtTime, postAtTime, postDelayed, removeCallbacks, removeCallbacks, removeCallbacksAndMessages, removeMessages, removeMessages, sendEmptyMessage, sendEmptyMessageAtTime, sendEmptyMessageDelayed, sendMessage, sendMessageAtFrontOfQueue, sendMessageAtTime, sendMessageDelayed, toString</code></li>
+</ul>
+<ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -460,13 +474,13 @@ extends Handler</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MultipleParcelsHandler(Looper, org.safs.android.messenger.MultipleParcelListener)">
+<a name="MultipleParcelsHandler(android.os.Looper, org.safs.android.messenger.MultipleParcelListener)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>MultipleParcelsHandler</h4>
-<pre>public&nbsp;MultipleParcelsHandler(Looper&nbsp;looper,
+<pre>public&nbsp;MultipleParcelsHandler(android.os.Looper&nbsp;looper,
                       <a href="../../../../org/safs/android/messenger/MultipleParcelListener.html" title="interface in org.safs.android.messenger">MultipleParcelListener</a>&nbsp;multipleParcelListener)</pre>
 </li>
 </ul>
@@ -496,13 +510,13 @@ extends Handler</pre>
 <pre>protected&nbsp;void&nbsp;debug(java.lang.String&nbsp;message)</pre>
 </li>
 </ul>
-<a name="assembleSmallParcels(Message)">
+<a name="assembleSmallParcels(android.os.Message)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>assembleSmallParcels</h4>
-<pre>public&nbsp;boolean&nbsp;assembleSmallParcels(Message&nbsp;msg)
+<pre>public&nbsp;boolean&nbsp;assembleSmallParcels(android.os.Message&nbsp;msg)
                              throws java.lang.Exception</pre>
 <div class="block">This method will accumulate small parcels of one message, store them into<br>
  a cache for future assembly.<br>
@@ -515,12 +529,12 @@ extends Handler</pre>
  and be stored in the cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageReceivedCache"><code>messageReceivedCache</code></a>, an acknowledgment<br>
  will be sent back to the message-sender.<br>
  
- The message is sent out by method <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(Messenger,%20Message,%20java.lang.Object)"><code>sendMessageAsMultipleParcels(Messenger, Message, Object)</code></a><br>
+ The message is sent out by method <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(android.os.Messenger,%20android.os.Message,%20java.lang.Object)"><code>sendMessageAsMultipleParcels(Messenger, Message, Object)</code></a><br>
  at the message-sender side.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>msg</code> - Message</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Boolean, if we have finished handling all the parcels of a whole message.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(Messenger,%20Message,%20java.lang.Object)"><code>sendMessageAsMultipleParcels(Messenger, Message, Object)</code></a></dd></dl>
+<dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(android.os.Messenger,%20android.os.Message,%20java.lang.Object)"><code>sendMessageAsMultipleParcels(Messenger, Message, Object)</code></a></dd></dl>
 </li>
 </ul>
 <a name="sendAcknowledgment(java.lang.String)">
@@ -542,13 +556,13 @@ extends Handler</pre>
                       int&nbsp;index)</pre>
 </li>
 </ul>
-<a name="handleWholeMessage(Message)">
+<a name="handleWholeMessage(android.os.Message)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>handleWholeMessage</h4>
-<pre>protected abstract&nbsp;void&nbsp;handleWholeMessage(Message&nbsp;msg)</pre>
+<pre>protected abstract&nbsp;void&nbsp;handleWholeMessage(android.os.Message&nbsp;msg)</pre>
 <div class="block">The subclass of this class must implement this method to handle message.<br></div>
 </li>
 </ul>
@@ -565,16 +579,16 @@ extends Handler</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>unique String suitable to be the key for the item.</dd></dl>
 </li>
 </ul>
-<a name="storeParcelMessage(Message)">
+<a name="storeParcelMessage(android.os.Message)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>storeParcelMessage</h4>
-<pre>protected&nbsp;java.lang.String&nbsp;storeParcelMessage(Message&nbsp;parcel)</pre>
+<pre>protected&nbsp;java.lang.String&nbsp;storeParcelMessage(android.os.Message&nbsp;parcel)</pre>
 <div class="block">Store parcel (part of a message) into a cache according to the message ID.<br>
  If the parcel is not a part of a whole message, it will not be stored in the cache<br>
- We use <a href="../../../../org/safs/android/messenger/MessageUtil.html#isSmallParcelOfWholeMessage(Bundle)"><code>MessageUtil.isSmallParcelOfWholeMessage(Bundle)</code></a> to test if this<br>
+ We use <a href="../../../../org/safs/android/messenger/MessageUtil.html#isSmallParcelOfWholeMessage(android.os.Bundle)"><code>MessageUtil.isSmallParcelOfWholeMessage(Bundle)</code></a> to test if this<br>
  parcel is a part of message.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>parcel,</code> - Message, one parcel of a whole message, 
                          it should contain a data(ID,index,totalNumber)</dd>
@@ -608,7 +622,7 @@ extends Handler</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getParcelMessage</h4>
-<pre>protected&nbsp;Message[]&nbsp;getParcelMessage(java.lang.String&nbsp;messageID)</pre>
+<pre>protected&nbsp;android.os.Message[]&nbsp;getParcelMessage(java.lang.String&nbsp;messageID)</pre>
 <div class="block">According to messageId to get a set of parcels of a whole messagefrom<br>
  the cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a>.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>messageID,</code> - String, represent a message</dd>
@@ -621,8 +635,8 @@ extends Handler</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getParcelMessage</h4>
-<pre>protected&nbsp;Message&nbsp;getParcelMessage(java.lang.String&nbsp;messageID,
-                       int&nbsp;index)</pre>
+<pre>protected&nbsp;android.os.Message&nbsp;getParcelMessage(java.lang.String&nbsp;messageID,
+                                  int&nbsp;index)</pre>
 <div class="block">According to messageId and index to get one parcel of a whole message from<br>
  the cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a>.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>messageID,</code> - String, represent a message.</dd><dd><code>index,</code> - int, the index of the parcel.</dd>
@@ -653,15 +667,15 @@ extends Handler</pre>
 <div class="block">Calculate the total number of parcels the message will be divided.<br></div>
 </li>
 </ul>
-<a name="divideMessageIntoSmallPieces(Message, java.util.Properties)">
+<a name="divideMessageIntoSmallPieces(android.os.Message, java.util.Properties)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>divideMessageIntoSmallPieces</h4>
-<pre>protected&nbsp;java.util.List&lt;Message&gt;&nbsp;divideMessageIntoSmallPieces(Message&nbsp;msg,
-                                                   java.util.Properties&nbsp;props)
-                                                        throws java.lang.Exception</pre>
+<pre>protected&nbsp;java.util.List&lt;android.os.Message&gt;&nbsp;divideMessageIntoSmallPieces(android.os.Message&nbsp;msg,
+                                                              java.util.Properties&nbsp;props)
+                                                                   throws java.lang.Exception</pre>
 <div class="block">Divide message's content into small parcels if the message content size is too large.<br>
  If the content size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>, it will<br>
  be divided into small parcels, wrapped to a Message object and put into a List to return.<br>
@@ -673,15 +687,15 @@ extends Handler</pre>
 <dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MessageUtil.html" title="class in org.safs.android.messenger"><code>MessageUtil</code></a></dd></dl>
 </li>
 </ul>
-<a name="divideMessageIntoSmallPieces(Message, char[])">
+<a name="divideMessageIntoSmallPieces(android.os.Message, char[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>divideMessageIntoSmallPieces</h4>
-<pre>protected&nbsp;java.util.List&lt;Message&gt;&nbsp;divideMessageIntoSmallPieces(Message&nbsp;msg,
-                                                   char[]&nbsp;buffer)
-                                                        throws java.lang.Exception</pre>
+<pre>protected&nbsp;java.util.List&lt;android.os.Message&gt;&nbsp;divideMessageIntoSmallPieces(android.os.Message&nbsp;msg,
+                                                              char[]&nbsp;buffer)
+                                                                   throws java.lang.Exception</pre>
 <div class="block">Divide message's content into small parcels if the message content size is too large.<br>
  If the content size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>, it will<br>
  be divided into small parcels, wrapped to a Message object and put into a List to return.<br>
@@ -693,15 +707,15 @@ extends Handler</pre>
 <dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MessageUtil.html" title="class in org.safs.android.messenger"><code>MessageUtil</code></a></dd></dl>
 </li>
 </ul>
-<a name="divideMessageIntoSmallPieces(Message, java.lang.String)">
+<a name="divideMessageIntoSmallPieces(android.os.Message, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>divideMessageIntoSmallPieces</h4>
-<pre>protected&nbsp;java.util.List&lt;Message&gt;&nbsp;divideMessageIntoSmallPieces(Message&nbsp;msg,
-                                                   java.lang.String&nbsp;message)
-                                                        throws java.lang.Exception</pre>
+<pre>protected&nbsp;java.util.List&lt;android.os.Message&gt;&nbsp;divideMessageIntoSmallPieces(android.os.Message&nbsp;msg,
+                                                              java.lang.String&nbsp;message)
+                                                                   throws java.lang.Exception</pre>
 <div class="block">Divide message's content into small parcels if the message content size is too large.<br>
  If the content size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>, it will<br>
  be divided into small parcels, wrapped to a Message object and put into a List to return.<br>
@@ -713,14 +727,14 @@ extends Handler</pre>
 <dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MessageUtil.html" title="class in org.safs.android.messenger"><code>MessageUtil</code></a></dd></dl>
 </li>
 </ul>
-<a name="sendMessageAsMultipleParcels(Messenger, Message, java.lang.Object)">
+<a name="sendMessageAsMultipleParcels(android.os.Messenger, android.os.Message, java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>sendMessageAsMultipleParcels</h4>
-<pre>public&nbsp;boolean&nbsp;sendMessageAsMultipleParcels(Messenger&nbsp;mService,
-                                   Message&nbsp;msg,
+<pre>public&nbsp;boolean&nbsp;sendMessageAsMultipleParcels(android.os.Messenger&nbsp;mService,
+                                   android.os.Message&nbsp;msg,
                                    java.lang.Object&nbsp;object)</pre>
 <div class="block">If the messag's size is bigger than <a href="../../../../org/safs/android/messenger/MessageUtil.html#MAX_TRANSFER_BYTE_SIZE"><code>MessageUtil.MAX_TRANSFER_BYTE_SIZE</code></a>,<br>
  Send the message as multiple parcels<br>
@@ -728,36 +742,36 @@ extends Handler</pre>
  timeout <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#TIMEOUT_WAIT_FOR_PARCEL_ACKNOWLEDGMENT">5000</a>, all the parcels in cache<br>
  <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a> of a message will be re-sent out.<br>
  
- At the message-receiver side, the parcels will be assembled by method <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(Message)"><code>assembleSmallParcels(Message)</code></a><br></div>
+ At the message-receiver side, the parcels will be assembled by method <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(android.os.Message)"><code>assembleSmallParcels(Message)</code></a><br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>msg,</code> - Message, a wrapper for the object.</dd><dd><code>message,</code> - Object, the object to send</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean, true if the message is sent out.</dd><dt><span class="strong">See Also:</span></dt><dd><code>#sendServiceResult(Properties)</code>, 
 <code>#sendServiceResult(MessageResult)</code>, 
-<a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(Message)"><code>assembleSmallParcels(Message)</code></a></dd></dl>
+<a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(android.os.Message)"><code>assembleSmallParcels(Message)</code></a></dd></dl>
 </li>
 </ul>
-<a name="sendMessageOfLostParcel(Messenger, java.lang.String)">
+<a name="sendMessageOfLostParcel(android.os.Messenger, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>sendMessageOfLostParcel</h4>
-<pre>public&nbsp;boolean&nbsp;sendMessageOfLostParcel(Messenger&nbsp;mService,
+<pre>public&nbsp;boolean&nbsp;sendMessageOfLostParcel(android.os.Messenger&nbsp;mService,
                               java.lang.String&nbsp;messageID)</pre>
 <div class="block">According to the messageID, we will get the message from cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a><br>
  and send it out.<br>
  We should set the field <a href="../../../../org/safs/android/messenger/MessageUtil.html#BUNDLE_SMALL_RESENT_PARCEL"><code>MessageUtil.BUNDLE_SMALL_RESENT_PARCEL</code></a> to true,<br>
  so that 'message-receiver' will know it is a message being resent by 'sender'<br></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String,%20int)"><code>getParcelMessage(String, int)</code></a>, 
-<a href="../../../../org/safs/android/messenger/MessageUtil.html#addParcelableResentParcelFromSmallParcel(Parcelable,%20boolean)"><code>MessageUtil.addParcelableResentParcelFromSmallParcel(Parcelable, boolean)</code></a></dd></dl>
+<a href="../../../../org/safs/android/messenger/MessageUtil.html#addParcelableResentParcelFromSmallParcel(android.os.Parcelable,%20boolean)"><code>MessageUtil.addParcelableResentParcelFromSmallParcel(Parcelable, boolean)</code></a></dd></dl>
 </li>
 </ul>
-<a name="sendMessageOfLostParcel(Messenger, java.lang.String, int)">
+<a name="sendMessageOfLostParcel(android.os.Messenger, java.lang.String, int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>sendMessageOfLostParcel</h4>
-<pre>public&nbsp;boolean&nbsp;sendMessageOfLostParcel(Messenger&nbsp;mService,
+<pre>public&nbsp;boolean&nbsp;sendMessageOfLostParcel(android.os.Messenger&nbsp;mService,
                               java.lang.String&nbsp;messageID,
                               int&nbsp;index)</pre>
 <div class="block">According to the messageID and index, we will get the message from cache <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#messageSendedCache"><code>messageSendedCache</code></a><br>
@@ -767,16 +781,20 @@ extends Handler</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String,%20int)"><code>getParcelMessage(String, int)</code></a></dd></dl>
 </li>
 </ul>
-<a name="handleMessage(Message)">
+<a name="handleMessage(android.os.Message)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>handleMessage</h4>
-<pre>public&nbsp;void&nbsp;handleMessage(Message&nbsp;msg)</pre>
+<pre>public&nbsp;void&nbsp;handleMessage(android.os.Message&nbsp;msg)</pre>
 <div class="block">Override method from <code>Handler</code>
  We will handle the small parcels of a whole message. Make sure no parcels
  are lost and assemble them in order.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>handleMessage</code>&nbsp;in class&nbsp;<code>android.os.Handler</code></dd>
+</dl>
 </li>
 </ul>
 </li>

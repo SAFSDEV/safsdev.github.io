@@ -1313,8 +1313,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.util.Vector&lt;java.lang.String&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#addAdapterPropertyNames(java.util.Vector,%20Adapter)">addAdapterPropertyNames</a></strong>(java.util.Vector&lt;java.lang.String&gt;&nbsp;names,
-                       Adapter&nbsp;adapter)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#addAdapterPropertyNames(java.util.Vector,%20android.widget.Adapter)">addAdapterPropertyNames</a></strong>(java.util.Vector&lt;java.lang.String&gt;&nbsp;names,
+                       android.widget.Adapter&nbsp;adapter)</code>
 <div class="block">Add Adapter subclass property names to the list of available object property names.</div>
 </td>
 </tr>
@@ -1330,7 +1330,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#getAdapterProperty(Adapter,%20java.lang.String)">getAdapterProperty</a></strong>(Adapter&nbsp;adapter,
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#getAdapterProperty(android.widget.Adapter,%20java.lang.String)">getAdapterProperty</a></strong>(android.widget.Adapter&nbsp;adapter,
                   java.lang.String&nbsp;propname)</code>
 <div class="block">Add Adapter subclass property names to the list of available object property names.</div>
 </td>
@@ -1340,7 +1340,7 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#getChildren(java.lang.Object)">getChildren</a></strong>(java.lang.Object&nbsp;aparent)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static Application</code></td>
+<td class="colFirst"><code>static android.app.Application</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#getForegroundApplication()">getForegroundApplication</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -4309,12 +4309,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getForegroundApplication</h4>
-<pre>public static&nbsp;Application&nbsp;getForegroundApplication()
-                                            throws <a href="../../../../org/safs/sockets/RemoteException.html" title="class in org.safs.sockets">RemoteException</a></pre>
+<pre>public static&nbsp;android.app.Application&nbsp;getForegroundApplication()
+                                                        throws <a href="../../../../org/safs/sockets/RemoteException.html" title="class in org.safs.sockets">RemoteException</a></pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>The currently active Application.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../org/safs/sockets/RemoteException.html" title="class in org.safs.sockets">RemoteException</a></code> - if no static testrunner or Solo object has been set.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#setSAFSTestRunner(org.safs.android.engine.DSAFSTestRunner)"><code>setSAFSTestRunner(DSAFSTestRunner)</code></a>, 
-<code>android.app.Application</code></dd></dl>
+<code>Application</code></dd></dl>
 </li>
 </ul>
 <a name="getTopLevelWindows()">
@@ -4548,14 +4548,14 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>A String.  Arrays of values will generally be returned from <a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#convertArrayToDelimitedString(java.util.ArrayList)"><code>convertArrayToDelimitedString(ArrayList)</code></a></dd></dl>
 </li>
 </ul>
-<a name="addAdapterPropertyNames(java.util.Vector, Adapter)">
+<a name="addAdapterPropertyNames(java.util.Vector, android.widget.Adapter)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addAdapterPropertyNames</h4>
 <pre>public static&nbsp;java.util.Vector&lt;java.lang.String&gt;&nbsp;addAdapterPropertyNames(java.util.Vector&lt;java.lang.String&gt;&nbsp;names,
-                                                         Adapter&nbsp;adapter)</pre>
+                                                         android.widget.Adapter&nbsp;adapter)</pre>
 <div class="block">Add Adapter subclass property names to the list of available object property names.
  We do this to expose the Adapter properties as if they were properties of the actual View.
  <p>
@@ -4596,19 +4596,19 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>
-<a name="getAdapterProperty(Adapter, java.lang.String)">
+<a name="getAdapterProperty(android.widget.Adapter, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAdapterProperty</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getAdapterProperty(Adapter&nbsp;adapter,
+<pre>public static&nbsp;java.lang.String&nbsp;getAdapterProperty(android.widget.Adapter&nbsp;adapter,
                                   java.lang.String&nbsp;propname)</pre>
 <div class="block">Add Adapter subclass property names to the list of available object property names.
  We do this to expose the Adapter properties as if they were properties of the actual View.
  <p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>adapter</code> - Adapter retrieved from the View using the Adapter</dd><dd><code>propname</code> - String property name to extract from the Adapter.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>A String.  Arrays of values will generally be returned from <a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#convertArrayToDelimitedString(java.util.ArrayList)"><code>convertArrayToDelimitedString(ArrayList)</code></a></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#addAdapterPropertyNames(java.util.Vector,%20Adapter)"><code>addAdapterPropertyNames(Vector, Adapter)</code></a></dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>A String.  Arrays of values will generally be returned from <a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#convertArrayToDelimitedString(java.util.ArrayList)"><code>convertArrayToDelimitedString(ArrayList)</code></a></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/android/engine/DGuiObjectRecognition.html#addAdapterPropertyNames(java.util.Vector,%20android.widget.Adapter)"><code>addAdapterPropertyNames(Vector, Adapter)</code></a></dd></dl>
 </li>
 </ul>
 <a name="getObjectPropertyNames(java.lang.Object)">

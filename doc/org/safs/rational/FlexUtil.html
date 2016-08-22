@@ -113,7 +113,7 @@ extends java.lang.Object</pre>
                               Also fixed issues with getObjectClassName, and getCaption.</dd>
 <dt><span class="strong">Author:</span></dt>
   <dd>JunwuMa</dd>
-<dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/FlexUtil.html#getObjectClassName(TestObject)"><code>and FlexUtil#getCaption</code></a></dd></dl>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/FlexUtil.html#getObjectClassName(com.rational.test.ft.object.interfaces.TestObject)"><code>and FlexUtil#getCaption</code></a></dd></dl>
 </li>
 </ul>
 </div>
@@ -230,14 +230,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#doSelectMenubar(TestObject,%20java.lang.String)">doSelectMenubar</a></strong>(TestObject&nbsp;menuObj,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#doSelectMenubar(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">doSelectMenubar</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObj,
                java.lang.String&nbsp;menuItemPath)</code>
 <div class="block"><em>Purpose:</em> Perform a select operation on Flex menu items.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static TestObject</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#drillDownRealFlexObj(TestObject)">drillDownRealFlexObj</a></strong>(TestObject&nbsp;flexObj)</code>
+<td class="colFirst"><code>static com.rational.test.ft.object.interfaces.TestObject</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#drillDownRealFlexObj(com.rational.test.ft.object.interfaces.TestObject)">drillDownRealFlexObj</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</code>
 <div class="block">Automated testing of Flex applications requires users to load supporting files in two different ways:
  1) At compile-time for applications that are enabled for RFT
  2) At run-time for applications that are not enabled for RFT
@@ -248,26 +248,26 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getCaption(TestObject)">getCaption</a></strong>(TestObject&nbsp;flexObj)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getCaption(com.rational.test.ft.object.interfaces.TestObject)">getCaption</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</code>
 <div class="block">Take property 'automationName' of the top Flex application (FlexApplicationTestObject) as Caption, although there is 
   no caption for a flex application.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static TestObject[]</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getChildren(TestObject)">getChildren</a></strong>(TestObject&nbsp;obj)</code>
+<td class="colFirst"><code>static com.rational.test.ft.object.interfaces.TestObject[]</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getChildren(com.rational.test.ft.object.interfaces.TestObject)">getChildren</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;obj)</code>
 <div class="block">Called by RGuiObjectVector#getChildren for solving duplicate object problem.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static FlexObjectTestObject</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getMatchingMenuFromMenuBar(TestObject,%20java.lang.String)">getMatchingMenuFromMenuBar</a></strong>(TestObject&nbsp;flexmenuBar,
+<td class="colFirst"><code>static com.rational.test.ft.object.interfaces.flex.FlexObjectTestObject</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getMatchingMenuFromMenuBar(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">getMatchingMenuFromMenuBar</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexmenuBar,
                           java.lang.String&nbsp;menuItemPath)</code>
 <div class="block"><em>Purpose:</em> Dig in a Flex menu bar to find out the corresponding menu inside it according menu path.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static FlexObjectTestObject</code></td>
+<td class="colFirst"><code>static com.rational.test.ft.object.interfaces.flex.FlexObjectTestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getMatchingPathObject(java.lang.Object,%20java.lang.String)">getMatchingPathObject</a></strong>(java.lang.Object&nbsp;flexmenuBar,
                      java.lang.String&nbsp;path)</code>
 <div class="block">Retrieves the resulting object identified with the Path information applied to flexmenuBar.</div>
@@ -275,23 +275,23 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getName(TestObject)">getName</a></strong>(TestObject&nbsp;flexObj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getName(com.rational.test.ft.object.interfaces.TestObject)">getName</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getObjectClassIndex(TestObject)">getObjectClassIndex</a></strong>(TestObject&nbsp;flexObj)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getObjectClassIndex(com.rational.test.ft.object.interfaces.TestObject)">getObjectClassIndex</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</code>
 <div class="block">returns the class Index for FlexObjectTestObject.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getObjectClassName(TestObject)">getObjectClassName</a></strong>(TestObject&nbsp;flexObj)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getObjectClassName(com.rational.test.ft.object.interfaces.TestObject)">getObjectClassName</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</code>
 <div class="block">returns the class name for FlexObjectTestObject.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getTextOfFlexMenuItem(TestObject)">getTextOfFlexMenuItem</a></strong>(TestObject&nbsp;flexObj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/FlexUtil.html#getTextOfFlexMenuItem(com.rational.test.ft.object.interfaces.TestObject)">getTextOfFlexMenuItem</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
@@ -530,13 +530,13 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>True if the classname provided is believed to be a common Flex SWFLoader class.</dd></dl>
 </li>
 </ul>
-<a name="drillDownRealFlexObj(TestObject)">
+<a name="drillDownRealFlexObj(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>drillDownRealFlexObj</h4>
-<pre>public static&nbsp;TestObject&nbsp;drillDownRealFlexObj(TestObject&nbsp;flexObj)</pre>
+<pre>public static&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;drillDownRealFlexObj(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</pre>
 <div class="block">Automated testing of Flex applications requires users to load supporting files in two different ways:
  1) At compile-time for applications that are enabled for RFT
  2) At run-time for applications that are not enabled for RFT
@@ -558,13 +558,13 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>an object(FlexApplicationTestObject) that is the real Flex application</dd></dl>
 </li>
 </ul>
-<a name="getCaption(TestObject)">
+<a name="getCaption(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getCaption</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getCaption(TestObject&nbsp;flexObj)</pre>
+<pre>public static&nbsp;java.lang.String&nbsp;getCaption(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</pre>
 <div class="block">Take property 'automationName' of the top Flex application (FlexApplicationTestObject) as Caption, although there is 
   no caption for a flex application. See a top flex window's R-String: "Type=FlexApplcaiton;Caption={FlexWebDemo.swf}"
   The unique file name is taken as caption to identify different Flex application. This caption format is consistent 
@@ -573,31 +573,31 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>its caption</dd></dl>
 </li>
 </ul>
-<a name="getName(TestObject)">
+<a name="getName(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getName</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getName(TestObject&nbsp;flexObj)</pre>
+<pre>public static&nbsp;java.lang.String&nbsp;getName(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</pre>
 </li>
 </ul>
-<a name="getTextOfFlexMenuItem(TestObject)">
+<a name="getTextOfFlexMenuItem(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTextOfFlexMenuItem</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getTextOfFlexMenuItem(TestObject&nbsp;flexObj)</pre>
+<pre>public static&nbsp;java.lang.String&nbsp;getTextOfFlexMenuItem(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</pre>
 </li>
 </ul>
-<a name="getObjectClassName(TestObject)">
+<a name="getObjectClassName(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getObjectClassName</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getObjectClassName(TestObject&nbsp;flexObj)</pre>
+<pre>public static&nbsp;java.lang.String&nbsp;getObjectClassName(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</pre>
 <div class="block">returns the class name for FlexObjectTestObject. For top Flex application whatever its file name is, its 
  automationClassName is often 'FlexApplication'. This cannot be taken as the UNIQUE class type for identifying 
  a specific flex window because all FlexApplications might have that class name.  Instead, the object className 
@@ -607,24 +607,24 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>class name</dd></dl>
 </li>
 </ul>
-<a name="getObjectClassIndex(TestObject)">
+<a name="getObjectClassIndex(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getObjectClassIndex</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;getObjectClassIndex(TestObject&nbsp;flexObj)</pre>
+<pre>public static&nbsp;java.lang.String&nbsp;getObjectClassIndex(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexObj)</pre>
 <div class="block">returns the class Index for FlexObjectTestObject.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>class name</dd></dl>
 </li>
 </ul>
-<a name="getChildren(TestObject)">
+<a name="getChildren(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getChildren</h4>
-<pre>public static&nbsp;TestObject[]&nbsp;getChildren(TestObject&nbsp;obj)</pre>
+<pre>public static&nbsp;com.rational.test.ft.object.interfaces.TestObject[]&nbsp;getChildren(com.rational.test.ft.object.interfaces.TestObject&nbsp;obj)</pre>
 <div class="block">Called by RGuiObjectVector#getChildren for solving duplicate object problem. In the hierarchy of Flex software 
  under test, a container's child objects can be unexpectedly listed by calling getChildren on the container's 
  parent. These child objects are duplicated. The duplicate can be solved by using property numAutomationChildren 
@@ -639,8 +639,8 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getMatchingPathObject</h4>
-<pre>public static&nbsp;FlexObjectTestObject&nbsp;getMatchingPathObject(java.lang.Object&nbsp;flexmenuBar,
-                                         java.lang.String&nbsp;path)</pre>
+<pre>public static&nbsp;com.rational.test.ft.object.interfaces.flex.FlexObjectTestObject&nbsp;getMatchingPathObject(java.lang.Object&nbsp;flexmenuBar,
+                                                                                     java.lang.String&nbsp;path)</pre>
 <div class="block">Retrieves the resulting object identified with the Path information applied to flexmenuBar.
  Called by <a href="../../../org/safs/rational/RGuiObjectRecognition.html#getMatchingPathObject(java.lang.Object,%20java.lang.String)"><code>RGuiObjectRecognition.getMatchingPathObject(Object, String)</code></a>.
  In R-String "Type=FlexMenuBar;index=1;Path=File->Exit", mx.controls.Menu matches 'File'; 
@@ -649,26 +649,26 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>a FlexObjectTestObject that matches the path.</dd></dl>
 </li>
 </ul>
-<a name="getMatchingMenuFromMenuBar(TestObject, java.lang.String)">
+<a name="getMatchingMenuFromMenuBar(com.rational.test.ft.object.interfaces.TestObject, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getMatchingMenuFromMenuBar</h4>
-<pre>public static&nbsp;FlexObjectTestObject&nbsp;getMatchingMenuFromMenuBar(TestObject&nbsp;flexmenuBar,
-                                              java.lang.String&nbsp;menuItemPath)</pre>
+<pre>public static&nbsp;com.rational.test.ft.object.interfaces.flex.FlexObjectTestObject&nbsp;getMatchingMenuFromMenuBar(com.rational.test.ft.object.interfaces.TestObject&nbsp;flexmenuBar,
+                                                                                          java.lang.String&nbsp;menuItemPath)</pre>
 <div class="block"><em>Purpose:</em> Dig in a Flex menu bar to find out the corresponding menu inside it according menu path.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>flexmenuBar</code> - </dd><dd><code>menuItemPath</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>a FlexMenuTestObject (the corresponding menu)</dd></dl>
 </li>
 </ul>
-<a name="doSelectMenubar(TestObject, java.lang.String)">
+<a name="doSelectMenubar(com.rational.test.ft.object.interfaces.TestObject, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>doSelectMenubar</h4>
-<pre>public static&nbsp;void&nbsp;doSelectMenubar(TestObject&nbsp;menuObj,
+<pre>public static&nbsp;void&nbsp;doSelectMenubar(com.rational.test.ft.object.interfaces.TestObject&nbsp;menuObj,
                    java.lang.String&nbsp;menuItemPath)
                             throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block"><em>Purpose:</em> Perform a select operation on Flex menu items.</div>

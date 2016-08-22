@@ -197,14 +197,14 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>TestObject</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#findChild(TestObject,%20java.lang.String)">findChild</a></strong>(TestObject&nbsp;parent,
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#findChild(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">findChild</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;parent,
          java.lang.String&nbsp;childPath)</code>
 <div class="block">Find children from parent object.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#findMappedChild(java.lang.String,%20java.lang.String,%20boolean,%20java.util.List)">findMappedChild</a></strong>(java.lang.String&nbsp;windowName,
                java.lang.String&nbsp;childName,
                boolean&nbsp;ignoreCache,
@@ -213,7 +213,7 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#findMappedChild(java.lang.String,%20java.lang.String,%20java.lang.String)">findMappedChild</a></strong>(java.lang.String&nbsp;windowName,
                java.lang.String&nbsp;wildcardChildName,
                java.lang.String&nbsp;nameString)</code>
@@ -221,20 +221,20 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#findMappedParent(java.lang.String,%20boolean)">findMappedParent</a></strong>(java.lang.String&nbsp;windowName,
                 boolean&nbsp;ignoreCache)</code>
 <div class="block">Attempts to provide the RobotJ TestObject matching the named references.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#findParent(java.lang.String)">findParent</a></strong>(java.lang.String&nbsp;windowName)</code>
 <div class="block">Find parent from the root object.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#getChildTestObject(java.lang.String,%20java.lang.String,%20boolean)">getChildTestObject</a></strong>(java.lang.String&nbsp;windowName,
                   java.lang.String&nbsp;childName,
                   boolean&nbsp;ignoreCache)</code>
@@ -242,7 +242,7 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RApplicationMap.html#getParentTestObject(java.lang.String,%20boolean)">getParentTestObject</a></strong>(java.lang.String&nbsp;windowName,
                    boolean&nbsp;ignoreCache)</code>
 <div class="block">Retrieves the actual Object for the given windowName.</div>
@@ -320,8 +320,8 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <ul class="blockList">
 <li class="blockList">
 <h4>getParentTestObject</h4>
-<pre>public&nbsp;TestObject&nbsp;getParentTestObject(java.lang.String&nbsp;windowName,
-                             boolean&nbsp;ignoreCache)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;getParentTestObject(java.lang.String&nbsp;windowName,
+                                                                    boolean&nbsp;ignoreCache)</pre>
 <div class="block">Retrieves the actual Object for the given windowName.  
  Looks in the internal ApplicationMap cache first.
  Then attempts to find this in the Script's Object Map.
@@ -338,9 +338,9 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <ul class="blockList">
 <li class="blockList">
 <h4>getChildTestObject</h4>
-<pre>public&nbsp;TestObject&nbsp;getChildTestObject(java.lang.String&nbsp;windowName,
-                            java.lang.String&nbsp;childName,
-                            boolean&nbsp;ignoreCache)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;getChildTestObject(java.lang.String&nbsp;windowName,
+                                                                   java.lang.String&nbsp;childName,
+                                                                   boolean&nbsp;ignoreCache)</pre>
 <div class="block">Retrieves the object stored for the given window's child.  
  Looks in the internal ApplicationMap cache first.
  Then attempts to find this in the Script's Object Map.
@@ -370,8 +370,8 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <ul class="blockList">
 <li class="blockList">
 <h4>findMappedParent</h4>
-<pre>public&nbsp;TestObject&nbsp;findMappedParent(java.lang.String&nbsp;windowName,
-                          boolean&nbsp;ignoreCache)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;findMappedParent(java.lang.String&nbsp;windowName,
+                                                                 boolean&nbsp;ignoreCache)</pre>
 <div class="block">Attempts to provide the RobotJ TestObject matching the named references.
  This is a workhorse routine that finds our objects for testing.  The 
  routine will interrogate any Object Map in use by RobotJ. It will check for 
@@ -394,10 +394,10 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <ul class="blockList">
 <li class="blockList">
 <h4>findMappedChild</h4>
-<pre>public&nbsp;TestObject&nbsp;findMappedChild(java.lang.String&nbsp;windowName,
-                         java.lang.String&nbsp;childName,
-                         boolean&nbsp;ignoreCache,
-                         java.util.List&nbsp;gather)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;findMappedChild(java.lang.String&nbsp;windowName,
+                                                                java.lang.String&nbsp;childName,
+                                                                boolean&nbsp;ignoreCache,
+                                                                java.util.List&nbsp;gather)</pre>
 <div class="block">Attempts to provide the RobotJ TestObject matching the named references.
  This is the workhorse routine that provides our objects for testing.  The 
  routine will interrogate any Object Map in use by RobotJ. It will check for 
@@ -419,9 +419,9 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <ul class="blockList">
 <li class="blockList">
 <h4>findMappedChild</h4>
-<pre>public&nbsp;TestObject&nbsp;findMappedChild(java.lang.String&nbsp;windowName,
-                         java.lang.String&nbsp;wildcardChildName,
-                         java.lang.String&nbsp;nameString)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;findMappedChild(java.lang.String&nbsp;windowName,
+                                                                java.lang.String&nbsp;wildcardChildName,
+                                                                java.lang.String&nbsp;nameString)</pre>
 <div class="block">Attempts to provide the RobotJ TestObject matching the named references.
  This is the workhorse routine that provides our objects for testing.  The 
  routine will interrogate any Object Map in use by RobotJ. It will check for 
@@ -444,7 +444,7 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <ul class="blockList">
 <li class="blockList">
 <h4>findParent</h4>
-<pre>public&nbsp;TestObject&nbsp;findParent(java.lang.String&nbsp;windowName)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;findParent(java.lang.String&nbsp;windowName)</pre>
 <div class="block">Find parent from the root object. Use RFT find API to find main window. The search at "atChild()" 
  since it likely direct child of the root object.  The routine supports additional parent;\\;child 
  information in the recognition string.  If present, the routine will assume an FPSM (Full Path Search Mode) 
@@ -453,14 +453,14 @@ extends <a href="../../../org/safs/ApplicationMap.html" title="class in org.safs
 <dt><span class="strong">Returns:</span></dt><dd>TestObject or null</dd></dl>
 </li>
 </ul>
-<a name="findChild(TestObject, java.lang.String)">
+<a name="findChild(com.rational.test.ft.object.interfaces.TestObject, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>findChild</h4>
-<pre>public&nbsp;TestObject&nbsp;findChild(TestObject&nbsp;parent,
-                   java.lang.String&nbsp;childPath)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;findChild(com.rational.test.ft.object.interfaces.TestObject&nbsp;parent,
+                                                          java.lang.String&nbsp;childPath)</pre>
 <div class="block">Find children from parent object.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>parent</code> - - parent object</dd><dd><code>childPath</code> - - child path (child window recognition string)</dd>
 <dt><span class="strong">Returns:</span></dt><dd>TestObject or null</dd></dl>

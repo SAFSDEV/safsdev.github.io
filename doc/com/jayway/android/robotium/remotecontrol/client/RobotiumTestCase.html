@@ -85,7 +85,19 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>ActivityInstrumentationTestCase2</li>
+<li>junit.framework.Assert</li>
+<li>
+<ul class="inheritance">
+<li>junit.framework.TestCase</li>
+<li>
+<ul class="inheritance">
+<li>android.test.InstrumentationTestCase</li>
+<li>
+<ul class="inheritance">
+<li>android.test.ActivityTestCase</li>
+<li>
+<ul class="inheritance">
+<li>android.test.ActivityInstrumentationTestCase2</li>
 <li>
 <ul class="inheritance">
 <li>com.jayway.android.robotium.remotecontrol.client.RobotiumTestCase</li>
@@ -94,13 +106,25 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd>junit.framework.Test</dd>
+</dl>
 <hr>
 <br>
 <pre>public class <span class="strong">RobotiumTestCase</span>
-extends ActivityInstrumentationTestCase2</pre>
+extends android.test.ActivityInstrumentationTestCase2</pre>
 <div class="block">Robotium requires the use of an ActivityInstrumentationTestCase2 and not the 
  InstrumentationTestRunner of the test package.
  <p>
@@ -130,11 +154,11 @@ extends ActivityInstrumentationTestCase2</pre>
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) Activity</code></td>
+<td class="colFirst"><code>(package private) android.app.Activity</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestCase.html#activity">activity</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) Intent</code></td>
+<td class="colFirst"><code>(package private) android.content.Intent</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestCase.html#intent">intent</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -203,11 +227,39 @@ extends ActivityInstrumentationTestCase2</pre>
 </tr>
 </table>
 <ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.test.ActivityInstrumentationTestCase2">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.test.ActivityInstrumentationTestCase2</h3>
+<code>getActivity, runTest, setActivityInitialTouchMode, setActivityIntent</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.test.ActivityTestCase">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.test.ActivityTestCase</h3>
+<code>scrubClass, setActivity</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.test.InstrumentationTestCase">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.test.InstrumentationTestCase</h3>
+<code>getInstrumentation, injectInsrumentation, injectInstrumentation, launchActivity, launchActivityWithIntent, runTestOnUiThread, sendKeys, sendKeys, sendRepeatedKeys</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_junit.framework.TestCase">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;junit.framework.TestCase</h3>
+<code>assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertEquals, assertFalse, assertFalse, assertNotNull, assertNotNull, assertNotSame, assertNotSame, assertNull, assertNull, assertSame, assertSame, assertTrue, assertTrue, countTestCases, createResult, fail, fail, failNotEquals, failNotSame, failSame, format, getName, run, run, runBare, setName, toString</code></li>
+</ul>
+<ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -238,7 +290,7 @@ extends ActivityInstrumentationTestCase2</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>activity</h4>
-<pre>Activity activity</pre>
+<pre>android.app.Activity activity</pre>
 </li>
 </ul>
 <a name="intent">
@@ -247,7 +299,7 @@ extends ActivityInstrumentationTestCase2</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>intent</h4>
-<pre>Intent intent</pre>
+<pre>android.content.Intent intent</pre>
 </li>
 </ul>
 </li>
@@ -269,7 +321,7 @@ extends ActivityInstrumentationTestCase2</pre>
 <div class="block">Constructor for the class merely calling the superclass constructor.
  Prepares the instance with the targetPackage and launch Activity Class.
  These items are deduced elsewhere thru the Android PackageManager.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>String</code> - targetPackage</dd><dd><code>Class</code> - targetClass</dd><dt><span class="strong">See Also:</span></dt><dd><code>ActivityInstrumentationTestCase2#ActivityInstrumentationTestCase2(String, Class)</code></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>String</code> - targetPackage</dd><dd><code>Class</code> - targetClass</dd><dt><span class="strong">See Also:</span></dt><dd><code>ActivityInstrumentationTestCase2.ActivityInstrumentationTestCase2(String, Class)</code></dd></dl>
 </li>
 </ul>
 </li>
@@ -300,8 +352,11 @@ extends ActivityInstrumentationTestCase2</pre>
 <pre>public&nbsp;void&nbsp;setUp()</pre>
 <div class="block">Acquires the launch Activity with a call to getActivity() and then creates the 
   Robotium Solo instance from that Activity.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><code>#getActivity()</code>, 
-<a href="../../../../../../com/robotium/solo/RCSolo.html#RCSolo(Instrumentation,%20Activity)"><code>RCSolo.RCSolo(Instrumentation, Activity)</code></a></dd></dl>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>setUp</code>&nbsp;in class&nbsp;<code>android.test.ActivityInstrumentationTestCase2</code></dd>
+<dt><span class="strong">See Also:</span></dt><dd><code>ActivityInstrumentationTestCase2.getActivity()</code>, 
+<a href="../../../../../../com/robotium/solo/RCSolo.html#RCSolo(android.app.Instrumentation,%20android.app.Activity)"><code>RCSolo.RCSolo(Instrumentation, Activity)</code></a></dd></dl>
 </li>
 </ul>
 <a name="getRobotium()">
@@ -323,7 +378,10 @@ extends ActivityInstrumentationTestCase2</pre>
 <h4>tearDown</h4>
 <pre>public&nbsp;void&nbsp;tearDown()</pre>
 <div class="block">Currently, simply calls solo.finishOpenActivities()</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><code>Solo.finishOpenedActivities()</code></dd></dl>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>tearDown</code>&nbsp;in class&nbsp;<code>android.test.ActivityInstrumentationTestCase2</code></dd>
+<dt><span class="strong">See Also:</span></dt><dd><code>Solo.finishOpenedActivities()</code></dd></dl>
 </li>
 </ul>
 </li>

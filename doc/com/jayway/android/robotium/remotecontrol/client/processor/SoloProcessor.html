@@ -158,7 +158,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,Activity&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,android.app.Activity&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#activityCache">activityCache</a></strong></code>
 <div class="block">local cache for containing the <code>Activity</code>
  <b>Note:</b> Don't manipulate it directly like activityCache.get(key) etc.<br>
@@ -166,9 +166,9 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,ActivityMonitor&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,android.app.Instrumentation.ActivityMonitor&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#activityMonitorCache">activityMonitorCache</a></strong></code>
-<div class="block">local cache for containing the <code>ActivityMonitor</code>
+<div class="block">local cache for containing the <code>Instrumentation.ActivityMonitor</code>
  <b>Note:</b> Don't manipulate it directly like activityMonitorCache.get(key) etc.<br>
  Use the cache-manipulation-methods defined in <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor"><code>AbstractProcessor</code></a><br></div>
 </td>
@@ -178,7 +178,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#activityrunner">activityrunner</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) Activity</code></td>
+<td class="colFirst"><code>(package private) android.app.Activity</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#mainApp">mainApp</a></strong></code>
 <div class="block">The main <code>Activity</code> object.</div>
 </td>
@@ -201,13 +201,13 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#tagCache">tagCache</a></strong></code>
-<div class="block">local cache for containing the <code>View#getTag()</code><br>
+<div class="block">local cache for containing the <code>View.getTag()</code><br>
  <b>Note:</b> Don't manipulate it directly like tagCache.get(key) etc.<br>
  Use the cache-manipulation-methods defined in <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor"><code>AbstractProcessor</code></a><br></div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,View&gt;</code></td>
+<td class="colFirst"><code>protected java.util.Hashtable&lt;java.lang.String,android.view.View&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#viewCache">viewCache</a></strong></code>
 <div class="block">local cache for containing the <code>View</code>
  <b>Note:</b> Don't manipulate it directly like viewCache.get(key) etc.<br>
@@ -353,11 +353,11 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <td class="colFirst"><code>(package private) void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#clickOnViewByIndex(java.util.Properties)">clickOnViewByIndex</a></strong>(java.util.Properties&nbsp;props)</code>
 <div class="block">click on the following <code>TextView</code> by index<br>
- <code>android.widget.CheckBox</code><br>
+ <code>CheckBox</code><br>
  <code>EditText</code><br>
  <code>ImageView</code><br>
  <code>ImageButton</code><br>
- <code>android.widget.RadioButton</code><br>
+ <code>RadioButton</code><br>
  <code>Button</code><br>
  
  The index is given by parameter, according to that index<br>
@@ -370,7 +370,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#clickOnViewByName(java.util.Properties)">clickOnViewByName</a></strong>(java.util.Properties&nbsp;props)</code>
 <div class="block">click on the following <code>TextView</code> by name<br>
  <code>Button</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>ToggleButton</code><br>
  
  The name is given by parameter, according to that name<br>
  Solo will click on the appropriate TextView.<br>
@@ -437,10 +437,10 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected Bitmap</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#getBitmapOfView(View)">getBitmapOfView</a></strong>(View&nbsp;view)</code>
+<td class="colFirst"><code>protected android.graphics.Bitmap</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#getBitmapOfView(android.view.View)">getBitmapOfView</a></strong>(android.view.View&nbsp;view)</code>
 <div class="block">Get bitmap image of a View.<br>
- This method call <code>View#getDrawingCache()</code> to get the bitmap image.<br>
+ This method call <code>View.getDrawingCache()</code> to get the bitmap image.<br>
  For some special views, we can't generate the bitmap by this way.</div>
 </td>
 </tr>
@@ -463,21 +463,21 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#getCurrentViews(java.util.Properties)">getCurrentViews</a></strong>(java.util.Properties&nbsp;props)</code>
 <div class="block">get all the <code>View</code>s of following type:<br>
  <code>Button</code><br>
- <code>android.widget.CheckBox</code><br>
+ <code>CheckBox</code><br>
  <code>DatePicker</code><br>
  <code>EditText</code><br>
- <code>android.widget.GridView</code><br>
+ <code>GridView</code><br>
  <code>ImageButton</code><br>
  <code>ImageView</code><br>
- <code>android.widget.ListView</code><br>
+ <code>ListView</code><br>
  <code>ProgressBar</code><br>
- <code>android.widget.RadioButton</code><br>
- <code>android.widget.ScrollView</code><br>
+ <code>RadioButton</code><br>
+ <code>ScrollView</code><br>
  <code>SlidingDrawer</code><br>
- <code>android.widget.Spinner</code><br>
+ <code>Spinner</code><br>
  <code>TextView</code><br>
  <code>TimePicker</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>ToggleButton</code><br>
  <code>View</code><br></div>
 </td>
 </tr>
@@ -706,10 +706,10 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <td class="colFirst"><code>(package private) void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#isViewByIndexChecked(java.util.Properties)">isViewByIndexChecked</a></strong>(java.util.Properties&nbsp;props)</code>
 <div class="block">test if the following <code>TextView</code> is checked.<br>
- <code>android.widget.CheckBox</code><br>
- <code>android.widget.RadioButton</code><br>
- <code>android.widget.Spinner</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>CheckBox</code><br>
+ <code>RadioButton</code><br>
+ <code>Spinner</code><br>
+ <code>ToggleButton</code><br>
  
  The index is given by parameter, according to that index<br>
  Solo will get the appropriate View and test if it is checked.<br></div>
@@ -719,10 +719,10 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <td class="colFirst"><code>(package private) void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#isViewByTextChecked(java.util.Properties)">isViewByTextChecked</a></strong>(java.util.Properties&nbsp;props)</code>
 <div class="block">test if the following <code>TextView</code> is checked.<br>
- <code>android.widget.CheckBox</code><br>
- <code>android.widget.RadioButton</code><br>
- <code>android.widget.Spinner</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>CheckBox</code><br>
+ <code>RadioButton</code><br>
+ <code>Spinner</code><br>
+ <code>ToggleButton</code><br>
  
  The text is given by parameter, according to that text<br>
  Solo will get the appropriate View and test if it is checked.<br></div>
@@ -751,7 +751,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <tr class="rowColor">
 <td class="colFirst"><code>(package private) void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#pressSpinnerItem(java.util.Properties)">pressSpinnerItem</a></strong>(java.util.Properties&nbsp;props)</code>
-<div class="block">press an item in <code>android.widget.Spinner</code><br></div>
+<div class="block">press an item in <code>Spinner</code><br></div>
 </td>
 </tr>
 <tr class="altColor">
@@ -787,7 +787,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
  <code>Button</code><br>
  <code>EditText</code><br>
  <code>TextView</code><br>
- <code>android.widget.ToggleButton</code><br></div>
+ <code>ToggleButton</code><br></div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -894,7 +894,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <tr class="rowColor">
 <td class="colFirst"><code>(package private) void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/SoloProcessor.html#waitForDialog(java.util.Properties)">waitForDialog</a></strong>(java.util.Properties&nbsp;props)</code>
-<div class="block">Wait for <code>android.app.Dialog</code> to close/open.<br></div>
+<div class="block">Wait for <code>Dialog</code> to close/open.<br></div>
 </td>
 </tr>
 <tr class="altColor">
@@ -1005,7 +1005,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <ul class="blockList">
 <li class="blockList">
 <h4>mainApp</h4>
-<pre>Activity mainApp</pre>
+<pre>android.app.Activity mainApp</pre>
 <div class="block">The main <code>Activity</code> object.</div>
 </li>
 </ul>
@@ -1044,8 +1044,8 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <ul class="blockList">
 <li class="blockList">
 <h4>activityMonitorCache</h4>
-<pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,ActivityMonitor&gt; activityMonitorCache</pre>
-<div class="block">local cache for containing the <code>ActivityMonitor</code>
+<pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,android.app.Instrumentation.ActivityMonitor&gt; activityMonitorCache</pre>
+<div class="block">local cache for containing the <code>Instrumentation.ActivityMonitor</code>
  <b>Note:</b> Don't manipulate it directly like activityMonitorCache.get(key) etc.<br>
  Use the cache-manipulation-methods defined in <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor"><code>AbstractProcessor</code></a><br></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html#getCachedItem(java.util.Hashtable,%20java.lang.Object)"><code>AbstractProcessor.getCachedItem(Hashtable, Object)</code></a>, 
@@ -1059,7 +1059,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <ul class="blockList">
 <li class="blockList">
 <h4>activityCache</h4>
-<pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,Activity&gt; activityCache</pre>
+<pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,android.app.Activity&gt; activityCache</pre>
 <div class="block">local cache for containing the <code>Activity</code>
  <b>Note:</b> Don't manipulate it directly like activityCache.get(key) etc.<br>
  Use the cache-manipulation-methods defined in <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor"><code>AbstractProcessor</code></a><br></div>
@@ -1074,7 +1074,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <ul class="blockList">
 <li class="blockList">
 <h4>viewCache</h4>
-<pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,View&gt; viewCache</pre>
+<pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,android.view.View&gt; viewCache</pre>
 <div class="block">local cache for containing the <code>View</code>
  <b>Note:</b> Don't manipulate it directly like viewCache.get(key) etc.<br>
  Use the cache-manipulation-methods defined in <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor"><code>AbstractProcessor</code></a><br></div>
@@ -1105,7 +1105,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <li class="blockList">
 <h4>tagCache</h4>
 <pre>protected&nbsp;java.util.Hashtable&lt;java.lang.String,java.lang.Object&gt; tagCache</pre>
-<div class="block">local cache for containing the <code>View#getTag()</code><br>
+<div class="block">local cache for containing the <code>View.getTag()</code><br>
  <b>Note:</b> Don't manipulate it directly like tagCache.get(key) etc.<br>
  Use the cache-manipulation-methods defined in <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor"><code>AbstractProcessor</code></a><br></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/AbstractProcessor.html#getCachedItem(java.util.Hashtable,%20java.lang.Object)"><code>AbstractProcessor.getCachedItem(Hashtable, Object)</code></a>, 
@@ -1381,7 +1381,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
                  throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
 <div class="block">click on the following <code>TextView</code> by name<br>
  <code>Button</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>ToggleButton</code><br>
  
  The name is given by parameter, according to that name<br>
  Solo will click on the appropriate TextView.<br>
@@ -1405,11 +1405,11 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <pre>void&nbsp;clickOnViewByIndex(java.util.Properties&nbsp;props)
                   throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
 <div class="block">click on the following <code>TextView</code> by index<br>
- <code>android.widget.CheckBox</code><br>
+ <code>CheckBox</code><br>
  <code>EditText</code><br>
  <code>ImageView</code><br>
  <code>ImageButton</code><br>
- <code>android.widget.RadioButton</code><br>
+ <code>RadioButton</code><br>
  <code>Button</code><br>
  
  The index is given by parameter, according to that index<br>
@@ -1592,21 +1592,21 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
                throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
 <div class="block">get all the <code>View</code>s of following type:<br>
  <code>Button</code><br>
- <code>android.widget.CheckBox</code><br>
+ <code>CheckBox</code><br>
  <code>DatePicker</code><br>
  <code>EditText</code><br>
- <code>android.widget.GridView</code><br>
+ <code>GridView</code><br>
  <code>ImageButton</code><br>
  <code>ImageView</code><br>
- <code>android.widget.ListView</code><br>
+ <code>ListView</code><br>
  <code>ProgressBar</code><br>
- <code>android.widget.RadioButton</code><br>
- <code>android.widget.ScrollView</code><br>
+ <code>RadioButton</code><br>
+ <code>ScrollView</code><br>
  <code>SlidingDrawer</code><br>
- <code>android.widget.Spinner</code><br>
+ <code>Spinner</code><br>
  <code>TextView</code><br>
  <code>TimePicker</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>ToggleButton</code><br>
  <code>View</code><br>
  
  <p>
@@ -1869,10 +1869,10 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <pre>void&nbsp;isViewByIndexChecked(java.util.Properties&nbsp;props)
                     throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
 <div class="block">test if the following <code>TextView</code> is checked.<br>
- <code>android.widget.CheckBox</code><br>
- <code>android.widget.RadioButton</code><br>
- <code>android.widget.Spinner</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>CheckBox</code><br>
+ <code>RadioButton</code><br>
+ <code>Spinner</code><br>
+ <code>ToggleButton</code><br>
  
  The index is given by parameter, according to that index<br>
  Solo will get the appropriate View and test if it is checked.<br>
@@ -1897,10 +1897,10 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <pre>void&nbsp;isViewByTextChecked(java.util.Properties&nbsp;props)
                    throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
 <div class="block">test if the following <code>TextView</code> is checked.<br>
- <code>android.widget.CheckBox</code><br>
- <code>android.widget.RadioButton</code><br>
- <code>android.widget.Spinner</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>CheckBox</code><br>
+ <code>RadioButton</code><br>
+ <code>Spinner</code><br>
+ <code>ToggleButton</code><br>
  
  The text is given by parameter, according to that text<br>
  Solo will get the appropriate View and test if it is checked.<br>
@@ -1974,7 +1974,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <h4>pressSpinnerItem</h4>
 <pre>void&nbsp;pressSpinnerItem(java.util.Properties&nbsp;props)
                 throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
-<div class="block">press an item in <code>android.widget.Spinner</code><br>
+<div class="block">press an item in <code>Spinner</code><br>
  
  <p>
  calling:<br>
@@ -2052,7 +2052,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
  <code>Button</code><br>
  <code>EditText</code><br>
  <code>TextView</code><br>
- <code>android.widget.ToggleButton</code><br>
+ <code>ToggleButton</code><br>
  
  <p>
  calling:<br>
@@ -2340,7 +2340,7 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <h4>waitForDialog</h4>
 <pre>void&nbsp;waitForDialog(java.util.Properties&nbsp;props)
              throws <a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></pre>
-<div class="block">Wait for <code>android.app.Dialog</code> to close/open.<br>
+<div class="block">Wait for <code>Dialog</code> to close/open.<br>
  
  <p>
  calling:<br>
@@ -2686,15 +2686,15 @@ implements <a href="../../../../../../../com/jayway/android/robotium/remotecontr
 <dd><code><a href="../../../../../../../com/jayway/android/robotium/remotecontrol/client/processor/ProcessorException.html" title="class in com.jayway.android.robotium.remotecontrol.client.processor">ProcessorException</a></code></dd></dl>
 </li>
 </ul>
-<a name="getBitmapOfView(View)">
+<a name="getBitmapOfView(android.view.View)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getBitmapOfView</h4>
-<pre>protected&nbsp;Bitmap&nbsp;getBitmapOfView(View&nbsp;view)</pre>
+<pre>protected&nbsp;android.graphics.Bitmap&nbsp;getBitmapOfView(android.view.View&nbsp;view)</pre>
 <div class="block">Get bitmap image of a View.<br>
- This method call <code>View#getDrawingCache()</code> to get the bitmap image.<br>
+ This method call <code>View.getDrawingCache()</code> to get the bitmap image.<br>
  For some special views, we can't generate the bitmap by this way. We can<br>
  override this method and provide a special way in the subclass.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>view</code> - View, The View object</dd>

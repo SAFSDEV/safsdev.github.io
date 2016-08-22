@@ -59,7 +59,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_android.app.Instrumentation">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -85,7 +85,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>InstrumentationTestRunner</li>
+<li>android.app.Instrumentation</li>
+<li>
+<ul class="inheritance">
+<li>android.test.InstrumentationTestRunner</li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html" title="class in com.jayway.android.robotium.remotecontrol.client">com.jayway.android.robotium.remotecontrol.client.AbstractTestRunner</a></li>
@@ -99,12 +102,14 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../../org/safs/android/messenger/client/CommandListener.html" title="interface in org.safs.android.messenger.client">CommandListener</a>, <a href="../../../../../../org/safs/sockets/DebugListener.html" title="interface in org.safs.sockets">DebugListener</a>, <a href="../../../../../../org/safs/sockets/NamedListener.html" title="interface in org.safs.sockets">NamedListener</a></dd>
+<dd>android.test.TestSuiteProvider, <a href="../../../../../../org/safs/android/messenger/client/CommandListener.html" title="interface in org.safs.android.messenger.client">CommandListener</a>, <a href="../../../../../../org/safs/sockets/DebugListener.html" title="interface in org.safs.sockets">DebugListener</a>, <a href="../../../../../../org/safs/sockets/NamedListener.html" title="interface in org.safs.sockets">NamedListener</a></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
@@ -161,6 +166,21 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested_class_summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested_classes_inherited_from_class_android.app.Instrumentation">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;android.app.Instrumentation</h3>
+<code>android.app.Instrumentation.ActivityMonitor, android.app.Instrumentation.ActivityResult</code></li>
+</ul>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field_summary">
@@ -190,19 +210,19 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) Activity</code></td>
+<td class="colFirst"><code>(package private) android.app.Activity</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#mainApp">mainApp</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) InstrumentationInfo</code></td>
+<td class="colFirst"><code>(package private) android.content.pm.InstrumentationInfo</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#myInstrumentInfo">myInstrumentInfo</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) PackageInfo</code></td>
+<td class="colFirst"><code>(package private) android.content.pm.PackageInfo</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#myPackageInfo">myPackageInfo</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) PackageManager</code></td>
+<td class="colFirst"><code>(package private) android.content.pm.PackageManager</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#myPackageManager">myPackageManager</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -214,7 +234,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#TAG">TAG</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) ActivityInfo[]</code></td>
+<td class="colFirst"><code>(package private) android.content.pm.ActivityInfo[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#targetActivityInfo">targetActivityInfo</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -222,11 +242,11 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#targetApplicationClassName">targetApplicationClassName</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) Intent</code></td>
+<td class="colFirst"><code>(package private) android.content.Intent</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#targetLaunchIntent">targetLaunchIntent</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) PackageInfo</code></td>
+<td class="colFirst"><code>(package private) android.content.pm.PackageInfo</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#targetPackageInfo">targetPackageInfo</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -240,6 +260,20 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 </a>
 <h3>Fields inherited from class&nbsp;com.jayway.android.robotium.remotecontrol.client.<a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html" title="class in com.jayway.android.robotium.remotecontrol.client">AbstractTestRunner</a></h3>
 <code><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#lock">lock</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#messageRunner">messageRunner</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#mIsBound">mIsBound</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#processorsMap">processorsMap</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#resource_bind_service">resource_bind_service</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#resource_service_attached">resource_service_attached</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#resource_service_disconnect">resource_service_disconnect</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#resource_service_release">resource_service_release</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#runnerStopped">runnerStopped</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_android.test.InstrumentationTestRunner">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;android.test.InstrumentationTestRunner</h3>
+<code>REPORT_KEY_NAME_CLASS, REPORT_KEY_NAME_TEST, REPORT_KEY_NUM_CURRENT, REPORT_KEY_NUM_TOTAL, REPORT_KEY_STACK, REPORT_VALUE_ID, REPORT_VALUE_RESULT_ERROR, REPORT_VALUE_RESULT_FAILURE, REPORT_VALUE_RESULT_OK, REPORT_VALUE_RESULT_START</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_android.app.Instrumentation">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;android.app.Instrumentation</h3>
+<code>REPORT_KEY_IDENTIFIER, REPORT_KEY_STREAMRESULT</code></li>
 </ul>
 </li>
 </ul>
@@ -275,14 +309,14 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#afterStart()">afterStart</a></strong>()</code>
-<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <code>#start()</code>.</div>
+<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(android.os.Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <code>Instrumentation.start()</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/RobotiumTestRunner.html#beforeStart()">beforeStart</a></strong>()</code>
-<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doBindService()"><code>AbstractTestRunner.doBindService()</code></a>
- immediately before <code>#start()</code>.</div>
+<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(android.os.Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doBindService()"><code>AbstractTestRunner.doBindService()</code></a>
+ immediately before <code>Instrumentation.start()</code>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -373,7 +407,21 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;com.jayway.android.robotium.remotecontrol.client.<a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html" title="class in com.jayway.android.robotium.remotecontrol.client">AbstractTestRunner</a></h3>
-<code><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#addProcessor(java.lang.String,%20com.jayway.android.robotium.remotecontrol.client.processor.ProcessorInterface)">addProcessor</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#debug(java.lang.String)">debug</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doBindService()">doBindService</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doUnbindService()">doUnbindService</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#finishInstrumentation()">finishInstrumentation</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#getProcessors(java.lang.String)">getProcessors</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#handleDispatchProps(java.util.Properties)">handleDispatchProps</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#handleEngineShutdown()">handleEngineShutdown</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#isDebugEnabled()">isDebugEnabled</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#messengerRunnerStopped()">messengerRunnerStopped</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(Bundle)">onCreate</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onReceiveDebug(java.lang.String)">onReceiveDebug</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onStart()">onStart</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#removeProcessor(java.lang.String,%20com.jayway.android.robotium.remotecontrol.client.processor.ProcessorInterface)">removeProcessor</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#removeProcessors()">removeProcessors</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#removeProcessors(java.lang.String)">removeProcessors</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#sendServiceResult(java.util.Properties)">sendServiceResult</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#setDebugEnabled(boolean)">setDebugEnabled</a></code></li>
+<code><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#addProcessor(java.lang.String,%20com.jayway.android.robotium.remotecontrol.client.processor.ProcessorInterface)">addProcessor</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#debug(java.lang.String)">debug</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doBindService()">doBindService</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doUnbindService()">doUnbindService</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#finishInstrumentation()">finishInstrumentation</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#getProcessors(java.lang.String)">getProcessors</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#handleDispatchProps(java.util.Properties)">handleDispatchProps</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#handleEngineShutdown()">handleEngineShutdown</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#isDebugEnabled()">isDebugEnabled</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#messengerRunnerStopped()">messengerRunnerStopped</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(android.os.Bundle)">onCreate</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onReceiveDebug(java.lang.String)">onReceiveDebug</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onStart()">onStart</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#removeProcessor(java.lang.String,%20com.jayway.android.robotium.remotecontrol.client.processor.ProcessorInterface)">removeProcessor</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#removeProcessors()">removeProcessors</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#removeProcessors(java.lang.String)">removeProcessors</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#sendServiceResult(java.util.Properties)">sendServiceResult</a>, <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#setDebugEnabled(boolean)">setDebugEnabled</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.test.InstrumentationTestRunner">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.test.InstrumentationTestRunner</h3>
+<code>getAllTests, getAndroidTestRunner, getArguments, getLoader, getTestSuite</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.app.Instrumentation">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.app.Instrumentation</h3>
+<code>addMonitor, addMonitor, addMonitor, callActivityOnCreate, callActivityOnCreate, callActivityOnDestroy, callActivityOnNewIntent, callActivityOnPause, callActivityOnPostCreate, callActivityOnPostCreate, callActivityOnRestart, callActivityOnRestoreInstanceState, callActivityOnRestoreInstanceState, callActivityOnResume, callActivityOnSaveInstanceState, callActivityOnSaveInstanceState, callActivityOnStart, callActivityOnStop, callActivityOnUserLeaving, callApplicationOnCreate, checkMonitorHit, endPerformanceSnapshot, finish, getAllocCounts, getBinderCounts, getComponentName, getContext, getTargetContext, getUiAutomation, getUiAutomation, invokeContextMenuAction, invokeMenuActionSync, isProfiling, newActivity, newActivity, newApplication, newApplication, onDestroy, onException, removeMonitor, runOnMainSync, sendCharacterSync, sendKeyDownUpSync, sendKeySync, sendPointerSync, sendStatus, sendStringSync, sendTrackballEventSync, setAutomaticPerformanceSnapshots, setInTouchMode, start, startActivitySync, startAllocCounting, startPerformanceSnapshot, startProfiling, stopAllocCounting, stopProfiling, waitForIdle, waitForIdleSync, waitForMonitor, waitForMonitorWithTimeout</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -411,7 +459,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>myPackageManager</h4>
-<pre>PackageManager myPackageManager</pre>
+<pre>android.content.pm.PackageManager myPackageManager</pre>
 </li>
 </ul>
 <a name="ALL_PACKAGE_INFO">
@@ -440,7 +488,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>myPackageInfo</h4>
-<pre>PackageInfo myPackageInfo</pre>
+<pre>android.content.pm.PackageInfo myPackageInfo</pre>
 </li>
 </ul>
 <a name="myInstrumentInfo">
@@ -449,7 +497,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>myInstrumentInfo</h4>
-<pre>InstrumentationInfo myInstrumentInfo</pre>
+<pre>android.content.pm.InstrumentationInfo myInstrumentInfo</pre>
 </li>
 </ul>
 <a name="targetPackageString">
@@ -467,7 +515,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>targetLaunchIntent</h4>
-<pre>Intent targetLaunchIntent</pre>
+<pre>android.content.Intent targetLaunchIntent</pre>
 </li>
 </ul>
 <a name="targetApplicationClassName">
@@ -485,7 +533,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>targetPackageInfo</h4>
-<pre>PackageInfo targetPackageInfo</pre>
+<pre>android.content.pm.PackageInfo targetPackageInfo</pre>
 </li>
 </ul>
 <a name="targetActivityInfo">
@@ -494,7 +542,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>targetActivityInfo</h4>
-<pre>ActivityInfo[] targetActivityInfo</pre>
+<pre>android.content.pm.ActivityInfo[] targetActivityInfo</pre>
 </li>
 </ul>
 <a name="activityrunner">
@@ -512,7 +560,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <ul class="blockList">
 <li class="blockList">
 <h4>mainApp</h4>
-<pre>Activity mainApp</pre>
+<pre>android.app.Activity mainApp</pre>
 </li>
 </ul>
 <a name="solo">
@@ -629,8 +677,8 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <pre>boolean&nbsp;initializeInstrumentation()</pre>
 <div class="block">Attempt to initialize the RobotiumTestCase with Intent and Instrumentation.
  Normally, subclasses would not need to override this method.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><code>RobotiumTestCase#setActivityIntent(Intent)</code>, 
-<code>RobotiumTestCase#injectInstrumentation(android.app.Instrumentation)</code></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><code>ActivityInstrumentationTestCase2.setActivityIntent(Intent)</code>, 
+<code>InstrumentationTestCase.injectInstrumentation(android.app.Instrumentation)</code></dd></dl>
 </li>
 </ul>
 <a name="getTargetPackageInfo()">
@@ -641,10 +689,10 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <h4>getTargetPackageInfo</h4>
 <pre>boolean&nbsp;getTargetPackageInfo()</pre>
 <div class="block">Attempt to extract all pertinent information for launching/driving the package we are testing.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><code>PackageManager#getPackageInfo(String, int)</code>, 
-<code>PackageInfo#instrumentation</code>, 
-<code>InstrumentationInfo#targetPackage</code>, 
-<code>PackageManager#getLaunchIntentForPackage(String)</code></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><code>PackageManager.getPackageInfo(String, int)</code>, 
+<code>PackageInfo.instrumentation</code>, 
+<code>InstrumentationInfo.targetPackage</code>, 
+<code>PackageManager.getLaunchIntentForPackage(String)</code></dd></dl>
 </li>
 </ul>
 <a name="beforeStart()">
@@ -655,8 +703,8 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <h4>beforeStart</h4>
 <pre>public&nbsp;boolean&nbsp;beforeStart()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#beforeStart()">AbstractTestRunner</a></code></strong></div>
-<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doBindService()"><code>AbstractTestRunner.doBindService()</code></a>
- immediately before <code>#start()</code>.
+<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(android.os.Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#doBindService()"><code>AbstractTestRunner.doBindService()</code></a>
+ immediately before <code>Instrumentation.start()</code>.
  <p>
  Allows subclasses to do any additional setup prior to starting the Instrumentation Thread as 
  part of the onCreate call.</div>
@@ -674,7 +722,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <h4>afterStart</h4>
 <pre>public&nbsp;void&nbsp;afterStart()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#afterStart()">AbstractTestRunner</a></code></strong></div>
-<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <code>#start()</code>.
+<div class="block">Called as part of the <a href="../../../../../../com/jayway/android/robotium/remotecontrol/client/AbstractTestRunner.html#onCreate(android.os.Bundle)"><code>AbstractTestRunner.onCreate(Bundle)</code></a> initialization after <code>Instrumentation.start()</code>.
  <p>
  Allows subclasses to do any additional setup after the Instrumentation Thread has been 
  started as part of the onCreate call.</div>
@@ -816,7 +864,7 @@ extends <a href="../../../../../../com/jayway/android/robotium/remotecontrol/cli
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_android.app.Instrumentation">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>

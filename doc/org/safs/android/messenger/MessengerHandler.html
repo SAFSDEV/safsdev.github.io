@@ -85,7 +85,7 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>Handler</li>
+<li>android.os.Handler</li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html" title="class in org.safs.android.messenger">org.safs.android.messenger.MultipleParcelsHandler</a></li>
@@ -131,6 +131,13 @@ extends <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.h
 <h3>Nested classes/interfaces inherited from class&nbsp;org.safs.android.messenger.<a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html" title="class in org.safs.android.messenger">MultipleParcelsHandler</a></h3>
 <code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.ParcelBuffer.html" title="class in org.safs.android.messenger">MultipleParcelsHandler.ParcelBuffer</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.SmallParcel.html" title="class in org.safs.android.messenger">MultipleParcelsHandler.SmallParcel</a></code></li>
 </ul>
+<ul class="blockList">
+<li class="blockList"><a name="nested_classes_inherited_from_class_android.os.Handler">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;android.os.Handler</h3>
+<code>android.os.Handler.Callback</code></li>
+</ul>
 </li>
 </ul>
 <!-- =========== FIELD SUMMARY =========== -->
@@ -171,7 +178,7 @@ extends <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.h
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/safs/android/messenger/MessengerHandler.html#MessengerHandler(Looper,%20org.safs.android.messenger.MessengerListener)">MessengerHandler</a></strong>(Looper&nbsp;looper,
+<td class="colOne"><code><strong><a href="../../../../org/safs/android/messenger/MessengerHandler.html#MessengerHandler(android.os.Looper,%20org.safs.android.messenger.MessengerListener)">MessengerHandler</a></strong>(android.os.Looper&nbsp;looper,
                 <a href="../../../../org/safs/android/messenger/MessengerListener.html" title="interface in org.safs.android.messenger">MessengerListener</a>&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </table>
@@ -195,7 +202,7 @@ extends <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.h
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MessengerHandler.html#handleWholeMessage(Message)">handleWholeMessage</a></strong>(Message&nbsp;msg)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/android/messenger/MessengerHandler.html#handleWholeMessage(android.os.Message)">handleWholeMessage</a></strong>(android.os.Message&nbsp;msg)</code>
 <div class="block">The subclass of this class must implement this method to handle message.<br></div>
 </td>
 </tr>
@@ -205,14 +212,21 @@ extends <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.h
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.android.messenger.<a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html" title="class in org.safs.android.messenger">MultipleParcelsHandler</a></h3>
-<code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(Message)">assembleSmallParcels</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#clearParcelMessage(java.lang.String)">clearParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#clearParcelMessage(java.lang.String,%20int)">clearParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#containMessageWithoutAck(java.lang.String)">containMessageWithoutAck</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(Message,%20char[])">divideMessageIntoSmallPieces</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(Message,%20java.util.Properties)">divideMessageIntoSmallPieces</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(Message,%20java.lang.String)">divideMessageIntoSmallPieces</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String)">getParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String,%20int)">getParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getTotalNumberOfParcels(int,%20int)">getTotalNumberOfParcels</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getUniqueKey()">getUniqueKey</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleMessage(Message)">handleMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendAcknowledgment(java.lang.String)">sendAcknowledgment</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendAcknowledgment(java.lang.String,%20int)">sendAcknowledgment</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(Messenger,%20Message,%20java.lang.Object)">sendMessageAsMultipleParcels</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(Messenger,%20java.lang.String)">sendMessageOfLostParcel</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(Messenger,%20java.lang.String,%20int)">sendMessageOfLostParcel</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#storeParcelMessage(Message)">storeParcelMessage</a></code></li>
+<code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#assembleSmallParcels(android.os.Message)">assembleSmallParcels</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#clearParcelMessage(java.lang.String)">clearParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#clearParcelMessage(java.lang.String,%20int)">clearParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#containMessageWithoutAck(java.lang.String)">containMessageWithoutAck</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(android.os.Message,%20char[])">divideMessageIntoSmallPieces</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(android.os.Message,%20java.util.Properties)">divideMessageIntoSmallPieces</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#divideMessageIntoSmallPieces(android.os.Message,%20java.lang.String)">divideMessageIntoSmallPieces</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String)">getParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getParcelMessage(java.lang.String,%20int)">getParcelMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getTotalNumberOfParcels(int,%20int)">getTotalNumberOfParcels</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#getUniqueKey()">getUniqueKey</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleMessage(android.os.Message)">handleMessage</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendAcknowledgment(java.lang.String)">sendAcknowledgment</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendAcknowledgment(java.lang.String,%20int)">sendAcknowledgment</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageAsMultipleParcels(android.os.Messenger,%20android.os.Message,%20java.lang.Object)">sendMessageAsMultipleParcels</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(android.os.Messenger,%20java.lang.String)">sendMessageOfLostParcel</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#sendMessageOfLostParcel(android.os.Messenger,%20java.lang.String,%20int)">sendMessageOfLostParcel</a>, <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#storeParcelMessage(android.os.Message)">storeParcelMessage</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_android.os.Handler">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;android.os.Handler</h3>
+<code>dispatchMessage, dump, getLooper, getMessageName, hasMessages, hasMessages, obtainMessage, obtainMessage, obtainMessage, obtainMessage, obtainMessage, post, postAtFrontOfQueue, postAtTime, postAtTime, postDelayed, removeCallbacks, removeCallbacks, removeCallbacksAndMessages, removeMessages, removeMessages, sendEmptyMessage, sendEmptyMessageAtTime, sendEmptyMessageDelayed, sendMessage, sendMessageAtFrontOfQueue, sendMessageAtTime, sendMessageDelayed, toString</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -245,13 +259,13 @@ extends <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.h
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MessengerHandler(Looper, org.safs.android.messenger.MessengerListener)">
+<a name="MessengerHandler(android.os.Looper, org.safs.android.messenger.MessengerListener)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MessengerHandler</h4>
-<pre>public&nbsp;MessengerHandler(Looper&nbsp;looper,
+<pre>public&nbsp;MessengerHandler(android.os.Looper&nbsp;looper,
                 <a href="../../../../org/safs/android/messenger/MessengerListener.html" title="interface in org.safs.android.messenger">MessengerListener</a>&nbsp;listener)</pre>
 </li>
 </ul>
@@ -276,18 +290,18 @@ extends <a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.h
 </dl>
 </li>
 </ul>
-<a name="handleWholeMessage(Message)">
+<a name="handleWholeMessage(android.os.Message)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>handleWholeMessage</h4>
-<pre>public&nbsp;void&nbsp;handleWholeMessage(Message&nbsp;msg)</pre>
-<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleWholeMessage(Message)">MultipleParcelsHandler</a></code></strong></div>
+<pre>public&nbsp;void&nbsp;handleWholeMessage(android.os.Message&nbsp;msg)</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleWholeMessage(android.os.Message)">MultipleParcelsHandler</a></code></strong></div>
 <div class="block">The subclass of this class must implement this method to handle message.<br></div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleWholeMessage(Message)">handleWholeMessage</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html" title="class in org.safs.android.messenger">MultipleParcelsHandler</a></code></dd>
+<dd><code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html#handleWholeMessage(android.os.Message)">handleWholeMessage</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/android/messenger/MultipleParcelsHandler.html" title="class in org.safs.android.messenger">MultipleParcelsHandler</a></code></dd>
 </dl>
 </li>
 </ul>

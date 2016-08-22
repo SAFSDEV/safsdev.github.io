@@ -159,14 +159,14 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(DomainTestObject[])">ProcessContainer</a></strong>(DomainTestObject[]&nbsp;domains)</code>
+<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[])">ProcessContainer</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains)</code>
 <div class="block">Simplified constructor, takes array of DomainTestObject as the starting point,
  opens preset filename for write, then calls processDomain(domains[i]) 
  for each domains[i] in the passed array, finally closes the output file.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(DomainTestObject[],%20java.lang.String,%20boolean)">ProcessContainer</a></strong>(DomainTestObject[]&nbsp;domains,
+<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[],%20java.lang.String,%20boolean)">ProcessContainer</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains,
                 java.lang.String&nbsp;filename,
                 boolean&nbsp;withCommentsAndBlankLines)</code>
 <div class="block">Intermediate constructor, takes array of DomainTestObject as the starting point,
@@ -175,7 +175,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(DomainTestObject[],%20java.lang.String,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean)">ProcessContainer</a></strong>(DomainTestObject[]&nbsp;domains,
+<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[],%20java.lang.String,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean)">ProcessContainer</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains,
                 java.lang.String&nbsp;filename,
                 boolean&nbsp;verbose,
                 boolean&nbsp;iniVsTreeFormat,
@@ -189,21 +189,21 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(TestObject)">ProcessContainer</a></strong>(TestObject&nbsp;container)</code>
+<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(com.rational.test.ft.object.interfaces.TestObject)">ProcessContainer</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;container)</code>
 <div class="block">Simple constructor, takes a TestObject as the starting point,
  opens preset filename for write, then calls processContainer(container), 
  finally closes the file.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(TestObject,%20java.lang.String)">ProcessContainer</a></strong>(TestObject&nbsp;container,
+<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">ProcessContainer</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                 java.lang.String&nbsp;filename)</code>
 <div class="block">Intermediate constructor, takes a TestObject as the starting point,
  opens filename for write, then calls processContainer(container), finally closes the file.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(TestObject,%20java.lang.String,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean)">ProcessContainer</a></strong>(TestObject&nbsp;container,
+<td class="colOne"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#ProcessContainer(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean,%20boolean)">ProcessContainer</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                 java.lang.String&nbsp;filename,
                 boolean&nbsp;verbose,
                 boolean&nbsp;iniVsTreeFormat,
@@ -238,8 +238,8 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#genRecogString(org.safs.PCTree,%20TestObject,%20java.util.Map,%20java.lang.String)">genRecogString</a></strong>(<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;pctree,
-              TestObject&nbsp;container,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#genRecogString(org.safs.PCTree,%20com.rational.test.ft.object.interfaces.TestObject,%20java.util.Map,%20java.lang.String)">genRecogString</a></strong>(<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;pctree,
+              com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
               java.util.Map&nbsp;properties,
               java.lang.String&nbsp;parentText)</code>
 <div class="block">Used internally.</div>
@@ -263,7 +263,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#getMappedClassType(TestObject,%20java.lang.String)">getMappedClassType</a></strong>(TestObject&nbsp;tobj,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#getMappedClassType(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String)">getMappedClassType</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj,
                   java.lang.String&nbsp;objectClassName)</code>
 <div class="block">Used internally.</div>
 </td>
@@ -312,7 +312,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a></code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processChildren(TestObject[],%20java.lang.String,%20org.safs.PCTree)">processChildren</a></strong>(TestObject[]&nbsp;children,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processChildren(com.rational.test.ft.object.interfaces.TestObject[],%20java.lang.String,%20org.safs.PCTree)">processChildren</a></strong>(com.rational.test.ft.object.interfaces.TestObject[]&nbsp;children,
                java.lang.String&nbsp;parentText,
                <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</code>
 <div class="block">Used internally.</div>
@@ -320,7 +320,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a></code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processContainer(TestObject,%20java.lang.String,%20org.safs.PCTree)">processContainer</a></strong>(TestObject&nbsp;container,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processContainer(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String,%20org.safs.PCTree)">processContainer</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                 java.lang.String&nbsp;parentText,
                 <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</code>
 <div class="block">Entry point to process a domain or object container.</div>
@@ -328,14 +328,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a></code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processDomain(DomainTestObject,%20org.safs.PCTree)">processDomain</a></strong>(DomainTestObject&nbsp;domain,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processDomain(com.rational.test.ft.object.interfaces.DomainTestObject,%20org.safs.PCTree)">processDomain</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain,
              <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</code>
 <div class="block">Used internally.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a></code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processObjectContainer(TestObject,%20java.lang.String,%20org.safs.PCTree)">processObjectContainer</a></strong>(TestObject&nbsp;container,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#processObjectContainer(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String,%20org.safs.PCTree)">processObjectContainer</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                       java.lang.String&nbsp;parentText,
                       <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</code>
 <div class="block">Used internally.</div>
@@ -415,7 +415,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#writeMethods(MethodInfo[])">writeMethods</a></strong>(MethodInfo[]&nbsp;methods)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#writeMethods(com.rational.test.ft.value.MethodInfo[])">writeMethods</a></strong>(com.rational.test.ft.value.MethodInfo[]&nbsp;methods)</code>
 <div class="block">Write the methods info provided.</div>
 </td>
 </tr>
@@ -441,7 +441,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#writeState(TestObject)">writeState</a></strong>(TestObject&nbsp;container)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/ProcessContainer.html#writeState(com.rational.test.ft.object.interfaces.TestObject)">writeState</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;container)</code>
 <div class="block">Write the isEnabled and isShowing states of the 'container'</div>
 </td>
 </tr>
@@ -517,13 +517,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="ProcessContainer(DomainTestObject[])">
+<a name="ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ProcessContainer</h4>
-<pre>public&nbsp;ProcessContainer(DomainTestObject[]&nbsp;domains)</pre>
+<pre>public&nbsp;ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains)</pre>
 <div class="block">Simplified constructor, takes array of DomainTestObject as the starting point,
  opens preset filename for write, then calls processDomain(domains[i]) 
  for each domains[i] in the passed array, finally closes the output file.  
@@ -533,13 +533,13 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>DomainTestObject[]</code> - domains</dd></dl>
 </li>
 </ul>
-<a name="ProcessContainer(DomainTestObject[], java.lang.String, boolean)">
+<a name="ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[], java.lang.String, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ProcessContainer</h4>
-<pre>public&nbsp;ProcessContainer(DomainTestObject[]&nbsp;domains,
+<pre>public&nbsp;ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains,
                 java.lang.String&nbsp;filename,
                 boolean&nbsp;withCommentsAndBlankLines)</pre>
 <div class="block">Intermediate constructor, takes array of DomainTestObject as the starting point,
@@ -551,13 +551,13 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domains,</code> - DomainTestObject[]</dd><dd><code>filename,</code> - String</dd><dd><code>withCommentsAndBlankLines,</code> - boolean</dd></dl>
 </li>
 </ul>
-<a name="ProcessContainer(DomainTestObject[], java.lang.String, boolean, boolean, boolean, boolean, boolean, boolean)">
+<a name="ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[], java.lang.String, boolean, boolean, boolean, boolean, boolean, boolean)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ProcessContainer</h4>
-<pre>public&nbsp;ProcessContainer(DomainTestObject[]&nbsp;domains,
+<pre>public&nbsp;ProcessContainer(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains,
                 java.lang.String&nbsp;filename,
                 boolean&nbsp;verbose,
                 boolean&nbsp;iniVsTreeFormat,
@@ -571,13 +571,13 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>domains,</code> - DomainTestObject[]</dd><dd><code>filename,</code> - String</dd><dd><code>verbose,</code> - boolean, puts out more info if true</dd><dd><code>iniVsTreeFormat,</code> - boolean, if true then ini format, else tree</dd><dd><code>withNameIncludeOnlyCaption,</code> - if false, include full recog string</dd><dd><code>withCommentsAndBlankLines,</code> - boolean</dd><dd><code>ignoreInvisibleComponents,</code> - boolean</dd><dd><code>append,</code> - boolean</dd></dl>
 </li>
 </ul>
-<a name="ProcessContainer(TestObject)">
+<a name="ProcessContainer(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ProcessContainer</h4>
-<pre>public&nbsp;ProcessContainer(TestObject&nbsp;container)</pre>
+<pre>public&nbsp;ProcessContainer(com.rational.test.ft.object.interfaces.TestObject&nbsp;container)</pre>
 <div class="block">Simple constructor, takes a TestObject as the starting point,
  opens preset filename for write, then calls processContainer(container), 
  finally closes the file.
@@ -587,13 +587,13 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>container,</code> - TestObject</dd></dl>
 </li>
 </ul>
-<a name="ProcessContainer(TestObject, java.lang.String)">
+<a name="ProcessContainer(com.rational.test.ft.object.interfaces.TestObject, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>ProcessContainer</h4>
-<pre>public&nbsp;ProcessContainer(TestObject&nbsp;container,
+<pre>public&nbsp;ProcessContainer(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                 java.lang.String&nbsp;filename)</pre>
 <div class="block">Intermediate constructor, takes a TestObject as the starting point,
  opens filename for write, then calls processContainer(container), finally closes the file.
@@ -603,13 +603,13 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>container,</code> - TestObject</dd><dd><code>filename,</code> - String</dd></dl>
 </li>
 </ul>
-<a name="ProcessContainer(TestObject, java.lang.String, boolean, boolean, boolean, boolean, boolean, boolean)">
+<a name="ProcessContainer(com.rational.test.ft.object.interfaces.TestObject, java.lang.String, boolean, boolean, boolean, boolean, boolean, boolean)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>ProcessContainer</h4>
-<pre>public&nbsp;ProcessContainer(TestObject&nbsp;container,
+<pre>public&nbsp;ProcessContainer(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                 java.lang.String&nbsp;filename,
                 boolean&nbsp;verbose,
                 boolean&nbsp;iniVsTreeFormat,
@@ -630,42 +630,42 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="processDomain(DomainTestObject, org.safs.PCTree)">
+<a name="processDomain(com.rational.test.ft.object.interfaces.DomainTestObject, org.safs.PCTree)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>processDomain</h4>
-<pre>protected&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processDomain(DomainTestObject&nbsp;domain,
+<pre>protected&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processDomain(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain,
                    <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</pre>
 <div class="block">Used internally. 
  Called by either the constructor or used in recursion to process a domain.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain,</code> - DomainTestObject</dd><dd><code>parent,</code> - PCTree passed along to processChildren</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processChildren(TestObject[],%20java.lang.String,%20org.safs.PCTree)"><code>processChildren(TestObject[], String, PCTree)</code></a></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>domain,</code> - DomainTestObject</dd><dd><code>parent,</code> - PCTree passed along to processChildren</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processChildren(com.rational.test.ft.object.interfaces.TestObject[],%20java.lang.String,%20org.safs.PCTree)"><code>processChildren(TestObject[], String, PCTree)</code></a></dd></dl>
 </li>
 </ul>
-<a name="processContainer(TestObject, java.lang.String, org.safs.PCTree)">
+<a name="processContainer(com.rational.test.ft.object.interfaces.TestObject, java.lang.String, org.safs.PCTree)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>processContainer</h4>
-<pre>public&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processContainer(TestObject&nbsp;container,
+<pre>public&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processContainer(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                       java.lang.String&nbsp;parentText,
                       <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</pre>
 <div class="block">Entry point to process a domain or object container.
  This routine will appropriately call either processDomain or processObjectContainer 
  depending on which type the 'container' is.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>container,</code> - TestObject</dd><dd><code>parentText,</code> - String, for menus, it is the path of our parent</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processDomain(DomainTestObject,%20org.safs.PCTree)"><code>processDomain(DomainTestObject, PCTree)</code></a>, 
-<a href="../../../org/safs/rational/ProcessContainer.html#processObjectContainer(TestObject,%20java.lang.String,%20org.safs.PCTree)"><code>processObjectContainer(TestObject, String, PCTree)</code></a></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>container,</code> - TestObject</dd><dd><code>parentText,</code> - String, for menus, it is the path of our parent</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processDomain(com.rational.test.ft.object.interfaces.DomainTestObject,%20org.safs.PCTree)"><code>processDomain(DomainTestObject, PCTree)</code></a>, 
+<a href="../../../org/safs/rational/ProcessContainer.html#processObjectContainer(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String,%20org.safs.PCTree)"><code>processObjectContainer(TestObject, String, PCTree)</code></a></dd></dl>
 </li>
 </ul>
-<a name="processObjectContainer(TestObject, java.lang.String, org.safs.PCTree)">
+<a name="processObjectContainer(com.rational.test.ft.object.interfaces.TestObject, java.lang.String, org.safs.PCTree)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>processObjectContainer</h4>
-<pre>protected&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processObjectContainer(TestObject&nbsp;container,
+<pre>protected&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processObjectContainer(com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                             java.lang.String&nbsp;parentText,
                             <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</pre>
 <div class="block">Used internally.
@@ -673,32 +673,32 @@ extends java.lang.Object</pre>
  Process the TestObject container, and recursively, all of it's children through 
  'processChildren'.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>container,</code> - TestObject</dd><dd><code>parentText,</code> - String, for menus, it is the path of our parent
-   <br>   SEP 02, 2004    (Carl Nagle) Do not seek children in comboboxes</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processChildren(TestObject[],%20java.lang.String,%20org.safs.PCTree)"><code>processChildren(TestObject[], String, PCTree)</code></a></dd></dl>
+   <br>   SEP 02, 2004    (Carl Nagle) Do not seek children in comboboxes</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processChildren(com.rational.test.ft.object.interfaces.TestObject[],%20java.lang.String,%20org.safs.PCTree)"><code>processChildren(TestObject[], String, PCTree)</code></a></dd></dl>
 </li>
 </ul>
-<a name="processChildren(TestObject[], java.lang.String, org.safs.PCTree)">
+<a name="processChildren(com.rational.test.ft.object.interfaces.TestObject[], java.lang.String, org.safs.PCTree)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>processChildren</h4>
-<pre>protected&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processChildren(TestObject[]&nbsp;children,
+<pre>protected&nbsp;<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;processChildren(com.rational.test.ft.object.interfaces.TestObject[]&nbsp;children,
                      java.lang.String&nbsp;parentText,
                      <a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;parent)</pre>
 <div class="block">Used internally.
  Essentially, processContainer(children[i]) for all children and handling 
  parent, child, and sibling relationships.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>children,</code> - TestObject[] (can be null)</dd><dd><code>parentText,</code> - String, typically for menus, it is the Path of our parent</dd><dd><code>pctree</code> - PCTree, keeps the recognition string info, will be written</dd>
-<dt><span class="strong">Returns:</span></dt><dd>firstpctree (the first PCTree generated for the children)</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processContainer(TestObject,%20java.lang.String,%20org.safs.PCTree)"><code>processContainer(TestObject, String, PCTree)</code></a></dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>firstpctree (the first PCTree generated for the children)</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#processContainer(com.rational.test.ft.object.interfaces.TestObject,%20java.lang.String,%20org.safs.PCTree)"><code>processContainer(TestObject, String, PCTree)</code></a></dd></dl>
 </li>
 </ul>
-<a name="getMappedClassType(TestObject, java.lang.String)">
+<a name="getMappedClassType(com.rational.test.ft.object.interfaces.TestObject, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getMappedClassType</h4>
-<pre>protected&nbsp;java.lang.String&nbsp;getMappedClassType(TestObject&nbsp;tobj,
+<pre>protected&nbsp;java.lang.String&nbsp;getMappedClassType(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj,
                                   java.lang.String&nbsp;objectClassName)</pre>
 <div class="block">Used internally.
  Get the mapped class type (ultimately from something like JavaObjectsMap.dat)
@@ -707,14 +707,14 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>String, null if not found</dd></dl>
 </li>
 </ul>
-<a name="genRecogString(org.safs.PCTree, TestObject, java.util.Map, java.lang.String)">
+<a name="genRecogString(org.safs.PCTree, com.rational.test.ft.object.interfaces.TestObject, java.util.Map, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>genRecogString</h4>
 <pre>protected&nbsp;java.lang.String&nbsp;genRecogString(<a href="../../../org/safs/PCTree.html" title="class in org.safs">PCTree</a>&nbsp;pctree,
-                              TestObject&nbsp;container,
+                              com.rational.test.ft.object.interfaces.TestObject&nbsp;container,
                               java.util.Map&nbsp;properties,
                               java.lang.String&nbsp;parentText)</pre>
 <div class="block">Used internally.
@@ -754,26 +754,26 @@ extends java.lang.Object</pre>
 <a href="../../../org/safs/rational/ProcessContainer.html#getShowProperties()"><code>getShowProperties()</code></a></dd></dl>
 </li>
 </ul>
-<a name="writeMethods(MethodInfo[])">
+<a name="writeMethods(com.rational.test.ft.value.MethodInfo[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>writeMethods</h4>
-<pre>protected&nbsp;void&nbsp;writeMethods(MethodInfo[]&nbsp;methods)</pre>
+<pre>protected&nbsp;void&nbsp;writeMethods(com.rational.test.ft.value.MethodInfo[]&nbsp;methods)</pre>
 <div class="block">Write the methods info provided.
  The routine will not write out if showMethods is false.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>methods,</code> - MethodInfo[] (can be null)</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/ProcessContainer.html#showMethods"><code>showMethods</code></a>, 
 <a href="../../../org/safs/rational/ProcessContainer.html#getShowMethods()"><code>getShowMethods()</code></a></dd></dl>
 </li>
 </ul>
-<a name="writeState(TestObject)">
+<a name="writeState(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>writeState</h4>
-<pre>protected&nbsp;void&nbsp;writeState(TestObject&nbsp;container)</pre>
+<pre>protected&nbsp;void&nbsp;writeState(com.rational.test.ft.object.interfaces.TestObject&nbsp;container)</pre>
 <div class="block">Write the isEnabled and isShowing states of the 'container'</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>container,</code> - TestObject (can be null)</dd></dl>
 </li>

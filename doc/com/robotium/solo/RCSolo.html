@@ -184,11 +184,11 @@ extends com.robotium.solo.Solo</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../com/robotium/solo/RCSolo.html#RCSolo(Instrumentation)">RCSolo</a></strong>(Instrumentation&nbsp;instrumentation)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../com/robotium/solo/RCSolo.html#RCSolo(android.app.Instrumentation)">RCSolo</a></strong>(android.app.Instrumentation&nbsp;instrumentation)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../com/robotium/solo/RCSolo.html#RCSolo(Instrumentation,%20Activity)">RCSolo</a></strong>(Instrumentation&nbsp;instrumentation,
-      Activity&nbsp;activity)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../com/robotium/solo/RCSolo.html#RCSolo(android.app.Instrumentation,%20android.app.Activity)">RCSolo</a></strong>(android.app.Instrumentation&nbsp;instrumentation,
+      android.app.Activity&nbsp;activity)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -212,14 +212,14 @@ extends com.robotium.solo.Solo</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>java.util.List&lt;Activity&gt;</code></td>
+<td class="colFirst"><code>java.util.List&lt;android.app.Activity&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../com/robotium/solo/RCSolo.html#getAllOpenedActivities()">getAllOpenedActivities</a></strong>()</code>
 <div class="block">This method is removed from <code>Solo</code> from Robotium4.1 release.<br>
  Expose it in <a href="../../../com/robotium/solo/RCSolo.html" title="class in com.robotium.solo"><code>RCSolo</code></a> to keep the backward compatibility.<br></div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>View</code></td>
+<td class="colFirst"><code>android.view.View</code></td>
 <td class="colLast"><code><strong><a href="../../../com/robotium/solo/RCSolo.html#getWaitedView()">getWaitedView</a></strong>()</code>
 <div class="block">Get the latest view that has been waited for.<br></div>
 </td>
@@ -273,23 +273,23 @@ extends com.robotium.solo.Solo</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="RCSolo(Instrumentation)">
+<a name="RCSolo(android.app.Instrumentation)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>RCSolo</h4>
-<pre>public&nbsp;RCSolo(Instrumentation&nbsp;instrumentation)</pre>
+<pre>public&nbsp;RCSolo(android.app.Instrumentation&nbsp;instrumentation)</pre>
 </li>
 </ul>
-<a name="RCSolo(Instrumentation, Activity)">
+<a name="RCSolo(android.app.Instrumentation, android.app.Activity)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>RCSolo</h4>
-<pre>public&nbsp;RCSolo(Instrumentation&nbsp;instrumentation,
-      Activity&nbsp;activity)</pre>
+<pre>public&nbsp;RCSolo(android.app.Instrumentation&nbsp;instrumentation,
+      android.app.Activity&nbsp;activity)</pre>
 </li>
 </ul>
 </li>
@@ -306,7 +306,7 @@ extends com.robotium.solo.Solo</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllOpenedActivities</h4>
-<pre>public&nbsp;java.util.List&lt;Activity&gt;&nbsp;getAllOpenedActivities()</pre>
+<pre>public&nbsp;java.util.List&lt;android.app.Activity&gt;&nbsp;getAllOpenedActivities()</pre>
 <div class="block">This method is removed from <code>Solo</code> from Robotium4.1 release.<br>
  Expose it in <a href="../../../com/robotium/solo/RCSolo.html" title="class in com.robotium.solo"><code>RCSolo</code></a> to keep the backward compatibility.<br></div>
 </li>
@@ -337,7 +337,7 @@ extends com.robotium.solo.Solo</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getWaitedView</h4>
-<pre>public&nbsp;View&nbsp;getWaitedView()</pre>
+<pre>public&nbsp;android.view.View&nbsp;getWaitedView()</pre>
 <div class="block">Get the latest view that has been waited for.<br>
  <p>
  As this field <a href="../../../com/robotium/solo/RCSolo.html#waitedView"><code>waitedView</code></a> is set in the method <a href="../../../com/robotium/solo/RCSolo.html#waitForView(int,%20int,%20int,%20boolean)"><code>waitForView(int, int, int, boolean)</code></a> or <a href="../../../com/robotium/solo/RCSolo.html#waitForView(java.lang.Object,%20int,%20int,%20boolean)"><code>waitForView(Object, int, int, boolean)</code></a> ,

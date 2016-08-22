@@ -260,7 +260,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) static RootTestObject</code></td>
+<td class="colFirst"><code>(package private) static com.rational.test.ft.object.interfaces.RootTestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rational/ft/DynamicEnabler.html#rto">rto</a></strong></code>
 <div class="block">FT 6.x Unique Class object for dynamic enabling</div>
 </td>
@@ -348,8 +348,8 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rational/ft/DynamicEnabler.html#enableWinWindows()">enableWinWindows</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static TestObject[]</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rational/ft/DynamicEnabler.html#getJNAProtectedDomainTopObjects(DomainTestObject)">getJNAProtectedDomainTopObjects</a></strong>(DomainTestObject&nbsp;domain)</code>
+<td class="colFirst"><code>static com.rational.test.ft.object.interfaces.TestObject[]</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rational/ft/DynamicEnabler.html#getJNAProtectedDomainTopObjects(com.rational.test.ft.object.interfaces.DomainTestObject)">getJNAProtectedDomainTopObjects</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain)</code>
 <div class="block">Calls domain.getTopObjects() ONLY if the domain's process is determined to 
  have active UI resources.</div>
 </td>
@@ -495,7 +495,7 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>rto</h4>
-<pre>static&nbsp;RootTestObject rto</pre>
+<pre>static&nbsp;com.rational.test.ft.object.interfaces.RootTestObject rto</pre>
 <div class="block">FT 6.x Unique Class object for dynamic enabling</div>
 </li>
 </ul>
@@ -812,7 +812,7 @@ extends java.lang.Object</pre>
  the one with keyboard focus.  In the process of "finding" the window the process should be enabled for 
  testing.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>script</code> - </dd><dd><code>processID</code> - </dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if the process has the window with the current keyboard focus.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/rational/RDDGUIUtilities.html#getParentTestObject(TestObject)"><code>RDDGUIUtilities.getParentTestObject(TestObject)</code></a></dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>true if the process has the window with the current keyboard focus.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/rational/RDDGUIUtilities.html#getParentTestObject(com.rational.test.ft.object.interfaces.TestObject)"><code>RDDGUIUtilities.getParentTestObject(TestObject)</code></a></dd></dl>
 </li>
 </ul>
 <a name="loadWinEnabled()">
@@ -860,13 +860,13 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>true if the provided classname exists in our ignorewins list.</dd></dl>
 </li>
 </ul>
-<a name="getJNAProtectedDomainTopObjects(DomainTestObject)">
+<a name="getJNAProtectedDomainTopObjects(com.rational.test.ft.object.interfaces.DomainTestObject)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getJNAProtectedDomainTopObjects</h4>
-<pre>public static&nbsp;TestObject[]&nbsp;getJNAProtectedDomainTopObjects(DomainTestObject&nbsp;domain)</pre>
+<pre>public static&nbsp;com.rational.test.ft.object.interfaces.TestObject[]&nbsp;getJNAProtectedDomainTopObjects(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain)</pre>
 <div class="block">Calls domain.getTopObjects() ONLY if the domain's process is determined to 
  have active UI resources.  However, if there are any problems in determining 
  if the process is using UI resources then we typically will just call 

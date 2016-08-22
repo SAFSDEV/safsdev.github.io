@@ -114,7 +114,7 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
                                                         as a valid GuiObject, see defect S0539954.
  JunwuMa  Oct 21, 2008    Added method getChildren(TestObject) and modified getChildObjects(Object parent) supporting
                           Flex object, eliminating the duplicate in Flex object's children. 
-                          See <a href="../../../org/safs/rational/FlexUtil.html#getChildren(TestObject)"><code>FlexUtil.getChildren(TestObject)</code></a>
+                          See <a href="../../../org/safs/rational/FlexUtil.html#getChildren(com.rational.test.ft.object.interfaces.TestObject)"><code>FlexUtil.getChildren(TestObject)</code></a>
  LeiWang        Nov 05, 2008    Modified method getChildren(): If there are some problems on AUT itself (for example, if the AUT 
                                                                         contains null pointer), the RFT WrappedException will be thrown. At this situation
                                                                         I catch the exception and let our program continue to work. This modification will
@@ -195,7 +195,7 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#DEFAULT_WIN_DOMAIN_NAME">DEFAULT_WIN_DOMAIN_NAME</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) DomainTestObject</code></td>
+<td class="colFirst"><code>(package private) com.rational.test.ft.object.interfaces.DomainTestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#domain">domain</a></strong></code>
 <div class="block">Must be set by getTopTestObject prior to any call to getMatchingParentObject().</div>
 </td>
@@ -258,7 +258,7 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.util.ArrayList</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#addTopWindowsFromDomainToWindowList(DomainTestObject,%20java.util.ArrayList)">addTopWindowsFromDomainToWindowList</a></strong>(DomainTestObject&nbsp;domain,
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#addTopWindowsFromDomainToWindowList(com.rational.test.ft.object.interfaces.DomainTestObject,%20java.util.ArrayList)">addTopWindowsFromDomainToWindowList</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain,
                                    java.util.ArrayList&nbsp;windowList)</code>
 <div class="block"><b>Note:</b> This method will add the top windows of a domain and also 
                                 the owned windows by these top windows.</div>
@@ -286,8 +286,8 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>protected DomainTestObject[]</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#deduceValidDomains(DomainTestObject[])">deduceValidDomains</a></strong>(DomainTestObject[]&nbsp;domains)</code>
+<td class="colFirst"><code>protected com.rational.test.ft.object.interfaces.DomainTestObject[]</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#deduceValidDomains(com.rational.test.ft.object.interfaces.DomainTestObject[])">deduceValidDomains</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains)</code>
 <div class="block">Attempts to remove WIN domains that are likely bad associations with other domains like NET 
  and, maybe, HTML.</div>
 </td>
@@ -318,8 +318,8 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>TestObject</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#getChildTestObject(TestObject,%20java.util.List)">getChildTestObject</a></strong>(TestObject&nbsp;aparent,
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#getChildTestObject(com.rational.test.ft.object.interfaces.TestObject,%20java.util.List)">getChildTestObject</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;aparent,
                   java.util.List&nbsp;gather)</code>
 <div class="block">get matching child TestObject for this RGuiObjectVector.</div>
 </td>
@@ -362,51 +362,51 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>TestObject</code></td>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#getTopTestObject()">getTopTestObject</a></strong>()</code>
 <div class="block">Find the one parent object that matches the recognition string set by setPathVector(String).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>TestObject</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#getTopTestObject(DomainTestObject)">getTopTestObject</a></strong>(DomainTestObject&nbsp;domain)</code>
+<td class="colFirst"><code>com.rational.test.ft.object.interfaces.TestObject</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#getTopTestObject(com.rational.test.ft.object.interfaces.DomainTestObject)">getTopTestObject</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain)</code>
 <div class="block">Call this routine instead of getMatchingParentObject() directly.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isActiveXDomain(TestObject)">isActiveXDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isActiveXDomain(com.rational.test.ft.object.interfaces.TestObject)">isActiveXDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isBannedWinDomain(DomainTestObject)">isBannedWinDomain</a></strong>(DomainTestObject&nbsp;domain)</code>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isBannedWinDomain(com.rational.test.ft.object.interfaces.DomainTestObject)">isBannedWinDomain</a></strong>(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain)</code>
 <div class="block">return true if bannedWinMailslots contains this domains mailslot id.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isDotnetDomain(TestObject)">isDotnetDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isDotnetDomain(com.rational.test.ft.object.interfaces.TestObject)">isDotnetDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isFlexDomain(TestObject)">isFlexDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isFlexDomain(com.rational.test.ft.object.interfaces.TestObject)">isFlexDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isHtmlDomain(TestObject)">isHtmlDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isHtmlDomain(com.rational.test.ft.object.interfaces.TestObject)">isHtmlDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isJavaDomain(TestObject)">isJavaDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isJavaDomain(com.rational.test.ft.object.interfaces.TestObject)">isJavaDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isOwnerSameTestContext(TestObject,%20TestObject)">isOwnerSameTestContext</a></strong>(TestObject&nbsp;owner,
-                      TestObject&nbsp;owned)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isOwnerSameTestContext(com.rational.test.ft.object.interfaces.TestObject,%20com.rational.test.ft.object.interfaces.TestObject)">isOwnerSameTestContext</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;owner,
+                      com.rational.test.ft.object.interfaces.TestObject&nbsp;owned)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isSwtDomain(TestObject)">isSwtDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isSwtDomain(com.rational.test.ft.object.interfaces.TestObject)">isSwtDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -422,7 +422,7 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isWinDomain(TestObject)">isWinDomain</a></strong>(TestObject&nbsp;tobj)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#isWinDomain(com.rational.test.ft.object.interfaces.TestObject)">isWinDomain</a></strong>(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -560,7 +560,7 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <ul class="blockListLast">
 <li class="blockList">
 <h4>domain</h4>
-<pre>DomainTestObject domain</pre>
+<pre>com.rational.test.ft.object.interfaces.DomainTestObject domain</pre>
 <div class="block">Must be set by getTopTestObject prior to any call to getMatchingParentObject().</div>
 </li>
 </ul>
@@ -726,24 +726,24 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/GuiObjectVector.html#getChildGuiObjectRecognition(int)"><code>GuiObjectVector.getChildGuiObjectRecognition(int)</code></a></dd></dl>
 </li>
 </ul>
-<a name="isBannedWinDomain(DomainTestObject)">
+<a name="isBannedWinDomain(com.rational.test.ft.object.interfaces.DomainTestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isBannedWinDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isBannedWinDomain(DomainTestObject&nbsp;domain)</pre>
+<pre>public static&nbsp;boolean&nbsp;isBannedWinDomain(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain)</pre>
 <div class="block">return true if bannedWinMailslots contains this domains mailslot id. 
  The domain is assumed to be a WIN domain.  No domain name check is made.</div>
 </li>
 </ul>
-<a name="deduceValidDomains(DomainTestObject[])">
+<a name="deduceValidDomains(com.rational.test.ft.object.interfaces.DomainTestObject[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>deduceValidDomains</h4>
-<pre>protected&nbsp;DomainTestObject[]&nbsp;deduceValidDomains(DomainTestObject[]&nbsp;domains)</pre>
+<pre>protected&nbsp;com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;deduceValidDomains(com.rational.test.ft.object.interfaces.DomainTestObject[]&nbsp;domains)</pre>
 <div class="block">Attempts to remove WIN domains that are likely bad associations with other domains like NET 
  and, maybe, HTML.  A "bad association" is assumed to be when a WIN domain communication 
  MailSlot ID is the same as another domain.  Brief experience suggests that a WIN domain 
@@ -851,23 +851,23 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <a href="../../../org/safs/GuiObjectVector.html#convertToKeys(java.lang.Object[])"><code>GuiObjectVector.convertToKeys(Object[])</code></a></dd></dl>
 </li>
 </ul>
-<a name="isOwnerSameTestContext(TestObject, TestObject)">
+<a name="isOwnerSameTestContext(com.rational.test.ft.object.interfaces.TestObject, com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isOwnerSameTestContext</h4>
-<pre>protected&nbsp;boolean&nbsp;isOwnerSameTestContext(TestObject&nbsp;owner,
-                             TestObject&nbsp;owned)</pre>
+<pre>protected&nbsp;boolean&nbsp;isOwnerSameTestContext(com.rational.test.ft.object.interfaces.TestObject&nbsp;owner,
+                             com.rational.test.ft.object.interfaces.TestObject&nbsp;owned)</pre>
 </li>
 </ul>
-<a name="addTopWindowsFromDomainToWindowList(DomainTestObject, java.util.ArrayList)">
+<a name="addTopWindowsFromDomainToWindowList(com.rational.test.ft.object.interfaces.DomainTestObject, java.util.ArrayList)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addTopWindowsFromDomainToWindowList</h4>
-<pre>protected&nbsp;java.util.ArrayList&nbsp;addTopWindowsFromDomainToWindowList(DomainTestObject&nbsp;domain,
+<pre>protected&nbsp;java.util.ArrayList&nbsp;addTopWindowsFromDomainToWindowList(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain,
                                                       java.util.ArrayList&nbsp;windowList)</pre>
 <div class="block"><b>Note:</b> This method will add the top windows of a domain and also 
                                 the owned windows by these top windows.</div>
@@ -925,13 +925,13 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <dt><span class="strong">Parameters:</span></dt><dd><code>object</code> - - will convert from key if MODE_EXTERNAL_PROCESSING.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/GuiObjectVector.html#isValidGuiContainer(java.lang.Object)"><code>GuiObjectVector.isValidGuiContainer(Object)</code></a></dd></dl>
 </li>
 </ul>
-<a name="getTopTestObject(DomainTestObject)">
+<a name="getTopTestObject(com.rational.test.ft.object.interfaces.DomainTestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTopTestObject</h4>
-<pre>public&nbsp;TestObject&nbsp;getTopTestObject(DomainTestObject&nbsp;domain)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;getTopTestObject(com.rational.test.ft.object.interfaces.DomainTestObject&nbsp;domain)</pre>
 <div class="block">Call this routine instead of getMatchingParentObject() directly.
  This routine must set the Rational DomainTestObject domain and then 
  invokes getMatchingParentObject().  
@@ -948,20 +948,20 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <ul class="blockList">
 <li class="blockList">
 <h4>getTopTestObject</h4>
-<pre>public&nbsp;TestObject&nbsp;getTopTestObject()</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;getTopTestObject()</pre>
 <div class="block">Find the one parent object that matches the recognition string set by setPathVector(String).
  Invokes getMatchingParentObject(), returns a TestObject.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>TestObject</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/RGuiObjectVector.html#getTopTestObject(DomainTestObject)"><code>getTopTestObject(DomainTestObject)</code></a></dd></dl>
+<dl><dt><span class="strong">Returns:</span></dt><dd>TestObject</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rational/RGuiObjectVector.html#getTopTestObject(com.rational.test.ft.object.interfaces.DomainTestObject)"><code>getTopTestObject(DomainTestObject)</code></a></dd></dl>
 </li>
 </ul>
-<a name="getChildTestObject(TestObject, java.util.List)">
+<a name="getChildTestObject(com.rational.test.ft.object.interfaces.TestObject, java.util.List)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getChildTestObject</h4>
-<pre>public&nbsp;TestObject&nbsp;getChildTestObject(TestObject&nbsp;aparent,
-                            java.util.List&nbsp;gather)</pre>
+<pre>public&nbsp;com.rational.test.ft.object.interfaces.TestObject&nbsp;getChildTestObject(com.rational.test.ft.object.interfaces.TestObject&nbsp;aparent,
+                                                                   java.util.List&nbsp;gather)</pre>
 <div class="block">get matching child TestObject for this RGuiObjectVector.
  If getProcessMode()==MODE_EXTERNAL_PROCESSING the call to getMatchingChildObject 
  should be OK as getCachedItem should still return the aparent TestObject issued 
@@ -990,67 +990,67 @@ extends <a href="../../../org/safs/GuiObjectVector.html" title="class in org.saf
 <dt><span class="strong">Parameters:</span></dt><dd><code>_comp</code> - is expected to be of type Interface ITopWindow</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/GuiObjectVector.html#setActiveWindow(java.lang.Object)"><code>GuiObjectVector.setActiveWindow(java.lang.Object)</code></a></dd></dl>
 </li>
 </ul>
-<a name="isJavaDomain(TestObject)">
+<a name="isJavaDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isJavaDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isJavaDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isJavaDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
-<a name="isDotnetDomain(TestObject)">
+<a name="isDotnetDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isDotnetDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isDotnetDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isDotnetDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
-<a name="isHtmlDomain(TestObject)">
+<a name="isHtmlDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isHtmlDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isHtmlDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isHtmlDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
-<a name="isActiveXDomain(TestObject)">
+<a name="isActiveXDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isActiveXDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isActiveXDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isActiveXDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
-<a name="isWinDomain(TestObject)">
+<a name="isWinDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isWinDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isWinDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isWinDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
-<a name="isSwtDomain(TestObject)">
+<a name="isSwtDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isSwtDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isSwtDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isSwtDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
-<a name="isFlexDomain(TestObject)">
+<a name="isFlexDomain(com.rational.test.ft.object.interfaces.TestObject)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>isFlexDomain</h4>
-<pre>public static&nbsp;boolean&nbsp;isFlexDomain(TestObject&nbsp;tobj)</pre>
+<pre>public static&nbsp;boolean&nbsp;isFlexDomain(com.rational.test.ft.object.interfaces.TestObject&nbsp;tobj)</pre>
 </li>
 </ul>
 <a name="getCachedItem(java.lang.Object)">
