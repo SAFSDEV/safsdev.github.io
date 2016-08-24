@@ -3,7 +3,9 @@ com.jayway.android.robotium.remotecontrol.client
 com.jayway.android.robotium.remotecontrol.client.processor
 com.jayway.android.robotium.remotecontrol.install
 com.jayway.android.robotium.remotecontrol.solo
+com.jayway.android.robotium.solo
 com.robotium.solo
+com.sebuilder.interpreter
 org.safs
 org.safs.android
 org.safs.android.auto.lib
@@ -26,6 +28,7 @@ org.safs.ios
 org.safs.jvmagent
 org.safs.jvmagent.agents
 org.safs.logging
+org.safs.logging.slf4j
 org.safs.model
 org.safs.model.annotations
 org.safs.model.commands
@@ -49,11 +52,14 @@ org.safs.net
 org.safs.rational
 org.safs.rational.custom
 org.safs.rational.flex
+org.safs.rational.flex.custom
 org.safs.rational.ft
 org.safs.rational.logging
 org.safs.rational.win
 org.safs.rational.wpf
 org.safs.reflect
+org.safs.rest
+org.safs.rest.service
 org.safs.rmi.engine
 org.safs.robot
 org.safs.selenium
@@ -64,7 +70,10 @@ org.safs.selenium.util
 org.safs.selenium.webdriver
 org.safs.selenium.webdriver.lib
 org.safs.selenium.webdriver.lib.interpreter
+org.safs.selenium.webdriver.lib.interpreter.selrunner
+org.safs.selenium.webdriver.lib.interpreter.selrunner.steptype
 org.safs.selenium.webdriver.lib.model
+org.safs.selenium.webdriver.lib.test
 org.safs.sockets
 org.safs.sockets.android
 org.safs.staf
@@ -97,4 +106,6 @@ org.safs.tools.status
 org.safs.tools.stringutils
 org.safs.tools.vars
 org.safs.xml
+org.slf4j.impl
 org.w3c.tools.codec
+resources
