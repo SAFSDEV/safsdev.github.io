@@ -179,6 +179,10 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/rest/REST.html#PUT_METHOD">PUT_METHOD</a></strong></code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../org/safs/rest/service/RESTImpl.html" title="class in org.safs.rest.service">RESTImpl</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rest/REST.html#restImpl">restImpl</a></strong></code>&nbsp;</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -220,10 +224,10 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a></code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/rest/REST.html#request(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.util.Collection,%20java.lang.Object)">request</a></strong>(java.lang.String&nbsp;serviceId,
+<td class="colLast"><code><strong><a href="../../../org/safs/rest/REST.html#request(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.Object)">request</a></strong>(java.lang.String&nbsp;serviceId,
        java.lang.String&nbsp;requestMethod,
        java.lang.String&nbsp;relativeURI,
-       java.util.Collection&lt;java.lang.String&gt;&nbsp;headers,
+       java.lang.String&nbsp;headers,
        java.lang.Object&nbsp;body)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -309,11 +313,20 @@ extends java.lang.Object</pre>
 <a name="PATCH_METHOD">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>PATCH_METHOD</h4>
 <pre>public static final&nbsp;java.lang.String PATCH_METHOD</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.rest.REST.PATCH_METHOD">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="restImpl">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>restImpl</h4>
+<pre>public static&nbsp;<a href="../../../org/safs/rest/service/RESTImpl.html" title="class in org.safs.rest.service">RESTImpl</a> restImpl</pre>
 </li>
 </ul>
 </li>
@@ -374,7 +387,7 @@ extends java.lang.Object</pre>
 <dd><code>java.lang.IllegalArgumentException</code> - if the serviceId is null or does NOT exists.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rest/REST.html#StartServiceSession(java.lang.String,%20java.lang.String)"><code>StartServiceSession(String, String)</code></a></dd></dl>
 </li>
 </ul>
-<a name="request(java.lang.String, java.lang.String, java.lang.String, java.util.Collection, java.lang.Object)">
+<a name="request(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Object)">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -383,7 +396,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;<a href="../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a>&nbsp;request(java.lang.String&nbsp;serviceId,
                java.lang.String&nbsp;requestMethod,
                java.lang.String&nbsp;relativeURI,
-               java.util.Collection&lt;java.lang.String&gt;&nbsp;headers,
+               java.lang.String&nbsp;headers,
                java.lang.Object&nbsp;body)</pre>
 </li>
 </ul>

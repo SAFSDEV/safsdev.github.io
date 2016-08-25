@@ -35,7 +35,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../org/safs/rest/service/Service.html" title="class in org.safs.rest.service"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../org/safs/rest/service/RESTImpl.html" title="class in org.safs.rest.service"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/safs/rest/service/Response.html" target="_top">Frames</a></li>
@@ -117,20 +117,20 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) java.lang.Object</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_entity_body">_entity_body</a></strong></code>&nbsp;</td>
+<td class="colFirst"><code>(package private) java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_content_type">_content_type</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_entity_header">_entity_header</a></strong></code>&nbsp;</td>
+<td class="colFirst"><code>(package private) java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_entity_body">_entity_body</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>(package private) long</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_entity_length">_entity_length</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_general_header">_general_header</a></strong></code>&nbsp;</td>
+<td class="colFirst"><code>(package private) java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_headers">_headers</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>(package private) java.lang.String</code></td>
@@ -149,14 +149,10 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_request">_request</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_response_header">_response_header</a></strong></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>(package private) int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_status_code">_status_code</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_status_line">_status_line</a></strong></code>&nbsp;</td>
 </tr>
@@ -193,12 +189,12 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.lang.Object</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_entity_body()">get_entity_body</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_content_type()">get_content_type</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_entity_header()">get_entity_header</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_entity_body()">get_entity_body</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>long</code></td>
@@ -206,7 +202,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_general_header()">get_general_header</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_headers()">get_headers</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -225,16 +221,16 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_request()">get_request</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_response_header()">get_response_header</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_status_code()">get_status_code</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_status_line()">get_status_line</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_content_type(java.lang.String)">set_content_type</a></strong>(java.lang.String&nbsp;_content_type)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -242,35 +238,27 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_entity_header(java.lang.String)">set_entity_header</a></strong>(java.lang.String&nbsp;_entity_header)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_entity_length(long)">set_entity_length</a></strong>(long&nbsp;_entity_length)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_general_header(java.lang.String)">set_general_header</a></strong>(java.lang.String&nbsp;_general_header)</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
+<td class="colFirst"><code>(package private) void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_headers(java.util.Map)">set_headers</a></strong>(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;_header)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_http_version(java.lang.String)">set_http_version</a></strong>(java.lang.String&nbsp;_http_version)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_message_body(java.lang.String)">set_message_body</a></strong>(java.lang.String&nbsp;_message_body)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_reason_phrase(java.lang.String)">set_reason_phrase</a></strong>(java.lang.String&nbsp;_reason_phrase)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_request(org.safs.rest.service.Request)">set_request</a></strong>(<a href="../../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service">Request</a>&nbsp;_request)</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_response_header(java.lang.String)">set_response_header</a></strong>(java.lang.String&nbsp;_response_header)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_request(org.safs.rest.service.Request)">set_request</a></strong>(<a href="../../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service">Request</a>&nbsp;_request)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -347,22 +335,13 @@ extends java.lang.Object</pre>
 <pre>java.lang.String _reason_phrase</pre>
 </li>
 </ul>
-<a name="_general_header">
+<a name="_headers">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>_general_header</h4>
-<pre>java.lang.String _general_header</pre>
-</li>
-</ul>
-<a name="_response_header">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_response_header</h4>
-<pre>java.lang.String _response_header</pre>
+<h4>_headers</h4>
+<pre>java.util.Map&lt;java.lang.String,java.lang.String&gt; _headers</pre>
 </li>
 </ul>
 <a name="_message_body">
@@ -372,15 +351,6 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>_message_body</h4>
 <pre>java.lang.String _message_body</pre>
-</li>
-</ul>
-<a name="_entity_header">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_entity_header</h4>
-<pre>java.lang.String _entity_header</pre>
 </li>
 </ul>
 <a name="_entity_length">
@@ -395,10 +365,19 @@ extends java.lang.Object</pre>
 <a name="_entity_body">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>_entity_body</h4>
 <pre>java.lang.Object _entity_body</pre>
+</li>
+</ul>
+<a name="_content_type">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>_content_type</h4>
+<pre>java.lang.String _content_type</pre>
 </li>
 </ul>
 </li>
@@ -426,6 +405,24 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="get_content_type()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>get_content_type</h4>
+<pre>public&nbsp;java.lang.String&nbsp;get_content_type()</pre>
+</li>
+</ul>
+<a name="set_content_type(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>set_content_type</h4>
+<pre>public&nbsp;void&nbsp;set_content_type(java.lang.String&nbsp;_content_type)</pre>
+</li>
+</ul>
 <a name="get_status_line()">
 <!--   -->
 </a>
@@ -506,43 +503,23 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>_reason_phrase</code> - the _reason_phrase to set</dd></dl>
 </li>
 </ul>
-<a name="get_general_header()">
+<a name="get_headers()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>get_general_header</h4>
-<pre>public&nbsp;java.lang.String&nbsp;get_general_header()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the _general_header</dd></dl>
-</li>
-</ul>
-<a name="set_general_header(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>set_general_header</h4>
-<pre>public&nbsp;void&nbsp;set_general_header(java.lang.String&nbsp;_general_header)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>_general_header</code> - the _general_header to set</dd></dl>
-</li>
-</ul>
-<a name="get_response_header()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get_response_header</h4>
-<pre>public&nbsp;java.lang.String&nbsp;get_response_header()</pre>
+<h4>get_headers</h4>
+<pre>public&nbsp;java.lang.String&nbsp;get_headers()</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the _response_header</dd></dl>
 </li>
 </ul>
-<a name="set_response_header(java.lang.String)">
+<a name="set_headers(java.util.Map)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>set_response_header</h4>
-<pre>public&nbsp;void&nbsp;set_response_header(java.lang.String&nbsp;_response_header)</pre>
+<h4>set_headers</h4>
+<pre>void&nbsp;set_headers(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;_header)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>_response_header</code> - the _response_header to set</dd></dl>
 </li>
 </ul>
@@ -564,26 +541,6 @@ extends java.lang.Object</pre>
 <h4>set_message_body</h4>
 <pre>public&nbsp;void&nbsp;set_message_body(java.lang.String&nbsp;_message_body)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>_message_body</code> - the _message_body to set</dd></dl>
-</li>
-</ul>
-<a name="get_entity_header()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get_entity_header</h4>
-<pre>public&nbsp;java.lang.String&nbsp;get_entity_header()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the _entity_header</dd></dl>
-</li>
-</ul>
-<a name="set_entity_header(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>set_entity_header</h4>
-<pre>public&nbsp;void&nbsp;set_entity_header(java.lang.String&nbsp;_entity_header)</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>_entity_header</code> - the _entity_header to set</dd></dl>
 </li>
 </ul>
 <a name="get_entity_length()">
@@ -673,7 +630,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../org/safs/rest/service/Service.html" title="class in org.safs.rest.service"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../org/safs/rest/service/RESTImpl.html" title="class in org.safs.rest.service"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/safs/rest/service/Response.html" target="_top">Frames</a></li>

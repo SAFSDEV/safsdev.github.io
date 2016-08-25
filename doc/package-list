@@ -6,6 +6,7 @@ com.jayway.android.robotium.remotecontrol.solo
 com.jayway.android.robotium.solo
 com.robotium.solo
 com.sebuilder.interpreter
+org.apache.hc.client5.http.testframework
 org.safs
 org.safs.android
 org.safs.android.auto.lib
