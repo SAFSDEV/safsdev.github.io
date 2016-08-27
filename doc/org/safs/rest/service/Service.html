@@ -120,11 +120,22 @@ extends java.lang.Object</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/safs/rest/service/Service.html#Service(java.lang.String)">Service</a></strong>(java.lang.String&nbsp;serviceId)</code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../org/safs/rest/service/Service.html#Service(java.lang.String)">Service</a></strong>(java.lang.String&nbsp;serviceId)</code>
+<div class="block">Constructor</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../../org/safs/rest/service/Service.html#Service(java.lang.String,%20java.lang.String)">Service</a></strong>(java.lang.String&nbsp;serviceId,
-       java.lang.String&nbsp;baseURL)</code>&nbsp;</td>
+       java.lang.String&nbsp;baseURL)</code>
+<div class="block">Constructor</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../../org/safs/rest/service/Service.html#Service(java.lang.String,%20java.lang.String,%20java.lang.String)">Service</a></strong>(java.lang.String&nbsp;serviceId,
+       java.lang.String&nbsp;baseURL,
+       java.lang.String&nbsp;protocolVersion)</code>
+<div class="block">Constructor</div>
+</td>
 </tr>
 </table>
 </li>
@@ -155,6 +166,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getProtocolVersion()">getProtocolVersion</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>(package private) org.apache.hc.core5.http.ProtocolVersion</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getProtocolVersionObject()">getProtocolVersionObject</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getProxyServerURL()">getProxyServerURL</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -179,13 +198,17 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setProxyServerURL(java.lang.String)">setProxyServerURL</a></strong>(java.lang.String&nbsp;proxyServerURL)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setProtocolVersion(java.lang.String)">setProtocolVersion</a></strong>(java.lang.String&nbsp;protocolVersion)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setServiceId(java.lang.String)">setServiceId</a></strong>(java.lang.String&nbsp;serviceId)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setProxyServerURL(java.lang.String)">setProxyServerURL</a></strong>(java.lang.String&nbsp;proxyServerURL)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setServiceId(java.lang.String)">setServiceId</a></strong>(java.lang.String&nbsp;serviceId)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setUserId(java.lang.String)">setUserId</a></strong>(java.lang.String&nbsp;userId)</code>&nbsp;</td>
 </tr>
@@ -218,16 +241,33 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>Service</h4>
 <pre>public&nbsp;Service(java.lang.String&nbsp;serviceId)</pre>
+<div class="block">Constructor</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>serviceId</code> - </dd></dl>
 </li>
 </ul>
 <a name="Service(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>Service</h4>
+<pre>public&nbsp;Service(java.lang.String&nbsp;serviceId,
+       java.lang.String&nbsp;baseURL)</pre>
+<div class="block">Constructor</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>serviceId</code> - </dd><dd><code>baseURL</code> - </dd></dl>
+</li>
+</ul>
+<a name="Service(java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Service</h4>
 <pre>public&nbsp;Service(java.lang.String&nbsp;serviceId,
-       java.lang.String&nbsp;baseURL)</pre>
+       java.lang.String&nbsp;baseURL,
+       java.lang.String&nbsp;protocolVersion)</pre>
+<div class="block">Constructor</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>serviceId</code> - </dd><dd><code>baseURL</code> - </dd><dd><code>protocolVersion</code> - </dd></dl>
 </li>
 </ul>
 </li>
@@ -351,11 +391,40 @@ extends java.lang.Object</pre>
 <a name="setAuthType(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setAuthType</h4>
 <pre>public&nbsp;void&nbsp;setAuthType(java.lang.String&nbsp;authType)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>authType</code> - the authType to set</dd></dl>
+</li>
+</ul>
+<a name="getProtocolVersion()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getProtocolVersion</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getProtocolVersion()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>the protocol version</dd></dl>
+</li>
+</ul>
+<a name="setProtocolVersion(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setProtocolVersion</h4>
+<pre>public&nbsp;void&nbsp;setProtocolVersion(java.lang.String&nbsp;protocolVersion)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>protocolVersion</code> - the protocol version to set</dd></dl>
+</li>
+</ul>
+<a name="getProtocolVersionObject()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getProtocolVersionObject</h4>
+<pre>org.apache.hc.core5.http.ProtocolVersion&nbsp;getProtocolVersionObject()</pre>
 </li>
 </ul>
 </li>

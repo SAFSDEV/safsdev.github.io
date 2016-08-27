@@ -238,6 +238,15 @@ extends java.lang.Object</pre>
  This doesn't actually make any type of Connection or call to the web service.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../org/safs/rest/service/Service.html" title="class in org.safs.rest.service">Service</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/rest/REST.html#StartServiceSession(java.lang.String,%20java.lang.String,%20java.lang.String)">StartServiceSession</a></strong>(java.lang.String&nbsp;serviceId,
+                   java.lang.String&nbsp;baseURL,
+                   java.lang.String&nbsp;protocolVersion)</code>
+<div class="block">Start a named Service session with a specific web service.<br>
+ This doesn't actually make any type of Connection or call to the web service.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -362,6 +371,25 @@ extends java.lang.Object</pre>
 <h4>StartServiceSession</h4>
 <pre>public static&nbsp;<a href="../../../org/safs/rest/service/Service.html" title="class in org.safs.rest.service">Service</a>&nbsp;StartServiceSession(java.lang.String&nbsp;serviceId,
                           java.lang.String&nbsp;baseURL)
+                                   throws java.lang.IllegalArgumentException</pre>
+<div class="block">Start a named Service session with a specific web service.<br>
+ This doesn't actually make any type of Connection or call to the web service.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>serviceId</code> - - unique name of the new Service session.</dd><dd><code>baseURL</code> - -- root URL used to interact with the service.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>Service</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code> - if the serviceId is null or already exists.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/rest/REST.html#EndServiceSession(java.lang.String)"><code>EndServiceSession(String)</code></a>, 
+<a href="../../../org/safs/rest/service/Services.html#getService(java.lang.String)"><code>Services.getService(String)</code></a></dd></dl>
+</li>
+</ul>
+<a name="StartServiceSession(java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>StartServiceSession</h4>
+<pre>public static&nbsp;<a href="../../../org/safs/rest/service/Service.html" title="class in org.safs.rest.service">Service</a>&nbsp;StartServiceSession(java.lang.String&nbsp;serviceId,
+                          java.lang.String&nbsp;baseURL,
+                          java.lang.String&nbsp;protocolVersion)
                                    throws java.lang.IllegalArgumentException</pre>
 <div class="block">Start a named Service session with a specific web service.<br>
  This doesn't actually make any type of Connection or call to the web service.</div>
