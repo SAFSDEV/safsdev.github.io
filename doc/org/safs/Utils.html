@@ -60,13 +60,13 @@
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_detail">Method</a></li>
 </ul>
@@ -102,6 +102,51 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#DEFAULT_JAVA_COMPILER">DEFAULT_JAVA_COMPILER</a></strong></code>
+<div class="block">'javac' the default java compiler.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#DEFAULT_OUTPUT_DIRECTORY">DEFAULT_OUTPUT_DIRECTORY</a></strong></code>
+<div class="block">'bin' the sub-folder containing compiled classes.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#DEFAULT_SOURCE_DIRECTORY">DEFAULT_SOURCE_DIRECTORY</a></strong></code>
+<div class="block">'src' the sub-folder containing java/groovy source code.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#FILE_SUFFIX_GROOVY">FILE_SUFFIX_GROOVY</a></strong></code>
+<div class="block">'.groovy' the suffix of groovy source code.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#FILE_SUFFIX_JAVA">FILE_SUFFIX_JAVA</a></strong></code>
+<div class="block">'.java' the suffix of java source code.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor_summary">
@@ -132,10 +177,18 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#compile(java.lang.String)">compile</a></strong>(java.lang.String&nbsp;classnames)</code>
+<div class="block">Compile the java/groovy source code.<br>
+ <b>NOTE:</b><br>
+ 1.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#getNumLock()">getNumLock</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#setNumLock(boolean)">setNumLock</a></strong>(boolean&nbsp;onOff)</code>&nbsp;</td>
 </tr>
@@ -155,6 +208,69 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="FILE_SUFFIX_JAVA">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FILE_SUFFIX_JAVA</h4>
+<pre>public static final&nbsp;java.lang.String FILE_SUFFIX_JAVA</pre>
+<div class="block">'.java' the suffix of java source code.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Utils.FILE_SUFFIX_JAVA">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="FILE_SUFFIX_GROOVY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FILE_SUFFIX_GROOVY</h4>
+<pre>public static final&nbsp;java.lang.String FILE_SUFFIX_GROOVY</pre>
+<div class="block">'.groovy' the suffix of groovy source code.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Utils.FILE_SUFFIX_GROOVY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_SOURCE_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_SOURCE_DIRECTORY</h4>
+<pre>public static final&nbsp;java.lang.String DEFAULT_SOURCE_DIRECTORY</pre>
+<div class="block">'src' the sub-folder containing java/groovy source code.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Utils.DEFAULT_SOURCE_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_OUTPUT_DIRECTORY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_OUTPUT_DIRECTORY</h4>
+<pre>public static final&nbsp;java.lang.String DEFAULT_OUTPUT_DIRECTORY</pre>
+<div class="block">'bin' the sub-folder containing compiled classes.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Utils.DEFAULT_OUTPUT_DIRECTORY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_JAVA_COMPILER">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DEFAULT_JAVA_COMPILER</h4>
+<pre>public static final&nbsp;java.lang.String DEFAULT_JAVA_COMPILER</pre>
+<div class="block">'javac' the default java compiler.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Utils.DEFAULT_JAVA_COMPILER">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor_detail">
@@ -191,11 +307,39 @@ extends java.lang.Object</pre>
 <a name="getNumLock()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getNumLock</h4>
 <pre>public static&nbsp;boolean&nbsp;getNumLock()</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>boolean, the current keyboard's 'NumLock' status.</dd></dl>
+</li>
+</ul>
+<a name="compile(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>compile</h4>
+<pre>public static&nbsp;void&nbsp;compile(java.lang.String&nbsp;classnames)
+                    throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
+<div class="block">Compile the java/groovy source code.<br>
+ <b>NOTE:</b><br>
+ 1. It is supposed the "<b>source codes</b>" resides in the <b><a href="../../org/safs/Utils.html#DEFAULT_SOURCE_DIRECTORY">"src"</a></b> sub-folder of the root directory.<br>
+ The "<b>compiled classes</b>" will be put the the <b><a href="../../org/safs/Utils.html#DEFAULT_OUTPUT_DIRECTORY">"bin"</a></b> sub-folder of the root directory.<br>
+ 2. Any dependency jars should be included in the environment "<b>CLASSPATH</b>" before this compilation.<br>
+ <b>File structure:</b><br>
+ <pre>
+ root
+   + <a href="../../org/safs/Utils.html#DEFAULT_SOURCE_DIRECTORY">"src"</a> (source files folder)
+      + package1
+      + package2
+   + <a href="../../org/safs/Utils.html#DEFAULT_OUTPUT_DIRECTORY">"bin"</a> (compiled classes go into this folder)
+ </pre></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>classnames</code> - String, the class names to compile separated by space, such as my.package.ClassA my.pack2.ClassB<br>
+                           this parameter could be mixed with java and groovy class.<br>
+                           <b>Note:</b> For groovy, we have to specify all dependency classes in order.<br></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code> - if the compilation failed.</dd></dl>
 </li>
 </ul>
 </li>
@@ -250,13 +394,13 @@ extends java.lang.Object</pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_detail">Method</a></li>
 </ul>

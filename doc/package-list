@@ -88,6 +88,9 @@ org.safs.staf.service.map
 org.safs.staf.service.queue
 org.safs.staf.service.sem
 org.safs.staf.service.var
+org.safs.test.compile
+org.safs.test.compile.java
+org.safs.test.compile.java.sub
 org.safs.text
 org.safs.tools
 org.safs.tools.consoles
