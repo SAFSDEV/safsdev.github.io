@@ -592,13 +592,15 @@ implements <a href="../../../../org/safs/tools/drivers/DriverInterface.html" tit
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/AbstractDriver.html#incrementGeneralStatus(int)">incrementGeneralStatus</a></strong>(int&nbsp;status)</code>
-<div class="block">Increment General (not Test) record counts.</div>
+<div class="block">Increment General (not Test, means not T, TW, TF) record counts.<br>
+ There is an exceptional case, the status is like DriverConstant.STATUS_TESTXXX_LOGGED, then<br>
+ increment the "test"(NOT "general") counter, keep consistent with InputProcessor.<br></div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/AbstractDriver.html#incrementTestStatus(int)">incrementTestStatus</a></strong>(int&nbsp;status)</code>
-<div class="block">Increment Test Record counts.</div>
+<div class="block">Increment Test Record (for T, TW, TF) counts.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -1504,7 +1506,9 @@ implements <a href="../../../../org/safs/tools/drivers/DriverInterface.html" tit
 <li class="blockList">
 <h4>incrementGeneralStatus</h4>
 <pre>public&nbsp;void&nbsp;incrementGeneralStatus(int&nbsp;status)</pre>
-<div class="block">Increment General (not Test) record counts.</div>
+<div class="block">Increment General (not Test, means not T, TW, TF) record counts.<br>
+ There is an exceptional case, the status is like DriverConstant.STATUS_TESTXXX_LOGGED, then<br>
+ increment the "test"(NOT "general") counter, keep consistent with InputProcessor.<br></div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../org/safs/tools/drivers/DriverInterface.html#incrementGeneralStatus(int)">incrementGeneralStatus</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers">DriverInterface</a></code></dd>
@@ -1518,7 +1522,7 @@ implements <a href="../../../../org/safs/tools/drivers/DriverInterface.html" tit
 <li class="blockList">
 <h4>incrementTestStatus</h4>
 <pre>public&nbsp;void&nbsp;incrementTestStatus(int&nbsp;status)</pre>
-<div class="block">Increment Test Record counts.</div>
+<div class="block">Increment Test Record (for T, TW, TF) counts.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../org/safs/tools/drivers/DriverInterface.html#incrementTestStatus(int)">incrementTestStatus</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers">DriverInterface</a></code></dd>
