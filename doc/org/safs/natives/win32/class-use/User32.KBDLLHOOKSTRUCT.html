@@ -115,24 +115,6 @@
                 com.sun.jna.NativeLong&nbsp;wParam,
                 <a href="../../../../../org/safs/natives/win32/User32.KBDLLHOOKSTRUCT.html" title="class in org.safs.natives.win32">User32.KBDLLHOOKSTRUCT</a>&nbsp;info)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="strong">MSLLKtoRKEventListener.</span><code><strong><a href="../../../../../org/safs/natives/MSLLKtoRKEventListener.html#onLLKeyboardHook(int,%20com.sun.jna.NativeLong,%20org.safs.natives.win32.User32.KBDLLHOOKSTRUCT)">onLLKeyboardHook</a></strong>(int&nbsp;code,
-                com.sun.jna.NativeLong&nbsp;wParam,
-                <a href="../../../../../org/safs/natives/win32/User32.KBDLLHOOKSTRUCT.html" title="class in org.safs.natives.win32">User32.KBDLLHOOKSTRUCT</a>&nbsp;info)</code>
-<div class="block">This method will analyze each input virtual key code (MS virtual key code)<br>
- according to their key status (PRESS, RELEASE), generate a series of RobotKeyEvent<br>
- and put these events in the List keyEvents.<br>
- 
- <b>Note:</b> RobotKeyEvent contains Java virtual key code as its key code value<br></div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="strong">LLKeyboardHookListener.</span><code><strong><a href="../../../../../org/safs/natives/LLKeyboardHookListener.html#onLLKeyboardHook(int,%20com.sun.jna.NativeLong,%20org.safs.natives.win32.User32.KBDLLHOOKSTRUCT)">onLLKeyboardHook</a></strong>(int&nbsp;nCode,
-                com.sun.jna.NativeLong&nbsp;wParam,
-                <a href="../../../../../org/safs/natives/win32/User32.KBDLLHOOKSTRUCT.html" title="class in org.safs.natives.win32">User32.KBDLLHOOKSTRUCT</a>&nbsp;info)</code>&nbsp;</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -148,12 +130,6 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>com.sun.jna.Pointer</code></td>
-<td class="colLast"><span class="strong">User32.LLKeyBoardCallBack.</span><code><strong><a href="../../../../../org/safs/natives/win32/User32.LLKeyBoardCallBack.html#callback(int,%20com.sun.jna.NativeLong,%20org.safs.natives.win32.User32.KBDLLHOOKSTRUCT)">callback</a></strong>(int&nbsp;nCode,
-        com.sun.jna.NativeLong&nbsp;wParam,
-        <a href="../../../../../org/safs/natives/win32/User32.KBDLLHOOKSTRUCT.html" title="class in org.safs.natives.win32">User32.KBDLLHOOKSTRUCT</a>&nbsp;lParam)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>com.sun.jna.Pointer</code></td>
 <td class="colLast"><span class="strong">User32.LLKeyBoardCallBack.</span><code><strong><a href="../../../../../org/safs/natives/win32/User32.LLKeyBoardCallBack.html#callback(int,%20com.sun.jna.NativeLong,%20org.safs.natives.win32.User32.KBDLLHOOKSTRUCT)">callback</a></strong>(int&nbsp;nCode,
         com.sun.jna.NativeLong&nbsp;wParam,

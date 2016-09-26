@@ -105,16 +105,6 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>(package private) <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a></code></td>
-<td class="colLast"><span class="strong">EngineCommandProcessor.</span><code><strong><a href="../../../org/safs/EngineCommandProcessor.html#gov">gov</a></strong></code>
-<div class="block">Stores engine-specific GuiObjectVector object for use</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>(package private) <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a></code></td>
-<td class="colLast"><span class="strong">MatchData.</span><code><strong><a href="../../../org/safs/MatchData.html#pgov">pgov</a></strong></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>(package private) <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a></code></td>
 <td class="colLast"><span class="strong">MatchData.</span><code><strong><a href="../../../org/safs/MatchData.html#pgov">pgov</a></strong></code>&nbsp;</td>
 </tr>
 </tbody>
@@ -126,14 +116,6 @@
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a></code></td>
-<td class="colLast"><span class="strong">MatchData.</span><code><strong><a href="../../../org/safs/MatchData.html#getGuiObjectVector()">getGuiObjectVector</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a></code></td>
-<td class="colLast"><span class="strong">EngineCommandProcessor.</span><code><strong><a href="../../../org/safs/EngineCommandProcessor.html#getGuiObjectVector()">getGuiObjectVector</a></strong>()</code>&nbsp;</td>
-</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a></code></td>
 <td class="colLast"><span class="strong">MatchData.</span><code><strong><a href="../../../org/safs/MatchData.html#getGuiObjectVector()">getGuiObjectVector</a></strong>()</code>&nbsp;</td>
@@ -160,24 +142,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected abstract <a href="../../../org/safs/GuiChildIterator.html" title="class in org.safs">GuiChildIterator</a></code></td>
-<td class="colLast"><span class="strong">GuiObjectVector.</span><code><strong><a href="../../../org/safs/GuiObjectVector.html#createGuiChildIterator(java.lang.Object,%20org.safs.GuiObjectVector,%20java.util.List)">createGuiChildIterator</a></strong>(java.lang.Object&nbsp;aparent,
-                      <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;govVector,
-                      java.util.List&nbsp;gather)</code>
-<div class="block">Return a GuiChildIterator subclass instance.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../org/safs/GuiChildIterator.ClassTypeInfo.html" title="class in org.safs">GuiChildIterator.ClassTypeInfo</a></code></td>
-<td class="colLast"><span class="strong">GuiChildIterator.</span><code><strong><a href="../../../org/safs/GuiChildIterator.html#incrementClassTypeIndices(java.lang.Object,%20org.safs.GuiObjectVector,%20int,%20int,%20java.util.Hashtable,%20java.util.Hashtable,%20java.lang.String)">incrementClassTypeIndices</a></strong>(java.lang.Object&nbsp;child,
-                         <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;govVector,
-                         int&nbsp;govLevel,
-                         int&nbsp;objLevel,
-                         java.util.Hashtable&nbsp;classindices,
-                         java.util.Hashtable&nbsp;typeindices,
-                         java.lang.String&nbsp;classname)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../org/safs/GuiChildIterator.ClassTypeInfo.html" title="class in org.safs">GuiChildIterator.ClassTypeInfo</a></code></td>
 <td class="colLast"><span class="strong">GuiChildIterator.</span><code><strong><a href="../../../org/safs/GuiChildIterator.html#incrementClassTypeIndices(java.lang.Object,%20org.safs.GuiObjectVector,%20int,%20int,%20java.util.Hashtable,%20java.util.Hashtable,%20java.lang.String)">incrementClassTypeIndices</a></strong>(java.lang.Object&nbsp;child,
                          <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;govVector,
@@ -202,31 +166,6 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><span class="strong">GuiChildIterator.</span><code><strong><a href="../../../org/safs/GuiChildIterator.html#processChildren(java.lang.Object,%20org.safs.GuiObjectVector,%20int,%20int,%20java.util.Hashtable,%20java.util.Hashtable,%20java.lang.String)">processChildren</a></strong>(java.lang.Object&nbsp;achild,
-               <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agovVector,
-               int&nbsp;agovLevel,
-               int&nbsp;aobjLevel,
-               java.util.Hashtable&nbsp;classindices,
-               java.util.Hashtable&nbsp;typeindices,
-               java.lang.String&nbsp;typeclass)</code>
-<div class="block">See if the provided object reference has any children that may help satisfy the 
- recognition string.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><span class="strong">GuiChildIterator.</span><code><strong><a href="../../../org/safs/GuiChildIterator.html#processNextLevel(java.lang.Object[],%20org.safs.GuiObjectVector,%20int,%20int,%20java.util.Hashtable,%20java.util.Hashtable,%20boolean)">processNextLevel</a></strong>(java.lang.Object[]&nbsp;children,
-                <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;govVector,
-                int&nbsp;govLevel,
-                int&nbsp;objLevel,
-                java.util.Hashtable&nbsp;entry_classindices,
-                java.util.Hashtable&nbsp;entry_typeindices,
-                boolean&nbsp;onlyOneChildVisible)</code>
-<div class="block">Called internally by processChildren only.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">GuiChildIterator.</span><code><strong><a href="../../../org/safs/GuiChildIterator.html#processNextLevel(java.lang.Object[],%20org.safs.GuiObjectVector,%20int,%20int,%20java.util.Hashtable,%20java.util.Hashtable,%20boolean)">processNextLevel</a></strong>(java.lang.Object[]&nbsp;children,
                 <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;govVector,
                 int&nbsp;govLevel,
@@ -246,20 +185,6 @@
              java.util.Hashtable&nbsp;classindices,
              java.util.Hashtable&nbsp;typeindices,
              java.lang.String&nbsp;typeclass)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><span class="strong">GuiChildIterator.</span><code><strong><a href="../../../org/safs/GuiChildIterator.html#processParent(java.lang.Object,%20org.safs.GuiObjectVector,%20int,%20int,%20java.util.Hashtable,%20java.util.Hashtable,%20java.lang.String)">processParent</a></strong>(java.lang.Object&nbsp;parent,
-             <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agovVector,
-             int&nbsp;agovLevel,
-             int&nbsp;aobjLevel,
-             java.util.Hashtable&nbsp;classindices,
-             java.util.Hashtable&nbsp;typeindices,
-             java.lang.String&nbsp;typeclass)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="strong">EngineCommandProcessor.</span><code><strong><a href="../../../org/safs/EngineCommandProcessor.html#setGuiObjectVector(org.safs.GuiObjectVector)">setGuiObjectVector</a></strong>(<a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;gov)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -278,21 +203,6 @@
                 <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agovVector,
                 java.util.List&nbsp;gather)</code>
 <div class="block">Called only once by some external routine kicking off a TestObject search.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><strong><a href="../../../org/safs/GuiChildIterator.html#GuiChildIterator(java.lang.Object,%20org.safs.GuiObjectVector,%20java.util.List)">GuiChildIterator</a></strong>(java.lang.Object&nbsp;aparent,
-                <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agovVector,
-                java.util.List&nbsp;gather)</code>
-<div class="block">Called only once by some external routine kicking off a TestObject search.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><strong><a href="../../../org/safs/MatchData.html#MatchData(org.safs.GuiObjectVector,%20int,%20int,%20java.lang.Object)">MatchData</a></strong>(<a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agov,
-         int&nbsp;agovLevel,
-         int&nbsp;aobjLevel,
-         java.lang.Object&nbsp;achild)</code>
-<div class="block">Creates a new MatchData object for provided GuiObjectVector depth level.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -338,14 +248,6 @@
 <div class="block">Provide our RGuiChildIterator instance as required.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../org/safs/GuiChildIterator.html" title="class in org.safs">GuiChildIterator</a></code></td>
-<td class="colLast"><span class="strong">RGuiObjectVector.</span><code><strong><a href="../../../org/safs/rational/RGuiObjectVector.html#createGuiChildIterator(java.lang.Object,%20org.safs.GuiObjectVector,%20java.util.List)">createGuiChildIterator</a></strong>(java.lang.Object&nbsp;aparent,
-                      <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;govVector,
-                      java.util.List&nbsp;gather)</code>
-<div class="block">Provide our RGuiChildIterator instance as required.</div>
-</td>
-</tr>
 </tbody>
 </table>
 <table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
@@ -355,13 +257,6 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiChildIterator.html#RGuiChildIterator(java.lang.Object,%20org.safs.GuiObjectVector,%20java.util.List)">RGuiChildIterator</a></strong>(java.lang.Object&nbsp;aparent,
-                 <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agovVector,
-                 java.util.List&nbsp;gather)</code>
-<div class="block">Called only once by some external routine kicking off a TestObject search.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colLast"><code><strong><a href="../../../org/safs/rational/RGuiChildIterator.html#RGuiChildIterator(java.lang.Object,%20org.safs.GuiObjectVector,%20java.util.List)">RGuiChildIterator</a></strong>(java.lang.Object&nbsp;aparent,
                  <a href="../../../org/safs/GuiObjectVector.html" title="class in org.safs">GuiObjectVector</a>&nbsp;agovVector,
                  java.util.List&nbsp;gather)</code>

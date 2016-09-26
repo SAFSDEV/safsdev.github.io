@@ -311,12 +311,6 @@
 <div class="block">Represents an object can be operated.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#anOperableObject">anOperableObject</a></strong></code>
-<div class="block">Represents an object can be operated.</div>
-</td>
-</tr>
 </tbody>
 </table>
 <table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
@@ -327,12 +321,6 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>protected java.util.Map&lt;org.openqa.selenium.WebElement,<a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a>&gt;</code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#operableObjects">operableObjects</a></strong></code>
-<div class="block">A cache containing IOperable objects for a certain WebElement.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Map&lt;org.openqa.selenium.WebElement,<a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a>&gt;</code></td>
 <td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#operableObjects">operableObjects</a></strong></code>
 <div class="block">A cache containing IOperable objects for a certain WebElement.</div>
@@ -370,27 +358,6 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Tree.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Tree.html#createDefaultOperable()">createDefaultOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Menu.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Menu.html#createDefaultOperable()">createDefaultOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">ListView.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ListView.html#createDefaultOperable()">createDefaultOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createDefaultOperable()">createDefaultOperable</a></strong>()</code>
-<div class="block">Create the default IOperable object for a certain specific component.<br>
- It is different from the <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createGenericOperable()"><code>Component.createGenericOperable()</code></a>, which will provide an IOperable<br>
- to support the minimal generic functionalities, like GetGUIImage, Click, HoverMouse etc.<br>
- Subclass COULD override this method to provide a default backup IOperable when other ways fail to create IOperable.<br></div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
 <td class="colLast"><span class="strong">TabControl.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/TabControl.html#createDOJOOperable()">createDOJOOperable</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -403,29 +370,6 @@
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
 <td class="colLast"><span class="strong">ComboBox.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ComboBox.html#createDOJOOperable()">createDOJOOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">TabControl.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/TabControl.html#createDOJOOperable()">createDOJOOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createDOJOOperable()">createDOJOOperable</a></strong>()</code>
-<div class="block">Create the IOperable object for DOJO domain.<br>
- Subclass SHOULD override this method if DOJO will be supported.<br></div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">ComboBox.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ComboBox.html#createDOJOOperable()">createDOJOOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createGenericOperable()">createGenericOperable</a></strong>()</code>
-<div class="block">Create the generic IOperable object to support the minimal generic functionalities, like GetGUIImage, Click, HoverMouse etc.<br>
- This generic IOperable will be used if no other specific IOperable is available.<br>
- Normally, subclass should NOT override this method.<br></div>
-</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
@@ -452,21 +396,6 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createHTMLOperable()">createHTMLOperable</a></strong>()</code>
-<div class="block">Create the IOperable object for HTML domain.<br>
- Subclass SHOULD override this method if HTML will be supported.<br></div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">ComboBox.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ComboBox.html#createHTMLOperable()">createHTMLOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">CheckBox.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/CheckBox.html#createHTMLOperable()">createHTMLOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
 <td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createOperable(org.openqa.selenium.WebElement)">createOperable</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>
 <div class="block">Create a IOperable object according to 'webelement'.<br>
  User could to override this method to provide an IOperable object, but mostly<br>
@@ -474,51 +403,6 @@
  <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createHTMLOperable()"><code>Component.createHTMLOperable()</code></a> and <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createSAPOperable()"><code>Component.createSAPOperable()</code></a> to provide specific <br>
  IOperable of certain domain.<br></div>
 </td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createOperable(org.openqa.selenium.WebElement)">createOperable</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>
-<div class="block">Create a IOperable object according to 'webelement'.<br>
- User could to override this method to provide an IOperable object, but mostly<br>
- user should override <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createDOJOOperable()"><code>Component.createDOJOOperable()</code></a>, <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createGenericOperable()"><code>Component.createGenericOperable()</code></a>, <br>
- <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createHTMLOperable()"><code>Component.createHTMLOperable()</code></a> and <a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createSAPOperable()"><code>Component.createSAPOperable()</code></a> to provide specific <br>
- IOperable of certain domain.<br></div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Tree.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Tree.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">TabControl.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/TabControl.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">ScrollBar.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ScrollBar.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Menu.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Menu.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">ListView.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ListView.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">Component.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/Component.html#createSAPOperable()">createSAPOperable</a></strong>()</code>
-<div class="block">Create the IOperable object for SAP domain.<br>
- Subclass SHOULD override this method if SAP will be supported.<br></div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">ComboBox.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/ComboBox.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>
-<td class="colLast"><span class="strong">CheckBox.</span><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/CheckBox.html#createSAPOperable()">createSAPOperable</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../../org/safs/selenium/webdriver/lib/model/IOperable.html" title="interface in org.safs.selenium.webdriver.lib.model">IOperable</a></code></td>

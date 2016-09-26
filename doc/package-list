@@ -3,7 +3,6 @@ com.jayway.android.robotium.remotecontrol.client
 com.jayway.android.robotium.remotecontrol.client.processor
 com.jayway.android.robotium.remotecontrol.install
 com.jayway.android.robotium.remotecontrol.solo
-com.jayway.android.robotium.solo
 com.robotium.solo
 com.sebuilder.interpreter
 org.apache.hc.client5.http.testframework
@@ -74,7 +73,6 @@ org.safs.selenium.webdriver.lib.interpreter
 org.safs.selenium.webdriver.lib.interpreter.selrunner
 org.safs.selenium.webdriver.lib.interpreter.selrunner.steptype
 org.safs.selenium.webdriver.lib.model
-org.safs.selenium.webdriver.lib.test
 org.safs.sockets
 org.safs.sockets.android
 org.safs.staf
@@ -88,9 +86,6 @@ org.safs.staf.service.map
 org.safs.staf.service.queue
 org.safs.staf.service.sem
 org.safs.staf.service.var
-org.safs.test.compile
-org.safs.test.compile.java
-org.safs.test.compile.java.sub
 org.safs.text
 org.safs.tools
 org.safs.tools.consoles
@@ -112,4 +107,3 @@ org.safs.tools.vars
 org.safs.xml
 org.slf4j.impl
 org.w3c.tools.codec
-resources

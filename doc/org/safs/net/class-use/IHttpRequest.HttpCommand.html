@@ -105,30 +105,11 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a></code></td>
-<td class="colLast"><span class="strong">IHttpRequest.HttpCommand.</span><code><strong><a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html#get(java.lang.String)">get</a></strong>(java.lang.String&nbsp;command)</code>
-<div class="block">Return a matched <a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net"><code>IHttpRequest.HttpCommand</code></a> according to the command string.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a></code></td>
-<td class="colLast"><span class="strong">IHttpRequest.HttpCommand.</span><code><strong><a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html#valueOf(java.lang.String)">valueOf</a></strong>(java.lang.String&nbsp;name)</code>
-<div class="block">Returns the enum constant of this type with the specified name.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a></code></td>
 <td class="colLast"><span class="strong">IHttpRequest.HttpCommand.</span><code><strong><a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html#valueOf(java.lang.String)">valueOf</a></strong>(java.lang.String&nbsp;name)</code>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>[]</code></td>
-<td class="colLast"><span class="strong">IHttpRequest.HttpCommand.</span><code><strong><a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html#values()">values</a></strong>()</code>
-<div class="block">Returns an array containing the constants of this enum type, in
-the order they are declared.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>[]</code></td>
 <td class="colLast"><span class="strong">IHttpRequest.HttpCommand.</span><code><strong><a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html#values()">values</a></strong>()</code>
 <div class="block">Returns an array containing the constants of this enum type, in
@@ -154,23 +135,6 @@ the order they are declared.</div>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
-<td class="colLast"><span class="strong">XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/net/XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
-       java.lang.String&nbsp;url,
-       boolean&nbsp;async)</code>
-<div class="block">Send a HTTP Request and get the response from the server.<br></div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
-<td class="colLast"><span class="strong">XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/net/XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
-       java.lang.String&nbsp;url,
-       boolean&nbsp;async,
-       java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;headers)</code>
-<div class="block">Send a HTTP Request and get the response from the server.<br></div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><span class="strong">XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/net/XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
        java.lang.String&nbsp;url,
        boolean&nbsp;async,
@@ -210,46 +174,6 @@ the order they are declared.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
-<td class="colLast"><span class="strong">IHttpRequest.</span><code><strong><a href="../../../../org/safs/net/IHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map,%20java.lang.String)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
-       java.lang.String&nbsp;url,
-       boolean&nbsp;async,
-       java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;headers,
-       java.lang.String&nbsp;data)</code>
-<div class="block">Send a HTTP Request and get the response from the server.<br>
- <b>Note:</b>
- 
- If this is performed by "AJAX XMLHttpRequest", it is probable not permitted to request 
-     an URL of domain other than the Application under test.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
-<td class="colLast"><span class="strong">HttpRequest.</span><code><strong><a href="../../../../org/safs/net/HttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map,%20java.lang.String)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
-       java.lang.String&nbsp;url,
-       boolean&nbsp;async,
-       java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;requestHeaders,
-       java.lang.String&nbsp;content)</code>
-<div class="block">Send a simple HTTP request.<br>
- If a PROXY server is needed to visit a site, we need to specify the <a href="http://docs.oracle.com/javase/6/docs/technotes/guides/net/proxies.html">PROXY server</a> as JVM parameter, such as:<br>
- -Dhttp.proxyHost=proxy.host.name<br>
- -Dhttp.proxyPort=portNumber<br>
- -Dhttps.proxyHost=proxy.host.name<br>
- -Dhttps.proxyPort=portNumber<br>
- <br>
- Besides the keys mentioned <a href="../../../../org/safs/net/IHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map,%20java.lang.String)"><code>IHttpRequest.execute(org.safs.net.IHttpRequest.HttpCommand, String, boolean, Map, String)</code></a>, the returned Map may also contain <code>Key#REQUEST_HEADERS</code>.<br></div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
-<td class="colLast"><span class="strong">XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/net/XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.lang.String)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
-       java.lang.String&nbsp;url,
-       boolean&nbsp;async,
-       java.lang.String&nbsp;data)</code>
-<div class="block">Send a HTTP Request and get the response from the server.<br></div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><span class="strong">XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/net/XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.lang.String)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
        java.lang.String&nbsp;url,
@@ -273,19 +197,6 @@ the order they are declared.</div>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
-<td class="colLast"><span class="strong">WDLibrary.WD_XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/selenium/webdriver/lib/WDLibrary.WD_XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map,%20java.lang.String)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
-       java.lang.String&nbsp;url,
-       boolean&nbsp;async,
-       java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;headers,
-       java.lang.String&nbsp;data)</code>
-<div class="block">Implementation: through <a href="../../../../org/safs/selenium/webdriver/lib/WDLibrary.html" title="class in org.safs.selenium.webdriver.lib"><code>WDLibrary</code></a>, execute <a href="../../../../org/safs/selenium/util/JavaScriptFunctions.html#sendHttpRequest(java.util.Map)"><code>JavaScriptFunctions.sendHttpRequest(Map)</code></a>.<br>
- For synchronous execution, all results will be stored in the returned Map result with one value of <a href="../../../../org/safs/net/IHttpRequest.Key.html" title="enum in org.safs.net"><code>IHttpRequest.Key</code></a>;<br>
- For asynchronous execution, except <a href="../../../../org/safs/net/IHttpRequest.Key.html#READY_STATE"><code>IHttpRequest.Key.READY_STATE</code></a>, the other values will not be in the returned Map result,
- they will be stored in javascript global variables:<br></div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><span class="strong">WDLibrary.WD_XMLHttpRequest.</span><code><strong><a href="../../../../org/safs/selenium/webdriver/lib/WDLibrary.WD_XMLHttpRequest.html#execute(org.safs.net.IHttpRequest.HttpCommand,%20java.lang.String,%20boolean,%20java.util.Map,%20java.lang.String)">execute</a></strong>(<a href="../../../../org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net">IHttpRequest.HttpCommand</a>&nbsp;command,
        java.lang.String&nbsp;url,
