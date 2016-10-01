@@ -180,54 +180,60 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#debugLogFile">debugLogFile</a></strong></code>
+<div class="block">The debug log file containing debug message when calling main() to start "selenium server".</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#isGrid">isGrid</a></strong></code>
 <div class="block">if this is a grid-hub server</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#JAVA_TMPDIR">JAVA_TMPDIR</a></strong></code>
 <div class="block">"java.io.tmpdir"</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#LAST_SESSION_KEY">LAST_SESSION_KEY</a></strong></code>
 <div class="block">"LASTSESSION"</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_hostname">remote_hostname</a></strong></code>
 <div class="block">parsed hostname of the remote selenium server (standalone or grid-hub) 
  might be needed for additional Selenium RMI Server communication.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_port">remote_port</a></strong></code>
 <div class="block">parsed port number of the remote selenium server (standalone or grid-hub) 
  might be needed for get grid-node information.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.net.URL</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_URL">remote_URL</a></strong></code>
 <div class="block">The URL provided at construction time.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#rmi_hostname">rmi_hostname</a></strong></code>
 <div class="block">hostname of the remote grid-node.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#rmi_registry_port">rmi_registry_port</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/safs/selenium/rmi/agent/SeleniumAgent.html" title="class in org.safs.selenium.rmi.agent">SeleniumAgent</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#rmiAgent">rmiAgent</a></strong></code>
 <div class="block">A SeleniumRMIAgent, if enabled, to communicate with a remote SAFS Selenium RMI Server.<br>
@@ -235,7 +241,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
  This may also be non-null, but not connected to an RMI server if the server is not running.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#SESSION_FILE">SESSION_FILE</a></strong></code>
 <div class="block">"selenium.session.tmp"</div>
@@ -346,7 +352,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#main(java.lang.String[])">main</a></strong>(java.lang.String[]&nbsp;args)</code>
-<div class="block">This main method will start a Selenium Server.</div>
+<div class="block">This main method will start a Selenium Server (standalone, hub, or node).</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -570,11 +576,21 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <a name="isGrid">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>isGrid</h4>
 <pre>protected&nbsp;boolean isGrid</pre>
 <div class="block">if this is a grid-hub server</div>
+</li>
+</ul>
+<a name="debugLogFile">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>debugLogFile</h4>
+<pre>public static final&nbsp;java.lang.String debugLogFile</pre>
+<div class="block">The debug log file containing debug message when calling main() to start "selenium server".</div>
 </li>
 </ul>
 </li>
@@ -914,15 +930,23 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <li class="blockList">
 <h4>main</h4>
 <pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
-<div class="block">This main method will start a Selenium Server. It will automatically detect the Java to use, which file to log 
- messages for each browser, what driver (IE CHROME) to be used to start with Selenium Server.<br>
+<div class="block">This main method will start a Selenium Server (standalone, hub, or node). It will automatically detect the Java to use,
+ which file to log messages for each browser, and what driver (IE CHROME) to be used to start with Selenium Server.<br>
  <br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - String[], it accepts following arguments:<br>
- "-port N" the port number for Selenium Server. If not provided, the default port will be used.
- For "standalone" and "hub" the default port number is 4444; While for "node", it is 5555.<br>
- "SELENIUMSERVER_JVM_OPTIONS=JVM OPTIONS", the JVM Options to start the Selenium Server<br>
- "-role &lt;therole>" 
- 
+ <b>"-port N"</b>, optional, the port number for Selenium Server. If not provided, the default port will be used.
+                   For "standalone" and "hub" the default port number is 4444; While for "node", it is 5555.
+                   <br>
+ <b>"SELENIUMSERVER_JVM_OPTIONS=JVM OPTIONS"</b>, optional, the JVM Options to start the Selenium Server<br>
+ <b>"-role TheServerRole"</b>, optional, if not provided, a standalone server will be launched.<br>
+                                         TheServerRole could be <b>"hub"</b>, and selenium server will be launched
+                                         as a hub for other node to connect.<br>
+                                         TheServerRole could be <b>"node"</b>, and selenium server will be launched
+                                         as a node to connect a hub. <b>**Note**</b> Hub's information must also 
+                                         be provided. Ex: <b>-role node -hub http://hub.machine:port/grid/register</b><br>
+ <b>"-project ProjectLocationAbsDir"</b>, optional, the absolute directory holding the project to test; If not provided, use
+                                        SeleniumPlus or SAFS installation directory as default. This parameter has higher
+                                        priority than JVM parameter "-Dsafs.project.root".<br>
  <br>
  Example:<br>
  <ul>
@@ -942,12 +966,14 @@ implements org.openqa.selenium.TakesScreenshot</pre>
  <li> <a href="../../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_OPTIONS"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_OPTIONS</code></a>
  <li> <a href="../../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xms"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xms</code></a>
  <li> <a href="../../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xmx"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xmx</code></a>
+ <li> <a href="../../../../../org/safs/tools/drivers/DriverConstant.html#PROPERTY_SAFS_PROJECT_ROOT"><code>DriverConstant.PROPERTY_SAFS_PROJECT_ROOT</code></a>
  </ul>
  Example:<br>
  <ul>
  <li>-DSELENIUMSERVER_JVM_OPTIONS="-Xms256m -Xmx1g"
  <li>-DSELENIUMSERVER_JVM_Xmx=4g
  <li>-DSELENIUMSERVER_JVM_Xms=512m
+ <li>-Dsafs.project.root=d:\full_path\to\test_project
  </ul></dd></dl>
 </li>
 </ul>

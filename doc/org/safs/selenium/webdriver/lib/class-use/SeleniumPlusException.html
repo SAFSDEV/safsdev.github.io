@@ -133,6 +133,16 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a></code></td>
+<td class="colLast"><span class="strong">SePlusInstallInfo.</span><code><strong><a href="../../../../../../org/safs/selenium/util/SePlusInstallInfo.html#instance()">instance</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a></code></td>
+<td class="colLast"><span class="strong">SePlusInstallInfo.</span><code><strong><a href="../../../../../../org/safs/selenium/util/SePlusInstallInfo.html#validate()">validate</a></strong>()</code>
+<div class="block">Validate the path of Selenium, Embedded Java, Library etc.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/safs/selenium/util/MouseEvent.html" title="class in org.safs.selenium.util">MouseEvent</a></code></td>
 <td class="colLast"><span class="strong">DocumentClickCapture.</span><code><strong><a href="../../../../../../org/safs/selenium/util/DocumentClickCapture.html#waitForClick(long)">waitForClick</a></strong>(long&nbsp;secondsTimeout)</code>&nbsp;</td>
 </tr>
@@ -276,6 +286,17 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><span class="strong">WebDriverGUIUtilities.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#launchSeleniumServers()">launchSeleniumServers</a></strong>()</code>
+<div class="block">Launch Selenium-Standalone-Sever or Selenium-Grid-Hub + Selenium-Grid-Nodes according to the configuration information.<br>
+ If the grid-node information is provided, then the Grid-Hub + Node will be launched; otherwise, standalone server will be launched.<br>
+ <b>Note:</b><br>
+ Before calling this method:<br>
+ <b>1.</b> We should set the JVM property <a href="../../../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_PROXY_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_PROXY_PORT</code></a>.<br>
+ <b>2.</b> If we want to launch "grid", we should also set the JVM property <a href="../../../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">CFScrollBar.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFScrollBar.html#localProcess()">localProcess</a></strong>()</code>
 <div class="block"><br><em>Purpose:</em> The scrollbar actions handled here are:
@@ -291,7 +312,7 @@
  <br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">CFComponent.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFComponent.html#localProcess()">localProcess</a></strong>()</code>
 <div class="block">Handle the cache for component-library.<br>
@@ -302,51 +323,51 @@
  call super.localProcess() in a try-catch clause like following:<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">CFCheckBox.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFCheckBox.html#localProcess()">localProcess</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/Tree.html" title="class in org.safs.selenium.webdriver.lib">Tree</a></code></td>
 <td class="colLast"><span class="strong">CFTree.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFTree.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>
 <div class="block">sub class need to override this method and provide its own library Component.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/TabControl.html" title="class in org.safs.selenium.webdriver.lib">TabControl</a></code></td>
 <td class="colLast"><span class="strong">CFTabControl.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFTabControl.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/ScrollBar.html" title="class in org.safs.selenium.webdriver.lib">ScrollBar</a></code></td>
 <td class="colLast"><span class="strong">CFScrollBar.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFScrollBar.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/Menu.html" title="class in org.safs.selenium.webdriver.lib">Menu</a></code></td>
 <td class="colLast"><span class="strong">CFMenuBar.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFMenuBar.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/ListView.html" title="class in org.safs.selenium.webdriver.lib">ListView</a></code></td>
 <td class="colLast"><span class="strong">CFListView.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFListView.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/EditBox.html" title="class in org.safs.selenium.webdriver.lib">EditBox</a></code></td>
 <td class="colLast"><span class="strong">CFEditBox.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFEditBox.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/Component.html" title="class in org.safs.selenium.webdriver.lib">Component</a></code></td>
 <td class="colLast"><span class="strong">CFComponent.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFComponent.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>
 <div class="block">sub class MUST to override this method and provide its own library Component.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/ComboBox.html" title="class in org.safs.selenium.webdriver.lib">ComboBox</a></code></td>
 <td class="colLast"><span class="strong">CFComboBox.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFComboBox.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../../../org/safs/selenium/webdriver/lib/CheckBox.html" title="class in org.safs.selenium.webdriver.lib">CheckBox</a></code></td>
 <td class="colLast"><span class="strong">CFCheckBox.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFCheckBox.html#newLibComponent(org.openqa.selenium.WebElement)">newLibComponent</a></strong>(org.openqa.selenium.WebElement&nbsp;webelement)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><span class="strong">SeleniumPlus.Misc.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/SeleniumPlus.Misc.html#SetApplicationMap(java.lang.String)">SetApplicationMap</a></strong>(java.lang.String&nbsp;mapID)</code>
 <div class="block">Load/Set/Change an Application Map and put it on top of <a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm#AppMapChaining">App Map chain</a>.<br>
@@ -355,19 +376,19 @@
  like an AppMap.order initialization file.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>(package private) static boolean</code></td>
 <td class="colLast"><span class="strong">SeleniumPlus.Misc.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/SeleniumPlus.Misc.html#SetContext(org.safs.model.Component)">SetContext</a></strong>(<a href="../../../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;component)</code>
 <div class="block">Give a Window or Component input focus.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) static boolean</code></td>
 <td class="colLast"><span class="strong">SeleniumPlus.Misc.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/SeleniumPlus.Misc.html#SetFocus(org.safs.model.Component)">SetFocus</a></strong>(<a href="../../../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;component)</code>
 <div class="block">Give a Window or Component input focus.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">CFComponent.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFComponent.html#setText(java.lang.String,%20boolean,%20java.lang.String)">setText</a></strong>(java.lang.String&nbsp;libName,
        boolean&nbsp;isCharacter,
@@ -375,7 +396,7 @@
 <div class="block">Clear the content of Component box first, and then enter the text into it.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="strong">CFComponent.</span><code><strong><a href="../../../../../../org/safs/selenium/webdriver/CFComponent.html#showComponentAsMuchPossible(boolean)">showComponentAsMuchPossible</a></strong>(boolean&nbsp;verify)</code>
 <div class="block">Show the component in the browser's viewport as much as possible.</div>

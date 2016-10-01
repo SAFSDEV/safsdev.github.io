@@ -1,0 +1,806 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>SePlusInstallInfo (SAFS API DOCUMENT)</title>
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="SePlusInstallInfo (SAFS API DOCUMENT)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/SePlusInstallInfo.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html" title="class in org.safs.selenium.util"><span class="strong">Prev Class</span></a></li>
+<li>Next Class</li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../index.html?org/safs/selenium/util/SePlusInstallInfo.html" target="_top">Frames</a></li>
+<li><a href="SePlusInstallInfo.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.safs.selenium.util</div>
+<h2 title="Class SePlusInstallInfo" class="title">Class SePlusInstallInfo</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li>org.safs.selenium.util.SePlusInstallInfo</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>public class <span class="strong">SePlusInstallInfo</span>
+extends java.lang.Object</pre>
+<div class="block">This class holds the information related to the Selenium, Embedded Java, Library etc.<br>
+ We provide support of Selenium Engine in both SAFS and SeleniumPlus.<br>
+ But the the file structure is different between SAFS and SeleniumPlus,<br> 
+ this class intends to detect automatically which one has been installed<br>
+ and deduce the related appropriate resources to use.<br></div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#CHOROMEDRIVER_UNIX">CHOROMEDRIVER_UNIX</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#CHOROMEDRIVER_WINDOWS">CHOROMEDRIVER_WINDOWS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#ENV_SAFSDIR">ENV_SAFSDIR</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#ENV_SELENIUM_PLUS">ENV_SELENIUM_PLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#IEDRIVER_WINDOWS">IEDRIVER_WINDOWS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#INDICATOR_SAFS">INDICATOR_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#INDICATOR_SEPLUS">INDICATOR_SEPLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#JAR_JSTAFEMBEDDED">JAR_JSTAFEMBEDDED</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#JAR_SELENIUM_SAFS">JAR_SELENIUM_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#JAR_SELENIUM_SEPLUS">JAR_SELENIUM_SEPLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#NAME_PARTIAL_SELENIUM_SERVER_STDALONE">NAME_PARTIAL_SELENIUM_SERVER_STDALONE</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#PRODUCT_SAFS">PRODUCT_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#PRODUCT_SELENIUM_PLUS">PRODUCT_SELENIUM_PLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_EXTRA_SAFS">RELATIVE_DIR_EXTRA_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_EXTRA_SEPLUS">RELATIVE_DIR_EXTRA_SEPLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_JAVA_BIN_SEPLUS">RELATIVE_DIR_JAVA_BIN_SEPLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_JAVA32_BIN_SAFS">RELATIVE_DIR_JAVA32_BIN_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_JAVA64_BIN_SAFS">RELATIVE_DIR_JAVA64_BIN_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_LIB_SAFS">RELATIVE_DIR_LIB_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_LIB_SEPLUS">RELATIVE_DIR_LIB_SEPLUS</a></strong></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getChromeDriver()">getChromeDriver</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getClassPath(boolean)">getClassPath</a></strong>(boolean&nbsp;appendSystemClassPath)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getExtraDir()">getExtraDir</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getIEDriver()">getIEDriver</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getJavaexe()">getJavaexe</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getLibraryDir()">getLibraryDir</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getRootDir()">getRootDir</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getSeleniumStandaloneJar()">getSeleniumStandaloneJar</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getSourceLocation()">getSourceLocation</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#instance()">instance</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#isSAFS()">isSAFS</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#IsSAFS()">IsSAFS</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#isSeleniumPlus()">isSeleniumPlus</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#IsSeleniumPlus()">IsSeleniumPlus</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#setExtraDir(java.io.File)">setExtraDir</a></strong>(java.io.File&nbsp;extraDir)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#setJavaexe(java.lang.String)">setJavaexe</a></strong>(java.lang.String&nbsp;javaexe)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#setLibraryDir(java.io.File)">setLibraryDir</a></strong>(java.io.File&nbsp;libraryDir)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#setRootDir(java.io.File)">setRootDir</a></strong>(java.io.File&nbsp;rootDir)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#setSeleniumStandaloneJar(java.io.File)">setSeleniumStandaloneJar</a></strong>(java.io.File&nbsp;seleniumStandaloneJar)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#toString()">toString</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#validate()">validate</a></strong>()</code>
+<div class="block">Validate the path of Selenium, Embedded Java, Library etc.<br></div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="PRODUCT_SELENIUM_PLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PRODUCT_SELENIUM_PLUS</h4>
+<pre>public static final&nbsp;java.lang.String PRODUCT_SELENIUM_PLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.PRODUCT_SELENIUM_PLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PRODUCT_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PRODUCT_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String PRODUCT_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.PRODUCT_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ENV_SELENIUM_PLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ENV_SELENIUM_PLUS</h4>
+<pre>public static final&nbsp;java.lang.String ENV_SELENIUM_PLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.ENV_SELENIUM_PLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ENV_SAFSDIR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ENV_SAFSDIR</h4>
+<pre>public static final&nbsp;java.lang.String ENV_SAFSDIR</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.ENV_SAFSDIR">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_EXTRA_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_EXTRA_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_EXTRA_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_EXTRA_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_LIB_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_LIB_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_LIB_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_LIB_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_JAVA64_BIN_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_JAVA64_BIN_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_JAVA64_BIN_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_JAVA64_BIN_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_JAVA32_BIN_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_JAVA32_BIN_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_JAVA32_BIN_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_JAVA32_BIN_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_EXTRA_SEPLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_EXTRA_SEPLUS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_EXTRA_SEPLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_EXTRA_SEPLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_LIB_SEPLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_LIB_SEPLUS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_LIB_SEPLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_LIB_SEPLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="RELATIVE_DIR_JAVA_BIN_SEPLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELATIVE_DIR_JAVA_BIN_SEPLUS</h4>
+<pre>public static final&nbsp;java.lang.String RELATIVE_DIR_JAVA_BIN_SEPLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.RELATIVE_DIR_JAVA_BIN_SEPLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="JAR_SELENIUM_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>JAR_SELENIUM_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String JAR_SELENIUM_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.JAR_SELENIUM_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="JAR_SELENIUM_SEPLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>JAR_SELENIUM_SEPLUS</h4>
+<pre>public static final&nbsp;java.lang.String JAR_SELENIUM_SEPLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.JAR_SELENIUM_SEPLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="JAR_JSTAFEMBEDDED">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>JAR_JSTAFEMBEDDED</h4>
+<pre>public static final&nbsp;java.lang.String JAR_JSTAFEMBEDDED</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.JAR_JSTAFEMBEDDED">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="INDICATOR_SEPLUS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>INDICATOR_SEPLUS</h4>
+<pre>public static final&nbsp;java.lang.String INDICATOR_SEPLUS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.INDICATOR_SEPLUS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="INDICATOR_SAFS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>INDICATOR_SAFS</h4>
+<pre>public static final&nbsp;java.lang.String INDICATOR_SAFS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.INDICATOR_SAFS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="CHOROMEDRIVER_WINDOWS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CHOROMEDRIVER_WINDOWS</h4>
+<pre>public static final&nbsp;java.lang.String CHOROMEDRIVER_WINDOWS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.CHOROMEDRIVER_WINDOWS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="CHOROMEDRIVER_UNIX">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>CHOROMEDRIVER_UNIX</h4>
+<pre>public static final&nbsp;java.lang.String CHOROMEDRIVER_UNIX</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.CHOROMEDRIVER_UNIX">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="IEDRIVER_WINDOWS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>IEDRIVER_WINDOWS</h4>
+<pre>public static final&nbsp;java.lang.String IEDRIVER_WINDOWS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.IEDRIVER_WINDOWS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="NAME_PARTIAL_SELENIUM_SERVER_STDALONE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>NAME_PARTIAL_SELENIUM_SERVER_STDALONE</h4>
+<pre>public static final&nbsp;java.lang.String NAME_PARTIAL_SELENIUM_SERVER_STDALONE</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.NAME_PARTIAL_SELENIUM_SERVER_STDALONE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="isSeleniumPlus()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSeleniumPlus</h4>
+<pre>public&nbsp;boolean&nbsp;isSeleniumPlus()</pre>
+</li>
+</ul>
+<a name="isSAFS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isSAFS</h4>
+<pre>public&nbsp;boolean&nbsp;isSAFS()</pre>
+</li>
+</ul>
+<a name="instance()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>instance</h4>
+<pre>public static&nbsp;<a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a>&nbsp;instance()
+                                  throws <a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code></dd></dl>
+</li>
+</ul>
+<a name="getRootDir()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRootDir</h4>
+<pre>public&nbsp;java.io.File&nbsp;getRootDir()</pre>
+</li>
+</ul>
+<a name="setRootDir(java.io.File)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setRootDir</h4>
+<pre>public&nbsp;void&nbsp;setRootDir(java.io.File&nbsp;rootDir)</pre>
+</li>
+</ul>
+<a name="getExtraDir()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getExtraDir</h4>
+<pre>public&nbsp;java.io.File&nbsp;getExtraDir()</pre>
+</li>
+</ul>
+<a name="setExtraDir(java.io.File)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setExtraDir</h4>
+<pre>public&nbsp;void&nbsp;setExtraDir(java.io.File&nbsp;extraDir)</pre>
+</li>
+</ul>
+<a name="getLibraryDir()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getLibraryDir</h4>
+<pre>public&nbsp;java.io.File&nbsp;getLibraryDir()</pre>
+</li>
+</ul>
+<a name="setLibraryDir(java.io.File)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setLibraryDir</h4>
+<pre>public&nbsp;void&nbsp;setLibraryDir(java.io.File&nbsp;libraryDir)</pre>
+</li>
+</ul>
+<a name="getJavaexe()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getJavaexe</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getJavaexe()</pre>
+</li>
+</ul>
+<a name="setJavaexe(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setJavaexe</h4>
+<pre>public&nbsp;void&nbsp;setJavaexe(java.lang.String&nbsp;javaexe)</pre>
+</li>
+</ul>
+<a name="getSeleniumStandaloneJar()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSeleniumStandaloneJar</h4>
+<pre>public&nbsp;java.io.File&nbsp;getSeleniumStandaloneJar()</pre>
+</li>
+</ul>
+<a name="setSeleniumStandaloneJar(java.io.File)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setSeleniumStandaloneJar</h4>
+<pre>public&nbsp;void&nbsp;setSeleniumStandaloneJar(java.io.File&nbsp;seleniumStandaloneJar)</pre>
+</li>
+</ul>
+<a name="getClassPath(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getClassPath</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getClassPath(boolean&nbsp;appendSystemClassPath)</pre>
+</li>
+</ul>
+<a name="getChromeDriver()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getChromeDriver</h4>
+<pre>public&nbsp;java.io.File&nbsp;getChromeDriver()</pre>
+</li>
+</ul>
+<a name="getIEDriver()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getIEDriver</h4>
+<pre>public&nbsp;java.io.File&nbsp;getIEDriver()</pre>
+</li>
+</ul>
+<a name="validate()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>validate</h4>
+<pre>protected&nbsp;<a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a>&nbsp;validate()
+                              throws <a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
+<div class="block">Validate the path of Selenium, Embedded Java, Library etc.<br></div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>SePlusInstallInfo, a valid SePlusInstallInfo holding correct information about Selenium, Embedded Java, Library etc.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code> - if the validation fails.</dd></dl>
+</li>
+</ul>
+<a name="toString()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+</dl>
+</li>
+</ul>
+<a name="getSourceLocation()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getSourceLocation</h4>
+<pre>public static&nbsp;java.lang.String&nbsp;getSourceLocation()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String, the source location of this class. ( xxx/libs/selenium-plus*.jar or xxx/lib/safsselenium.jar)</dd></dl>
+</li>
+</ul>
+<a name="IsSeleniumPlus()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>IsSeleniumPlus</h4>
+<pre>public static&nbsp;boolean&nbsp;IsSeleniumPlus()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if we detect we are running from a SeleniumPlus installation (/libs/selenium-plus*.jar)</dd></dl>
+</li>
+</ul>
+<a name="IsSAFS()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>IsSAFS</h4>
+<pre>public static&nbsp;boolean&nbsp;IsSAFS()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if we detect we are running from a SAFS installation (/lib/safsselenium.jar)</dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/SePlusInstallInfo.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html" title="class in org.safs.selenium.util"><span class="strong">Prev Class</span></a></li>
+<li>Next Class</li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../index.html?org/safs/selenium/util/SePlusInstallInfo.html" target="_top">Frames</a></li>
+<li><a href="SePlusInstallInfo.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small><i>Copyright &#169; SAS Institute. All Rights Reserved.</i></small></p>
+</body>
+</html>

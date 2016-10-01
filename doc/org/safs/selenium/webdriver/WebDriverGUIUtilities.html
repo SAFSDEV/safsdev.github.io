@@ -183,23 +183,53 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_HUB">OPTION_HUB</a></strong></code>
+<div class="block">'-hub' followed by the hubRegisterUrl, something like http://hubhost:hubport/grid/register</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_PORT">OPTION_PORT</a></strong></code>
+<div class="block">'-port' followed by the port number of the Selenium Server is going to use</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_ROLE">OPTION_ROLE</a></strong></code>
+<div class="block">'-role' followed by the role name of the server, it can be hub or node</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#ROLE_HUB">ROLE_HUB</a></strong></code>
+<div class="block">'hub' role name for the "grid hub"</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#ROLE_NODE">ROLE_NODE</a></strong></code>
+<div class="block">'node' role name for the "grid node"</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_GRID_CONSOLE">URL_PATH_GRID_CONSOLE</a></strong></code>
 <div class="block">"/grid/console" the path to visit HTTP grid-hub server</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_GRID_REGISTER">URL_PATH_GRID_REGISTER</a></strong></code>
 <div class="block">"/grid/register" the path for registering grid-node</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_HUB">URL_PATH_HUB</a></strong></code>
 <div class="block">"/wd/hub" the path to visit HTTP standalone-server or grid-node</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_HUB_STATIC">URL_PATH_HUB_STATIC</a></strong></code>
 <div class="block">"/wd/hub/static" the path to get information about the running standalone-server or grid-node 
@@ -454,42 +484,53 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#launchSeleniumServers()">launchSeleniumServers</a></strong>()</code>
+<div class="block">Launch Selenium-Standalone-Sever or Selenium-Grid-Hub + Selenium-Grid-Nodes according to the configuration information.<br>
+ If the grid-node information is provided, then the Grid-Hub + Node will be launched; otherwise, standalone server will be launched.<br>
+ <b>Note:</b><br>
+ Before calling this method:<br>
+ <b>1.</b> We should set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_PROXY_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_PROXY_PORT</code></a>.<br>
+ <b>2.</b> If we want to launch "grid", we should also set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#loadClassMappings()">loadClassMappings</a></strong>()</code>
 <div class="block">load the Class2Type.properties mappings and any CustomClass2Type.properties mappings.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>(package private) static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#loadComponentToLibraryMap()">loadComponentToLibraryMap</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#readGridURL(java.lang.String,%20java.lang.String)">readGridURL</a></strong>(java.lang.String&nbsp;host,
            java.lang.String&nbsp;port)</code>
 <div class="block">This method will read from the connection to url <a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_GRID_CONSOLE"><code>URL_PATH_GRID_CONSOLE</code></a>.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#readHubStaticURL(java.lang.String,%20java.lang.String)">readHubStaticURL</a></strong>(java.lang.String&nbsp;host,
                 java.lang.String&nbsp;port)</code>
 <div class="block">This method is supposed to read from the connection to a NON-valid url <a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_HUB_STATIC"><code>URL_PATH_HUB_STATIC</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#resetWDTimeout()">resetWDTimeout</a></strong>()</code>
 <div class="block">reset the the webdriver timout to the "default" setting of the the running Processor.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#resetWDTimeoutLock()">resetWDTimeoutLock</a></strong>()</code>
 <div class="block">Resumes allowing changes to the WDTimeout.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#setActiveWindow(java.lang.String,%20java.lang.String,%20java.lang.String)">setActiveWindow</a></strong>(java.lang.String&nbsp;appMapName,
                java.lang.String&nbsp;windowName,
@@ -497,36 +538,36 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <div class="block">"Activate" the specified component's topmost parent.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#setTimeoutForHttpConnection(int)">setTimeoutForHttpConnection</a></strong>(int&nbsp;timeoutForHttpConnection)</code>
 <div class="block">set <a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#timeoutForHttpConnection"><code>timeoutForHttpConnection</code></a></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#setWDTimeout(long)">setWDTimeout</a></strong>(long&nbsp;timeout)</code>
 <div class="block">Set the webdriver element search timeout.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#setWDTimeoutLock()">setWDTimeoutLock</a></strong>()</code>
 <div class="block">Suspends any changes to the WDTimeout except by the calling Method.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#startRemoteServer()">startRemoteServer</a></strong>()</code>
 <div class="block">Start the Selenium Remote Server</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#startRemoteServer(java.lang.String,%20java.lang.String...)">startRemoteServer</a></strong>(java.lang.String&nbsp;projectdir,
                  java.lang.String...&nbsp;extraParams)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#verifyNodesRegistered(java.lang.String,%20java.lang.String,%20org.safs.selenium.webdriver.WebDriverGUIUtilities.GridNode...)">verifyNodesRegistered</a></strong>(java.lang.String&nbsp;hubhost,
                      java.lang.String&nbsp;hubport,
@@ -534,7 +575,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <div class="block">Verify if an array of GridNode have been registered to grid hub.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#waitForObject(java.lang.String,%20java.lang.String,%20java.lang.String,%20long)">waitForObject</a></strong>(java.lang.String&nbsp;appMapName,
              java.lang.String&nbsp;windowName,
@@ -543,7 +584,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <div class="block">Uses the Application Map caching mechanism provided by the superclass.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#waitForPropertyStatus(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20long,%20boolean,%20boolean)">waitForPropertyStatus</a></strong>(java.lang.String&nbsp;windowName,
                      java.lang.String&nbsp;compName,
@@ -555,7 +596,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <div class="block">Wait for the property matching/gone with the expected value.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#waitSeleniumNodeRunning(java.lang.String,%20java.lang.String,%20int...)">waitSeleniumNodeRunning</a></strong>(java.lang.String&nbsp;host,
                        java.lang.String&nbsp;port,
@@ -564,7 +605,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
  This method will only check if the URL "http://host:port/wd/hub" can be connected.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#waitSeleniumServerRunning(boolean,%20boolean,%20boolean,%20int...)">waitSeleniumServerRunning</a></strong>(boolean&nbsp;isGrid,
                          boolean&nbsp;waitForNodes,
@@ -663,6 +704,61 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <pre>static&nbsp;<a href="../../../../org/safs/text/CaseInsensitiveHashtable.html" title="class in org.safs.text">CaseInsensitiveHashtable</a> componentToLibraryMap</pre>
 <div class="block">Normally, component-type is the same as library-type, but sometimes they are different.<br>
  componentToLibraryMap is used to contain the mapping, if they are different.<br></div>
+</li>
+</ul>
+<a name="OPTION_PORT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>OPTION_PORT</h4>
+<pre>public static final&nbsp;java.lang.String OPTION_PORT</pre>
+<div class="block">'-port' followed by the port number of the Selenium Server is going to use</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.OPTION_PORT">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="OPTION_ROLE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>OPTION_ROLE</h4>
+<pre>public static final&nbsp;java.lang.String OPTION_ROLE</pre>
+<div class="block">'-role' followed by the role name of the server, it can be hub or node</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.OPTION_ROLE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="OPTION_HUB">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>OPTION_HUB</h4>
+<pre>public static final&nbsp;java.lang.String OPTION_HUB</pre>
+<div class="block">'-hub' followed by the hubRegisterUrl, something like http://hubhost:hubport/grid/register</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.OPTION_HUB">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ROLE_HUB">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ROLE_HUB</h4>
+<pre>public static final&nbsp;java.lang.String ROLE_HUB</pre>
+<div class="block">'hub' role name for the "grid hub"</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.ROLE_HUB">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ROLE_NODE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ROLE_NODE</h4>
+<pre>public static final&nbsp;java.lang.String ROLE_NODE</pre>
+<div class="block">'node' role name for the "grid node"</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.ROLE_NODE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="URL_PATH_GRID_REGISTER">
@@ -1217,6 +1313,25 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <div class="block">Start the Selenium Remote Server</div>
 </li>
 </ul>
+<a name="launchSeleniumServers()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>launchSeleniumServers</h4>
+<pre>public static&nbsp;void&nbsp;launchSeleniumServers()
+                                  throws <a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
+<div class="block">Launch Selenium-Standalone-Sever or Selenium-Grid-Hub + Selenium-Grid-Nodes according to the configuration information.<br>
+ If the grid-node information is provided, then the Grid-Hub + Node will be launched; otherwise, standalone server will be launched.<br>
+ <b>Note:</b><br>
+ Before calling this method:<br>
+ <b>1.</b> We should set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_PROXY_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_PROXY_PORT</code></a>.<br>
+ <b>2.</b> If we want to launch "grid", we should also set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>SeleniumPlusException,</code> - if the server has not been started successfully.</dd>
+<dd><code><a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#startRemoteServer(java.lang.String,%20java.lang.String...)"><code>startRemoteServer(String, String...)</code></a></dd></dl>
+</li>
+</ul>
 <a name="startRemoteServer(java.lang.String, java.lang.String...)">
 <!--   -->
 </a>
@@ -1227,10 +1342,16 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
                         java.lang.String...&nbsp;extraParams)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>projectdir</code> - </dd><dd><code>extraParams</code> - String[], the optional parameters
  <pre>
- "-port N" (N is the port number of the Selenium Server is going to use)
- "SELENIUMSERVER_JVM_OPTIONS=JVM OPTIONS", the JVM Options to start the Selenium Server
- "-role role" (role is the role name of the server, it can be hub or node)
- <pre></dd>
+ <b>-port N</b>, optional, the port number for Selenium Server. If not provided, the default port will be used.
+                 For "standalone" and "hub" the default port number is 4444; While for "node", it is 5555.
+ <b>-role TheServerRole</b>, optional, if not provided, a standalone server will be launched.
+                             TheServerRole could be <b>"hub"</b>, and selenium server will be launched
+                             as a hub (in grid mode) for other node to connect.
+                             TheServerRole could be <b>"node"</b>, and selenium server will be launched
+                             as a node (in grid mode) to connect a hub. <b>**Note**</b> Hub's information must also 
+                             be provided. Ex: <b>-role node -hub http://hub.machine:port/grid/register</b>
+ <b>SELENIUMSERVER_JVM_OPTIONS=jvm options</b> Ex: SELENIUMSERVER_JVM_OPTIONS="-Xms256m -Xmx1g"
+ </pre></dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean, true if the server has been successfully started</dd></dl>
 </li>
 </ul>
