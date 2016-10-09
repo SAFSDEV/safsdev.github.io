@@ -200,12 +200,21 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#centerDrag(java.awt.Point,%20java.awt.Point,%20int)">centerDrag</a></strong>(java.awt.Point&nbsp;start,
+          java.awt.Point&nbsp;end,
+          int&nbsp;dndReleaseDelay)</code>
+<div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
+ single mousePress (Button2) and drag\move then Release the mouse button at the end point.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#clearClipboard()">clearClipboard</a></strong>()</code>
 <div class="block">Clear the system clip-board.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#click(int,%20int)">click</a></strong>(int&nbsp;x,
      int&nbsp;y)</code>
@@ -213,16 +222,16 @@ extends java.lang.Object</pre>
  single mousePress and Release to execute a Click.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#click(int,%20int,%20int)">click</a></strong>(int&nbsp;x,
      int&nbsp;y,
-     int&nbsp;delayToRelease)</code>
+     int&nbsp;dndReleaseDelay)</code>
 <div class="block">Move the mouse cursor to the specified x,y coordinates then perform a 
  single mousePress and Release to execute a Click.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#click(int,%20int,%20int,%20int)">click</a></strong>(int&nbsp;x,
      int&nbsp;y,
@@ -231,24 +240,24 @@ extends java.lang.Object</pre>
 <div class="block">Workhorse Click routine.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#click(int,%20int,%20int,%20int,%20int)">click</a></strong>(int&nbsp;x,
      int&nbsp;y,
      int&nbsp;buttonmask,
      int&nbsp;nclicks,
-     int&nbsp;delayToRelease)</code>
+     int&nbsp;dndReleaseDelay)</code>
 <div class="block">Workhorse Click routine.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#click(java.awt.Point)">click</a></strong>(java.awt.Point&nbsp;p)</code>
 <div class="block">Move the mouse cursor to the specified Point coordinates then perform a 
  single mousePress and Release to execute a Click.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#clickWithKeyPress(int,%20int,%20int,%20int,%20int)">clickWithKeyPress</a></strong>(int&nbsp;x,
                  int&nbsp;y,
@@ -258,18 +267,18 @@ extends java.lang.Object</pre>
 <div class="block">Workhorse Click with Keypress routine.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#clickWithKeyPress(int,%20int,%20int,%20int,%20int,%20int)">clickWithKeyPress</a></strong>(int&nbsp;x,
                  int&nbsp;y,
                  int&nbsp;buttonmask,
                  int&nbsp;keycode,
                  int&nbsp;nclicks,
-                 int&nbsp;delayToRelease)</code>
+                 int&nbsp;dndReleaseDelay)</code>
 <div class="block">Workhorse Click with Keypress routine.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#closeFocusedWindow()">closeFocusedWindow</a></strong>()</code>
 <div class="block"><em>Pre-condition:</em> The window should be focused
@@ -277,7 +286,7 @@ extends java.lang.Object</pre>
  This works only for windows system.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#ctrlAltLeftDrag(java.awt.Point,%20java.awt.Point)">ctrlAltLeftDrag</a></strong>(java.awt.Point&nbsp;start,
                java.awt.Point&nbsp;end)</code>
@@ -285,7 +294,7 @@ extends java.lang.Object</pre>
  single mousePress (Button1) and drag\move then Release the mouse button at the end point.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#ctrlLeftDrag(java.awt.Point,%20java.awt.Point)">ctrlLeftDrag</a></strong>(java.awt.Point&nbsp;start,
             java.awt.Point&nbsp;end)</code>
@@ -293,7 +302,7 @@ extends java.lang.Object</pre>
  single mousePress (Button1) and drag\move then Release the mouse button at the end point.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#ctrlShiftLeftDrag(java.awt.Point,%20java.awt.Point)">ctrlShiftLeftDrag</a></strong>(java.awt.Point&nbsp;start,
                  java.awt.Point&nbsp;end)</code>
@@ -301,7 +310,7 @@ extends java.lang.Object</pre>
  single mousePress (Button1) and drag\move then Release the mouse button at the end point.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#doubleClick(int,%20int)">doubleClick</a></strong>(int&nbsp;x,
            int&nbsp;y)</code>
@@ -309,18 +318,22 @@ extends java.lang.Object</pre>
  double mousePress and Release to execute a Click.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#doubleClick(java.awt.Point)">doubleClick</a></strong>(java.awt.Point&nbsp;p)</code>
 <div class="block">Move the mouse cursor to the specified Point coordinates then perform a 
  single mousePress and Release to execute a Click.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#getClipboard(java.awt.datatransfer.DataFlavor)">getClipboard</a></strong>(java.awt.datatransfer.DataFlavor&nbsp;flavor)</code>
 <div class="block">Get content from system clip-board.</div>
 </td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#getDndReleaseDelay()">getDndReleaseDelay</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../org/safs/tools/input/InputKeysParser.html" title="class in org.safs.tools.input">InputKeysParser</a></code></td>
@@ -392,10 +405,19 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#leftDrag(java.awt.Point,%20java.awt.Point,%20int)">leftDrag</a></strong>(java.awt.Point&nbsp;start,
+        java.awt.Point&nbsp;end,
+        int&nbsp;dndReleaseDelay)</code>
+<div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
+ single mousePress (Button1) and drag\move then Release the mouse button at the end point.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#main(java.lang.String[])">main</a></strong>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#maximizeFocusedWindow()">maximizeFocusedWindow</a></strong>()</code>
 <div class="block"><em>Pre-condition:</em> The window should be focused
@@ -403,14 +425,14 @@ extends java.lang.Object</pre>
  This works only for windows system.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#minimizeAllWindows()">minimizeAllWindows</a></strong>()</code>
 <div class="block">Minimize all windows by the short cut 'Windows+M'<br>
  This works only for windows system.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#minimizeFocusedWindow()">minimizeFocusedWindow</a></strong>()</code>
 <div class="block"><em>Pre-condition:</em> The window should be focused
@@ -418,7 +440,7 @@ extends java.lang.Object</pre>
  This works only for windows system.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int)">mouseDrag</a></strong>(java.awt.Point&nbsp;start,
          java.awt.Point&nbsp;end,
@@ -427,30 +449,30 @@ extends java.lang.Object</pre>
  single mousePress using buttonMasks and drag\move then Release the mouse button at the end point.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int,%20int)">mouseDrag</a></strong>(java.awt.Point&nbsp;start,
          java.awt.Point&nbsp;end,
          int&nbsp;buttonMasks,
-         int&nbsp;delayToRelease)</code>
+         int&nbsp;dndReleaseDelay)</code>
 <div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
  single mousePress using buttonMasks and drag\move then Release the mouse button at the end point.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#mouseHover(java.awt.Point,%20int)">mouseHover</a></strong>(java.awt.Point&nbsp;point,
           int&nbsp;millisStay)</code>
 <div class="block">Move the mouse cursor to the specified Point, stay for a period and move out</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#mouseWheel(int)">mouseWheel</a></strong>(int&nbsp;wheelAmt)</code>
 <div class="block">Scroll the mouse wheel on the object which has focus.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#restoreFocusedWindow()">restoreFocusedWindow</a></strong>()</code>
 <div class="block"><em>Pre-condition:</em> The window should be focused
@@ -458,7 +480,7 @@ extends java.lang.Object</pre>
  This works only for windows system.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#rightClick(int,%20int)">rightClick</a></strong>(int&nbsp;x,
           int&nbsp;y)</code>
@@ -466,26 +488,35 @@ extends java.lang.Object</pre>
  single mousePress and Release to execute a RightClick.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#rightClick(int,%20int,%20int)">rightClick</a></strong>(int&nbsp;x,
           int&nbsp;y,
-          int&nbsp;delayToRelease)</code>
+          int&nbsp;dndReleaseDelay)</code>
 <div class="block">Move the mouse cursor to the specified x,y coordinates then perform a 
  single mousePress and Release to execute a RightClick.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#rightClick(java.awt.Point)">rightClick</a></strong>(java.awt.Point&nbsp;p)</code>
 <div class="block">Move the mouse cursor to the specified Point coordinates then perform a 
  single mousePress and Release to execute a Click.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#rightDrag(java.awt.Point,%20java.awt.Point)">rightDrag</a></strong>(java.awt.Point&nbsp;start,
          java.awt.Point&nbsp;end)</code>
+<div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
+ single mousePress (Button3) and drag\move then Release the mouse button at the end point.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#rightDrag(java.awt.Point,%20java.awt.Point,%20int)">rightDrag</a></strong>(java.awt.Point&nbsp;start,
+         java.awt.Point&nbsp;end,
+         int&nbsp;dndReleaseDelay)</code>
 <div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
  single mousePress (Button3) and drag\move then Release the mouse button at the end point.</div>
 </td>
@@ -498,31 +529,35 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#setDndReleaseDelay(int)">setDndReleaseDelay</a></strong>(int&nbsp;dndReleaseDelay)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#setDragEndPointOffset(int,%20int)">setDragEndPointOffset</a></strong>(int&nbsp;offsetx,
                      int&nbsp;offsety)</code>
 <div class="block">Set the offset from the end point for dragging.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#setDragStartPointOffset(int,%20int)">setDragStartPointOffset</a></strong>(int&nbsp;offsetx,
                        int&nbsp;offsety)</code>
 <div class="block">Set the offset from the start point for dragging.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#setMillisBetweenKeystrokes(int)">setMillisBetweenKeystrokes</a></strong>(int&nbsp;msBetween)</code>
 <div class="block">Set the delay in milliseconds between Robot key events.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#setWaitReaction(boolean)">setWaitReaction</a></strong>(boolean&nbsp;wait)</code>
 <div class="block">Set if wait for reaction to "input keys/chars".</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#setWaitReaction(boolean,%20int,%20int,%20int)">setWaitReaction</a></strong>(boolean&nbsp;wait,
                int&nbsp;tokenLength,
@@ -531,7 +566,7 @@ extends java.lang.Object</pre>
 <div class="block">Set if wait for reaction to "input keys/chars".</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#shiftLeftDrag(java.awt.Point,%20java.awt.Point)">shiftLeftDrag</a></strong>(java.awt.Point&nbsp;start,
              java.awt.Point&nbsp;end)</code>
@@ -539,7 +574,7 @@ extends java.lang.Object</pre>
  single mousePress (Button1) and drag\move then Release the mouse button at the end point.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/robot/Robot.html#waitReaction(java.lang.String)">waitReaction</a></strong>(java.lang.String&nbsp;text)</code>
 <div class="block">After Robot input keys/chars into a browser or an application, 
@@ -700,6 +735,26 @@ extends java.lang.Object</pre>
 <a href="../../../org/safs/robot/Robot.html#doEvents(java.awt.Robot,%20java.util.Vector,%20int)"><code>doEvents(java.awt.Robot, Vector, int)</code></a></dd></dl>
 </li>
 </ul>
+<a name="getDndReleaseDelay()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDndReleaseDelay</h4>
+<pre>public static&nbsp;int&nbsp;getDndReleaseDelay()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>int, The delay in millisecond before releasing mouse button when 'drag and drop'</dd></dl>
+</li>
+</ul>
+<a name="setDndReleaseDelay(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setDndReleaseDelay</h4>
+<pre>public static&nbsp;void&nbsp;setDndReleaseDelay(int&nbsp;dndReleaseDelay)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>dndReleaseDelay</code> - int, The delay in millisecond before releasing mouse button when 'drag and drop'</dd></dl>
+</li>
+</ul>
 <a name="setDragStartPointOffset(int, int)">
 <!--   -->
 </a>
@@ -831,12 +886,12 @@ extends java.lang.Object</pre>
                      int&nbsp;y,
                      int&nbsp;buttonmask,
                      int&nbsp;nclicks,
-                     int&nbsp;delayToRelease)
+                     int&nbsp;dndReleaseDelay)
                               throws java.awt.AWTException</pre>
 <div class="block">Workhorse Click routine.  
  Allows us to Click--Press & Release--any combination of InputEvent.BUTTONn_MASK 
  any number of times.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - screen X coordinate</dd><dd><code>y</code> - screen Y coordinate</dd><dd><code>buttonmask</code> - -- specific InputEvent.BUTTONn_MASK(s)</dd><dd><code>nclicks</code> - -- number of times to click (press and release)</dd><dd><code>delayToRelease</code> - -- number of millis to wait before final Release.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - screen X coordinate</dd><dd><code>y</code> - screen Y coordinate</dd><dd><code>buttonmask</code> - -- specific InputEvent.BUTTONn_MASK(s)</dd><dd><code>nclicks</code> - -- number of times to click (press and release)</dd><dd><code>dndReleaseDelay</code> - -- number of millis to wait before final Release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object Currently we return a Boolean(true) object, but this may 
  be subject to change.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -877,12 +932,12 @@ extends java.lang.Object</pre>
                                  int&nbsp;buttonmask,
                                  int&nbsp;keycode,
                                  int&nbsp;nclicks,
-                                 int&nbsp;delayToRelease)
+                                 int&nbsp;dndReleaseDelay)
                                           throws java.awt.AWTException</pre>
 <div class="block">Workhorse Click with Keypress routine.  
  Allows us to Click--Press & Release--any combination of InputEvent.BUTTONn_MASK 
  any number of times with a single Key Press & Release.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - screen X coordinate</dd><dd><code>y</code> - screen Y coordinate</dd><dd><code>buttonmask</code> - -- specific InputEvent.BUTTONn_MASK(s)</dd><dd><code>keycode</code> - -- specific keycode to press & release. Ex: KeyEvent.VK_SHIFT</dd><dd><code>nclicks</code> - -- number of times to click (press and release)</dd><dd><code>delayToRelease</code> - -- number of millis to wait before final Release.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - screen X coordinate</dd><dd><code>y</code> - screen Y coordinate</dd><dd><code>buttonmask</code> - -- specific InputEvent.BUTTONn_MASK(s)</dd><dd><code>keycode</code> - -- specific keycode to press & release. Ex: KeyEvent.VK_SHIFT</dd><dd><code>nclicks</code> - -- number of times to click (press and release)</dd><dd><code>dndReleaseDelay</code> - -- number of millis to wait before final Release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object Currently we return a Boolean(true) object, but this may 
  be subject to change.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -921,11 +976,11 @@ extends java.lang.Object</pre>
 <h4>click</h4>
 <pre>public static&nbsp;java.lang.Object&nbsp;click(int&nbsp;x,
                      int&nbsp;y,
-                     int&nbsp;delayToRelease)
+                     int&nbsp;dndReleaseDelay)
                               throws java.awt.AWTException</pre>
 <div class="block">Move the mouse cursor to the specified x,y coordinates then perform a 
  single mousePress and Release to execute a Click.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - </dd><dd><code>y</code> - </dd><dd><code>delayToRelease</code> - -- number of millis to wait before final Release.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - </dd><dd><code>y</code> - </dd><dd><code>dndReleaseDelay</code> - -- number of millis to wait before final Release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object Currently we return a Boolean(true) object, but this may 
  be subject to change.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -994,11 +1049,11 @@ extends java.lang.Object</pre>
 <h4>rightClick</h4>
 <pre>public static&nbsp;java.lang.Object&nbsp;rightClick(int&nbsp;x,
                           int&nbsp;y,
-                          int&nbsp;delayToRelease)
+                          int&nbsp;dndReleaseDelay)
                                    throws java.awt.AWTException</pre>
 <div class="block">Move the mouse cursor to the specified x,y coordinates then perform a 
  single mousePress and Release to execute a RightClick.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - </dd><dd><code>y</code> - </dd><dd><code>delayToRelease</code> - millis between final release.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - </dd><dd><code>y</code> - </dd><dd><code>dndReleaseDelay</code> - millis between final release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object Currently we return a Boolean(true) object, but this may 
  be subject to change.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -1068,11 +1123,11 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.Object&nbsp;mouseDrag(java.awt.Point&nbsp;start,
                          java.awt.Point&nbsp;end,
                          int&nbsp;buttonMasks,
-                         int&nbsp;delayToRelease)
+                         int&nbsp;dndReleaseDelay)
                                   throws java.awt.AWTException</pre>
 <div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
  single mousePress using buttonMasks and drag\move then Release the mouse button at the end point.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd><dd><code>int</code> - button masks to use during drag</dd><dd><code>delayToRelease</code> - millis before final release.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd><dd><code>int</code> - button masks to use during drag</dd><dd><code>dndReleaseDelay</code> - millis before final release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object Currently we return a Boolean(true) object, but this may 
  be subject to change.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -1258,8 +1313,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object returned from generic mouseDrag.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><code>Robot</code>, 
-<a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int)"><code>mouseDrag(Point,Point,int)</code></a></dd></dl>
+<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int)"><code>mouseDrag(Point,Point,int)</code></a></dd></dl>
 </li>
 </ul>
 <a name="rightDrag(java.awt.Point, java.awt.Point)">
@@ -1276,7 +1330,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object returned from generic mouseDrag.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><code>Robot</code></dd></dl>
+<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int)"><code>mouseDrag(Point,Point,int)</code></a></dd></dl>
 </li>
 </ul>
 <a name="centerDrag(java.awt.Point, java.awt.Point)">
@@ -1293,7 +1347,61 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object returned from generic mouseDrag.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><code>Robot</code></dd></dl>
+<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int)"><code>mouseDrag(Point,Point,int)</code></a></dd></dl>
+</li>
+</ul>
+<a name="leftDrag(java.awt.Point, java.awt.Point, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>leftDrag</h4>
+<pre>public static&nbsp;java.lang.Object&nbsp;leftDrag(java.awt.Point&nbsp;start,
+                        java.awt.Point&nbsp;end,
+                        int&nbsp;dndReleaseDelay)
+                                 throws java.awt.AWTException</pre>
+<div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
+ single mousePress (Button1) and drag\move then Release the mouse button at the end point.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd><dd><code>dndReleaseDelay</code> - millisecond before final release.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>Object returned from generic mouseDrag.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int,%20int)"><code>mouseDrag(Point, Point, int, int)</code></a></dd></dl>
+</li>
+</ul>
+<a name="rightDrag(java.awt.Point, java.awt.Point, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rightDrag</h4>
+<pre>public static&nbsp;java.lang.Object&nbsp;rightDrag(java.awt.Point&nbsp;start,
+                         java.awt.Point&nbsp;end,
+                         int&nbsp;dndReleaseDelay)
+                                  throws java.awt.AWTException</pre>
+<div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
+ single mousePress (Button3) and drag\move then Release the mouse button at the end point.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd><dd><code>dndReleaseDelay</code> - millisecond before final release.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>Object returned from generic mouseDrag.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int,%20int)"><code>mouseDrag(Point, Point, int, int)</code></a></dd></dl>
+</li>
+</ul>
+<a name="centerDrag(java.awt.Point, java.awt.Point, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>centerDrag</h4>
+<pre>public static&nbsp;java.lang.Object&nbsp;centerDrag(java.awt.Point&nbsp;start,
+                          java.awt.Point&nbsp;end,
+                          int&nbsp;dndReleaseDelay)
+                                   throws java.awt.AWTException</pre>
+<div class="block">Move the mouse cursor to the specified start Point coordinates then perform a 
+ single mousePress (Button2) and drag\move then Release the mouse button at the end point.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>Point</code> - screen coordinates to start of mouse press and drag.</dd><dd><code>Point</code> - screen coordinates to end mouse drag and mouse release.</dd><dd><code>dndReleaseDelay</code> - millisecond before final release.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>Object returned from generic mouseDrag.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.awt.AWTException</code> - if instantiating java.awt.Robot throws it.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/robot/Robot.html#mouseDrag(java.awt.Point,%20java.awt.Point,%20int,%20int)"><code>mouseDrag(Point, Point, int, int)</code></a></dd></dl>
 </li>
 </ul>
 <a name="minimizeAllWindows()">

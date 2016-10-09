@@ -628,21 +628,24 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/GenericObjectFunctions.html#dragTo(java.lang.String,%20java.lang.String,%20java.lang.String[])">dragTo</a></strong>(java.lang.String&nbsp;winname,
       java.lang.String&nbsp;compname,
       java.lang.String[]&nbsp;parameters)</code>
-<div class="block"> 
-                  A left mouse drag is performed from one object to another object based on the offsets values.</div>
+<div class="block">
+            A left mouse drag is performed from one object to another object based
+            on the offsets values.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/GenericObjectFunctions.html#dragTo(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">dragTo</a></strong>(java.lang.String&nbsp;winname,
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/GenericObjectFunctions.html#dragTo(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">dragTo</a></strong>(java.lang.String&nbsp;winname,
       java.lang.String&nbsp;compname,
       java.lang.String&nbsp;toWindow,
       java.lang.String&nbsp;toComponent,
       java.lang.String&nbsp;offsets,
       java.lang.String&nbsp;fromSubItem,
-      java.lang.String&nbsp;toSubItem)</code>
-<div class="block"> 
-                  A left mouse drag is performed from one object to another object based on the offsets values.</div>
+      java.lang.String&nbsp;toSubItem,
+      java.lang.String&nbsp;pause)</code>
+<div class="block">
+            A left mouse drag is performed from one object to another object based
+            on the offsets values.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -2880,7 +2883,7 @@ extends java.lang.Object</pre>
             The name of the component to act upon.</dd></dl>
 </li>
 </ul>
-<a name="dragTo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<a name="dragTo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -2892,35 +2895,31 @@ extends java.lang.Object</pre>
                        java.lang.String&nbsp;toComponent,
                        java.lang.String&nbsp;offsets,
                        java.lang.String&nbsp;fromSubItem,
-                       java.lang.String&nbsp;toSubItem)</pre>
-<div class="block"><pre> 
-                  A left mouse drag is performed from one object to another object based on the offsets values.
+                       java.lang.String&nbsp;toSubItem,
+                       java.lang.String&nbsp;pause)</pre>
+<div class="block"><pre>
+            A left mouse drag is performed from one object to another object based
+            on the offsets values.
 
-                  Drag will be performed from component (from-component) to another to-component. Offsets value are the drag object select location. The location (drag and release) calucate by X and Y percentage cordination. DragTo also supports sub item of component and  sub item of to-component.
-
-                   The coordination specify by offsets value. First two values are for from-component and another are for to-component.
-
-        Offsets can be 50%,50%,50%,50% or 50%;50%;50%;50%
-
-
-        T, WINDOW,COMPONENT, DRAGTO, ToWINDOW,ToCOMPONENT,"50%,50%,50%,50%"
-        Where first 50%,50% are COMPONENT or their subitem's X and Y location
-        and second 50%,50% are ToCOMPONENT or their subitem's X and Y location.
-
-                    </pre>    Supporting Engines:
+            Drag will be performed from component (from-component) to another
+                to-component. Offsets value are the drag object select location. The
+                location (drag and release) calucate by X and Y percentage
+                cordination. DragTo also supports sub item of component and sub item
+                of to-component.
+             The coordination specify by offsets value. First two values are
+                for from-component and another are for to-component.
+            </pre>    Supporting Engines:
     <P/><UL>
         <LI>Automated QA TestComplete</LI>
         <LI>OpenQA Selenium</LI>
     </UL></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>winname</code> - Optional:NO
             The name of the window to act upon.</dd><dd><code>compname</code> - Optional:NO
-            The name of the component to act upon.</dd><dd><code>toWindow</code> - Optional:NO 
-                  ToWindow object.</dd><dd><code>toComponent</code> - Optional:NO 
-                    ToComponent object.</dd><dd><code>offsets</code> - Optional:YES 
-                    Drag and release location of from-component and to-component. Offsets syntax will be "50%,50%,70%,70%, where first two percentages for from-component's X and Y location and second two are for to-component's X and Y location. If offsets isn't specify then center will be used."
-                    Default value, both components center</dd><dd><code>fromSubItem</code> - Optional:YES 
-                    Text of from-component's sub item.</dd><dd><code>toSubItem</code> - Optional:YES 
-                    Text of to-component's sub item.</dd></dl>
+            The name of the component to act upon.</dd><dd><code>toWindow</code> - Optional:NOToWindow object.</dd><dd><code>toComponent</code> - Optional:NOToComponent object.</dd><dd><code>offsets</code> - Optional:YES 
+                Drag and release location of from-component and to-component. 
+                Offsets syntax will be "50%,50%,70%,70%"", where first two percentages are for from-component 
+                and second two are for to-component. If offsets are not specified then center will be used.
+                Default value, both components center.</dd><dd><code>fromSubItem</code> - Optional:YESText of from-component's sub item.</dd><dd><code>toSubItem</code> - Optional:YESText of to-component's sub item.</dd><dd><code>pause</code> - Optional:YESPause time in millisecond to hold the button before releasing.</dd></dl>
 </li>
 </ul>
 <a name="dragTo(java.lang.String, java.lang.String, java.lang.String[])">
@@ -2932,21 +2931,18 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;dragTo(java.lang.String&nbsp;winname,
                        java.lang.String&nbsp;compname,
                        java.lang.String[]&nbsp;parameters)</pre>
-<div class="block"><pre> 
-                  A left mouse drag is performed from one object to another object based on the offsets values.
+<div class="block"><pre>
+            A left mouse drag is performed from one object to another object based
+            on the offsets values.
 
-                  Drag will be performed from component (from-component) to another to-component. Offsets value are the drag object select location. The location (drag and release) calucate by X and Y percentage cordination. DragTo also supports sub item of component and  sub item of to-component.
-
-                   The coordination specify by offsets value. First two values are for from-component and another are for to-component.
-
-        Offsets can be 50%,50%,50%,50% or 50%;50%;50%;50%
-
-
-        T, WINDOW,COMPONENT, DRAGTO, ToWINDOW,ToCOMPONENT,"50%,50%,50%,50%"
-        Where first 50%,50% are COMPONENT or their subitem's X and Y location
-        and second 50%,50% are ToCOMPONENT or their subitem's X and Y location.
-
-                    </pre>    
+            Drag will be performed from component (from-component) to another
+                to-component. Offsets value are the drag object select location. The
+                location (drag and release) calucate by X and Y percentage
+                cordination. DragTo also supports sub item of component and sub item
+                of to-component.
+             The coordination specify by offsets value. First two values are
+                for from-component and another are for to-component.
+            </pre>    
     Supporting Engines:
     <P/><UL>
         <LI>Automated QA TestComplete</LI>
@@ -2957,18 +2953,12 @@ extends java.lang.Object</pre>
             The name of the component to act upon.</dd><dd><code>parameters</code> - Optional:NO
             An array containing the following parameters:
     <UL>
-<BR/>        toWindow -- Optional:NO 
-                  ToWindow object.
-                <BR/>        toComponent -- Optional:NO 
-                    ToComponent object.
-                  <BR/>        offsets -- Optional:YES 
-                    Drag and release location of from-component and to-component. Offsets syntax will be "50%,50%,70%,70%, where first two percentages for from-component's X and Y location and second two are for to-component's X and Y location. If offsets isn't specify then center will be used."
-                    Default value, both components center
-                  <BR/>        fromSubItem -- Optional:YES 
-                    Text of from-component's sub item.
-                  <BR/>        toSubItem -- Optional:YES 
-                    Text of to-component's sub item.
-
+<BR/>        toWindow -- Optional:NOToWindow object.<BR/>        toComponent -- Optional:NOToComponent object.<BR/>        offsets -- Optional:YES 
+                Drag and release location of from-component and to-component. 
+                Offsets syntax will be "50%,50%,70%,70%"", where first two percentages are for from-component 
+                and second two are for to-component. If offsets are not specified then center will be used.
+                Default value, both components center.
+              <BR/>        fromSubItem -- Optional:YESText of from-component's sub item.<BR/>        toSubItem -- Optional:YESText of to-component's sub item.<BR/>        pause -- Optional:YESPause time in millisecond to hold the button before releasing.
     </UL></dd></dl>
 </li>
 </ul>
