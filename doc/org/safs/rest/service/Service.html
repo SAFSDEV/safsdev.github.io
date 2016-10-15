@@ -161,6 +161,14 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getBaseURL()">getBaseURL</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>(package private) java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getClientAdapter()">getClientAdapter</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>(package private) java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getClientAdapterClassName()">getClientAdapterClassName</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getPassword()">getPassword</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -193,22 +201,29 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setBaseURL(java.lang.String)">setBaseURL</a></strong>(java.lang.String&nbsp;baseURL)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>java.lang.Object</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setClientAdapterClassName(java.lang.String)">setClientAdapterClassName</a></strong>(java.lang.String&nbsp;clientAdapterClassName)</code>
+<div class="block">To specify the use of a different client adapter, call this
+ with the class name of the adapter.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setPassword(java.lang.String)">setPassword</a></strong>(java.lang.String&nbsp;password)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setProtocolVersion(java.lang.String)">setProtocolVersion</a></strong>(java.lang.String&nbsp;protocolVersion)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setProxyServerURL(java.lang.String)">setProxyServerURL</a></strong>(java.lang.String&nbsp;proxyServerURL)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setServiceId(java.lang.String)">setServiceId</a></strong>(java.lang.String&nbsp;serviceId)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setUserId(java.lang.String)">setUserId</a></strong>(java.lang.String&nbsp;userId)</code>&nbsp;</td>
 </tr>
@@ -421,10 +436,46 @@ extends java.lang.Object</pre>
 <a name="getProtocolVersionObject()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getProtocolVersionObject</h4>
 <pre>org.apache.hc.core5.http.ProtocolVersion&nbsp;getProtocolVersionObject()</pre>
+</li>
+</ul>
+<a name="setClientAdapterClassName(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setClientAdapterClassName</h4>
+<pre>public&nbsp;java.lang.Object&nbsp;setClientAdapterClassName(java.lang.String&nbsp;clientAdapterClassName)
+                                           throws java.lang.Exception</pre>
+<div class="block">To specify the use of a different client adapter, call this
+ with the class name of the adapter.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>clientAdapterClassName</code> - the class name of the client adapter</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd></dl>
+</li>
+</ul>
+<a name="getClientAdapterClassName()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getClientAdapterClassName</h4>
+<pre>java.lang.String&nbsp;getClientAdapterClassName()</pre>
+</li>
+</ul>
+<a name="getClientAdapter()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getClientAdapter</h4>
+<pre>java.lang.Object&nbsp;getClientAdapter()
+                            throws java.lang.Exception</pre>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd></dl>
 </li>
 </ul>
 </li>

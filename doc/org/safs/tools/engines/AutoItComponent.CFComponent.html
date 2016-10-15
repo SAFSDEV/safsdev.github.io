@@ -247,26 +247,70 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#click(org.safs.autoit.AutoItRs)">click</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;ars)</code>
-<div class="block">click</div>
+<div class="block"><strong>Deprecated.</strong>&nbsp;</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#click(org.safs.autoit.AutoItRs,%20java.awt.Point)">click</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+     java.awt.Point&nbsp;offset)</code>
+<div class="block">Click with position offset.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#click(org.safs.autoit.AutoItRs,%20java.lang.String,%20int,%20java.awt.Point,%20java.lang.String)">click</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+     java.lang.String&nbsp;mouseButton,
+     int&nbsp;nClicks,
+     java.awt.Point&nbsp;offset,
+     java.lang.String&nbsp;specialKey)</code>
+<div class="block">Workhorse of AutoIt click routine.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#componentClick()">componentClick</a></strong>()</code>
+<div class="block">Override componentClick() to deal with groups of CLICK keywords.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#ctrlClick(org.safs.autoit.AutoItRs,%20java.awt.Point)">ctrlClick</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+         java.awt.Point&nbsp;offset)</code>
+<div class="block">Ctrl click with position offset.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#doubleClick(org.safs.autoit.AutoItRs,%20java.awt.Point)">doubleClick</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+           java.awt.Point&nbsp;offset)</code>
+<div class="block">Double click with position offset.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected java.awt.Rectangle</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#getComponentRectangle()">getComponentRectangle</a></strong>()</code>
 <div class="block">Do nothing method returns null.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.awt.Rectangle</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#getComponentRectangleOnScreen()">getComponentRectangleOnScreen</a></strong>()</code>
 <div class="block">Get the absolute 'Rectangle bounds' of the Component, which means the rectangle is relative to the<br>
  whole screen, NOT to a window/browser.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#process()">process</a></strong>()</code>
 <div class="block">Process the record present in the provided testRecordData.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#rightClick(org.safs.autoit.AutoItRs,%20java.awt.Point)">rightClick</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+          java.awt.Point&nbsp;offset)</code>
+<div class="block">Right click with position offset.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -281,13 +325,20 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
 <div class="block">Send keyboard input to the current input focus target.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#shiftClick(org.safs.autoit.AutoItRs,%20java.awt.Point)">shiftClick</a></strong>(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+          java.awt.Point&nbsp;offset)</code>
+<div class="block">Shift click with position offset.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_org.safs.ComponentFunction">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.<a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a></h3>
-<code><a href="../../../../org/safs/ComponentFunction.html#_close()">_close</a>, <a href="../../../../org/safs/ComponentFunction.html#action_ComputedStyle(boolean)">action_ComputedStyle</a>, <a href="../../../../org/safs/ComponentFunction.html#action_getGuiImage()">action_getGuiImage</a>, <a href="../../../../org/safs/ComponentFunction.html#action_GetSaveTextFromGUI()">action_GetSaveTextFromGUI</a>, <a href="../../../../org/safs/ComponentFunction.html#action_showOnPage()">action_showOnPage</a>, <a href="../../../../org/safs/ComponentFunction.html#action_verifyGuiImageToFile()">action_verifyGuiImageToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#assignPropertyVariable()">assignPropertyVariable</a>, <a href="../../../../org/safs/ComponentFunction.html#captureObjectData()">captureObjectData</a>, <a href="../../../../org/safs/ComponentFunction.html#captureObjectDataToFile()">captureObjectDataToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#capturePropertiesToFile()">capturePropertiesToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#capturePropertyToFile()">capturePropertyToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#checkForCoord(java.util.Iterator)">checkForCoord</a>, <a href="../../../../org/safs/ComponentFunction.html#checkForCoord(java.lang.String)">checkForCoord</a>, <a href="../../../../org/safs/ComponentFunction.html#clearAppMapCache()">clearAppMapCache</a>, <a href="../../../../org/safs/ComponentFunction.html#clearCache()">clearCache</a>, <a href="../../../../org/safs/ComponentFunction.html#close()">close</a>, <a href="../../../../org/safs/ComponentFunction.html#closeWindow()">closeWindow</a>, <a href="../../../../org/safs/ComponentFunction.html#componentClick()">componentClick</a>, <a href="../../../../org/safs/ComponentFunction.html#componentExecutedFailureMessage(java.lang.String)">componentExecutedFailureMessage</a>, <a href="../../../../org/safs/ComponentFunction.html#componentFailureMessage(java.lang.String)">componentFailureMessage</a>, <a href="../../../../org/safs/ComponentFunction.html#componentProcess()">componentProcess</a>, <a href="../../../../org/safs/ComponentFunction.html#componentSuccessMessage(java.lang.String)">componentSuccessMessage</a>, <a href="../../../../org/safs/ComponentFunction.html#convertCoords(java.lang.String)">convertCoords</a>, <a href="../../../../org/safs/ComponentFunction.html#convertLine(java.lang.String)">convertLine</a>, <a href="../../../../org/safs/ComponentFunction.html#convertNum(java.lang.String)">convertNum</a>, <a href="../../../../org/safs/ComponentFunction.html#convertWindowPosition(java.lang.String)">convertWindowPosition</a>, <a href="../../../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)">deduceImageRect</a>, <a href="../../../../org/safs/ComponentFunction.html#dragTo()">dragTo</a>, <a href="../../../../org/safs/ComponentFunction.html#executeScript()">executeScript</a>, <a href="../../../../org/safs/ComponentFunction.html#exist()">exist</a>, <a href="../../../../org/safs/ComponentFunction.html#getAlternateParams()">getAlternateParams</a>, <a href="../../../../org/safs/ComponentFunction.html#getHelpers()">getHelpers</a>, <a href="../../../../org/safs/ComponentFunction.html#getHelpersWorker()">getHelpersWorker</a>, <a href="../../../../org/safs/ComponentFunction.html#getPossibleMapItem(java.lang.String)">getPossibleMapItem</a>, <a href="../../../../org/safs/ComponentFunction.html#getProperties()">getProperties</a>, <a href="../../../../org/safs/ComponentFunction.html#getProperty(java.lang.String)">getProperty</a>, <a href="../../../../org/safs/ComponentFunction.html#getPropertyCollection(java.util.List)">getPropertyCollection</a>, <a href="../../../../org/safs/ComponentFunction.html#getPropertyCollection(java.lang.String)">getPropertyCollection</a>, <a href="../../../../org/safs/ComponentFunction.html#getPropertyObject(java.lang.String)">getPropertyObject</a>, <a href="../../../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)">getRectangleImage</a>, <a href="../../../../org/safs/ComponentFunction.html#getStringValue(java.lang.Object)">getStringValue</a>, <a href="../../../../org/safs/ComponentFunction.html#getUUIDBoolean(java.lang.String)">getUUIDBoolean</a>, <a href="../../../../org/safs/ComponentFunction.html#getWindowRectangleOnScreen()">getWindowRectangleOnScreen</a>, <a href="../../../../org/safs/ComponentFunction.html#guiDoesExist(boolean)">guiDoesExist</a>, <a href="../../../../org/safs/ComponentFunction.html#hoverMouse()">hoverMouse</a>, <a href="../../../../org/safs/ComponentFunction.html#hoverScreenLocation()">hoverScreenLocation</a>, <a href="../../../../org/safs/ComponentFunction.html#inputKeystrokes()">inputKeystrokes</a>, <a href="../../../../org/safs/ComponentFunction.html#isPropertyExist()">isPropertyExist</a>, <a href="../../../../org/safs/ComponentFunction.html#issueFileErrorFailure(java.lang.String)">issueFileErrorFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issueParameterCountFailure()">issueParameterCountFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issueParameterCountFailure(java.lang.String)">issueParameterCountFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issueParameterValueFailure(java.lang.String)">issueParameterValueFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issuePassedSuccess(java.lang.String)">issuePassedSuccess</a>, <a href="../../../../org/safs/ComponentFunction.html#issuePassedSuccessUsing(java.lang.String)">issuePassedSuccessUsing</a>, <a href="../../../../org/safs/ComponentFunction.html#issueUnknownErrorFailure(java.lang.String)">issueUnknownErrorFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#isSupportedRecordType(java.lang.String)">isSupportedRecordType</a>, <a href="../../../../org/safs/ComponentFunction.html#locateScreenImage()">locateScreenImage</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapCoordReference(java.lang.String)">lookupAppMapCoordReference</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapLineReference(java.lang.String)">lookupAppMapLineReference</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapNumReference(java.lang.String)">lookupAppMapNumReference</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapReference(java.lang.String)">lookupAppMapReference</a>, <a href="../../../../org/safs/ComponentFunction.html#maximize()">maximize</a>, <a href="../../../../org/safs/ComponentFunction.html#minimize()">minimize</a>, <a href="../../../../org/safs/ComponentFunction.html#normalizeFileEncoding(java.lang.String)">normalizeFileEncoding</a>, <a href="../../../../org/safs/ComponentFunction.html#normalizePropertyCollection(java.util.Collection,%20java.lang.String)">normalizePropertyCollection</a>, <a href="../../../../org/safs/ComponentFunction.html#performDrag()">performDrag</a>, <a href="../../../../org/safs/ComponentFunction.html#performHoverMouse(java.awt.Point,%20int)">performHoverMouse</a>, <a href="../../../../org/safs/ComponentFunction.html#performScorll()">performScorll</a>, <a href="../../../../org/safs/ComponentFunction.html#restore()">restore</a>, <a href="../../../../org/safs/ComponentFunction.html#selectMenuItem(boolean)">selectMenuItem</a>, <a href="../../../../org/safs/ComponentFunction.html#sendEvent()">sendEvent</a>, <a href="../../../../org/safs/ComponentFunction.html#setIterator(java.util.Iterator)">setIterator</a>, <a href="../../../../org/safs/ComponentFunction.html#setPosition()">setPosition</a>, <a href="../../../../org/safs/ComponentFunction.html#setPropertyValue()">setPropertyValue</a>, <a href="../../../../org/safs/ComponentFunction.html#setRectVars(java.awt.Rectangle,%20java.lang.String)">setRectVars</a>, <a href="../../../../org/safs/ComponentFunction.html#showComponentAsMuchPossible(boolean)">showComponentAsMuchPossible</a>, <a href="../../../../org/safs/ComponentFunction.html#updateFromTestRecordData()">updateFromTestRecordData</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyClipboardToFile()">verifyClipboardToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyFileToFile(boolean)">verifyFileToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyMenuItem(boolean)">verifyMenuItem</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyObjectDataToFile()">verifyObjectDataToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyPropertiesToFile()">verifyPropertiesToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyProperty()">verifyProperty</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyPropertyContains()">verifyPropertyContains</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyPropertyToFile(boolean)">verifyPropertyToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyValueContains()">verifyValueContains</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyValues()">verifyValues</a>, <a href="../../../../org/safs/ComponentFunction.html#waitForGUI()">waitForGUI</a>, <a href="../../../../org/safs/ComponentFunction.html#waitForObject(java.lang.String,%20java.lang.String,%20java.lang.String,%20int)">waitForObject</a></code></li>
+<code><a href="../../../../org/safs/ComponentFunction.html#_close()">_close</a>, <a href="../../../../org/safs/ComponentFunction.html#action_ComputedStyle(boolean)">action_ComputedStyle</a>, <a href="../../../../org/safs/ComponentFunction.html#action_getGuiImage()">action_getGuiImage</a>, <a href="../../../../org/safs/ComponentFunction.html#action_GetSaveTextFromGUI()">action_GetSaveTextFromGUI</a>, <a href="../../../../org/safs/ComponentFunction.html#action_showOnPage()">action_showOnPage</a>, <a href="../../../../org/safs/ComponentFunction.html#action_verifyGuiImageToFile()">action_verifyGuiImageToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#assignPropertyVariable()">assignPropertyVariable</a>, <a href="../../../../org/safs/ComponentFunction.html#captureObjectData()">captureObjectData</a>, <a href="../../../../org/safs/ComponentFunction.html#captureObjectDataToFile()">captureObjectDataToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#capturePropertiesToFile()">capturePropertiesToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#capturePropertyToFile()">capturePropertyToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#checkForCoord(java.util.Iterator)">checkForCoord</a>, <a href="../../../../org/safs/ComponentFunction.html#checkForCoord(java.lang.String)">checkForCoord</a>, <a href="../../../../org/safs/ComponentFunction.html#clearAppMapCache()">clearAppMapCache</a>, <a href="../../../../org/safs/ComponentFunction.html#clearCache()">clearCache</a>, <a href="../../../../org/safs/ComponentFunction.html#close()">close</a>, <a href="../../../../org/safs/ComponentFunction.html#closeWindow()">closeWindow</a>, <a href="../../../../org/safs/ComponentFunction.html#componentExecutedFailureMessage(java.lang.String)">componentExecutedFailureMessage</a>, <a href="../../../../org/safs/ComponentFunction.html#componentFailureMessage(java.lang.String)">componentFailureMessage</a>, <a href="../../../../org/safs/ComponentFunction.html#componentProcess()">componentProcess</a>, <a href="../../../../org/safs/ComponentFunction.html#componentSuccessMessage(java.lang.String)">componentSuccessMessage</a>, <a href="../../../../org/safs/ComponentFunction.html#convertCoords(java.lang.String)">convertCoords</a>, <a href="../../../../org/safs/ComponentFunction.html#convertLine(java.lang.String)">convertLine</a>, <a href="../../../../org/safs/ComponentFunction.html#convertNum(java.lang.String)">convertNum</a>, <a href="../../../../org/safs/ComponentFunction.html#convertWindowPosition(java.lang.String)">convertWindowPosition</a>, <a href="../../../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)">deduceImageRect</a>, <a href="../../../../org/safs/ComponentFunction.html#dragTo()">dragTo</a>, <a href="../../../../org/safs/ComponentFunction.html#executeScript()">executeScript</a>, <a href="../../../../org/safs/ComponentFunction.html#exist()">exist</a>, <a href="../../../../org/safs/ComponentFunction.html#getAlternateParams()">getAlternateParams</a>, <a href="../../../../org/safs/ComponentFunction.html#getHelpers()">getHelpers</a>, <a href="../../../../org/safs/ComponentFunction.html#getHelpersWorker()">getHelpersWorker</a>, <a href="../../../../org/safs/ComponentFunction.html#getPossibleMapItem(java.lang.String)">getPossibleMapItem</a>, <a href="../../../../org/safs/ComponentFunction.html#getProperties()">getProperties</a>, <a href="../../../../org/safs/ComponentFunction.html#getProperty(java.lang.String)">getProperty</a>, <a href="../../../../org/safs/ComponentFunction.html#getPropertyCollection(java.util.List)">getPropertyCollection</a>, <a href="../../../../org/safs/ComponentFunction.html#getPropertyCollection(java.lang.String)">getPropertyCollection</a>, <a href="../../../../org/safs/ComponentFunction.html#getPropertyObject(java.lang.String)">getPropertyObject</a>, <a href="../../../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)">getRectangleImage</a>, <a href="../../../../org/safs/ComponentFunction.html#getStringValue(java.lang.Object)">getStringValue</a>, <a href="../../../../org/safs/ComponentFunction.html#getUUIDBoolean(java.lang.String)">getUUIDBoolean</a>, <a href="../../../../org/safs/ComponentFunction.html#getWindowRectangleOnScreen()">getWindowRectangleOnScreen</a>, <a href="../../../../org/safs/ComponentFunction.html#guiDoesExist(boolean)">guiDoesExist</a>, <a href="../../../../org/safs/ComponentFunction.html#hoverMouse()">hoverMouse</a>, <a href="../../../../org/safs/ComponentFunction.html#hoverScreenLocation()">hoverScreenLocation</a>, <a href="../../../../org/safs/ComponentFunction.html#inputKeystrokes()">inputKeystrokes</a>, <a href="../../../../org/safs/ComponentFunction.html#isPropertyExist()">isPropertyExist</a>, <a href="../../../../org/safs/ComponentFunction.html#issueFileErrorFailure(java.lang.String)">issueFileErrorFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issueParameterCountFailure()">issueParameterCountFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issueParameterCountFailure(java.lang.String)">issueParameterCountFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issueParameterValueFailure(java.lang.String)">issueParameterValueFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#issuePassedSuccess(java.lang.String)">issuePassedSuccess</a>, <a href="../../../../org/safs/ComponentFunction.html#issuePassedSuccessUsing(java.lang.String)">issuePassedSuccessUsing</a>, <a href="../../../../org/safs/ComponentFunction.html#issueUnknownErrorFailure(java.lang.String)">issueUnknownErrorFailure</a>, <a href="../../../../org/safs/ComponentFunction.html#isSupportedRecordType(java.lang.String)">isSupportedRecordType</a>, <a href="../../../../org/safs/ComponentFunction.html#locateScreenImage()">locateScreenImage</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapCoordReference(java.lang.String)">lookupAppMapCoordReference</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapLineReference(java.lang.String)">lookupAppMapLineReference</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapNumReference(java.lang.String)">lookupAppMapNumReference</a>, <a href="../../../../org/safs/ComponentFunction.html#lookupAppMapReference(java.lang.String)">lookupAppMapReference</a>, <a href="../../../../org/safs/ComponentFunction.html#maximize()">maximize</a>, <a href="../../../../org/safs/ComponentFunction.html#minimize()">minimize</a>, <a href="../../../../org/safs/ComponentFunction.html#normalizeFileEncoding(java.lang.String)">normalizeFileEncoding</a>, <a href="../../../../org/safs/ComponentFunction.html#normalizePropertyCollection(java.util.Collection,%20java.lang.String)">normalizePropertyCollection</a>, <a href="../../../../org/safs/ComponentFunction.html#performDrag()">performDrag</a>, <a href="../../../../org/safs/ComponentFunction.html#performHoverMouse(java.awt.Point,%20int)">performHoverMouse</a>, <a href="../../../../org/safs/ComponentFunction.html#performScorll()">performScorll</a>, <a href="../../../../org/safs/ComponentFunction.html#restore()">restore</a>, <a href="../../../../org/safs/ComponentFunction.html#selectMenuItem(boolean)">selectMenuItem</a>, <a href="../../../../org/safs/ComponentFunction.html#sendEvent()">sendEvent</a>, <a href="../../../../org/safs/ComponentFunction.html#setIterator(java.util.Iterator)">setIterator</a>, <a href="../../../../org/safs/ComponentFunction.html#setPosition()">setPosition</a>, <a href="../../../../org/safs/ComponentFunction.html#setPropertyValue()">setPropertyValue</a>, <a href="../../../../org/safs/ComponentFunction.html#setRectVars(java.awt.Rectangle,%20java.lang.String)">setRectVars</a>, <a href="../../../../org/safs/ComponentFunction.html#showComponentAsMuchPossible(boolean)">showComponentAsMuchPossible</a>, <a href="../../../../org/safs/ComponentFunction.html#updateFromTestRecordData()">updateFromTestRecordData</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyClipboardToFile()">verifyClipboardToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyFileToFile(boolean)">verifyFileToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyMenuItem(boolean)">verifyMenuItem</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyObjectDataToFile()">verifyObjectDataToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyPropertiesToFile()">verifyPropertiesToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyProperty()">verifyProperty</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyPropertyContains()">verifyPropertyContains</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyPropertyToFile(boolean)">verifyPropertyToFile</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyValueContains()">verifyValueContains</a>, <a href="../../../../org/safs/ComponentFunction.html#verifyValues()">verifyValues</a>, <a href="../../../../org/safs/ComponentFunction.html#waitForGUI()">waitForGUI</a>, <a href="../../../../org/safs/ComponentFunction.html#waitForObject(java.lang.String,%20java.lang.String,%20java.lang.String,%20int)">waitForObject</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_org.safs.Processor">
@@ -398,14 +449,113 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
 <div class="block">setfoucs</div>
 </li>
 </ul>
+<a name="componentClick()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>componentClick</h4>
+<pre>protected&nbsp;void&nbsp;componentClick()
+                       throws <a href="../../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
+<div class="block">Override componentClick() to deal with groups of CLICK keywords.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../org/safs/ComponentFunction.html#componentClick()">componentClick</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
+</li>
+</ul>
+<a name="click(org.safs.autoit.AutoItRs, java.awt.Point)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>click</h4>
+<pre>protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+         java.awt.Point&nbsp;offset)</pre>
+<div class="block">Click with position offset.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>offset</code> - Point,          the offset position to click within the target component. Also can be null.</dd></dl>
+</li>
+</ul>
+<a name="doubleClick(org.safs.autoit.AutoItRs, java.awt.Point)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>doubleClick</h4>
+<pre>protected&nbsp;void&nbsp;doubleClick(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+               java.awt.Point&nbsp;offset)</pre>
+<div class="block">Double click with position offset.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>offset</code> - Point,          the offset position to click within the target component. Also can be null.</dd></dl>
+</li>
+</ul>
+<a name="rightClick(org.safs.autoit.AutoItRs, java.awt.Point)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rightClick</h4>
+<pre>protected&nbsp;void&nbsp;rightClick(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+              java.awt.Point&nbsp;offset)</pre>
+<div class="block">Right click with position offset.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>offset</code> - Point,          the offset position to click within the target component. Also can be null.</dd></dl>
+</li>
+</ul>
+<a name="ctrlClick(org.safs.autoit.AutoItRs, java.awt.Point)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ctrlClick</h4>
+<pre>protected&nbsp;void&nbsp;ctrlClick(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+             java.awt.Point&nbsp;offset)</pre>
+<div class="block">Ctrl click with position offset.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>offset</code> - Point,          the offset position to click within the target component. Also can be null.</dd></dl>
+</li>
+</ul>
+<a name="shiftClick(org.safs.autoit.AutoItRs, java.awt.Point)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shiftClick</h4>
+<pre>protected&nbsp;void&nbsp;shiftClick(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+              java.awt.Point&nbsp;offset)</pre>
+<div class="block">Shift click with position offset.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>offset</code> - Point,          the offset position to click within the target component. Also can be null.</dd></dl>
+</li>
+</ul>
+<a name="click(org.safs.autoit.AutoItRs, java.lang.String, int, java.awt.Point, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>click</h4>
+<pre>protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;autoArgs,
+         java.lang.String&nbsp;mouseButton,
+         int&nbsp;nClicks,
+         java.awt.Point&nbsp;offset,
+         java.lang.String&nbsp;specialKey)</pre>
+<div class="block">Workhorse of AutoIt click routine.
+ It allows us to use specified 'mouse button' to click target component at assigned position with a number of times.  
+ 
+ Note: at current stage, we don't support the parameter 'text' in AutoIt's API controlClick: https://www.autoitscript.com/autoit3/docs/functions/ControlClick.htm .
+       We just treat parameter 'text' as empty string.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>mouseButton</code> - String,         the button to click, "left", "right", or "middle". Default is the left button, which means if mouseButton is null or empty,
+                                                                        it'll use the "left" as its value.</dd><dd><code>nClicks</code> - int,            number of times to click the mouse.</dd><dd><code>offset</code> - Point,          the offset position to click within the target component. Also can be null.</dd><dd><code>specialKey</code> - String,         keyboard key that be hold when click action happening.</dd></dl>
+</li>
+</ul>
 <a name="click(org.safs.autoit.AutoItRs)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>click</h4>
-<pre>protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;ars)</pre>
-<div class="block">click</div>
+<pre>@Deprecated
+protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;ars)</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
+<div class="block">SEP 23, 2016 Tao Xie,    It's better to use the same click() workhorse for consistency. 
+                                                Depreciate this original implementation.</div>
 </li>
 </ul>
 <a name="setText(org.safs.autoit.AutoItRs)">
