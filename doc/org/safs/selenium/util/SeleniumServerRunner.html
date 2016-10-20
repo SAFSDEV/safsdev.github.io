@@ -158,6 +158,7 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
                                          be provided. Ex: <b>-role node -hub http://hub.machine:port/grid/register</b><br>
                                          <br>
  <b>-outputToConsole</b>, optional, if provided, the console message will also be printed to standard out/err.<br>
+ <b>-state MAX|MIN|NORMAL</b>, optional, the console windows will be maximized, minimized or as it is.<br>
  <p>
  
  Other JVM params--including those needed by Selenium Server ( -Dwebdriver...)--must also be 
@@ -200,7 +201,9 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
      -safs.rmi.server &lt;full.package.classname>   (alternative/custom RMI Server)  
      -Dsafs.rmi.server &lt;full.package.classname>  (alternative/custom RMI Server)  
 </pre></div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/rmi/server/SeleniumRMIServer.html" title="interface in org.safs.selenium.rmi.server"><code>SeleniumRMIServer</code></a>, 
+<dl><dt><span class="strong">Author:</span></dt>
+  <dd>Carl Nagle</dd>
+<dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/rmi/server/SeleniumRMIServer.html" title="interface in org.safs.selenium.rmi.server"><code>SeleniumRMIServer</code></a>, 
 <a href="../../../../org/safs/selenium/rmi/server/SeleniumServer.html" title="class in org.safs.selenium.rmi.server"><code>SeleniumServer</code></a>, 
 <a href="../../../../org/safs/selenium/rmi/agent/SeleniumRMIAgent.html" title="interface in org.safs.selenium.rmi.agent"><code>SeleniumRMIAgent</code></a>, 
 <a href="../../../../org/safs/selenium/rmi/agent/SeleniumAgent.html" title="class in org.safs.selenium.rmi.agent"><code>SeleniumAgent</code></a>, 
@@ -267,30 +270,35 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#DEFAULT_RMISERVER_CLASSNAME">DEFAULT_RMISERVER_CLASSNAME</a></strong></code>
-<div class="block">'org.safs.selenium.rmi.server.SeleniumServer'</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>protected static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#isRMIServer">isRMIServer</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#PARAM_JAR">PARAM_JAR</a></strong></code>
+<div class="block">'-jar' specifies the jar file to put dynamically in the classpath.<br>
+ -jar fullpath/to/selenium-server-standalone*.jar<br></div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#PARAM_OUTPUTCONSOLE">PARAM_OUTPUTCONSOLE</a></strong></code>
-<div class="block">'-outputToConsole'</div>
+<div class="block">'-outputToConsole' specifies if the 'execution message' will also be printed to standard out/err.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#PROPERTY_RMISERVER">PROPERTY_RMISERVER</a></strong></code>
-<div class="block">'safs.rmi.server'</div>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#PARAM_RMI">PARAM_RMI</a></strong></code>
+<div class="block">'-safs.rmi.server' specifies the name of RMI server class to start with.<br>
+ '-safs.rmi.server', without value the default RMI <a href="../../../../org/safs/tools/drivers/DriverConstant.html#DEFAULT_RMISERVER_CLASSNAME"><code>DriverConstant.DEFAULT_RMISERVER_CLASSNAME</code></a> will be used.<br>
+ '-safs.rmi.server full.pacakge.RMIServer', 'full.pacakge.RMIServer' will start with this console.<br></div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#rmiServerClassname">rmiServerClassname</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#rmiServerClassname">rmiServerClassname</a></strong></code>
+<div class="block">The default value is null, so the console start without RMI server.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
@@ -304,7 +312,7 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;org.safs.tools.consoles.<a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title="class in org.safs.tools.consoles">JavaJVMConsole</a></h3>
-<code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#DEFAULT_SEARCH_MATCH_CASE">DEFAULT_SEARCH_MATCH_CASE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#display">display</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#keep_mode">keep_mode</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#KEEP_MODE_FIFO">KEEP_MODE_FIFO</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#lastFoundPosition">lastFoundPosition</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_EDIT">MENU_EDIT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_FILE">MENU_FILE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_CLEAR">MENU_ITEM_CLEAR</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_EXIT">MENU_ITEM_EXIT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_FIND">MENU_ITEM_FIND</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_FIND_NEXT">MENU_ITEM_FIND_NEXT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_FIND_PREVIOUS">MENU_ITEM_FIND_PREVIOUS</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_SAVE">MENU_ITEM_SAVE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_SEARCH">MENU_SEARCH</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#numberOfrows">numberOfrows</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#PAUSE_BEFORE_OUTPUT_READY">PAUSE_BEFORE_OUTPUT_READY</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#pauseBeforeReady">pauseBeforeReady</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#shutdown">shutdown</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#token">token</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#tokenCombobox">tokenCombobox</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#tokenMatchCaseCheckbox">tokenMatchCaseCheckbox</a></code></li>
+<code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#DEFAULT_RMISERVER_CLASSNAME">DEFAULT_RMISERVER_CLASSNAME</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#DEFAULT_SEARCH_MATCH_CASE">DEFAULT_SEARCH_MATCH_CASE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#display">display</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#keep_mode">keep_mode</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#KEEP_MODE_FIFO">KEEP_MODE_FIFO</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#lastFoundPosition">lastFoundPosition</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_EDIT">MENU_EDIT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_FILE">MENU_FILE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_CLEAR">MENU_ITEM_CLEAR</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_EXIT">MENU_ITEM_EXIT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_FIND">MENU_ITEM_FIND</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_FIND_NEXT">MENU_ITEM_FIND_NEXT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_FIND_PREVIOUS">MENU_ITEM_FIND_PREVIOUS</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_ITEM_SAVE">MENU_ITEM_SAVE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#MENU_SEARCH">MENU_SEARCH</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#numberOfrows">numberOfrows</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#outputToConsole">outputToConsole</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#PARAM_STATE">PARAM_STATE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#PAUSE_BEFORE_OUTPUT_READY">PAUSE_BEFORE_OUTPUT_READY</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#pauseBeforeReady">pauseBeforeReady</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#PROPERTY_RMISERVER">PROPERTY_RMISERVER</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#shutdown">shutdown</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#state">state</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#STATE_DEFAULT">STATE_DEFAULT</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#STATE_MAX">STATE_MAX</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#STATE_MAXIMIZE">STATE_MAXIMIZE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#STATE_MIN">STATE_MIN</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#STATE_MINIMIZE">STATE_MINIMIZE</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#STATE_NORMAL">STATE_NORMAL</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#token">token</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#tokenCombobox">tokenCombobox</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#tokenMatchCaseCheckbox">tokenMatchCaseCheckbox</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="fields_inherited_from_class_javax.swing.JFrame">
@@ -356,18 +364,26 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#init()">init</a></strong>()</code>
+<div class="block">Initialize the console's UI elements.<br>
+ Start a thread to redirect the stdout/stderr.<br>
+ This method <b>MUST</b> be called after calling the constructors.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#launchRMIServer()">launchRMIServer</a></strong>()</code>
 <div class="block">Start an RMI Server class specified on the command-line, if any.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#main(java.lang.String[])">main</a></strong>(java.lang.String[]&nbsp;args)</code>
 <div class="block">Is expected to be able to run in its own standalone Java process.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static java.lang.String[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SeleniumServerRunner.html#processArgs(java.lang.String[])">processArgs</a></strong>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
 </tr>
@@ -377,7 +393,7 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.tools.consoles.<a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title="class in org.safs.tools.consoles">JavaJVMConsole</a></h3>
-<code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#actionPerformed(java.awt.event.ActionEvent)">actionPerformed</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#addFile(java.io.File)">addFile</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#addFile(java.lang.String)">addFile</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#addURL(java.net.URL)">addURL</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#clearHighLight(javax.swing.JTextArea,%20java.lang.Object)">clearHighLight</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#createJMenuItem(java.lang.String,%20int,%20int,%20int)">createJMenuItem</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#displayLine(java.lang.String)">displayLine</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#getPauseBeforeReady()">getPauseBeforeReady</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#highLight(javax.swing.JTextArea,%20int,%20int)">highLight</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#highlightInDispaly(boolean)">highlightInDispaly</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#run()">run</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#search(javax.swing.text.Document,%20int,%20java.lang.String,%20boolean)">search</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#setPauseBeforeReady(int)">setPauseBeforeReady</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#showSearchDialog()">showSearchDialog</a></code></li>
+<code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#actionPerformed(java.awt.event.ActionEvent)">actionPerformed</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#addFile(java.io.File)">addFile</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#addFile(java.lang.String)">addFile</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#addURL(java.net.URL)">addURL</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#clearHighLight(javax.swing.JTextArea,%20java.lang.Object)">clearHighLight</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#createJMenuItem(java.lang.String,%20int,%20int,%20int)">createJMenuItem</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#displayLine(java.lang.String)">displayLine</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#getPauseBeforeReady()">getPauseBeforeReady</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#highLight(javax.swing.JTextArea,%20int,%20int)">highLight</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#highlightInDispaly(boolean)">highlightInDispaly</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#maximize()">maximize</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#minimize()">minimize</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#restore()">restore</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#run()">run</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#search(javax.swing.text.Document,%20int,%20java.lang.String,%20boolean)">search</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#setPauseBeforeReady(int)">setPauseBeforeReady</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#setState(java.lang.String)">setState</a>, <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#showSearchDialog()">showSearchDialog</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_javax.swing.JFrame">
@@ -458,6 +474,7 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <li class="blockList">
 <h4>rmiServerClassname</h4>
 <pre>protected static&nbsp;java.lang.String rmiServerClassname</pre>
+<div class="block">The default value is null, so the console start without RMI server.</div>
 </li>
 </ul>
 <a name="TITLE">
@@ -471,17 +488,6 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SeleniumServerRunner.TITLE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
-<a name="PROPERTY_RMISERVER">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>PROPERTY_RMISERVER</h4>
-<pre>public static final&nbsp;java.lang.String PROPERTY_RMISERVER</pre>
-<div class="block">'safs.rmi.server'</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SeleniumServerRunner.PROPERTY_RMISERVER">Constant Field Values</a></dd></dl>
-</li>
-</ul>
 <a name="PARAM_OUTPUTCONSOLE">
 <!--   -->
 </a>
@@ -489,18 +495,33 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <li class="blockList">
 <h4>PARAM_OUTPUTCONSOLE</h4>
 <pre>public static final&nbsp;java.lang.String PARAM_OUTPUTCONSOLE</pre>
-<div class="block">'-outputToConsole'</div>
+<div class="block">'-outputToConsole' specifies if the 'execution message' will also be printed to standard out/err.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SeleniumServerRunner.PARAM_OUTPUTCONSOLE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
-<a name="DEFAULT_RMISERVER_CLASSNAME">
+<a name="PARAM_JAR">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PARAM_JAR</h4>
+<pre>public static final&nbsp;java.lang.String PARAM_JAR</pre>
+<div class="block">'-jar' specifies the jar file to put dynamically in the classpath.<br>
+ -jar fullpath/to/selenium-server-standalone*.jar<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SeleniumServerRunner.PARAM_JAR">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PARAM_RMI">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>DEFAULT_RMISERVER_CLASSNAME</h4>
-<pre>public static final&nbsp;java.lang.String DEFAULT_RMISERVER_CLASSNAME</pre>
-<div class="block">'org.safs.selenium.rmi.server.SeleniumServer'</div>
+<h4>PARAM_RMI</h4>
+<pre>public static final&nbsp;java.lang.String PARAM_RMI</pre>
+<div class="block">'-safs.rmi.server' specifies the name of RMI server class to start with.<br>
+ '-safs.rmi.server', without value the default RMI <a href="../../../../org/safs/tools/drivers/DriverConstant.html#DEFAULT_RMISERVER_CLASSNAME"><code>DriverConstant.DEFAULT_RMISERVER_CLASSNAME</code></a> will be used.<br>
+ '-safs.rmi.server full.pacakge.RMIServer', 'full.pacakge.RMIServer' will start with this console.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SeleniumServerRunner.PARAM_RMI">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 </li>
@@ -511,6 +532,23 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="init()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>init</h4>
+<pre>public&nbsp;void&nbsp;init()</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#init()">JavaJVMConsole</a></code></strong></div>
+<div class="block">Initialize the console's UI elements.<br>
+ Start a thread to redirect the stdout/stderr.<br>
+ This method <b>MUST</b> be called after calling the constructors.<br></div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html#init()">init</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title="class in org.safs.tools.consoles">JavaJVMConsole</a></code></dd>
+</dl>
+</li>
+</ul>
 <a name="processArgs(java.lang.String[])">
 <!--   -->
 </a>
@@ -565,6 +603,7 @@ extends <a href="../../../../org/safs/tools/consoles/JavaJVMConsole.html" title=
                                          be provided. Ex: <b>-role node -hub http://hub.machine:port/grid/register</b><br>
                                          <br>
  <b>-outputToConsole</b>, optional, if provided, the console message will also be printed to standard out/err.<br>
+ <b>-state MAX|MIN|NORMAL</b>, optional, the console windows will be maximized, minimized or as it is.<br>
  <p>
  Other JVM params--including those needed by standalone Selenium Server ( -Dwebdriver...)--must also be 
  provided and will have already been applied to this JVM process.

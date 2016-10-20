@@ -403,7 +403,7 @@ extends <a href="../../org/safs/Processor.html" title="class in org.safs">Proces
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.Window.html" title="class in org.safs">ComponentFunction.Window</a></strong></code>
 <div class="block">An inner class to encapsulate a window information for adjusting window size, position etc.<br>
  It includes also some static methods to restore, maximize, minimize or close current focused window.<br>
- These methods may only work on Windows system, it uses java Robot to trriger shortcut menu.<br></div>
+ These methods may only work on Windows system, it uses java Robot to trigger shortcut menu.<br></div>
 </td>
 </tr>
 </table>
@@ -799,7 +799,7 @@ extends <a href="../../org/safs/Processor.html" title="class in org.safs">Proces
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#_close()">_close</a></strong>()</code>
-<div class="block">This implementation is NOT garantee to work, if it works, it will happen on current focused window.<br>
+<div class="block">This implementation is NOT guarantee to work, if it works, it will happen on current focused window.<br>
 Subclass should give its own implementation<br></div>
 </td>
 </tr>
@@ -807,21 +807,21 @@ Subclass should give its own implementation<br></div>
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#_maximize()">_maximize</a></strong>()</code>
 <div class="block">Subclass should give its own implementation, if it is difficult then call this instead, but<br>
- this implementation is not garantee to work<br></div>
+ this implementation is not guarantee to work<br></div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#_minimize()">_minimize</a></strong>()</code>
 <div class="block">Subclass should give its own implementation, if it is difficult then call this instead, but<br>
- this implementation is not garantee to work<br></div>
+ this implementation is not guarantee to work<br></div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#_restore()">_restore</a></strong>()</code>
 <div class="block">Subclass should give its own implementation, if it is difficult then call this instead, but<br>
- this implementation is not garantee to work<br></div>
+ this implementation is not guarantee to work<br></div>
 </td>
 </tr>
 <tr class="altColor">
@@ -994,35 +994,50 @@ Subclass should give its own implementation<br></div>
 <div class="block">Convert window's position-size-status string of the formats:
  
  "x;y;width;height;status"
- "x,y,width,heigth,status"
- "x y width heigth status"
+ "x,y,width,height,status"
+ "x y width height status"
  "Coords=x;y;width;height;Status=status"
- "Coords=x,y,width,heigth,Status=status"
- "Coords=x y width heigth Status=status"
+ "Coords=x,y,width,height,Status=status"
+ "Coords=x y width height Status=status"
   
  into a org.safs.ComponentFunction.Window object.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../org/safs/ComponentFunction.Window.html" title="class in org.safs">ComponentFunction.Window</a></code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#ConvertWindowPosition(java.lang.String)">ConvertWindowPosition</a></strong>(java.lang.String&nbsp;windowPosition)</code>
+<div class="block">Convert window's position-size-status string of the formats:
+ 
+ "x;y;width;height;status"
+ "x,y,width,height,status"
+ "x y width height status"
+ "Coords=x;y;width;height;Status=status"
+ "Coords=x,y,width,height,Status=status"
+ "Coords=x y width height Status=status"
+  
+ into a org.safs.ComponentFunction.Window object.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected java.awt.Rectangle</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)">deduceImageRect</a></strong>(java.lang.String&nbsp;subareaMapKey)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#dragTo()">dragTo</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#executeScript()">executeScript</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#exist()">exist</a></strong>()</code>
 <div class="block">To test if the component exists or not.<br>
  The sub class may test the component's visibility also.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.util.Collection</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getAlternateParams()">getAlternateParams</a></strong>()</code>
 <div class="block"><br><em>Purpose:</em> zero-based params with: <br>
@@ -1033,26 +1048,26 @@ Subclass should give its own implementation<br></div>
  </div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.awt.Rectangle</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getComponentRectangle()">getComponentRectangle</a></strong>()</code>
 <div class="block">Do nothing method returns null.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.awt.Rectangle</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getComponentRectangleOnScreen()">getComponentRectangleOnScreen</a></strong>()</code>
 <div class="block">Get the absolute 'Rectangle bounds' of the Component, which means the rectangle is relative to the<br>
  whole screen, NOT to a window/browser.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getHelpers()">getHelpers</a></strong>()</code>
 <div class="block">Simply calls getHelpersWorker.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getHelpersWorker()">getHelpersWorker</a></strong>()</code>
 <div class="block">set instance variables from the current testRecordData:
@@ -1060,21 +1075,21 @@ Subclass should give its own implementation<br></div>
  Subclasses can override this for any additional setup beyond getHelpersWorker.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getPossibleMapItem(java.lang.String)">getPossibleMapItem</a></strong>(java.lang.String&nbsp;mapKey)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getProperties()">getProperties</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getProperty(java.lang.String)">getProperty</a></strong>(java.lang.String&nbsp;propertyName)</code>
 <div class="block">Get component's property string value</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.util.Collection&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getPropertyCollection(java.util.List)">getPropertyCollection</a></strong>(java.util.List&lt;java.lang.String&gt;&nbsp;propertyList)</code>
 <div class="block">Get the value of property, and return them as a Collection.<br>
@@ -1083,17 +1098,17 @@ Subclass should give its own implementation<br></div>
  The assignment separator will actually be the current value of the testRecordData.separator.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Collection&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getPropertyCollection(java.lang.String)">getPropertyCollection</a></strong>(java.lang.String&nbsp;property)</code>
 <div class="block">Get the value of a property, and return it as a Collection.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getPropertyObject(java.lang.String)">getPropertyObject</a></strong>(java.lang.String&nbsp;propertyName)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.awt.image.BufferedImage</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)">getRectangleImage</a></strong>(java.awt.Rectangle&nbsp;imageRect)</code>
 <div class="block">Get BufferedImage within a rectangle.<br>
@@ -1103,161 +1118,161 @@ Subclass should give its own implementation<br></div>
  Sub class may override this method to get its own image.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getStringValue(java.lang.Object)">getStringValue</a></strong>(java.lang.Object&nbsp;value)</code>
-<div class="block">Get the string value from the Ojbect value.<br>
+<div class="block">Get the string value from the Object value.<br>
  If the value is a collection, it will be converted to a string separated by 'New Line'.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getUUIDBoolean(java.lang.String)">getUUIDBoolean</a></strong>(java.lang.String&nbsp;parameter)</code>
 <div class="block">Check if the provided parameter is a UUID= flag.<br>
  True if UUID=true|1|-1|on|yes.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.awt.Rectangle</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getWindowRectangleOnScreen()">getWindowRectangleOnScreen</a></strong>()</code>
 <div class="block">Get the absolute 'Rectangle bounds' of the Window, which means the rectangle is relative to the<br>
  whole screen.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#guiDoesExist(boolean)">guiDoesExist</a></strong>(boolean&nbsp;does)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#hoverMouse()">hoverMouse</a></strong>()</code>
 <div class="block"><em>Purpose:</em> Response for HOVERMOUSE; called by componentProcess() to hover mouse.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#hoverScreenLocation()">hoverScreenLocation</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#inputKeystrokes()">inputKeystrokes</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#isPropertyExist()">isPropertyExist</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueFileErrorFailure(java.lang.String)">issueFileErrorFailure</a></strong>(java.lang.String&nbsp;filename)</code>
 <div class="block">Issue a file error and failure message 
  Filename does not need to be localized.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueParameterCountFailure()">issueParameterCountFailure</a></strong>()</code>
 <div class="block">Issue parameter count error and failure message</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueParameterCountFailure(java.lang.String)">issueParameterCountFailure</a></strong>(java.lang.String&nbsp;detail)</code>
 <div class="block">Issue parameter count error and failure message</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueParameterValueFailure(java.lang.String)">issueParameterValueFailure</a></strong>(java.lang.String&nbsp;paramName)</code>
 <div class="block">Issue parameter value error and failure message</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issuePassedSuccess(java.lang.String)">issuePassedSuccess</a></strong>(java.lang.String&nbsp;comment)</code>
 <div class="block">"windowName compName action successful.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issuePassedSuccessUsing(java.lang.String)">issuePassedSuccessUsing</a></strong>(java.lang.String&nbsp;using)</code>
 <div class="block">"windowName compName action successful using [using]"
  Sets status to OK and issues a PASSED message.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueUnknownErrorFailure(java.lang.String)">issueUnknownErrorFailure</a></strong>(java.lang.String&nbsp;cause)</code>
 <div class="block">Issue a generic error and failure message 
  The cause parameter is expected to already be localized.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#isSupportedRecordType(java.lang.String)">isSupportedRecordType</a></strong>(java.lang.String&nbsp;recordType)</code>
 <div class="block">Supports standard TEST STEP record types (T, TW, TF)</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#locateScreenImage()">locateScreenImage</a></strong>()</code>
 <div class="block"><em>Purpose:</em> Response for HOVERMOUSE; called by componentProcess() to hover mouse.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.awt.Point</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#lookupAppMapCoordReference(java.lang.String)">lookupAppMapCoordReference</a></strong>(java.lang.String&nbsp;referenceName)</code>
 <div class="block">lookupAppMapCoordReference: uses 'convertCoords'
  after the call to 'lookupAppMapReference'.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.awt.Polygon</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#lookupAppMapLineReference(java.lang.String)">lookupAppMapLineReference</a></strong>(java.lang.String&nbsp;referenceName)</code>
 <div class="block">lookupAppMapLineReference: uses 'convertLine'
  after the call to 'lookupAppMapReference'.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.Integer</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#lookupAppMapNumReference(java.lang.String)">lookupAppMapNumReference</a></strong>(java.lang.String&nbsp;referenceName)</code>
 <div class="block"><br><em>Purpose:</em> lookupAppMapNumReference: uses 'convertNum'
  after the call to 'lookupAppMapReference'.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#lookupAppMapReference(java.lang.String)">lookupAppMapReference</a></strong>(java.lang.String&nbsp;referenceName)</code>
 <div class="block">Looks up an item using the current appmapID=mapname, section=compName, item=referenceName.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#maximize()">maximize</a></strong>()</code>
 <div class="block">Maximize the current window.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#minimize()">minimize</a></strong>()</code>
 <div class="block">Minimize the current window.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#normalizeFileEncoding(java.lang.String)">normalizeFileEncoding</a></strong>(java.lang.String&nbsp;encoding)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.util.Collection&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#normalizePropertyCollection(java.util.Collection,%20java.lang.String)">normalizePropertyCollection</a></strong>(java.util.Collection&lt;java.lang.String&gt;&nbsp;properties,
                            java.lang.String&nbsp;encoding)</code>
 <div class="block">A Collection contains the value of a property.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#performDrag()">performDrag</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#performHoverMouse(java.awt.Point,%20int)">performHoverMouse</a></strong>(java.awt.Point&nbsp;point,
                  int&nbsp;milliseconds)</code>
@@ -1265,39 +1280,39 @@ Subclass should give its own implementation<br></div>
  Subclass may need to give a specific implementation by tools (RJ, Selenium etc.) API.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#performScorll()">performScorll</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#restore()">restore</a></strong>()</code>
 <div class="block">Restore the current window.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#selectMenuItem(boolean)">selectMenuItem</a></strong>(boolean&nbsp;fuzzy)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#sendEvent()">sendEvent</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#setIterator(java.util.Iterator)">setIterator</a></strong>(java.util.Iterator&lt;java.lang.String&gt;&nbsp;iterator)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#setPosition()">setPosition</a></strong>()</code>
-<div class="block">preform SetPosition to move Main Window, resize it and set its status.</div>
+<div class="block">perform SetPosition to move Main Window, resize it and set its status.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#setPropertyValue()">setPropertyValue</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#setRectVars(java.awt.Rectangle,%20java.lang.String)">setRectVars</a></strong>(java.awt.Rectangle&nbsp;rect,
            java.lang.String&nbsp;varname)</code>
@@ -1305,74 +1320,74 @@ Subclass should give its own implementation<br></div>
  values retrieved from the rectangle.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#showComponentAsMuchPossible(boolean)">showComponentAsMuchPossible</a></strong>(boolean&nbsp;verify)</code>
 <div class="block">If the component is not fully shown on the screen, try to make it visible on screen as much
  as possible.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#updateFromTestRecordData()">updateFromTestRecordData</a></strong>()</code>
 <div class="block">Updates our internal storage for action, windowName, compName, and mapname from 
  the current TestRecordData.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyClipboardToFile()">verifyClipboardToFile</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyFileToFile(boolean)">verifyFileToFile</a></strong>(boolean&nbsp;isTextFile)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyMenuItem(boolean)">verifyMenuItem</a></strong>(boolean&nbsp;fuzzy)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyObjectDataToFile()">verifyObjectDataToFile</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyPropertiesToFile()">verifyPropertiesToFile</a></strong>()</code>
 <div class="block"><br><em>Purpose:</em> verifyPropertiesToFile</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyProperty()">verifyProperty</a></strong>()</code>
 <div class="block"><br><em>Purpose:</em> verifyProperty</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyPropertyContains()">verifyPropertyContains</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyPropertyToFile(boolean)">verifyPropertyToFile</a></strong>(boolean&nbsp;array)</code>
 <div class="block"><br><em>Purpose:</em> verifyArrayPropertyToFile/verifyPropertyToFile/verifyPropertiesToFile</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyValueContains()">verifyValueContains</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#verifyValues()">verifyValues</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#waitForGUI()">waitForGUI</a></strong>()</code>
 <div class="block">Waits for the object to be present on the screen, waits up to the timeout defined in
  the parameters or a default of 15 seconds.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected int</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#waitForObject(java.lang.String,%20java.lang.String,%20java.lang.String,%20int)">waitForObject</a></strong>(java.lang.String&nbsp;mapname,
              java.lang.String&nbsp;windowName,
@@ -2307,7 +2322,7 @@ Subclass should give its own implementation<br></div>
  <br><em>Assumptions:</em>  all exceptions are handled.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>numStr,</code> - String 
  (indexed from 1, 1 will be subtracted from the number before returned)</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Integer if successfull, null otherwise (if alpha chars instead
+<dt><span class="strong">Returns:</span></dt><dd>Integer if successful, null otherwise (if alpha chars instead
  of digits are encountered; or if number is less than one)</dd></dl>
 </li>
 </ul>
@@ -2372,7 +2387,7 @@ Subclass should give its own implementation<br></div>
  Subclasses may override to convert alternative values, such 
  as Row and Col values as is done in org.safs.rational.CFTable</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>coords,</code> - String x;y or x,y or Coords=x;y  or Coords=x,y</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Point if successfull, null otherwise</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>Point if successful, null otherwise</dd></dl>
 </li>
 </ul>
 <a name="convertLine(java.lang.String)">
@@ -2393,7 +2408,7 @@ Subclass should give its own implementation<br></div>
  </ul> 
  into a java.awt.Polygon object.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>coords,</code> - String x1;y1;x2;y2 or x1,y1,x2,y2 or Coords=x1;y1;x2;y2  or Coords=x1,y1,x2,y2</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Polygon if successfull, null otherwise</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>Polygon if successful, null otherwise</dd></dl>
 </li>
 </ul>
 <a name="convertWindowPosition(java.lang.String)">
@@ -2406,15 +2421,15 @@ Subclass should give its own implementation<br></div>
 <div class="block">Convert window's position-size-status string of the formats:
  <ul>
  <li>"x;y;width;height;status"
- <li>"x,y,width,heigth,status"
- <li>"x y width heigth status"
+ <li>"x,y,width,height,status"
+ <li>"x y width height status"
  <li>"Coords=x;y;width;height;Status=status"
- <li>"Coords=x,y,width,heigth,Status=status"
- <li>"Coords=x y width heigth Status=status"
+ <li>"Coords=x,y,width,height,Status=status"
+ <li>"Coords=x y width height Status=status"
  </ul> 
  into a org.safs.ComponentFunction.Window object.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>windowPosition</code> - String, window's position-size-status string; or a map reference for window's status string.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>org.safs.ComponentFunction.Window if successfull, null otherwise</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>org.safs.ComponentFunction.Window if successful, null otherwise</dd></dl>
 </li>
 </ul>
 <a name="lookupAppMapReference(java.lang.String)">
@@ -2442,7 +2457,7 @@ Subclass should give its own implementation<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>referenceName,</code> - String, the reference name passed on to
          method 'lookupAppMapReference' to lookup the coordinate string 
          from an AppMap. Then that value is passed on to convertCoords.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Point if successfull, null otherwise (if alpha chars instead
+<dt><span class="strong">Returns:</span></dt><dd>Point if successful, null otherwise (if alpha chars instead
           of digits are encountered; or if row or col less than one)</dd></dl>
 </li>
 </ul>
@@ -2458,7 +2473,7 @@ Subclass should give its own implementation<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>referenceName,</code> - String, the reference name passed on to
          method 'lookupAppMapReference' to lookup the Line string 
          from an AppMap. Then that value is passed on to convertLine.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Polygon if successfull, null otherwise (if alpha chars instead
+<dt><span class="strong">Returns:</span></dt><dd>Polygon if successful, null otherwise (if alpha chars instead
           of digits are encountered; or if less than 2 points are detected.)</dd></dl>
 </li>
 </ul>
@@ -2474,8 +2489,29 @@ Subclass should give its own implementation<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>referenceName,</code> - String, the reference name passed on to
  method 'lookupAppMapReference' to lookup the number string from an AppMap. Then that
  value is passed on to convertNum.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Integer if successfull, null otherwise (if alpha chars instead
+<dt><span class="strong">Returns:</span></dt><dd>Integer if successful, null otherwise (if alpha chars instead
  of digits are encountered; or if index is less than one)</dd></dl>
+</li>
+</ul>
+<a name="ConvertWindowPosition(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ConvertWindowPosition</h4>
+<pre>public static&nbsp;<a href="../../org/safs/ComponentFunction.Window.html" title="class in org.safs">ComponentFunction.Window</a>&nbsp;ConvertWindowPosition(java.lang.String&nbsp;windowPosition)</pre>
+<div class="block">Convert window's position-size-status string of the formats:
+ <ul>
+ <li>"x;y;width;height;status"
+ <li>"x,y,width,height,status"
+ <li>"x y width height status"
+ <li>"Coords=x;y;width;height;Status=status"
+ <li>"Coords=x,y,width,height,Status=status"
+ <li>"Coords=x y width height Status=status"
+ </ul> 
+ into a org.safs.ComponentFunction.Window object.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>windowPosition</code> - String, window's position-size-status string</dd>
+<dt><span class="strong">Returns:</span></dt><dd>org.safs.ComponentFunction.Window if successful, null otherwise</dd></dl>
 </li>
 </ul>
 <a name="restore()">
@@ -2500,7 +2536,7 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;_restore()
                  throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Subclass should give its own implementation, if it is difficult then call this instead, but<br>
- this implementation is not garantee to work<br></div>
+ this implementation is not guarantee to work<br></div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
@@ -2527,7 +2563,7 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;_maximize()
                   throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Subclass should give its own implementation, if it is difficult then call this instead, but<br>
- this implementation is not garantee to work<br></div>
+ this implementation is not guarantee to work<br></div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
@@ -2554,7 +2590,7 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;_minimize()
                   throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Subclass should give its own implementation, if it is difficult then call this instead, but<br>
- this implementation is not garantee to work<br></div>
+ this implementation is not guarantee to work<br></div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
@@ -2580,7 +2616,7 @@ Subclass should give its own implementation<br></div>
 <h4>_close</h4>
 <pre>protected&nbsp;void&nbsp;_close()
                throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
-<div class="block">This implementation is NOT garantee to work, if it works, it will happen on current focused window.<br>
+<div class="block">This implementation is NOT guarantee to work, if it works, it will happen on current focused window.<br>
 Subclass should give its own implementation<br></div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
@@ -2594,7 +2630,7 @@ Subclass should give its own implementation<br></div>
 <h4>setPosition</h4>
 <pre>protected&nbsp;void&nbsp;setPosition()
                     throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
-<div class="block">preform SetPosition to move Main Window, resize it and set its status.
+<div class="block">perform SetPosition to move Main Window, resize it and set its status.
  Format: "Coords=0,0,640,480;Status=NORMAL". Status can be NORMAL, MINIMAZED and MAXMAZED
  Alteratively, semi-colon (;) can be used instead of comma (,) to separate 
  numeric data.  This would be required when placing the data directly in the 
@@ -3184,7 +3220,7 @@ Subclass should give its own implementation<br></div>
 <h4>selectMenuItem</h4>
 <pre>protected&nbsp;void&nbsp;selectMenuItem(boolean&nbsp;fuzzy)
                        throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>fuzzy,</code> - false: select the menu item that exactly matches the gaven path</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>fuzzy,</code> - false: select the menu item that exactly matches the given path</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
@@ -3426,7 +3462,7 @@ Subclass should give its own implementation<br></div>
 <h4>getStringValue</h4>
 <pre>protected&nbsp;java.lang.String&nbsp;getStringValue(java.lang.Object&nbsp;value)
                                    throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
-<div class="block">Get the string value from the Ojbect value.<br>
+<div class="block">Get the string value from the Object value.<br>
  If the value is a collection, it will be converted to a string separated by 'New Line'.<br></div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
@@ -3536,7 +3572,7 @@ Subclass should give its own implementation<br></div>
  currently represented in the current testRecordData. The 'Rectangle bounds' may be
  absolute on screen or relative to a window/browser, this is decided by subclass.
  If returned 'Rectangle bounds' is NOT absolute on screen, the the method 
- <a href="../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)"><code>getRectangleImage(Rectangle)</code></a> SHOULD be overrided in subclass to provide approperiate implementation.
+ <a href="../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)"><code>getRectangleImage(Rectangle)</code></a> SHOULD be overridden in subclass to provide appropriate implementation.
  <br>
  Subclasses should assume the mapname, windowName, and compName currently stored 
  for the instance hold the information needed to identify and locate the Component 
