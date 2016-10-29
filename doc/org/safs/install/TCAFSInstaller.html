@@ -35,7 +35,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../org/safs/install/STAFInstaller.html" title="class in org.safs.install"><span class="strong">Prev Class</span></a></li>
-<li>Next Class</li>
+<li><a href="../../../org/safs/install/TopMostOptionPane.html" title="class in org.safs.install"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?org/safs/install/TCAFSInstaller.html" target="_top">Frames</a></li>
@@ -59,7 +59,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_org.safs.install.InstallerImpl">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#fields_inherited_from_class_org.safs.install.InstallerImpl">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -115,6 +115,21 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested_class_summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested_classes_inherited_from_class_org.safs.install.InstallerImpl">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;org.safs.install.<a href="../../../org/safs/install/InstallerImpl.html" title="class in org.safs.install">InstallerImpl</a></h3>
+<code><a href="../../../org/safs/install/InstallerImpl.VERSION_OPTION.html" title="enum in org.safs.install">InstallerImpl.VERSION_OPTION</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field_summary">
@@ -126,7 +141,7 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;org.safs.install.<a href="../../../org/safs/install/InstallerImpl.html" title="class in org.safs.install">InstallerImpl</a></h3>
-<code><a href="../../../org/safs/install/InstallerImpl.html#ARG_INSTALLDIR">ARG_INSTALLDIR</a>, <a href="../../../org/safs/install/InstallerImpl.html#ARG_UNINSTALL">ARG_UNINSTALL</a>, <a href="../../../org/safs/install/InstallerImpl.html#progresser">progresser</a>, <a href="../../../org/safs/install/InstallerImpl.html#REGSVR32">REGSVR32</a>, <a href="../../../org/safs/install/InstallerImpl.html#rootdir">rootdir</a>, <a href="../../../org/safs/install/InstallerImpl.html#s">s</a>, <a href="../../../org/safs/install/InstallerImpl.html#SYSTEM32">SYSTEM32</a>, <a href="../../../org/safs/install/InstallerImpl.html#SYSWOW64">SYSWOW64</a></code></li>
+<code><a href="../../../org/safs/install/InstallerImpl.html#ARG_INSTALLDIR">ARG_INSTALLDIR</a>, <a href="../../../org/safs/install/InstallerImpl.html#ARG_UNINSTALL">ARG_UNINSTALL</a>, <a href="../../../org/safs/install/InstallerImpl.html#PARAM_SWITCH">PARAM_SWITCH</a>, <a href="../../../org/safs/install/InstallerImpl.html#PARAM_USE_LATEST_VERSION">PARAM_USE_LATEST_VERSION</a>, <a href="../../../org/safs/install/InstallerImpl.html#productDetector">productDetector</a>, <a href="../../../org/safs/install/InstallerImpl.html#progresser">progresser</a>, <a href="../../../org/safs/install/InstallerImpl.html#REGSVR32">REGSVR32</a>, <a href="../../../org/safs/install/InstallerImpl.html#rootdir">rootdir</a>, <a href="../../../org/safs/install/InstallerImpl.html#s">s</a>, <a href="../../../org/safs/install/InstallerImpl.html#SYSTEM32">SYSTEM32</a>, <a href="../../../org/safs/install/InstallerImpl.html#SYSWOW64">SYSWOW64</a></code></li>
 </ul>
 </li>
 </ul>
@@ -160,6 +175,14 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/TCAFSInstaller.html#getUnixProductDetector()">getUnixProductDetector</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/TCAFSInstaller.html#getWindowsProductDetector()">getWindowsProductDetector</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/TCAFSInstaller.html#install(java.lang.String...)">install</a></strong>(java.lang.String...&nbsp;args)</code>
 <div class="block">Main processing routine.</div>
@@ -183,7 +206,7 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.install.<a href="../../../org/safs/install/InstallerImpl.html" title="class in org.safs.install">InstallerImpl</a></h3>
-<code><a href="../../../org/safs/install/InstallerImpl.html#appendSystemEnvironment(java.lang.String,%20java.lang.String,%20java.lang.String)">appendSystemEnvironment</a>, <a href="../../../org/safs/install/InstallerImpl.html#getEnvValue(java.lang.String)">getEnvValue</a>, <a href="../../../org/safs/install/InstallerImpl.html#getInstallationRoot()">getInstallationRoot</a>, <a href="../../../org/safs/install/InstallerImpl.html#getRegistryValue(java.lang.String,%20java.lang.String)">getRegistryValue</a>, <a href="../../../org/safs/install/InstallerImpl.html#hasRegistryEntry(java.lang.String,%20java.lang.String)">hasRegistryEntry</a>, <a href="../../../org/safs/install/InstallerImpl.html#prependSystemEnvironment(java.lang.String,%20java.lang.String,%20java.lang.String)">prependSystemEnvironment</a>, <a href="../../../org/safs/install/InstallerImpl.html#removeSystemEnvironmentSubstring(java.lang.String,%20java.lang.String,%20java.lang.String)">removeSystemEnvironmentSubstring</a>, <a href="../../../org/safs/install/InstallerImpl.html#removeSystemEnvironmentSubstringContaining(java.lang.String,%20java.lang.String,%20java.lang.String)">removeSystemEnvironmentSubstringContaining</a>, <a href="../../../org/safs/install/InstallerImpl.html#setEnvValue(java.lang.String,%20java.lang.String)">setEnvValue</a>, <a href="../../../org/safs/install/InstallerImpl.html#setProgress(int)">setProgress</a>, <a href="../../../org/safs/install/InstallerImpl.html#setProgressIndicator(org.safs.install.ProgressIndicator)">setProgressIndicator</a>, <a href="../../../org/safs/install/InstallerImpl.html#setProgressMessage(java.lang.String)">setProgressMessage</a>, <a href="../../../org/safs/install/InstallerImpl.html#setRegistryValue(java.lang.String,%20java.lang.String,%20java.lang.String)">setRegistryValue</a></code></li>
+<code><a href="../../../org/safs/install/InstallerImpl.html#appendSystemEnvironment(java.lang.String,%20java.lang.String,%20java.lang.String)">appendSystemEnvironment</a>, <a href="../../../org/safs/install/InstallerImpl.html#getDefaultProductDetector()">getDefaultProductDetector</a>, <a href="../../../org/safs/install/InstallerImpl.html#getEnvValue(java.lang.String)">getEnvValue</a>, <a href="../../../org/safs/install/InstallerImpl.html#getInstallationRoot()">getInstallationRoot</a>, <a href="../../../org/safs/install/InstallerImpl.html#getRegistryValue(java.lang.String,%20java.lang.String)">getRegistryValue</a>, <a href="../../../org/safs/install/InstallerImpl.html#hasRegistryEntry(java.lang.String,%20java.lang.String)">hasRegistryEntry</a>, <a href="../../../org/safs/install/InstallerImpl.html#initilizeProductDetector()">initilizeProductDetector</a>, <a href="../../../org/safs/install/InstallerImpl.html#prependSystemEnvironment(java.lang.String,%20java.lang.String,%20java.lang.String)">prependSystemEnvironment</a>, <a href="../../../org/safs/install/InstallerImpl.html#removeSystemEnvironmentSubstring(java.lang.String,%20java.lang.String,%20java.lang.String)">removeSystemEnvironmentSubstring</a>, <a href="../../../org/safs/install/InstallerImpl.html#removeSystemEnvironmentSubstringContaining(java.lang.String,%20java.lang.String,%20java.lang.String)">removeSystemEnvironmentSubstringContaining</a>, <a href="../../../org/safs/install/InstallerImpl.html#setEnvValue(java.lang.String,%20java.lang.String)">setEnvValue</a>, <a href="../../../org/safs/install/InstallerImpl.html#setProgress(int)">setProgress</a>, <a href="../../../org/safs/install/InstallerImpl.html#setProgressIndicator(org.safs.install.ProgressIndicator)">setProgressIndicator</a>, <a href="../../../org/safs/install/InstallerImpl.html#setProgressMessage(java.lang.String)">setProgressMessage</a>, <a href="../../../org/safs/install/InstallerImpl.html#setRegistryValue(java.lang.String,%20java.lang.String,%20java.lang.String)">setRegistryValue</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -238,7 +261,9 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
  <p>
  boolean success = TCAFSInstaller.intall();
  <p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - -- none used at this time</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - String[], optional<br> 
+ <b>-latest</b>, check the latest installed TestExecute/TestComplete and reset the environment variable <a href="../../../org/safs/install/TCAFSInstaller.html#TCHomeEnv"><code>TCHomeEnv</code></a> and <br>
+ <b>-switch</b>, check all the installed TestExecute/TestComplete for switching and reset the environment variable <a href="../../../org/safs/install/TCAFSInstaller.html#TCHomeEnv"><code>TCHomeEnv</code></a> and <br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.</dd></dl>
 </li>
 </ul>
@@ -258,6 +283,36 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
 </li>
 </ul>
+<a name="getWindowsProductDetector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getWindowsProductDetector</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a>&nbsp;getWindowsProductDetector()
+                                              throws java.lang.UnsupportedOperationException</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../org/safs/install/InstallerImpl.html#getWindowsProductDetector()">getWindowsProductDetector</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/safs/install/InstallerImpl.html" title="class in org.safs.install">InstallerImpl</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.UnsupportedOperationException</code></dd></dl>
+</li>
+</ul>
+<a name="getUnixProductDetector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getUnixProductDetector</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a>&nbsp;getUnixProductDetector()
+                                           throws java.lang.UnsupportedOperationException</pre>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../org/safs/install/InstallerImpl.html#getUnixProductDetector()">getUnixProductDetector</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/safs/install/InstallerImpl.html" title="class in org.safs.install">InstallerImpl</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.UnsupportedOperationException</code></dd></dl>
+</li>
+</ul>
 <a name="main(java.lang.String[])">
 <!--   -->
 </a>
@@ -273,7 +328,10 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
  <p>
  System.exit(0) on perceived success.<br>
  System.exit(-1) on perceived failure.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - --  -u to perform an uninstall instead of install.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/SilentInstaller.html" title="class in org.safs.install"><code>SilentInstaller</code></a></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - String[]<br>
+ <b>-u</b> to perform an uninstall instead of install.<br>
+ <b>-latest</b>, check the latest installed TestExecute/TestComplete and reset the environment variable <a href="../../../org/safs/install/TCAFSInstaller.html#TCHomeEnv"><code>TCHomeEnv</code></a> and <br>
+ <b>-switch</b>, check all the installed TestExecute/TestComplete for switching and reset the environment variable <a href="../../../org/safs/install/TCAFSInstaller.html#TCHomeEnv"><code>TCHomeEnv</code></a> and <br></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/SilentInstaller.html" title="class in org.safs.install"><code>SilentInstaller</code></a></dd></dl>
 </li>
 </ul>
 </li>
@@ -303,7 +361,7 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../org/safs/install/STAFInstaller.html" title="class in org.safs.install"><span class="strong">Prev Class</span></a></li>
-<li>Next Class</li>
+<li><a href="../../../org/safs/install/TopMostOptionPane.html" title="class in org.safs.install"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?org/safs/install/TCAFSInstaller.html" target="_top">Frames</a></li>
@@ -327,7 +385,7 @@ extends <a href="../../../org/safs/install/InstallerImpl.html" title="class in o
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_classes_inherited_from_class_org.safs.install.InstallerImpl">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#fields_inherited_from_class_org.safs.install.InstallerImpl">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>

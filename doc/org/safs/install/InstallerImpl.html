@@ -35,7 +35,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../org/safs/install/DLLInstaller.html" title="class in org.safs.install"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../org/safs/install/InstallerInterface.html" title="interface in org.safs.install"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../org/safs/install/InstallerImpl.VERSION_OPTION.html" title="enum in org.safs.install"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?org/safs/install/InstallerImpl.html" target="_top">Frames</a></li>
@@ -59,7 +59,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_class_summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
@@ -105,12 +105,33 @@
 <pre>public abstract class <span class="strong">InstallerImpl</span>
 extends java.lang.Object
 implements <a href="../../../org/safs/install/InstallerInterface.html" title="interface in org.safs.install">InstallerInterface</a></pre>
+<dl><dt><span class="strong">Author:</span></dt>
+  <dd>Carl Nagle</dd></dl>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested_class_summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.VERSION_OPTION.html" title="enum in org.safs.install">InstallerImpl.VERSION_OPTION</a></strong></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field_summary">
@@ -141,26 +162,40 @@ implements <a href="../../../org/safs/install/InstallerInterface.html" title="in
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#PARAM_SWITCH">PARAM_SWITCH</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#PARAM_USE_LATEST_VERSION">PARAM_USE_LATEST_VERSION</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#productDetector">productDetector</a></strong></code>
+<div class="block">The ProductDetector.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) static <a href="../../../org/safs/install/ProgressIndicator.html" title="class in org.safs.install">ProgressIndicator</a></code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#progresser">progresser</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#REGSVR32">REGSVR32</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#rootdir">rootdir</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#s">s</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#SYSTEM32">SYSTEM32</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#SYSWOW64">SYSWOW64</a></strong></code>&nbsp;</td>
 </tr>
@@ -213,31 +248,50 @@ implements <a href="../../../org/safs/install/InstallerInterface.html" title="in
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#getDefaultProductDetector()">getDefaultProductDetector</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#getEnvValue(java.lang.String)">getEnvValue</a></strong>(java.lang.String&nbsp;key)</code>
 <div class="block">Return a System Environment String value.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#getInstallationRoot()">getInstallationRoot</a></strong>()</code>
 <div class="block">Subclasses use this to determine what is the root directory of the current 
  install/uninstall that is in-progress.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#getRegistryValue(java.lang.String,%20java.lang.String)">getRegistryValue</a></strong>(java.lang.String&nbsp;key,
                 java.lang.String&nbsp;valuename)</code>
 <div class="block">Gets the (Windows) registry value, or null if it doesn't exist.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#getUnixProductDetector()">getUnixProductDetector</a></strong>()</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#getWindowsProductDetector()">getWindowsProductDetector</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#hasRegistryEntry(java.lang.String,%20java.lang.String)">hasRegistryEntry</a></strong>(java.lang.String&nbsp;key,
                 java.lang.String&nbsp;valuename)</code>
 <div class="block">True if the requested "registry key" already exists, false otherwise.<br>
  This is currently only supported on Windows.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/InstallerImpl.html#initilizeProductDetector()">initilizeProductDetector</a></strong>()</code>
+<div class="block">Initialize the IProdcutDetector object according to the Operation System.<br>
+ A ProductDetectorDefault will be returned if the OS is not Windows or UNIX/LINUX.<br></div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -366,6 +420,40 @@ implements <a href="../../../org/safs/install/InstallerInterface.html" title="in
 <pre>public static final&nbsp;java.lang.String REGSVR32</pre>
 </li>
 </ul>
+<a name="PARAM_USE_LATEST_VERSION">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PARAM_USE_LATEST_VERSION</h4>
+<pre>protected static final&nbsp;java.lang.String PARAM_USE_LATEST_VERSION</pre>
+</li>
+</ul>
+<a name="PARAM_SWITCH">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PARAM_SWITCH</h4>
+<pre>protected static final&nbsp;java.lang.String PARAM_SWITCH</pre>
+</li>
+</ul>
+<a name="productDetector">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>productDetector</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a> productDetector</pre>
+<div class="block">The ProductDetector. Sub-class may need to implement:
+ <ul>
+ <li> <a href="../../../org/safs/install/InstallerImpl.html#getDefaultProductDetector()"><code>getDefaultProductDetector()</code></a>
+ <li> <a href="../../../org/safs/install/InstallerImpl.html#getUnixProductDetector()"><code>getUnixProductDetector()</code></a>
+ <li> <a href="../../../org/safs/install/InstallerImpl.html#getWindowsProductDetector()"><code>getWindowsProductDetector()</code></a>
+ </ul></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/InstallerImpl.html#initilizeProductDetector()"><code>initilizeProductDetector()</code></a></dd></dl>
+</li>
+</ul>
 <a name="ARG_INSTALLDIR">
 <!--   -->
 </a>
@@ -453,6 +541,54 @@ implements <a href="../../../org/safs/install/InstallerInterface.html" title="in
  SELENIUMDIREnv.
  <p></div>
 <dl><dt><span class="strong">Returns:</span></dt><dd></dd></dl>
+</li>
+</ul>
+<a name="initilizeProductDetector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>initilizeProductDetector</h4>
+<pre>protected&nbsp;void&nbsp;initilizeProductDetector()
+                                 throws java.lang.UnsupportedOperationException</pre>
+<div class="block">Initialize the IProdcutDetector object according to the Operation System.<br>
+ A ProductDetectorDefault will be returned if the OS is not Windows or UNIX/LINUX.<br></div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.UnsupportedOperationException</code></dd></dl>
+</li>
+</ul>
+<a name="getWindowsProductDetector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getWindowsProductDetector</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a>&nbsp;getWindowsProductDetector()
+                                              throws java.lang.UnsupportedOperationException</pre>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.UnsupportedOperationException</code></dd></dl>
+</li>
+</ul>
+<a name="getUnixProductDetector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getUnixProductDetector</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a>&nbsp;getUnixProductDetector()
+                                           throws java.lang.UnsupportedOperationException</pre>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.UnsupportedOperationException</code></dd></dl>
+</li>
+</ul>
+<a name="getDefaultProductDetector()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDefaultProductDetector</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a>&nbsp;getDefaultProductDetector()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>ProductDetectorDefault</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/ProductDetectorDefault.html" title="class in org.safs.install"><code>ProductDetectorDefault</code></a></dd></dl>
 </li>
 </ul>
 <a name="setProgressIndicator(org.safs.install.ProgressIndicator)">
@@ -660,7 +796,7 @@ implements <a href="../../../org/safs/install/InstallerInterface.html" title="in
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../org/safs/install/DLLInstaller.html" title="class in org.safs.install"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../org/safs/install/InstallerInterface.html" title="interface in org.safs.install"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../org/safs/install/InstallerImpl.VERSION_OPTION.html" title="enum in org.safs.install"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?org/safs/install/InstallerImpl.html" target="_top">Frames</a></li>
@@ -684,7 +820,7 @@ implements <a href="../../../org/safs/install/InstallerInterface.html" title="in
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested_class_summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>

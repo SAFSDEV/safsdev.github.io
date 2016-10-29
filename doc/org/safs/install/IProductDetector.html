@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>IProductDetector (SAFS API DOCUMENT)</title>
+<link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="IProductDetector (SAFS API DOCUMENT)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/IProductDetector.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+<li><a href="../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../org/safs/install/InstallerInterface.html" title="interface in org.safs.install"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../org/safs/install/LibraryUpdate.html" title="class in org.safs.install"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../index.html?org/safs/install/IProductDetector.html" target="_top">Frames</a></li>
+<li><a href="IProductDetector.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.safs.install</div>
+<h2 title="Interface IProductDetector" class="title">Interface IProductDetector</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Known Implementing Classes:</dt>
+<dd><a href="../../../org/safs/install/ProductDetectorDefault.html" title="class in org.safs.install">ProductDetectorDefault</a></dd>
+</dl>
+<hr>
+<br>
+<pre>interface <span class="strong">IProductDetector</span></pre>
+<div class="block">If a product (multiple versions of one product) has been installed, we may want to know:
+ <ul>
+ <li>where it has (they have) been installed.
+ <li>what installation path is preferable to use if multiples are installed
+ <li>what are the possible executables
+ </ul></div>
+<dl><dt><span class="strong">Author:</span></dt>
+  <dd>Lei Wang</dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#BIN">BIN</a></strong></code>
+<div class="block">'bin' the sub-folder (relative to product home) holding executables</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#REG_HKLM_ST">REG_HKLM_ST</a></strong></code>
+<div class="block">'HKLM\Software\' registry path for application on 32-bit OS</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#REG_HKLM_ST_WOW6432">REG_HKLM_ST_WOW6432</a></strong></code>
+<div class="block">'HKLM\Software\Wow6432Node' registry path for 32-bit application on 64-bit OS</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#gerPreferredHome()">gerPreferredHome</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String[]</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#getBins()">getBins</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#getHomes()">getHomes</a></strong>()</code>
+<div class="block">Note: The map's key is used for choosing product to use.<br>
+       User will decide key's format.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String[]</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#getPossibleExecutables()">getPossibleExecutables</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/IProductDetector.html#getValidExecutable(java.io.File,%20java.lang.String)">getValidExecutable</a></strong>(java.io.File&nbsp;home,
+                  java.lang.String&nbsp;defaultExecutable)</code>
+<div class="block">Find the valid executable for the product.<br>
+ The search logic could be:<br>
+ 1.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="REG_HKLM_ST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REG_HKLM_ST</h4>
+<pre>static final&nbsp;java.lang.String REG_HKLM_ST</pre>
+<div class="block">'HKLM\Software\' registry path for application on 32-bit OS</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.IProductDetector.REG_HKLM_ST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REG_HKLM_ST_WOW6432">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REG_HKLM_ST_WOW6432</h4>
+<pre>static final&nbsp;java.lang.String REG_HKLM_ST_WOW6432</pre>
+<div class="block">'HKLM\Software\Wow6432Node' registry path for 32-bit application on 64-bit OS</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.IProductDetector.REG_HKLM_ST_WOW6432">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="BIN">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>BIN</h4>
+<pre>static final&nbsp;java.lang.String BIN</pre>
+<div class="block">'bin' the sub-folder (relative to product home) holding executables</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.IProductDetector.BIN">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="getHomes()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getHomes</h4>
+<pre>java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;getHomes()</pre>
+<div class="block">Note: The map's key is used for choosing product to use.<br>
+       User will decide key's format. It could be "ProductName+VersionNumber" or "VersionNumber".<br></div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a map containing pairs of (key, product_installation_full_path).<br>
+                                        an empty map if non installation has been detected.<br></dd></dl>
+</li>
+</ul>
+<a name="gerPreferredHome()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>gerPreferredHome</h4>
+<pre>java.lang.String&nbsp;gerPreferredHome()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String, the preferred product_installation_full_path if multiple products have been installed.<br>
+                 null if non product installation is detected.</dd></dl>
+</li>
+</ul>
+<a name="getBins()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBins</h4>
+<pre>java.lang.String[]&nbsp;getBins()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String[], an array of sub folder (relative to the product home) holding executables.
+                   An empty array if there is no possible value.<br></dd></dl>
+</li>
+</ul>
+<a name="getPossibleExecutables()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPossibleExecutables</h4>
+<pre>java.lang.String[]&nbsp;getPossibleExecutables()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String[], an array of "relative path" for possible executables (relative to the product home).<br>
+                   The first element is the most favorable; the last the least favorable.<br>
+                   An empty array if no executable is possible.<br></dd></dl>
+</li>
+</ul>
+<a name="getValidExecutable(java.io.File, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getValidExecutable</h4>
+<pre>java.io.File&nbsp;getValidExecutable(java.io.File&nbsp;home,
+                              java.lang.String&nbsp;defaultExecutable)
+                                throws java.io.FileNotFoundException</pre>
+<div class="block">Find the valid executable for the product.<br>
+ The search logic could be:<br>
+ 1. find the default executable under product home<br>
+ 2. find the default executable under the <a href="../../../org/safs/install/IProductDetector.html#getBins()"><code>getBins()</code></a> sub folder of product home<br>
+ 3. find the <a href="../../../org/safs/install/IProductDetector.html#getPossibleExecutables()"><code>getPossibleExecutables()</code></a> under the product home<br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>home</code> - File, the product home directory</dd><dd><code>defaultExecutable</code> - String, the default executable. It could be name or "path relative to home".</dd>
+<dt><span class="strong">Returns:</span></dt><dd>File, the valid executable</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.FileNotFoundException</code> - if no executable could be found</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/ProductDetectorDefault.html" title="class in org.safs.install"><code>ProductDetectorDefault</code></a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/IProductDetector.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+<li><a href="../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../org/safs/install/InstallerInterface.html" title="interface in org.safs.install"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../org/safs/install/LibraryUpdate.html" title="class in org.safs.install"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../index.html?org/safs/install/IProductDetector.html" target="_top">Frames</a></li>
+<li><a href="IProductDetector.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small><i>Copyright &#169; SAS Institute. All Rights Reserved.</i></small></p>
+</body>
+</html>

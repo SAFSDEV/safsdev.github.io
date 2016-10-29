@@ -77,6 +77,14 @@
 <td class="colFirst"><a href="../../../org/safs/install/InstallerInterface.html" title="interface in org.safs.install">InstallerInterface</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></td>
+<td class="colLast">
+<div class="block">If a product (multiple versions of one product) has been installed, we may want to know:
+ 
+ where it has (they have) been installed.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -118,6 +126,17 @@
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../../../org/safs/install/ProductDetectorDefault.html" title="class in org.safs.install">ProductDetectorDefault</a></td>
+<td class="colLast">
+<div class="block">This class ONLY provides implementation for
+ 
+ <a href="../../../org/safs/install/ProductDetectorDefault.html#getBins()"><code>ProductDetectorDefault.getBins()</code></a>
+ <a href="../../../org/safs/install/ProductDetectorDefault.html#getValidExecutable(java.io.File,%20java.lang.String)"><code>ProductDetectorDefault.getValidExecutable(File, String)</code></a>
+ 
+ User NEEDS to implement the other methods to get it work.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/install/ProgressIndicator.html" title="class in org.safs.install">ProgressIndicator</a></td>
 <td class="colLast">
 <div class="block">A Panel to show the progress of the installation.<br>
@@ -125,39 +144,61 @@
  the other is a 'text area' to show the progress information.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/install/ProjectInstaller.html" title="class in org.safs.install">ProjectInstaller</a></td>
 <td class="colLast">
 <div class="block">Prepare and install a new SAFS Project based on a config.ini, safstid.ini, environment variables, 
  command-line options, and internal defaults.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/install/RFTInstaller.html" title="class in org.safs.install">RFTInstaller</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/install/SAFSInstaller.html" title="class in org.safs.install">SAFSInstaller</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/install/SeleniumPlusInstaller.html" title="class in org.safs.install">SeleniumPlusInstaller</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/install/SilentInstaller.html" title="class in org.safs.install">SilentInstaller</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/install/STAFInstaller.html" title="class in org.safs.install">STAFInstaller</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/install/TCAFSInstaller.html" title="class in org.safs.install">TCAFSInstaller</a></td>
 <td class="colLast">
 <div class="block">Handle Windows registration and Environment settings for SmartBear TestComplete and 
  TestExecute.</div>
 </td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../org/safs/install/TopMostOptionPane.html" title="class in org.safs.install">TopMostOptionPane</a></td>
+<td class="colLast">
+<div class="block">
+ Show the dialog on top most level, which means it will be shown before other windows.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList">
+<table class="packageSummary" border="0" cellpadding="3" cellspacing="0" summary="Enum Summary table, listing enums, and an explanation">
+<caption><span>Enum Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Enum</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../org/safs/install/InstallerImpl.VERSION_OPTION.html" title="enum in org.safs.install">InstallerImpl.VERSION_OPTION</a></td>
+<td class="colLast">&nbsp;</td>
 </tr>
 </tbody>
 </table>
