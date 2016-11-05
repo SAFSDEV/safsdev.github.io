@@ -150,6 +150,18 @@ extends autoitx4java.AutoItX</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#AUTOIT_KEYWORD_MOUSEMOVE">AUTOIT_KEYWORD_MOUSEMOVE</a></strong></code>
+<div class="block">AutoIt 'MouseMove' keyword, moves the mouse pointer.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#AUTOIT_KEYWORD_MOUSEMOVE_SPEED">AUTOIT_KEYWORD_MOUSEMOVE_SPEED</a></strong></code>
+<div class="block">AutoIt mouse move 'speed', its range is from 1 to 100, and default value is 10.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#AUTOIT_KEYWORD_SEND">AUTOIT_KEYWORD_SEND</a></strong></code>
 <div class="block">AutoIt 'Send' keyword, sends simulated keystrokes to the active window.</div>
 </td>
@@ -312,6 +324,13 @@ extends autoitx4java.AutoItX</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#mouseHover(java.awt.Point,%20int)">mouseHover</a></strong>(java.awt.Point&nbsp;pos,
+          int&nbsp;milliSeconds)</code>
+<div class="block">Implement AutoItX's workhorse for keyword 'HoverMouse'.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#robotClick(int,%20int,%20java.lang.String,%20int,%20java.awt.Point,%20java.lang.String)">robotClick</a></strong>(int&nbsp;x,
           int&nbsp;y,
@@ -322,7 +341,7 @@ extends autoitx4java.AutoItX</pre>
 <div class="block">Workhorse of Java AWT Robot click action.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#supportHoldingKeyPress(java.lang.String)">supportHoldingKeyPress</a></strong>(java.lang.String&nbsp;keyStr)</code>
 <div class="block">According to https://www.autoitscript.com/autoit3/docs/functions/Send.htm, AutoIt supports
@@ -330,11 +349,11 @@ extends autoitx4java.AutoItX</pre>
                 1.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#wrapKeyPress(java.lang.String)">wrapKeyPress</a></strong>(java.lang.String&nbsp;keyStr)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#wrapKeyUp(java.lang.String)">wrapKeyUp</a></strong>(java.lang.String&nbsp;keyStr)</code>&nbsp;</td>
 </tr>
@@ -400,6 +419,28 @@ extends autoitx4java.AutoItX</pre>
 <pre>public static final&nbsp;java.lang.String AUTOIT_KEYWORD_CONTROLCLICK</pre>
 <div class="block">AutoIt 'ControlClick' keyword, sends a mouse click command to a given control.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.autoit.lib.AutoItXPlus.AUTOIT_KEYWORD_CONTROLCLICK">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="AUTOIT_KEYWORD_MOUSEMOVE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>AUTOIT_KEYWORD_MOUSEMOVE</h4>
+<pre>public static final&nbsp;java.lang.String AUTOIT_KEYWORD_MOUSEMOVE</pre>
+<div class="block">AutoIt 'MouseMove' keyword, moves the mouse pointer.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.autoit.lib.AutoItXPlus.AUTOIT_KEYWORD_MOUSEMOVE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="AUTOIT_KEYWORD_MOUSEMOVE_SPEED">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>AUTOIT_KEYWORD_MOUSEMOVE_SPEED</h4>
+<pre>public static final&nbsp;java.lang.String AUTOIT_KEYWORD_MOUSEMOVE_SPEED</pre>
+<div class="block">AutoIt mouse move 'speed', its range is from 1 to 100, and default value is 10.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.autoit.lib.AutoItXPlus.AUTOIT_KEYWORD_MOUSEMOVE_SPEED">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="AUTOIT_SUPPORT_PRESS_ALT">
@@ -751,7 +792,7 @@ extends autoitx4java.AutoItX</pre>
 <a name="click(java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, java.awt.Point, java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>click</h4>
 <pre>public&nbsp;boolean&nbsp;click(java.lang.String&nbsp;title,
@@ -769,6 +810,22 @@ extends autoitx4java.AutoItX</pre>
  position and the special key holding when clicking.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>title</code> - String, title of the window to access.</dd><dd><code>text</code> - String, text of the window to access.</dd><dd><code>controlID</code> - String, control to interact with.</dd><dd><code>button</code> - String, button to click, "left", "right" or "middle".</dd><dd><code>nClicks</code> - int,    number of times to click the mouse. It's supposed to be greater than or equal to 1.</dd><dd><code>offset</code> - Point,  position to click within the control. It can be null or empty String. Default value is center.</dd><dd><code>specialKey</code> - String, keyboard key that be hold when click action happening. It can be null or empty String.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean</dd></dl>
+</li>
+</ul>
+<a name="mouseHover(java.awt.Point, int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>mouseHover</h4>
+<pre>public&nbsp;void&nbsp;mouseHover(java.awt.Point&nbsp;pos,
+              int&nbsp;milliSeconds)
+                throws <a href="../../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
+<div class="block">Implement AutoItX's workhorse for keyword 'HoverMouse'. If the AutoItX API fails,
+ try to use Robot API 'mouseHover()'.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>pos</code> - Point,  the screen position to hover the mouse, which must NOT be null or empty.</dd><dd><code>milliseconds</code> - double, the period to hover the mouse, in milliseconds</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
 </li>
 </ul>
 </li>

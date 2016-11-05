@@ -1505,6 +1505,13 @@ the given variable name.</div>
 <div class="block">Transform AutoIt Special Key RS into Java key code.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="strong">AutoItXPlus.</span><code><strong><a href="../../../org/safs/autoit/lib/AutoItXPlus.html#mouseHover(java.awt.Point,%20int)">mouseHover</a></strong>(java.awt.Point&nbsp;pos,
+          int&nbsp;milliSeconds)</code>
+<div class="block">Implement AutoItX's workhorse for keyword 'HoverMouse'.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -4654,21 +4661,29 @@ the given variable name.</div>
 <td class="colLast"><span class="strong">GenericEngine.</span><code><strong><a href="../../../org/safs/tools/engines/GenericEngine.html#getVariable(java.lang.String)">getVariable</a></strong>(java.lang.String&nbsp;var)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><span class="strong">AutoItComponent.CFComponent.</span><code><strong><a href="../../../org/safs/tools/engines/AutoItComponent.CFComponent.html#performHoverMouse(java.awt.Point,%20int)">performHoverMouse</a></strong>(java.awt.Point&nbsp;offset,
+                 int&nbsp;milliSeconds)</code>
+<div class="block">Override the execution method 'performHoverMouse()' of
+ keyword 'ComponentFunction.HOVERMOUSE'</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="strong">GenericEngine.</span><code><strong><a href="../../../org/safs/tools/engines/GenericEngine.html#setVariable(java.lang.String,%20java.lang.String)">setVariable</a></strong>(java.lang.String&nbsp;var,
            java.lang.String&nbsp;val)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected long</code></td>
 <td class="colLast"><span class="strong">TIDDriverCommands.</span><code><strong><a href="../../../org/safs/tools/engines/TIDDriverCommands.html#takeScreenShot()">takeScreenShot</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">TIDComponent.CFComponent.</span><code><strong><a href="../../../org/safs/tools/engines/TIDComponent.CFComponent.html#verifyFileToFile(boolean)">verifyFileToFile</a></strong>(boolean&nbsp;text)</code>
 <div class="block"><br><em>Purpose:</em> verifyFileToFile</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">TIDComponent.CFComponent.</span><code><strong><a href="../../../org/safs/tools/engines/TIDComponent.CFComponent.html#verifyValues()">verifyValues</a></strong>()</code>
 <div class="block">VerifyValues, VerifyValueEquals, VerifyValuesNotEqual, VerifyValuesIgnoreCase, 
@@ -4676,7 +4691,7 @@ the given variable name.</div>
  VerifyValueDoesNotContain</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="strong">AutoItComponent.</span><code><strong><a href="../../../org/safs/tools/engines/AutoItComponent.html#waitForGUI(org.safs.autoit.AutoItRs)">waitForGUI</a></strong>(<a href="../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;rs)</code>
 <div class="block">Prerequisite: <a href="../../../org/safs/tools/engines/AutoItComponent.html#it"><code>AutoItComponent.it</code></a> and <a href="../../../org/safs/tools/engines/GenericEngine.html#testRecordData"><code>GenericEngine.testRecordData</code></a> should be initialized.</div>
