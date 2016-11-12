@@ -170,18 +170,6 @@ extends <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html"
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#data">data</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#exited">exited</a></strong></code>
-<div class="block">Returns true if the process we are capturing has exited.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected int</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#exitValue">exitValue</a></strong></code>
-<div class="block">Returns the exitValue returned from the exited process.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#monitor">monitor</a></strong></code>
 <div class="block">If non-null, we will check to see if this CMD(Unix), IMAGE(Win), or PID is running.</div>
@@ -199,7 +187,7 @@ extends <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html"
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;org.safs.tools.consoles.<a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html" title="class in org.safs.tools.consoles">GenericProcessConsole</a></h3>
-<code><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#err">err</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#ERR_PREFIX">ERR_PREFIX</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exceptions">exceptions</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#in">in</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#out">out</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#OUT_PREFIX">OUT_PREFIX</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#process">process</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#showErrStream">showErrStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#showOutStream">showOutStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#shutdown">shutdown</a></code></li>
+<code><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#err">err</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#ERR_PREFIX">ERR_PREFIX</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exceptions">exceptions</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exited">exited</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exitValue">exitValue</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#in">in</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#out">out</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#OUT_PREFIX">OUT_PREFIX</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#process">process</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#showErrStream">showErrStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#showOutStream">showOutStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#shutdown">shutdown</a></code></li>
 </ul>
 </li>
 </ul>
@@ -262,16 +250,18 @@ extends <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html"
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#getDataLineCount()">getDataLineCount</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#getExitValue()">getExitValue</a></strong>()</code>
-<div class="block">Get the process exitValue.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#run()">run</a></strong>()</code>
 <div class="block">Continuously monitors the process out and err streams routing them to the local 
  process System.out and System.err.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessCapture.html#waitOutput(long,%20int,%20int)">waitOutput</a></strong>(long&nbsp;timeout,
+          int&nbsp;stdoutLineToWait,
+          int&nbsp;stderrLineToWait)</code>
+<div class="block">Wait for the number of line on both STDOUT and STDERR is bigger than some expected number respectively.<br></div>
 </td>
 </tr>
 </table>
@@ -280,7 +270,7 @@ extends <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html"
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.tools.consoles.<a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html" title="class in org.safs.tools.consoles">GenericProcessConsole</a></h3>
-<code><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#_initialize(java.lang.Process)">_initialize</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#debug(java.lang.String)">debug</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExceptions()">getExceptions</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExceptionsCount()">getExceptionsCount</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#setShowErrStream(boolean)">setShowErrStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#setShowOutStream(boolean)">setShowOutStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#shutdown()">shutdown</a></code></li>
+<code><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#_initialize(java.lang.Process)">_initialize</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#debug(java.lang.String)">debug</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExceptions()">getExceptions</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExceptionsCount()">getExceptionsCount</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExitValue()">getExitValue</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#isExited()">isExited</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#setShowErrStream(boolean)">setShowErrStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#setShowOutStream(boolean)">setShowOutStream</a>, <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#shutdown()">shutdown</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -322,29 +312,6 @@ extends <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html"
 <div class="block">If non-null, we will check to see if this CMD(Unix), IMAGE(Win), or PID is running. 
  If the process is still running, we will not attempt to end our reading of the IO 
  streams.</div>
-</li>
-</ul>
-<a name="exited">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>exited</h4>
-<pre>public&nbsp;boolean exited</pre>
-<div class="block">Returns true if the process we are capturing has exited.
- We may still be capturing additional data if a secondary process is being 
- monitored, however.</div>
-</li>
-</ul>
-<a name="exitValue">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>exitValue</h4>
-<pre>protected&nbsp;int exitValue</pre>
-<div class="block">Returns the exitValue returned from the exited process.
- The value is only valid if exited = true;</div>
 </li>
 </ul>
 <a name="thread">
@@ -426,19 +393,28 @@ extends <a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html"
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getExitValue()">
+<a name="waitOutput(long, int, int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getExitValue</h4>
-<pre>public&nbsp;int&nbsp;getExitValue()
-                 throws java.lang.IllegalStateException</pre>
-<div class="block">Get the process exitValue.  
- Use isExited() first to avoid the IllegalStateException, if desired.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>exitValue or IllegalStateException if process has not exited.</dd>
+<h4>waitOutput</h4>
+<pre>public&nbsp;void&nbsp;waitOutput(long&nbsp;timeout,
+              int&nbsp;stdoutLineToWait,
+              int&nbsp;stderrLineToWait)
+                throws java.util.concurrent.TimeoutException</pre>
+<div class="block">Wait for the number of line on both STDOUT and STDERR is bigger than some expected number respectively.<br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - long, the timeout in millisecond.</dd><dd><code>stdoutLineToWait</code> - int, the number of line on STDOUT to wait.</dd><dd><code>stderrLineToWait</code> - int, the number of line on STDERR to wait.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code>java.lang.IllegalStateException</code> - if process is still running.</dd></dl>
+<dd><code>java.util.concurrent.TimeoutException</code> - if the timeout has been reached before the condition is satisfied.</dd><dt><span class="strong">Example:</span></dt>
+  <dd><ol>
+ <li>//Wait that the number of output on STDOUT is bigger than 20 lines<br>
+     <b>waitOutput(2000, 20, 0);</b>
+ <li>//Wait that the number of output on STDERR is bigger than 20 lines<br>
+     <b>waitOutput(2000, 0, 20);</b>
+ <li>//Wait that the number of output on both STDOUT and STDERR is bigger than 20 lines<br>
+     <b>waitOutput(2000, 20, 20);</b>
+ </ol></dd></dl>
 </li>
 </ul>
 <a name="getData()">

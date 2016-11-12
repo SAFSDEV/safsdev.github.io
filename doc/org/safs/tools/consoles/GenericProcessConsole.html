@@ -160,6 +160,18 @@ implements java.lang.Runnable</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exceptions">exceptions</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exited">exited</a></strong></code>
+<div class="block">Returns true if the process we are capturing has exited.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected int</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#exitValue">exitValue</a></strong></code>
+<div class="block">Returns the exitValue returned from the underlying process.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.io.BufferedWriter</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#in">in</a></strong></code>&nbsp;</td>
 </tr>
@@ -248,6 +260,18 @@ implements java.lang.Runnable</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExceptionsCount()">getExceptionsCount</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#getExitValue()">getExitValue</a></strong>()</code>
+<div class="block">Get the process exitValue.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/consoles/GenericProcessConsole.html#isExited()">isExited</a></strong>()</code>
+<div class="block">Returns true if the process we are capturing has exited.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -386,12 +410,35 @@ implements java.lang.Runnable</pre>
 <a name="ERR_PREFIX">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ERR_PREFIX</h4>
 <pre>public static final&nbsp;java.lang.String ERR_PREFIX</pre>
 <div class="block">"ERR: "</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.consoles.GenericProcessConsole.ERR_PREFIX">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="exitValue">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>exitValue</h4>
+<pre>protected&nbsp;int exitValue</pre>
+<div class="block">Returns the exitValue returned from the underlying process.
+ The value is only valid if exited = true;</div>
+</li>
+</ul>
+<a name="exited">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>exited</h4>
+<pre>protected&nbsp;boolean exited</pre>
+<div class="block">Returns true if the process we are capturing has exited.
+ We may still be capturing additional data if a secondary process is being 
+ monitored, however.</div>
 </li>
 </ul>
 </li>
@@ -438,6 +485,34 @@ implements java.lang.Runnable</pre>
 <li class="blockList">
 <h4>_initialize</h4>
 <pre>protected&nbsp;void&nbsp;_initialize(java.lang.Process&nbsp;process)</pre>
+</li>
+</ul>
+<a name="getExitValue()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getExitValue</h4>
+<pre>public&nbsp;int&nbsp;getExitValue()
+                 throws java.lang.IllegalStateException</pre>
+<div class="block">Get the process exitValue.  
+ Use isExited() first to avoid the IllegalStateException, if desired.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>exitValue or IllegalStateException if process has not exited.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.IllegalStateException</code> - if process is still running.</dd></dl>
+</li>
+</ul>
+<a name="isExited()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isExited</h4>
+<pre>public&nbsp;boolean&nbsp;isExited()</pre>
+<div class="block">Returns true if the process we are capturing has exited.
+ We may still be capturing additional data if a secondary process is being 
+ monitored, however.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>boolean, true if the process we are capturing has exited.</dd></dl>
 </li>
 </ul>
 <a name="debug(java.lang.String)">
