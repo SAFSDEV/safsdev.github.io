@@ -60,13 +60,13 @@
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_detail">Method</a></li>
 </ul>
@@ -121,13 +121,31 @@ implements <a href="../../../org/safs/install/IProductDetector.html" title="inte
 <!--   -->
 </a>
 <h3>Field Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a name="fields_inherited_from_class_org.safs.install.IProductDetector">
-<!--   -->
-</a>
-<h3>Fields inherited from interface&nbsp;org.safs.install.<a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></h3>
-<code><a href="../../../org/safs/install/IProductDetector.html#BIN">BIN</a>, <a href="../../../org/safs/install/IProductDetector.html#REG_HKLM_ST">REG_HKLM_ST</a>, <a href="../../../org/safs/install/IProductDetector.html#REG_HKLM_ST_WOW6432">REG_HKLM_ST_WOW6432</a></code></li>
-</ul>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>(package private) static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/ProductDetectorDefault.html#BIN">BIN</a></strong></code>
+<div class="block">'bin' the sub-folder (relative to product home) holding executables</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>(package private) static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/ProductDetectorDefault.html#REG_HKLM_ST">REG_HKLM_ST</a></strong></code>
+<div class="block">'HKLM\Software\' registry path for application on 32-bit OS</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>(package private) static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/ProductDetectorDefault.html#REG_HKLM_ST_WOW6432">REG_HKLM_ST_WOW6432</a></strong></code>
+<div class="block">'HKLM\Software\Wow6432Node' registry path for 32-bit application on 64-bit OS</div>
+</td>
+</tr>
+</table>
 </li>
 </ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -185,7 +203,7 @@ implements <a href="../../../org/safs/install/IProductDetector.html" title="inte
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.io.File</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/install/ProductDetectorDefault.html#getValidExecutable(java.io.File,%20java.lang.String)">getValidExecutable</a></strong>(java.io.File&nbsp;tchome,
+<td class="colLast"><code><strong><a href="../../../org/safs/install/ProductDetectorDefault.html#getValidExecutable(java.io.File,%20java.lang.String)">getValidExecutable</a></strong>(java.io.File&nbsp;home,
                   java.lang.String&nbsp;defaultExecutable)</code>
 <div class="block">Implement the search logic suggested in the interface.<br>
  1.</div>
@@ -207,6 +225,47 @@ implements <a href="../../../org/safs/install/IProductDetector.html" title="inte
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="REG_HKLM_ST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REG_HKLM_ST</h4>
+<pre>static final&nbsp;java.lang.String REG_HKLM_ST</pre>
+<div class="block">'HKLM\Software\' registry path for application on 32-bit OS</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.ProductDetectorDefault.REG_HKLM_ST">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="REG_HKLM_ST_WOW6432">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>REG_HKLM_ST_WOW6432</h4>
+<pre>static final&nbsp;java.lang.String REG_HKLM_ST_WOW6432</pre>
+<div class="block">'HKLM\Software\Wow6432Node' registry path for 32-bit application on 64-bit OS</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.ProductDetectorDefault.REG_HKLM_ST_WOW6432">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="BIN">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>BIN</h4>
+<pre>static final&nbsp;java.lang.String BIN</pre>
+<div class="block">'bin' the sub-folder (relative to product home) holding executables</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.ProductDetectorDefault.BIN">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor_detail">
@@ -297,7 +356,7 @@ implements <a href="../../../org/safs/install/IProductDetector.html" title="inte
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getValidExecutable</h4>
-<pre>public&nbsp;java.io.File&nbsp;getValidExecutable(java.io.File&nbsp;tchome,
+<pre>public&nbsp;java.io.File&nbsp;getValidExecutable(java.io.File&nbsp;home,
                               java.lang.String&nbsp;defaultExecutable)
                                 throws java.io.FileNotFoundException</pre>
 <div class="block">Implement the search logic suggested in the interface.<br>
@@ -307,7 +366,7 @@ implements <a href="../../../org/safs/install/IProductDetector.html" title="inte
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../org/safs/install/IProductDetector.html#getValidExecutable(java.io.File,%20java.lang.String)">getValidExecutable</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/safs/install/IProductDetector.html" title="interface in org.safs.install">IProductDetector</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>tchome</code> - File, the product home directory</dd><dd><code>defaultExecutable</code> - String, the default executable. It could be name or "path relative to home".</dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>home</code> - File, the product home directory</dd><dd><code>defaultExecutable</code> - String, the default executable. It could be name or "path relative to home".</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the valid executable</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.FileNotFoundException</code> - if no executable could be found</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/ProductDetectorDefault.html" title="class in org.safs.install"><code>ProductDetectorDefault</code></a></dd></dl>
@@ -365,13 +424,13 @@ implements <a href="../../../org/safs/install/IProductDetector.html" title="inte
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field_detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_detail">Method</a></li>
 </ul>
