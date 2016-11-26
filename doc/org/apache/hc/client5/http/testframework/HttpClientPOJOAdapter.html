@@ -155,26 +155,30 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#PROTOCOL_VERSION">PROTOCOL_VERSION</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#proxyServerURL">proxyServerURL</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#QUERY">QUERY</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#REQUEST">REQUEST</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#RESPONSE">RESPONSE</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#STATUS">STATUS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#TIMEOUT">TIMEOUT</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#USERID">USERID</a></strong></code>&nbsp;</td>
 </tr>
@@ -226,6 +230,10 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#modifyRequest(java.util.Map)">modifyRequest</a></strong>(java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;request)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#setProxyServerURL(java.lang.String)">setProxyServerURL</a></strong>(java.lang.String&nbsp;proxyServerURL)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -392,11 +400,20 @@ extends java.lang.Object</pre>
 <a name="USERID">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>USERID</h4>
 <pre>public static final&nbsp;java.lang.String USERID</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../constant-values.html#org.apache.hc.client5.http.testframework.HttpClientPOJOAdapter.USERID">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="proxyServerURL">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>proxyServerURL</h4>
+<pre>protected&nbsp;java.lang.String proxyServerURL</pre>
 </li>
 </ul>
 </li>
@@ -435,6 +452,15 @@ extends java.lang.Object</pre>
                                                                   throws java.lang.Exception</pre>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd></dl>
+</li>
+</ul>
+<a name="setProxyServerURL(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setProxyServerURL</h4>
+<pre>public&nbsp;void&nbsp;setProxyServerURL(java.lang.String&nbsp;proxyServerURL)</pre>
 </li>
 </ul>
 <a name="modifyRequest(java.util.Map)">

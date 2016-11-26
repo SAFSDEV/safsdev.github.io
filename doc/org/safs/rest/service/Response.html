@@ -229,6 +229,14 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#get_status_line()">get_status_line</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#getRequestInfo()">getRequestInfo</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#getResponseInfo()">getResponseInfo</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_content_type(java.lang.String)">set_content_type</a></strong>(java.lang.String&nbsp;_content_type)</code>&nbsp;</td>
 </tr>
@@ -268,13 +276,19 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_status_line(java.lang.String)">set_status_line</a></strong>(java.lang.String&nbsp;_status_line)</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#toString()">toString</a></strong>()</code>
+<div class="block">This is the one to call for ALL information AFTER the REQUEST has been returned in the RESPONSE</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -596,11 +610,45 @@ extends java.lang.Object</pre>
 <a name="set_request(org.safs.rest.service.Request)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>set_request</h4>
 <pre>public&nbsp;void&nbsp;set_request(<a href="../../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service">Request</a>&nbsp;_request)</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>_request</code> - the _request to set</dd></dl>
+</li>
+</ul>
+<a name="getResponseInfo()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResponseInfo</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getResponseInfo()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String, the response information returned from rest service.</dd></dl>
+</li>
+</ul>
+<a name="getRequestInfo()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRequestInfo</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getRequestInfo()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String, the original request information.</dd></dl>
+</li>
+</ul>
+<a name="toString()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">This is the one to call for ALL information AFTER the REQUEST has been returned in the RESPONSE</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>String, the original request information and the response information returned from rest service.</dd></dl>
 </li>
 </ul>
 </li>
