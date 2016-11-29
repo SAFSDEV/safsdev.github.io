@@ -8,11 +8,14 @@
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
           Compares two strings and returns an integer specifying the
           result of the comparison.
-          The java version uses String.equals()  for comparison so the
-          result will be either 'true' or 'false'
+          The java version returns 'true' or 'false' as the result.
         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+          For java version, if the parameter 'regexMatch' is true, then
+          the parameter 'dstString' is considered as regular expression.
+        </detailed_desc><BR/>
+		</DIV>
 <BR/>
 <DIV NAME="list" ID="other">
 <B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
@@ -20,7 +23,7 @@
 <B>sourceString</B>
 <BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-              sourceString (could come from a ^variable)
+              The source string (could come from a ^variable) to compare.
             </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
@@ -29,10 +32,14 @@
 <B>dstString</B>
 <BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-              dstString (could come from a ^variable)
+              The destination string (could come from a ^variable) to compare.
             </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+              This is normally a simple string; but it could be a regular expression if the
+              parameter 'regexMatch' is true.
+            </detailed_desc><BR/>
+		</DIV>
 		  </LI>
 <BR/><LI>
 <B>resultVar</B>
@@ -44,6 +51,17 @@
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
 		  </LI>
+<BR/><LI>[ <B>regexMatch</B> = false ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+              Indicates if the comparison is in regex way.
+            </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+              This parameter is optional, the default value is false.
+              If this is true, then the parameter 'dstString' should be provided with a regular expression.
+            </detailed_desc><BR/>
+		</DIV>
+		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">
@@ -51,6 +69,16 @@
           </usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
               variable 'var' should contain 'false'
+            </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">
+            C, Compare, "Hello World", "[H|h]ello [W|w]orld", var, true
+          </usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+              variable 'var' should contain 'true'
             </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
