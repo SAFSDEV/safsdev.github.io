@@ -713,7 +713,8 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverFileCommands.html#readFileChars(java.lang.String[])">readFileChars</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">
-          Read the number of characters from the file defined by file number                 and assign a string containing the characters read to a DDV variable.</div>
+          Read the number of characters from the file defined by file number 
+          and assign a string containing the characters read to a DDV variable.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -722,7 +723,8 @@ extends java.lang.Object</pre>
              java.lang.String&nbsp;numberOfChar,
              java.lang.String&nbsp;variableName)</code>
 <div class="block">
-          Read the number of characters from the file defined by file number                 and assign a string containing the characters read to a DDV variable.</div>
+          Read the number of characters from the file defined by file number 
+          and assign a string containing the characters read to a DDV variable.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -2718,7 +2720,8 @@ extends java.lang.Object</pre>
                           java.lang.String&nbsp;numberOfChar,
                           java.lang.String&nbsp;variableName)</pre>
 <div class="block"><pre>
-          Read the number of characters from the file defined by file number                 and assign a string containing the characters read to a DDV variable.
+          Read the number of characters from the file defined by file number 
+          and assign a string containing the characters read to a DDV variable.
             </pre>    Supporting Engines:
     <P/><UL>
         <LI>Rational Robot</LI>
@@ -2729,8 +2732,9 @@ extends java.lang.Object</pre>
     </UL></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>fileNumber</code> - Optional:NO
               The file number of the file to be read from.</dd><dd><code>numberOfChar</code> - Optional:NO
-              Number of characters to be read from the file</dd><dd><code>variableName</code> - Optional:NO
-              Name of the DDV variable in which to store the characters                 read from the file</dd></dl>
+              Number of characters to be read from the file
+              If the number is -1, then the whole content will be read .</dd><dd><code>variableName</code> - Optional:NO
+              Name of the DDV variable in which to store the characters read from the file</dd></dl>
 </li>
 </ul>
 <a name="readFileChars(java.lang.String[])">
@@ -2741,7 +2745,8 @@ extends java.lang.Object</pre>
 <h4>readFileChars</h4>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;readFileChars(java.lang.String[]&nbsp;parameters)</pre>
 <div class="block"><pre>
-          Read the number of characters from the file defined by file number                 and assign a string containing the characters read to a DDV variable.
+          Read the number of characters from the file defined by file number 
+          and assign a string containing the characters read to a DDV variable.
             </pre>    
     Supporting Engines:
     <P/><UL>
@@ -2758,8 +2763,9 @@ extends java.lang.Object</pre>
               The file number of the file to be read from.
             <BR/>        numberOfChar -- Optional:NO
               Number of characters to be read from the file
+              If the number is -1, then the whole content will be read .
             <BR/>        variableName -- Optional:NO
-              Name of the DDV variable in which to store the characters                 read from the file
+              Name of the DDV variable in which to store the characters read from the file
 
     </UL></dd></dl>
 </li>

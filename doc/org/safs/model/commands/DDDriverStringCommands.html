@@ -310,9 +310,10 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverStringCommands.html#compare(java.lang.String,%20java.lang.String,%20java.lang.String)">compare</a></strong>(java.lang.String&nbsp;sourceString,
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverStringCommands.html#compare(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">compare</a></strong>(java.lang.String&nbsp;sourceString,
        java.lang.String&nbsp;dstString,
-       java.lang.String&nbsp;resultVar)</code>
+       java.lang.String&nbsp;resultVar,
+       java.lang.String&nbsp;regexMatch)</code>
 <div class="block">
           Compares two strings and returns an integer specifying the
           result of the comparison.</div>
@@ -1096,7 +1097,7 @@ extends java.lang.Object</pre>
     </UL></dd></dl>
 </li>
 </ul>
-<a name="compare(java.lang.String, java.lang.String, java.lang.String)">
+<a name="compare(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -1104,12 +1105,15 @@ extends java.lang.Object</pre>
 <h4>compare</h4>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;compare(java.lang.String&nbsp;sourceString,
                     java.lang.String&nbsp;dstString,
-                    java.lang.String&nbsp;resultVar)</pre>
+                    java.lang.String&nbsp;resultVar,
+                    java.lang.String&nbsp;regexMatch)</pre>
 <div class="block"><pre>
           Compares two strings and returns an integer specifying the
           result of the comparison.
-          The java version uses String.equals()  for comparison so the
-          result will be either 'true' or 'false'
+          The java version returns 'true' or 'false' as the result.
+
+          For java version, if the parameter 'regexMatch' is true, then
+          the parameter 'dstString' is considered as regular expression.
             </pre>    Supporting Engines:
     <P/><UL>
         <LI>Rational RobotJ</LI>
@@ -1118,10 +1122,11 @@ extends java.lang.Object</pre>
         <LI>OpenQA Selenium</LI>
     </UL></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>sourceString</code> - Optional:NO
-              sourceString (could come from a ^variable)</dd><dd><code>dstString</code> - Optional:NO
-              dstString (could come from a ^variable)</dd><dd><code>resultVar</code> - Optional:NO
+              The source string (could come from a ^variable) to compare.</dd><dd><code>dstString</code> - Optional:NO
+              The destination string (could come from a ^variable) to compare.</dd><dd><code>resultVar</code> - Optional:NO
               the resultVar to place the result of the
-              operation into</dd></dl>
+              operation into</dd><dd><code>regexMatch</code> - Optional:YES  DefaultVal:false
+              Indicates if the comparison is in regex way.</dd></dl>
 </li>
 </ul>
 <a name="compare(java.lang.String[])">
@@ -1134,8 +1139,10 @@ extends java.lang.Object</pre>
 <div class="block"><pre>
           Compares two strings and returns an integer specifying the
           result of the comparison.
-          The java version uses String.equals()  for comparison so the
-          result will be either 'true' or 'false'
+          The java version returns 'true' or 'false' as the result.
+
+          For java version, if the parameter 'regexMatch' is true, then
+          the parameter 'dstString' is considered as regular expression.
             </pre>    
     Supporting Engines:
     <P/><UL>
@@ -1148,12 +1155,14 @@ extends java.lang.Object</pre>
             An array containing the following parameters:
     <UL>
 <BR/>        sourceString -- Optional:NO
-              sourceString (could come from a ^variable)
+              The source string (could come from a ^variable) to compare.
             <BR/>        dstString -- Optional:NO
-              dstString (could come from a ^variable)
+              The destination string (could come from a ^variable) to compare.
             <BR/>        resultVar -- Optional:NO
               the resultVar to place the result of the
               operation into
+            <BR/>        regexMatch -- Optional:YES  DefaultVal:false
+              Indicates if the comparison is in regex way.
 
     </UL></dd></dl>
 </li>

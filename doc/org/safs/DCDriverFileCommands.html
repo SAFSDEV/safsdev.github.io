@@ -113,30 +113,7 @@ extends <a href="../../org/safs/DriverCommand.html" title="class in org.safs">Dr
 <div class="block">DCDriverFileCommands, process a file driver commands
  instantiated by DCDriverCommand</div>
 <dl><dt><span class="strong">Since:</span></dt>
-  <dd>Sep 23, 2003
-
-   <br>   Sep 23, 2003    (DBauman) Original Release
-   <br>   Oct 02, 2003    (DBauman) moved to package org.safs because no dependency on rational
-   <br>   NOV 21, 2003    (Carl Nagle) Added FindSubstringInFile
-   <br>   Jan 13, 2004    (Carl Nagle) Fixed findSubstrings to accept caret in varname strings.<br>
-   <br>   Jan 20, 2006    (Carl Nagle) Removed incorrectly implemented ReadFileString support.
-   <br>   Aug 16, 2006    (PHSABO) Added FilterImage method to black out parts of images.
-   <br>   Nov 07, 2006    (Bob Lawler) Added DeleteDirectoryContents and CopyMatchingFiles. RJL
-   <br>   Nov 07, 2006    (Bob Lawler) Updated copyFile() to use new actuallyCopyBytes() helper method. RJL
-   <br>   Dec 19, 2006    (Carl Nagle) Updated openFile() to handle new OpenUTF8File command
-   <br> May 26, 2008    (LeiWang) Add keyword OnFileEOFGoToBlockId
-   <br> Sep 23, 2008    (LeiWang) Modified methods setFileProtections(),getFileProtections(),getFiles()
-                                                                  Add method isSomeFile()
-                                                                  Add inner class RJFileFilter
-                                                                  See defect S0536736
-   <br>   DEC 07, 2009  (JunwuMa) Update RJFileFilter.accept() to use the same way for non-Windows to decide 
-                                    whether a file on Windows is archive. Fix S0629544.
-   <br> FEB 25, 2010    (JunwuMa) Added two keywords GETTEXTFROMIMAGE and SAVETEXTFROMIMAGE 
-                                    for detecting text in image file using OCR.  
-   <br> APR 20, 2010    (LeiWang) Modify method GetSaveTextFromImage(): use static method of OCREngine to get
-                                    an OCR engine to use.                              
-   <br>   Mar 20, 2013    (Carl Nagle) Fixed FilterImage to use ImageUtils and accept more formats.
-   <br>   Nov 19, 2014    (Lei Wang) Refactor: move codes to FileUtilies, fix errors, model FileAttribute.</dd>
+  <dd>Sep 23, 2003</dd>
 <dt><span class="strong">Author:</span></dt>
   <dd>Doug Bauman</dd></dl>
 </li>

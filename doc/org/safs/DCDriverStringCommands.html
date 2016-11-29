@@ -111,29 +111,7 @@
 <pre>public class <span class="strong">DCDriverStringCommands</span>
 extends <a href="../../org/safs/DriverCommand.html" title="class in org.safs">DriverCommand</a></pre>
 <div class="block">Process a string driver commands.
- Instantiated by DCDriverCommand
-
-   <br>   Sep 23, 2003    (DBauman) Original Release
-   <br>   Oct 02, 2003    (DBauman) moved to package org.safs because no dependency on rational
-   <br>   Nov 17, 2003    (javadoug) testing writing to cvs from home<br>
-   <br>   Jan 13, 2004    (Carl Nagle) Fixed findSubstring to accept caret in varname strings.<br>
-                                   Fixed Keyword GetSubstringsInString to be properly recognized.<br>
-   <br>   Oct 18, 2004    (RDucharme) Fixed subString to handle arguments as specified in document.<br>
-   <br>   Nov 16, 2004    (RDucharme) Fixed GetTrimmedField to trim the returned field.<br>
-   <br>   Jan 10, 2005    (RDucharme) Added GetREDelimitedFieldCount and GetREDelimitedField. Removed GetMultiDelimitedFieldCount<br>
-   <br>                         and GetMultiDelimitedField references.<br>
-   <br>   Mar 16, 2005    (RDucharme) Improved Error checking for GetREDelimitedFieldCount and GetREDelimitedField.<br>
-   <br>   APR 14, 2005    (Carl Nagle) GetSystemEnviron fixed to return SCRIPT_NOT_EXECUTED if unfulfilled.<br>
-   <br>   APR 20, 2005    (RLawler) Updated log messages for Index() and findSubstring() (RJL).<br>
-   <br>   MAY 02, 2005    (Carl Nagle) Revampled GetSystemEnviron to use STAF/Env variables.
-                                                                         Added GetSystemUser command.
-         <br>   SEP 24, 2008    (LeiWang)       Modified method getNextDelimiterIndex(), treate the parameter startindex.
-                                                                                See defect S0537064
-         <br>   OCT 29, 2008    (LeiWang)       Add keyword GetMultiDelimitedFieldCount and GetMultiDelimitedField.
-                                                                                See defect S0544477
-   <br> FEB 10, 2009    (JunwuMa)   Modify replace() to keep the source string unchanged if a substring for replacement 
-   <br>                               is not found in it. Fix defect S0560893.
-   <br> APR 18, 2013    (Lei Wang)    Modify replace() to set source string to variable if no replacement occur. See S0963164.</div>
+ Instantiated by DCDriverCommand</div>
 <dl><dt><span class="strong">Since:</span></dt>
   <dd>Sep 23, 2003</dd>
 <dt><span class="strong">Author:</span></dt>
