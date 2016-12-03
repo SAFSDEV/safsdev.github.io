@@ -164,15 +164,32 @@ extends <a href="../../../../org/safs/JavaHook.html" title="class in org.safs">J
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#SAFS_PROJECT_CONFIG">SAFS_PROJECT_CONFIG</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#SAFS_PROJECT_CONFIG">SAFS_PROJECT_CONFIG</a></strong></code>
+<div class="block">"safs.project.config"<br>
+ System Property identifying the path to an alternate project 
+ configuration file (other than safstid.ini in the default 
+ project configuration location.<br>
+ JVM command line: -Dsafs.project.config=string|path</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#TEST_INI_DEFAULT">TEST_INI_DEFAULT</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#TEST_INI_DEFAULT">TEST_INI_DEFAULT</a></strong></code>
+<div class="block">"test.ini" <br>
+ Default project's Configuration filename.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#TESTDESIGNER_PROJECT_CONFIG">TESTDESIGNER_PROJECT_CONFIG</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#TESTDESIGNER_PROJECT_CONFIG">TESTDESIGNER_PROJECT_CONFIG</a></strong></code>
+<div class="block">"testdesigner.project.config"<br>
+ System Property identifying the path to an alternate project 
+ configuration file (other than safstid.ini in the default 
+ project configuration location.<br>
+ This property has a higher priority than <a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#SAFS_PROJECT_CONFIG"><code>SAFS_PROJECT_CONFIG</code></a>, if both
+ of them are specified, then its value will be used.<br>
+ JVM command line: -Dtestdesigner.project.config=string|path</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -374,6 +391,11 @@ extends <a href="../../../../org/safs/JavaHook.html" title="class in org.safs">J
 <li class="blockList">
 <h4>SAFS_PROJECT_CONFIG</h4>
 <pre>public static final&nbsp;java.lang.String SAFS_PROJECT_CONFIG</pre>
+<div class="block">"safs.project.config"<br>
+ System Property identifying the path to an alternate project 
+ configuration file (other than safstid.ini in the default 
+ project configuration location.<br>
+ JVM command line: -Dsafs.project.config=string|path</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.EmbeddedHookDriver.SAFS_PROJECT_CONFIG">Constant Field Values</a></dd></dl>
 </li>
 </ul>
@@ -384,6 +406,13 @@ extends <a href="../../../../org/safs/JavaHook.html" title="class in org.safs">J
 <li class="blockList">
 <h4>TESTDESIGNER_PROJECT_CONFIG</h4>
 <pre>public static final&nbsp;java.lang.String TESTDESIGNER_PROJECT_CONFIG</pre>
+<div class="block">"testdesigner.project.config"<br>
+ System Property identifying the path to an alternate project 
+ configuration file (other than safstid.ini in the default 
+ project configuration location.<br>
+ This property has a higher priority than <a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#SAFS_PROJECT_CONFIG"><code>SAFS_PROJECT_CONFIG</code></a>, if both
+ of them are specified, then its value will be used.<br>
+ JVM command line: -Dtestdesigner.project.config=string|path</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.EmbeddedHookDriver.TESTDESIGNER_PROJECT_CONFIG">Constant Field Values</a></dd></dl>
 </li>
 </ul>
@@ -394,6 +423,8 @@ extends <a href="../../../../org/safs/JavaHook.html" title="class in org.safs">J
 <li class="blockList">
 <h4>TEST_INI_DEFAULT</h4>
 <pre>public static final&nbsp;java.lang.String TEST_INI_DEFAULT</pre>
+<div class="block">"test.ini" <br>
+ Default project's Configuration filename.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.EmbeddedHookDriver.TEST_INI_DEFAULT">Constant Field Values</a></dd></dl>
 </li>
 </ul>

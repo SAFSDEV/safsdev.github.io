@@ -34,7 +34,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../org/safs/model/tools/ComponentGenerator.html" title="class in org.safs.model.tools"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools"><span class="strong">Prev Class</span></a></li>
 <li><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html" title="class in org.safs.model.tools"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -138,7 +138,7 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#running">running</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static java.lang.Thread</code></td>
+<td class="colFirst"><code>java.lang.Thread</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#SHUTDOWN_HOOK">SHUTDOWN_HOOK</a></strong></code>
 <div class="block">This is an 'AfterAll' JVM ShutdownHook--if it is needed.</div>
 </td>
@@ -194,15 +194,31 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#jsafs()">jsafs</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#jsafs()">jsafs</a></strong>()</code>
+<div class="block">Return the possible embedded JSAFSDriver.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers">InputProcessor</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#processor()">processor</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#processor()">processor</a></strong>()</code>
+<div class="block">Return the possible embedded InputProcessor.</div>
+</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#run()">run</a></strong>()</code>
+<div class="block">Initiates the embedded drivers and engines to start running if it is not already running.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#setIDriver(org.safs.tools.drivers.DriverInterface)">setIDriver</a></strong>(<a href="../../../../org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers">DriverInterface</a>&nbsp;iDriver)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/Driver.html#shutdown()">shutdown</a></strong>()</code>
+<div class="block">Shutdown the driver and all related resources such as hooks, engines, services and logs etc.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
@@ -266,7 +282,7 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SHUTDOWN_HOOK</h4>
-<pre>public static final&nbsp;java.lang.Thread SHUTDOWN_HOOK</pre>
+<pre>public final&nbsp;java.lang.Thread SHUTDOWN_HOOK</pre>
 <div class="block">This is an 'AfterAll' JVM ShutdownHook--if it is needed.</div>
 </li>
 </ul>
@@ -302,6 +318,8 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <li class="blockList">
 <h4>jsafs</h4>
 <pre>protected&nbsp;<a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a>&nbsp;jsafs()</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html#jsafs()">AbstractDriver</a></code></strong></div>
+<div class="block">Return the possible embedded JSAFSDriver.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../org/safs/model/tools/AbstractDriver.html#jsafs()">jsafs</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html" title="class in org.safs.model.tools">AbstractDriver</a></code></dd>
@@ -315,6 +333,8 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <li class="blockList">
 <h4>processor</h4>
 <pre>protected&nbsp;<a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers">InputProcessor</a>&nbsp;processor()</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html#processor()">AbstractDriver</a></code></strong></div>
+<div class="block">Return the possible embedded InputProcessor.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../org/safs/model/tools/AbstractDriver.html#processor()">processor</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html" title="class in org.safs.model.tools">AbstractDriver</a></code></dd>
@@ -359,7 +379,7 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <a name="shutdownJSAFS()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>shutdownJSAFS</h4>
 <pre>public static&nbsp;void&nbsp;shutdownJSAFS()
@@ -369,6 +389,41 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/tools/Driver.html#allow_shutdown"><code>allow_shutdown</code></a>, 
 <a href="../../../../org/safs/tools/drivers/JSAFSDriver.html#shutdown()"><code>JSAFSDriver.shutdown()</code></a></dd></dl>
+</li>
+</ul>
+<a name="shutdown()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shutdown</h4>
+<pre>public&nbsp;void&nbsp;shutdown()
+              throws java.lang.Exception</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html#shutdown()">AbstractDriver</a></code></strong></div>
+<div class="block">Shutdown the driver and all related resources such as hooks, engines, services and logs etc.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../org/safs/model/tools/AbstractDriver.html#shutdown()">shutdown</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html" title="class in org.safs.model.tools">AbstractDriver</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd></dl>
+</li>
+</ul>
+<a name="run()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>run</h4>
+<pre>public&nbsp;void&nbsp;run()
+         throws java.lang.Exception</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html#run()">AbstractDriver</a></code></strong></div>
+<div class="block">Initiates the embedded drivers and engines to start running if it is not already running.
+ The user should call this method to ensure the drivers/engines are initialized before using them.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../org/safs/model/tools/AbstractDriver.html#run()">run</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html" title="class in org.safs.model.tools">AbstractDriver</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd></dl>
 </li>
 </ul>
 </li>
@@ -397,7 +452,7 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../org/safs/model/tools/ComponentGenerator.html" title="class in org.safs.model.tools"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools"><span class="strong">Prev Class</span></a></li>
 <li><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html" title="class in org.safs.model.tools"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">

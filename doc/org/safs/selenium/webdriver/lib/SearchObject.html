@@ -682,7 +682,9 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#generateUniqueName(java.lang.String)">generateUniqueName</a></strong>(java.lang.String&nbsp;prefix)</code>
-<div class="block">Generate a unique name.</div>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>This method has been moved to StringUtils, we can call <b>StringUtils.generateUniqueName()</b> directly.</i></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -2984,12 +2986,14 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>generateUniqueName</h4>
-<pre>public static&nbsp;java.lang.String&nbsp;generateUniqueName(java.lang.String&nbsp;prefix)</pre>
+<pre>@Deprecated
+public static&nbsp;java.lang.String&nbsp;generateUniqueName(java.lang.String&nbsp;prefix)</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>This method has been moved to StringUtils, we can call <b>StringUtils.generateUniqueName()</b> directly.</i></div>
 <div class="block">Generate a unique name. For example, it can be used as a javascript variable name<br>
- when calling functions in JavaScriptFunctions to avoid the confilct with variables defined<br>
- in the Apilication Under Test.<br></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>prefix</code> - </dd>
-<dt><span class="strong">Returns:</span></dt><dd></dd></dl>
+ when calling functions in JavaScriptFunctions to avoid the conflict with variables defined<br>
+ in the Application Under Test.<br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>prefix</code> - String, the prefix of the unique name</dd>
+<dt><span class="strong">Returns:</span></dt><dd>String, the unique name</dd></dl>
 </li>
 </ul>
 <a name="resetXPathObjectCache()">

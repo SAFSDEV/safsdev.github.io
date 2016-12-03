@@ -35,7 +35,7 @@
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../org/safs/model/tools/AppMapGenerator.html" title="class in org.safs.model.tools"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/safs/model/tools/AbstractDriver.html" target="_top">Frames</a></li>
@@ -206,7 +206,9 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected abstract <a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#jsafs()">jsafs</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#jsafs()">jsafs</a></strong>()</code>
+<div class="block">Return the possible embedded JSAFSDriver.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
@@ -235,16 +237,24 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected abstract <a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers">InputProcessor</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#processor()">processor</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#processor()">processor</a></strong>()</code>
+<div class="block">Return the possible embedded InputProcessor.</div>
+</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>abstract void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#run()">run</a></strong>()</code>
+<div class="block">Initiates the embedded drivers and engines to start running if it is not already running.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#runComponentFunction(java.lang.String,%20java.lang.String)">runComponentFunction</a></strong>(java.lang.String&nbsp;command,
                     java.lang.String&nbsp;parent)</code>
 <div class="block">Run a SAFS Component Function on a top-level component (Window).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#runComponentFunction(java.lang.String,%20java.lang.String,%20java.lang.String)">runComponentFunction</a></strong>(java.lang.String&nbsp;command,
                     java.lang.String&nbsp;child,
@@ -252,7 +262,7 @@ extends java.lang.Object</pre>
 <div class="block">Run a SAFS Component Function on a child component in a parent (Window).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#runComponentFunction(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String...)">runComponentFunction</a></strong>(java.lang.String&nbsp;command,
                     java.lang.String&nbsp;child,
@@ -261,7 +271,7 @@ extends java.lang.Object</pre>
 <div class="block">Run a SAFS Component Function on a child component in a parent (Window).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#runComponentFunctionConverted(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String...)">runComponentFunctionConverted</a></strong>(java.lang.String&nbsp;command,
                              java.lang.String&nbsp;child,
@@ -270,18 +280,24 @@ extends java.lang.Object</pre>
 <div class="block">Run a SAFS Component Function on a child component in a parent (Window).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#runDriverCommand(java.lang.String,%20java.lang.String...)">runDriverCommand</a></strong>(java.lang.String&nbsp;command,
                 java.lang.String...&nbsp;parameters)</code>
 <div class="block">Run the specified DriverCommand requiring zero or more parameters.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#runDriverCommandConverted(java.lang.String,%20java.lang.String...)">runDriverCommandConverted</a></strong>(java.lang.String&nbsp;command,
                          java.lang.String...&nbsp;parameters)</code>
 <div class="block">Run a SAFS Driver Command.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#shutdown()">shutdown</a></strong>()</code>
+<div class="block">Shutdown the driver and all related resources such as hooks, engines, services and logs etc.</div>
 </td>
 </tr>
 </table>
@@ -468,39 +484,6 @@ extends java.lang.Object</pre>
  Otherwise this method will do nothing, just return the original expression string.</div>
 </li>
 </ul>
-<a name="jsafs()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>jsafs</h4>
-<pre>protected abstract&nbsp;<a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a>&nbsp;jsafs()</pre>
-</li>
-</ul>
-<a name="processor()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>processor</h4>
-<pre>protected abstract&nbsp;<a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers">InputProcessor</a>&nbsp;processor()</pre>
-</li>
-</ul>
-<a name="iDriver()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>iDriver</h4>
-<pre>public&nbsp;<a href="../../../../org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers">DriverInterface</a>&nbsp;iDriver()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>DriverInterface currently being used.<br>
- Could be a JSAFSDriver.  Could be an InputProcessor.<br>
- Subclasses should override to support other DriverInterface instances not tracked in this superclass.  
- Can be null if none are set.</dd><dt><span class="strong">See Also:</span></dt><dd><code>#setIDriver(DriverInterface)</code>, 
-<a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers"><code>JSAFSDriver</code></a>, 
-<a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers"><code>InputProcessor</code></a></dd></dl>
-</li>
-</ul>
 <a name="preloadAppMapExpressions()">
 <!--   -->
 </a>
@@ -622,7 +605,7 @@ extends java.lang.Object</pre>
 <a name="runComponentFunctionConverted(java.lang.String, java.lang.String, java.lang.String, java.lang.String...)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>runComponentFunctionConverted</h4>
 <pre>public&nbsp;<a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a>&nbsp;runComponentFunctionConverted(java.lang.String&nbsp;command,
@@ -640,6 +623,68 @@ extends java.lang.Object</pre>
 <a href="../../../../org/safs/StatusCodes.html#OK"><code>StatusCodes.OK</code></a>, 
 <a href="../../../../org/safs/StatusCodes.html#SCRIPT_WARNING"><code>StatusCodes.SCRIPT_WARNING</code></a>, 
 <a href="../../../../org/safs/StatusCodes.html#SCRIPT_NOT_EXECUTED"><code>StatusCodes.SCRIPT_NOT_EXECUTED</code></a></dd></dl>
+</li>
+</ul>
+<a name="iDriver()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>iDriver</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers">DriverInterface</a>&nbsp;iDriver()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>DriverInterface currently being used.<br>
+ Could be a JSAFSDriver.  Could be an InputProcessor.<br>
+ Subclasses should override to support other DriverInterface instances not tracked in this superclass.  
+ Can be null if none are set.</dd><dt><span class="strong">See Also:</span></dt><dd><code>#setIDriver(DriverInterface)</code>, 
+<a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers"><code>JSAFSDriver</code></a>, 
+<a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers"><code>InputProcessor</code></a></dd></dl>
+</li>
+</ul>
+<a name="jsafs()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>jsafs</h4>
+<pre>protected abstract&nbsp;<a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a>&nbsp;jsafs()</pre>
+<div class="block">Return the possible embedded JSAFSDriver.</div>
+</li>
+</ul>
+<a name="processor()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>processor</h4>
+<pre>protected abstract&nbsp;<a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers">InputProcessor</a>&nbsp;processor()</pre>
+<div class="block">Return the possible embedded InputProcessor.</div>
+</li>
+</ul>
+<a name="run()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>run</h4>
+<pre>public abstract&nbsp;void&nbsp;run()
+                  throws java.lang.Exception</pre>
+<div class="block">Initiates the embedded drivers and engines to start running if it is not already running.
+ The user should call this method to ensure the drivers/engines are initialized before using them.</div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd></dl>
+</li>
+</ul>
+<a name="shutdown()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>shutdown</h4>
+<pre>public abstract&nbsp;void&nbsp;shutdown()
+                       throws java.lang.Exception</pre>
+<div class="block">Shutdown the driver and all related resources such as hooks, engines, services and logs etc.</div>
+<dl><dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd></dl>
 </li>
 </ul>
 </li>
@@ -669,7 +714,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li>Prev Class</li>
-<li><a href="../../../../org/safs/model/tools/AppMapGenerator.html" title="class in org.safs.model.tools"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/safs/model/tools/AbstractDriver.html" target="_top">Frames</a></li>

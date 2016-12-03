@@ -124,7 +124,7 @@ implements <a href="../../../../org/safs/tools/drivers/ConfigureLocatorInterface
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/ConfigureFileLocator.html#extractFile">extractFile</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected java.util.Vector</code></td>
+<td class="colFirst"><code>protected java.util.Vector&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/ConfigureFileLocator.html#paths">paths</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -225,7 +225,7 @@ implements <a href="../../../../org/safs/tools/drivers/ConfigureLocatorInterface
 <ul class="blockList">
 <li class="blockList">
 <h4>paths</h4>
-<pre>protected&nbsp;java.util.Vector paths</pre>
+<pre>protected&nbsp;java.util.Vector&lt;java.lang.String&gt; paths</pre>
 </li>
 </ul>
 <a name="projectExtracted">
@@ -360,8 +360,8 @@ implements <a href="../../../../org/safs/tools/drivers/ConfigureLocatorInterface
  All assets should be stored in rootDir that exists in JAR file.<br>
  the ini file (configPath) is a file in that directory.
  <p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rootDir</code> - - required name of a project root directory to seek in the main class JAR file.</dd><dd><code>configPath</code> - -- required name of a config file to seek in the project root directory.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>CaseInsensitiveFile pointing to the newly extracted config file, or null.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/tools/MainClass.html" title="class in org.safs.tools"><code>MainClass</code></a></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>rootDir</code> - - required name of a project root directory to seek in the main class JAR file.</dd><dd><code>configPath</code> - -- required name of a configuration file to seek in the project root directory.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>CaseInsensitiveFile pointing to the newly extracted configuration file, or null.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/tools/MainClass.html" title="class in org.safs.tools"><code>MainClass</code></a></dd></dl>
 </li>
 </ul>
 </li>

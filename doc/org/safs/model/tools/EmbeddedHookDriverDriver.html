@@ -161,7 +161,7 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#EmbeddedHookDriverDriver(java.lang.Class)">EmbeddedHookDriverDriver</a></strong>(java.lang.Class&nbsp;clazz)</code>
+<td class="colOne"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#EmbeddedHookDriverDriver(java.lang.Class)">EmbeddedHookDriverDriver</a></strong>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">Initialize an instance of the EmbedddedHookDriverDriver with the 
  specific of EmbeddedHookDriver to instantiate.</div>
 </td>
@@ -222,8 +222,16 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdownDriver()">shutdownDriver</a></strong>()</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdown()">shutdown</a></strong>()</code>
 <div class="block">Used to invoke the Driver shutdown function.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdownDriver()">shutdownDriver</a></strong>()</code>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>Use the same method name defined in the super class. Please use <a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdown()"><code>shutdown()</code></a> instead.</i></div>
+</div>
 </td>
 </tr>
 </table>
@@ -289,7 +297,7 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <ul class="blockListLast">
 <li class="blockList">
 <h4>EmbeddedHookDriverDriver</h4>
-<pre>public&nbsp;EmbeddedHookDriverDriver(java.lang.Class&nbsp;clazz)</pre>
+<pre>public&nbsp;EmbeddedHookDriverDriver(java.lang.Class&lt;?&gt;&nbsp;clazz)</pre>
 <div class="block">Initialize an instance of the EmbedddedHookDriverDriver with the 
  specific of EmbeddedHookDriver to instantiate.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>clazz</code> - </dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/EmbeddedDCHookDriver.html" title="class in org.safs"><code>EmbeddedDCHookDriver</code></a>, 
@@ -338,15 +346,36 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <ul class="blockList">
 <li class="blockList">
 <h4>run</h4>
-<pre>public&nbsp;void&nbsp;run()</pre>
+<pre>public&nbsp;void&nbsp;run()
+         throws java.lang.Exception</pre>
 <div class="block">Must be called at least once to initialize the internal Driver.
  This will be called automatically when using AutoConfigureJSAFS and Runner.autorun 
  appropriately.
  <p>  
  It can be called automatically by annotations (dependency injection), or be called 
  from an overriding test controller like a JUnit runner, if appropriate.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/annotations/AutoConfigureJSAFS.html" title="annotation in org.safs.model.annotations"><code>AutoConfigureJSAFS</code></a>, 
-<a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#autorun(java.lang.String[])"><code>EmbeddedHookDriverRunner.autorun(String[])</code></a></dd></dl>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../org/safs/model/tools/AbstractDriver.html#run()">run</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html" title="class in org.safs.model.tools">AbstractDriver</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/annotations/AutoConfigureJSAFS.html" title="annotation in org.safs.model.annotations"><code>AutoConfigureJSAFS</code></a>, 
+<a href="../../../../org/safs/model/tools/AbstractRunner.html#autorun(java.lang.String[])"><code>AbstractRunner.autorun(String[])</code></a></dd></dl>
+</li>
+</ul>
+<a name="shutdown()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shutdown</h4>
+<pre>public&nbsp;void&nbsp;shutdown()
+              throws java.lang.Exception</pre>
+<div class="block">Used to invoke the Driver shutdown function.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../org/safs/model/tools/AbstractDriver.html#shutdown()">shutdown</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractDriver.html" title="class in org.safs.model.tools">AbstractDriver</a></code></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#shutdown()"><code>EmbeddedHookDriver.shutdown()</code></a></dd></dl>
 </li>
 </ul>
 <a name="shutdownDriver()">
@@ -355,8 +384,10 @@ extends <a href="../../../../org/safs/model/tools/AbstractDriver.html" title="cl
 <ul class="blockList">
 <li class="blockList">
 <h4>shutdownDriver</h4>
-<pre>public&nbsp;void&nbsp;shutdownDriver()
+<pre>@Deprecated
+public&nbsp;void&nbsp;shutdownDriver()
                     throws java.lang.Exception</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use the same method name defined in the super class. Please use <a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdown()"><code>shutdown()</code></a> instead.</i></div>
 <div class="block">Used to invoke the Driver shutdown function.</div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html#shutdown()"><code>EmbeddedHookDriver.shutdown()</code></a></dd></dl>

@@ -62,13 +62,13 @@
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method_summary">Method</a></li>
+<li><a href="#methods_inherited_from_class_org.safs.SAFSPlus.Logging">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method_detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <a name="skip-navbar_top">
@@ -85,7 +85,12 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../org/safs/SAFSPlus.Logging.html" title="class in org.safs">org.safs.SAFSPlus.Logging</a></li>
+<li>
+<ul class="inheritance">
 <li>org.safs.selenium.webdriver.SeleniumPlus.Logging</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -98,9 +103,10 @@
 </dl>
 <hr>
 <br>
-<pre>public static final class <span class="strong">SeleniumPlus.Logging</span>
-extends java.lang.Object</pre>
-<div class="block">Convenience class for Logging Commands.</div>
+<pre>public static class <span class="strong">SeleniumPlus.Logging</span>
+extends <a href="../../../../org/safs/SAFSPlus.Logging.html" title="class in org.safs">SAFSPlus.Logging</a></pre>
+<div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/DDDriverLogCommandsIndex.htm">Logging keywords</a>, like LogMessage, LogTestWarning etc.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><code>SAFSPlus.Logging</code></dd></dl>
 </li>
 </ul>
 </div>
@@ -130,85 +136,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#LogFailureOK(java.lang.String,%20java.lang.String...)">LogFailureOK</a></strong>(java.lang.String&nbsp;message,
-            java.lang.String...&nbsp;details)</code>
-<div class="block">Log a special "FAILED OK" message indicating one or more subsequent failures are EXPECTED.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#LogMessage(java.lang.String,%20java.lang.String...)">LogMessage</a></strong>(java.lang.String&nbsp;message,
-          java.lang.String...&nbsp;details)</code>
-<div class="block">Log a generic (non-test) message.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#LogTestFailure(java.lang.String,%20java.lang.String...)">LogTestFailure</a></strong>(java.lang.String&nbsp;message,
-              java.lang.String...&nbsp;details)</code>
-<div class="block">Log a test FAILURE message.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#LogTestSuccess(java.lang.String,%20java.lang.String...)">LogTestSuccess</a></strong>(java.lang.String&nbsp;message,
-              java.lang.String...&nbsp;details)</code>
-<div class="block">Log a test SUCCESS message.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#LogTestWarning(java.lang.String,%20java.lang.String...)">LogTestWarning</a></strong>(java.lang.String&nbsp;message,
-              java.lang.String...&nbsp;details)</code>
-<div class="block">Log a test WARNING message.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#LogWarningOK(java.lang.String,%20java.lang.String...)">LogWarningOK</a></strong>(java.lang.String&nbsp;message,
-            java.lang.String...&nbsp;details)</code>
-<div class="block">Log a special "WARN  OK" message indicating one or more subsequent warnings are EXPECTED.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#ResumeLogging()">ResumeLogging</a></strong>()</code>
-<div class="block">Resume all logging output.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#SetLogAllInfoMode()">SetLogAllInfoMode</a></strong>()</code>
-<div class="block">Set the Log facilities LOG_LEVEL to log all INFO, WARNINGS, and FAILURES.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#SetLogFailuresOnlyMode()">SetLogFailuresOnlyMode</a></strong>()</code>
-<div class="block">Set the Log facilities LOG_LEVEL to log FAILURES only.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#SetLogWarningsAndFailuresMode()">SetLogWarningsAndFailuresMode</a></strong>()</code>
-<div class="block">Set the Log facilities LOG_LEVEL to log WARNINGS and FAILURES only.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Logging.html#SuspendLogging()">SuspendLogging</a></strong>()</code>
-<div class="block">Suspend all logging output.</div>
-</td>
-</tr>
-</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.SAFSPlus.Logging">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.<a href="../../../../org/safs/SAFSPlus.Logging.html" title="class in org.safs">SAFSPlus.Logging</a></h3>
+<code><a href="../../../../org/safs/SAFSPlus.Logging.html#LogFailureOK(java.lang.String,%20java.lang.String...)">LogFailureOK</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#LogMessage(java.lang.String,%20java.lang.String...)">LogMessage</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#LogTestFailure(java.lang.String,%20java.lang.String...)">LogTestFailure</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#LogTestSuccess(java.lang.String,%20java.lang.String...)">LogTestSuccess</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#LogTestWarning(java.lang.String,%20java.lang.String...)">LogTestWarning</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#LogWarningOK(java.lang.String,%20java.lang.String...)">LogWarningOK</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#ResumeLogging()">ResumeLogging</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#SetLogAllInfoMode()">SetLogAllInfoMode</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#SetLogFailuresOnlyMode()">SetLogFailuresOnlyMode</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#SetLogWarningsAndFailuresMode()">SetLogWarningsAndFailuresMode</a>, <a href="../../../../org/safs/SAFSPlus.Logging.html#SuspendLogging()">SuspendLogging</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
@@ -237,208 +171,6 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>SeleniumPlus.Logging</h4>
 <pre>public&nbsp;SeleniumPlus.Logging()</pre>
-</li>
-</ul>
-</li>
-</ul>
-<!-- ============ METHOD DETAIL ========== -->
-<ul class="blockList">
-<li class="blockList"><a name="method_detail">
-<!--   -->
-</a>
-<h3>Method Detail</h3>
-<a name="SetLogWarningsAndFailuresMode()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>SetLogWarningsAndFailuresMode</h4>
-<pre>public static&nbsp;boolean&nbsp;SetLogWarningsAndFailuresMode()</pre>
-<div class="block">Set the Log facilities LOG_LEVEL to log WARNINGS and FAILURES only.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>true if no known errors occurred.</dd></dl>
-</li>
-</ul>
-<a name="SetLogFailuresOnlyMode()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>SetLogFailuresOnlyMode</h4>
-<pre>public static&nbsp;boolean&nbsp;SetLogFailuresOnlyMode()</pre>
-<div class="block">Set the Log facilities LOG_LEVEL to log FAILURES only.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>true if no known errors occurred.</dd></dl>
-</li>
-</ul>
-<a name="SetLogAllInfoMode()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>SetLogAllInfoMode</h4>
-<pre>public static&nbsp;boolean&nbsp;SetLogAllInfoMode()</pre>
-<div class="block">Set the Log facilities LOG_LEVEL to log all INFO, WARNINGS, and FAILURES.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>true if no known errors occurred.</dd></dl>
-</li>
-</ul>
-<a name="LogFailureOK(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LogFailureOK</h4>
-<pre>public static&nbsp;boolean&nbsp;LogFailureOK(java.lang.String&nbsp;message,
-                   java.lang.String...&nbsp;details)</pre>
-<div class="block">Log a special "FAILED OK" message indicating one or more subsequent failures are EXPECTED.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - -- the message indicating one or more subsequent failures should be expected.</dd><dd><code>details</code> - -- optional -- any additional (String) details or supporting information.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.LogFailureOK("The following 2 tests should fail due to bad parameters."); 
- boolean success = Logging.LogFailureOK("The Login should fail.", "The userid and password are bogus.");
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="LogWarningOK(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LogWarningOK</h4>
-<pre>public static&nbsp;boolean&nbsp;LogWarningOK(java.lang.String&nbsp;message,
-                   java.lang.String...&nbsp;details)</pre>
-<div class="block">Log a special "WARN  OK" message indicating one or more subsequent warnings are EXPECTED.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - -- the message indicating one or more subsequent warnings should be expected.</dd><dd><code>details</code> - -- optional -- any additional (String) details or supporting information.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.LogWarningOK("The following 2 tests will produce expected warnings."); 
- boolean success = Logging.LogWarningOK("The following test warning is expected.", "The optional item is not correct.");
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="LogTestFailure(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LogTestFailure</h4>
-<pre>public static&nbsp;boolean&nbsp;LogTestFailure(java.lang.String&nbsp;message,
-                     java.lang.String...&nbsp;details)</pre>
-<div class="block">Log a test FAILURE message.
-        Also increments TEST FAILURE counts on any active counters.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - -- the simple failure message to log.</dd><dd><code>details</code> - -- optional -- any additional (String) details or supporting information.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.LogTestFailure("The Login Window was NOT found."); 
- boolean success = Logging.LogTestFailure("The Login Window was NOT found.", "The Login Window MUST be issued at this time.");
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="LogTestSuccess(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LogTestSuccess</h4>
-<pre>public static&nbsp;boolean&nbsp;LogTestSuccess(java.lang.String&nbsp;message,
-                     java.lang.String...&nbsp;details)</pre>
-<div class="block">Log a test SUCCESS message.
-        Also increments TEST PASS counts on any active counters.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - -- the simple success message to log.</dd><dd><code>details</code> - -- optional -- any additional (String) details or supporting information.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.LogTestSuccess("The Login Window was found."); 
- boolean success = Logging.LogTestSuccess("The Login Window was found.", "The Login Window MUST be issued at this time.");
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="LogTestWarning(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LogTestWarning</h4>
-<pre>public static&nbsp;boolean&nbsp;LogTestWarning(java.lang.String&nbsp;message,
-                     java.lang.String...&nbsp;details)</pre>
-<div class="block">Log a test WARNING message.
-        Also increments TEST WARNING counts on any active counters.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - -- the simple warning message to log.</dd><dd><code>details</code> - -- optional -- any additional (String) details or supporting information.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.LogTestWarning("The Login Window was not found."); 
- boolean success = Logging.LogTestWarning("The Login Window was not found.", "The Login Window might not be issued if already logged in.");
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="LogMessage(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LogMessage</h4>
-<pre>public static&nbsp;boolean&nbsp;LogMessage(java.lang.String&nbsp;message,
-                 java.lang.String...&nbsp;details)</pre>
-<div class="block">Log a generic (non-test) message.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - -- the generic message to log.</dd><dd><code>details</code> - -- optional -- any additional (String) details or supporting information.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.LogMessage("An interesting thing happened just now!"); 
- success = Logging.LogMessage("It was so interesting!", "The image we captured is bigger than we expected.");
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="SuspendLogging()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>SuspendLogging</h4>
-<pre>public static&nbsp;boolean&nbsp;SuspendLogging()</pre>
-<div class="block">Suspend all logging output.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.SuspendLogging();
- ....(do some stuff that you don't want logged or counted.)
- success = Logging.ResumeLogging();
- </code>
- </pre></dd></dl>
-</li>
-</ul>
-<a name="ResumeLogging()">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>ResumeLogging</h4>
-<pre>public static&nbsp;boolean&nbsp;ResumeLogging()</pre>
-<div class="block">Resume all logging output.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#prevResults"><code>SeleniumPlus.prevResults</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
-<a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
-  <dd><pre>
- <code>boolean success = Logging.SuspendLogging();
- ....(do some stuff that you don't want logged or counted.)
- success = Logging.ResumeLogging();
- </code>
- </pre></dd></dl>
 </li>
 </ul>
 </li>
@@ -495,13 +227,13 @@ extends java.lang.Object</pre>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method_summary">Method</a></li>
+<li><a href="#methods_inherited_from_class_org.safs.SAFSPlus.Logging">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method_detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <a name="skip-navbar_bottom">

@@ -60,7 +60,7 @@
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_org.safs.model.tools.AbstractRunner">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
@@ -85,7 +85,17 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">org.safs.model.tools.AbstractRunner</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools">org.safs.model.tools.DefaultRunner</a></li>
+<li>
+<ul class="inheritance">
 <li>org.safs.model.tools.EmbeddedHookDriverRunner</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -99,8 +109,7 @@
 <hr>
 <br>
 <pre>public class <span class="strong">EmbeddedHookDriverRunner</span>
-extends java.lang.Object
-implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassStore.html" title="interface in org.safs.model.annotations">JSAFSConfiguredClassStore</a></pre>
+extends <a href="../../../../org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools">DefaultRunner</a></pre>
 <div class="block">This Runner is an access point to a minimalist EmbeddedHookDriver Driver API.
  See the EmbeddedHookDriver reference for a list of known available subclasses.</div>
 <dl><dt><span class="strong">Author:</span></dt>
@@ -112,6 +121,21 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.safs.model.tools.AbstractRunner">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.safs.model.tools.<a href="../../../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">AbstractRunner</a></h3>
+<code><a href="../../../../org/safs/model/tools/AbstractRunner.html#ARG_AUTORUN_CLASS">ARG_AUTORUN_CLASS</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#callers">callers</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#driver">driver</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#instances">instances</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#running">running</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor_summary">
@@ -124,7 +148,7 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#EmbeddedHookDriverRunner(java.lang.Class)">EmbeddedHookDriverRunner</a></strong>(java.lang.Class&nbsp;clazz)</code>
+<td class="colOne"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#EmbeddedHookDriverRunner(java.lang.Class)">EmbeddedHookDriverRunner</a></strong>(java.lang.Class&lt;?&gt;&nbsp;clazz)</code>
 <div class="block">Create the Runner that instantiates the particular EmbeddedHookDriver subclass 
  pass in to the Constructor.</div>
 </td>
@@ -145,96 +169,40 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#action(org.safs.model.Component,%20java.lang.String,%20java.lang.String...)">action</a></strong>(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
-      java.lang.String&nbsp;command,
-      java.lang.String...&nbsp;params)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#action(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String...)">action</a></strong>(java.lang.String&nbsp;command,
-      java.lang.String&nbsp;window,
-      java.lang.String&nbsp;component,
-      java.lang.String...&nbsp;params)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#addConfiguredClassInstance(java.lang.String,%20java.lang.Object)">addConfiguredClassInstance</a></strong>(java.lang.String&nbsp;classname,
-                          java.lang.Object&nbsp;object)</code>
-<div class="block">normally only used internally to store objects as we instantiate them.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#autorun(java.lang.String[])">autorun</a></strong>(java.lang.String[]&nbsp;args)</code>
-<div class="block">This is the critical method users could call to commence the automatic 
- instantiation, configuration, and execution of JSAFSTest methods.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#command(java.lang.String,%20java.lang.String...)">command</a></strong>(java.lang.String&nbsp;command,
-       java.lang.String...&nbsp;params)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#debug(java.lang.String)">debug</a></strong>(java.lang.String&nbsp;message)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html" title="class in org.safs.model.tools">EmbeddedHookDriverDriver</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#driver()">driver</a></strong>()</code>
 <div class="block">retrieve access to the minimalist Driver API, if needed.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>java.lang.Object</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#getConfiguredClassInstance(java.lang.String)">getConfiguredClassInstance</a></strong>(java.lang.String&nbsp;classname)</code>
-<div class="block">When using JSAFS to automatically instantiate, configure, and execute tests 
- across many classes and packages the user can retrieve those otherwise 
- unavailable class object instances here.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html" title="class in org.safs.tools.drivers">EmbeddedHookDriver</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#hookDriver()">hookDriver</a></strong>()</code>
 <div class="block">retrieve access to the wrapped EmbeddedHookDriver API, if needed.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#jsafs()">jsafs</a></strong>()</code>
-<div class="block">retrieve access to the full JSAFSDriver API, if needed.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#logFAILED(java.lang.String,%20java.lang.String)">logFAILED</a></strong>(java.lang.String&nbsp;message,
-         java.lang.String&nbsp;detail)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#logGENERIC(java.lang.String,%20java.lang.String)">logGENERIC</a></strong>(java.lang.String&nbsp;message,
-          java.lang.String&nbsp;detail)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#logPASSED(java.lang.String,%20java.lang.String)">logPASSED</a></strong>(java.lang.String&nbsp;message,
-         java.lang.String&nbsp;detail)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#run()">run</a></strong>()</code>
-<div class="block">Initiates the embedded drivers and engine to start running if it is not already running.</div>
-</td>
-</tr>
 <tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#shutdown()">shutdown</a></strong>()</code>
-<div class="block">The user should make sure the embedded Driver is shutdown to close any external assets 
- after execution is complete.</div>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>call <a href="../../../../org/safs/model/tools/AbstractRunner.html#terminate()"><code>AbstractRunner.terminate()</code></a> instead.</i></div>
+</div>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.model.tools.DefaultRunner">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.model.tools.<a href="../../../../org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools">DefaultRunner</a></h3>
+<code><a href="../../../../org/safs/model/tools/DefaultRunner.html#getDriver()">getDriver</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.model.tools.AbstractRunner">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.model.tools.<a href="../../../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">AbstractRunner</a></h3>
+<code><a href="../../../../org/safs/model/tools/AbstractRunner.html#action(org.safs.model.Component,%20java.lang.String,%20java.lang.String...)">action</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#action(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String...)">action</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#addConfiguredClassInstance(java.lang.String,%20java.lang.Object)">addConfiguredClassInstance</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#autorun(java.lang.String[])">autorun</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#beforeRun()">beforeRun</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#command(java.lang.String,%20java.lang.String...)">command</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#debug(java.lang.String)">debug</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#error(java.lang.String)">error</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#getConfiguredClassInstance(java.lang.String)">getConfiguredClassInstance</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#iDriver()">iDriver</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#isRunning()">isRunning</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#jsafs()">jsafs</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#logFAILED(java.lang.String,%20java.lang.String)">logFAILED</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#logGENERIC(java.lang.String,%20java.lang.String)">logGENERIC</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#logPASSED(java.lang.String,%20java.lang.String)">logPASSED</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#processor()">processor</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#run()">run</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#setDriver(org.safs.model.tools.AbstractDriver)">setDriver</a>, <a href="../../../../org/safs/model/tools/AbstractRunner.html#terminate()">terminate</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
@@ -262,7 +230,7 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <ul class="blockListLast">
 <li class="blockList">
 <h4>EmbeddedHookDriverRunner</h4>
-<pre>public&nbsp;EmbeddedHookDriverRunner(java.lang.Class&nbsp;clazz)</pre>
+<pre>public&nbsp;EmbeddedHookDriverRunner(java.lang.Class&lt;?&gt;&nbsp;clazz)</pre>
 <div class="block">Create the Runner that instantiates the particular EmbeddedHookDriver subclass 
  pass in to the Constructor.</div>
 </li>
@@ -275,15 +243,6 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="debug(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>debug</h4>
-<pre>public static&nbsp;void&nbsp;debug(java.lang.String&nbsp;message)</pre>
-</li>
-</ul>
 <a name="driver()">
 <!--   -->
 </a>
@@ -292,6 +251,10 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <h4>driver</h4>
 <pre>public&nbsp;<a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html" title="class in org.safs.model.tools">EmbeddedHookDriverDriver</a>&nbsp;driver()</pre>
 <div class="block">retrieve access to the minimalist Driver API, if needed.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../org/safs/model/tools/AbstractRunner.html#driver()">driver</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">AbstractRunner</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>AbstractDriver, the AbstractDriver instance.</dd></dl>
 </li>
 </ul>
 <a name="hookDriver()">
@@ -302,168 +265,10 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <h4>hookDriver</h4>
 <pre>public&nbsp;<a href="../../../../org/safs/tools/drivers/EmbeddedHookDriver.html" title="class in org.safs.tools.drivers">EmbeddedHookDriver</a>&nbsp;hookDriver()</pre>
 <div class="block">retrieve access to the wrapped EmbeddedHookDriver API, if needed.</div>
-</li>
-</ul>
-<a name="jsafs()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>jsafs</h4>
-<pre>public&nbsp;<a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers">JSAFSDriver</a>&nbsp;jsafs()</pre>
-<div class="block">retrieve access to the full JSAFSDriver API, if needed.</div>
-</li>
-</ul>
-<a name="getConfiguredClassInstance(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getConfiguredClassInstance</h4>
-<pre>public&nbsp;java.lang.Object&nbsp;getConfiguredClassInstance(java.lang.String&nbsp;classname)</pre>
-<div class="block">When using JSAFS to automatically instantiate, configure, and execute tests 
- across many classes and packages the user can retrieve those otherwise 
- unavailable class object instances here. This can be useful if the class instance 
- will capture test execution information or data that you want to examine.</div>
 <dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassStore.html#getConfiguredClassInstance(java.lang.String)">getConfiguredClassInstance</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassStore.html" title="interface in org.safs.model.annotations">JSAFSConfiguredClassStore</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>classname</code> - -- the full package name of the class to retrieve.
- ex: my.test.package.MyTest</dd>
-<dt><span class="strong">Returns:</span></dt><dd>the object instance that was instantiated and used, or null if we have 
- no instance of the specified class.</dd></dl>
-</li>
-</ul>
-<a name="addConfiguredClassInstance(java.lang.String, java.lang.Object)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addConfiguredClassInstance</h4>
-<pre>public&nbsp;void&nbsp;addConfiguredClassInstance(java.lang.String&nbsp;classname,
-                              java.lang.Object&nbsp;object)</pre>
-<div class="block">normally only used internally to store objects as we instantiate them.</div>
-<dl>
-<dt><strong>Specified by:</strong></dt>
-<dd><code><a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassStore.html#addConfiguredClassInstance(java.lang.String,%20java.lang.Object)">addConfiguredClassInstance</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassStore.html" title="interface in org.safs.model.annotations">JSAFSConfiguredClassStore</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>classname</code> - -- the full path case-sensitive Class name that was used to 
- instantiate the object.</dd><dd><code>object</code> - -- the object that was instantiated and used for processing.</dd></dl>
-</li>
-</ul>
-<a name="run()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>run</h4>
-<pre>public&nbsp;void&nbsp;run()</pre>
-<div class="block">Initiates the embedded drivers and engine to start running if it is not already running.
- The user should call either this method or the autorun to ensure the drivers are initialized 
- before trying to use them.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html#autorun(java.lang.String[])"><code>autorun(String[])</code></a></dd></dl>
-</li>
-</ul>
-<a name="autorun(java.lang.String[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>autorun</h4>
-<pre>public&nbsp;void&nbsp;autorun(java.lang.String[]&nbsp;args)
-             throws java.lang.Throwable</pre>
-<div class="block">This is the critical method users could call to commence the automatic 
- instantiation, configuration, and execution of JSAFSTest methods.
- <p>
- Minimalist example:
- <p><ul><pre>
-     public static void main(String[] args)throws Throwable{
-         MyTestApp app = new MyTestApp();
-         
-         new Runner().autorun(args);
-         ...
-     }
- </pre></ul>
- <p>
- Automatic configuration and usage is not required.  The user can control 
- test configuration and execution within their custom code if they want.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - passed in from command-line Java-- the primordial main(String[] args)<br>
-             Usually, it is the class who calls Runner.autorun() will be considered as<br>
-             the class that is requesting the automatic configuration and execution, but we can also<br>
-             change it by providing parameter as "-autorunclass autorun.full.classname".</dd>
-<dt><span class="strong">Throws:</span></dt>
-<dd><code>java.lang.Throwable</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/annotations/JSAFSTest.html" title="annotation in org.safs.model.annotations"><code>JSAFSTest</code></a></dd></dl>
-</li>
-</ul>
-<a name="action(org.safs.model.Component, java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>action</h4>
-<pre>public&nbsp;<a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a>&nbsp;action(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
-                      java.lang.String&nbsp;command,
-                      java.lang.String...&nbsp;params)
-                        throws java.lang.Throwable</pre>
-<dl><dt><span class="strong">Throws:</span></dt>
-<dd><code>java.lang.Throwable</code></dd></dl>
-</li>
-</ul>
-<a name="action(java.lang.String, java.lang.String, java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>action</h4>
-<pre>public&nbsp;<a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a>&nbsp;action(java.lang.String&nbsp;command,
-                      java.lang.String&nbsp;window,
-                      java.lang.String&nbsp;component,
-                      java.lang.String...&nbsp;params)
-                        throws java.lang.Throwable</pre>
-<dl><dt><span class="strong">Throws:</span></dt>
-<dd><code>java.lang.Throwable</code></dd></dl>
-</li>
-</ul>
-<a name="command(java.lang.String, java.lang.String...)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>command</h4>
-<pre>public&nbsp;<a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a>&nbsp;command(java.lang.String&nbsp;command,
-                       java.lang.String...&nbsp;params)
-                         throws java.lang.Throwable</pre>
-<dl><dt><span class="strong">Throws:</span></dt>
-<dd><code>java.lang.Throwable</code></dd></dl>
-</li>
-</ul>
-<a name="logGENERIC(java.lang.String, java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>logGENERIC</h4>
-<pre>public&nbsp;void&nbsp;logGENERIC(java.lang.String&nbsp;message,
-              java.lang.String&nbsp;detail)</pre>
-</li>
-</ul>
-<a name="logPASSED(java.lang.String, java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>logPASSED</h4>
-<pre>public&nbsp;void&nbsp;logPASSED(java.lang.String&nbsp;message,
-             java.lang.String&nbsp;detail)</pre>
-</li>
-</ul>
-<a name="logFAILED(java.lang.String, java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>logFAILED</h4>
-<pre>public&nbsp;void&nbsp;logFAILED(java.lang.String&nbsp;message,
-             java.lang.String&nbsp;detail)</pre>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../org/safs/model/tools/DefaultRunner.html#hookDriver()">hookDriver</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools">DefaultRunner</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>JavaHook, the "embedded Hook" owned by some Runner/Driver.</dd></dl>
 </li>
 </ul>
 <a name="shutdown()">
@@ -472,10 +277,12 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <ul class="blockListLast">
 <li class="blockList">
 <h4>shutdown</h4>
-<pre>public static&nbsp;void&nbsp;shutdown()</pre>
+<pre>@Deprecated
+public static&nbsp;void&nbsp;shutdown()</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>call <a href="../../../../org/safs/model/tools/AbstractRunner.html#terminate()"><code>AbstractRunner.terminate()</code></a> instead.</i></div>
 <div class="block">The user should make sure the embedded Driver is shutdown to close any external assets 
  after execution is complete.</div>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdownDriver()"><code>EmbeddedHookDriverDriver.shutdownDriver()</code></a></dd></dl>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/model/tools/EmbeddedHookDriverDriver.html#shutdown()"><code>EmbeddedHookDriverDriver.shutdown()</code></a></dd></dl>
 </li>
 </ul>
 </li>
@@ -530,7 +337,7 @@ implements <a href="../../../../org/safs/model/annotations/JSAFSConfiguredClassS
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_org.safs.model.tools.AbstractRunner">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method_summary">Method</a></li>
 </ul>
