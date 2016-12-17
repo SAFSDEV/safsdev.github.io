@@ -111,13 +111,13 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  For example, "36+9", "25*6" will be calculated as "45", "150" automatically; "^" is considered
  as the leading char of a variable, hence "^var" will be considered as a variable "var",
  if variable "var" exists, then "^var" will be replaced by its value, otherwise replaced by empty string "".
- 
+
  This ability is very useful for user, but sometimes it will cause UN-EXPECTED result during calling
  SeleniumPlus's API. For example, user wants to input a string "this is a combined-word" to an EditBox,
  the EditBox will receive "this is a 0", which is not an expected result; user wants to select all
  text of an EditBox, he uses "Ctrl+a" by calling SeleniumPlus.TypeKeys("^a") and he finds that doesn't
  work (the reason is that "^a" is parsed to "", because "^a" is considered as variable).
- 
+
  To avoid the problem caused by arithmetic char "+ - * /", we can call API Misc.Expressions(false) to
  turn off the parse of an expression.
  <code>Misc.Expressions(false);
@@ -129,27 +129,27 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  SeleniumPlus.TypeKeys(quote("^p")));//quote is a static method provided by SeleniumPlus
  SeleniumPlus.TypeChars(quote("this is a combined-word"));
  </code>
- 
+
  <Font color="red">NOTE 2: File path deducing.</Font>
  In SeleniumPlus, there are some APIs like CaptureXXXToFile, VerifyXXXToFile, they require file-path as parameter.
  As our doc is not very clear, user may confuse with the file-path parameter. Let's make it clear:
    There are 2 types of file, the test-file and bench-file. User can provide absolute or relative file-path for them.
-   If it is absolute, there is not confusion. 
+   If it is absolute, there is not confusion.
    If it is relative, we will combine it with a base-directory to form an absolute file. The base-directory depends
    on the type of file (test or bench):
      if it is test-file, the base-directory will be the test-directory, <ProjectDir>/Actuals/
      if it is bench-file, the base-directory will be the bench-directory, <ProjectDir>/Benchmarks/
      After the combination, the combined-file-name will be tested, if it is not valid, the project-directory will
      be used as base-directory.
- 
- 
+
+
  <Font color="red">NOTE 3: <a href="http://safsdev.sourceforge.net/sqabasic2000/UsingDDVariables.htm">DDVariable</a></Font>
  To use DDVariable ability, PLEASE remember to turn on the Expression by Misc.Expressions(true);
  The DDVariable is a variable reference, it can be expressed by a leading symbol ^ and the "variable name".
  For example:
  ^user.name
  ^user.password
- 
+
  DDVariable can be used along with an assignment or by itself, example as following:
  <code>Misc.Expressions(true);
  //set value "UserA" to variable "user.name", set "Password1" to variable "user.password"
@@ -159,10 +159,10 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  //input the value of variable "user.password"
  Component.InputCharacters(Map.AUT.PassWord, "^user.password");
  </code>
- 
+
  <Font color="red">NOTE 4: a known issue about clicking on wrong item</Font>
  Please to TURN OFF the browser's status bar.
- 
+
  </pre>
  For more info on command-line options, see <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#main(java.lang.String[])"><code>main(String[])</code></a>.</div>
 <dl><dt><span class="strong">Author:</span></dt>
@@ -206,8 +206,8 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Component.html" title="class in org.safs.selenium.webdriver">SeleniumPlus.Component</a></strong></code>
-<div class="block">Wrapper class to handle 
- <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsIndex.htm">GenericMasterFunctions Reference</a> and 
+<div class="block">Wrapper class to handle
+ <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsIndex.htm">GenericMasterFunctions Reference</a> and
  <a href="http://safsdev.github.io/sqabasic2000/GenericObjectFunctionsIndex.htm">GenericObjectFunctions Reference</a>, like VerifyProperty, IsPropertyExist etc.<br></div>
 </td>
 </tr>
@@ -252,7 +252,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.Misc.html" title="class in org.safs.selenium.webdriver">SeleniumPlus.Misc</a></strong></code>
 <div class="block">Convenience class for miscellaneous Driver Commands.<br>
  This is a sub-class of <code>SAFSPlus.Misc</code> and it provides more convenient wrapper APIs related to Selenium.<br>
- The class <code>SAFSPlus.Misc</code> is a sub-class of <a href="../../../../org/safs/SAFSPlus.DriverCommand.html" title="class in org.safs"><code>SAFSPlus.DriverCommand</code></a>.<br></div>
+ The class <code>SAFSPlus.Misc</code> is a sub-class of <code>DriverCommand</code>.<br></div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -542,14 +542,14 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#PrintTestCaseSummary(java.lang.String)">PrintTestCaseSummary</a></strong>(java.lang.String&nbsp;tcname)</code>
-<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is 
+<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is
  still active, then print a summary report of all tests counted, passed, failed, and skipped, etc...</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#PrintTestSuiteSummary(java.lang.String)">PrintTestSuiteSummary</a></strong>(java.lang.String&nbsp;suitename)</code>
-<div class="block">Stop capturing test activity counts for the overall suite of tests if it is 
+<div class="block">Stop capturing test activity counts for the overall suite of tests if it is
  still active, then print a summary report of all counted, passed, failed, and skipped tests etc...</div>
 </td>
 </tr>
@@ -780,8 +780,8 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>Runner</h4>
 <pre>public static final&nbsp;<a href="../../../../org/safs/model/tools/EmbeddedHookDriverRunner.html" title="class in org.safs.model.tools">EmbeddedHookDriverRunner</a> Runner</pre>
 <div class="block">The Runner object providing access to the underlying Selenium Engine.
- This is the main object subclasses would use to execute SeleniumPlus actions and commands 
- and to gain references to more complex services like the running JSAFSDriver or the 
+ This is the main object subclasses would use to execute SeleniumPlus actions and commands
+ and to gain references to more complex services like the running JSAFSDriver or the
  Selenium WebDriver object(s).</div>
 </li>
 </ul>
@@ -844,7 +844,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
           <li><a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#BROWSER_NAME_IE"><code>SelectBrowser.BROWSER_NAME_IE</code></a>
                 </ul>
  <p>
- <b>params[1] timeout</b> int, in seconds. Implicit timeout for search elements<br>     
+ <b>params[1] timeout</b> int, in seconds. Implicit timeout for search elements<br>
  <b>params[2] isRemote</b> boolean, (no longer used -- everything is now "remote")<br>
  <br>
  Following parameters indicate the <b>extra parameters</b>, they <b>MUST</b> be given by <b>PAIR(key, value)</b>
@@ -872,86 +872,86 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  StartWebBrowser("http://www.google.com", "GoogleMain");
  StartWebBrowser("http://www.google.com", "GoogleMain", SelectBrowser.BROWSER_NAME_CHROME);
  StartWebBrowser("http://www.google.com", "GoogleMain", SelectBrowser.BROWSER_NAME_IE, "10");
- 
+
  <b>
  The following gives some examples to start web browser with "custom profile" and "preferences".
- For the detail explanation of starting browser with "custom profile" and/or "preferences", please visit the section "<font color="red">Start Browser</font>" at <a href="http://safsdev.sourceforge.net/selenium/doc/SeleniumPlus-Welcome.html">Selenium Welcome Document</a>. 
+ For the detail explanation of starting browser with "custom profile" and/or "preferences", please visit the section "<font color="red">Start Browser</font>" at <a href="http://safsdev.sourceforge.net/selenium/doc/SeleniumPlus-Welcome.html">Selenium Welcome Document</a>.
  </b>
- 
+
  //Start firefox browser with custom profile "myprofile" ( <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles">Create custom profile</a>)
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_FIREFOX, 
-                                                        "10", 
-                                                        "true", 
-                                                        SelectBrowser.KEY_FIREFOX_PROFILE, 
+                                                        SelectBrowser.BROWSER_NAME_FIREFOX,
+                                                        "10",
+                                                        "true",
+                                                        SelectBrowser.KEY_FIREFOX_PROFILE,
                                                         "myprofile"
                                                         });
-  
- //Start firefox browser with some preference to set. 
+
+ //Start firefox browser with some preference to set.
  String absolutePreferenceFile = "c:\\firefoxPref.json.dat";//A json file containing chrome preferences, like { "intl.accept_languages":"zh-cn", "accessibility.accesskeycausesactivation":false, "browser.download.folderList":2 }
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_FIREFOX, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_FIREFOX_PROFILE_PREFERENCE), 
+                                                        SelectBrowser.BROWSER_NAME_FIREFOX,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_FIREFOX_PROFILE_PREFERENCE),
                                                         quote(absolutePreferenceFile)
                                                         });
-                                                        
- //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the last-used user. 
+
+ //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the last-used user.
  String datapool = "C:\\Users\\some-user\\AppData\\Local\\Google\\Chrome\\User Data";
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR), 
+                                                        SelectBrowser.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR),
                                                         datapool
                                                         });
- //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the default user. 
+ //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the default user.
  String datapool = "C:\\Users\\some-user\\AppData\\Local\\Google\\Chrome\\User Data";
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR), 
+                                                        SelectBrowser.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR),
                                                         datapool,
                                                         quote(SelectBrowser.KEY_CHROME_PROFILE_DIR),
                                                         "Default"
                                                         });
-                                                        
- //Start chrome browser with custom data, and using the last-used user.                                                      
+
+ //Start chrome browser with custom data, and using the last-used user.
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR), 
+                                                        SelectBrowser.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR),
                                                         "c:\\chrome_custom_data"//<a href="http://www.chromium.org/developers/creating-and-using-profiles">Create custom data pool</a>
                                                         });
- //Start chrome browser with custom data, and using the 1th user.                                                       
+ //Start chrome browser with custom data, and using the 1th user.
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR), 
+                                                        SelectBrowser.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_CHROME_USER_DATA_DIR),
                                                         "c:\\chrome_custom_data",//<a href="http://www.chromium.org/developers/creating-and-using-profiles">Create custom data pool</a>
                                                         quote(SelectBrowser.KEY_CHROME_PROFILE_DIR),
                                                         "Profile 1"
                                                         });
- //Start chrome browser with some options to be turned off. 
- String optionsToExclude = "disable-component-update";//comma separated options to exclude, like "disable-component-update, ignore-certificate-errors", be careful, there are NO 2 hyphens before options.                                                      
+ //Start chrome browser with some options to be turned off.
+ String optionsToExclude = "disable-component-update";//comma separated options to exclude, like "disable-component-update, ignore-certificate-errors", be careful, there are NO 2 hyphens before options.
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_CHROME_EXCLUDE_OPTIONS), 
+                                                        SelectBrowser.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_CHROME_EXCLUDE_OPTIONS),
                                                         quote(optionsToExclude)
                                                         });
- //Start chrome browser with some chrome-command-line-options/preferences to set. 
+ //Start chrome browser with some chrome-command-line-options/preferences to set.
  String absolutePreferenceFile = "c:\\chromePref.json.dat";//A json file containing chrome command-line-options/preferences, like { "lang":"zh-cn", "start-maximized":"",  "<b>seplus.chrome.preference.json.key</b>":{ "intl.accept_languages":"zh-CN-pseudo", "intl.charset_default"  :"utf-8"} }
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        SelectBrowser.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(SelectBrowser.KEY_CHROME_PREFERENCE), 
+                                                        SelectBrowser.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(SelectBrowser.KEY_CHROME_PREFERENCE),
                                                         quote(absolutePreferenceFile)
                                                         });
  </pre></dd></dl>
@@ -978,7 +978,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  <code>String browserID = "GoogleMain";
  StartWebBrowser("http://www.google.com", browserID);
  //do some testing, then
- StopWebBrowser(browserID);	  
+ StopWebBrowser(browserID);
  </code>
  </pre></dd></dl>
 </li>
@@ -990,7 +990,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <li class="blockList">
 <h4>SwitchWebBrowser</h4>
 <pre>public static&nbsp;boolean&nbsp;SwitchWebBrowser(java.lang.String&nbsp;ID)</pre>
-<div class="block">Switch WebBrowser by ID. 
+<div class="block">Switch WebBrowser by ID.
  During test, multiple browsers can be opened by <code>#StartWebBrowser(String, int, String...)</code><br>
  If user wants to switch between these opened browser, use can call this method.<br>
  This method requires a parameter 'ID', which is given by user when he calls <code>#StartWebBrowser(String, int, String...)</code><br>
@@ -1001,7 +1001,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code>TestRecordData.getStatusInfo()</code></a>, 
 <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#StartWebBrowser(java.lang.String,%20java.lang.String,%20java.lang.String...)"><code>StartWebBrowser(String, String, String...)</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>SwitchWebBrowser("GoogleNewWindow");	  
+ <code>SwitchWebBrowser("GoogleNewWindow");
  </code>
  </pre></dd></dl>
 </li>
@@ -1022,7 +1022,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
      {Tab} = TAB Key
      ^ = CONTROL Key with another key ( "^s" = CONTROL + s )
      % = ALT Key with another key ( "%F" = ALT + F )
-     + = SHIFT Key with another key ( "+{Enter}" = SHIFT + ENTER )  
+     + = SHIFT Key with another key ( "+{Enter}" = SHIFT + ENTER )
  </pre>
  We are generally providing this support through our generic <a href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/CreateUnicodeMap.html">InputKeys Support</a>.
  <p></div>
@@ -1114,7 +1114,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericMasterFunctionsReference.htm#detail_VerifyBinaryFileToFile">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>benchFile</code> - String, File used as the comparison benchmark.</dd><dd><code>actualFile</code> - String, File used as the comparison file under test.</dd><dd><code>optionals</code> - <ul>
  <b>optionals[0] FilterMode</b> String, one of FileUtilities.FilterMode. FilterMode.TOLERANCE is valid only when the binary files are images.<br>
- <b>optionals[1] FilterOptions</b> int, if the FilterMode is FilterMode.TOLERANCE, a number between 0 and 100, 
+ <b>optionals[1] FilterOptions</b> int, if the FilterMode is FilterMode.TOLERANCE, a number between 0 and 100,
                                         the percentage of bits need to be the same.
                                         100 means only 100% match, 2 images will be considered matched;
                                         0 means even no bits match, 2 images will be considered matched.<br>
@@ -1162,7 +1162,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <pre>public static&nbsp;boolean&nbsp;VerifyTextFileToFile(java.lang.String&nbsp;benchFile,
                            java.lang.String&nbsp;actualFile,
                            java.lang.String...&nbsp;optionals)</pre>
-<div class="block">Verify the current contents of a text file with a benchmark file (same as VerifyFileToFile). 
+<div class="block">Verify the current contents of a text file with a benchmark file (same as VerifyFileToFile).
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericMasterFunctionsReference.htm#detail_VerifyTextFileToFile">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>benchFile</code> - String, File used as the comparison benchmark.</dd><dd><code>actualFile</code> - String, File used as the comparison file under test.</dd><dd><code>optionals</code> - -- NOT used yet</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if the 2 files contain the same content, false otherwise.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
@@ -1339,7 +1339,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>Click</h4>
 <pre>public static&nbsp;boolean&nbsp;Click(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
             java.lang.String...&nbsp;params)</pre>
-<div class="block">Click on any visible component. 
+<div class="block">Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_Click">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1362,9 +1362,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  "AppMapSubkey" is expected to be an AppMap entry in an "Apps" section in the App Map.
  See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_Click">Detailed Reference</a>
  </pre></dd></dl>
@@ -1378,7 +1378,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>CtrlClick</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlClick(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                 java.lang.String...&nbsp;params)</pre>
-<div class="block">Control-Click on any visible component. 
+<div class="block">Control-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_CtrlClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1401,9 +1401,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1415,7 +1415,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>CtrlRightClick</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlRightClick(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                      java.lang.String...&nbsp;params)</pre>
-<div class="block">Control-Right-Click on any visible component. 
+<div class="block">Control-Right-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_CtrlRightClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1438,9 +1438,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1452,7 +1452,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>DoubleClick</h4>
 <pre>public static&nbsp;boolean&nbsp;DoubleClick(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                   java.lang.String...&nbsp;params)</pre>
-<div class="block">Double-Click on any visible component. 
+<div class="block">Double-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_DoubleClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1475,9 +1475,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1489,7 +1489,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>RightClick</h4>
 <pre>public static&nbsp;boolean&nbsp;RightClick(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                  java.lang.String...&nbsp;params)</pre>
-<div class="block">Right-Click on any visible component. 
+<div class="block">Right-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_RightClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1512,9 +1512,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1526,7 +1526,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>LeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;LeftDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_LeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1541,7 +1541,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1553,7 +1553,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>ShiftLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;ShiftLeftDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                     java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Shift left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Shift left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_ShiftLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1568,7 +1568,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1580,7 +1580,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>CtrlShiftLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlShiftLeftDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                         java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Ctrl Shift left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Ctrl Shift left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_CtrlShiftLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1595,7 +1595,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1607,7 +1607,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>CtrlLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlLeftDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                    java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Ctrl left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Ctrl left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_CtrlLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1622,7 +1622,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1634,7 +1634,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>AltLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;AltLeftDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                   java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Alt left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Alt left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_AltLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1649,7 +1649,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1661,7 +1661,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>CtrlAltLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlAltLeftDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                       java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Ctrl Alt left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Ctrl Alt left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_CtrlAltLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1676,7 +1676,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1688,7 +1688,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>RightDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;RightDrag(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                 java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A right mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A right mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_RightDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1703,7 +1703,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1715,7 +1715,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>ShiftClick</h4>
 <pre>public static&nbsp;boolean&nbsp;ShiftClick(<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                  java.lang.String...&nbsp;params)</pre>
-<div class="block">Shift-Click on any visible component. 
+<div class="block">Shift-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_ShiftClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1738,9 +1738,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1770,7 +1770,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <a href="../../../../org/safs/TestRecordData.html#getStatusInfo()"><code>TestRecordData.getStatusInfo()</code></a>, 
 <a href="../../../../org/safs/SAFSPlus.DriverCommand.html#Delay(int)"><code>SAFSPlus.DriverCommand.Delay(int)</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>Pause(20);	
+ <code>Pause(20);
  </code>
  </pre></dd></dl>
 </li>
@@ -1801,8 +1801,8 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
   <dd><pre>
  <code>GetGUIImage(Map.Google.SignIn,"SignIn");//will be saved at &lt;testProject&gt;\Actuals\SignIn.bmp
  GetGUIImage(Map.Google.SignIn,"c:/temp/SignIn.gif");
- 
- //Following example will store part of the SingIn image, 
+
+ //Following example will store part of the SingIn image,
  GetGUIImage(Map.Google.SignIn,"SignInPartial.png", "0,0,50%,50%");
  //"subarea" is defined in map file
  //[SignIn]
@@ -1814,7 +1814,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  //subarea="0,0,50%,50%"
  GetGUIImage(Map.Google.SignIn,"SignInPartial.png", Map.subarea);
  GetGUIImage(Map.Google.SignIn,"SignInPartial.png", Map.subarea());
- 
+
  //Filter the SingIn image and save it
  GetGUIImage(Map.Google.SignIn,"SignInFiltered.gif", "", quote("Filter=0,0,10,10 60,60,10,10"));
  //"filterAreas" is defined in map file
@@ -1845,7 +1845,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
                          It can be relative or absolute. If it is relative, the file will be stored to TestDirectory "Actuals".<br>
                          Supported file extensions are ".jpeg", ".tif", ".gif", ".png", ".pnm", ".bmp" etc.<br>
                          If the file extension is not supported, then suffix ".bmp" will be appended to filename.<br></dd><dd><code>subArea</code> - String, (x1,y1,x2,y2) indicating partial image of the component to capture, such as "0,0,50%,50%", <br>
-                         it can be app map subkey under component name.<br></dd><dd><code>childrenToMask</code> - org.safs.model.Component[], an array of child to filter, 
+                         it can be app map subkey under component name.<br></dd><dd><code>childrenToMask</code> - org.safs.model.Component[], an array of child to filter,
                        if some child is outside of parent, then it will be ignored.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean, true on success; false otherwise
  <pre>
@@ -1877,7 +1877,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  while GetGUIImage/VerifyGUIImageToFile needs the filterAreas parameter containing "Filter=". To avoid this problem:<br>
  It is SUGGESTED to call <a href="../../../../org/safs/SAFSPlus.html#quote(java.lang.String)"><code>SAFSPlus.quote(String)</code></a> to wrap the "filter string" and then pass it to GetGUIImage/VerifyGUIImageToFile<br>
  Or make sure the expression-evaluation is off by calling <a href="../../../../org/safs/SAFSPlus.DriverCommand.html#Expressions(boolean)"><code>SAFSPlus.DriverCommand.Expressions(boolean)</code></a><br></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>parent</code> - org.safs.model.Component, the parent component</dd><dd><code>childrenToMask</code> - org.safs.model.Component[], the children inside the parent component; the child outside of 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>parent</code> - org.safs.model.Component, the parent component</dd><dd><code>childrenToMask</code> - org.safs.model.Component[], the children inside the parent component; the child outside of
                        parent component will be ignored.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>a filter string such as Filter=x1,y1,x2,y2 x1,y1,x2,y2</dd></dl>
 </li>
@@ -1928,7 +1928,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  //subarea="0,0,50%,50%"
  VerifyGUIImageToFile(Map.Google.SignIn,"SignInPartial.png", Map.subarea);
  VerifyGUIImageToFile(Map.Google.SignIn,"SignInPartial.png", Map.subarea());
- 
+
  //Filter the SingIn image and the bench image at certain areas and compare them
  VerifyGUIImageToFile(Map.Google.SignIn,"c:/benchDir/SignIn.gif", "", "", "", quote("Filter=0,0,10,10 60,60,10,10"));
  //"filterAreas" is defined in map file
@@ -1971,14 +1971,14 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#executeAsyncScript(java.lang.String,%20java.lang.Object...)"><code>executeAsyncScript(String, Object...)</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>SeleniumPlus.ExecuteScript(
-     Map.Google.SignIn,                       // The WebElement passed as 'arguments[0]' to the script. 
+     Map.Google.SignIn,                       // The WebElement passed as 'arguments[0]' to the script.
      "arguments[0].innerHTML=arguments[1];",  // Script to set the WebElements innerHTML value.
      "my text value");                        // The value passed as 'arguments[1]' to set to innerHTML.
- 
+
  SeleniumPlus.ExecuteScript(
-     Map.Google.SignIn,                       // The WebElement passed as 'arguments[0]' to the script. 
+     Map.Google.SignIn,                       // The WebElement passed as 'arguments[0]' to the script.
      "return arguments[0].innerHTML;");       // A script to return the WebElemenbts innerHTML.
- 
+
   // scriptResult should get the innerHTML value returned.
  String scriptResult = SeleniumPlus.prevResults.getStatusInfo();
  </code>
@@ -2073,7 +2073,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>StopTestCase</h4>
 <pre>public static&nbsp;boolean&nbsp;StopTestCase(java.lang.String&nbsp;tcname)</pre>
 <div class="block">Stop capturing test activity counts for a specific application feature or test-case.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to stop.  The name must match a counter that was 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to stop.  The name must match a counter that was
  previously started.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
@@ -2089,9 +2089,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <h4>GetVariableValue</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;GetVariableValue(java.lang.String&nbsp;variableName)</pre>
 <div class="block">Convenience routine to retrieve the value of a SAFS Variable stored in SAFSVARS.
- <br>This will exploit the <a href="http://safsdev.sourceforge.net/sqabasic2000/CreateAppMap.htm#ddv_lookup" target="_blank">SAFSMAPS look-thru</a> 
- and <a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm#AppMapChaining" target="_blank">app map chaining</a> mechanism.  
- <br>That is, any variable that does NOT exist in SAFSVARS will be sought as an 
+ <br>This will exploit the <a href="http://safsdev.sourceforge.net/sqabasic2000/CreateAppMap.htm#ddv_lookup" target="_blank">SAFSMAPS look-thru</a>
+ and <a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm#AppMapChaining" target="_blank">app map chaining</a> mechanism.
+ <br>That is, any variable that does NOT exist in SAFSVARS will be sought as an
  ApplicationConstant in the SAFSMAPS service.
  <p>
  See <a href="http://safsdev.sourceforge.net/sqabasic2000/TestDesignGuidelines.htm" target="_blank">Test Design Guidelines for Localization</a>.</div>
@@ -2123,11 +2123,11 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <li class="blockList">
 <h4>PrintTestCaseSummary</h4>
 <pre>public static&nbsp;boolean&nbsp;PrintTestCaseSummary(java.lang.String&nbsp;tcname)</pre>
-<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is 
+<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is
  still active, then print a summary report of all tests counted, passed, failed, and skipped, etc...</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to start using a Counter on.  The name must match a counter 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to start using a Counter on.  The name must match a counter
  that was previously started.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter 
+<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter
  or print the summary report into the log.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.html#StartTestCase(java.lang.String)"><code>StartTestCase(String)</code></a></dd></dl>
@@ -2140,11 +2140,11 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <li class="blockList">
 <h4>PrintTestSuiteSummary</h4>
 <pre>public static&nbsp;boolean&nbsp;PrintTestSuiteSummary(java.lang.String&nbsp;suitename)</pre>
-<div class="block">Stop capturing test activity counts for the overall suite of tests if it is 
+<div class="block">Stop capturing test activity counts for the overall suite of tests if it is
  still active, then print a summary report of all counted, passed, failed, and skipped tests etc...</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>suitename</code> - The name of the suite to stop (if still running) and process.  
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>suitename</code> - The name of the suite to stop (if still running) and process.
  The name must match a counter that was previously started.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter 
+<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter
  or print the summary report into the log.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a></dd></dl>
 </li>
@@ -2163,9 +2163,9 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Throwable</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>AbortTest("reason for abort");	
+ <code>AbortTest("reason for abort");
  </code>
- </pre>  
+ </pre>
  Clears prevResults TestRecordHelper to null.</dd></dl>
 </li>
 </ul>
@@ -2187,7 +2187,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  <code>1) boolean success = ClickUnverified(Map.Google.Apps);//Click at the center
  2) boolean success = ClickUnverified(Map.Google.Apps, new Point(20,20));//Click at the coordinate (20,20)
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -2212,8 +2212,8 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
                                   java.lang.Object...&nbsp;scriptParams)
                                            throws <a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
 <div class="block">Following explanations come from <a href="http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/JavascriptExecutor.html#executeAsyncScript-java.lang.String-java.lang.Object...-">Selenium Java Doc</a>.<br>
- Execute an asynchronous piece of JavaScript in the context of the currently selected frame or window. 
- Unlike executing synchronous JavaScript, scripts executed with this method must explicitly signal they are finished by invoking the provided callback. 
+ Execute an asynchronous piece of JavaScript in the context of the currently selected frame or window.
+ Unlike executing synchronous JavaScript, scripts executed with this method must explicitly signal they are finished by invoking the provided callback.
  This callback is always injected into the executed function as the last argument.<br>
  <br>
  The first argument passed to the callback function will be used as the script's result. This value will be handled as follows:<br>
@@ -2225,8 +2225,8 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  <li>For an array, return a List&lt;Object> with each object following the rules above. We support nested lists.
  <li>Unless the value is null or there is no return value, in which null is returned
  </ul>
- 
- The default timeout for a script to be executed is 0ms. In most cases, including the examples below, 
+
+ The default timeout for a script to be executed is 0ms. In most cases, including the examples below,
  one must set the script timeout WebDriver.Timeouts.setScriptTimeout(long, java.util.concurrent.TimeUnit) beforehand to a value sufficiently large enough.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>script</code> - String, the script to execute</dd><dd><code>scriptParams</code> - optional, Script arguments must be a number, a boolean, a String, WebElement, or a List of any combination of the above.
                                An exception will be thrown if the arguments do not meet these criteria.
@@ -2240,19 +2240,19 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/lib/SearchObject.html#executeAsyncScript(java.lang.String,%20java.lang.Object...)"><code>SearchObject.executeAsyncScript(String, Object...)</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>//Example #1: Performing a sleep in the browser under test. 
+ <code>//Example #1: Performing a sleep in the browser under test.
  long start = System.currentTimeMillis();
  String script = "window.setTimeout(arguments[arguments.length - 1], 500);";
  SeleniumPlus.executeAsyncScript(script);
  System.out.println("Elapsed time: " + System.currentTimeMillis() - start);
- 
+
  //Example #2: Synchronizing a test with an AJAX application:
  Click(Map.Mail.ComposeButton);
  String script = "var callback = arguments[arguments.length - 1];" +
                  "mailClient.getComposeWindowWidget().onload(callback);";
  Object result = SeleniumPlus.executeAsyncScript(script);
  Component.InputCharacters(Map.Mail.To, "bog@example.com");
- 
+
  //Example #3: Injecting a XMLHttpRequest and waiting for the result:
  String script =  "var callback = arguments[arguments.length - 1];" +
                   "var xhr = new XMLHttpRequest();" +
@@ -2265,7 +2265,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
                   "xhr.send();";
  Object result = SeleniumPlus.executeAsyncScript(script);
  JsonObject json = new JsonParser().parse((String) response);
- 
+
  </code></dd></dl>
 </li>
 </ul>
@@ -2279,10 +2279,10 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
                              java.lang.Object...&nbsp;scriptParams)
                                       throws <a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
 <div class="block">Following explanations come from <a href="http://selenium.googlecode.com/git/docs/api/java/org/openqa/selenium/JavascriptExecutor.html#executeScript-java.lang.String-java.lang.Object...-">Selenium Java Doc</a>.<br>
- Executes JavaScript synchronously in the context of the currently selected frame or window. 
+ Executes JavaScript synchronously in the context of the currently selected frame or window.
  The script fragment provided will be executed as the body of an anonymous function.<br>
  <br>
- Within the script, use document to refer to the current document. 
+ Within the script, use document to refer to the current document.
  Note that local variables will not be available once the script has finished executing, though global variables will persist.<br>
  <br>
  If the script has a return value (i.e. if the script contains a return statement), then the following steps will be taken:
@@ -2314,7 +2314,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  params.add(we);//arguments[0]
  params.add("your text");//arguments[1]
  SeleniumPlus.executeScript(script, params.toArray(new Object[0]));
- 
+
  //get innerHTML of component Map.Google.SignIn
  script = "return arguments[0].innerHTML;";
  params.clear();
@@ -2332,13 +2332,13 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
 <pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
 <div class="block">Internal framework use only.
  Main inherited by subclasses is required.
- Subclasses should not override this main method.  
+ Subclasses should not override this main method.
  <p>
- Any subclass specific initialization should be done in the default no-arg constructor 
- for the subclass.  That Constructor will be instantiated and invoked automatically by 
+ Any subclass specific initialization should be done in the default no-arg constructor
+ for the subclass.  That Constructor will be instantiated and invoked automatically by
  this main startup method.
  <p>
- By default will seek an AppMap.order file.  However, the user can specify an alternate 
+ By default will seek an AppMap.order file.  However, the user can specify an alternate
  AppMap order file by using the following JVM argument:
  <p>
  <ul>Examples:
@@ -2349,7 +2349,7 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  <li>-Dtestdesigner.appmap.order=AppMap_mac.order
  <li>etc...
  </ul>
- <p>By default, the Browser Type that will be used is FireFox.  The user can specify a 
+ <p>By default, the Browser Type that will be used is FireFox.  The user can specify a
  different default browser by using the following JVM argument <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_BROWSER_NAME"><code>SelectBrowser.SYSTEM_PROPERTY_BROWSER_NAME</code></a>:
  <p>
  <ul>
@@ -2358,8 +2358,8 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  -DBROWSER=firefox<br>
  etc...<br>
  </ul>
- <p>By default, the RemoteServer that will be used is at host and port:  localhost:4444 . 
- The user can specify a different host and/or port (grid) by using the JVM arguments 
+ <p>By default, the RemoteServer that will be used is at host and port:  localhost:4444 .
+ The user can specify a different host and/or port (grid) by using the JVM arguments
  <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_PORT</code></a>:
  <p>
  <ul>
@@ -2367,14 +2367,14 @@ extends <a href="../../../../org/safs/SAFSPlus.html" title="class in org.safs">S
  -Dselenium.host=L12345.company.com<br>
  -Dselenium.port=5555<br>
  </ul>
- <p>By default, a Debug Log is usually enabled and named in the test configuration (INI) file.   
+ <p>By default, a Debug Log is usually enabled and named in the test configuration (INI) file.
  The user can specify or override the name of this debug log file by using the following JVM argument:
  <p>
  <ul>
  -Dtestdesigner.debuglogname=mydebuglog.txt
  </ul>
  <p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - -- 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - --
  <p>
  -safsvar:name=value
  <p><ul>

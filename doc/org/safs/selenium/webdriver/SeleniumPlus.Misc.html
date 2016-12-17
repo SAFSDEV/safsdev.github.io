@@ -112,7 +112,7 @@
 extends <a href="../../../../org/safs/SAFSPlus.Misc.html" title="class in org.safs">SAFSPlus.Misc</a></pre>
 <div class="block">Convenience class for miscellaneous Driver Commands.<br>
  This is a sub-class of <code>SAFSPlus.Misc</code> and it provides more convenient wrapper APIs related to Selenium.<br>
- The class <code>SAFSPlus.Misc</code> is a sub-class of <a href="../../../../org/safs/SAFSPlus.DriverCommand.html" title="class in org.safs"><code>SAFSPlus.DriverCommand</code></a>.<br></div>
+ The class <code>SAFSPlus.Misc</code> is a sub-class of <code>DriverCommand</code>.<br></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><code>SAFSPlus.Misc</code>, 
 <code>SAFSPlus.DriverCommand</code></dd></dl>
 </li>
@@ -284,8 +284,8 @@ extends <a href="../../../../org/safs/SAFSPlus.Misc.html" title="class in org.sa
 <dd><code><a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code> - if there is any un-expected error.</dd><dt><span class="strong">See Also:</span></dt><dd><code>SAFSPlus#StartWebBrowser(String, String, String...)</code></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>1) boolean success = IsAlertPresent();//Test the presence of Alert (belongs to current browser) with 2 seconds timeout.
- 2) boolean success = IsAlertPresent("0");//Test the presence of Alert (belongs to current browser) immediately 
- 3) boolean success = IsAlertPresent("5", "browser-id");//Test the presence of Alert (belongs to browser identified by "browser-id"), 
+ 2) boolean success = IsAlertPresent("0");//Test the presence of Alert (belongs to current browser) immediately
+ 3) boolean success = IsAlertPresent("5", "browser-id");//Test the presence of Alert (belongs to browser identified by "browser-id"),
                                                         //before that it will wait 5 seconds for the presence of the Alert
  </code></dd></dl>
 </li>
@@ -308,9 +308,9 @@ extends <a href="../../../../org/safs/SAFSPlus.Misc.html" title="class in org.sa
  </ul></dd><dt><span class="strong">See Also:</span></dt><dd><code>SAFSPlus#StartWebBrowser(String, String, String...)</code></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>1) boolean success = AlertAccept();//Close Alert (belongs to current browser) by clicking the OK button
- 2) boolean success = AlertAccept("5");//Close Alert (belongs to current browser) by clicking the OK button, 
+ 2) boolean success = AlertAccept("5");//Close Alert (belongs to current browser) by clicking the OK button,
                                        //before that it will wait 5 seconds for the presence of the Alert
- 3) boolean success = AlertAccept("5", "browser-id");//Close Alert (belongs to browser identified by "browser-id") by clicking the OK button, 
+ 3) boolean success = AlertAccept("5", "browser-id");//Close Alert (belongs to browser identified by "browser-id") by clicking the OK button,
                                                      //before that it will wait 5 seconds for the presence of the Alert
  </code></dd></dl>
 </li>
@@ -333,9 +333,9 @@ extends <a href="../../../../org/safs/SAFSPlus.Misc.html" title="class in org.sa
  </ul></dd><dt><span class="strong">See Also:</span></dt><dd><code>SAFSPlus#StartWebBrowser(String, String, String...)</code></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>1) boolean success = AlertAccept();//Close Alert (belongs to current browser) by clicking the Cancel button
- 2) boolean success = AlertAccept("5");//Close Alert (belongs to current browser) by clicking the Cancel button, 
+ 2) boolean success = AlertAccept("5");//Close Alert (belongs to current browser) by clicking the Cancel button,
                                        //before that it will wait 5 seconds for the presence of the Alert
- 3) boolean success = AlertAccept("5", "browser-id");//Close Alert (belongs to browser identified by "browser-id") by clicking the Cancel button, 
+ 3) boolean success = AlertAccept("5", "browser-id");//Close Alert (belongs to browser identified by "browser-id") by clicking the Cancel button,
                                                      //before that it will wait 5 seconds for the presence of the Alert
  </code></dd></dl>
 </li>

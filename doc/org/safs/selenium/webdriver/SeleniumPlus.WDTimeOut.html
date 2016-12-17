@@ -146,7 +146,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static org.openqa.selenium.WebDriver.Timeouts</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#implicitlyWait(long,%20java.util.concurrent.TimeUnit)">implicitlyWait</a></strong>(long&nbsp;time,
               java.util.concurrent.TimeUnit&nbsp;unit)</code>
-<div class="block">Set the Web Driver's ImplicitlyWait timeout, the amount of time the driver should wait 
+<div class="block">Set the Web Driver's ImplicitlyWait timeout, the amount of time the driver should wait
  when searching for an element if it is not immediately present.<br>
  <b>Note:</b>This method is <b>not thread-safe</b>.</div>
 </td>
@@ -155,7 +155,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static org.openqa.selenium.WebDriver.Timeouts</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#pageLoadTimeout(long,%20java.util.concurrent.TimeUnit)">pageLoadTimeout</a></strong>(long&nbsp;time,
                java.util.concurrent.TimeUnit&nbsp;unit)</code>
-<div class="block">Set the Web Driver's pageLoad timeout, the amount of time to wait for a page load to complete 
+<div class="block">Set the Web Driver's pageLoad timeout, the amount of time to wait for a page load to complete
  before throwing an error.</div>
 </td>
 </tr>
@@ -184,7 +184,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static org.openqa.selenium.WebDriver.Timeouts</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#scriptTimeout(long,%20java.util.concurrent.TimeUnit)">scriptTimeout</a></strong>(long&nbsp;time,
              java.util.concurrent.TimeUnit&nbsp;unit)</code>
-<div class="block">Set the Web Driver's Script timeout, the amount of time to wait for an asynchronous 
+<div class="block">Set the Web Driver's Script timeout, the amount of time to wait for an asynchronous
  script to finish execution before throwing an error.</div>
 </td>
 </tr>
@@ -286,9 +286,9 @@ extends java.lang.Object</pre>
 <h4>implicitlyWait</h4>
 <pre>public static&nbsp;org.openqa.selenium.WebDriver.Timeouts&nbsp;implicitlyWait(long&nbsp;time,
                                                     java.util.concurrent.TimeUnit&nbsp;unit)</pre>
-<div class="block">Set the Web Driver's ImplicitlyWait timeout, the amount of time the driver should wait 
+<div class="block">Set the Web Driver's ImplicitlyWait timeout, the amount of time the driver should wait
  when searching for an element if it is not immediately present.<br>
- <b>Note:</b>This method is <b>not thread-safe</b>. If multiple threads call this method, 
+ <b>Note:</b>This method is <b>not thread-safe</b>. If multiple threads call this method,
  the change of 'implicitlyWait' in one thread will affect the other thread.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - long, the timeout to set</dd><dd><code>unit</code> - TimeUnit, the timeout's unit, seconds or milliseconds etc.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Timeouts</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#setImplicitlyWait(long,%20java.util.concurrent.TimeUnit)"><code>setImplicitlyWait(long, TimeUnit)</code></a>, 
@@ -303,9 +303,9 @@ extends java.lang.Object</pre>
 <h4>pageLoadTimeout</h4>
 <pre>public static&nbsp;org.openqa.selenium.WebDriver.Timeouts&nbsp;pageLoadTimeout(long&nbsp;time,
                                                      java.util.concurrent.TimeUnit&nbsp;unit)</pre>
-<div class="block">Set the Web Driver's pageLoad timeout, the amount of time to wait for a page load to complete 
+<div class="block">Set the Web Driver's pageLoad timeout, the amount of time to wait for a page load to complete
  before throwing an error. If the timeout is negative, page loads can be indefinite.<br>
- <b>Note:</b>This method is <b>not thread-safe</b>. If multiple threads call this method, 
+ <b>Note:</b>This method is <b>not thread-safe</b>. If multiple threads call this method,
  the change of 'implicitlyWait' in one thread will affect the other thread.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - long, the timeout to set</dd><dd><code>unit</code> - TimeUnit, the timeout's unit, seconds or milliseconds etc.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Timeouts</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#setPageLoadTimeout(long,%20java.util.concurrent.TimeUnit)"><code>setPageLoadTimeout(long, TimeUnit)</code></a>, 
@@ -320,10 +320,10 @@ extends java.lang.Object</pre>
 <h4>scriptTimeout</h4>
 <pre>public static&nbsp;org.openqa.selenium.WebDriver.Timeouts&nbsp;scriptTimeout(long&nbsp;time,
                                                    java.util.concurrent.TimeUnit&nbsp;unit)</pre>
-<div class="block">Set the Web Driver's Script timeout, the amount of time to wait for an asynchronous 
- script to finish execution before throwing an error. If the timeout is negative, 
+<div class="block">Set the Web Driver's Script timeout, the amount of time to wait for an asynchronous
+ script to finish execution before throwing an error. If the timeout is negative,
  then the script will be allowed to run indefinitely.<br>
- <b>Note:</b>This method is <b>not thread-safe</b>. If multiple threads call this method, 
+ <b>Note:</b>This method is <b>not thread-safe</b>. If multiple threads call this method,
  the change of 'implicitlyWait' in one thread will affect the other thread.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>timeout</code> - long, the timeout to set</dd><dd><code>unit</code> - TimeUnit, the timeout's unit, seconds or milliseconds etc.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Timeouts</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#setScriptTimeout(long,%20java.util.concurrent.TimeUnit)"><code>setScriptTimeout(long, TimeUnit)</code></a>, 
@@ -340,7 +340,7 @@ extends java.lang.Object</pre>
                         java.util.concurrent.TimeUnit&nbsp;unit)</pre>
 <div class="block"><pre>
  Set the 'Web Driver's ImplicitlyWait timeout' and lock the 'timeout setting'.
- This method is <b>thread-safe</b>. If one thread has called this method, 
+ This method is <b>thread-safe</b>. If one thread has called this method,
  it will set a lock and the other threads will have to wait until the first thread
  unlock by calling <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#resetImplicitlyWait(long,%20java.util.concurrent.TimeUnit)"><code>resetImplicitlyWait(long, TimeUnit)</code></a>.
  The lock range is within the caller method.
@@ -402,7 +402,7 @@ extends java.lang.Object</pre>
                        java.util.concurrent.TimeUnit&nbsp;unit)</pre>
 <div class="block"><pre>
  Set the 'Web Driver's JavaScript Execution timeout' and lock the 'timeout setting'.
- This method is <b>thread-safe</b>. If one thread has called this method, 
+ This method is <b>thread-safe</b>. If one thread has called this method,
  it will set a lock and the other threads will have to wait until the first thread
  unlock by calling <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#resetScriptTimeout(long,%20java.util.concurrent.TimeUnit)"><code>resetScriptTimeout(long, TimeUnit)</code></a>.
  The lock range is within the caller method.
@@ -464,7 +464,7 @@ extends java.lang.Object</pre>
                          java.util.concurrent.TimeUnit&nbsp;unit)</pre>
 <div class="block"><pre>
  Set the 'Web Driver's PageLoad timeout' and lock the 'timeout setting'.
- This method is <b>thread-safe</b>. If one thread has called this method, 
+ This method is <b>thread-safe</b>. If one thread has called this method,
  it will set a lock and the other threads will have to wait until the first thread
  unlock by calling <a href="../../../../org/safs/selenium/webdriver/SeleniumPlus.WDTimeOut.html#resetPageLoadTimeout(long,%20java.util.concurrent.TimeUnit)"><code>resetPageLoadTimeout(long, TimeUnit)</code></a>.
  The lock range is within the caller method.
