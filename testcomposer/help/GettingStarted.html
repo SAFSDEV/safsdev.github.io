@@ -1,0 +1,212 @@
+<html>
+<body>
+
+<i>Before beginning this section, ensure you have Test Composer installed and configured properly before proceeding.  Please refer to the <a href="../TCREADME.html">TCREADME.html</a> document for details.</i>
+
+<h1>Test Composer Getting Started</h1>
+<p>
+Launch Test Composer by executing TestComposer.exe from it's install location.   Test Composer uses a multiple document interface design.  That is, a main window for the application launches with a toolbar and menus.  All Test Composer documents are opened within the main application window.  (The only exception would be the Application Map editor, which can be opened within or outside the main application window).
+<br>
+The Project Explorer window should open by default when the application launches.  (If it doesn't, the project explorer window can be opened by selecting the View->Project Explorer... from menu pulldown)
+<br>
+<h2> Project Explorer Layout </h2>
+<img src="images/ProjectExplorer.png">
+<br>
+<h2>Creating a Repository</h2>
+A repository is a location where users can create and group common projects together.  All projects within Test Composer exists in a repository.  To create a Repository, do the following: <br>
+<ul>
+   <li> In the Repository and Projects View in the project explorer, right-click to display menu selections.  Select "Add Repository..."
+   <li> On the "Add a Repository" dialog, enter a Repository Name, Description (optional), and Owner.  Note: Repository names are limited to 50 characters in length.
+   <li> A "New Repository Created Successfully" dialog should appear.  Select Ok.
+   <li> The Repository and Projects tree view should automatically refresh and now show your newly created repository.
+</ul>
+<h2>Creating a Project </h2>
+A project is a location where users create, store, and execute test cases for the application being tested. To create a project, do the following: <br>
+  <ul>
+    <li>Select a Repository from the Repository and Projects tree view, right-click to display menu selections.  Select "Add Project...".
+    <li>On the "Add a Project" dialog, enter a Project Name and Description (optional).  Select OK.  Note: Project names are limited to 100 characters in length.
+    <li> The Repository and Projects tree view should automatically refresh and now show your newly created project.
+  </ul>
+<h2>What is an Application Map?</h2>
+An Application map is a place to define aliases for windows and components on those windows in the application under test.
+The user also declares how those windows and components are recognized by the automation tool (via a Recognition String).
+In additional, the Application Map is also a place to store constant values that a project may need. For example, "userid" may
+be defined with a value equaled to "tester". Therefore a test can reference "userid" without having to set its value.
+In addition, if "userid" needs to be changed, only the Application Map needs updating and not every test that uses it. <br>
+
+<h2>Editing the Project's Application Map</h2>
+The project's Application Map exists in "ApplicationMap" folder underneath your project in the Project Explorer.
+The production view of the project explorer should contain a default Application Map (AppMap.xml) already created and checked in.
+To use that map, select the Application Map (AppMap.xml) row, right-click, select "Edit" menu item.  This will check out the Application Map into your working
+directory and open up the "Application Map Editor" so you can begin making edits.  Note: You can create additional Application Maps for
+a project if needed.  To create a new map, select "New" from the File menu pulldown while the ApplicationMap folder is selected in the
+Project Explorer.  A new Application Map editor will open.
+<br>
+<img src="images/newapplicationmap.png">
+<br>
+<h4>Adding an Application Constant</h2>
+In Test Composer, a user can define constants and their value in the Application Map.  Constant values are global in nature and can be read/retrieved by all test cases.
+All project constants are stored under ApplicationConstants window in the map editor.
+<ul>
+   <li>To add a constant, highlight "ApplicationConstants" in the tree view.  This will prefill the Window Name as "ApplicationConstants".
+   <li>Enter the constant name in the "Component Name" field.
+   <li>Component Type: Constant
+   <li>Recognition String: Enter the constant value
+   <li>Comment - describe what the constant is used for (optional).
+   <li>Component Image - not applicable for constants.
+   <li>Select the "Submit Change" button
+ </ul>
+ The newly defined contant will be added underneath the ApplicationConstants window in the tree view.  Repeat process to add additional project constants.
+ <br>
+ <h4>Adding Windows and Components</h4>
+ Before you can assign any automated command/task to a window or component in your test case, they first must be defined in the Application Map.
+ Note: after a window and component has been defined in the application map, they will become available as pulldown selections in the "Window" and "Component" columns in a test case.
+ You start first by defining a Window in the Application Map:
+ <ul>
+    <li>Window Name: Enter the name of the window.  This is user defined.
+    <li>Component Name: Enter the name of the window.   Since the window itself is the component, they share the same name.
+    <li>Component Type: Window
+    <li>Recognition String: Enter the string on how the automation tools will recognize this window component. (Optional at design time)
+    <li>Comment - describe what the window is used for (optional).
+    <li>Component Image - You may take a snapshot of the window to store along side the map entry (optional).  This helps other users know exactly which window is being defined by having a visual picture of it.
+   <li>Select the "Submit Change" button
+ </ul>
+ <mark>Note: You may add Windows and Components to the Application Map without having to enter a Recognition String.  This allows the user to define and build tests without having a working application or worrying about recognition strings.
+ A valid recognition string will only be needed at test execution time.</mark><br>
+ The newly defined Window will be added to tree view.  Here is an example of defining a window for an application:
+ <img src="images/windowaddedappmap.png">
+<br>
+Now it's time to define the components that exists on this window.
+ <ul>
+    <li>Window Name: Enter the name of the window.  In the example, we called it MortgageWindow.
+    <li>Component Name: Enter the name of the component.  Let's define the term editbox in the example. We will call it TermEditBox.
+    <li>Component Type: Select component type from the combobox pulldown.  Example, select EditBox
+    <li>Recognition String: Enter the string on how the automation tools will recognize this component.  Example: Sys.Process("Mortgage").VBObject("FormMortgageMain").VBObject("txtTerm")
+    <li>Comment - describe what the component is used for (optional).
+    <li>Component Image - You may take a snapshot of the component to store along side the map entry (optional).  This helps other users know exactly which component on the window that is being defined by having a visual picture of it.
+    In cases of components, it's better to show the entry window and then hightlight the component that is being defined.  To do this, use the window image and then with the image being shown, use your mouse (with left button pressed)
+    to highlight the component.
+    <li>Select the "Submit Change" button
+ </ul>
+The newly defined component should be added underneath the window in the tree view.  The example would look like this:
+<img src="images/componentaddedappmap.png">
+<br>
+Repeat the defining process for all the components on the window.
+
+<h2>Creating a Test Case </h2>
+A test case consists of a series of steps used to verify a specific requirement and/or accomplish a specific automated task.
+There are 3 types of test cases that can be created: Packages, Designs, and Actions. <br>
+<strong>Package</strong> - A test case used to group related tests together.  For example, you may wish to group and execute all tests about a specific function together.  Packages can execute designs or other test packages. <br>
+<strong>Design</strong> - A test that consist of a series of steps to verify and validate specific requirements.  Test designs should not contain any GUI specifics on how to accomplish the verification.  We are focused only on the requirement that needs to be verified and validated at this level. Test designs can call other test designs and/or test actions. <br>
+<strong>Action</strong> - A test that consist of a series of steps that are needed to be performed in the application to accomplish a specific automated task. Tests of this type can be GUI specific. Test actions can call other test actions.<p>
+By having these 3 test types, Test Composer encourages a top down approach to testing.  When tests are organized in this manner, they become easier to maintained.  If a requirement changes, only the test design would need to be updated. If the application gui changes, but the requirement stays the same, then only the test action would need to be updated.<br>
+Note: labeling test cases by type is only used for organizational purposes and does not have any impact on how a test case is executed.
+
+To create a new test case, select the project in the Repository and Projects treeview in the project explorer.  Select File->New from the main application menu pulldown or right-click in the working directory view and select "New" from the menu. <br>
+This should open up a new test case dialog window as follows:
+<img src="images/newtestcase.png">
+<br>
+<h4>Test Case General Information fields</h4>
+<strong>Purpose</strong> - Enter the purpose or description of the test case <br>
+<strong>Author</strong> - Enter author or userid of the test case.  Default is windows userid.<br>
+<strong>Requirement</strong> - Enter a requirement indentifier.  This indentifier is a label the user selects to represent a specific requirement. <br>
+<strong>Start State</strong> - Enter a start state indentifier.  This indentifier is a label that represents a specific state of the application before test begins. This label is user defined. (Optional)<br>
+<strong>End State</strong> - Enter an end state indentifier.  This indentifier is a label that represents a specific state of the application at test has completed execution. This label is user defined. (Optional)<br>
+<strong>System</strong> - Enter the system identifier the test case is verifying and/or validating.  This label is user defined. (Optional)<br>
+<strong>Subsystem</strong> - Enter the subsystem indentifer the test case is verifying and/or validating. (Optional)<br>
+<strong>Test Type</strong> - Radio button selection to determine the test type. Test types are described above. Default is Action. <br>
+<strong>Date Created</strong> - The date the test case was initially created. <br>
+<strong>Last Modified</strong> - The date the last time the test case was saved. <br>
+<strong>Set Parameters</strong> -  Selecting this pushbutton will open up the Parameters dialog to allow you to enter the parameters for the test case (if any)<br>
+<strong>Application Map Lookup</strong> - The lookup values for available windows and components in a test step are determined by Application Map that is set for this field.<br>
+
+<h4>Adding Steps to a Test</h4>
+<ul>
+   <li>In the step table, right-click to display menu pulldown.  Select "Add Step..."
+   <li>A row will be added to the table, with the cursor in the Description column.  Enter a Description for the step.
+   <li>Select a Record Type for the step from the combobox pulldown. Record Types are as follows:
+       <ul>
+          <li>Action - call another test case of type Action. (option available in pulldown if test case is of type Design or Action)
+          <li>Design - call another test case of type Design. (option available in pulldown if test case is of type Package or Design)
+          <li>Package - call another test case of type Package (option available in pulldown if test case is of type Package)
+          <li>Block - assigning the step as a block.  Commands available for this type is Block.  The parameter value will assign name to the block.
+          <li>BreakPoint
+          <li>Comment - Step used for commenting purposes only.
+          <li>Component Functions - Step is used to perform an automated task on a specific window and component in the application.
+          <li>Driver Command - A step used to call one of the SAFS driver commands
+          <li>External Action - call another test case of type Action from a different project. (option available in pulldown if test case is of type Design or Action)
+          <li>External Design - call another test case type Design from a different project. (option available in pulldown if test case is of type Package or Design)
+          <li>External Package - call another test case of type Package from a different project. (option available in pulldown if test case is of type Package)<br>
+          <i>Note: You can change the external call location by selecting the step row and hitting the F2 key.  This will bring up the External Test Dialog allowing you to modify the location of the external project.</i>
+          <li>For additional information about SAFS record types <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSRecordFormats.html">Click Here</a>
+       </ul>
+    <li>The Window and Component Columns are only needed if Record Type of "Component Function" is selected. If "Component Function"
+        is selected, then the Window pulldown will display all windows that exist in the
+        Application Map (Map set in Application Map Lookup). After a window has been selected, then all the components on that
+        window will be will displayed in the Component column pulldown.  After a component is selected, the all available commands available for that
+        particular component will be displayed in the Command column pulldown.  So, only that commands that can be performed on that component
+        type will be displayed to the user.
+     <li>Select a Command from the command pulldown.  After a command is selected, any Parameters that command may have is displayed in the Parameter column.
+     <li>Fill out any parameters that are required by the command.  Note: <mark><strong>F1 key</strong> may be selected to get help on the command and parameters values.</mark>
+     In order to reference a constant value that is defined in the application map, use "^" in front of the constant name.  You may think of "^" as meaning "the value of".
+     For example, if "MyAppPath" was defined as a constant in the application map and you need to assign a parameter called "ExecutablePath" to that value, then your parameter assignment would look like this: <strong>ExecutablePath=^MyAppPath</strong> ExecutablePath is assigned the value of MyAppPath.
+
+</ul>
+
+<h2>Executing a Test Case </h2>
+There are several ways to execute a test case from within Test Composer.
+<ul>
+  <li>1. A test case case can be executed from either the production view or the from the working directory view.
+Select the test case row you wish to execute and right-click to display menu.  Select "Execute Test" from the menu pulldown.  If this is
+the first time you have attempted to execute a test from a project, a prompt will be displayed "WARNING: The Automation Project for YourProject does not exist. Do you wish to create?".
+After selecting "Yes", the directories and files needed for execution will be created in the Root Directory for Automation Project/YourProject folder.  Then the test case will proceed to
+execute by running the script that was assigned on your "Setting Configuration" screen (Admin->Configure menu).
+  <li>2. You can also open your test case and select the rows you wish to execute. Hightlight each you wish to execute (hold shift key to hightlight multiple consecutive rows or hold control key
+ to select each row manually. Then right-click to display menu, Select Execute->Selected Steps.    You can also execute all steps in the test case by selecting the Execute->All Steps menu item.
+  <li>3. Lastly, you can execute test cases from the command line.  Open a Windows command prompt and change directory to the Test Composer installation directory.  To execute a test case from a specific project and branch, use the following
+  format: Testcomposer -t MyTest -r MyRepo -p MyProject -b MyBranch <br>  To a list of all command line commands, use TestComposer -help.
+</ul>
+Please note:  Test execution will based on the configuration settings (Select menu Admin->Configure to see details).
+A default bat file will execute based on the Test Execution radio button that is selected.  You may view this file
+by opening up the bat file in the [Root Directory for the Automation Project]/[Project] folder.  The bat file will set an .INI
+file which configures SAFS.  For more information about configuring SAFS options, <a href="http://safsdev.sourceforge.net/sqabasic2000/JSAFSFrameworkContent.htm#configfile">click here</a>
+<p>
+<h4>Learn more about SAFS engines and setup</h4>
+<ul>
+  <li><a href="http://safsdev.github.io/sqabasic2000/DDEngineReference.htm">SAFS Dynamic Engine Reference</a><br>
+  <li><a href="http://safsdev.sourceforge.net/sqabasic2000/SetupTCAFS.README.htm">Setup SmartBear TestComplete for SAFS on Windows</a> <br>
+  <li><a href="http://safsdev.sourceforge.net/sqabasic2000/SetupRobotJ.README.htm">Setup RFT<br>
+  <li><a href="http://safsdev.sourceforge.net/selenium/doc/SeleniumPlus-Welcome.html#">Intro to Selenium Plus</a>   ( “Enable SAFS” ) <br>
+  <br>
+</ul>
+<h4>SAFS Class References</h4>
+<ul>
+  <li><a href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/package-frame.html">Package Frame</a><br>
+  <li><a href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSDROID.html">SAFSDROID</a><br>
+  <li><a href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSROBOTJ.html">SAFSROBOTJ</a><br>
+  <li><a href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSTC.html">SAFSTC</a><br>
+  <li><a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/webdriver/SeleniumHook.html">SeleniumHook</a><br>
+</ul>
+
+<h4>Information on using Debug log</h4>
+<ul>
+  <li><a href="http://safsdev.sourceforge.net/doc/org/safs/Log.html">Debug Log Information</a><br>
+  <li><a href="http://safsdev.sourceforge.net/sqabasic2000/Using_Debug_Log.swf">Using the SAFS Debug Log video</a>
+</ul>
+
+
+
+<h2>A Quick Start Project</h2>
+Projects can be exported and imported into Test Composer.  A quick start project has been included with the installation.
+To import this project, use the following instructions:
+<ul>
+ <li>1. Open Test Composer with the Project Explorer opened.
+ <li>2. In the Repositories and Projects View in the Project explorer, right-click to display menu.  Select "Import Project from SQL file..."
+ <li>3. On the Open dialog, change directory to the Test Composer installation directory. Select "SampleProject.sql" file.
+ <li>4. An "Import Completed!" dialog should appear.  The Repositories and Projects View in the Project Explorer should now contain "SampleRepo" with the project "SampleProject".
+ <li>5. The SampleProject should contain one test case.  This test case simply opens notepad on the users machine and then closes the window.  To try, select the test case in the Production View, right-click,
+ and then select the "Execute Test"
+</ul>
+</body>
+
+</html>
