@@ -1,0 +1,218 @@
+<html>
+<body>
+
+<h1>Test Composer Installation Instructions</h1>
+<p>
+<h2>Requirements</h2>
+<ul>
+  <li> Windows 7 (Test Composer has not been tested under other Windows OS) </li>
+  <li> Microsoft .NET Framework 4.5 or greater </li>
+  <li><a href="https://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+  <li><a href="https://github.com/SAFSDEV/Core">Software Automation Framework Support (SAFS)</a>* required for test execution</li>
+</ul>
+<h2>Installation</h2>
+<ul>
+<li>Test Composer Application</li>
+  <ul>
+   	<li>Unzip TestComposerInstall.zip??</li>
+   	<li>Unzipped contents should contain the following files and folders<br>
+			/program files <br>
+			0x0409.ini <br>
+			setup.exe <br>
+			setup.ini <br>
+			TestComposer 4.6Standalone.msi <br>
+	</li>
+	<li>Execute setup.exe or TestComposer 4.6Standalone.msi</li>
+	<li>Select location where Test Composer will be installed (Default location is: C:\Program Files (x86)\Test Composer 4)</li>
+	<li>Installation should then continue and complete successfully.</li>
+  </ul>
+</ul>
+<h2>Setup</h2>
+Note: Before launching Test Composer, please ensure you have installed MySQL Server on your machine (or have a MySQL server available for Test Composer to use)
+<ul>
+<h3>Launching Test Composer for First Time</h3>
+<li>1. Launch Test Composer by double-clicking on "Test Composer 4.6 Standalone" shortcut on the Desktop or selecting from the Start Menu->All Programs->TestComposer->Test Composer 4.6 menu.
+<li>2. The "MySQL Database Connection Settings" dialog will appear.<br>
+		Fill out dialog with your MySQL server settings.  Here is an example:<br>
+	    <strong>Database:</strong> testcomposer  (this value cannot be changed. A testcomposer database will be created on the selected MySQLServer)<br>
+	    <strong>Server:</strong> localhost<br>
+	    <strong>User ID:</strong> mysqluser  (Note: this user will need access privileges to be able to read/write database and tables to server)<br>
+        <strong>Password:</strong> [user password] <br>
+	    <strong>Storage Folder:</strong> C:\Test_Composer_Server  (This folder will be the location where all project test cases and application maps are stored)<br>
+        Use the "Test Connection" to ensure your settings are set correctly. If a valid server is found, a test will be performed to see if the testcomposer database exists on the server.  If it does not, you will be prompted with a dialog giving you an option to create the database and tables needed by Test Composer to operate properly.
+	After connections have been verified (and database and tables created successfully).  Select OK. <br>
+ <li>3. Next, the "Setting Configuration" dialog will appear.  Configure how Test Composer will handle test cases when they are executed.
+   <ul>
+      <li>The "Settings Configuration" dialog should automatically appear upon launching Test Composer the first time.  If it doesn't, please select Admin->Configure from the menu pulldown
+	  <li>On the Setting Configution dialog, Select Configuration: {Select a pre-existing name or enter a new name to store your configuration settings.  "Test Composer Default Settings" is filled in by default.}
+	  <li>Root Directory for the Automation Project: {Enter path to where you would like Test Composer to compile and build your test cases for execution.}<br>
+	     Example:  C:\TestComposer_Automation
+	  <li>Script to be used upon Test Execution: {Enter a path to an executable file.  This file will run any time a test case is executed.}
+           Use [sAutoprojdir] if you wish to point the current project's path. [sAutoprojdir] will automatically get translated to Root_Directory_of_Automation_Project\Your_Project_Name. For example, if you wish to execute runIBTPackage.bat in your project's path, enter [sAutoprojdir]\runIBTPackage.bat.
+           Using the defaults, C:\TestComposer_Automation\SampleProject\runIBTPackage.bat will automatically get executed anytime you execute a test case from the project SampleProject.
+           [sAutoprojectdir]\runIBTPackage.bat is set as the default.  Note: the Test Composer default scripts runIBTPackage.bat and runTCPackage.bat are automatically created at runtime if they currently do not exist.
+	  <li> Command Line Options for the Script (if Any): {Enter any parameter values if your script accepts command line parameters} - No defaults provided
+      <li> Radio Buttons will set default configuration settings<br>
+	       Use Image Based Testing Settings: Select if you wish to use SAFS Image Based Testing Settings by default - This radio button is the selected by default.<br>
+           Use Test Complete Settings: Select if you wish to use Test Complete default settings<br>
+           Note:  Any changes from the default values will unselect the radio buttons.  The radio buttons are used to pre-fill the configuration settings with default values based on the radio button that is selected.
+       <li>File Comparator Tool - {Enter path to an application that can compare 2 files.  The application must be able to accept the 2 file names as parameters from the command line.}
+     </ul>
+   <li>4. Select OK when all settings are completed.  All settings will be saved under the Select Configration combobox name.
+</ul>
+<h2>Getting Started</h2>
+See <a href="help/GettingStarted.html">Test Composer Getting Started</a> for more information
+<h2>Test Composer Menus Overview</h2>
+<strong>File</strong>
+<ul>
+  <li><strong>New</strong>  (Opens new test case window. If the ApplicationMap folder is selected in the project explorer, then a new Application Map window will display)
+  <li><strong>Open</strong>  (This opens a previously created test case or application map.)
+  <li><strong>Save</strong>  (Save any changes for the test case or application Map currently in focus)
+  <li><strong>Save</strong>  and Checkin
+  <ul>
+     <li><strong>Check In File</strong>  - (Saves changes to test case (or application map) in focus and then checks file into production.  The copy of the file that was in the working directory is then removed.)
+     <li><strong>Check in Changes - Keep File Checked Out</strong>  - (Saves changes to production, but keep file in user's working directory)
+  </ul>
+  <li><strong>Save As</strong>  (Opens Save As Dialog where you specify a name and location to save changes for the test case or application map in focus)
+  <li><strong>Exit Application</strong>   (Closes application and automatically saves any user preferences)
+</ul>
+<strong>View</strong>
+<ul>
+  <li><strong>ToolBar</strong>  (Toggles toolbar display on and off)
+  <li><strong>Status Bar</strong>  (Toggles the bottom status bar display on and off)
+  <li><strong>Project Explorer</strong>  (Opens and displays the Project Explorer window if it currently closed)
+  <li><strong>View Application Map</strong>  (This a user preference menu item)
+  <ul>
+     <li><strong>Inside MDI</strong>  (Displays the application map inside the multiple document interfaced when opened)
+     <li><strong>Outside MDI</strong>  (Displays the application map as a separate window outside the multiple document interfaced when opened)
+  </ul>
+</ul>
+<strong>Windows</strong>
+<ul>
+  <li><strong>New Window</strong>  (Opens New test case or application map window)
+  <li><strong>Cascade</strong>  (Rearranges all windows inside the MDI in a overlapping layout)
+  <li><strong>Tile Vertical</strong>  (Tiles all windows inside the MDI vertically)
+  <li><strong>Tile Horizontal</strong>  (Tiles all windows inside the MDI horizontally)
+  <li><strong>Close All</strong>  (Closes all the windows inside the MDI)
+</ul>
+<strong>Tools</strong>
+<ul>
+  <li><strong>Map Generator (Process Container RFT)</strong>  - This opens the Process Container for Rational Functional Tester. For more information about this application, see {insert link}
+  <li><strong>Application Map Editor</strong>  (Opens the application map editor for the currently selected project.)
+  <li><strong>Application Map Load Order</strong>  (Opens Application Map Load Order Dialog. This allows the user to determine the order the maps will searched when searching for a component's recognition string. This places an AppMapLoadOrder.xml file in your project's working directory.)
+  <li><strong>Merge Map</strong>  (This gives the user the ability to take their currently selected application map and merge in contents from another application map.)
+  <li><strong>Search for Test Cases</strong>  (Search for any test case located in the currently selected project and branch.  Search on a variety of search fields and the option to search for text within a test case.  Also, you can search for test cases that call a specific action, design, or package.)
+  <li><strong>Find and Replace</strong>  (Find and Replace text in all test cases that contain the string within the currrently select project and branch.  You also have the option to only find and replace in a specific column within a test case.)
+  <li><strong>Image Based Testing</strong>
+  <ul>
+      <li><strong>IBT Settings</strong>  (Settings to be used when recording an image based test. Testcase Name field will be used to create the test case file when recording begins.  <strong>Application Map Name</strong> will be the name of the application map that is auto generated when recording begins.  <strong>Bit Tolerance</strong> specifies the integer percentage (1-100) of image bits or pixels that must match for an image to be considered a successful match.)
+      <li><strong>Clear Runtime Image Cache</strong>  (Removes all previous images created in the [AutomationRootPath]\[Project]\Datapool\images directory)
+      <li><strong>Record</strong>  (Opens the IBT Record Playback Dialog.)
+  </ul>
+</ul>
+<strong>Admin</strong>
+<ul>
+<li><strong>Configure</strong>  (Set your root directory of your automation projects and which script will launch when you execute a test case.  Also, settings for launching a comparator tool.)
+<li><strong>MySQL Database Settings...</strong>  (Configure MySQL server location and user log in information. Also, a storage folder setting that will determine where all project test cases are stored.  Multiple configurations can be saved allowing a user to point to different MySQL servers that contain a testcomposer database.)<br>
+The "Load" button on the "MySQL Database Settings" dialog allows a user to load in MySQL settings from a file.  An admin user may generate a database settings file for everyone to use so a typical user would not need to know the specific username and passwords that are required to connect to the database.  To do this, an admin would just need to provide a configuration name and fill out all the MySQL Settings and select the "Save" button on the MySQL Database Connections Dialog.
+The settings are saved to a file at the following location: <i>C:\Users\[userid]\Documents\TestComposer\configureMySQL.xml</i>.
+<li><strong>Copy Project from Remote Server</strong>  (Allows users to copy a repository and/or project that exists on a separate MySQL server to the users currently selected MySQL server.)
+<li><strong>Import Project from SQL file</strong>  (An SQL file can be used to import a project into your test composer repository.  Project SQL files can generated by selecting a project from the Project Explorer, right-click, then "Export a Project to SQL File" menu.)
+<li><strong>Update Available SAFS Commands from CSV file</strong>
+  <ul>
+    <li><strong>Update Component Functions</strong>  (The necessary file to update Test Composer can be generated by the
+user by executing the following in the SAFS install directory: XSLTCComponentFunctionsInfo.bat)
+    <li><strong>Update Driver Commands</strong>  (The necessary file to update Test Composer can be generated by the
+user by executing the following in the SAFS install directory: XSLTCDriverCommandInfo.bat)
+  </ul>
+</ul>
+<strong>Preferences</strong>
+<ul>
+  <li><strong>Testcase</strong>
+  <ul>
+     <li><strong>File Format</strong>  (User can save test cases in the following file formats: ANSI, UTF-8, UTF-16, UTF-32, or BigEndian Unicode)
+     <li><strong>Wordwrap</strong>  (On or Off)
+     <li><strong>Column Widths</strong>
+     <ul>
+         <li><strong>Use Global Settings</strong>  (All test cases use same column widths when viewed)
+         <li><strong>Set Global Settings</strong>  (Use column widths of the test case in focus as the default for all test cases)
+         <li><strong>Reset Global Settings to Default</strong>  (Return test case column widths back to default value)
+     </ul>
+  </ul>
+  <li><strong>File Format Export for SAFS</strong>
+     <ul>
+        <li><strong>Test Scripts</strong>  (User has option to export test case files in ANSI or UTF8 format during test execution)
+        <li><strong>App Maps</strong>  (User has option to export App Maps in ANSI or UTF8 format during test execution)
+    </ul>
+  <li><strong>Font</strong>  (Users can select from a variety of font styles to be used used in the Project Explorer and Test Cases)
+  <li><strong>Font Size</strong>  (Users can set the font size from 8 to 24 to be used in Project Explorer and Test Cases)
+  <li><strong>Color Row By Type</strong>  (When checked, Test Case rows are colored by Test Level type.  Otherwise, rows alternate default colors.)
+  <li><strong>Edit Mode on double click </strong> (When menu item is checked, double clicking on a test case in production will check out and open in edit mode.
+      Otherwise, test cases are opened in read-only mode by default.)
+  <li><strong>Minimize Test Composer on Execution</strong>  (When menu item is checked, Test Composer's main GUI window will minimize when a test case is executed. Otherwise, Test Composer window will not change or move upon test execution.)
+  <li><strong>Save Preference</strong>  (Will save all changes to user preferences.  Note: User preferences are automatically saved when Test Composer is shut down)
+</ul>
+<strong>Help</strong>
+<ul>
+  <li><strong>Contents</strong>  (Currently not implemented)
+  <li><strong>About...</strong>  (Displays license information for Test Composer application)
+</ul>
+
+<h2>Project Explorer Menu Overview</h2>
+Note: Pop-up menus are displayed in the project explorer when a user selects an item and then right-clicks the mouse.
+There are 3 sections to the project explorer:  Test Repositories, Production area for test cases/application maps, and working area for test cases/application maps.
+<h3>Test Repositories Pop-Up Menus</h3>
+<ul>
+  <li><strong>Add Repository...</strong>  (Add a test respository to the tree view.  Test Respositories are used to contain similarly related projects togethers.  Each Test Repositories can hold unlimited amount of projects.)
+  <li><strong>Add Project...</strong>  (Adds a Project to the selected Test Repository in the tree view)
+  <li><strong>Create Branch...</strong> (Creating a Branch will copy all the project contents from the parent branch to the new branch name. All projects contain a "Main" branch.  A user can branch from the "Main" branch or any other created branch.)
+  <li><strong>Delete Repository...</strong> (Permanently deletes the selected Repository from the database and all repository folders from the server.  Note: Only the owner of the repository can perform this operation.  All projects within the Repository must be deleted before you can remove the Respository)
+  <li><strong>Delete Project</strong>
+  <ul>
+     <li><strong>Entire Project...</strong> (Permanently deletes the entire project (all branches) from the database and all project files. Note: only the owner of the project has permission to delete the project.)
+     <li><strong>Current Branch Only...</strong>(Permanently deletes only the branch in which the project is currently set to.  The project's branch is removed from the database and all files for that branch are deleted. Note: only the owner of the project has permission to delete a project's branch.)
+  </ul>
+  <li><strong>Import Project from SQL file...</strong> (An SQL file can be used to import a project into your test composer repository.  Project SQL files can generated by selecting a project from the Project Explorer, right-click, then "Export a Project to SQL File" menu.)
+  <li><strong>Export Project to SQL file...</strong> (Exports an entire project's metadata to an SQL file along with all project files zipped.  These files can be used to import a project into another Test Composer Server.)
+  <li><strong>Sync Last Modified Dates with Server</strong>  (This function will get the file timestamp for each test case on the server and update Test Composer's metabase to ensure they are in sync.)
+  <li><strong>Initialize Metabase for Version Control</strong>
+  <li><strong>Refresh Repositories and Projects</strong>   (Reloads all Repositories and Projects that exists on the Test Composer Server into the treeview.)
+</ul>
+<h3>Test Case/Application Maps Production Area Pop-Up Menus</h3>
+<ul>
+  <li><strong>Browse</strong>  (Opens the selected file in a temporary location in read only mode)
+  <li><strong>Edit</strong>  (Checks out the selected file into the users working directory and then opens in edit mode.)
+  <li><strong>Export Test</strong>  (Exports all test steps into SAFS compatible files in the following location [RootDirectoryforAutomationProject]/[project]/datapool)
+  <li><strong>Execute Test</strong>  (Exports all test steps for the selected testcase into SAFS compatible files and then executes the script set in the admin configuration)
+  <li><strong>Lock</strong>  (Places a lock on the file to let other users know the file is being edited by you. Text for the file turns bold when locked.  The Checked_Out column indicates which user has the file locked and Checked_Out_Location indicates the machine where the file has been checked out to)
+  <li><strong>Check Out</strong>  (Places a lock on the file and then copies the file from production to the user's working directory for editing)
+  <li><strong>Copy</strong>  (Copies the file from production to the user's working directory)
+  <li><strong>Check In</strong>  (Copies the file from the user's working directory into production and then removes the lock on the file.  Note: Only files locked by you can be checked into production.)
+  <li><strong>Delete</strong>  (Deletes the file from production)
+  <li><strong>Unlock</strong>  (Removes the lock on the file)
+  <li><strong>Undo Check Out</strong>   (Removes the the lock on the file AND removes the copy of the file found in the user's working directory)
+  <li><strong>Refresh</strong>  (Retrieves the most current view from the database and re-displays the production view)
+  <li><strong>Get Version</strong>  (Gives the user the ability to retrieve a previous version of a checked in file)
+  <li><strong>Export Metrics File</strong>
+  <ul>
+     <li><strong>Include All Details...</strong>  (List all the Action/Design/Packages, Component Functions, and Driver Commands called if the selected test is executed)
+     <li><strong>Only Test Calls...</strong>  (Lists only the Action/Design/Package tests called if the selected test is executed)
+  </ul>
+</ul>
+<h3>Test Case/Application Maps Working Area Pop-Up Menus</h3>
+<ul>
+  <li><strong>New</strong>  (Open a new Test Case or Application Map file for editing)
+  <li><strong>Edit</strong>  (Open the file in edit mode)
+  <li><strong>Rename</strong>  (Rename the selected file)
+  <li><strong>Export Test</strong>  (Exports all test steps into SAFS compatible files in the following location [RootDirectoryforAutomationProject]/[project]/datapool)
+  <li><strong>Execute Test</strong>  (Exports all test steps for the selected testcase into SAFS compatible files and then executes the script set in the admin configuration)
+  <li><strong>Add</strong>  (Add a new file to the project's production area)
+  <li><strong>Check In</strong>  (Check in the file into the project's production area.  The file is removed from the working directory after file has been checked in and the lock is removed from the file.)
+  <li><strong>Check In Changes</strong>  - Keep Checked Out (Check in the file into the project's production area.  The file will remain in the user's working directory with the file still lock by the user.)
+  <li><strong>Undo Checkout</strong> (Unlocks the file from production and then removes the file from the user's working directory. Changes to the file are NOT checked into production.)
+  <li><strong>Delete</strong>  (Removes the file from the user's working directory.  The file cannot be recovered once deleted.)
+  <li><strong>Refresh</strong>  (Reloads the working directory contents by re-reading the user's working directory)
+  <li><strong>Compare file with Production</strong>  (This will attempt to compare the file that exists the user's working directory to the one that exists in production.  A compare tool must be assigned in the Admin->Configure dialog in order for this function to work properly.)
+</ul>
+</body>
+</html>
