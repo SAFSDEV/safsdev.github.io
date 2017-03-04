@@ -206,14 +206,14 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_hostname">remote_hostname</a></strong></code>
-<div class="block">parsed hostname of the remote selenium server (standalone or grid-hub) 
+<div class="block">parsed hostname of the remote selenium server (standalone or grid-hub)
  might be needed for additional Selenium RMI Server communication.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_port">remote_port</a></strong></code>
-<div class="block">parsed port number of the remote selenium server (standalone or grid-hub) 
+<div class="block">parsed port number of the remote selenium server (standalone or grid-hub)
  might be needed for get grid-node information.</div>
 </td>
 </tr>
@@ -455,7 +455,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <li class="blockList">
 <h4>remote_hostname</h4>
 <pre>public&nbsp;java.lang.String remote_hostname</pre>
-<div class="block">parsed hostname of the remote selenium server (standalone or grid-hub) 
+<div class="block">parsed hostname of the remote selenium server (standalone or grid-hub)
  might be needed for additional Selenium RMI Server communication.</div>
 </li>
 </ul>
@@ -466,7 +466,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <li class="blockList">
 <h4>remote_port</h4>
 <pre>public&nbsp;int remote_port</pre>
-<div class="block">parsed port number of the remote selenium server (standalone or grid-hub) 
+<div class="block">parsed port number of the remote selenium server (standalone or grid-hub)
  might be needed for get grid-node information.</div>
 </li>
 </ul>
@@ -477,7 +477,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <li class="blockList">
 <h4>rmi_hostname</h4>
 <pre>public&nbsp;java.lang.String rmi_hostname</pre>
-<div class="block">hostname of the remote grid-node. 
+<div class="block">hostname of the remote grid-node.
  might be needed for additional Selenium RMI Server communication.</div>
 </li>
 </ul>
@@ -627,12 +627,12 @@ implements org.openqa.selenium.TakesScreenshot</pre>
  1. The same host as this Selenium Server (Standalone).<br>
  2. The node host assigned by this Selenium Server (grid-hub).<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>selenium_server_url</code> - -- URL of the remote Selenium Server.
- <p></dd><dd><code>capabilities</code> - -- to enable the possibility of SAFS Selenium RMI Server/Agent communication 
+ <p></dd><dd><code>capabilities</code> - -- to enable the possibility of SAFS Selenium RMI Server/Agent communication
  you must set a "capability" of REMOTESERVER to be the hostname of the remote selenium server.
  <p>
  Ex: capabilities.setCapability(RemoteDriver.CAPABILITY_REMOTESERVER, hostname);
  <p>
- This is done automatically within the SAFS Selenium code where needed.  Only advanced users doing 
+ This is done automatically within the SAFS Selenium code where needed.  Only advanced users doing
  custom initialization and instantiation need set this capability.</dd></dl>
 </li>
 </ul>
@@ -804,7 +804,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <pre>public static&nbsp;void&nbsp;deleteSessionIdFromFile(java.lang.String&nbsp;Id)
                                     throws java.lang.Exception</pre>
 <div class="block">Delete the session from the RemoteDriver file with the given Id.
- If the Id is also set as the LAST_SESSION, then the LAST_SESSION_KEY 
+ If the Id is also set as the LAST_SESSION, then the LAST_SESSION_KEY
  will also be removed showing the last or "current" session is uncertain.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>Id</code> - </dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -942,7 +942,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
                                          TheServerRole could be <b>"hub"</b>, and selenium server will be launched
                                          as a hub for other node to connect.<br>
                                          TheServerRole could be <b>"node"</b>, and selenium server will be launched
-                                         as a node to connect a hub. <b>**Note**</b> Hub's information must also 
+                                         as a node to connect a hub. <b>**Note**</b> Hub's information must also
                                          be provided. Ex: <b>-role node -hub http://hub.machine:port/grid/register</b><br>
  <b>"-project ProjectLocationAbsDir"</b>, optional, the absolute directory holding the project to test; If not provided, use
                                         SeleniumPlus or SAFS installation directory as default. This parameter has higher
@@ -952,13 +952,13 @@ implements org.openqa.selenium.TakesScreenshot</pre>
  <ul>
  <li>Start "selenium standalone server on port 4567 with JVM option -Xms512m -Xmx2g"<br>
  java org.safs.selenium.webdriver.lib.RemoteDriver "-port 4567" "SELENIUMSERVER_JVM_OPTIONS=-Xms512m -Xmx2g"<br>
- 
+
  <li>Start "selenium hub on port 4567 with JVM option -Xms512m -Xmx2g"<br>
  java org.safs.selenium.webdriver.lib.RemoteDriver "-role hub" "-port 4567" "SELENIUMSERVER_JVM_OPTIONS=-Xms512m -Xmx2g"<br>
- 
+
  <li>Start "selenium node" on port 5555 with JVM option -Xms512m -Xmx2g", and register it to hub.machine:4567<br>
  java org.safs.selenium.webdriver.lib.RemoteDriver "-role node -hub http://hub.machine:4567/grid/register" "-port 5678" "SELENIUMSERVER_JVM_OPTIONS=-Xms512m -Xmx2g"<br>
- 
+
  </ul>
  <br>
  We can also provide the following <b>JVM parameters</b>.<br>
