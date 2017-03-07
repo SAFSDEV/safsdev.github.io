@@ -166,14 +166,14 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#CUSTOM_CLASS2TYPE_MAP">CUSTOM_CLASS2TYPE_MAP</a></strong></code>
-<div class="block">"CustomClass2Type.properties" 
+<div class="block">"CustomClass2Type.properties"
  should exist in the /lib/ or /libs/ directory of the JAR file seeking the mapping.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#DEFAULT_CLASS2TYPE_MAP">DEFAULT_CLASS2TYPE_MAP</a></strong></code>
-<div class="block">"Class2Type.properties" 
+<div class="block">"Class2Type.properties"
  Typically embedded in the JAR file for the class seeking the mapping.</div>
 </td>
 </tr>
@@ -183,56 +183,62 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_BROWSER_DRIVERS">OPTION_BROWSER_DRIVERS</a></strong></code>
+<div class="block">'-drivers' followed by the browser drivers (separated by colon :), something like explorer:chrome:MicrosoftEdge</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_HUB">OPTION_HUB</a></strong></code>
 <div class="block">'-hub' followed by the hubRegisterUrl, something like http://hubhost:hubport/grid/register</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_PORT">OPTION_PORT</a></strong></code>
 <div class="block">'-port' followed by the port number of the Selenium Server is going to use</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#OPTION_ROLE">OPTION_ROLE</a></strong></code>
 <div class="block">'-role' followed by the role name of the server, it can be hub or node</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#ROLE_HUB">ROLE_HUB</a></strong></code>
 <div class="block">'hub' role name for the "grid hub"</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#ROLE_NODE">ROLE_NODE</a></strong></code>
 <div class="block">'node' role name for the "grid node"</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_GRID_CONSOLE">URL_PATH_GRID_CONSOLE</a></strong></code>
 <div class="block">"/grid/console" the path to visit HTTP grid-hub server</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_GRID_REGISTER">URL_PATH_GRID_REGISTER</a></strong></code>
 <div class="block">"/grid/register" the path for registering grid-node</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_HUB">URL_PATH_HUB</a></strong></code>
 <div class="block">"/wd/hub" the path to visit HTTP standalone-server or grid-node</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#URL_PATH_HUB_STATIC">URL_PATH_HUB_STATIC</a></strong></code>
-<div class="block">"/wd/hub/static" the path to get information about the running standalone-server or grid-node 
+<div class="block">"/wd/hub/static" the path to get information about the running standalone-server or grid-node
  This is a NON-valid url, and the information is supposed to get from the error-stream.</div>
 </td>
 </tr>
@@ -387,7 +393,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
  value does not contain "-Xms" or "-Xmx".<br>
  If <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_OPTIONS"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_OPTIONS</code></a> exist, and <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xms"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xms</code></a>
  and/or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xmx"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xmx</code></a> exist, then we will add "-Xms512m -Xmx1g" to the JVM options if its
- value does not contain "-Xms" or "-Xmx", otherwise if its value contains ""-Xms" or "-Xmx", we will replace them by the value of 
+ value does not contain "-Xms" or "-Xmx", otherwise if its value contains ""-Xms" or "-Xmx", we will replace them by the value of
  <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xms"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xms</code></a> and/or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xmx"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xmx</code></a>.<br></div>
 </td>
 </tr>
@@ -490,8 +496,8 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
  If the grid-node information is provided, then the Grid-Hub + Node will be launched; otherwise, standalone server will be launched.<br>
  <b>Note:</b><br>
  Before calling this method:<br>
- <b>1.</b> We should set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_PROXY_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_PROXY_PORT</code></a>.<br>
- <b>2.</b> If we want to launch "grid", we should also set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
+ <b>1.</b> We should set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_PORT</code></a>.<br>
+ <b>2.</b> If we want to launch "grid+nodes", we should also set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -660,7 +666,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <li class="blockList">
 <h4>DEFAULT_CLASS2TYPE_MAP</h4>
 <pre>public static final&nbsp;java.lang.String DEFAULT_CLASS2TYPE_MAP</pre>
-<div class="block">"Class2Type.properties" 
+<div class="block">"Class2Type.properties"
  Typically embedded in the JAR file for the class seeking the mapping.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.DEFAULT_CLASS2TYPE_MAP">Constant Field Values</a></dd></dl>
 </li>
@@ -672,7 +678,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <li class="blockList">
 <h4>CUSTOM_CLASS2TYPE_MAP</h4>
 <pre>public static final&nbsp;java.lang.String CUSTOM_CLASS2TYPE_MAP</pre>
-<div class="block">"CustomClass2Type.properties" 
+<div class="block">"CustomClass2Type.properties"
  should exist in the /lib/ or /libs/ directory of the JAR file seeking the mapping.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.CUSTOM_CLASS2TYPE_MAP">Constant Field Values</a></dd></dl>
 </li>
@@ -739,6 +745,17 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.OPTION_HUB">Constant Field Values</a></dd></dl>
 </li>
 </ul>
+<a name="OPTION_BROWSER_DRIVERS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>OPTION_BROWSER_DRIVERS</h4>
+<pre>public static final&nbsp;java.lang.String OPTION_BROWSER_DRIVERS</pre>
+<div class="block">'-drivers' followed by the browser drivers (separated by colon :), something like explorer:chrome:MicrosoftEdge</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.OPTION_BROWSER_DRIVERS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
 <a name="ROLE_HUB">
 <!--   -->
 </a>
@@ -801,7 +818,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <li class="blockList">
 <h4>URL_PATH_HUB_STATIC</h4>
 <pre>public static final&nbsp;java.lang.String URL_PATH_HUB_STATIC</pre>
-<div class="block">"/wd/hub/static" the path to get information about the running standalone-server or grid-node 
+<div class="block">"/wd/hub/static" the path to get information about the running standalone-server or grid-node
  This is a NON-valid url, and the information is supposed to get from the error-stream.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.webdriver.WebDriverGUIUtilities.URL_PATH_HUB_STATIC">Constant Field Values</a></dd></dl>
 </li>
@@ -925,9 +942,9 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
  <p>
  Finally, compare the mapped-class-names with webelement's class-names, if one<br>
  of them match, then we can say the type is matched.<br>
- 
- <b>Note:</b> 
- For DOJO, we can only get the class-name of webelement itself.<br> 
+
+ <b>Note:</b>
+ For DOJO, we can only get the class-name of webelement itself.<br>
  We need a way to get its superclass names.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>we</code> - WebElement, the webelement to test</dd><dd><code>type</code> - String, the SAFS named type for a gui component</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean, true if the webelement can match the provided type.</dd></dl>
@@ -941,7 +958,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <h4>loadClassMappings</h4>
 <pre>protected static&nbsp;void&nbsp;loadClassMappings()</pre>
 <div class="block">load the Class2Type.properties mappings and any CustomClass2Type.properties mappings.
- CustomClass2Type.properties mappings, if present, 
+ CustomClass2Type.properties mappings, if present,
  would normally exist in the directory containing the JAR file containing this class.</div>
 </li>
 </ul>
@@ -953,7 +970,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <h4>getResourceURL</h4>
 <pre>protected static&nbsp;java.net.URL&nbsp;getResourceURL(java.lang.String&nbsp;aresource)</pre>
 <div class="block">Attempt to locate the URL of a resource.
- This can be in the JAR file containing a specified class, 
+ This can be in the JAR file containing a specified class,
  or in the directory containing the JAR file.
  Multitple searches attempted including:
  <ol>
@@ -996,14 +1013,14 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
                   throws <a href="../../../../org/safs/SAFSObjectNotFoundException.html" title="class in org.safs">SAFSObjectNotFoundException</a>,
                          <a href="../../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Uses the Application Map caching mechanism provided by the superclass.
- Retrieves cached references or recognition strings from the App Map and attempts to 
+ Retrieves cached references or recognition strings from the App Map and attempts to
  identify the matching component via the remote AUT JVM proxies.
  <p></div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../org/safs/DDGUIUtilities.html#waitForObject(java.lang.String,%20java.lang.String,%20java.lang.String,%20long)">waitForObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.safs">DDGUIUtilities</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>appMapName</code> - the name/ID of the App Map currently in use.</dd><dd><code>windowName</code> - the name/ID of the window as predefined in the App Map.</dd><dd><code>compName</code> - the name/ID of the child component of the window as predefined 
- in the App Map.</dd><dd><code>secTimeout</code> - the number of seconds allowed to located the object before a 
+<dt><span class="strong">Parameters:</span></dt><dd><code>appMapName</code> - the name/ID of the App Map currently in use.</dd><dd><code>windowName</code> - the name/ID of the window as predefined in the App Map.</dd><dd><code>compName</code> - the name/ID of the child component of the window as predefined
+ in the App Map.</dd><dd><code>secTimeout</code> - the number of seconds allowed to located the object before a
  SAFSObjectNotFoundException is thrown.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>0 on success.<br>
          <a href="../../../../org/safs/StatusCodes.html#SCRIPT_NOT_EXECUTED"><code>StatusCodes.SCRIPT_NOT_EXECUTED</code></a> if the recognition string is in AUTOIT/IBT format.<br></dd>
@@ -1056,7 +1073,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <li class="blockList">
 <h4>getCompType</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;getCompType(org.openqa.selenium.WebElement&nbsp;compObj)</pre>
-<div class="block">Try to deduce the Component Type as stored in our cfmap.  If not found, then the 
+<div class="block">Try to deduce the Component Type as stored in our cfmap.  If not found, then the
  default type of "Component" is returned.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>compObj</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>the Mapped component type, or "Component" if not mapped.</dd></dl>
@@ -1126,11 +1143,11 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <li class="blockList">
 <h4>setWDTimeoutLock</h4>
 <pre>public&nbsp;boolean&nbsp;setWDTimeoutLock()</pre>
-<div class="block">Suspends any changes to the WDTimeout except by the calling Method.  
- This is primarily used in broad widespread processing like ProcessContainer that need 
- to prevent other smaller processes from resetting the timeout back to its normal value.  
+<div class="block">Suspends any changes to the WDTimeout except by the calling Method.
+ This is primarily used in broad widespread processing like ProcessContainer that need
+ to prevent other smaller processes from resetting the timeout back to its normal value.
  <p>
- The call to SET and RESET the lock MUST occur within the same Method 
+ The call to SET and RESET the lock MUST occur within the same Method
  of the calling class.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>boolean true if successfully set the timeout lock.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#setWDTimeout(long)"><code>setWDTimeout(long)</code></a>, 
 <a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#resetWDTimeout()"><code>resetWDTimeout()</code></a>, 
@@ -1158,8 +1175,8 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
 <li class="blockList">
 <h4>resetWDTimeoutLock</h4>
 <pre>public&nbsp;boolean&nbsp;resetWDTimeoutLock()</pre>
-<div class="block">Resumes allowing changes to the WDTimeout.  This is primarily used in broad widespread processing 
- like ProcessContainer that needs to prevent other smaller processes from changing the timeout 
+<div class="block">Resumes allowing changes to the WDTimeout.  This is primarily used in broad widespread processing
+ like ProcessContainer that needs to prevent other smaller processes from changing the timeout
  value.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>boolean true if successfully reset the timeout lock.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#setWDTimeoutLock()"><code>setWDTimeoutLock()</code></a></dd></dl>
 </li>
@@ -1325,8 +1342,8 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
  If the grid-node information is provided, then the Grid-Hub + Node will be launched; otherwise, standalone server will be launched.<br>
  <b>Note:</b><br>
  Before calling this method:<br>
- <b>1.</b> We should set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_PROXY_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_PROXY_PORT</code></a>.<br>
- <b>2.</b> If we want to launch "grid", we should also set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
+ <b>1.</b> We should set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_HOST"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_HOST</code></a> and <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_PORT"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_PORT</code></a>.<br>
+ <b>2.</b> If we want to launch "grid+nodes", we should also set the JVM property <a href="../../../../org/safs/selenium/webdriver/lib/SelectBrowser.html#SYSTEM_PROPERTY_SELENIUM_NODE"><code>SelectBrowser.SYSTEM_PROPERTY_SELENIUM_NODE</code></a>.<br></div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code>SeleniumPlusException,</code> - if the server has not been started successfully.</dd>
 <dd><code><a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/selenium/webdriver/WebDriverGUIUtilities.html#startRemoteServer(java.lang.String,%20java.lang.String...)"><code>startRemoteServer(String, String...)</code></a></dd></dl>
@@ -1348,9 +1365,11 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
                              TheServerRole could be <b>"hub"</b>, and selenium server will be launched
                              as a hub (in grid mode) for other node to connect.
                              TheServerRole could be <b>"node"</b>, and selenium server will be launched
-                             as a node (in grid mode) to connect a hub. <b>**Note**</b> Hub's information must also 
+                             as a node (in grid mode) to connect a hub. <b>**Note**</b> Hub's information must also
                              be provided. Ex: <b>-role node -hub http://hub.machine:port/grid/register</b>
- <b>SELENIUMSERVER_JVM_OPTIONS=jvm options</b> Ex: SELENIUMSERVER_JVM_OPTIONS="-Xms256m -Xmx1g"
+ <b>SELENIUMSERVER_JVM_OPTIONS=jvm options</b> Ex: SELENIUMSERVER_JVM_OPTIONS=-Xms256m -Xmx1g
+ <b>-drivers browser-drivers</b> Ex: -drivers=explorer:chrome:MicrosoftEdge
+
  </pre></dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean, true if the server has been successfully started</dd></dl>
 </li>
@@ -1571,7 +1590,7 @@ extends <a href="../../../../org/safs/DDGUIUtilities.html" title="class in org.s
  value does not contain "-Xms" or "-Xmx".<br>
  If <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_OPTIONS"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_OPTIONS</code></a> exist, and <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xms"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xms</code></a>
  and/or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xmx"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xmx</code></a> exist, then we will add "-Xms512m -Xmx1g" to the JVM options if its
- value does not contain "-Xms" or "-Xmx", otherwise if its value contains ""-Xms" or "-Xmx", we will replace them by the value of 
+ value does not contain "-Xms" or "-Xmx", otherwise if its value contains ""-Xms" or "-Xmx", we will replace them by the value of
  <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xms"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xms</code></a> and/or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#SELENIUMSERVER_JVM_Xmx"><code>DriverConstant.SeleniumConfigConstant.SELENIUMSERVER_JVM_Xmx</code></a>.<br></div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>String, the JVM options for starting SELENIUM Remote Server.</dd><dt><span class="strong">See Also:</span></dt><dd><code>#startRemoteServer(String)</code></dd></dl>
 </li>

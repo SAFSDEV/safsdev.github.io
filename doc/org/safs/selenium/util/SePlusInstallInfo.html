@@ -98,7 +98,7 @@
 extends java.lang.Object</pre>
 <div class="block">This class holds the information related to the Selenium, Embedded Java, Library etc.<br>
  We provide support of Selenium Engine in both SAFS and SeleniumPlus.<br>
- But the the file structure is different between SAFS and SeleniumPlus,<br> 
+ But the the file structure is different between SAFS and SeleniumPlus,<br>
  this class intends to detect automatically which one has been installed<br>
  and deduce the related appropriate resources to use.<br></div>
 </li>
@@ -129,11 +129,19 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#ENV_SAFSDIR">ENV_SAFSDIR</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#EDGEDRIVER_WINDOWS">EDGEDRIVER_WINDOWS</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#ENV_SAFSDIR">ENV_SAFSDIR</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#ENV_SELENIUM_PLUS">ENV_SELENIUM_PLUS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#FAKE_DRIVER_NAME">FAKE_DRIVER_NAME</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
@@ -165,37 +173,41 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#PRODUCT_SAFS">PRODUCT_SAFS</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#OPERADRIVER_WINDOWS">OPERADRIVER_WINDOWS</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#PRODUCT_SAFS">PRODUCT_SAFS</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#PRODUCT_SELENIUM_PLUS">PRODUCT_SELENIUM_PLUS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_EXTRA_SAFS">RELATIVE_DIR_EXTRA_SAFS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_EXTRA_SEPLUS">RELATIVE_DIR_EXTRA_SEPLUS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_JAVA_BIN_SEPLUS">RELATIVE_DIR_JAVA_BIN_SEPLUS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_JAVA32_BIN_SAFS">RELATIVE_DIR_JAVA32_BIN_SAFS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_JAVA64_BIN_SAFS">RELATIVE_DIR_JAVA64_BIN_SAFS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_LIB_SAFS">RELATIVE_DIR_LIB_SAFS</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#RELATIVE_DIR_LIB_SEPLUS">RELATIVE_DIR_LIB_SEPLUS</a></strong></code>&nbsp;</td>
 </tr>
@@ -221,6 +233,14 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getClassPath(boolean)">getClassPath</a></strong>(boolean&nbsp;appendSystemClassPath)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getDriver(java.lang.String)">getDriver</a></strong>(java.lang.String&nbsp;browserName)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.io.File</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/selenium/util/SePlusInstallInfo.html#getEdgeDriver()">getEdgeDriver</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.io.File</code></td>
@@ -512,6 +532,36 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.IEDRIVER_WINDOWS">Constant Field Values</a></dd></dl>
 </li>
 </ul>
+<a name="EDGEDRIVER_WINDOWS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EDGEDRIVER_WINDOWS</h4>
+<pre>public static final&nbsp;java.lang.String EDGEDRIVER_WINDOWS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.EDGEDRIVER_WINDOWS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="OPERADRIVER_WINDOWS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>OPERADRIVER_WINDOWS</h4>
+<pre>public static final&nbsp;java.lang.String OPERADRIVER_WINDOWS</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.OPERADRIVER_WINDOWS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="FAKE_DRIVER_NAME">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FAKE_DRIVER_NAME</h4>
+<pre>public static final&nbsp;java.lang.String FAKE_DRIVER_NAME</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.selenium.util.SePlusInstallInfo.FAKE_DRIVER_NAME">Constant Field Values</a></dd></dl>
+</li>
+</ul>
 <a name="NAME_PARTIAL_SELENIUM_SERVER_STDALONE">
 <!--   -->
 </a>
@@ -675,6 +725,32 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getIEDriver</h4>
 <pre>public&nbsp;java.io.File&nbsp;getIEDriver()</pre>
+</li>
+</ul>
+<a name="getEdgeDriver()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getEdgeDriver</h4>
+<pre>public&nbsp;java.io.File&nbsp;getEdgeDriver()</pre>
+</li>
+</ul>
+<a name="getDriver(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDriver</h4>
+<pre>public&nbsp;java.io.File&nbsp;getDriver(java.lang.String&nbsp;browserName)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>browserName</code> - String, the key representing the browser, such as
+ <ul>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ </ul></dd>
+<dt><span class="strong">Returns:</span></dt><dd>File, the driver executable file.
+               The return value is never null, we need to call <code>File.isFile()</code> to verify its validity.</dd></dl>
 </li>
 </ul>
 <a name="validate()">

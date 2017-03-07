@@ -93,6 +93,10 @@
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><a href="../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html" title="class in org.safs.tools.drivers">DriverConstant.SeleniumConfigConstant</a></dd>
+</dl>
+<dl>
 <dt>Enclosing class:</dt>
 <dd><a href="../../org/safs/Constants.html" title="class in org.safs">Constants</a></dd>
 </dl>
@@ -119,31 +123,65 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#DRIVER_SHORT_NAME_MAP">DRIVER_SHORT_NAME_MAP</a></strong></code>
+<div class="block">When starting selenium server, the browser-drivers can be specified as VM parameters, such as:<br/>
+ -Dwebdriver.<b>ie</b>.driver=path\to\IEDriverServer.exe<br/>
+ -Dwebdriver.<b>ie</b>.logfile=workspace\log\ie.console<br/>
+ The VM parameter is in format webdriver.<b>&lt;browserShortName></b>.driver and webdriver.<b>&lt;browserShortName></b>.logfile,
+ browser names (NOT short name) have been defined in class <a href="../../org/safs/Constants.BrowserConstants.html" title="class in org.safs"><code>Constants.BrowserConstants</code></a> such as <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a> etc.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#ITEM_WEB_DRIVERS">ITEM_WEB_DRIVERS</a></strong></code>
+<div class="block">"WEB_DRIVERS" defines a set of drivers to start with selenium-server.<br>
+ The possible value could be a combination (separated by colon :) of:<br>
+ 
+ <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ BrowserConstants.BROWSER_NAME_XXX might be supported.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#KEY_GRID_NODES_SETTING">KEY_GRID_NODES_SETTING</a></strong></code>
-<div class="block">'selenium.node' the key for selenium grid node string; 
+<div class="block">'selenium.node' the key for selenium grid node string;
  The value is as "node1:port:nodeconfig;node2:port:nodeconfig;"</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#PROPERTY_WEB_DRIVERS">PROPERTY_WEB_DRIVERS</a></strong></code>
+<div class="block">"safs.selenium.web.drivers" defines a set of drivers to start with selenium-server.<br>
+ The possible value could be a combination (separated by colon :) of:<br>
+ 
+ <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ BrowserConstants.BROWSER_NAME_XXX might be supported.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_BROWSER_NAME">SYSTEM_PROPERTY_BROWSER_NAME</a></strong></code>
 <div class="block">'BROWSER' Indicates the browser's name</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_BROWSER_REMOTE">SYSTEM_PROPERTY_BROWSER_REMOTE</a></strong></code>
 <div class="block">'BROWSER_REMOTE' true or false.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_HOST">SYSTEM_PROPERTY_SELENIUM_HOST</a></strong></code>
 <div class="block">'selenium.host'</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_NODE">SYSTEM_PROPERTY_SELENIUM_NODE</a></strong></code>
 <div class="block">'selenium.node', its value is like node1:port:nodeconfig;node2:port:nodeconfig;<br>
@@ -151,25 +189,25 @@ extends java.lang.Object</pre>
  colon(:) serves as separator between node-name, port, and node-configuration.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_PORT">SYSTEM_PROPERTY_SELENIUM_PORT</a></strong></code>
 <div class="block">'selenium.port'</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_CHROME">SYSTEM_PROPERTY_WEBDRIVER_CHROME</a></strong></code>
 <div class="block">'webdriver.chrome.driver'</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_EDGE">SYSTEM_PROPERTY_WEBDRIVER_EDGE</a></strong></code>
 <div class="block">'webdriver.edge.driver'</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_IE">SYSTEM_PROPERTY_WEBDRIVER_IE</a></strong></code>
 <div class="block">'webdriver.ie.driver'</div>
@@ -315,13 +353,71 @@ extends java.lang.Object</pre>
 <a name="KEY_GRID_NODES_SETTING">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>KEY_GRID_NODES_SETTING</h4>
 <pre>public static final&nbsp;java.lang.String KEY_GRID_NODES_SETTING</pre>
-<div class="block">'selenium.node' the key for selenium grid node string; 
+<div class="block">'selenium.node' the key for selenium grid node string;
  The value is as "node1:port:nodeconfig;node2:port:nodeconfig;"</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.SeleniumConstants.KEY_GRID_NODES_SETTING">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ITEM_WEB_DRIVERS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ITEM_WEB_DRIVERS</h4>
+<pre>public static final&nbsp;java.lang.String ITEM_WEB_DRIVERS</pre>
+<div class="block">"WEB_DRIVERS" defines a set of drivers to start with selenium-server.<br>
+ The possible value could be a combination (separated by colon :) of:<br>
+ <ul>
+ <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ <li>BrowserConstants.BROWSER_NAME_XXX might be supported.
+ </ul>
+ Examples:<br>
+ <b>explorer</b> Only IEDriver will start with selenium-server.<br>
+ <b>explorer:chrome:MicrosoftEdge</b> IEDriver, ChromeDriver, EdgeDriver will start with selenium-server.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.SeleniumConstants.ITEM_WEB_DRIVERS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PROPERTY_WEB_DRIVERS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PROPERTY_WEB_DRIVERS</h4>
+<pre>public static final&nbsp;java.lang.String PROPERTY_WEB_DRIVERS</pre>
+<div class="block">"safs.selenium.web.drivers" defines a set of drivers to start with selenium-server.<br>
+ The possible value could be a combination (separated by colon :) of:<br>
+ <ul>
+ <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ <li>BrowserConstants.BROWSER_NAME_XXX might be supported.
+ </ul>
+ Examples:<br>
+ -Dsafs.selenium.web.drivers=<b>explorer</b> Only IEDriver will start with selenium-server.<br>
+ -Dsafs.selenium.web.drivers=<b>explorer:chrome:MicrosoftEdge</b> IEDriver, ChromeDriver, EdgeDriver will start with selenium-server.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.SeleniumConstants.PROPERTY_WEB_DRIVERS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DRIVER_SHORT_NAME_MAP">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DRIVER_SHORT_NAME_MAP</h4>
+<pre>public static final&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt; DRIVER_SHORT_NAME_MAP</pre>
+<div class="block">When starting selenium server, the browser-drivers can be specified as VM parameters, such as:<br/>
+ -Dwebdriver.<b>ie</b>.driver=path\to\IEDriverServer.exe<br/>
+ -Dwebdriver.<b>ie</b>.logfile=workspace\log\ie.console<br/>
+ The VM parameter is in format webdriver.<b>&lt;browserShortName></b>.driver and webdriver.<b>&lt;browserShortName></b>.logfile,
+ browser names (NOT short name) have been defined in class <a href="../../org/safs/Constants.BrowserConstants.html" title="class in org.safs"><code>Constants.BrowserConstants</code></a> such as <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a> etc. But not all
+ of them is suitable to specify the VM parameter, so this Map is created for mapping 'browser-name' to 'browser-short-name'. The 'browser-short-name'
+ will be used to specify the VM parameter.</div>
 </li>
 </ul>
 </li>
