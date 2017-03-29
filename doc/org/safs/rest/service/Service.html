@@ -98,7 +98,7 @@
 extends java.lang.Object</pre>
 <div class="block">Contains the information needed to test a specific web service.
  <p>
- A test or ongoing interactive session with a specific web service will have a unique service Id 
+ A test or ongoing interactive session with a specific web service will have a unique service Id
  and all information associated with that interactive service session will be retained here.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Carl Nagle</dd></dl>
@@ -153,44 +153,52 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getAuth()">getAuth</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getAuthType()">getAuthType</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getBaseURL()">getBaseURL</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getClientAdapter()">getClientAdapter</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>(package private) java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getClientAdapterClassName()">getClientAdapterClassName</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getPassword()">getPassword</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getProtocolVersion()">getProtocolVersion</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) org.apache.hc.core5.http.ProtocolVersion</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getProtocolVersionObject()">getProtocolVersionObject</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getProxyServerURL()">getProxyServerURL</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getServiceId()">getServiceId</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#getUserId()">getUserId</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Service.html#setAuth(org.safs.auth.Auth)">setAuth</a></strong>(<a href="../../../../org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a>&nbsp;auth)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -440,6 +448,24 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getProtocolVersionObject</h4>
 <pre>org.apache.hc.core5.http.ProtocolVersion&nbsp;getProtocolVersionObject()</pre>
+</li>
+</ul>
+<a name="getAuth()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAuth</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a>&nbsp;getAuth()</pre>
+</li>
+</ul>
+<a name="setAuth(org.safs.auth.Auth)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setAuth</h4>
+<pre>public&nbsp;void&nbsp;setAuth(<a href="../../../../org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a>&nbsp;auth)</pre>
 </li>
 </ul>
 <a name="setClientAdapterClassName(java.lang.String)">

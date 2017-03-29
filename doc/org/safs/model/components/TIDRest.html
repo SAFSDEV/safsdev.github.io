@@ -1,0 +1,2674 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>TIDRest (SAFS API DOCUMENT)</title>
+<link rel="stylesheet" type="text/css" href="../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="TIDRest (SAFS API DOCUMENT)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/TIDRest.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../org/safs/model/components/TableView.html" title="class in org.safs.model.components"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../org/safs/model/components/TimePicker.html" title="class in org.safs.model.components"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../index.html?org/safs/model/components/TIDRest.html" target="_top">Frames</a></li>
+<li><a href="TIDRest.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.safs.model.components</div>
+<h2 title="Class TIDRest" class="title">Class TIDRest</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">org.safs.model.Component</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../org/safs/model/components/UIComponent.html" title="class in org.safs.model.components">org.safs.model.components.UIComponent</a></li>
+<li>
+<ul class="inheritance">
+<li>org.safs.model.components.TIDRest</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>public class <span class="strong">TIDRest</span>
+extends <a href="../../../../org/safs/model/components/UIComponent.html" title="class in org.safs.model.components">UIComponent</a></pre>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colLast" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#TIDRest(java.lang.String)">TIDRest</a></strong>(java.lang.String&nbsp;compname)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#TIDRest(java.lang.String,%20java.lang.String)">TIDRest</a></strong>(java.lang.String&nbsp;winname,
+       java.lang.String&nbsp;compname)</code>
+<div class="block">Constructor 
+
+    Create an instance of pseudo-component representing 
+    a specific component in a specific window.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#TIDRest(org.safs.model.components.Window,%20java.lang.String)">TIDRest</a></strong>(<a href="../../../../org/safs/model/components/Window.html" title="class in org.safs.model.components">Window</a>&nbsp;window,
+       java.lang.String&nbsp;compname)</code>
+<div class="block">Constructor 
+
+    Create an instance of pseudo-component representing 
+    a specific component in a specific window.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteBinary()">restDeleteBinary</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteBinary(org.safs.model.StepTestTable)">restDeleteBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteCSS()">restDeleteCSS</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteCSS(org.safs.model.StepTestTable)">restDeleteCSS</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteCustom()">restDeleteCustom</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteCustom(org.safs.model.StepTestTable)">restDeleteCustom</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteHTML()">restDeleteHTML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteHTML(org.safs.model.StepTestTable)">restDeleteHTML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteImage()">restDeleteImage</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteImage(org.safs.model.StepTestTable)">restDeleteImage</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteJSON()">restDeleteJSON</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteJSON(org.safs.model.StepTestTable)">restDeleteJSON</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteScript()">restDeleteScript</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteScript(org.safs.model.StepTestTable)">restDeleteScript</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteText()">restDeleteText</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteText(org.safs.model.StepTestTable)">restDeleteText</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteXML()">restDeleteXML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restDeleteXML(org.safs.model.StepTestTable)">restDeleteXML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restEndServiceSession()">restEndServiceSession</a></strong>()</code>
+<div class="block">
+                    Stop a session for a REST service.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restEndServiceSession(org.safs.model.StepTestTable)">restEndServiceSession</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code>
+<div class="block">
+                    Stop a session for a REST service.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetBinary(org.safs.model.StepTestTable,%20java.lang.String[])">restGetBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+             java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetBinary(org.safs.model.StepTestTable,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restGetBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+             java.lang.String&nbsp;relativeURI,
+             java.lang.String&nbsp;responseIdVar,
+             java.lang.String&nbsp;body,
+             java.lang.String&nbsp;headers,
+             java.lang.String&nbsp;authentication)</code>
+<div class="block">
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetBinary(java.lang.String[])">restGetBinary</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetBinary(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restGetBinary</a></strong>(java.lang.String&nbsp;relativeURI,
+             java.lang.String&nbsp;responseIdVar,
+             java.lang.String&nbsp;body,
+             java.lang.String&nbsp;headers,
+             java.lang.String&nbsp;authentication)</code>
+<div class="block">
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetCSS()">restGetCSS</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetCSS(org.safs.model.StepTestTable)">restGetCSS</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetCustom()">restGetCustom</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetCustom(org.safs.model.StepTestTable)">restGetCustom</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetHTML()">restGetHTML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetHTML(org.safs.model.StepTestTable)">restGetHTML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetImage()">restGetImage</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetImage(org.safs.model.StepTestTable)">restGetImage</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetJSON()">restGetJSON</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetJSON(org.safs.model.StepTestTable)">restGetJSON</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetScript()">restGetScript</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetScript(org.safs.model.StepTestTable)">restGetScript</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetText()">restGetText</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetText(org.safs.model.StepTestTable)">restGetText</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetXML()">restGetXML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restGetXML(org.safs.model.StepTestTable)">restGetXML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadBinary()">restHeadBinary</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadBinary(org.safs.model.StepTestTable)">restHeadBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadCSS()">restHeadCSS</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadCSS(org.safs.model.StepTestTable)">restHeadCSS</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadCustom()">restHeadCustom</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadCustom(org.safs.model.StepTestTable)">restHeadCustom</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadHTML()">restHeadHTML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadHTML(org.safs.model.StepTestTable)">restHeadHTML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadImage()">restHeadImage</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadImage(org.safs.model.StepTestTable)">restHeadImage</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadJSON()">restHeadJSON</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadJSON(org.safs.model.StepTestTable)">restHeadJSON</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadScript()">restHeadScript</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadScript(org.safs.model.StepTestTable)">restHeadScript</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadText()">restHeadText</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadText(org.safs.model.StepTestTable)">restHeadText</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadXML()">restHeadXML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restHeadXML(org.safs.model.StepTestTable)">restHeadXML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchBinary()">restPatchBinary</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchBinary(org.safs.model.StepTestTable)">restPatchBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchCSS()">restPatchCSS</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchCSS(org.safs.model.StepTestTable)">restPatchCSS</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchCustom()">restPatchCustom</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchCustom(org.safs.model.StepTestTable)">restPatchCustom</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchHTML()">restPatchHTML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchHTML(org.safs.model.StepTestTable)">restPatchHTML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchImage()">restPatchImage</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchImage(org.safs.model.StepTestTable)">restPatchImage</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchJSON()">restPatchJSON</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchJSON(org.safs.model.StepTestTable)">restPatchJSON</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchScript()">restPatchScript</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchScript(org.safs.model.StepTestTable)">restPatchScript</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchText()">restPatchText</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchText(org.safs.model.StepTestTable)">restPatchText</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchXML()">restPatchXML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPatchXML(org.safs.model.StepTestTable)">restPatchXML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostBinary()">restPostBinary</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostBinary(org.safs.model.StepTestTable)">restPostBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostCSS()">restPostCSS</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostCSS(org.safs.model.StepTestTable)">restPostCSS</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostCustom()">restPostCustom</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostCustom(org.safs.model.StepTestTable)">restPostCustom</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostHTML()">restPostHTML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostHTML(org.safs.model.StepTestTable)">restPostHTML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostImage()">restPostImage</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostImage(org.safs.model.StepTestTable)">restPostImage</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostJSON()">restPostJSON</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostJSON(org.safs.model.StepTestTable)">restPostJSON</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostScript()">restPostScript</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostScript(org.safs.model.StepTestTable)">restPostScript</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostText()">restPostText</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostText(org.safs.model.StepTestTable)">restPostText</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostXML()">restPostXML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPostXML(org.safs.model.StepTestTable)">restPostXML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutBinary()">restPutBinary</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutBinary(org.safs.model.StepTestTable)">restPutBinary</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutCSS()">restPutCSS</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutCSS(org.safs.model.StepTestTable)">restPutCSS</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutCustom()">restPutCustom</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutCustom(org.safs.model.StepTestTable)">restPutCustom</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutHTML()">restPutHTML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutHTML(org.safs.model.StepTestTable)">restPutHTML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutImage()">restPutImage</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutImage(org.safs.model.StepTestTable)">restPutImage</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutJSON()">restPutJSON</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutJSON(org.safs.model.StepTestTable)">restPutJSON</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutScript()">restPutScript</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutScript(org.safs.model.StepTestTable)">restPutScript</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutText()">restPutText</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutText(org.safs.model.StepTestTable)">restPutText</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutXML()">restPutXML</a></strong>()</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restPutXML(org.safs.model.StepTestTable)">restPutXML</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</code></td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restRequest(org.safs.model.StepTestTable,%20java.lang.String[])">restRequest</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+           java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                    Perform an HTTP method on a REST service.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restRequest(org.safs.model.StepTestTable,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restRequest</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+           java.lang.String&nbsp;hTTPMethod,
+           java.lang.String&nbsp;relativeURI,
+           java.lang.String&nbsp;responseIdVar,
+           java.lang.String&nbsp;body,
+           java.lang.String&nbsp;headers,
+           java.lang.String&nbsp;authentication)</code>
+<div class="block">
+                    Perform an HTTP method on a REST service.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restRequest(java.lang.String[])">restRequest</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                    Perform an HTTP method on a REST service.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restRequest(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restRequest</a></strong>(java.lang.String&nbsp;hTTPMethod,
+           java.lang.String&nbsp;relativeURI,
+           java.lang.String&nbsp;responseIdVar,
+           java.lang.String&nbsp;body,
+           java.lang.String&nbsp;headers,
+           java.lang.String&nbsp;authentication)</code>
+<div class="block">
+                    Perform an HTTP method on a REST service.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restStartServiceSession(org.safs.model.StepTestTable,%20java.lang.String[])">restStartServiceSession</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+                       java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                    Start a session for a REST service.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restStartServiceSession(org.safs.model.StepTestTable,%20java.lang.String,%20java.lang.String)">restStartServiceSession</a></strong>(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+                       java.lang.String&nbsp;baseURL,
+                       java.lang.String&nbsp;authentication)</code>
+<div class="block">
+                    Start a session for a REST service.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restStartServiceSession(java.lang.String[])">restStartServiceSession</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                    Start a session for a REST service.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/components/TIDRest.html#restStartServiceSession(java.lang.String,%20java.lang.String)">restStartServiceSession</a></strong>(java.lang.String&nbsp;baseURL,
+                       java.lang.String&nbsp;authentication)</code>
+<div class="block">
+                    Start a session for a REST service.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.model.components.UIComponent">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.model.components.<a href="../../../../org/safs/model/components/UIComponent.html" title="class in org.safs.model.components">UIComponent</a></h3>
+<code><a href="../../../../org/safs/model/components/UIComponent.html#getWindow()">getWindow</a>, <a href="../../../../org/safs/model/components/UIComponent.html#setWindow(org.safs.model.components.Window)">setWindow</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.model.Component">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.model.<a href="../../../../org/safs/model/Component.html" title="class in org.safs.model">Component</a></h3>
+<code><a href="../../../../org/safs/model/Component.html#getName()">getName</a>, <a href="../../../../org/safs/model/Component.html#getParent()">getParent</a>, <a href="../../../../org/safs/model/Component.html#getParentName()">getParentName</a>, <a href="../../../../org/safs/model/Component.html#quote(java.lang.String)">quote</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="TIDRest(org.safs.model.components.Window, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TIDRest</h4>
+<pre>public&nbsp;TIDRest(<a href="../../../../org/safs/model/components/Window.html" title="class in org.safs.model.components">Window</a>&nbsp;window,
+       java.lang.String&nbsp;compname)</pre>
+<div class="block">Constructor 
+
+    Create an instance of pseudo-component representing 
+    a specific component in a specific window.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>window</code> - Optional:NO 
+           Specifies which Window this component is 'in'.</dd><dd><code>compname</code> - Optional:NO 
+           Specifies the AppMap name of the component in the Window.</dd></dl>
+</li>
+</ul>
+<a name="TIDRest(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>TIDRest</h4>
+<pre>public&nbsp;TIDRest(java.lang.String&nbsp;winname,
+       java.lang.String&nbsp;compname)</pre>
+<div class="block">Constructor 
+
+    Create an instance of pseudo-component representing 
+    a specific component in a specific window.
+
+    This convenience routine will create the requisite Window component.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>winname</code> - Optional:NO 
+           Specifies the AppMap name of the window.</dd><dd><code>compname</code> - Optional:NO 
+           Specifies the AppMap name of the component in the Window.</dd></dl>
+</li>
+</ul>
+<a name="TIDRest(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TIDRest</h4>
+<pre>protected&nbsp;TIDRest(java.lang.String&nbsp;compname)</pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="restDeleteBinary()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteBinary()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteBinary(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteBinary</h4>
+<pre>public&nbsp;void&nbsp;restDeleteBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteCSS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteCSS</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteCSS()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteCSS(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteCSS</h4>
+<pre>public&nbsp;void&nbsp;restDeleteCSS(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteCustom()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteCustom</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteCustom()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteCustom(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteCustom</h4>
+<pre>public&nbsp;void&nbsp;restDeleteCustom(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteHTML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteHTML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteHTML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteHTML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteHTML</h4>
+<pre>public&nbsp;void&nbsp;restDeleteHTML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteImage</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteImage()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteImage(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteImage</h4>
+<pre>public&nbsp;void&nbsp;restDeleteImage(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteJSON()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteJSON</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteJSON()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteJSON(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteJSON</h4>
+<pre>public&nbsp;void&nbsp;restDeleteJSON(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteScript()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteScript</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteScript()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteScript(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteScript</h4>
+<pre>public&nbsp;void&nbsp;restDeleteScript(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteText</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteText()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteText(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteText</h4>
+<pre>public&nbsp;void&nbsp;restDeleteText(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restDeleteXML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteXML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restDeleteXML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restDeleteXML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restDeleteXML</h4>
+<pre>public&nbsp;void&nbsp;restDeleteXML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restEndServiceSession()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restEndServiceSession</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restEndServiceSession()</pre>
+<div class="block"><pre>
+                    Stop a session for a REST service.
+
+                    Stop a session for a REST service.
+                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+</li>
+</ul>
+<a name="restEndServiceSession(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restEndServiceSession</h4>
+<pre>public&nbsp;void&nbsp;restEndServiceSession(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>
+                    Stop a session for a REST service.
+
+                    Stop a session for a REST service.
+                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetBinary(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetBinary(java.lang.String&nbsp;relativeURI,
+                              java.lang.String&nbsp;responseIdVar,
+                              java.lang.String&nbsp;body,
+                              java.lang.String&nbsp;headers,
+                              java.lang.String&nbsp;authentication)</pre>
+<div class="block"><pre>
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.
+
+
+                                        This action will send the "GET" method with Headers containing "Accept : application/octet-stream".
+                                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+
+
+                                                If the field SessionIDItem is provided in the map, the keyword RestStartServiceSession SHOULD be executed 
+                                                before executing this action, which will be handled within a session.
+                                                Otherwise, it will be considered as a one-shot connection, 
+                                                and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+
+                                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>relativeURI</code> - Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.</dd><dd><code>responseIdVar</code> - Optional:NO
+                               The name of the variable holding the ID (generated internally), which is used to
+                               get the Response Object from the internal Map.</dd><dd><code>body</code> - Optional:YESThe body to send with this REST request.</dd><dd><code>headers</code> - Optional:YES
+                               The headers to be included in this REST request.
+                               Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</dd><dd><code>authentication</code> - Optional:YES
+                           The authentication information to guarantee the one-shot connection successful.
+                           It is ONLY useful for the situation without session; otherwise it is ignored.</dd></dl>
+</li>
+</ul>
+<a name="restGetBinary(org.safs.model.StepTestTable, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetBinary</h4>
+<pre>public&nbsp;void&nbsp;restGetBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+                 java.lang.String&nbsp;relativeURI,
+                 java.lang.String&nbsp;responseIdVar,
+                 java.lang.String&nbsp;body,
+                 java.lang.String&nbsp;headers,
+                 java.lang.String&nbsp;authentication)</pre>
+<div class="block"><pre>
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.
+
+
+                                        This action will send the "GET" method with Headers containing "Accept : application/octet-stream".
+                                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+
+
+                                                If the field SessionIDItem is provided in the map, the keyword RestStartServiceSession SHOULD be executed 
+                                                before executing this action, which will be handled within a session.
+                                                Otherwise, it will be considered as a one-shot connection, 
+                                                and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+
+                                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd><dd><code>relativeURI</code> - Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.</dd><dd><code>responseIdVar</code> - Optional:NO
+                               The name of the variable holding the ID (generated internally), which is used to
+                               get the Response Object from the internal Map.</dd><dd><code>body</code> - Optional:YESThe body to send with this REST request.</dd><dd><code>headers</code> - Optional:YES
+                               The headers to be included in this REST request.
+                               Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</dd><dd><code>authentication</code> - Optional:YES
+                           The authentication information to guarantee the one-shot connection successful.
+                           It is ONLY useful for the situation without session; otherwise it is ignored.</dd></dl>
+</li>
+</ul>
+<a name="restGetBinary(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetBinary(java.lang.String[]&nbsp;parameters)</pre>
+<div class="block"><pre>
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.
+
+
+                                        This action will send the "GET" method with Headers containing "Accept : application/octet-stream".
+                                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+
+
+                                                If the field SessionIDItem is provided in the map, the keyword RestStartServiceSession SHOULD be executed 
+                                                before executing this action, which will be handled within a session.
+                                                Otherwise, it will be considered as a one-shot connection, 
+                                                and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+
+                                    </pre>    
+    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>parameters</code> - Optional:NO
+            An array containing the following parameters:
+    <UL>
+<BR/>         relativeURI -- Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.<BR/>         responseIdVar -- Optional:NO
+                               The name of the variable holding the ID (generated internally), which is used to
+                               get the Response Object from the internal Map.
+                            <BR/>         body -- Optional:YESThe body to send with this REST request.<BR/>         headers -- Optional:YES
+                               The headers to be included in this REST request.
+                               Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".
+                            <BR/>         authentication -- Optional:YES
+                           The authentication information to guarantee the one-shot connection successful.
+                           It is ONLY useful for the situation without session; otherwise it is ignored.
+
+    </UL></dd></dl>
+</li>
+</ul>
+<a name="restGetBinary(org.safs.model.StepTestTable, java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetBinary</h4>
+<pre>public&nbsp;void&nbsp;restGetBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+                 java.lang.String[]&nbsp;parameters)</pre>
+<div class="block"><pre>
+                                        Perform the "GET" method on a REST service, and try to get back the binary content.
+
+
+                                        This action will send the "GET" method with Headers containing "Accept : application/octet-stream".
+                                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+
+
+                                                If the field SessionIDItem is provided in the map, the keyword RestStartServiceSession SHOULD be executed 
+                                                before executing this action, which will be handled within a session.
+                                                Otherwise, it will be considered as a one-shot connection, 
+                                                and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+
+                                    </pre>    
+    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd><dd><code>parameters</code> - Optional:NO
+            An array containing the following parameters:
+    <UL>
+<BR/>         relativeURI -- Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.<BR/>         responseIdVar -- Optional:NO
+                               The name of the variable holding the ID (generated internally), which is used to
+                               get the Response Object from the internal Map.
+                            <BR/>         body -- Optional:YESThe body to send with this REST request.<BR/>         headers -- Optional:YES
+                               The headers to be included in this REST request.
+                               Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".
+                            <BR/>         authentication -- Optional:YES
+                           The authentication information to guarantee the one-shot connection successful.
+                           It is ONLY useful for the situation without session; otherwise it is ignored.
+
+    </UL></dd></dl>
+</li>
+</ul>
+<a name="restGetCSS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetCSS</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetCSS()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetCSS(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetCSS</h4>
+<pre>public&nbsp;void&nbsp;restGetCSS(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetCustom()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetCustom</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetCustom()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetCustom(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetCustom</h4>
+<pre>public&nbsp;void&nbsp;restGetCustom(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetHTML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetHTML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetHTML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetHTML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetHTML</h4>
+<pre>public&nbsp;void&nbsp;restGetHTML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetImage</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetImage()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetImage(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetImage</h4>
+<pre>public&nbsp;void&nbsp;restGetImage(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetJSON()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetJSON</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetJSON()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetJSON(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetJSON</h4>
+<pre>public&nbsp;void&nbsp;restGetJSON(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetScript()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetScript</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetScript()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetScript(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetScript</h4>
+<pre>public&nbsp;void&nbsp;restGetScript(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetText</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetText()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetText(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetText</h4>
+<pre>public&nbsp;void&nbsp;restGetText(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restGetXML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetXML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restGetXML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restGetXML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restGetXML</h4>
+<pre>public&nbsp;void&nbsp;restGetXML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadBinary()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadBinary()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadBinary(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadBinary</h4>
+<pre>public&nbsp;void&nbsp;restHeadBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadCSS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadCSS</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadCSS()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadCSS(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadCSS</h4>
+<pre>public&nbsp;void&nbsp;restHeadCSS(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadCustom()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadCustom</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadCustom()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadCustom(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadCustom</h4>
+<pre>public&nbsp;void&nbsp;restHeadCustom(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadHTML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadHTML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadHTML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadHTML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadHTML</h4>
+<pre>public&nbsp;void&nbsp;restHeadHTML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadImage</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadImage()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadImage(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadImage</h4>
+<pre>public&nbsp;void&nbsp;restHeadImage(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadJSON()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadJSON</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadJSON()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadJSON(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadJSON</h4>
+<pre>public&nbsp;void&nbsp;restHeadJSON(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadScript()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadScript</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadScript()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadScript(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadScript</h4>
+<pre>public&nbsp;void&nbsp;restHeadScript(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadText</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadText()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadText(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadText</h4>
+<pre>public&nbsp;void&nbsp;restHeadText(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restHeadXML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadXML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restHeadXML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restHeadXML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restHeadXML</h4>
+<pre>public&nbsp;void&nbsp;restHeadXML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchBinary()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchBinary()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchBinary(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchBinary</h4>
+<pre>public&nbsp;void&nbsp;restPatchBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchCSS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchCSS</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchCSS()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchCSS(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchCSS</h4>
+<pre>public&nbsp;void&nbsp;restPatchCSS(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchCustom()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchCustom</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchCustom()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchCustom(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchCustom</h4>
+<pre>public&nbsp;void&nbsp;restPatchCustom(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchHTML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchHTML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchHTML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchHTML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchHTML</h4>
+<pre>public&nbsp;void&nbsp;restPatchHTML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchImage</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchImage()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchImage(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchImage</h4>
+<pre>public&nbsp;void&nbsp;restPatchImage(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchJSON()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchJSON</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchJSON()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchJSON(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchJSON</h4>
+<pre>public&nbsp;void&nbsp;restPatchJSON(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchScript()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchScript</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchScript()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchScript(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchScript</h4>
+<pre>public&nbsp;void&nbsp;restPatchScript(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchText</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchText()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchText(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchText</h4>
+<pre>public&nbsp;void&nbsp;restPatchText(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPatchXML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchXML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPatchXML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPatchXML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPatchXML</h4>
+<pre>public&nbsp;void&nbsp;restPatchXML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostBinary()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostBinary()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostBinary(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostBinary</h4>
+<pre>public&nbsp;void&nbsp;restPostBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostCSS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostCSS</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostCSS()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostCSS(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostCSS</h4>
+<pre>public&nbsp;void&nbsp;restPostCSS(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostCustom()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostCustom</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostCustom()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostCustom(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostCustom</h4>
+<pre>public&nbsp;void&nbsp;restPostCustom(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostHTML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostHTML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostHTML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostHTML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostHTML</h4>
+<pre>public&nbsp;void&nbsp;restPostHTML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostImage</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostImage()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostImage(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostImage</h4>
+<pre>public&nbsp;void&nbsp;restPostImage(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostJSON()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostJSON</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostJSON()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostJSON(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostJSON</h4>
+<pre>public&nbsp;void&nbsp;restPostJSON(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostScript()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostScript</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostScript()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostScript(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostScript</h4>
+<pre>public&nbsp;void&nbsp;restPostScript(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostText</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostText()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostText(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostText</h4>
+<pre>public&nbsp;void&nbsp;restPostText(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPostXML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostXML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPostXML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPostXML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPostXML</h4>
+<pre>public&nbsp;void&nbsp;restPostXML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutBinary()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutBinary</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutBinary()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutBinary(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutBinary</h4>
+<pre>public&nbsp;void&nbsp;restPutBinary(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutCSS()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutCSS</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutCSS()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutCSS(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutCSS</h4>
+<pre>public&nbsp;void&nbsp;restPutCSS(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutCustom()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutCustom</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutCustom()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutCustom(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutCustom</h4>
+<pre>public&nbsp;void&nbsp;restPutCustom(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutHTML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutHTML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutHTML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutHTML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutHTML</h4>
+<pre>public&nbsp;void&nbsp;restPutHTML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutImage()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutImage</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutImage()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutImage(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutImage</h4>
+<pre>public&nbsp;void&nbsp;restPutImage(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutJSON()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutJSON</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutJSON()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutJSON(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutJSON</h4>
+<pre>public&nbsp;void&nbsp;restPutJSON(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutScript()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutScript</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutScript()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutScript(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutScript</h4>
+<pre>public&nbsp;void&nbsp;restPutScript(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutText()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutText</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutText()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutText(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutText</h4>
+<pre>public&nbsp;void&nbsp;restPutText(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restPutXML()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutXML</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restPutXML()</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+</li>
+</ul>
+<a name="restPutXML(org.safs.model.StepTestTable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restPutXML</h4>
+<pre>public&nbsp;void&nbsp;restPutXML(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table)</pre>
+<div class="block"><pre>    </pre>    Supporting Engines:
+    <P/><UL>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd></dl>
+</li>
+</ul>
+<a name="restRequest(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restRequest</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restRequest(java.lang.String&nbsp;hTTPMethod,
+                            java.lang.String&nbsp;relativeURI,
+                            java.lang.String&nbsp;responseIdVar,
+                            java.lang.String&nbsp;body,
+                            java.lang.String&nbsp;headers,
+                            java.lang.String&nbsp;authentication)</pre>
+<div class="block"><pre>
+                    Perform an HTTP method on a REST service.
+
+                    If the test field SessionIDItem is provided, the keyword RestStartServiceSession SHOULD be executed 
+                    before executing this action, which will be handled within a session.
+                    Otherwise, it will be considered as a one-shot connection, 
+                    and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>hTTPMethod</code> - Optional:NOThe HTTP method to execute.</dd><dd><code>relativeURI</code> - Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.</dd><dd><code>responseIdVar</code> - Optional:NO
+                           The name of the variable holding the ID (generated internally), which is used to
+                           get the Response Object from the internal Map.</dd><dd><code>body</code> - Optional:YESThe body to send with this REST request.</dd><dd><code>headers</code> - Optional:YES
+                           The headers to be included in this REST request.
+                           Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</dd><dd><code>authentication</code> - Optional:YES
+                           The authentication information to guarantee this one-shot connection successful.</dd></dl>
+</li>
+</ul>
+<a name="restRequest(org.safs.model.StepTestTable, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restRequest</h4>
+<pre>public&nbsp;void&nbsp;restRequest(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+               java.lang.String&nbsp;hTTPMethod,
+               java.lang.String&nbsp;relativeURI,
+               java.lang.String&nbsp;responseIdVar,
+               java.lang.String&nbsp;body,
+               java.lang.String&nbsp;headers,
+               java.lang.String&nbsp;authentication)</pre>
+<div class="block"><pre>
+                    Perform an HTTP method on a REST service.
+
+                    If the test field SessionIDItem is provided, the keyword RestStartServiceSession SHOULD be executed 
+                    before executing this action, which will be handled within a session.
+                    Otherwise, it will be considered as a one-shot connection, 
+                    and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd><dd><code>hTTPMethod</code> - Optional:NOThe HTTP method to execute.</dd><dd><code>relativeURI</code> - Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.</dd><dd><code>responseIdVar</code> - Optional:NO
+                           The name of the variable holding the ID (generated internally), which is used to
+                           get the Response Object from the internal Map.</dd><dd><code>body</code> - Optional:YESThe body to send with this REST request.</dd><dd><code>headers</code> - Optional:YES
+                           The headers to be included in this REST request.
+                           Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</dd><dd><code>authentication</code> - Optional:YES
+                           The authentication information to guarantee this one-shot connection successful.</dd></dl>
+</li>
+</ul>
+<a name="restRequest(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restRequest</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restRequest(java.lang.String[]&nbsp;parameters)</pre>
+<div class="block"><pre>
+                    Perform an HTTP method on a REST service.
+
+                    If the test field SessionIDItem is provided, the keyword RestStartServiceSession SHOULD be executed 
+                    before executing this action, which will be handled within a session.
+                    Otherwise, it will be considered as a one-shot connection, 
+                    and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+                    </pre>    
+    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>parameters</code> - Optional:NO
+            An array containing the following parameters:
+    <UL>
+<BR/>         hTTPMethod -- Optional:NOThe HTTP method to execute.<BR/>         relativeURI -- Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.<BR/>         responseIdVar -- Optional:NO
+                           The name of the variable holding the ID (generated internally), which is used to
+                           get the Response Object from the internal Map.
+                        <BR/>         body -- Optional:YESThe body to send with this REST request.<BR/>         headers -- Optional:YES
+                           The headers to be included in this REST request.
+                           Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".
+                        <BR/>         authentication -- Optional:YES
+                           The authentication information to guarantee this one-shot connection successful.
+
+    </UL></dd></dl>
+</li>
+</ul>
+<a name="restRequest(org.safs.model.StepTestTable, java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restRequest</h4>
+<pre>public&nbsp;void&nbsp;restRequest(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+               java.lang.String[]&nbsp;parameters)</pre>
+<div class="block"><pre>
+                    Perform an HTTP method on a REST service.
+
+                    If the test field SessionIDItem is provided, the keyword RestStartServiceSession SHOULD be executed 
+                    before executing this action, which will be handled within a session.
+                    Otherwise, it will be considered as a one-shot connection, 
+                    and NO RestStartServiceSession needs to be called and user may need to provide authentication information.
+                    </pre>    
+    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd><dd><code>parameters</code> - Optional:NO
+            An array containing the following parameters:
+    <UL>
+<BR/>         hTTPMethod -- Optional:NOThe HTTP method to execute.<BR/>         relativeURI -- Optional:NOThe relative URI combined with a base-URL (stored in a session) to form a REST service URL.<BR/>         responseIdVar -- Optional:NO
+                           The name of the variable holding the ID (generated internally), which is used to
+                           get the Response Object from the internal Map.
+                        <BR/>         body -- Optional:YESThe body to send with this REST request.<BR/>         headers -- Optional:YES
+                           The headers to be included in this REST request.
+                           Such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".
+                        <BR/>         authentication -- Optional:YES
+                           The authentication information to guarantee this one-shot connection successful.
+
+    </UL></dd></dl>
+</li>
+</ul>
+<a name="restStartServiceSession(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restStartServiceSession</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restStartServiceSession(java.lang.String&nbsp;baseURL,
+                                        java.lang.String&nbsp;authentication)</pre>
+<div class="block"><pre>
+                    Start a session for a REST service.
+
+                    Currently the "base URL" and "authentication information" will be stored for the opened session.
+                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>baseURL</code> - Optional:NOThe base URL to be stored with a session.</dd><dd><code>authentication</code> - Optional:YES
+                           The authentication information to be used during this session.</dd></dl>
+</li>
+</ul>
+<a name="restStartServiceSession(org.safs.model.StepTestTable, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restStartServiceSession</h4>
+<pre>public&nbsp;void&nbsp;restStartServiceSession(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+                           java.lang.String&nbsp;baseURL,
+                           java.lang.String&nbsp;authentication)</pre>
+<div class="block"><pre>
+                    Start a session for a REST service.
+
+                    Currently the "base URL" and "authentication information" will be stored for the opened session.
+                    </pre>    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd><dd><code>baseURL</code> - Optional:NOThe base URL to be stored with a session.</dd><dd><code>authentication</code> - Optional:YES
+                           The authentication information to be used during this session.</dd></dl>
+</li>
+</ul>
+<a name="restStartServiceSession(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>restStartServiceSession</h4>
+<pre>public&nbsp;<a href="../../../../org/safs/model/ComponentFunction.html" title="class in org.safs.model">ComponentFunction</a>&nbsp;restStartServiceSession(java.lang.String[]&nbsp;parameters)</pre>
+<div class="block"><pre>
+                    Start a session for a REST service.
+
+                    Currently the "base URL" and "authentication information" will be stored for the opened session.
+                    </pre>    
+    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>parameters</code> - Optional:NO
+            An array containing the following parameters:
+    <UL>
+<BR/>         baseURL -- Optional:NOThe base URL to be stored with a session.<BR/>         authentication -- Optional:YES
+                           The authentication information to be used during this session.
+
+    </UL></dd></dl>
+</li>
+</ul>
+<a name="restStartServiceSession(org.safs.model.StepTestTable, java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>restStartServiceSession</h4>
+<pre>public&nbsp;void&nbsp;restStartServiceSession(<a href="../../../../org/safs/model/StepTestTable.html" title="class in org.safs.model">StepTestTable</a>&nbsp;table,
+                           java.lang.String[]&nbsp;parameters)</pre>
+<div class="block"><pre>
+                    Start a session for a REST service.
+
+                    Currently the "base URL" and "authentication information" will be stored for the opened session.
+                    </pre>    
+    Supporting Engines:
+    <P/><UL>
+    <LI>SAFS TIDComponent</LI>
+    </UL></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>table</code> - Optional:NO
+            The table to add the record to.</dd><dd><code>parameters</code> - Optional:NO
+            An array containing the following parameters:
+    <UL>
+<BR/>         baseURL -- Optional:NOThe base URL to be stored with a session.<BR/>         authentication -- Optional:YES
+                           The authentication information to be used during this session.
+
+    </UL></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/TIDRest.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../../index-all.html">Index</a></li>
+<li><a href="../../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../../org/safs/model/components/TableView.html" title="class in org.safs.model.components"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../org/safs/model/components/TimePicker.html" title="class in org.safs.model.components"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../../index.html?org/safs/model/components/TIDRest.html" target="_top">Frames</a></li>
+<li><a href="TIDRest.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small><i>Copyright &#169; SAS Institute. All Rights Reserved.</i></small></p>
+</body>
+</html>

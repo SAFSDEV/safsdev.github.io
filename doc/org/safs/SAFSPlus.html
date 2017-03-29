@@ -34,7 +34,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../org/safs/SAFSParamException.html" title="class in org.safs"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../org/safs/SAFSPersistableNotEnableException.html" title="class in org.safs"><span class="strong">Prev Class</span></a></li>
 <li><a href="../../org/safs/SAFSPlus.Assert.html" title="class in org.safs"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -107,13 +107,13 @@ extends java.lang.Object</pre>
  For example, "36+9", "25*6" will be calculated as "45", "150" automatically; "^" is considered
  as the leading char of a variable, hence "^var" will be considered as a variable "var",
  if variable "var" exists, then "^var" will be replaced by its value, otherwise replaced by empty string "".
- 
+
  This ability is very useful for user, but sometimes it will cause UN-EXPECTED result during calling
  SAFSPlus's API. For example, user wants to input a string "this is a combined-word" to an EditBox,
  the EditBox will receive "this is a 0", which is not an expected result; user wants to select all
  text of an EditBox, he uses "Ctrl+a" by calling SAFSPlus.TypeKeys("^a") and he finds that doesn't
  work (the reason is that "^a" is parsed to "", because "^a" is considered as variable).
- 
+
  To avoid the problem caused by arithmetic char "+ - * /", we can call API Misc.Expressions(false) to
  turn off the parse of an expression.
  <code>Misc.Expressions(false);
@@ -125,27 +125,27 @@ extends java.lang.Object</pre>
  SAFSPlus.TypeKeys(quote("^p")));//quote is a static method provided by SAFSPlus
  SAFSPlus.TypeChars(quote("this is a combined-word"));
  </code>
- 
+
  <Font color="red">NOTE 2: File path deducing.</Font>
  In SAFSPlus, there are some APIs like CaptureXXXToFile, VerifyXXXToFile, they require file-path as parameter.
  As our doc is not very clear, user may confuse with the file-path parameter. Let's make it clear:
    There are 2 types of file, the test-file and bench-file. User can provide absolute or relative file-path for them.
-   If it is absolute, there is not confusion. 
+   If it is absolute, there is not confusion.
    If it is relative, we will combine it with a base-directory to form an absolute file. The base-directory depends
    on the type of file (test or bench):
      if it is test-file, the base-directory will be the test-directory, <ProjectDir>/Actuals/
      if it is bench-file, the base-directory will be the bench-directory, <ProjectDir>/Benchmarks/
      After the combination, the combined-file-name will be tested, if it is not valid, the project-directory will
      be used as base-directory.
- 
- 
+
+
  <Font color="red">NOTE 3: <a href="http://safsdev.sourceforge.net/sqabasic2000/UsingDDVariables.htm">DDVariable</a></Font>
  To use DDVariable ability, PLEASE remember to turn on the Expression by Misc.Expressions(true);
  The DDVariable is a variable reference, it can be expressed by a leading symbol ^ and the "variable name".
  For example:
  ^user.name
  ^user.password
- 
+
  DDVariable can be used along with an assignment or by itself, example as following:
  <code>Misc.Expressions(true);
  //set value "UserA" to variable "user.name", set "Password1" to variable "user.password"
@@ -155,10 +155,10 @@ extends java.lang.Object</pre>
  //input the value of variable "user.password"
  Component.InputCharacters(Map.AUT.PassWord, "^user.password");
  </code>
- 
+
  <Font color="red">NOTE 4: a known issue about clicking on wrong item</Font>
  Please to TURN OFF the browser's status bar.
- 
+
  </pre>
  For more info on command-line options, see <a href="../../org/safs/SAFSPlus.html#main(java.lang.String[])"><code>main(String[])</code></a>.</div>
 <dl><dt><span class="strong">Author:</span></dt>
@@ -202,8 +202,8 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Component.html" title="class in org.safs">SAFSPlus.Component</a></strong></code>
-<div class="block">Wrapper class providing APIs to handle 
- <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsIndex.htm">GenericMasterFunctions Reference</a> and 
+<div class="block">Wrapper class providing APIs to handle
+ <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsIndex.htm">GenericMasterFunctions Reference</a> and
  <a href="http://safsdev.github.io/sqabasic2000/GenericObjectFunctionsIndex.htm">GenericObjectFunctions Reference</a>, like VerifyProperty, IsPropertyExist etc.<br></div>
 </td>
 </tr>
@@ -260,29 +260,37 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Rest.html" title="class in org.safs">SAFSPlus.Rest</a></strong></code>
+<div class="block">Wrapper class providing APIs to handle
+ <a href="http://safsdev.github.io/sqabasic2000/TIDRestFunctionsIndex.htm">TIDRestFunctions Reference</a> and
+ <a href="http://safsdev.github.io/sqabasic2000/DDDriverRestCommandsIndex.htm">DriverRestCommands Reference</a>, like RestGetBinary, RestStoreResponse etc.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.ScrollBar.html" title="class in org.safs">SAFSPlus.ScrollBar</a></strong></code>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/ScrollBarFunctionsIndex.htm">ScrollBar keywords</a>, like OneDown, PageDown, PageUp etc.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Strings.html" title="class in org.safs">SAFSPlus.Strings</a></strong></code>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/DDDriverStringCommandsIndex.htm">String keywords</a>, like Compare, GetMultiDelimitedField etc.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.TabControl.html" title="class in org.safs">SAFSPlus.TabControl</a></strong></code>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/TabControlFunctionsIndex.htm">TabControl keywords</a>, like ClickTab, SelectTabIndex etc.<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Tree.html" title="class in org.safs">SAFSPlus.Tree</a></strong></code>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/TreeViewFunctionsIndex.htm">Tree keywords</a>, like ClickTextNode, ExpandTextNode etc.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Window.html" title="class in org.safs">SAFSPlus.Window</a></strong></code>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io//sqabasic2000/WindowFunctionsIndex.htm">Window keywords</a>, like Maximize, Minimize, SetPosition etc.<br></div>
@@ -372,7 +380,7 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#prevResults">prevResults</a></strong></code>
-<div class="block">Holds the TestRecordHelper object containing detailed information and results for 
+<div class="block">Holds the TestRecordHelper object containing detailed information and results for
  the last action or command executed.</div>
 </td>
 </tr>
@@ -592,7 +600,7 @@ extends java.lang.Object</pre>
 <h4>Runner</h4>
 <pre>protected static&nbsp;<a href="../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">AbstractRunner</a> Runner</pre>
 <div class="block">The Runner object providing access to the underlying Engines, like RFT, TestComplete, Selenium etc.
- This is the main object subclasses would use to execute SAFS actions and commands 
+ This is the main object subclasses would use to execute SAFS actions and commands
  and to gain references to more complex services like the running JSAFSDriver.
  Subclass may provide a different Runner than this one.</div>
 </li>
@@ -686,8 +694,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>prevResults</h4>
 <pre>public static&nbsp;<a href="../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a> prevResults</pre>
-<div class="block">Holds the TestRecordHelper object containing detailed information and results for 
- the last action or command executed.  Can be null if the last action or command executed 
+<div class="block">Holds the TestRecordHelper object containing detailed information and results for
+ the last action or command executed.  Can be null if the last action or command executed
  threw an Error or Exception bypassing its execution.</div>
 </li>
 </ul>
@@ -795,7 +803,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setRunner</h4>
 <pre>protected&nbsp;void&nbsp;setRunner(<a href="../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">AbstractRunner</a>&nbsp;Runner)</pre>
-<div class="block">To get the SAFSPlus work correctly for the sub-class (Ex. SAFSPlus), 
+<div class="block">To get the SAFSPlus work correctly for the sub-class (Ex. SAFSPlus),
  we MUST set its Runner to the sub-class's Runner (Ex. EmbeddedHookDriverRunner).</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>Runner</code> - </dd></dl>
 </li>
@@ -809,7 +817,7 @@ extends java.lang.Object</pre>
 <pre>public abstract&nbsp;void&nbsp;runTest()
                       throws java.lang.Throwable</pre>
 <div class="block">INTERNAL USE ONLY.<p>
- Start writing tests in this required method in your subclass. 
+ Start writing tests in this required method in your subclass.
  This must be an "instance" method because subclasses cannot Override static superclass methods.</div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Throwable</code></dd></dl>
@@ -839,9 +847,9 @@ extends java.lang.Object</pre>
 <h4>GetVariableValue</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;GetVariableValue(java.lang.String&nbsp;variableName)</pre>
 <div class="block">Convenience routine to retrieve the value of a SAFS Variable stored in SAFSVARS.
- <br>This will exploit the <a href="http://safsdev.github.io/sqabasic2000/CreateAppMap.htm#ddv_lookup" target="_blank">SAFSMAPS look-thru</a> 
- and <a href="http://safsdev.github.io/sqabasic2000/TestDesignGuidelines.htm#AppMapChaining" target="_blank">app map chaining</a> mechanism.  
- <br>That is, any variable that does NOT exist in SAFSVARS will be sought as an 
+ <br>This will exploit the <a href="http://safsdev.github.io/sqabasic2000/CreateAppMap.htm#ddv_lookup" target="_blank">SAFSMAPS look-thru</a>
+ and <a href="http://safsdev.github.io/sqabasic2000/TestDesignGuidelines.htm#AppMapChaining" target="_blank">app map chaining</a> mechanism.
+ <br>That is, any variable that does NOT exist in SAFSVARS will be sought as an
  ApplicationConstant in the SAFSMAPS service.
  <p>
  See <a href="http://safsdev.github.io/sqabasic2000/TestDesignGuidelines.htm" target="_blank">Test Design Guidelines for Localization</a>.</div>
@@ -864,9 +872,9 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Throwable</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>prevResults</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>AbortTest("reason for abort");	
+ <code>AbortTest("reason for abort");
  </code>
- </pre>  
+ </pre>
  Clears prevResults TestRecordHelper to null.</dd></dl>
 </li>
 </ul>
@@ -1004,7 +1012,7 @@ extends java.lang.Object</pre>
                           throws <a href="../../org/safs/SAFSRuntimeException.html" title="class in org.safs">SAFSRuntimeException</a></pre>
 <div class="block">Execute a driver command.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - String, the name of the driver command to execute.</dd><dd><code>params</code> - String[], the parameters for the driver command.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>boolean true if the driver command was successfully executed.<p>  
+<dt><span class="strong">Returns:</span></dt><dd>boolean true if the driver command was successfully executed.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSRuntimeException.html" title="class in org.safs">SAFSRuntimeException</a></code> - if detecting a user-initiated shutdown/abort request</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>prevResults</code></a>, 
@@ -1108,13 +1116,13 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
 <div class="block">Internal framework use only.
  Main inherited by subclasses is required.
- Subclasses should not override this main method.  
+ Subclasses should not override this main method.
  <p>
- Any subclass specific initialization should be done in the default no-arg constructor 
- for the subclass.  That Constructor will be instantiated and invoked automatically by 
+ Any subclass specific initialization should be done in the default no-arg constructor
+ for the subclass.  That Constructor will be instantiated and invoked automatically by
  this main startup method.
  <p>
- By default will seek an AppMap.order file.  However, the user can specify an alternate 
+ By default will seek an AppMap.order file.  However, the user can specify an alternate
  AppMap order file by using the following JVM argument:
  <p>
  <ul>Examples:
@@ -1125,14 +1133,14 @@ extends java.lang.Object</pre>
  <li>-Dtestdesigner.appmap.order=AppMap_mac.order
  <li>etc...
  </ul>
- <p>By default, a Debug Log is usually enabled and named in the test configuration (INI) file.   
+ <p>By default, a Debug Log is usually enabled and named in the test configuration (INI) file.
  The user can specify or override the name of this debug log file by using the following JVM argument:
  <p>
  <ul>
  -Dtestdesigner.debuglogname=mydebuglog.txt
  </ul>
  <p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - -- 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - --
  <p>
  -safsvar:name=value
  <p><ul>
@@ -1182,7 +1190,7 @@ extends java.lang.Object</pre>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../org/safs/SAFSParamException.html" title="class in org.safs"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../org/safs/SAFSPersistableNotEnableException.html" title="class in org.safs"><span class="strong">Prev Class</span></a></li>
 <li><a href="../../org/safs/SAFSPlus.Assert.html" title="class in org.safs"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">

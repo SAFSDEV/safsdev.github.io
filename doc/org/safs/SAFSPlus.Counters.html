@@ -164,14 +164,14 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Counters.html#PrintTestCaseSummary(java.lang.String)">PrintTestCaseSummary</a></strong>(java.lang.String&nbsp;tcname)</code>
-<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is 
+<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is
  still active, then print a summary report of all tests counted, passed, failed, and skipped, etc...</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Counters.html#PrintTestSuiteSummary(java.lang.String)">PrintTestSuiteSummary</a></strong>(java.lang.String&nbsp;suitename)</code>
-<div class="block">Stop capturing test activity counts for the overall suite of tests if it is 
+<div class="block">Stop capturing test activity counts for the overall suite of tests if it is
  still active, then print a summary report of all counted, passed, failed, and skipped tests etc...</div>
 </td>
 </tr>
@@ -272,11 +272,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>PrintTestCaseSummary</h4>
 <pre>public static&nbsp;boolean&nbsp;PrintTestCaseSummary(java.lang.String&nbsp;tcname)</pre>
-<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is 
+<div class="block">Stop capturing test activity counts for a specific application feature or test-case if it is
  still active, then print a summary report of all tests counted, passed, failed, and skipped, etc...</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to start using a Counter on.  The name must match a counter 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to start using a Counter on.  The name must match a counter
  that was previously started.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter 
+<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter
  or print the summary report into the log.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/SAFSPlus.Counters.html#StartTestCase(java.lang.String)"><code>StartTestCase(String)</code></a></dd></dl>
@@ -289,11 +289,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>PrintTestSuiteSummary</h4>
 <pre>public static&nbsp;boolean&nbsp;PrintTestSuiteSummary(java.lang.String&nbsp;suitename)</pre>
-<div class="block">Stop capturing test activity counts for the overall suite of tests if it is 
+<div class="block">Stop capturing test activity counts for the overall suite of tests if it is
  still active, then print a summary report of all counted, passed, failed, and skipped tests etc...</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>suitename</code> - The name of the suite to stop (if still running) and process.  
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>suitename</code> - The name of the suite to stop (if still running) and process.
  The name must match a counter that was previously started.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter 
+<dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter
  or print the summary report into the log.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a></dd></dl>
 </li>
@@ -403,7 +403,7 @@ extends java.lang.Object</pre>
 <h4>StopTestCase</h4>
 <pre>public static&nbsp;boolean&nbsp;StopTestCase(java.lang.String&nbsp;tcname)</pre>
 <div class="block">Stop capturing test activity counts for a specific application feature or test-case.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to stop.  The name must match a counter that was 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>tcname</code> - The name of the test-case to stop.  The name must match a counter that was
  previously started.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>false only if a failure of some kind was reported in attempting to stop the counter.<p>
  Sets prevResults TestRecordHelper to the results received or null if an error occurred.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
@@ -429,7 +429,7 @@ extends java.lang.Object</pre>
  ....(do some testing)
  success = Counters.SuspendCounts("Scenario preparation commencing.");
  ....(do some things you don't want logged or corrupting counters.)
- success = Counters.ResumeCounts("Scenario preparation complete."); 
+ success = Counters.ResumeCounts("Scenario preparation complete.");
  </code>
  </pre></dd></dl>
 </li>
@@ -441,7 +441,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>ResumeCounts</h4>
 <pre>public static&nbsp;boolean&nbsp;ResumeCounts(java.lang.String...&nbsp;reason)</pre>
-<div class="block">Resume counting on all active counters.  Counters previously stopped with StopCounter 
+<div class="block">Resume counting on all active counters.  Counters previously stopped with StopCounter
         will remain stopped.
                 <a href="http://safsdev.github.io/sqabasic2000/DDDriverCounterCommandsReference.htm#detail_ResumeStatusCounts">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>reason</code> - -- optional -- any additional (String) details to be logged.</dd>
@@ -453,7 +453,7 @@ extends java.lang.Object</pre>
  ....(do some testing)
  success = Counters.SuspendCounts("Scenario preparation commencing.");
  ....(do some things you don't want logged or corrupting counters.)
- success = Counters.ResumeCounts("Scenario preparation complete."); 
+ success = Counters.ResumeCounts("Scenario preparation complete.");
  </code>
  </pre></dd></dl>
 </li>
@@ -474,7 +474,7 @@ extends java.lang.Object</pre>
   <dd><pre>
  <code>boolean success = Counters.StartCounter(FUNCTIONAL_TEST_COUNTER, "Tracking all test records for Functional Testing");
  ....(do your testing, then log a snapshot/final statistics)
- success = Counters.LogCounterInfo(FUNCTIONAL_TEST_COUNTER); 
+ success = Counters.LogCounterInfo(FUNCTIONAL_TEST_COUNTER);
  </code>
  </pre></dd></dl>
 </li>
@@ -496,7 +496,7 @@ extends java.lang.Object</pre>
 <a href="../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
         boolean success = Counters.StartCounter(FUNCTIONAL_TEST_COUNTER, "Tracking all functional test records.");
-        ...(do some testing, then check counter status) 
+        ...(do some testing, then check counter status)
         success = Counters.StoreCounterInfo(FUNCTIONAL_TEST_COUNTER, VAR_TEST);
         if(success){
             int passes   = Integer.parseInt(GetVariableValue(VAR_TEST+".test_passes"));

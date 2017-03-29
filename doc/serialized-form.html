@@ -490,6 +490,11 @@
 </a>
 <h3>Class <a href="org/safs/SAFSParamException.html" title="class in org.safs">org.safs.SAFSParamException</a> extends <a href="org/safs/SAFSException.html" title="class in org.safs">SAFSException</a> implements Serializable</h3>
 </li>
+<li class="blockList"><a name="org.safs.SAFSPersistableNotEnableException">
+<!--   -->
+</a>
+<h3>Class <a href="org/safs/SAFSPersistableNotEnableException.html" title="class in org.safs">org.safs.SAFSPersistableNotEnableException</a> extends <a href="org/safs/SAFSException.html" title="class in org.safs">SAFSException</a> implements Serializable</h3>
+</li>
 <li class="blockList"><a name="org.safs.SAFSProcessorInitializationException">
 <!--   -->
 </a>
@@ -528,6 +533,11 @@
 </ul>
 </li>
 </ul>
+</li>
+<li class="blockList"><a name="org.safs.SAFSVerificationException">
+<!--   -->
+</a>
+<h3>Class <a href="org/safs/SAFSVerificationException.html" title="class in org.safs">org.safs.SAFSVerificationException</a> extends <a href="org/safs/SAFSException.html" title="class in org.safs">SAFSException</a> implements Serializable</h3>
 </li>
 <li class="blockList"><a name="org.safs.SocketTestRecordHelper">
 <!--   -->
@@ -610,20 +620,20 @@
 <li class="blockList">
 <h4>separator</h4>
 <pre>java.lang.String separator</pre>
-<div class="block"><br><em>Purpose:</em>  separator: property: char(s) delimiting the fields in the inputRecord  
+<div class="block"><br><em>Purpose:</em>  separator: property: char(s) delimiting the fields in the inputRecord
  <br><em>Initialized:</em> by a helper class the first time, only set once.
  <br><em>Example:</em>"\t"</div>
 </li>
 <li class="blockList">
 <h4>testLevel</h4>
 <pre>java.lang.String testLevel</pre>
-<div class="block"><br><em>Purpose:</em>  testlevel:  the current executing test level (CYCLE, SUITE, STEP)  
+<div class="block"><br><em>Purpose:</em>  testlevel:  the current executing test level (CYCLE, SUITE, STEP)
  <br><em>Initialized:</em>  by a helper class the first time, only set once.</div>
 </li>
 <li class="blockList">
 <h4>appMapName</h4>
 <pre>java.lang.String appMapName</pre>
-<div class="block"><br><em>Purpose:</em>  appmapname:  Name of AppMap storing references (if applies)  
+<div class="block"><br><em>Purpose:</em>  appmapname:  Name of AppMap storing references (if applies)
  <br><em>Initialized:</em>  by a helper class the first time, only set once.</div>
 </li>
 <li class="blockList">
@@ -652,22 +662,22 @@
 <li class="blockList">
 <h4>windowGuiId</h4>
 <pre>java.lang.String windowGuiId</pre>
-<div class="block"><br><em>Purpose:</em>  windowguiid:  DEDUCED AppMap recognition string for windowname  
- <br><em>Initialized:</em>  
- <br><em>Re-set:</em> setter method  
+<div class="block"><br><em>Purpose:</em>  windowguiid:  DEDUCED AppMap recognition string for windowname
+ <br><em>Initialized:</em>
+ <br><em>Re-set:</em> setter method
  <br><em>Example:</em>"Type=Window;Name=frmExistingLogin"</div>
 </li>
 <li class="blockList">
 <h4>compName</h4>
 <pre>java.lang.String compName</pre>
-<div class="block"><br><em>Purpose:</em>  compname:  DEDUCED AppMap reference for child of window (if applies)  
+<div class="block"><br><em>Purpose:</em>  compname:  DEDUCED AppMap reference for child of window (if applies)
  <br><em>Initialized:</em>  by a processor
  <br><em>Example:</em>"InfoGroupBox"</div>
 </li>
 <li class="blockList">
 <h4>compGuiId</h4>
 <pre>java.lang.String compGuiId</pre>
-<div class="block"><br><em>Purpose:</em>  compguiid:  DEDUCED AppMap recognition string for compname  
+<div class="block"><br><em>Purpose:</em>  compguiid:  DEDUCED AppMap recognition string for compname
  <br><em>Initialized:</em>  by a processor
  <br><em>Example:</em>"Type=GroupBox;Name=frameLogin"</div>
 </li>

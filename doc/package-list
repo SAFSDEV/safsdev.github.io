@@ -15,6 +15,7 @@ org.safs.android.engine.processor
 org.safs.android.messenger
 org.safs.android.messenger.client
 org.safs.android.remotecontrol
+org.safs.auth
 org.safs.autoit
 org.safs.autoit.lib
 org.safs.control
@@ -50,6 +51,8 @@ org.safs.model.tools
 org.safs.natives
 org.safs.natives.win32
 org.safs.net
+org.safs.persist
+org.safs.persist.test
 org.safs.rational
 org.safs.rational.custom
 org.safs.rational.flex

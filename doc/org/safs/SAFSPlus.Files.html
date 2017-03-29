@@ -106,7 +106,7 @@
 extends java.lang.Object</pre>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/DDDriverFileCommandsIndex.htm">File keywords</a>, like OpenFile, ReadFileLine etc.<br>
  <pre>
- If you meet some errors when calling these API, please try to run 
+ If you meet some errors when calling these API, please try to run
  <a href="../../org/safs/SAFSPlus.DriverCommand.html#Expressions(boolean)"><code>SAFSPlus.DriverCommand.Expressions(boolean)</code></a> to turn off the expression as
  Misc.Expressions(false);
  and then call the string method
@@ -186,7 +186,7 @@ extends java.lang.Object</pre>
  <font color="red">Note: After calling this method, DO NOT forget to Close: Files.CloseFile(fileNo);</font>
  <br>
  <font color="red">Note: For parameter Mode and Access, only a few combinations are permitted, as following:</font>
- <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a> 
+ <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#APPEND"><code>FileUtilities.Mode.APPEND</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#R"><code>FileUtilities.Access.R</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#INPUT"><code>FileUtilities.Mode.INPUT</code></a></div>
 </td>
@@ -387,7 +387,7 @@ extends java.lang.Object</pre>
  <font color="red">Note: After calling this method, DO NOT forget to Close: Files.CloseFile(fileNo);</font>
  <br>
  <font color="red">Note: For parameter Mode and Access, only a few combinations are permitted, as following:</font>
- <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a> 
+ <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#APPEND"><code>FileUtilities.Mode.APPEND</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#R"><code>FileUtilities.Access.R</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#INPUT"><code>FileUtilities.Mode.INPUT</code></a></div>
 </td>
@@ -403,7 +403,7 @@ extends java.lang.Object</pre>
  <font color="red">Note: After calling this method, DO NOT forget to Close: Files.CloseFile(fileNo);</font>
  <br>
  <font color="red">Note: For parameter Mode and Access, only a few combinations are permitted, as following:</font>
- <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a> 
+ <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#APPEND"><code>FileUtilities.Mode.APPEND</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#R"><code>FileUtilities.Access.R</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#INPUT"><code>FileUtilities.Mode.INPUT</code></a></div>
 </td>
@@ -613,7 +613,7 @@ extends java.lang.Object</pre>
  <font color="red">Note: After calling this method, DO NOT forget to Close: Files.CloseFile(fileNo);</font>
  <br>
  <font color="red">Note: For parameter Mode and Access, only a few combinations are permitted, as following:</font>
- <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a> 
+ <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#APPEND"><code>FileUtilities.Mode.APPEND</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#R"><code>FileUtilities.Access.R</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#INPUT"><code>FileUtilities.Mode.INPUT</code></a>
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverFileCommandsReference.htm#detail_CreateFile">Detailed Reference</a><p></div>
@@ -1089,12 +1089,12 @@ extends java.lang.Object</pre>
   <dd><pre>
  <code>String file = "D:\\test.ini";//Suppose it contains the content as above example
  String result = "result";
- 
+
  String section = "Section1";
  String item = "Item1";
  if(Files.GetINIFileValue(file, section, item, result))
    System.out.println("ini file '"+file+"' '"+section+":"+item+"'="+GetVariableValue(result));//"value_A"
-   
+
  section = "Section2";
  if(Files.GetINIFileValue(file, section, item, result))
    System.out.println("ini file '"+file+"' '"+section+":"+item+"'="+GetVariableValue(result));//"value_D"
@@ -1302,7 +1302,7 @@ extends java.lang.Object</pre>
  <font color="red">Note: After calling this method, DO NOT forget to Close: Files.CloseFile(fileNo);</font>
  <br>
  <font color="red">Note: For parameter Mode and Access, only a few combinations are permitted, as following:</font>
- <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a> 
+ <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#APPEND"><code>FileUtilities.Mode.APPEND</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#R"><code>FileUtilities.Access.R</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#INPUT"><code>FileUtilities.Mode.INPUT</code></a>
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverFileCommandsReference.htm#detail_OpenFile">Detailed Reference</a><p></div>
@@ -1336,7 +1336,7 @@ extends java.lang.Object</pre>
  <font color="red">Note: After calling this method, DO NOT forget to Close: Files.CloseFile(fileNo);</font>
  <br>
  <font color="red">Note: For parameter Mode and Access, only a few combinations are permitted, as following:</font>
- <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a> 
+ <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#OUTPUT"><code>FileUtilities.Mode.OUTPUT</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#W"><code>FileUtilities.Access.W</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#APPEND"><code>FileUtilities.Mode.APPEND</code></a>
  <br> <a href="../../org/safs/text/FileUtilities.Access.html#R"><code>FileUtilities.Access.R</code></a>, <a href="../../org/safs/text/FileUtilities.Mode.html#INPUT"><code>FileUtilities.Mode.INPUT</code></a>
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverFileCommandsReference.htm#detail_OpenUTF8File">Detailed Reference</a><p></div>
@@ -1379,7 +1379,7 @@ extends java.lang.Object</pre>
  if(Files.CreateFile(file, Mode.OUTPUT, Access.W, result)){
    fileNo = GetVariableValue(result);
    System.out.println(file+" is created and opened with file number '"+fileNo+"' for output.");
-   
+
    if(Files.PrintToFile(fileNo, separator)){
      System.out.println("'"+separator+"' has been written to file '"+fileNo+"' in a new line.");
    }
@@ -1404,7 +1404,7 @@ extends java.lang.Object</pre>
 <div class="block">Write a string to a opened file defined by file number.<br>
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverFileCommandsReference.htm#detail_PrintToFile">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>fileNo</code> - String, The file number of the file to write.</dd><dd><code>content</code> - Strung, The string to write.</dd><dd><code>placement</code> - Placement, where to write the content. It can be one of
- <ul> 
+ <ul>
  <li><a href="../../org/safs/text/FileUtilities.Placement.html#NEWLINE"><code>FileUtilities.Placement.NEWLINE</code></a>                Write the string to a new line
  <li><a href="../../org/safs/text/FileUtilities.Placement.html#TABULATION"><code>FileUtilities.Placement.TABULATION</code></a>                Write the string to the next print area
  <li><a href="../../org/safs/text/FileUtilities.Placement.html#IMMIDIATE"><code>FileUtilities.Placement.IMMIDIATE</code></a>                Write the string directly
@@ -1421,7 +1421,7 @@ extends java.lang.Object</pre>
  if(Files.CreateFile(file, Mode.OUTPUT, Access.W, result)){
    fileNo = GetVariableValue(result);
    System.out.println(file+" is created and opened with file number '"+fileNo+"' for output.");
-   
+
    if(Files.PrintToFile(fileNo, separator, Placement.NEWLINE)){
      System.out.println("'"+separator+"' has been written to file '"+fileNo+"' in a new line.");
    }
@@ -1475,7 +1475,7 @@ extends java.lang.Object</pre>
  if(Files.OpenFile(file, Mode.INPUT, Access.R, result)){
    fileNo = GetVariableValue(result);
    System.out.println(file+" has been opened with file number '"+fileNo+"' for input.");
-   
+
    int charsToRead = 15;
    if(Files.ReadFileChars(fileNo, charsToRead, result)){
      System.out.println(charsToRead+" characters: '"+GetVariableValue(result)+"' have been read from file '"+fileNo+"'");
@@ -1607,7 +1607,7 @@ extends java.lang.Object</pre>
  if(Files.CreateFile(file, Mode.OUTPUT, Access.W, result)){
    fileNo = GetVariableValue(result);
    System.out.println(file+" is created and opened with file number '"+fileNo+"' for output.");
-   
+
    if(Files.WriteFileChars(fileNo, charsToWrite, content))
      System.out.println(charsToWrite+" characters of string '"+content+"' has been written to file '"+fileNo+"'");
 

@@ -104,8 +104,8 @@
 <br>
 <pre>public static class <span class="strong">SAFSPlus.Component</span>
 extends java.lang.Object</pre>
-<div class="block">Wrapper class providing APIs to handle 
- <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsIndex.htm">GenericMasterFunctions Reference</a> and 
+<div class="block">Wrapper class providing APIs to handle
+ <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsIndex.htm">GenericMasterFunctions Reference</a> and
  <a href="http://safsdev.github.io/sqabasic2000/GenericObjectFunctionsIndex.htm">GenericObjectFunctions Reference</a>, like VerifyProperty, IsPropertyExist etc.<br></div>
 </li>
 </ul>
@@ -480,7 +480,7 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.Component.html#VerifyPropertyContains(org.safs.model.Component,%20java.lang.String,%20java.lang.String)">VerifyPropertyContains</a></strong>(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                       java.lang.String&nbsp;property,
                       java.lang.String&nbsp;containedValue)</code>
-<div class="block">Verify that the value of an object property contains a string.<br> 
+<div class="block">Verify that the value of an object property contains a string.<br>
  The property could be attribute or CSS property.<br></div>
 </td>
 </tr>
@@ -490,7 +490,7 @@ extends java.lang.Object</pre>
                       java.lang.String&nbsp;property,
                       java.lang.String&nbsp;containedValue,
                       boolean&nbsp;caseSensitive)</code>
-<div class="block">Verify that the value of an object property contains a string.<br> 
+<div class="block">Verify that the value of an object property contains a string.<br>
  The property could be attribute or CSS property.<br></div>
 </td>
 </tr>
@@ -709,7 +709,7 @@ extends java.lang.Object</pre>
 <h4>Click</h4>
 <pre>public static&nbsp;boolean&nbsp;Click(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
             java.lang.String...&nbsp;params)</pre>
-<div class="block">Click on any visible component. 
+<div class="block">Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_Click">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -732,9 +732,9 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  "AppMapSubkey" is expected to be an AppMap entry in an "Apps" section in the App Map.
  See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_Click">Detailed Reference</a>
  </pre></dd></dl>
@@ -749,12 +749,12 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;boolean&nbsp;DragTo(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;from,
              <a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;to,
              java.lang.String...&nbsp;optionals)</pre>
-<div class="block">A left mouse drag is performed from one object to another object based on the offsets values. 
+<div class="block">A left mouse drag is performed from one object to another object based on the offsets values.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/GenericObjectFunctionsReference.htm#detail_DragTo">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>from</code> - Component, the component (from App Map) relative to which to calculate start coordinates to drag</dd><dd><code>to</code> - Component, the component (from App Map) relative to which to calculate end coordinates to drag</dd><dd><code>params</code> - optional<ul>
- <b>params[0] offsets</b> String, indicating the offset relative to component in percentage or in pixel, 
+ <b>params[0] offsets</b> String, indicating the offset relative to component in percentage or in pixel,
                                   like "20%,10%, %50, %60", "30, 55, 70, 80", or even "20%,10%, 70, 80".
-                                  If not provided, then "50%, 50%, 50%, 50%" will be used as default value, 
+                                  If not provided, then "50%, 50%, 50%, 50%" will be used as default value,
                                   which means the drag point is the center of the component.<br>
  <b>params[1] fromSubItem</b> String, as text. e.g tree node or list item or any sub main component's item.<br>
  <b>params[2] toSubItem</b> String, as text. e.g tree node or list item or any sub main component item.<br>
@@ -774,7 +774,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -805,14 +805,14 @@ extends java.lang.Object</pre>
 <code>#executeAsyncScript(String, Object...)</code></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>SAFSPlus.ExecuteScript(
-     Map.Google.SignIn,                       // The DOM Element passed as 'arguments[0]' to the script. 
+     Map.Google.SignIn,                       // The DOM Element passed as 'arguments[0]' to the script.
      "arguments[0].innerHTML=arguments[1];",  // Script to set the DOM Elements innerHTML value.
      "my text value");                        // The value passed as 'arguments[1]' to set to innerHTML.
- 
+
  SAFSPlus.ExecuteScript(
-     Map.Google.SignIn,                       // The DOM Element passed as 'arguments[0]' to the script. 
+     Map.Google.SignIn,                       // The DOM Element passed as 'arguments[0]' to the script.
      "return arguments[0].innerHTML;");       // A script to return the DOM Elements innerHTML.
- 
+
   // scriptResult should get the innerHTML value returned.
  String scriptResult = SAFSPlus.prevResults.getStatusInfo();
  </code>
@@ -833,7 +833,7 @@ extends java.lang.Object</pre>
  <br>
  This requires that SAFS-OCR has been installed.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component (from App Map) from which to retrieve text.</dd><dd><code>variable</code> - String, The name of the variable to receive detected text.</dd><dd><code>params</code> - optional<ul>
- <b>params[0] SubArea</b> String, indicating partial image of the component to capture, 
+ <b>params[0] SubArea</b> String, indicating partial image of the component to capture,
                     it can be app map subkey referring a subarea or the subarea itself like "5,10, %50, %60"<br>
  <b>params[1] OCRId</b> String, indicating the OCR used to recognize text. TOCR or GORC<br>
  <b>params[2] LangId</b> String, representing the language in use for selected OCR to recognize text. "en", "cn" etc.<br>
@@ -885,8 +885,8 @@ extends java.lang.Object</pre>
   <dd><pre>
  <code>GetGUIImage(Map.Google.SignIn,"SignIn");//will be saved at &lt;testProject&gt;\Actuals\SignIn.bmp
  GetGUIImage(Map.Google.SignIn,"c:/temp/SignIn.gif");
- 
- //Following example will store part of the SingIn image, 
+
+ //Following example will store part of the SingIn image,
  GetGUIImage(Map.Google.SignIn,"SignInPartial.png", "0,0,50%,50%");
  //"subarea" is defined in map file
  //[SignIn]
@@ -898,7 +898,7 @@ extends java.lang.Object</pre>
  //subarea="0,0,50%,50%"
  GetGUIImage(Map.Google.SignIn,"SignInPartial.png", Map.subarea);
  GetGUIImage(Map.Google.SignIn,"SignInPartial.png", Map.subarea());
- 
+
  //Filter the SingIn image and save it
  GetGUIImage(Map.Google.SignIn,"SignInFiltered.gif", "", quote("Filter=0,0,10,10 60,60,10,10"));
  //"filterAreas" is defined in map file
@@ -961,7 +961,7 @@ extends java.lang.Object</pre>
 <div class="block">Hover the mouse over a component.
  See <a href="http://safsdev.github.io/sqabasic2000/GenericMasterFunctionsReference.htm#detail_HoverMouse">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - org.safs.model.Component, the component to hover.</dd><dd><code>optionals</code> - <ul>
- <b>optionals[0] coordination</b> String, The offset from center of component, 
+ <b>optionals[0] coordination</b> String, The offset from center of component,
                                        such as "200;400", or a mapKey defined under "ComponentName" or "ApplicationConstants" in map file.<br>
  <b>optionals[1] hoverTime</b> int, milliseconds to hover<br>
  </ul></dd>
@@ -992,7 +992,7 @@ extends java.lang.Object</pre>
      {Tab} = TAB Key
      ^ = CONTROL Key with another key ( "^s" = CONTROL + s )
      % = ALT Key with another key ( "%F" = ALT + F )
-     + = SHIFT Key with another key ( "+{Enter}" = SHIFT + ENTER )  
+     + = SHIFT Key with another key ( "+{Enter}" = SHIFT + ENTER )
  </pre>
  We are generally providing this support through our generic <a href="http://safsdev.github.io/doc/org/safs/tools/input/CreateUnicodeMap.html">InputKeys Support</a>.
  <p></div>
@@ -1012,7 +1012,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>TypeKeys</h4>
 <pre>public static&nbsp;boolean&nbsp;TypeKeys(java.lang.String&nbsp;textvalue)</pre>
-<div class="block">Sends AWT Robot keystrokes to whatever currently has keyboard focus.  
+<div class="block">Sends AWT Robot keystrokes to whatever currently has keyboard focus.
  This is intended to work for both local and remote Selenium Servers (when Remote RMI is properly enabled).
  <p>
  This supports special key characters like:
@@ -1021,7 +1021,7 @@ extends java.lang.Object</pre>
      {Tab} = TAB Key
      ^ = CONTROL Key with another key ( "^s" = CONTROL + s )
      % = ALT Key with another key ( "%F" = ALT + F )
-     + = SHIFT Key with another key ( "+{Enter}" = SHIFT + ENTER )  
+     + = SHIFT Key with another key ( "+{Enter}" = SHIFT + ENTER )
  </pre>
  We are generally providing special key support through our generic <a href="http://safsdev.github.io/doc/org/safs/tools/input/CreateUnicodeMap.html">InputKeys Support</a>.
  <p></div>
@@ -1062,7 +1062,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>TypeChars</h4>
 <pre>public static&nbsp;boolean&nbsp;TypeChars(java.lang.String&nbsp;textvalue)</pre>
-<div class="block">Sends key characters to the current keyboard focus via AWT Robot.  
+<div class="block">Sends key characters to the current keyboard focus via AWT Robot.
  This is intended to work for both local and remote Selenium Servers (when Remote RMI is properly enabled).
  <p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>textvalue</code> - -- to send via input by AWT Robot.</dd>
@@ -1224,12 +1224,12 @@ extends java.lang.Object</pre>
 <div class="block">Verify computed CSS style against bench mark. If there is no benchmark file found
  then the test will fail. User responsibility to copy bench mark to the project
  benchmark folder.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to verify computed CSS style.</dd><dd><code>benchfile</code> - -- benchmark json file name from the project benchmark dir or User 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to verify computed CSS style.</dd><dd><code>benchfile</code> - -- benchmark json file name from the project benchmark dir or User
  specify full path.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>-- True on success or A file will be created into Actuals dir on failure.</dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>Component.VerifyComputedStyle(Map.Google.SignIn,"benmarkfile.json");
- Component.VerifyComputedStyle(Map.Google.SignIn,"c:\\temp\\file.json");	  
+ Component.VerifyComputedStyle(Map.Google.SignIn,"c:\\temp\\file.json");
  </code>
  </pre></dd></dl>
 </li>
@@ -1247,7 +1247,7 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>-- True on success</dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>Component.GetComputedStyle(Map.Google.SignIn,"testfile.json");
- Component.GetComputedStyle(Map.Google.SignIn,"c:\\temp\\file.json");	  
+ Component.GetComputedStyle(Map.Google.SignIn,"c:\\temp\\file.json");
  </code>
  </pre></dd></dl>
 </li>
@@ -1298,7 +1298,7 @@ extends java.lang.Object</pre>
  //subarea="0,0,50%,50%"
  VerifyGUIImageToFile(Map.Google.SignIn,"SignInPartial.png", Map.subarea);
  VerifyGUIImageToFile(Map.Google.SignIn,"SignInPartial.png", Map.subarea());
- 
+
  //Filter the SingIn image and the bench image at certain areas and compare them
  VerifyGUIImageToFile(Map.Google.SignIn,"c:/benchDir/SignIn.gif", "", "", "", quote("Filter=0,0,10,10 60,60,10,10"));
  //"filterAreas" is defined in map file
@@ -1337,7 +1337,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;boolean&nbsp;VerifyPropertyContains(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                              java.lang.String&nbsp;property,
                              java.lang.String&nbsp;containedValue)</pre>
-<div class="block">Verify that the value of an object property contains a string.<br> 
+<div class="block">Verify that the value of an object property contains a string.<br>
  The property could be attribute or CSS property.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, (from App Map) to verify property.</dd><dd><code>property</code> - String, attribute or CSS property.</dd><dd><code>containedValue</code> - String, property value to be verified.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true on success.</dd></dl>
@@ -1353,7 +1353,7 @@ extends java.lang.Object</pre>
                              java.lang.String&nbsp;property,
                              java.lang.String&nbsp;containedValue,
                              boolean&nbsp;caseSensitive)</pre>
-<div class="block">Verify that the value of an object property contains a string.<br> 
+<div class="block">Verify that the value of an object property contains a string.<br>
  The property could be attribute or CSS property.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, (from App Map) to verify property.</dd><dd><code>property</code> - String, attribute or CSS property.</dd><dd><code>containedValue</code> - String, property value to be verified.</dd><dd><code>caseSensitive</code> - boolean, if the comparison is case-sensitive or not.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true on success.</dd><dt><span class="strong">Example:</span></dt>
@@ -1519,7 +1519,7 @@ extends java.lang.Object</pre>
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericMasterFunctionsReference.htm#detail_VerifyBinaryFileToFile">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>benchFile</code> - String, File used as the comparison benchmark.</dd><dd><code>actualFile</code> - String, File used as the comparison file under test.</dd><dd><code>optionals</code> - <ul>
  <b>optionals[0] FilterMode</b> String, one of FileUtilities.FilterMode. FilterMode.TOLERANCE is valid only when the binary files are images.<br>
- <b>optionals[1] FilterOptions</b> int, if the FilterMode is FilterMode.TOLERANCE, a number between 0 and 100, 
+ <b>optionals[1] FilterOptions</b> int, if the FilterMode is FilterMode.TOLERANCE, a number between 0 and 100,
                                         the percentage of bits need to be the same.
                                         100 means only 100% match, 2 images will be considered matched;
                                         0 means even no bits match, 2 images will be considered matched.<br>
@@ -1567,7 +1567,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;boolean&nbsp;VerifyTextFileToFile(java.lang.String&nbsp;benchFile,
                            java.lang.String&nbsp;actualFile,
                            java.lang.String...&nbsp;optionals)</pre>
-<div class="block">Verify the current contents of a text file with a benchmark file (same as VerifyFileToFile). 
+<div class="block">Verify the current contents of a text file with a benchmark file (same as VerifyFileToFile).
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericMasterFunctionsReference.htm#detail_VerifyTextFileToFile">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>benchFile</code> - String, File used as the comparison benchmark.</dd><dd><code>actualFile</code> - String, File used as the comparison file under test.</dd><dd><code>optionals</code> - -- NOT used yet</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if the 2 files contain the same content, false otherwise.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
@@ -1744,7 +1744,7 @@ extends java.lang.Object</pre>
 <h4>CtrlClick</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlClick(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                 java.lang.String...&nbsp;params)</pre>
-<div class="block">Control-Click on any visible component. 
+<div class="block">Control-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_CtrlClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1767,9 +1767,9 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1781,7 +1781,7 @@ extends java.lang.Object</pre>
 <h4>CtrlRightClick</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlRightClick(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                      java.lang.String...&nbsp;params)</pre>
-<div class="block">Control-Right-Click on any visible component. 
+<div class="block">Control-Right-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_CtrlRightClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1804,9 +1804,9 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1818,7 +1818,7 @@ extends java.lang.Object</pre>
 <h4>DoubleClick</h4>
 <pre>public static&nbsp;boolean&nbsp;DoubleClick(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                   java.lang.String...&nbsp;params)</pre>
-<div class="block">Double-Click on any visible component. 
+<div class="block">Double-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_DoubleClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1841,9 +1841,9 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1855,7 +1855,7 @@ extends java.lang.Object</pre>
 <h4>RightClick</h4>
 <pre>public static&nbsp;boolean&nbsp;RightClick(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                  java.lang.String...&nbsp;params)</pre>
-<div class="block">Right-Click on any visible component. 
+<div class="block">Right-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_RightClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -1878,9 +1878,9 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1892,7 +1892,7 @@ extends java.lang.Object</pre>
 <h4>LeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;LeftDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_LeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1907,7 +1907,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1919,7 +1919,7 @@ extends java.lang.Object</pre>
 <h4>ShiftLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;ShiftLeftDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                     java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Shift left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Shift left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_ShiftLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1934,7 +1934,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1946,7 +1946,7 @@ extends java.lang.Object</pre>
 <h4>CtrlShiftLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlShiftLeftDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                         java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Ctrl Shift left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Ctrl Shift left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_CtrlShiftLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1961,7 +1961,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -1973,7 +1973,7 @@ extends java.lang.Object</pre>
 <h4>CtrlLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlLeftDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                    java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Ctrl left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Ctrl left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_CtrlLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -1988,7 +1988,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -2000,7 +2000,7 @@ extends java.lang.Object</pre>
 <h4>AltLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;AltLeftDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                   java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Alt left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Alt left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_AltLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -2015,7 +2015,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -2027,7 +2027,7 @@ extends java.lang.Object</pre>
 <h4>CtrlAltLeftDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;CtrlAltLeftDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                       java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A Ctrl Alt left mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A Ctrl Alt left mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_CtrlAltLeftDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -2042,7 +2042,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -2054,7 +2054,7 @@ extends java.lang.Object</pre>
 <h4>RightDrag</h4>
 <pre>public static&nbsp;boolean&nbsp;RightDrag(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                 java.lang.String&nbsp;coordinates)</pre>
-<div class="block">A right mouse drag is performed on the object based on the stored coordinates relative to this object. 
+<div class="block">A right mouse drag is performed on the object based on the stored coordinates relative to this object.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/GenericObjectFunctionsReference.htm#detail_RightDrag">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - Component, the component (from App Map) relative to which to calculate coordinates to drag</dd><dd><code>coordinates</code> - String, the relative coordinates. Example: "Coords=3,10,12,20", or "coordsKey" defined in App Map<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p>
@@ -2069,7 +2069,7 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  </pre></dd></dl>
 </li>
 </ul>
@@ -2081,7 +2081,7 @@ extends java.lang.Object</pre>
 <h4>ShiftClick</h4>
 <pre>public static&nbsp;boolean&nbsp;ShiftClick(<a href="../../org/safs/model/Component.html" title="class in org.safs.model">Component</a>&nbsp;comp,
                  java.lang.String...&nbsp;params)</pre>
-<div class="block">Shift-Click on any visible component. 
+<div class="block">Shift-Click on any visible component.
  <p>See <a href="http://safsdev.github.io/sqabasic2000/SeleniumGenericObjectFunctionsReference.htm#detail_ShiftClick">Detailed Reference</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>comp</code> - -- Component (from App Map) to Click</dd><dd><code>params</code> - optional
  <ul>
@@ -2104,9 +2104,9 @@ extends java.lang.Object</pre>
  int rc = prevResults.getStatusCode();      // if useful
  String info = prevResults.getStatusInfo(); // if useful
  </code>
- 
+
  Pay attention: If you use percentage format in SE+, you'd better use 'Misc.Expressions(false);' first.
- 
+
  </pre></dd></dl>
 </li>
 </ul>

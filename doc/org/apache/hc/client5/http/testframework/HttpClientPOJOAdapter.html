@@ -228,10 +228,16 @@ extends java.lang.Object</pre>
        java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;request)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>abstract java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#getClientName()">getClientName</a></strong>()</code>
+<div class="block">Name of the HTTP Client that this adapter uses.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#modifyRequest(java.util.Map)">modifyRequest</a></strong>(java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;request)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#setProxyServerURL(java.lang.String)">setProxyServerURL</a></strong>(java.lang.String&nbsp;proxyServerURL)</code>&nbsp;</td>
 </tr>
@@ -484,13 +490,24 @@ extends java.lang.Object</pre>
 <a name="assertRequestSupported(java.util.Map)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>assertRequestSupported</h4>
 <pre>public&nbsp;void&nbsp;assertRequestSupported(java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;request)
                             throws java.lang.Exception</pre>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd></dl>
+</li>
+</ul>
+<a name="getClientName()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getClientName</h4>
+<pre>public abstract&nbsp;java.lang.String&nbsp;getClientName()</pre>
+<div class="block">Name of the HTTP Client that this adapter uses.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>name of the HTTP Client.</dd></dl>
 </li>
 </ul>
 </li>

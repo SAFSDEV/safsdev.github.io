@@ -568,14 +568,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>AssignClipboardVariable</h4>
 <pre>public static&nbsp;boolean&nbsp;AssignClipboardVariable(java.lang.String&nbsp;varName)</pre>
-<div class="block">Copy the clipboard contents to a DDVariable.     
+<div class="block">Copy the clipboard contents to a DDVariable.
         This command can only copy text contents of the clipboard.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>varName</code> - The name of the DDvariable variable to hold the clipboard text.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>boolean success = Misc.AssignClipboardVariable(VAR_CLIPBOARD); 
+ <code>boolean success = Misc.AssignClipboardVariable(VAR_CLIPBOARD);
  String contents = GetVariableValue(VAR_CLIPBOARD);
  </code>
  </pre></dd></dl>
@@ -598,12 +598,12 @@ extends java.lang.Object</pre>
   <dd><pre>
  <code>//Execute a JUnit Test "com.sas.spock.tests.SpockExperiment"
   boolean success = Misc.CallJUnit("com.sas.spock.tests.SpockExperiment");
-  
+
   //Execute 2 JUnit Tests "com.sas.spock.tests.SpockExperiment and myapp.tests.AnOtherTest"
   boolean success = Misc.CallJUnit("com.sas.spock.tests.SpockExperiment;myapp.tests.AnOtherTest");
- 
+
   //JUnitTestClasses is centrally stored in the App Map as "com.sas.spock.tests.SpockExperiment;myapp.tests.AnOtherTest"
-  boolean success = Misc.CallScript(Map.JUnitTestClasses()); 
+  boolean success = Misc.CallScript(Map.JUnitTestClasses());
  </code>
  </pre></dd></dl>
 </li>
@@ -616,23 +616,23 @@ extends java.lang.Object</pre>
 <h4>CallScript</h4>
 <pre>public static&nbsp;boolean&nbsp;CallScript(java.lang.String&nbsp;path)</pre>
 <div class="block">Execute a SeBuilder JSON script in the currently running WebDriver.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - -- full absolute path or project-relative path to an existing SeBuilder 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - -- full absolute path or project-relative path to an existing SeBuilder
                 JSON script to execute.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if successfully executed with a successful result, 
+<dt><span class="strong">Returns:</span></dt><dd>true if successfully executed with a successful result,
         false if the script reports failure or an error occurred during execution.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
  <code>//checkbox.json path is centrally stored in the App Map.
   boolean success = Misc.CallScript(Map.CheckBoxJSONScript());
-  
+
   //Literal String examples (not recommended):
-  
+
   //checkbox.json is in a Scripts sub-directory for the Project.
   boolean success = Misc.CallScript("Scripts\checkbox.json");
- 
+
   //checkbox.json is provided using a full absolute path.
-  boolean success = Misc.CallScript("C:\Automation\SharedStorage\Selenium\checkbox.json"); 
+  boolean success = Misc.CallScript("C:\Automation\SharedStorage\Selenium\checkbox.json");
  </code>
  </pre></dd></dl>
 </li>
@@ -651,15 +651,15 @@ extends java.lang.Object</pre>
                  java.lang.String...&nbsp;params)</pre>
 <div class="block">Execute a command on an external/local system or application.
         This command presently supports only the STAF protocol.
-        Command syntax, parameters, and values will be dependent upon the protocol specified and 
+        Command syntax, parameters, and values will be dependent upon the protocol specified and
         the command issued to the remote (or even local) system.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>protocol</code> - -- only "STAF" currently supported. Defaults to "STAF" if null.</dd><dd><code>system</code> - -- the external/local system name or id to send the command to.</dd><dd><code>service</code> - -- the service or process on the system targetted.</dd><dd><code>command</code> - -- the command to be issued to the the service or process.</dd><dd><code>resultVar</code> - -- the DDVariable name to receive the results of the call.</dd><dd><code>params</code> - -- additional parameters (String or String[]), if any, to be passed with the command. 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>protocol</code> - -- only "STAF" currently supported. Defaults to "STAF" if null.</dd><dd><code>system</code> - -- the external/local system name or id to send the command to.</dd><dd><code>service</code> - -- the service or process on the system targetted.</dd><dd><code>command</code> - -- the command to be issued to the the service or process.</dd><dd><code>resultVar</code> - -- the DDVariable name to receive the results of the call.</dd><dd><code>params</code> - -- additional parameters (String or String[]), if any, to be passed with the command.
         <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/DDDriverCommandsCallRemote.html">Detailed Reference</a><p></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>boolean success = Misc.CallRemote("STAF", "local", "service", "list", STAF_RESULT); 
+ <code>boolean success = Misc.CallRemote("STAF", "local", "service", "list", STAF_RESULT);
  String resultStr = GetVariableValue(STAF_RESULT);
  </code>
  </pre></dd></dl>
@@ -935,7 +935,7 @@ extends java.lang.Object</pre>
  <li><b>optionals[1] headerName</b> String, the name of the request header
  <li><b>optionals[2] headerValue</b> String, the value for the request header
  </ul>
- <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time, 
+ <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time,
  which means multiple pair of ('headerName', 'headerValue') can be provided.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
@@ -953,7 +953,7 @@ extends java.lang.Object</pre>
    System.out.println("response headers: \n"+GetVariableValue(variable+".headers"));
    System.out.println("XML content: "+GetVariableValue(variable+".xml"));
  }
- //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8") 
+ //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8")
  //and wait for response with timeout 60 seconds, save result to variable.
  if(Misc.GetURL(url, variable, "60", "Accept", "text/*", "Accept-Charset", "UTF-8" )){
    System.out.println("content of url '"+url+"' has been saved to variable '"+variable+"'.");
@@ -1063,7 +1063,7 @@ extends java.lang.Object</pre>
 <a href="../../org/safs/TestRecordData.html#getStatusInfo()"><code>TestRecordData.getStatusInfo()</code></a>, 
 <a href="../../org/safs/SAFSPlus.DriverCommand.html#Delay(int)"><code>Delay(int)</code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>Pause(20);	
+ <code>Pause(20);
  </code>
  </pre></dd></dl>
 </li>
@@ -1102,7 +1102,7 @@ extends java.lang.Object</pre>
           <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
                 </ul>
  <p>
- <b>params[1] timeout</b> int, in seconds. Implicit timeout for search elements<br>     
+ <b>params[1] timeout</b> int, in seconds. Implicit timeout for search elements<br>
  <b>params[2] isRemote</b> boolean, (no longer used -- everything is now "remote")<br>
  <br>
  Following parameters indicate the <b>extra parameters</b>, they <b>MUST</b> be given by <b>PAIR(key, value)</b>
@@ -1130,86 +1130,86 @@ extends java.lang.Object</pre>
  StartWebBrowser("http://www.google.com", "GoogleMain");
  StartWebBrowser("http://www.google.com", "GoogleMain", BrowserConstans.BROWSER_NAME_CHROME);
  StartWebBrowser("http://www.google.com", "GoogleMain", BrowserConstans.BROWSER_NAME_IE, "10");
- 
+
  <b>
  The following gives some examples to start web browser with "custom profile" and "preferences".
- For the detail explanation of starting browser with "custom profile" and/or "preferences", please visit the section "<font color="red">Start Browser</font>" at <a href="http://safsdev.github.io/selenium/doc/SAFSPlus-Welcome.html">Selenium Welcome Document</a>. 
+ For the detail explanation of starting browser with "custom profile" and/or "preferences", please visit the section "<font color="red">Start Browser</font>" at <a href="http://safsdev.github.io/selenium/doc/SAFSPlus-Welcome.html">Selenium Welcome Document</a>.
  </b>
- 
+
  //Start firefox browser with custom profile "myprofile" ( <a href="https://support.mozilla.org/en-US/kb/profile-manager-create-and-remove-firefox-profiles">Create custom profile</a>)
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_FIREFOX, 
-                                                        "10", 
-                                                        "true", 
-                                                        BrowserConstans.KEY_FIREFOX_PROFILE, 
+                                                        BrowserConstans.BROWSER_NAME_FIREFOX,
+                                                        "10",
+                                                        "true",
+                                                        BrowserConstans.KEY_FIREFOX_PROFILE,
                                                         "myprofile"
                                                         });
-  
- //Start firefox browser with some preference to set. 
+
+ //Start firefox browser with some preference to set.
  String absolutePreferenceFile = "c:\\firefoxPref.json.dat";//A json file containing chrome preferences, like { "intl.accept_languages":"zh-cn", "accessibility.accesskeycausesactivation":false, "browser.download.folderList":2 }
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_FIREFOX, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_FIREFOX_PROFILE_PREFERENCE), 
+                                                        BrowserConstans.BROWSER_NAME_FIREFOX,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_FIREFOX_PROFILE_PREFERENCE),
                                                         quote(absolutePreferenceFile)
                                                         });
-                                                        
- //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the last-used user. 
+
+ //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the last-used user.
  String datapool = "C:\\Users\\some-user\\AppData\\Local\\Google\\Chrome\\User Data";
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR), 
+                                                        BrowserConstans.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR),
                                                         datapool
                                                         });
- //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the default user. 
+ //Start chrome browser with default data pool (chrome://version/, see "Profile Path") , and using the default user.
  String datapool = "C:\\Users\\some-user\\AppData\\Local\\Google\\Chrome\\User Data";
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR), 
+                                                        BrowserConstans.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR),
                                                         datapool,
                                                         quote(BrowserConstans.KEY_CHROME_PROFILE_DIR),
                                                         "Default"
                                                         });
-                                                        
- //Start chrome browser with custom data, and using the last-used user.                                                      
+
+ //Start chrome browser with custom data, and using the last-used user.
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR), 
+                                                        BrowserConstans.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR),
                                                         "c:\\chrome_custom_data"//<a href="http://www.chromium.org/developers/creating-and-using-profiles">Create custom data pool</a>
                                                         });
- //Start chrome browser with custom data, and using the 1th user.                                                       
+ //Start chrome browser with custom data, and using the 1th user.
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR), 
+                                                        BrowserConstans.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_CHROME_USER_DATA_DIR),
                                                         "c:\\chrome_custom_data",//<a href="http://www.chromium.org/developers/creating-and-using-profiles">Create custom data pool</a>
                                                         quote(BrowserConstans.KEY_CHROME_PROFILE_DIR),
                                                         "Profile 1"
                                                         });
- //Start chrome browser with some options to be turned off. 
- String optionsToExclude = "disable-component-update";//comma separated options to exclude, like "disable-component-update, ignore-certificate-errors", be careful, there are NO 2 hyphens before options.                                                      
+ //Start chrome browser with some options to be turned off.
+ String optionsToExclude = "disable-component-update";//comma separated options to exclude, like "disable-component-update, ignore-certificate-errors", be careful, there are NO 2 hyphens before options.
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_CHROME_EXCLUDE_OPTIONS), 
+                                                        BrowserConstans.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_CHROME_EXCLUDE_OPTIONS),
                                                         quote(optionsToExclude)
                                                         });
- //Start chrome browser with some chrome-command-line-options/preferences to set. 
+ //Start chrome browser with some chrome-command-line-options/preferences to set.
  String absolutePreferenceFile = "c:\\chromePref.json.dat";//A json file containing chrome command-line-options/preferences, like { "lang":"zh-cn", "start-maximized":"",  "<b>seplus.chrome.preference.json.key</b>":{ "intl.accept_languages":"zh-CN-pseudo", "intl.charset_default"  :"utf-8"} }
  StartWebBrowser("http://www.google.com", "GoogleMain", new String[]{
-                                                        BrowserConstans.BROWSER_NAME_CHROME, 
-                                                        "10", 
-                                                        "true", 
-                                                        quote(BrowserConstans.KEY_CHROME_PREFERENCE), 
+                                                        BrowserConstans.BROWSER_NAME_CHROME,
+                                                        "10",
+                                                        "true",
+                                                        quote(BrowserConstans.KEY_CHROME_PREFERENCE),
                                                         quote(absolutePreferenceFile)
                                                         });
  </pre></dd></dl>
@@ -1236,7 +1236,7 @@ extends java.lang.Object</pre>
  <code>String browserID = "GoogleMain";
  StartWebBrowser("http://www.google.com", browserID);
  //do some testing, then
- StopWebBrowser(browserID);	  
+ StopWebBrowser(browserID);
  </code>
  </pre></dd></dl>
 </li>
@@ -1265,16 +1265,16 @@ extends java.lang.Object</pre>
    OUT_MAILSERVERPROTOCOL=SMTP|SMTPS|TLS
    OUT_MAILUSER=user.name@mail.com
    OUT_MAILPASS=*******
-   
+
    [SAFS_DRIVER]
    SMTP="mail server" (deprecated, replaced by OUT_MAILSERVER)
    PORT=25            (deprecated, replaced by OUT_MAILSERVERPORT)
- 
- Misc.SendMail("Sender@email.com", "Recipient1@email.com;@Recipient2@email.com", "Subject line", "Email message", 
+
+ Misc.SendMail("Sender@email.com", "Recipient1@email.com;@Recipient2@email.com", "Subject line", "Email message",
  "Attachment 1 filename; Attachment 2 filename");
-  
+
  CountStatusInterface info = Counters.GetCounterStatus("TestCase1") or Counters.StartCounter("test1")
- String message = "Total Records: " + info.getTotalRecords() + "\nTotal Pass: " + 
+ String message = "Total Records: " + info.getTotalRecords() + "\nTotal Pass: " +
  info.getTestPasses() +"\nTotal Fail: " + info.getTestFailures();
  Misc.SendMail("sender@email.com","to1@email.com", "Test results", message,"Logs\\TestCase1.txt");
  </code>
@@ -1293,15 +1293,15 @@ extends java.lang.Object</pre>
 <div class="block">Send a "GET" HTTP Request by AJAX, and save the response to a file.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverCommandsReference.htm#detail_SaveURLToFile">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>url</code> - String, The URL to request.</dd><dd><code>file</code> - String, The file to save the response from the server.
-                     This can be a full path, a relative path, or a file name. 
-                     For relative path, it is appended to the project's path to build the full path of the file. 
-                     For file name, the file is saved under the project's test directory (it is Datapool\Test in SAFS or Actuals in SE+). 
+                     This can be a full path, a relative path, or a file name.
+                     For relative path, it is appended to the project's path to build the full path of the file.
+                     For file name, the file is saved under the project's test directory (it is Datapool\Test in SAFS or Actuals in SE+).
                      In any case the parent folder of the file must exist. <br></dd><dd><code>optionals</code> - <ul>
  <li><b>optionals[0] timeout</b> int, "Timeout" in seconds. The default is 120 seconds.
  <li><b>optionals[1] headerName</b> String, the name of the request header
  <li><b>optionals[2] headerValue</b> String, the value for the request header
  </ul>
- <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time, 
+ <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time,
  which means multiple pair of ('headerName', 'headerValue') can be provided.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
@@ -1313,7 +1313,7 @@ extends java.lang.Object</pre>
  if(Misc.SaveURLToFile(url, file)){
    System.out.println("content of url '"+url+"' has been saved to file '"+file+"'.");
  }
- //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8") 
+ //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8")
  //and wait for response with timeout 60 seconds, save result to file.
  if(Misc.SaveURLToFile(url, variable, "60", "Accept", "text/*", "Accept-Charset", "UTF-8" )){
    System.out.println("content of url '"+url+"' has been saved to file '"+file+"'.");
@@ -1364,7 +1364,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>file</code> - String, The file name to store the clipboard's content
  <pre>
       Absolute file path.
-      Relative file path, 
+      Relative file path,
         if it contains file separator, it is relative to datapool or project root.
         otherwise it is relative to the project test folder.
  </pre></dd><dd><code>optionals</code> - --<ul>
@@ -1603,7 +1603,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>testFile</code> - String, The test file name to save the screenshot.
  <pre>
       Absolute file path.
-      Relative file path, 
+      Relative file path,
         if it contains file separator, it is relative to datapool or project root.
         otherwise it is relative to the project test folder.
  </pre></dd><dd><code>subarea</code> - SubArea, indicating partial image of the screen to capture</dd>
@@ -1632,7 +1632,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>testFile</code> - String, The test file name to save the screenshot.
  <pre>
       Absolute file path.
-      Relative file path, 
+      Relative file path,
         if it contains file separator, it is relative to datapool or project root.
         otherwise it is relative to the project test folder.
  </pre></dd>
@@ -1653,11 +1653,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>UseWebBrowser</h4>
 <pre>public static&nbsp;boolean&nbsp;UseWebBrowser(java.lang.String&nbsp;ID)</pre>
-<div class="block">Switch WebBrowser by ID. 
+<div class="block">Switch WebBrowser by ID.
  During test, multiple browsers can be opened by <code>#StartWebBrowser(String, int, String...)</code><br>
  If user wants to switch between these opened browser, use can call this method.<br>
  This method requires a parameter 'ID', which is given by user when he calls <code>#StartWebBrowser(String, int, String...)</code><br>
- See <a href="http://safsdev.github.io/sqabasic2000/DDDriverCommandsReference.htm#detail_UseWebBrowser">Detailed Reference</a><br>      
+ See <a href="http://safsdev.github.io/sqabasic2000/DDDriverCommandsReference.htm#detail_UseWebBrowser">Detailed Reference</a><br>
  This is currently <b>ONLY supported for Selenium WebDriver Engine.</b></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>ID</code> - String, the ID served as key to get the WebDriver from cache.<br></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true on success</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
@@ -1683,7 +1683,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>benchFile</code> - String, The bench file name to compare with the clipboard's content.<br>
  <pre>
       Absolute file path.
-      Relative file path, 
+      Relative file path,
         if it contains file separator, it is relative to datapool or project root.
         otherwise it is relative to the project bench folder.
  </pre></dd><dd><code>optionals</code> - <ul>
@@ -1715,7 +1715,7 @@ extends java.lang.Object</pre>
  <li><b>optionals[1] headerName</b> String, the name of the request header
  <li><b>optionals[2] headerValue</b> String, the value for the request header
  </ul>
- <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time, 
+ <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time,
  which means multiple pair of ('headerName', 'headerValue') can be provided.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
@@ -1727,7 +1727,7 @@ extends java.lang.Object</pre>
  if(Misc.VerifyURLContent(url, content, "60")){
    System.out.println("content of url '"+url+"' matches with content '"+content+"'.");
  }
- //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8") 
+ //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8")
  //and wait for response with default timeout 120 seconds, then verify with content.
  if(Misc.VerifyURLContent(url, content, "", "Accept", "text/*", "Accept-Charset", "UTF-8" )){
    System.out.println("content of url '"+url+"' matches '"+content+"'.");
@@ -1748,15 +1748,15 @@ extends java.lang.Object</pre>
 <div class="block">Send a "GET" HTTP Request by AJAX, and Verify URL Content with a file.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverCommandsReference.htm#detail_VerifyURLToFile">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>url</code> - String, The URL to request.</dd><dd><code>file</code> - String, The name of the bench file holding the content to be compared with the response sent back from the server.
-                     The bench file can be a full path, a relative path, or a file name. 
-                     For relative path, it is appended to the project's path to build the full path of the file. 
-                     For file name, the file is supposed under the project's bench directory (it is Datapool\Bench in SAFS or Benchmarks in SE+). 
+                     The bench file can be a full path, a relative path, or a file name.
+                     For relative path, it is appended to the project's path to build the full path of the file.
+                     For file name, the file is supposed under the project's bench directory (it is Datapool\Bench in SAFS or Benchmarks in SE+).
                      In any case the parent folder of the file must exist.</dd><dd><code>optionals</code> - <ul>
  <li><b>optionals[0] timeout</b> int, "Timeout" in seconds. The default is 120 seconds.
  <li><b>optionals[1] headerName</b> String, the name of the request header
  <li><b>optionals[2] headerValue</b> String, the value for the request header
  </ul>
- <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time, 
+ <b>optionals</b> parameters '<b>headerName</b>' and '<b>headerValue</b>' must appear in pair, and they can present more than 1 time,
  which means multiple pair of ('headerName', 'headerValue') can be provided.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
@@ -1768,7 +1768,7 @@ extends java.lang.Object</pre>
  if(Misc.VerifyURLToFile(url, file, "60")){
    System.out.println("content of url '"+url+"' matches with file '"+file+"'.");
  }
- //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8") 
+ //Get content of url with headers ("Accept", "text/*") and ("Accept-Charset", "UTF-8")
  //and wait for response with default timeout 120 seconds, then verify with a file.
  if(Misc.VerifyURLToFile(url, file, "", "Accept", "text/*", "Accept-Charset", "UTF-8" )){
    System.out.println("content of url '"+url+"' matches with file '"+file+"'.");
@@ -1899,7 +1899,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>component</code> - Component, The component to wait for its property matching.</dd><dd><code>propertyName</code> - String, Case-sensitive name of object property to watch.</dd><dd><code>expectedValue</code> - String, Case-sensitive value of the object property to match.</dd><dd><code>optionals</code> - String
  <ul>
  <b>optionals[0] timeout</b> int, timeout in seconds. Default is 15 seconds. <br>
- <b>optionals[1] caseInsensitive</b> boolean, match an expected value case insensitively. Default is false. "FALSE" will cause the comparison of the property value and the expected value to ignore case. 
+ <b>optionals[1] caseInsensitive</b> boolean, match an expected value case insensitively. Default is false. "FALSE" will cause the comparison of the property value and the expected value to ignore case.
  </ul></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
@@ -1909,14 +1909,14 @@ extends java.lang.Object</pre>
  <code>Misc.WaitForPropertyValue(Map.windowName.componentName, "propertyValue", "expectedValue");
  </code>
  </pre>
- 
- 2. Wait for the property value matching with expected value with 20 seconds. 
+
+ 2. Wait for the property value matching with expected value with 20 seconds.
  <pre>
  <code>Misc.WaitForPropertyValue(Map.windowName.componentName, "propertyValue", "expectedValue", "20");
  </code>
  </pre>
-  
- 3. Wait for the property value matching with expected value with 20 seconds and compare case sensitively. 
+
+ 3. Wait for the property value matching with expected value with 20 seconds and compare case sensitively.
  <pre>
  <code>Misc.WaitForPropertyValue(Map.windowName.componentName, "propertyValue", "expectedValue", "true");
  </code>
@@ -1938,7 +1938,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>component</code> - Component, The component to wait for its matching property gone.</dd><dd><code>propertyName</code> - String, Case-sensitive name of object property to watch.</dd><dd><code>expectedValue</code> - String, Case-sensitive value of the object property to match.</dd><dd><code>optionals</code> - String
  <ul>
  <b>optionals[0] timeout</b> int, timeout in seconds. Default is 15 seconds. <br>
- <b>optionals[1] caseInsensitive</b> boolean, match an expected value case insensitively. Default is false. "FALSE" will cause the comparison of the property value and the expected value to ignore case. 
+ <b>optionals[1] caseInsensitive</b> boolean, match an expected value case insensitively. Default is false. "FALSE" will cause the comparison of the property value and the expected value to ignore case.
  </ul></dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successful, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
@@ -1948,14 +1948,14 @@ extends java.lang.Object</pre>
  <code>Misc.WaitForPropertyValueGone(Map.windowName.componentName, "propertyValue", "expectedValue");
  </code>
  </pre>
- 
- 2. Wait for the property value gone with expected value with 20 seconds. 
+
+ 2. Wait for the property value gone with expected value with 20 seconds.
  <pre>
  <code>Misc.WaitForPropertyValueGone(Map.windowName.componentName, "propertyValue", "expectedValue", "20");
  </code>
  </pre>
-  
- 3. Wait for the property value gone with expected value with 20 seconds and compare case sensitively. 
+
+ 3. Wait for the property value gone with expected value with 20 seconds and compare case sensitively.
  <pre>
  <code>Misc.WaitForPropertyValueGone(Map.windowName.componentName, "propertyValue", "expectedValue", "true");
  </code>

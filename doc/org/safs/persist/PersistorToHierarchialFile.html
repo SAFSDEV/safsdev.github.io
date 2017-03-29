@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- NewPage -->
+<html lang="en">
+<head>
+<title>PersistorToHierarchialFile (SAFS API DOCUMENT)</title>
+<link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
+</head>
+<body>
+<script type="text/javascript"><!--
+    if (location.href.indexOf('is-external=true') == -1) {
+        parent.document.title="PersistorToHierarchialFile (SAFS API DOCUMENT)";
+    }
+//-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+<!-- ========= START OF TOP NAVBAR ======= -->
+<div class="topNav"><a name="navbar_top">
+<!--   -->
+</a><a href="#skip-navbar_top" title="Skip navigation links"></a><a name="navbar_top_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/PersistorToHierarchialFile.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+<li><a href="../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../org/safs/persist/PersistorToJSONFile.html" title="class in org.safs.persist"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../index.html?org/safs/persist/PersistorToHierarchialFile.html" target="_top">Frames</a></li>
+<li><a href="PersistorToHierarchialFile.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_org.safs.persist.PersistorToFile">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_top">
+<!--   -->
+</a></div>
+<!-- ========= END OF TOP NAVBAR ========= -->
+<!-- ======== START OF CLASS DATA ======== -->
+<div class="header">
+<div class="subTitle">org.safs.persist</div>
+<h2 title="Class PersistorToHierarchialFile" class="title">Class PersistorToHierarchialFile</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../org/safs/persist/AbstractRuntimeDataPersistor.html" title="class in org.safs.persist">org.safs.persist.AbstractRuntimeDataPersistor</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist">org.safs.persist.PersistorToFile</a></li>
+<li>
+<ul class="inheritance">
+<li>org.safs.persist.PersistorToHierarchialFile</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../org/safs/persist/Persistor.html" title="interface in org.safs.persist">Persistor</a></dd>
+</dl>
+<dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><a href="../../../org/safs/persist/PersistorToJSONFile.html" title="class in org.safs.persist">PersistorToJSONFile</a>, <a href="../../../org/safs/persist/PersistorToXMLFile.html" title="class in org.safs.persist">PersistorToXMLFile</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public class <span class="strong">PersistorToHierarchialFile</span>
+extends <a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist">PersistorToFile</a></pre>
+<div class="block">Write the Persistable object to a persistence of hierarchical structure, such as JSON, XML file.<br/></div>
+<dl><dt><span class="strong">Author:</span></dt>
+  <dd>Lei Wang</dd></dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field_summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.safs.persist.PersistorToFile">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.safs.persist.<a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist">PersistorToFile</a></h3>
+<code><a href="../../../org/safs/persist/PersistorToFile.html#filename">filename</a>, <a href="../../../org/safs/persist/PersistorToFile.html#ignoredFieldsForUnpickle">ignoredFieldsForUnpickle</a>, <a href="../../../org/safs/persist/PersistorToFile.html#persistFile">persistFile</a>, <a href="../../../org/safs/persist/PersistorToFile.html#reader">reader</a>, <a href="../../../org/safs/persist/PersistorToFile.html#writer">writer</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.safs.persist.AbstractRuntimeDataPersistor">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.safs.persist.<a href="../../../org/safs/persist/AbstractRuntimeDataPersistor.html" title="class in org.safs.persist">AbstractRuntimeDataPersistor</a></h3>
+<code><a href="../../../org/safs/persist/AbstractRuntimeDataPersistor.html#runtime">runtime</a></code></li>
+</ul>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#PersistorToHierarchialFile(org.safs.tools.RuntimeDataInterface,%20java.lang.String)">PersistorToHierarchialFile</a></strong>(<a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;runtime,
+                          java.lang.String&nbsp;filename)</code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ========== METHOD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_summary">
+<!--   -->
+</a>
+<h3>Method Summary</h3>
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#childBegin(java.lang.String,%20java.lang.String)">childBegin</a></strong>(java.lang.String&nbsp;key,
+          java.lang.String&nbsp;value)</code>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write "key"
+ and "value" of a child.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#childEnd(boolean)">childEnd</a></strong>(boolean&nbsp;lastChild)</code>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write the
+ end of a child, here a newline "\n" is written.<br/></div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#containerBegin(java.lang.String)">containerBegin</a></strong>(java.lang.String&nbsp;className)</code>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write the begin
+ of a container such as:
+ 
+ <b>&lt;tagNam&gt;</b> for XML file
+ <b>"tagName" : {\n</b> for JSON file
+ </div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#containerEnd(java.lang.String)">containerEnd</a></strong>(java.lang.String&nbsp;className)</code>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write the end
+ of a container such as:
+ 
+ <b>&lt;/tagNam&gt;</b> for XML file
+ <b>}</b> for JSON file.<br/>
+ </div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#getTagName(java.lang.String)">getTagName</a></strong>(java.lang.String&nbsp;className)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#parseFiledValue(java.lang.Object)">parseFiledValue</a></strong>(java.lang.Object&nbsp;value)</code>
+<div class="block">Parse the parameter value and convert it to a string which will be persisted to (File or Variable or ...)<br>
+ The following are the ways to parse value:
+ 
+ The String value will be <a href="../../../org/safs/persist/PersistorToFile.html#escape(java.lang.String)"><code>PersistorToFile.escape(String)</code></a> and double-quoted if needed.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)">write</a></strong>(<a href="../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a>&nbsp;persistable)</code>
+<div class="block">Write the Persistable object to a persistence of hierarchical structure, such as JSON, XML file.<br/>
+ This is a template method, it is calling the method below:
+ 
+ <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#containerBegin(java.lang.String)"><code>containerBegin(String)</code></a>
+ <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#childBegin(java.lang.String,%20java.lang.String)"><code>childBegin(String, String)</code></a>
+ <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#childEnd(boolean)"><code>childEnd(boolean)</code></a>
+ <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#containerEnd(java.lang.String)"><code>containerEnd(String)</code></a>
+ </div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.persist.PersistorToFile">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.persist.<a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist">PersistorToFile</a></h3>
+<code><a href="../../../org/safs/persist/PersistorToFile.html#beforeUnpickle()">beforeUnpickle</a>, <a href="../../../org/safs/persist/PersistorToFile.html#doUnpickle()">doUnpickle</a>, <a href="../../../org/safs/persist/PersistorToFile.html#equals(java.lang.Object)">equals</a>, <a href="../../../org/safs/persist/PersistorToFile.html#escape(java.lang.String)">escape</a>, <a href="../../../org/safs/persist/PersistorToFile.html#getPersistenceName()">getPersistenceName</a>, <a href="../../../org/safs/persist/PersistorToFile.html#getType()">getType</a>, <a href="../../../org/safs/persist/PersistorToFile.html#isIgnoredFiled(java.lang.String,%20java.lang.String)">isIgnoredFiled</a>, <a href="../../../org/safs/persist/PersistorToFile.html#persist(org.safs.persist.Persistable)">persist</a>, <a href="../../../org/safs/persist/PersistorToFile.html#stringNeedQuoted()">stringNeedQuoted</a>, <a href="../../../org/safs/persist/PersistorToFile.html#unpersist()">unpersist</a>, <a href="../../../org/safs/persist/PersistorToFile.html#unpickle(java.util.Map)">unpickle</a>, <a href="../../../org/safs/persist/PersistorToFile.html#writeHeader(org.safs.persist.Persistable)">writeHeader</a>, <a href="../../../org/safs/persist/PersistorToFile.html#writeTailer(org.safs.persist.Persistable)">writeTailer</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.persist.AbstractRuntimeDataPersistor">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.persist.<a href="../../../org/safs/persist/AbstractRuntimeDataPersistor.html" title="class in org.safs.persist">AbstractRuntimeDataPersistor</a></h3>
+<code><a href="../../../org/safs/persist/AbstractRuntimeDataPersistor.html#validate(org.safs.persist.Persistable)">validate</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor_detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="PersistorToHierarchialFile(org.safs.tools.RuntimeDataInterface, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>PersistorToHierarchialFile</h4>
+<pre>public&nbsp;PersistorToHierarchialFile(<a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;runtime,
+                          java.lang.String&nbsp;filename)</pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method_detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="write(org.safs.persist.Persistable)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>write</h4>
+<pre>protected final&nbsp;void&nbsp;write(<a href="../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a>&nbsp;persistable)
+                    throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a>,
+                           java.io.IOException</pre>
+<div class="block">Write the Persistable object to a persistence of hierarchical structure, such as JSON, XML file.<br/>
+ This is a template method, it is calling the method below:
+ <ol>
+ <li><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#containerBegin(java.lang.String)"><code>containerBegin(String)</code></a>
+ <li><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#childBegin(java.lang.String,%20java.lang.String)"><code>childBegin(String, String)</code></a>
+ <li><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#childEnd(boolean)"><code>childEnd(boolean)</code></a>
+ <li><a href="../../../org/safs/persist/PersistorToHierarchialFile.html#containerEnd(java.lang.String)"><code>containerEnd(String)</code></a>
+ </ol></div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../org/safs/persist/PersistorToFile.html#write(org.safs.persist.Persistable)">write</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist">PersistorToFile</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>persistable</code> - Persistable, the object to persist</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd>
+<dd><code>java.io.IOException</code></dd></dl>
+</li>
+</ul>
+<a name="getTagName(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getTagName</h4>
+<pre>protected&nbsp;java.lang.String&nbsp;getTagName(java.lang.String&nbsp;className)</pre>
+</li>
+</ul>
+<a name="containerBegin(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>containerBegin</h4>
+<pre>protected&nbsp;void&nbsp;containerBegin(java.lang.String&nbsp;className)
+                       throws java.io.IOException</pre>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write the begin
+ of a container such as:
+ <ul>
+ <li><b>&lt;tagNam&gt;</b> for XML file
+ <li><b>"tagName" : {\n</b> for JSON file
+ </ul></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>className</code> - String, the class name of a container. This is a full class-name, which may needs to
+                          treated to get the simple class name as the tag-name.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd></dl>
+</li>
+</ul>
+<a name="childBegin(java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>childBegin</h4>
+<pre>protected&nbsp;void&nbsp;childBegin(java.lang.String&nbsp;key,
+              java.lang.String&nbsp;value)
+                   throws java.io.IOException</pre>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write "key"
+ and "value" of a child.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>key</code> - String, the key name</dd><dd><code>value</code> - String, the value</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd></dl>
+</li>
+</ul>
+<a name="parseFiledValue(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>parseFiledValue</h4>
+<pre>protected&nbsp;java.lang.String&nbsp;parseFiledValue(java.lang.Object&nbsp;value)</pre>
+<div class="block">Parse the parameter value and convert it to a string which will be persisted to (File or Variable or ...)<br>
+ The following are the ways to parse value:
+ <ul>
+ <li>The String value will be <a href="../../../org/safs/persist/PersistorToFile.html#escape(java.lang.String)"><code>PersistorToFile.escape(String)</code></a> and double-quoted if needed.
+ <li>The array value will be transformed into <b>[item1, item2, item3]</b>
+ <li>The Number value will be returned as string without quote.
+ </ul></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>value</code> - Object, the filed's value</dd>
+<dt><span class="strong">Returns:</span></dt><dd>String, the parsed result of the field's value<br/>
+                 null if the parameter 'value' is null.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
+</li>
+</ul>
+<a name="childEnd(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>childEnd</h4>
+<pre>protected&nbsp;void&nbsp;childEnd(boolean&nbsp;lastChild)
+                 throws java.io.IOException</pre>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write the
+ end of a child, here a newline "\n" is written.<br/></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>lastChild</code> - boolean, if this is the last child within the container.
+        it is useful for some file format, such as JSON, if this
+        is false (not the last child), a comma <font color="red">,</font>
+        needs to be added at the end as <b>"key" : "value" ,</b><br/></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd></dl>
+</li>
+</ul>
+<a name="containerEnd(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>containerEnd</h4>
+<pre>protected&nbsp;void&nbsp;containerEnd(java.lang.String&nbsp;className)
+                     throws java.io.IOException</pre>
+<div class="block">This is called inside <a href="../../../org/safs/persist/PersistorToHierarchialFile.html#write(org.safs.persist.Persistable)"><code>write(Persistable)</code></a> to write the end
+ of a container such as:
+ <ul>
+ <li><b>&lt;/tagNam&gt;</b> for XML file
+ <li><b>}</b> for JSON file.<br/>
+ </ul></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>className</code> - String, the tag name, it is normally a container. This is a full class-name, which may needs to
+                          treated to get the simple class name as the tag-name.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd></dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<!-- ========= END OF CLASS DATA ========= -->
+<!-- ======= START OF BOTTOM NAVBAR ====== -->
+<div class="bottomNav"><a name="navbar_bottom">
+<!--   -->
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+<!--   -->
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/PersistorToHierarchialFile.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+<li><a href="../../../help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../org/safs/persist/PersistorToFile.html" title="class in org.safs.persist"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../org/safs/persist/PersistorToJSONFile.html" title="class in org.safs.persist"><span class="strong">Next Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../index.html?org/safs/persist/PersistorToHierarchialFile.html" target="_top">Frames</a></li>
+<li><a href="PersistorToHierarchialFile.html" target="_top">No Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../allclasses-noframe.html">All Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_bottom");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#fields_inherited_from_class_org.safs.persist.PersistorToFile">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor_summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor_detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method_detail">Method</a></li>
+</ul>
+</div>
+<a name="skip-navbar_bottom">
+<!--   -->
+</a></div>
+<!-- ======== END OF BOTTOM NAVBAR ======= -->
+<p class="legalCopy"><small><i>Copyright &#169; SAS Institute. All Rights Reserved.</i></small></p>
+</body>
+</html>

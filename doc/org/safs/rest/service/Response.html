@@ -85,17 +85,26 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">org.safs.persist.PersistableDefault</a></li>
+<li>
+<ul class="inheritance">
 <li>org.safs.rest.service.Response</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a>, <a href="../../../../org/safs/Printable.html" title="interface in org.safs">Printable</a></dd>
+</dl>
 <hr>
 <br>
 <pre>public class <span class="strong">Response</span>
-extends java.lang.Object</pre>
+extends <a href="../../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a></pre>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Carl Nagle</dd></dl>
 </li>
@@ -156,7 +165,32 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>(package private) java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#_status_line">_status_line</a></strong></code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>(package private) java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#ID">ID</a></strong></code>&nbsp;</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.safs.persist.PersistableDefault">
+<!--   -->
+</a>
+<h3>Fields inherited from class&nbsp;org.safs.persist.<a href="../../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a></h3>
+<code><a href="../../../../org/safs/persist/PersistableDefault.html#enabled">enabled</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#FAILED_RETRIEVE_VALUE">FAILED_RETRIEVE_VALUE</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#parent">parent</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#tabulation">tabulation</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#threshold">threshold</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#thresholdEnabled">thresholdEnabled</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#UNKNOWN_VALUE">UNKNOWN_VALUE</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.safs.persist.Persistable">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;org.safs.persist.<a href="../../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a></h3>
+<code><a href="../../../../org/safs/persist/Persistable.html#CONTAINER_ELEMENT">CONTAINER_ELEMENT</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="fields_inherited_from_class_org.safs.Printable">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;org.safs.<a href="../../../../org/safs/Printable.html" title="interface in org.safs">Printable</a></h3>
+<code><a href="../../../../org/safs/Printable.html#DATA_BIGGER_THAN_THRESHOLD">DATA_BIGGER_THAN_THRESHOLD</a></code></li>
+</ul>
 </li>
 </ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -230,11 +264,14 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#getRequestInfo()">getRequestInfo</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#getID()">getID</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#getResponseInfo()">getResponseInfo</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#getPersitableFields()">getPersitableFields</a></strong>()</code>
+<div class="block">This default implementation get all the declared fields <code>Class.getDeclaredFields()</code> and
+ put their name as 'fieldName' and 'persistKey' into the 'persistableFields Map'.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -277,18 +314,23 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#set_status_line(java.lang.String)">set_status_line</a></strong>(java.lang.String&nbsp;_status_line)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#toString()">toString</a></strong>()</code>
-<div class="block">This is the one to call for ALL information AFTER the REQUEST has been returned in the RESPONSE</div>
-</td>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/rest/service/Response.html#setID(java.lang.String)">setID</a></strong>(java.lang.String&nbsp;iD)</code>&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods_inherited_from_class_org.safs.persist.PersistableDefault">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.safs.persist.<a href="../../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a></h3>
+<code><a href="../../../../org/safs/persist/PersistableDefault.html#equals(java.lang.Object)">equals</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getContents()">getContents</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getContents(java.util.Map,%20java.util.Set,%20boolean)">getContents</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getField(java.lang.String)">getField</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getFlatKey()">getFlatKey</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getParent()">getParent</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getTabulation()">getTabulation</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getTagName(java.lang.String)">getTagName</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#getThreshold()">getThreshold</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#isEnabled()">isEnabled</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#isIgnoredContentCache()">isIgnoredContentCache</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#isThresholdEnabled()">isThresholdEnabled</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setEnabled(boolean)">setEnabled</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setField(java.lang.String,%20java.lang.Object)">setField</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setIgnoredContentCache(boolean)">setIgnoredContentCache</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setParent(org.safs.persist.Persistable)">setParent</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setTabulation(int)">setTabulation</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setThreshold(int)">setThreshold</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#setThresholdEnabled(boolean)">setThresholdEnabled</a>, <a href="../../../../org/safs/persist/PersistableDefault.html#toString()">toString</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -313,67 +355,22 @@ extends java.lang.Object</pre>
 <pre><a href="../../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service">Request</a> _request</pre>
 </li>
 </ul>
-<a name="_status_line">
+<a name="ID">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>_status_line</h4>
-<pre>java.lang.String _status_line</pre>
+<h4>ID</h4>
+<pre>java.lang.String ID</pre>
 </li>
 </ul>
-<a name="_http_version">
+<a name="_content_type">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>_http_version</h4>
-<pre>java.lang.String _http_version</pre>
-</li>
-</ul>
-<a name="_status_code">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_status_code</h4>
-<pre>int _status_code</pre>
-</li>
-</ul>
-<a name="_reason_phrase">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_reason_phrase</h4>
-<pre>java.lang.String _reason_phrase</pre>
-</li>
-</ul>
-<a name="_headers">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_headers</h4>
-<pre>java.util.Map&lt;java.lang.String,java.lang.String&gt; _headers</pre>
-</li>
-</ul>
-<a name="_message_body">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_message_body</h4>
-<pre>java.lang.String _message_body</pre>
-</li>
-</ul>
-<a name="_entity_length">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>_entity_length</h4>
-<pre>long _entity_length</pre>
+<h4>_content_type</h4>
+<pre>java.lang.String _content_type</pre>
 </li>
 </ul>
 <a name="_entity_body">
@@ -385,13 +382,67 @@ extends java.lang.Object</pre>
 <pre>java.lang.Object _entity_body</pre>
 </li>
 </ul>
-<a name="_content_type">
+<a name="_entity_length">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_entity_length</h4>
+<pre>long _entity_length</pre>
+</li>
+</ul>
+<a name="_headers">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_headers</h4>
+<pre>java.util.Map&lt;java.lang.String,java.lang.String&gt; _headers</pre>
+</li>
+</ul>
+<a name="_http_version">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_http_version</h4>
+<pre>java.lang.String _http_version</pre>
+</li>
+</ul>
+<a name="_message_body">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_message_body</h4>
+<pre>java.lang.String _message_body</pre>
+</li>
+</ul>
+<a name="_reason_phrase">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_reason_phrase</h4>
+<pre>java.lang.String _reason_phrase</pre>
+</li>
+</ul>
+<a name="_status_code">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>_status_code</h4>
+<pre>int _status_code</pre>
+</li>
+</ul>
+<a name="_status_line">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>_content_type</h4>
-<pre>java.lang.String _content_type</pre>
+<h4>_status_line</h4>
+<pre>java.lang.String _status_line</pre>
 </li>
 </ul>
 </li>
@@ -419,6 +470,24 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getID()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getID</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getID()</pre>
+</li>
+</ul>
+<a name="setID(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setID</h4>
+<pre>public&nbsp;void&nbsp;setID(java.lang.String&nbsp;iD)</pre>
+</li>
+</ul>
 <a name="get_content_type()">
 <!--   -->
 </a>
@@ -617,38 +686,22 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>_request</code> - the _request to set</dd></dl>
 </li>
 </ul>
-<a name="getResponseInfo()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getResponseInfo</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getResponseInfo()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>String, the response information returned from rest service.</dd></dl>
-</li>
-</ul>
-<a name="getRequestInfo()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getRequestInfo</h4>
-<pre>public&nbsp;java.lang.String&nbsp;getRequestInfo()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>String, the original request information.</dd></dl>
-</li>
-</ul>
-<a name="toString()">
+<a name="getPersitableFields()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>toString</h4>
-<pre>public&nbsp;java.lang.String&nbsp;toString()</pre>
-<div class="block">This is the one to call for ALL information AFTER the REQUEST has been returned in the RESPONSE</div>
+<h4>getPersitableFields</h4>
+<pre>public&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;getPersitableFields()</pre>
+<div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/persist/PersistableDefault.html#getPersitableFields()">PersistableDefault</a></code></strong></div>
+<div class="block">This default implementation get all the declared fields <code>Class.getDeclaredFields()</code> and
+ put their name as 'fieldName' and 'persistKey' into the 'persistableFields Map'.</div>
 <dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../org/safs/persist/Persistable.html#getPersitableFields()">getPersitableFields</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a></code></dd>
 <dt><strong>Overrides:</strong></dt>
-<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
-<dt><span class="strong">Returns:</span></dt><dd>String, the original request information and the response information returned from rest service.</dd></dl>
+<dd><code><a href="../../../../org/safs/persist/PersistableDefault.html#getPersitableFields()">getPersitableFields</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a Map containing a pair(fieldName, persistKey) to persist.</dd></dl>
 </li>
 </ul>
 </li>

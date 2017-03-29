@@ -112,8 +112,8 @@
 extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="class in org.safs.tools.engines">GenericEngine</a></pre>
 <div class="block">Provides local in-process support for GUIless Component Functions.
  <p>
- These are Component Functions that do not actually reference any GUI component.  
- Some examples of these are commands like VerifyValues and certain database commands 
+ These are Component Functions that do not actually reference any GUI component.
+ Some examples of these are commands like VerifyValues and certain database commands
  that allow the Window and Component references to be "Anything" "At All".
  <p>
  This engine does not assume the use of STAF. Instead, it uses the
@@ -122,19 +122,21 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
  <BR> Carl Nagle  MAR 25, 2009 Adding IBT support for mouse Drag operations and Click with coordinates.
  <BR> Carl Nagle  JUL 14, 2009 Fixed some logging issues in VerifyValues commands.
  <BR> LeiWang APR 07, 2010 Modify method CFComponent.process(): If the parent RS is specified in
-                                                         OBT format, then set record status to SCRIPT_NOT_EXECUTED and return. Let 
+                                                         OBT format, then set record status to SCRIPT_NOT_EXECUTED and return. Let
                                                          other engine (ex. RJ engine) to handle the parent RS.
- 
-                                                         Add method processIndependently(): If the parent RS is in OBT format, other 
+
+                                                         Add method processIndependently(): If the parent RS is in OBT format, other
                                                          engine (ex. RJ engine) will handle the parent RS, and inside that engine, a
-                                                         new TIDComponent object will be instantiated, you should pass the test-record 
+                                                         new TIDComponent object will be instantiated, you should pass the test-record
                                                          to the method processIndependently() of this new object.
- <BR> JunwuMa APR 14, 2010 Adding IBT support for GetTextFromGUI and SaveTextFromGUI. 
-                           Move setRectVars() to its super(), ComponentFunction. 
+ <BR> JunwuMa APR 14, 2010 Adding IBT support for GetTextFromGUI and SaveTextFromGUI.
+                           Move setRectVars() to its super(), ComponentFunction.
  <br>   LeiWang APR 20, 2010 Modify method getSaveTextFromGUI(): use static method of OCREngine to get
-                           an OCR engine to use.                          
- <br>   Carl Nagle MAY 10, 2012  Modify process() call to isMixedUse to gracefully handle missing App Map 
-                           recognition entries.</div>
+                           an OCR engine to use.
+ <br>   Carl Nagle MAY 10, 2012  Modify process() call to isMixedUse to gracefully handle missing App Map
+                           recognition entries.
+ <br>   Lei Wang MAR 10, 2017  Modified RESTComponent to handle authorization/authentication information with/without session.
+                           The "custom header" can be provided as a file in a Map.</div>
 </li>
 </ul>
 </div>
@@ -159,6 +161,12 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 <div class="block">Local CFComponent</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.RESTComponent.html" title="class in org.safs.tools.engines">TIDComponent.RESTComponent</a></strong></code>
+<div class="block">Internal Component Function Processor to handle REST actions.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -175,8 +183,10 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>(package private) <a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#cf">cf</a></strong></code>&nbsp;</td>
+<td class="colFirst"><code>protected <a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#cf">cf</a></strong></code>
+<div class="block">The special Processor for handling TID Component Function keywords.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>(package private) static java.lang.String</code></td>
@@ -473,9 +483,21 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#FLAG_SAFSREST">FLAG_SAFSREST</a></strong></code>
+<div class="block">"SAFSREST"</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#PARAM_SUPPRESSVALUE">PARAM_SUPPRESSVALUE</a></strong></code>
 <div class="block">"SuppressValue"</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#restCF">restCF</a></strong></code>
+<div class="block">The special Processor for handling REST Component Function keywords.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -545,19 +567,39 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#deleteRestResponse(java.lang.String)">deleteRestResponse</a></strong>(java.lang.String&nbsp;responseID)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#deleteRestResponseStore()">deleteRestResponseStore</a></strong>()</code>
+<div class="block">Clean the whole Map, all Responses will be removed.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#getRestResponse(java.lang.String)">getRestResponse</a></strong>(java.lang.String&nbsp;responseID)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Collection&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#interpretFields(org.safs.TestRecordHelper)">interpretFields</a></strong>(<a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a>&nbsp;testRecordData)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#isCheckGUIExistence(java.lang.String)">isCheckGUIExistence</a></strong>(java.lang.String&nbsp;action)</code>
 <div class="block">Note: We don't if the GUI exist or not, so we will NOT force to wait for GUI's existence.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#isGUILess(java.lang.String)">isGUILess</a></strong>(java.lang.String&nbsp;action)</code>
 <div class="block">Note: As these are GUILess actions, so we will NOT force to wait for GUI's existence.<br></div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/engines/TIDComponent.html#isRESTFunction(java.lang.String)">isRESTFunction</a></strong>(java.lang.String&nbsp;flag)</code>
+<div class="block">Check if the action is a REST action.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -652,6 +694,17 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 <pre>static final&nbsp;java.lang.String TIDCOMPONENT_ENGINE</pre>
 <div class="block">"TIDComponent"</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.engines.TIDComponent.TIDCOMPONENT_ENGINE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="FLAG_SAFSREST">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FLAG_SAFSREST</h4>
+<pre>public static final&nbsp;java.lang.String FLAG_SAFSREST</pre>
+<div class="block">"SAFSREST"</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.engines.TIDComponent.FLAG_SAFSREST">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="COMMAND_CLEARAPPMAPCACHE">
@@ -1196,10 +1249,21 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 <a name="cf">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>cf</h4>
-<pre><a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a> cf</pre>
+<pre>protected&nbsp;<a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a> cf</pre>
+<div class="block">The special Processor for handling TID Component Function keywords.</div>
+</li>
+</ul>
+<a name="restCF">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>restCF</h4>
+<pre>protected&nbsp;<a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a> restCF</pre>
+<div class="block">The special Processor for handling REST Component Function keywords.</div>
 </li>
 </ul>
 </li>
@@ -1339,7 +1403,7 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
 <a name="noWaitGUIExistence(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>noWaitGUIExistence</h4>
 <pre>public static&nbsp;boolean&nbsp;noWaitGUIExistence(java.lang.String&nbsp;action)</pre>
@@ -1349,6 +1413,52 @@ extends <a href="../../../../org/safs/tools/engines/GenericEngine.html" title="c
  If the GUI existence is not necessary, then this method will return true.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>action</code> - String, the keyword to execute</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean, true if there is no need to wait the existence of GUI.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/TestStepProcessor.html#process()"><code>TestStepProcessor.process()</code></a></dd></dl>
+</li>
+</ul>
+<a name="isRESTFunction(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isRESTFunction</h4>
+<pre>public static&nbsp;boolean&nbsp;isRESTFunction(java.lang.String&nbsp;flag)</pre>
+<div class="block">Check if the action is a REST action.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>flag</code> - String, it could be the WindowID or the WindowName</dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean true if the action is RESTful.</dd></dl>
+</li>
+</ul>
+<a name="getRestResponse(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRestResponse</h4>
+<pre>public static&nbsp;<a href="../../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a>&nbsp;getRestResponse(java.lang.String&nbsp;responseID)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>responseID</code> - String, the unique ID to identify the rest service Response.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>Response, a cached Response returned from a rest service.
+                   null if it doesn't exist.</dd></dl>
+</li>
+</ul>
+<a name="deleteRestResponse(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteRestResponse</h4>
+<pre>public static&nbsp;<a href="../../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a>&nbsp;deleteRestResponse(java.lang.String&nbsp;responseID)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>responseID</code> - String, the unique ID to identify the rest service Response.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>Response, a cached Response deleted from the internal Map.
+                   null if it doesn't exist.</dd></dl>
+</li>
+</ul>
+<a name="deleteRestResponseStore()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>deleteRestResponseStore</h4>
+<pre>public static&nbsp;void&nbsp;deleteRestResponseStore()</pre>
+<div class="block">Clean the whole Map, all Responses will be removed.</div>
 </li>
 </ul>
 </li>

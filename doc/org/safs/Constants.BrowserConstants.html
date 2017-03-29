@@ -35,7 +35,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../org/safs/Constants.html" title="class in org.safs"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../org/safs/Constants.SeleniumConstants.html" title="class in org.safs"><span class="strong">Next Class</span></a></li>
+<li><a href="../../org/safs/Constants.JSONConstants.html" title="class in org.safs"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?org/safs/Constants.BrowserConstants.html" target="_top">Frames</a></li>
@@ -187,13 +187,13 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_DISABLE_EXTENSIONS">KEY_CHROME_DISABLE_EXTENSIONS</a></strong></code>
-<div class="block">'--disable-extensions' is used to disable the use of Chrome extensions.</div>
+<div class="block">'<b>--disable-extensions</b>' is used to disable the use of Chrome extensions.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_EXCLUDE_OPTIONS">KEY_CHROME_EXCLUDE_OPTIONS</a></strong></code>
-<div class="block">'excludeSwitches' the experimental option name for chrome options, it is used to turn off chrome starting options.<br>
+<div class="block">'<b>excludeSwitches</b>' the experimental option name for chrome options, it is used to turn off chrome starting options.<br>
  The value is separated-options to exclude, the separator can be comma(,) or semicolon(;) , <br>
  like "disable-component-update, ignore-certificate-errors" or "disable-component-update; ignore-certificate-errors",<br>
  <b>be careful</b>, there are NO 2 hyphens before options, "--disable-component-update, --ignore-certificate-errors" is wrong.<br>
@@ -204,7 +204,7 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_PREFERENCE">KEY_CHROME_PREFERENCE</a></strong></code>
-<div class="block">'chrome.perference' the key for chrome command-line-options/preferences file, which contains
+<div class="block">'<b>chrome.perference</b>' the key for chrome command-line-options/preferences file, which contains
  
  <b>command-line-options</b> json data, such as { "lang":"zh-cn", "disable-download-notification":"" },
      refer to <a href="http://peter.sh/experiments/chromium-command-line-switches/">detail options</a>
@@ -217,7 +217,7 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_PREFERENCE_JSON_KEY">KEY_CHROME_PREFERENCE_JSON_KEY</a></strong></code>
-<div class="block">'seplus.chrome.preference.json.key' the key for chrome preferences, which points to json data,
+<div class="block">'<b>seplus.chrome.preference.json.key</b>' the key for chrome preferences, which points to json data,
  such as { "intl.accept_languages":"zh-cn", intl.charset_default:"utf-8" },
  refer to <a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/pref_names.cc">detail preferences</a></div>
 </td>
@@ -225,13 +225,13 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_PREFS">KEY_CHROME_PREFS</a></strong></code>
-<div class="block">'prefs' the key used to set chrome Experimental Option.</div>
+<div class="block">'<b>prefs</b>' the key used to set chrome Experimental Option.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_PROFILE_DIR">KEY_CHROME_PROFILE_DIR</a></strong></code>
-<div class="block">'profile-directory' the parameter name for chrome options, a user-specific settings, it indicates a sub-folder under "user data directory".<br>
+<div class="block">'<b>profile-directory</b>' the parameter name for chrome options, a user-specific settings, it indicates a sub-folder under "user data directory".<br>
  The value is specified in <a href="http://peter.sh/experiments/chromium-command-line-switches">chrome options</a><br>
  <b>Note:</b> As this "profile-directory" contains minus, it could be interpreted as an arithmetic expression,
              Use SeleniumPlus.quote("profile-directory") to keep its value.</div>
@@ -240,7 +240,7 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_CHROME_USER_DATA_DIR">KEY_CHROME_USER_DATA_DIR</a></strong></code>
-<div class="block">'user-data-dir' the parameter name for chrome options, a general custom data settings.<br>
+<div class="block">'<b>user-data-dir</b>' the parameter name for chrome options, a general custom data settings.<br>
  The value is specified in <a href="http://peter.sh/experiments/chromium-command-line-switches">chrome options</a><br>
  <b>Note:</b> As this "user-data-dir" contains minus, it could be interpreted as an arithmetic expression,
              Use SeleniumPlus.quote("user-data-dir") to keep its value.</div>
@@ -249,14 +249,14 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_FIREFOX_PROFILE">KEY_FIREFOX_PROFILE</a></strong></code>
-<div class="block">'FirefoxProfile' the key for firefox profile name/filename string;
+<div class="block">'<b>FirefoxProfile</b>' the key for firefox profile name/filename string;
  The value is something like "myprofile" or "&lt;AbsolutePath>/ppc2784x.default"</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_FIREFOX_PROFILE_PREFERENCE">KEY_FIREFOX_PROFILE_PREFERENCE</a></strong></code>
-<div class="block">'firefox.perference' the key for firefox preference file, which contains json data,
+<div class="block">'<b>firefox.perference</b>' the key for firefox preference file, which contains json data,
  such as { "intl.accept_languages":"zh-cn", "accessibility.accesskeycausesactivation":false, "browser.download.folderList":2 }<br>
  <b>Note: Be careful when creating the json data file, do NOT quote boolean or integer value.</b></div>
 </td>
@@ -264,14 +264,14 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_PROXY_BYPASS_ADDRESS">KEY_PROXY_BYPASS_ADDRESS</a></strong></code>
-<div class="block">'KEY_PROXY_BYPASS_ADDRESS' the key for proxy bypass address string;
+<div class="block">'<b>KEY_PROXY_BYPASS_ADDRESS</b>' the key for proxy bypass address string;
  The value is comma separated string as "localhost,tadsrv,rnd"</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.BrowserConstants.html#KEY_PROXY_SETTING">KEY_PROXY_SETTING</a></strong></code>
-<div class="block">'KEY_PROXY_SETTING' the key for proxy string;
+<div class="block">'<b>KEY_PROXY_SETTING</b>' the key for proxy string;
  The value is colon separated string as "proxyserver:port"</div>
 </td>
 </tr>
@@ -464,7 +464,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_PROXY_SETTING</h4>
 <pre>public static final&nbsp;java.lang.String KEY_PROXY_SETTING</pre>
-<div class="block">'KEY_PROXY_SETTING' the key for proxy string;
+<div class="block">'<b>KEY_PROXY_SETTING</b>' the key for proxy string;
  The value is colon separated string as "proxyserver:port"</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.BrowserConstants.KEY_PROXY_SETTING">Constant Field Values</a></dd></dl>
 </li>
@@ -476,7 +476,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_PROXY_BYPASS_ADDRESS</h4>
 <pre>public static final&nbsp;java.lang.String KEY_PROXY_BYPASS_ADDRESS</pre>
-<div class="block">'KEY_PROXY_BYPASS_ADDRESS' the key for proxy bypass address string;
+<div class="block">'<b>KEY_PROXY_BYPASS_ADDRESS</b>' the key for proxy bypass address string;
  The value is comma separated string as "localhost,tadsrv,rnd"</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.BrowserConstants.KEY_PROXY_BYPASS_ADDRESS">Constant Field Values</a></dd></dl>
 </li>
@@ -488,7 +488,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_FIREFOX_PROFILE</h4>
 <pre>public static final&nbsp;java.lang.String KEY_FIREFOX_PROFILE</pre>
-<div class="block">'FirefoxProfile' the key for firefox profile name/filename string;
+<div class="block">'<b>FirefoxProfile</b>' the key for firefox profile name/filename string;
  The value is something like "myprofile" or "&lt;AbsolutePath>/ppc2784x.default"</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.BrowserConstants.KEY_FIREFOX_PROFILE">Constant Field Values</a></dd></dl>
 </li>
@@ -500,7 +500,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_FIREFOX_PROFILE_PREFERENCE</h4>
 <pre>public static final&nbsp;java.lang.String KEY_FIREFOX_PROFILE_PREFERENCE</pre>
-<div class="block">'firefox.perference' the key for firefox preference file, which contains json data,
+<div class="block">'<b>firefox.perference</b>' the key for firefox preference file, which contains json data,
  such as { "intl.accept_languages":"zh-cn", "accessibility.accesskeycausesactivation":false, "browser.download.folderList":2 }<br>
  <b>Note: Be careful when creating the json data file, do NOT quote boolean or integer value.</b></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.BrowserConstants.KEY_FIREFOX_PROFILE_PREFERENCE">Constant Field Values</a></dd></dl>
@@ -513,7 +513,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_PREFERENCE</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_PREFERENCE</pre>
-<div class="block">'chrome.perference' the key for chrome command-line-options/preferences file, which contains
+<div class="block">'<b>chrome.perference</b>' the key for chrome command-line-options/preferences file, which contains
  <ol>
  <li><b>command-line-options</b> json data, such as { "lang":"zh-cn", "disable-download-notification":"" },
      refer to <a href="http://peter.sh/experiments/chromium-command-line-switches/">detail options</a>
@@ -531,7 +531,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_PREFERENCE_JSON_KEY</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_PREFERENCE_JSON_KEY</pre>
-<div class="block">'seplus.chrome.preference.json.key' the key for chrome preferences, which points to json data,
+<div class="block">'<b>seplus.chrome.preference.json.key</b>' the key for chrome preferences, which points to json data,
  such as { "intl.accept_languages":"zh-cn", intl.charset_default:"utf-8" },
  refer to <a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/pref_names.cc">detail preferences</a></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.BrowserConstants.KEY_CHROME_PREFERENCE_JSON_KEY">Constant Field Values</a></dd></dl>
@@ -544,7 +544,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_PREFS</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_PREFS</pre>
-<div class="block">'prefs' the key used to set chrome Experimental Option. Used internally.</div>
+<div class="block">'<b>prefs</b>' the key used to set chrome Experimental Option. Used internally.</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.BrowserConstants.KEY_CHROME_PREFS">Constant Field Values</a></dd></dl>
 </li>
 </ul>
@@ -555,7 +555,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_USER_DATA_DIR</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_USER_DATA_DIR</pre>
-<div class="block">'user-data-dir' the parameter name for chrome options, a general custom data settings.<br>
+<div class="block">'<b>user-data-dir</b>' the parameter name for chrome options, a general custom data settings.<br>
  The value is specified in <a href="http://peter.sh/experiments/chromium-command-line-switches">chrome options</a><br>
  <b>Note:</b> As this "user-data-dir" contains minus, it could be interpreted as an arithmetic expression,
              Use SeleniumPlus.quote("user-data-dir") to keep its value.</div>
@@ -570,7 +570,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_PROFILE_DIR</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_PROFILE_DIR</pre>
-<div class="block">'profile-directory' the parameter name for chrome options, a user-specific settings, it indicates a sub-folder under "user data directory".<br>
+<div class="block">'<b>profile-directory</b>' the parameter name for chrome options, a user-specific settings, it indicates a sub-folder under "user data directory".<br>
  The value is specified in <a href="http://peter.sh/experiments/chromium-command-line-switches">chrome options</a><br>
  <b>Note:</b> As this "profile-directory" contains minus, it could be interpreted as an arithmetic expression,
              Use SeleniumPlus.quote("profile-directory") to keep its value.</div>
@@ -585,7 +585,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_EXCLUDE_OPTIONS</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_EXCLUDE_OPTIONS</pre>
-<div class="block">'excludeSwitches' the experimental option name for chrome options, it is used to turn off chrome starting options.<br>
+<div class="block">'<b>excludeSwitches</b>' the experimental option name for chrome options, it is used to turn off chrome starting options.<br>
  The value is separated-options to exclude, the separator can be comma(,) or semicolon(;) , <br>
  like "disable-component-update, ignore-certificate-errors" or "disable-component-update; ignore-certificate-errors",<br>
  <b>be careful</b>, there are NO 2 hyphens before options, "--disable-component-update, --ignore-certificate-errors" is wrong.<br>
@@ -601,7 +601,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>KEY_CHROME_DISABLE_EXTENSIONS</h4>
 <pre>public static final&nbsp;java.lang.String KEY_CHROME_DISABLE_EXTENSIONS</pre>
-<div class="block">'--disable-extensions' is used to disable the use of Chrome extensions. Usually, we use it
+<div class="block">'<b>--disable-extensions</b>' is used to disable the use of Chrome extensions. Usually, we use it
  as DEFAULT to avoid popping up 'Disable developer mode extensions' message.
 
  In 'SeleniumPlus.StartWebBrowser()' or 'WDLibrary.startBrowser()', we can use 'false' value to cancel this default 'disable' setting.
@@ -683,7 +683,7 @@ extends java.lang.Object</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../org/safs/Constants.html" title="class in org.safs"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../org/safs/Constants.SeleniumConstants.html" title="class in org.safs"><span class="strong">Next Class</span></a></li>
+<li><a href="../../org/safs/Constants.JSONConstants.html" title="class in org.safs"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?org/safs/Constants.BrowserConstants.html" target="_top">Frames</a></li>

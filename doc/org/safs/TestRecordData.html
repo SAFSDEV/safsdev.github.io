@@ -1020,7 +1020,7 @@ implements java.io.Serializable</pre>
 <div class="block"><br><em>Purpose:</em> get the <a href="../../org/safs/TestRecordData.html#inputRecord"><code>inputRecord</code></a> token, based on 'separator'
  starting from 0.
  <br><em>Side Effects:</em> <a href="../../org/safs/TestRecordData.html#inputRecordTokens"><code>inputRecordTokens</code></a> (lazily set first time in)
- <br><em>State Read:</em>  <a href="../../org/safs/TestRecordData.html#inputRecordTokens"><code>inputRecordTokens</code></a>, <a href="../../org/safs/TestRecordData.html#inputRecord"><code>inputRecord</code></a> 
+ <br><em>State Read:</em>  <a href="../../org/safs/TestRecordData.html#inputRecordTokens"><code>inputRecordTokens</code></a>, <a href="../../org/safs/TestRecordData.html#inputRecord"><code>inputRecord</code></a>
  <br><em>Assumptions:</em>  We use lazy instantiation to populate the ArrayList
  <a href="../../org/safs/TestRecordData.html#inputRecordTokens"><code>inputRecordTokens</code></a>.  Initially it is null.  We use StringTokenizer first time only.
  <br> We also assume that inputRecord and separator are already setup when we are called.</div>
@@ -1112,7 +1112,7 @@ implements java.io.Serializable</pre>
 <h4>getInstanceName</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getInstanceName()</pre>
 <div class="block">Prefix used to retrieve and store SAFSVARS TestRecordData values.
- The most common instance name is STAFHelper.SAFS_HOOK_TRD  
+ The most common instance name is STAFHelper.SAFS_HOOK_TRD
  This rarely ever needs to be changed by subclasses.</div>
 </li>
 </ul>
@@ -1124,7 +1124,7 @@ implements java.io.Serializable</pre>
 <h4>setInstanceName</h4>
 <pre>public&nbsp;void&nbsp;setInstanceName(java.lang.String&nbsp;instanceName)</pre>
 <div class="block">Prefix used to retrieve and store SAFSVARS TestRecordData values.
- The most common instance name is STAFHelper.SAFS_HOOK_TRD  
+ The most common instance name is STAFHelper.SAFS_HOOK_TRD
  This rarely ever needs to be set/changed by subclasses.</div>
 </li>
 </ul>

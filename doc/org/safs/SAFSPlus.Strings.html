@@ -106,7 +106,7 @@
 extends java.lang.Object</pre>
 <div class="block">Wrapper class providing APIs to handle <a href="http://safsdev.github.io/sqabasic2000/DDDriverStringCommandsIndex.htm">String keywords</a>, like Compare, GetMultiDelimitedField etc.<br>
  <pre>
- If you meet some errors when calling these API, please try to run 
+ If you meet some errors when calling these API, please try to run
  <a href="../../org/safs/SAFSPlus.DriverCommand.html#Expressions(boolean)"><code>SAFSPlus.DriverCommand.Expressions(boolean)</code></a> to turn off the expression as
  Misc.Expressions(false);
  and then call the string method
@@ -476,11 +476,11 @@ extends java.lang.Object</pre>
  String destination = "^[h|H]ello?$";
  if(Strings.Compare(source, destination, var))
    System.out.println("Compare success: result is "+GetVariableValue(var));//expected result 'true'
- 
+
  source = "hell";
  if(Strings.Compare(source, destination, var))
    System.out.println("Compare success: result is "+GetVariableValue(var));//expected result 'true'
- 
+
  //without leading ^ and ending $, the regex will match the substring of source string.
  destination = "[h|H]ello?";
  source = "Hi, hello Matt.";//sub-string "hello" will match the regex
@@ -548,7 +548,7 @@ extends java.lang.Object</pre>
                     int&nbsp;index,
                     java.lang.String&nbsp;delimiters,
                     java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Finds the count of all fields within the string found from startindex to the end of the string. 
+<div class="block">Finds the count of all fields within the string found from startindex to the end of the string.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetFieldCount">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse and count fields</dd><dd><code>index</code> - int, 0-based index, start-index for parsing the string</dd><dd><code>delimiters</code> - String, one or more single characters used as delimiters</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -573,7 +573,7 @@ extends java.lang.Object</pre>
                          int&nbsp;fieldID,
                          int&nbsp;fixedWidth,
                          java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Given an Input of fixed-width fields, return the nth(FieldID) Field in the record. 
+<div class="block">Given an Input of fixed-width fields, return the nth(FieldID) Field in the record.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetFixedWidthField">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>fieldID</code> - int, 0-based field to retrieve</dd><dd><code>fixedWidth</code> - int, the fixed width allotted for each field in the record</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -599,7 +599,7 @@ extends java.lang.Object</pre>
                              int&nbsp;startIndex,
                              java.lang.String&nbsp;delimiters,
                              java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Given a sourceString of delimited fields, return the nth(FieldID) Field in the record from startIndex. 
+<div class="block">Given a sourceString of delimited fields, return the nth(FieldID) Field in the record from startIndex.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetMultiDelimitedField">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>fieldID</code> - int, 1-based field to retrieve</dd><dd><code>startIndex</code> - int, 1-based start position for search in sourceString</dd><dd><code>delimiters</code> - String, one or more single characters used as delimiters</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -650,7 +650,7 @@ extends java.lang.Object</pre>
                             int&nbsp;startIndex,
                             java.lang.String&nbsp;delimiters,
                             java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Finds the index of the first character matching one of the provided delimiter characters. 
+<div class="block">Finds the index of the first character matching one of the provided delimiter characters.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetNextDelimiterIndex">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>startIndex</code> - int, 0-based start-index to begin parsing the string.</dd><dd><code>delimiters</code> - String, each character is treated as a separate delimiter</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -700,7 +700,7 @@ extends java.lang.Object</pre>
                                int&nbsp;startIndex,
                                java.lang.String&nbsp;regexDelimiters,
                                java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Get the number of fields contained in the input string using the passed in regular expression as the delimiter(s).  
+<div class="block">Get the number of fields contained in the input string using the passed in regular expression as the delimiter(s).
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetREDelimitedFieldCount">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>startIndex</code> - int, 0-based index of where to start the analysis from.</dd><dd><code>regexDelimiters</code> - String, regular expression used as the delimiter(s).</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -725,7 +725,7 @@ extends java.lang.Object</pre>
                             java.lang.String&nbsp;regexStart,
                             java.lang.String&nbsp;regexStop,
                             java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Extract dynamic substring from a string using regular expressions.   
+<div class="block">Extract dynamic substring from a string using regular expressions.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetSubstringsInString">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>regexStart</code> - String, The starting regular expression. Should not be empty.</dd><dd><code>regexStop</code> - String, The stopping regular expression. Should not be empty.</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -748,7 +748,7 @@ extends java.lang.Object</pre>
 <h4>GetSystemEnviron</h4>
 <pre>public static&nbsp;boolean&nbsp;GetSystemEnviron(java.lang.String&nbsp;systemVariable,
                        java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Get a system environment variable value.  
+<div class="block">Get a system environment variable value.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetSystemEnviron">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>systemVariable</code> - String, The system variable name.</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -768,7 +768,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>GetSystemUser</h4>
 <pre>public static&nbsp;boolean&nbsp;GetSystemUser(java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Get the USERID of the currently logged on user as stored in System Environment variables.  
+<div class="block">Get the USERID of the currently logged on user as stored in System Environment variables.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetSystemUser">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -790,7 +790,7 @@ extends java.lang.Object</pre>
                       int&nbsp;index,
                       java.lang.String&nbsp;delimiters,
                       java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Get a trimmed field out of a string using specified delimiter(s). 
+<div class="block">Get a trimmed field out of a string using specified delimiter(s).
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_GetTrimmedField">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>index</code> - int, 0-based index of which field to grab .</dd><dd><code>delimiters</code> - String, each character is treated as a separate delimiter.</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -839,7 +839,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;boolean&nbsp;Left(java.lang.String&nbsp;source,
            int&nbsp;length,
            java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Returns a string of a specified number of characters copied from the beginning of another string. 
+<div class="block">Returns a string of a specified number of characters copied from the beginning of another string.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_Left">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>length</code> - String, number of chars to copy</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -861,7 +861,7 @@ extends java.lang.Object</pre>
 <h4>LeftTrim</h4>
 <pre>public static&nbsp;boolean&nbsp;LeftTrim(java.lang.String&nbsp;source,
                java.lang.String&nbsp;resultVar)</pre>
-<div class="block">A new string trimmed of leading tabs and spaces. 
+<div class="block">A new string trimmed of leading tabs and spaces.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_LeftTrim">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -882,7 +882,7 @@ extends java.lang.Object</pre>
 <h4>Length</h4>
 <pre>public static&nbsp;boolean&nbsp;Length(java.lang.String&nbsp;source,
              java.lang.String&nbsp;resultVar)</pre>
-<div class="block">Returns the length of a string or variable. 
+<div class="block">Returns the length of a string or variable.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_Length">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>
@@ -951,7 +951,7 @@ extends java.lang.Object</pre>
 <h4>RightTrim</h4>
 <pre>public static&nbsp;boolean&nbsp;RightTrim(java.lang.String&nbsp;source,
                 java.lang.String&nbsp;resultVar)</pre>
-<div class="block">A new string trimmed of ending tabs and spaces. 
+<div class="block">A new string trimmed of ending tabs and spaces.
  <p>See <a href="http://safsdev.sourceforge.net/sqabasic2000/SeleniumDDDriverStringCommandsReference.htm#detail_RightTrim">Detailed Reference</a><p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>source</code> - String, The input string to parse</dd><dd><code>resultVar</code> - String, the variable to hold the result of the operation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successful, false otherwise.<p></dd><dt><span class="strong">Example:</span></dt>

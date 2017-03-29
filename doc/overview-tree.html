@@ -81,6 +81,7 @@
 <li><a href="org/safs/android/messenger/package-tree.html">org.safs.android.messenger</a>, </li>
 <li><a href="org/safs/android/messenger/client/package-tree.html">org.safs.android.messenger.client</a>, </li>
 <li><a href="org/safs/android/remotecontrol/package-tree.html">org.safs.android.remotecontrol</a>, </li>
+<li><a href="org/safs/auth/package-tree.html">org.safs.auth</a>, </li>
 <li><a href="org/safs/autoit/package-tree.html">org.safs.autoit</a>, </li>
 <li><a href="org/safs/autoit/lib/package-tree.html">org.safs.autoit.lib</a>, </li>
 <li><a href="org/safs/control/package-tree.html">org.safs.control</a>, </li>
@@ -116,6 +117,8 @@
 <li><a href="org/safs/natives/package-tree.html">org.safs.natives</a>, </li>
 <li><a href="org/safs/natives/win32/package-tree.html">org.safs.natives.win32</a>, </li>
 <li><a href="org/safs/net/package-tree.html">org.safs.net</a>, </li>
+<li><a href="org/safs/persist/package-tree.html">org.safs.persist</a>, </li>
+<li><a href="org/safs/persist/test/package-tree.html">org.safs.persist.test</a>, </li>
 <li><a href="org/safs/rational/package-tree.html">org.safs.rational</a>, </li>
 <li><a href="org/safs/rational/custom/package-tree.html">org.safs.rational.custom</a>, </li>
 <li><a href="org/safs/rational/flex/package-tree.html">org.safs.rational.flex</a>, </li>
@@ -288,6 +291,33 @@
 <li type="circle">org.safs.model.tools.<a href="org/safs/model/tools/DefaultRunner.html" title="class in org.safs.model.tools"><span class="strong">DefaultRunner</span></a>
 <ul>
 <li type="circle">org.safs.model.tools.<a href="org/safs/model/tools/EmbeddedHookDriverRunner.html" title="class in org.safs.model.tools"><span class="strong">EmbeddedHookDriverRunner</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/AbstractRuntimeDataPersistor.html" title="class in org.safs.persist"><span class="strong">AbstractRuntimeDataPersistor</span></a> (implements org.safs.persist.<a href="org/safs/persist/Persistor.html" title="interface in org.safs.persist">Persistor</a>)
+<ul>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToFile.html" title="class in org.safs.persist"><span class="strong">PersistorToFile</span></a>
+<ul>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToHierarchialFile.html" title="class in org.safs.persist"><span class="strong">PersistorToHierarchialFile</span></a>
+<ul>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToJSONFile.html" title="class in org.safs.persist"><span class="strong">PersistorToJSONFile</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToXMLFile.html" title="class in org.safs.persist"><span class="strong">PersistorToXMLFile</span></a></li>
+</ul>
+</li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToPropertiesFile.html" title="class in org.safs.persist"><span class="strong">PersistorToPropertiesFile</span></a></li>
+</ul>
+</li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToVariable.html" title="class in org.safs.persist"><span class="strong">PersistorToVariable</span></a></li>
+</ul>
+</li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/AbstractRuntimeDataVerifier.html" title="class in org.safs.persist"><span class="strong">AbstractRuntimeDataVerifier</span></a> (implements org.safs.persist.<a href="org/safs/persist/Verifier.html" title="interface in org.safs.persist">Verifier</a>)
+<ul>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/VerifierToFile.html" title="class in org.safs.persist"><span class="strong">VerifierToFile</span></a>
+<ul>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/VerifierToJSONFile.html" title="class in org.safs.persist"><span class="strong">VerifierToJSONFile</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/VerifierToPropertiesFile.html" title="class in org.safs.persist"><span class="strong">VerifierToPropertiesFile</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/VerifierToXMLFile.html" title="class in org.safs.persist"><span class="strong">VerifierToXMLFile</span></a></li>
 </ul>
 </li>
 </ul>
@@ -579,6 +609,7 @@
 </li>
 </ul>
 </li>
+<li type="circle">org.safs.model.components.<a href="org/safs/model/components/TIDRest.html" title="class in org.safs.model.components"><span class="strong">TIDRest</span></a></li>
 </ul>
 </li>
 </ul>
@@ -621,11 +652,14 @@
 </ul>
 </li>
 <li type="circle">org.safs.<a href="org/safs/Constants.BrowserConstants.html" title="class in org.safs"><span class="strong">Constants.BrowserConstants</span></a></li>
+<li type="circle">org.safs.<a href="org/safs/Constants.JSONConstants.html" title="class in org.safs"><span class="strong">Constants.JSONConstants</span></a></li>
+<li type="circle">org.safs.<a href="org/safs/Constants.RestConstants.html" title="class in org.safs"><span class="strong">Constants.RestConstants</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/Constants.SeleniumConstants.html" title="class in org.safs"><span class="strong">Constants.SeleniumConstants</span></a>
 <ul>
 <li type="circle">org.safs.tools.drivers.<a href="org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html" title="class in org.safs.tools.drivers"><span class="strong">DriverConstant.SeleniumConfigConstant</span></a></li>
 </ul>
 </li>
+<li type="circle">org.safs.<a href="org/safs/Constants.XMLConstants.html" title="class in org.safs"><span class="strong">Constants.XMLConstants</span></a></li>
 <li type="circle">org.safs.install.<a href="org/safs/install/ConsumOutStreamProcess.html" title="class in org.safs.install"><span class="strong">ConsumOutStreamProcess</span></a></li>
 <li type="circle">android.content.Context
 <ul>
@@ -677,11 +711,18 @@
 <li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/DDDriverFileCommands.html" title="class in org.safs.model.commands"><span class="strong">DDDriverFileCommands</span></a></li>
 <li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/DDDriverFlowCommands.html" title="class in org.safs.model.commands"><span class="strong">DDDriverFlowCommands</span></a></li>
 <li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/DDDriverLogCommands.html" title="class in org.safs.model.commands"><span class="strong">DDDriverLogCommands</span></a></li>
+<li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/DDDriverRestCommands.html" title="class in org.safs.model.commands"><span class="strong">DDDriverRestCommands</span></a></li>
 <li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/DDDriverStringCommands.html" title="class in org.safs.model.commands"><span class="strong">DDDriverStringCommands</span></a></li>
 <li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/DDDriverTimerCommands.html" title="class in org.safs.model.commands"><span class="strong">DDDriverTimerCommands</span></a></li>
 <li type="circle">org.safs.android.auto.tools.<a href="org/safs/android/auto/tools/ddms.html" title="class in org.safs.android.auto.tools"><span class="strong">ddms</span></a></li>
 <li type="circle">org.safs.tools.drivers.<a href="org/safs/tools/drivers/DebugInfo.html" title="class in org.safs.tools.drivers"><span class="strong">DebugInfo</span></a> (implements org.safs.tools.drivers.<a href="org/safs/tools/drivers/DebugInterface.html" title="interface in org.safs.tools.drivers">DebugInterface</a>)</li>
 <li type="circle">org.safs.<a href="org/safs/DefaultDDGUtils.html" title="class in org.safs"><span class="strong">DefaultDDGUtils</span></a> (implements org.safs.<a href="org/safs/DDGUtilsInterface.html" title="interface in org.safs">DDGUtilsInterface</a>)</li>
+<li type="circle">org.xml.sax.helpers.DefaultHandler (implements org.xml.sax.ContentHandler, org.xml.sax.DTDHandler, org.xml.sax.EntityResolver, org.xml.sax.ErrorHandler)
+<ul>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorToXMLFile.UnpickleHandler.html" title="class in org.safs.persist"><span class="strong">PersistorToXMLFile.UnpickleHandler</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/VerifierToXMLFile.VerificationHandler.html" title="class in org.safs.persist"><span class="strong">VerifierToXMLFile.VerificationHandler</span></a></li>
+</ul>
+</li>
 <li type="circle">org.safs.<a href="org/safs/DefaultHookConfig.html" title="class in org.safs"><span class="strong">DefaultHookConfig</span></a> (implements org.safs.<a href="org/safs/HookConfig.html" title="interface in org.safs">HookConfig</a>)
 <ul>
 <li type="circle">org.safs.selenium.<a href="org/safs/selenium/SeleniumHookConfig.html" title="class in org.safs.selenium"><span class="strong">SeleniumHookConfig</span></a></li>
@@ -764,6 +805,7 @@
 <li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDDriverCounterCommands.html" title="class in org.safs.tools.engines"><span class="strong">TIDDriverCounterCommands</span></a></li>
 <li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDDriverFlowCommands.html" title="class in org.safs.tools.engines"><span class="strong">TIDDriverFlowCommands</span></a></li>
 <li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDDriverLogCommands.html" title="class in org.safs.tools.engines"><span class="strong">TIDDriverLogCommands</span></a></li>
+<li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDDriverRestCommands.html" title="class in org.safs.tools.engines"><span class="strong">TIDDriverRestCommands</span></a></li>
 </ul>
 </li>
 <li type="circle">org.safs.tools.input.<a href="org/safs/tools/input/SAFSINPUT.html" title="class in org.safs.tools.input"><span class="strong">SAFSINPUT</span></a> (implements org.safs.tools.input.<a href="org/safs/tools/input/InputInterface.html" title="interface in org.safs.tools.input">InputInterface</a>)</li>
@@ -1252,6 +1294,19 @@
 </li>
 <li type="circle">org.safs.tools.ocr.<a href="org/safs/tools/ocr/OCRWrapper.html" title="class in org.safs.tools.ocr"><span class="strong">OCRWrapper</span></a></li>
 <li type="circle">org.safs.selenium.webdriver.lib.interpreter.selrunner.steptype.<a href="org/safs/selenium/webdriver/lib/interpreter/selrunner/steptype/Open.html" title="class in org.safs.selenium.webdriver.lib.interpreter.selrunner.steptype"><span class="strong">Open</span></a> (implements org.safs.selenium.webdriver.lib.interpreter.selrunner.<a href="org/safs/selenium/webdriver/lib/interpreter/selrunner/SRunnerType.html" title="interface in org.safs.selenium.webdriver.lib.interpreter.selrunner">SRunnerType</a>, com.sebuilder.interpreter.StepType)</li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistableDefault.html" title="class in org.safs.persist"><span class="strong">PersistableDefault</span></a> (implements org.safs.persist.<a href="org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a>, org.safs.<a href="org/safs/Printable.html" title="interface in org.safs">Printable</a>)
+<ul>
+<li type="circle">org.safs.auth.<a href="org/safs/auth/AuthorizationServer.html" title="class in org.safs.auth"><span class="strong">AuthorizationServer</span></a></li>
+<li type="circle">org.safs.auth.<a href="org/safs/auth/Content.html" title="class in org.safs.auth"><span class="strong">Content</span></a></li>
+<li type="circle">org.safs.auth.<a href="org/safs/auth/OAuth2.html" title="class in org.safs.auth"><span class="strong">OAuth2</span></a> (implements org.safs.auth.<a href="org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a>)</li>
+<li type="circle">org.safs.persist.test.<a href="org/safs/persist/test/PersistTest.MyPersistable.html" title="class in org.safs.persist.test"><span class="strong">PersistTest.MyPersistable</span></a></li>
+<li type="circle">org.safs.rest.service.<a href="org/safs/rest/service/Request.html" title="class in org.safs.rest.service"><span class="strong">Request</span></a></li>
+<li type="circle">org.safs.rest.service.<a href="org/safs/rest/service/Response.html" title="class in org.safs.rest.service"><span class="strong">Response</span></a></li>
+<li type="circle">org.safs.auth.<a href="org/safs/auth/SimpleAuth.html" title="class in org.safs.auth"><span class="strong">SimpleAuth</span></a> (implements org.safs.auth.<a href="org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a>)</li>
+</ul>
+</li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistorFactory.html" title="class in org.safs.persist"><span class="strong">PersistorFactory</span></a></li>
+<li type="circle">org.safs.persist.test.<a href="org/safs/persist/test/PersistTest.html" title="class in org.safs.persist.test"><span class="strong">PersistTest</span></a></li>
 <li type="circle">org.safs.jvmagent.<a href="org/safs/jvmagent/Platform.html" title="class in org.safs.jvmagent"><span class="strong">Platform</span></a></li>
 <li type="circle">java.awt.geom.Point2D (implements java.lang.Cloneable)
 <ul>
@@ -1407,6 +1462,7 @@
 <li type="circle">org.safs.rational.<a href="org/safs/rational/CFTIDComponent.html" title="class in org.safs.rational"><span class="strong">CFTIDComponent</span></a></li>
 <li type="circle">org.safs.ios.<a href="org/safs/ios/CFWindow.html" title="class in org.safs.ios"><span class="strong">CFWindow</span></a></li>
 <li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDComponent.CFComponent.html" title="class in org.safs.tools.engines"><span class="strong">TIDComponent.CFComponent</span></a></li>
+<li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDComponent.RESTComponent.html" title="class in org.safs.tools.engines"><span class="strong">TIDComponent.RESTComponent</span></a></li>
 </ul>
 </li>
 <li type="circle">org.safs.<a href="org/safs/DriverCommand.html" title="class in org.safs"><span class="strong">DriverCommand</span></a>
@@ -1424,6 +1480,7 @@
 <li type="circle">org.safs.<a href="org/safs/DCDriverTimerCommands.html" title="class in org.safs"><span class="strong">DCDriverTimerCommands</span></a></li>
 <li type="circle">org.safs.android.<a href="org/safs/android/DDriverCommand.html" title="class in org.safs.android"><span class="strong">DDriverCommand</span></a></li>
 <li type="circle">org.safs.ios.<a href="org/safs/ios/IDriverCommand.html" title="class in org.safs.ios"><span class="strong">IDriverCommand</span></a></li>
+<li type="circle">org.safs.tools.engines.<a href="org/safs/tools/engines/TIDDriverRestCommands.RESTDriverCommand.html" title="class in org.safs.tools.engines"><span class="strong">TIDDriverRestCommands.RESTDriverCommand</span></a></li>
 </ul>
 </li>
 <li type="circle">org.safs.<a href="org/safs/DriverCommandProcessor.html" title="class in org.safs"><span class="strong">DriverCommandProcessor</span></a></li>
@@ -1493,9 +1550,7 @@
 <li type="circle">org.safs.selenium.webdriver.lib.<a href="org/safs/selenium/webdriver/lib/RemoteDriver.html" title="class in org.safs.selenium.webdriver.lib"><span class="strong">RemoteDriver</span></a> (implements org.openqa.selenium.TakesScreenshot)</li>
 </ul>
 </li>
-<li type="circle">org.safs.rest.service.<a href="org/safs/rest/service/Request.html" title="class in org.safs.rest.service"><span class="strong">Request</span></a></li>
 <li type="circle">org.safs.text.<a href="org/safs/text/ResourceMessageInfo.html" title="class in org.safs.text"><span class="strong">ResourceMessageInfo</span></a> (implements java.lang.Cloneable)</li>
-<li type="circle">org.safs.rest.service.<a href="org/safs/rest/service/Response.html" title="class in org.safs.rest.service"><span class="strong">Response</span></a></li>
 <li type="circle">org.safs.rest.<a href="org/safs/rest/REST.html" title="class in org.safs.rest"><span class="strong">REST</span></a></li>
 <li type="circle">org.safs.rest.<a href="org/safs/rest/REST.DELETE.html" title="class in org.safs.rest"><span class="strong">REST.DELETE</span></a></li>
 <li type="circle">org.safs.rest.<a href="org/safs/rest/REST.GET.html" title="class in org.safs.rest"><span class="strong">REST.GET</span></a></li>
@@ -1619,6 +1674,11 @@
 <li type="circle">org.safs.<a href="org/safs/SAFSPlus.Logging.html" title="class in org.safs"><span class="strong">SAFSPlus.Logging</span></a>
 <ul>
 <li type="circle">org.safs.selenium.webdriver.<a href="org/safs/selenium/webdriver/SeleniumPlus.Logging.html" title="class in org.safs.selenium.webdriver"><span class="strong">SeleniumPlus.Logging</span></a></li>
+</ul>
+</li>
+<li type="circle">org.safs.<a href="org/safs/SAFSPlus.Rest.html" title="class in org.safs"><span class="strong">SAFSPlus.Rest</span></a>
+<ul>
+<li type="circle">org.safs.selenium.webdriver.<a href="org/safs/selenium/webdriver/SeleniumPlus.Rest.html" title="class in org.safs.selenium.webdriver"><span class="strong">SeleniumPlus.Rest</span></a></li>
 </ul>
 </li>
 <li type="circle">org.safs.<a href="org/safs/SAFSPlus.Strings.html" title="class in org.safs"><span class="strong">SAFSPlus.Strings</span></a>
@@ -1941,8 +2001,10 @@
 <li type="circle">org.safs.<a href="org/safs/SAFSObjectNotFoundException.html" title="class in org.safs"><span class="strong">SAFSObjectNotFoundException</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/SAFSObjectRecognitionException.html" title="class in org.safs"><span class="strong">SAFSObjectRecognitionException</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/SAFSParamException.html" title="class in org.safs"><span class="strong">SAFSParamException</span></a></li>
+<li type="circle">org.safs.<a href="org/safs/SAFSPersistableNotEnableException.html" title="class in org.safs"><span class="strong">SAFSPersistableNotEnableException</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/SAFSRegExException.html" title="class in org.safs"><span class="strong">SAFSRegExException</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/SAFSSTAFRegistrationException.html" title="class in org.safs"><span class="strong">SAFSSTAFRegistrationException</span></a></li>
+<li type="circle">org.safs.<a href="org/safs/SAFSVerificationException.html" title="class in org.safs"><span class="strong">SAFSVerificationException</span></a></li>
 <li type="circle">org.safs.selenium.webdriver.lib.<a href="org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib"><span class="strong">SeleniumPlusException</span></a>
 <ul>
 <li type="circle">org.safs.selenium.webdriver.lib.<a href="org/safs/selenium/webdriver/lib/ComboBoxException.html" title="class in org.safs.selenium.webdriver.lib"><span class="strong">ComboBoxException</span></a></li>
@@ -1956,6 +2018,7 @@
 </li>
 </ul>
 </li>
+<li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/TIDRestFunctions.html" title="class in org.safs.model.commands"><span class="strong">TIDRestFunctions</span></a></li>
 <li type="circle">com.jayway.android.robotium.remotecontrol.solo.<a href="com/jayway/android/robotium/remotecontrol/solo/Timeout.html" title="class in com.jayway.android.robotium.remotecontrol.solo"><span class="strong">Timeout</span></a></li>
 <li type="circle">org.safs.rest.service.<a href="org/safs/rest/service/Timeouts.html" title="class in org.safs.rest.service"><span class="strong">Timeouts</span></a></li>
 <li type="circle">org.safs.model.commands.<a href="org/safs/model/commands/TimePickerFunctions.html" title="class in org.safs.model.commands"><span class="strong">TimePickerFunctions</span></a></li>
@@ -1999,6 +2062,7 @@
 <li type="circle">org.safs.model.<a href="org/safs/model/Utils.html" title="class in org.safs.model"><span class="strong">Utils</span></a></li>
 <li type="circle">org.safs.model.<a href="org/safs/model/Variable.html" title="class in org.safs.model"><span class="strong">Variable</span></a></li>
 <li type="circle">org.safs.model.examples.tables.<a href="org/safs/model/examples/tables/Variables.html" title="class in org.safs.model.examples.tables"><span class="strong">Variables</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/VerifierFactory.html" title="class in org.safs.persist"><span class="strong">VerifierFactory</span></a></li>
 <li type="circle">android.view.View (implements android.view.accessibility.AccessibilityEventSource, android.graphics.drawable.Drawable.Callback, android.view.KeyEvent.Callback)
 <ul>
 <li type="circle">org.safs.android.engine.processor.<a href="org/safs/android/engine/processor/HighlightView.html" title="class in org.safs.android.engine.processor"><span class="strong">HighlightView</span></a></li>
@@ -2125,6 +2189,7 @@
 </ul>
 </li>
 <li type="circle">org.safs.jvmagent.<a href="org/safs/jvmagent/AlternateAncestorUser.html" title="interface in org.safs.jvmagent"><span class="strong">AlternateAncestorUser</span></a></li>
+<li type="circle">org.safs.auth.<a href="org/safs/auth/Auth.html" title="interface in org.safs.auth"><span class="strong">Auth</span></a></li>
 <li type="circle">com.jayway.android.robotium.remotecontrol.client.processor.<a href="com/jayway/android/robotium/remotecontrol/client/processor/CacheReferenceInterface.html" title="interface in com.jayway.android.robotium.remotecontrol.client.processor"><span class="strong">CacheReferenceInterface</span></a></li>
 <li type="circle">com.sun.jna.Callback
 <ul>
@@ -2299,6 +2364,9 @@
 <li type="circle">org.safs.tools.drivers.<a href="org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers"><span class="strong">DriverInterface</span></a></li>
 </ul>
 </li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/Persistable.html" title="interface in org.safs.persist"><span class="strong">Persistable</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/Persistor.html" title="interface in org.safs.persist"><span class="strong">Persistor</span></a></li>
+<li type="circle">org.safs.<a href="org/safs/Printable.html" title="interface in org.safs"><span class="strong">Printable</span></a></li>
 <li type="circle">com.jayway.android.robotium.remotecontrol.client.processor.<a href="com/jayway/android/robotium/remotecontrol/client/processor/ProcessorInterface.html" title="interface in com.jayway.android.robotium.remotecontrol.client.processor"><span class="strong">ProcessorInterface</span></a></li>
 <li type="circle">java.rmi.Remote
 <ul>
@@ -2381,6 +2449,7 @@
 </li>
 </ul>
 </li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/Verifier.html" title="interface in org.safs.persist"><span class="strong">Verifier</span></a></li>
 </ul>
 <h2 title="Annotation Type Hierarchy">Annotation Type Hierarchy</h2>
 <ul>
@@ -2403,8 +2472,10 @@
 <li type="circle">org.safs.net.<a href="org/safs/net/IHttpRequest.HttpCommand.html" title="enum in org.safs.net"><span class="strong">IHttpRequest.HttpCommand</span></a></li>
 <li type="circle">org.safs.net.<a href="org/safs/net/IHttpRequest.HttpHeader.html" title="enum in org.safs.net"><span class="strong">IHttpRequest.HttpHeader</span></a></li>
 <li type="circle">org.safs.net.<a href="org/safs/net/IHttpRequest.HttpResponseStatus.html" title="enum in org.safs.net"><span class="strong">IHttpRequest.HttpResponseStatus</span></a></li>
+<li type="circle">org.safs.persist.<a href="org/safs/persist/PersistenceType.html" title="enum in org.safs.persist"><span class="strong">PersistenceType</span></a></li>
 <li type="circle">org.safs.selenium.webdriver.lib.interpreter.<a href="org/safs/selenium/webdriver/lib/interpreter/WDLocator.WDType.html" title="enum in org.safs.selenium.webdriver.lib.interpreter"><span class="strong">WDLocator.WDType</span></a></li>
 <li type="circle">org.safs.selenium.webdriver.lib.interpreter.selrunner.steptype.<a href="org/safs/selenium/webdriver/lib/interpreter/selrunner/steptype/Select.WDType.html" title="enum in org.safs.selenium.webdriver.lib.interpreter.selrunner.steptype"><span class="strong">Select.WDType</span></a></li>
+<li type="circle">org.safs.text.<a href="org/safs/text/FileUtilities.FileType.html" title="enum in org.safs.text"><span class="strong">FileUtilities.FileType</span></a></li>
 <li type="circle">org.safs.text.<a href="org/safs/text/FileUtilities.FilterMode.html" title="enum in org.safs.text"><span class="strong">FileUtilities.FilterMode</span></a></li>
 <li type="circle">org.safs.text.<a href="org/safs/text/FileUtilities.PatternFilterMode.html" title="enum in org.safs.text"><span class="strong">FileUtilities.PatternFilterMode</span></a></li>
 <li type="circle">org.safs.text.<a href="org/safs/text/FileUtilities.ImageFilterMode.html" title="enum in org.safs.text"><span class="strong">FileUtilities.ImageFilterMode</span></a></li>

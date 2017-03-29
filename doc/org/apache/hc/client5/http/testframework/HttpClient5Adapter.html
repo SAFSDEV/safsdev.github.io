@@ -101,6 +101,9 @@
 <br>
 <pre>public class <span class="strong">HttpClient5Adapter</span>
 extends <a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html" title="class in org.apache.hc.client5.http.testframework">HttpClientPOJOAdapter</a></pre>
+<div class="block">Implementation of <a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html" title="class in org.apache.hc.client5.http.testframework"><code>HttpClientPOJOAdapter</code></a> for Apache HttpClient5.</div>
+<dl><dt><span class="strong">Since:</span></dt>
+  <dd>5.0</dd></dl>
 </li>
 </ul>
 </div>
@@ -154,7 +157,13 @@ extends <a href="../../../../../../org/apache/hc/client5/http/testframework/Http
 <tr class="altColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClient5Adapter.html#execute(java.lang.String,%20java.util.Map)">execute</a></strong>(java.lang.String&nbsp;defaultURI,
-       java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;request)</code>&nbsp;</td>
+       java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;request)</code></td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClient5Adapter.html#getClientName()">getClientName</a></strong>()</code>
+<div class="block">Name of the HTTP Client that this adapter uses.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -205,7 +214,7 @@ extends <a href="../../../../../../org/apache/hc/client5/http/testframework/Http
 <a name="execute(java.lang.String, java.util.Map)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>execute</h4>
 <pre>public&nbsp;java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;execute(java.lang.String&nbsp;defaultURI,
@@ -216,6 +225,20 @@ extends <a href="../../../../../../org/apache/hc/client5/http/testframework/Http
 <dd><code><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#execute(java.lang.String,%20java.util.Map)">execute</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html" title="class in org.apache.hc.client5.http.testframework">HttpClientPOJOAdapter</a></code></dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd></dl>
+</li>
+</ul>
+<a name="getClientName()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getClientName</h4>
+<pre>public&nbsp;java.lang.String&nbsp;getClientName()</pre>
+<div class="block">Name of the HTTP Client that this adapter uses.</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html#getClientName()">getClientName</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/apache/hc/client5/http/testframework/HttpClientPOJOAdapter.html" title="class in org.apache.hc.client5.http.testframework">HttpClientPOJOAdapter</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>name of the HTTP Client.</dd></dl>
 </li>
 </ul>
 </li>
