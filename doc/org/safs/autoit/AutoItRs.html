@@ -101,23 +101,23 @@ extends java.lang.Object</pre>
  Currently supported:
  <pre>
  Window Recognition:
- 
+
    windowName=":AUTOIT:title=Window Title"
    windowName=":autoit:caption=Window Title"
    windowName=":AutoIt:text=Window Title"
 
  Note: the case-insensitive ":autoit:" prefix MUST appear in Window RS and will be removed as needed.
- 
+
  Child Control Recognition:
- 
+
    childName=":AutoIt:text=Some Text"
    childName="text=Some Text"
    childName="id=ID"
    childName="class=class name"
-   childName="id=some id;class=class name" 
-   childName="class=class name;instance=8" 
+   childName="id=some id;class=class name"
+   childName="class=class name;instance=8"
    childName="caption=MDI Caption;id=theControlID"  (future)
-   
+
  Note: the case-insensitive ":autoit:" prefix CAN appear in Control RS and will be removed if present.
   </pre></div>
 <dl><dt><span class="strong">Author:</span></dt>
@@ -428,7 +428,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;boolean&nbsp;isAutoitBasedRecognition(java.lang.String&nbsp;recognition)</pre>
 <div class="block">Attempt to determine if recognition string is for autoit testing</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>recognition</code> - -- recognition, usually from App Map</dd>
-<dt><span class="strong">Returns:</span></dt><dd>true if it contains elements of autoit testing recognition.  
+<dt><span class="strong">Returns:</span></dt><dd>true if it contains elements of autoit testing recognition.
  Primarily, that is startsWith the :autoit: prefix.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/autoit/AutoItRs.html#AUTOIT_PREFIX"><code>AUTOIT_PREFIX</code></a></dd></dl>
 </li>
 </ul>

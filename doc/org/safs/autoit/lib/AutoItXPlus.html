@@ -101,10 +101,10 @@
 <br>
 <pre>public class <span class="strong">AutoItXPlus</span>
 extends autoitx4java.AutoItX</pre>
-<div class="block"><a href="https://www.autoitscript.com/site/autoit/downloads/"> AutoIt/AutoItX </a> is the DLL/COM control, which can be used by different programming 
- languages to access AutoIt through COM objects. Currently, 3rd part Java JAR <a href="https://github.com/accessrichard/autoitx4java"> autoitx4java </a> 
- has provided one java version AutoItX object by using JACOB to access this AutoIt/AutoItX COM object. It gives many common Java APIs to use AutoIt functionalities, 
- but still lacks of APIs like "Ctrl + Click", "Alt + Click" to support SAFS keywords. Thus it requires creating SAFS version 'AutoItXPlus', which extends from 
+<div class="block"><a href="https://www.autoitscript.com/site/autoit/downloads/"> AutoIt/AutoItX </a> is the DLL/COM control, which can be used by different programming
+ languages to access AutoIt through COM objects. Currently, 3rd part Java JAR <a href="https://github.com/accessrichard/autoitx4java"> autoitx4java </a>
+ has provided one java version AutoItX object by using JACOB to access this AutoIt/AutoItX COM object. It gives many common Java APIs to use AutoIt functionalities,
+ but still lacks of APIs like "Ctrl + Click", "Alt + Click" to support SAFS keywords. Thus it requires creating SAFS version 'AutoItXPlus', which extends from
  'autoitx4java/AutoItX', to access AutoIt functionalities through AutoIt/AutoItX COM object.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Tao Xie</dd></dl>
@@ -345,7 +345,7 @@ extends autoitx4java.AutoItX</pre>
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/autoit/lib/AutoItXPlus.html#supportHoldingKeyPress(java.lang.String)">supportHoldingKeyPress</a></strong>(java.lang.String&nbsp;keyStr)</code>
 <div class="block">According to https://www.autoitscript.com/autoit3/docs/functions/Send.htm, AutoIt supports
- 5 keys pairs: 
+ 5 keys pairs:
                 1.</div>
 </td>
 </tr>
@@ -682,11 +682,11 @@ extends autoitx4java.AutoItX</pre>
 <h4>supportHoldingKeyPress</h4>
 <pre>public&nbsp;boolean&nbsp;supportHoldingKeyPress(java.lang.String&nbsp;keyStr)</pre>
 <div class="block">According to https://www.autoitscript.com/autoit3/docs/functions/Send.htm, AutoIt supports
- 5 keys pairs: 
+ 5 keys pairs:
                 1. Alt:                                 {ALTDOWN}/{ALTUP},
-                2. Shift:                               {SHIFTDOWN}/{SHIFTUP}, 
-                3. Ctrl:                                {CTRLDOWN}/{CTRLUP}, 
-                4. Left Windows key:    {LWINDOWN}/{LWINUP}, 
+                2. Shift:                               {SHIFTDOWN}/{SHIFTUP},
+                3. Ctrl:                                {CTRLDOWN}/{CTRLUP},
+                4. Left Windows key:    {LWINDOWN}/{LWINUP},
                 5. Right Windows key:   {RWINDOWN}/{RWINUP}
  Check if the key string belongs to one of these supported pressing keyword.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>keyStr</code> - String,</dd>
@@ -733,7 +733,7 @@ extends autoitx4java.AutoItX</pre>
 <pre>public&nbsp;int&nbsp;autoit2JavaSpecialKey(java.lang.String&nbsp;autoitSpecialKey)
                           throws <a href="../../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Transform AutoIt Special Key RS into Java key code.
- 
+
  Currently, it supports only 4 special keys: Alt, Shift, Ctrl and Windows.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoitSpecialKey</code> - String, AutoIt supported special key.</dd>
 <dt><span class="strong">Returns:</span></dt><dd></dd>
@@ -755,7 +755,7 @@ extends autoitx4java.AutoItX</pre>
                  java.lang.String&nbsp;specialKey)
                    throws java.lang.Exception</pre>
 <div class="block">Workhorse of Java AWT Robot click action.
- 
+
  Click by using Robot click.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>x</code> - int,    absolute screen x coordinate of component.</dd><dd><code>y</code> - int,    absolute screen y coordinate of component.</dd><dd><code>button</code> - String, button to click, "left", "right" or "middle".</dd><dd><code>nClicks</code> - int,    number of times to click the mouse. It's supposed to be greater than or equal to 1.</dd><dd><code>offset</code> - Point,  position to click within the control. It can be null or empty String. Default value is center.</dd><dd><code>specialKey</code> - String, keyboard key that be hold when click action happening. It can be null or empty String.</dd>
 <dt><span class="strong">Returns:</span></dt><dd></dd>
@@ -803,9 +803,9 @@ extends autoitx4java.AutoItX</pre>
             java.awt.Point&nbsp;offset,
             java.lang.String&nbsp;specialKey)</pre>
 <div class="block">Workhorse of click action.
- 
- It'll first use Java AWT Robot click call first, and then use AutoIt API to click if previous click action failed. 
- 
+
+ It'll first use Java AWT Robot click call first, and then use AutoIt API to click if previous click action failed.
+
  Provide click action through command sending with. It can be assigned mouse button like 'left, middle, right', number of click times, click offset
  position and the special key holding when clicking.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>title</code> - String, title of the window to access.</dd><dd><code>text</code> - String, text of the window to access.</dd><dd><code>controlID</code> - String, control to interact with.</dd><dd><code>button</code> - String, button to click, "left", "right" or "middle".</dd><dd><code>nClicks</code> - int,    number of times to click the mouse. It's supposed to be greater than or equal to 1.</dd><dd><code>offset</code> - Point,  position to click within the control. It can be null or empty String. Default value is center.</dd><dd><code>specialKey</code> - String, keyboard key that be hold when click action happening. It can be null or empty String.</dd>

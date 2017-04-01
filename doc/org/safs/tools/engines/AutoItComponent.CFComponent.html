@@ -436,8 +436,8 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
 <h4>process</h4>
 <pre>public&nbsp;void&nbsp;process()</pre>
 <div class="block">Process the record present in the provided testRecordData.
- 
- Tao Xie Note: 
+
+ Tao Xie Note:
      Add '@Override' annotation.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
@@ -555,8 +555,8 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
          java.awt.Point&nbsp;offset,
          java.lang.String&nbsp;specialKey)</pre>
 <div class="block">Workhorse of AutoIt click routine.
- It allows us to use specified 'mouse button' to click target component at assigned position with a number of times.  
- 
+ It allows us to use specified 'mouse button' to click target component at assigned position with a number of times.
+
  Note: at current stage, we don't support the parameter 'text' in AutoIt's API controlClick: https://www.autoitscript.com/autoit3/docs/functions/ControlClick.htm .
        We just treat parameter 'text' as empty string.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>autoArgs</code> - AutoItRs,       AutoIt engine's recognition string.</dd><dd><code>mouseButton</code> - String,         the button to click, "left", "right", or "middle". Default is the left button, which means if mouseButton is null or empty,
@@ -572,7 +572,7 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
 <pre>@Deprecated
 protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;ars)</pre>
 <div class="block"><span class="strong">Deprecated.</span>&nbsp;</div>
-<div class="block">SEP 23, 2016 Tao Xie,    It's better to use the same click() workhorse for consistency. 
+<div class="block">SEP 23, 2016 Tao Xie,    It's better to use the same click() workhorse for consistency.
                                                 Depreciate this original implementation.</div>
 </li>
 </ul>
@@ -584,7 +584,7 @@ protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.htm
 <h4>setText</h4>
 <pre>protected&nbsp;void&nbsp;setText(<a href="../../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a>&nbsp;ars)</pre>
 <div class="block">Send keyboard input to the current input focus target.
- The command does not attempt to change keyboard focus from 
+ The command does not attempt to change keyboard focus from
  where it already is.</div>
 </li>
 </ul>
