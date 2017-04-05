@@ -84,6 +84,7 @@
 <li><a href="org/safs/auth/package-tree.html">org.safs.auth</a>, </li>
 <li><a href="org/safs/autoit/package-tree.html">org.safs.autoit</a>, </li>
 <li><a href="org/safs/autoit/lib/package-tree.html">org.safs.autoit.lib</a>, </li>
+<li><a href="org/safs/autoit/test/package-tree.html">org.safs.autoit.test</a>, </li>
 <li><a href="org/safs/control/package-tree.html">org.safs.control</a>, </li>
 <li><a href="org/safs/control/swing/package-tree.html">org.safs.control.swing</a>, </li>
 <li><a href="org/safs/cukes/package-tree.html">org.safs.cukes</a>, </li>
@@ -435,7 +436,9 @@
 </li>
 <li type="circle">org.safs.model.examples.embedded.include.<a href="org/safs/model/examples/embedded/include/ATest.html" title="class in org.safs.model.examples.embedded.include"><span class="strong">ATest</span></a> (implements org.safs.model.tools.<a href="org/safs/model/tools/EmbeddedHookDriverRunnerAware.html" title="interface in org.safs.model.tools">EmbeddedHookDriverRunnerAware</a>)</li>
 <li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoIt.html" title="class in org.safs.autoit"><span class="strong">AutoIt</span></a></li>
-<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit"><span class="strong">AutoItRs</span></a></li>
+<li type="circle">org.safs.autoit.lib.<a href="org/safs/autoit/lib/AutoItLib.html" title="class in org.safs.autoit.lib"><span class="strong">AutoItLib</span></a></li>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit"><span class="strong">AutoItRs</span></a> (implements org.safs.autoit.<a href="org/safs/autoit/IAutoItRs.html" title="interface in org.safs.autoit">IAutoItRs</a>)</li>
+<li type="circle">org.safs.autoit.test.<a href="org/safs/autoit/test/AutoItRsTest.html" title="class in org.safs.autoit.test"><span class="strong">AutoItRsTest</span></a></li>
 <li type="circle">autoitx4java.AutoItX
 <ul>
 <li type="circle">org.safs.autoit.lib.<a href="org/safs/autoit/lib/AutoItXPlus.html" title="class in org.safs.autoit.lib"><span class="strong">AutoItXPlus</span></a></li>
@@ -651,6 +654,7 @@
 </li>
 </ul>
 </li>
+<li type="circle">org.safs.<a href="org/safs/Constants.AutoItConstants.html" title="class in org.safs"><span class="strong">Constants.AutoItConstants</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/Constants.BrowserConstants.html" title="class in org.safs"><span class="strong">Constants.BrowserConstants</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/Constants.JSONConstants.html" title="class in org.safs"><span class="strong">Constants.JSONConstants</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/Constants.RestConstants.html" title="class in org.safs"><span class="strong">Constants.RestConstants</span></a></li>
@@ -1297,6 +1301,16 @@
 <li type="circle">org.safs.persist.<a href="org/safs/persist/PersistableDefault.html" title="class in org.safs.persist"><span class="strong">PersistableDefault</span></a> (implements org.safs.persist.<a href="org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a>, org.safs.<a href="org/safs/Printable.html" title="interface in org.safs">Printable</a>)
 <ul>
 <li type="circle">org.safs.auth.<a href="org/safs/auth/AuthorizationServer.html" title="class in org.safs.auth"><span class="strong">AuthorizationServer</span></a></li>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.DefaultRecognizable.html" title="class in org.safs.autoit"><span class="strong">AutoItRs.DefaultRecognizable</span></a> (implements org.safs.autoit.<a href="org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit">AutoItRs.Recognizable</a>)
+<ul>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html" title="class in org.safs.autoit"><span class="strong">AutoItRs.DefaultRecognizableAutoIt</span></a>
+<ul>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.Control.html" title="class in org.safs.autoit"><span class="strong">AutoItRs.Control</span></a></li>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.Window.html" title="class in org.safs.autoit"><span class="strong">AutoItRs.Window</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li type="circle">org.safs.auth.<a href="org/safs/auth/Content.html" title="class in org.safs.auth"><span class="strong">Content</span></a></li>
 <li type="circle">org.safs.auth.<a href="org/safs/auth/OAuth2.html" title="class in org.safs.auth"><span class="strong">OAuth2</span></a> (implements org.safs.auth.<a href="org/safs/auth/Auth.html" title="interface in org.safs.auth">Auth</a>)</li>
 <li type="circle">org.safs.persist.test.<a href="org/safs/persist/test/PersistTest.MyPersistable.html" title="class in org.safs.persist.test"><span class="strong">PersistTest.MyPersistable</span></a></li>
@@ -2194,6 +2208,7 @@
 </li>
 <li type="circle">org.safs.jvmagent.<a href="org/safs/jvmagent/AlternateAncestorUser.html" title="interface in org.safs.jvmagent"><span class="strong">AlternateAncestorUser</span></a></li>
 <li type="circle">org.safs.auth.<a href="org/safs/auth/Auth.html" title="interface in org.safs.auth"><span class="strong">Auth</span></a></li>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><span class="strong">AutoItRs.Recognizable</span></a></li>
 <li type="circle">com.jayway.android.robotium.remotecontrol.client.processor.<a href="com/jayway/android/robotium/remotecontrol/client/processor/CacheReferenceInterface.html" title="interface in com.jayway.android.robotium.remotecontrol.client.processor"><span class="strong">CacheReferenceInterface</span></a></li>
 <li type="circle">com.sun.jna.Callback
 <ul>
@@ -2256,6 +2271,7 @@
 </li>
 <li type="circle">org.safs.staf.embedded.<a href="org/safs/staf/embedded/HandleInterface.html" title="interface in org.safs.staf.embedded"><span class="strong">HandleInterface</span></a></li>
 <li type="circle">org.safs.<a href="org/safs/HookConfig.html" title="interface in org.safs"><span class="strong">HookConfig</span></a></li>
+<li type="circle">org.safs.autoit.<a href="org/safs/autoit/IAutoItRs.html" title="interface in org.safs.autoit"><span class="strong">IAutoItRs</span></a></li>
 <li type="circle">org.safs.net.<a href="org/safs/net/IHttpRequest.html" title="interface in org.safs.net"><span class="strong">IHttpRequest</span></a></li>
 <li type="circle">org.safs.image.<a href="org/safs/image/ImageManager2.Linkable.html" title="interface in org.safs.image"><span class="strong">ImageManager2.Linkable</span></a></li>
 <li type="circle">org.safs.tools.input.<a href="org/safs/tools/input/InputInterface.html" title="interface in org.safs.tools.input"><span class="strong">InputInterface</span></a></li>

@@ -98,7 +98,7 @@
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../org/safs/auth/AuthorizationServer.html" title="class in org.safs.auth">AuthorizationServer</a>, <a href="../../../org/safs/auth/Content.html" title="class in org.safs.auth">Content</a>, <a href="../../../org/safs/auth/OAuth2.html" title="class in org.safs.auth">OAuth2</a>, <a href="../../../org/safs/persist/test/PersistTest.MyPersistable.html" title="class in org.safs.persist.test">PersistTest.MyPersistable</a>, <a href="../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service">Request</a>, <a href="../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a>, <a href="../../../org/safs/auth/SimpleAuth.html" title="class in org.safs.auth">SimpleAuth</a></dd>
+<dd><a href="../../../org/safs/auth/AuthorizationServer.html" title="class in org.safs.auth">AuthorizationServer</a>, <a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizable</a>, <a href="../../../org/safs/auth/Content.html" title="class in org.safs.auth">Content</a>, <a href="../../../org/safs/auth/OAuth2.html" title="class in org.safs.auth">OAuth2</a>, <a href="../../../org/safs/persist/test/PersistTest.MyPersistable.html" title="class in org.safs.persist.test">PersistTest.MyPersistable</a>, <a href="../../../org/safs/rest/service/Request.html" title="class in org.safs.rest.service">Request</a>, <a href="../../../org/safs/rest/service/Response.html" title="class in org.safs.rest.service">Response</a>, <a href="../../../org/safs/auth/SimpleAuth.html" title="class in org.safs.auth">SimpleAuth</a></dd>
 </dl>
 <hr>
 <br>
@@ -134,8 +134,20 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#FAILED_RETRIEVE_VALUE">FAILED_RETRIEVE_VALUE</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#fieldNameToPersistKeyMap">fieldNameToPersistKeyMap</a></strong></code>
+<div class="block">a cache holding the Map of (fieldName, persistKey)</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a></code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#parent">parent</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected java.util.Map&lt;java.lang.String,java.lang.Object&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#persistKeyToFieldValueMap">persistKeyToFieldValueMap</a></strong></code>
+<div class="block">a cache holding the Map of (persistKey, fieldValue)</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected int</code></td>
@@ -360,6 +372,26 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
 <h4>FAILED_RETRIEVE_VALUE</h4>
 <pre>protected static final&nbsp;java.lang.String FAILED_RETRIEVE_VALUE</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.persist.PersistableDefault.FAILED_RETRIEVE_VALUE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="fieldNameToPersistKeyMap">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fieldNameToPersistKeyMap</h4>
+<pre>protected&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt; fieldNameToPersistKeyMap</pre>
+<div class="block">a cache holding the Map of (fieldName, persistKey)</div>
+</li>
+</ul>
+<a name="persistKeyToFieldValueMap">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>persistKeyToFieldValueMap</h4>
+<pre>protected&nbsp;java.util.Map&lt;java.lang.String,java.lang.Object&gt; persistKeyToFieldValueMap</pre>
+<div class="block">a cache holding the Map of (persistKey, fieldValue)</div>
 </li>
 </ul>
 <a name="enabled">

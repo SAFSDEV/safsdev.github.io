@@ -18,6 +18,7 @@ org.safs.android.remotecontrol
 org.safs.auth
 org.safs.autoit
 org.safs.autoit.lib
+org.safs.autoit.test
 org.safs.control
 org.safs.control.swing
 org.safs.cukes
