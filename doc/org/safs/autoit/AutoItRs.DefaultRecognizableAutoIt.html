@@ -287,13 +287,23 @@ extends <a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" tit
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html#rsKeyToProperty(java.lang.String)">rsKeyToProperty</a></strong>(java.lang.String&nbsp;rsKey)</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html#rsKeyToProperty(java.lang.String)">rsKeyToProperty</a></strong>(java.lang.String&nbsp;rsKey)</code>
+<div class="block">Convert the rsKey to the class real property name.</div>
+</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html#setField(java.lang.String,%20java.lang.Object)">setField</a></strong>(java.lang.String&nbsp;rsKey,
+        java.lang.Object&nbsp;value)</code>
+<div class="block">Set the field's value of this Persistable object to the persist-key.<br/>
+ The field name can be got from <a href="../../../org/safs/persist/Persistable.html#getPersitableFields()"><code>Persistable.getPersitableFields()</code></a> according to the persist-key, then the value will be set to that field.<br/></div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html#setText(java.lang.String)">setText</a></strong>(java.lang.String&nbsp;rs_gen_text)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html#toString()">toString</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -310,7 +320,7 @@ extends <a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" tit
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.safs.persist.<a href="../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a></h3>
-<code><a href="../../../org/safs/persist/PersistableDefault.html#equals(java.lang.Object)">equals</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getContents()">getContents</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getContents(java.util.Map,%20java.util.Set,%20boolean)">getContents</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getField(java.lang.String)">getField</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getFlatKey()">getFlatKey</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getParent()">getParent</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getTabulation()">getTabulation</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getTagName(java.lang.String)">getTagName</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getThreshold()">getThreshold</a>, <a href="../../../org/safs/persist/PersistableDefault.html#isEnabled()">isEnabled</a>, <a href="../../../org/safs/persist/PersistableDefault.html#isIgnoredContentCache()">isIgnoredContentCache</a>, <a href="../../../org/safs/persist/PersistableDefault.html#isThresholdEnabled()">isThresholdEnabled</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setEnabled(boolean)">setEnabled</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setField(java.lang.String,%20java.lang.Object)">setField</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setIgnoredContentCache(boolean)">setIgnoredContentCache</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setParent(org.safs.persist.Persistable)">setParent</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setTabulation(int)">setTabulation</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setThreshold(int)">setThreshold</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setThresholdEnabled(boolean)">setThresholdEnabled</a></code></li>
+<code><a href="../../../org/safs/persist/PersistableDefault.html#equals(java.lang.Object)">equals</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getContents()">getContents</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getContents(java.util.Map,%20java.util.Set,%20boolean)">getContents</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getField(java.lang.String)">getField</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getFlatKey()">getFlatKey</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getParent()">getParent</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getTabulation()">getTabulation</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getTagName(java.lang.String)">getTagName</a>, <a href="../../../org/safs/persist/PersistableDefault.html#getThreshold()">getThreshold</a>, <a href="../../../org/safs/persist/PersistableDefault.html#isEnabled()">isEnabled</a>, <a href="../../../org/safs/persist/PersistableDefault.html#isIgnoredContentCache()">isIgnoredContentCache</a>, <a href="../../../org/safs/persist/PersistableDefault.html#isThresholdEnabled()">isThresholdEnabled</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setEnabled(boolean)">setEnabled</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setIgnoredContentCache(boolean)">setIgnoredContentCache</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setParent(org.safs.persist.Persistable)">setParent</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setTabulation(int)">setTabulation</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setThreshold(int)">setThreshold</a>, <a href="../../../org/safs/persist/PersistableDefault.html#setThresholdEnabled(boolean)">setThresholdEnabled</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -470,6 +480,26 @@ extends <a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" tit
 </dl>
 </li>
 </ul>
+<a name="setField(java.lang.String, java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setField</h4>
+<pre>public&nbsp;boolean&nbsp;setField(java.lang.String&nbsp;rsKey,
+               java.lang.Object&nbsp;value)</pre>
+<div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../org/safs/persist/Persistable.html#setField(java.lang.String,%20java.lang.Object)">Persistable</a></code></strong></div>
+<div class="block">Set the field's value of this Persistable object to the persist-key.<br/>
+ The field name can be got from <a href="../../../org/safs/persist/Persistable.html#getPersitableFields()"><code>Persistable.getPersitableFields()</code></a> according to the persist-key, then the value will be set to that field.<br/></div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../org/safs/persist/Persistable.html#setField(java.lang.String,%20java.lang.Object)">setField</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a></code></dd>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../org/safs/persist/PersistableDefault.html#setField(java.lang.String,%20java.lang.Object)">setField</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>rsKey</code> - String, the persist-key (it can be tag-name in XML, key-string in JSON etc.). refer to <a href="../../../org/safs/persist/Persistable.html#getPersitableFields()"><code>Persistable.getPersitableFields()</code></a>.</dd><dd><code>value</code> - Object, the value to set</dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean true if successful.</dd></dl>
+</li>
+</ul>
 <a name="getRecognizableFields()">
 <!--   -->
 </a>
@@ -492,8 +522,9 @@ extends <a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" tit
 <li class="blockList">
 <h4>rsKeyToProperty</h4>
 <pre>protected&nbsp;java.lang.String&nbsp;rsKeyToProperty(java.lang.String&nbsp;rsKey)</pre>
+<div class="block">Convert the rsKey to the class real property name.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>rsKey</code> - String, the key name in original RS, such as 'title', 'Title', 'TITLE'.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>String, the property name.</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>String, the class real property name.</dd></dl>
 </li>
 </ul>
 <a name="appendEngineRS(java.lang.StringBuilder, java.lang.String, java.lang.Object)">

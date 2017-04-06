@@ -205,11 +205,16 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#afterParse()">afterParse</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#afterParse()">afterParse</a></strong>()</code>
+<div class="block">Do some thing after parsing the raw recognition string.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#beforeParse()">beforeParse</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#beforeParse()">beforeParse</a></strong>()</code>
+<div class="block">Do some thing before parsing the raw recognition string.<br/>
+ For example, remove some prefix/suffix or remove leading/ending spaces etc.<br/></div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
@@ -232,7 +237,8 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 <tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getRawRS()">getRawRS</a></strong>()</code>
-<div class="block">This raw Recognition String is SAFS specific.</div>
+<div class="block">This raw Recognition String is provided by user, it can be in SAFS format,
+  engine format, or any other format which will be parsed into engine RS.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -247,7 +253,9 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#parsing()">parsing</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#parsing()">parsing</a></strong>()</code>
+<div class="block">Parse the raw recognition string so that the engine RS will be produced.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -349,7 +357,8 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 <h4>getRawRS</h4>
 <pre>public&nbsp;java.lang.String&nbsp;getRawRS()</pre>
 <div class="block"><strong>Description copied from interface:&nbsp;<code><a href="../../../org/safs/autoit/AutoItRs.Recognizable.html#getRawRS()">AutoItRs.Recognizable</a></code></strong></div>
-<div class="block">This raw Recognition String is SAFS specific.</div>
+<div class="block">This raw Recognition String is provided by user, it can be in SAFS format,
+  engine format, or any other format which will be parsed into engine RS.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../org/safs/autoit/AutoItRs.Recognizable.html#getRawRS()">getRawRS</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit">AutoItRs.Recognizable</a></code></dd>
@@ -411,6 +420,8 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 <li class="blockList">
 <h4>beforeParse</h4>
 <pre>protected&nbsp;void&nbsp;beforeParse()</pre>
+<div class="block">Do some thing before parsing the raw recognition string.<br/>
+ For example, remove some prefix/suffix or remove leading/ending spaces etc.<br/></div>
 </li>
 </ul>
 <a name="parsing()">
@@ -420,6 +431,7 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 <li class="blockList">
 <h4>parsing</h4>
 <pre>protected&nbsp;void&nbsp;parsing()</pre>
+<div class="block">Parse the raw recognition string so that the engine RS will be produced.</div>
 </li>
 </ul>
 <a name="afterParse()">
@@ -429,6 +441,7 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 <li class="blockList">
 <h4>afterParse</h4>
 <pre>protected&nbsp;void&nbsp;afterParse()</pre>
+<div class="block">Do some thing after parsing the raw recognition string.</div>
 </li>
 </ul>
 <a name="getPersitableFields()">

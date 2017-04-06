@@ -185,17 +185,26 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#compile(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">compile</a></strong>(java.lang.String&nbsp;classnames,
+       java.lang.String&nbsp;sourceDIR,
+       java.lang.String&nbsp;outDIR,
+       java.lang.String&nbsp;useClasspath)</code>
+<div class="block">Compile java and/or groovy source code.<br></div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#equals(java.lang.Object,%20java.lang.Object)">equals</a></strong>(java.lang.Object&nbsp;value1,
       java.lang.Object&nbsp;value2)</code>
 <div class="block">Compare 2 objects even they are multiple-dimension arrays.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object[]</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#getArray(java.lang.Object)">getArray</a></strong>(java.lang.Object&nbsp;array)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#getMapValue(java.util.Map,%20java.lang.Object,%20java.lang.Object)">getMapValue</a></strong>(java.util.Map&lt;?,?&gt;&nbsp;map,
            java.lang.Object&nbsp;key,
@@ -204,28 +213,28 @@ extends java.lang.Object</pre>
  If the map is null or the value is null, then return the default value.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#getNumLock()">getNumLock</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#main(java.lang.String[])">main</a></strong>(java.lang.String[]&nbsp;params)</code>
 <div class="block">java -ea org.safs.Utils</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#parseValue(java.lang.Class,%20java.lang.Object)">parseValue</a></strong>(java.lang.Class&lt;?&gt;&nbsp;expectedType,
           java.lang.Object&nbsp;value)</code>
 <div class="block">Convert the parameter 'value' to an appropriate Object according to the expectedType.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#setNumLock(boolean)">setNumLock</a></strong>(boolean&nbsp;onOff)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#toString(java.lang.Object)">toString</a></strong>(java.lang.Object&nbsp;object)</code>
 <div class="block">Convert an Object to a string, even this object is a multiple dimension array.</div>
@@ -372,13 +381,32 @@ extends java.lang.Object</pre>
    + <a href="../../org/safs/Utils.html#DEFAULT_SOURCE_DIRECTORY">"src"</a> (source files folder)
       + package1
       + package2
-   + <a href="../../org/safs/Utils.html#DEFAULT_OUTPUT_DIRECTORY">"bin"</a> (compiled classes go into this folder)
+   + <a href="../../org/safs/Utils.html#DEFAULT_OUTPUT_DIRECTORY">"bin"</a> (compiled classes go into this folder--which will be created if not already present.)
  </pre></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>classnames</code> - String, the class names to compile separated by space, such as my.package.ClassA my.pack2.ClassB<br>
                            this parameter could be mixed with java and groovy class.<br>
                            <b>Note:</b> For groovy, we have to specify all dependency classes in order.<br></dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code> - if the compilation failed.</dd></dl>
+<dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code> - if the compilation failed for any reason--including bad parameter values.</dd></dl>
+</li>
+</ul>
+<a name="compile(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>compile</h4>
+<pre>public static&nbsp;void&nbsp;compile(java.lang.String&nbsp;classnames,
+           java.lang.String&nbsp;sourceDIR,
+           java.lang.String&nbsp;outDIR,
+           java.lang.String&nbsp;useClasspath)
+                    throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
+<div class="block">Compile java and/or groovy source code.<br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>classnames</code> - String, the class names to compile separated by space, such as my.package.ClassA my.pack2.ClassB<br>
+                           this parameter could be mixed with java and groovy class.<br>
+                           <b>Note:</b> For groovy, we have to specify all dependency classes in order.<br></dd><dd><code>sourceDIR</code> - String, the root directory off which the sourcecode files reside.<br></dd><dd><code>outDIR</code> - String, the root directory off which the compiled classes will be stored. The directory will be created, if necessary.<br></dd><dd><code>useClasspath</code> - String, the semi-colon separated CLASSPATH to be used for the compile.<br></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code> - if the compilation failed for any reason--including bad parameter values.</dd></dl>
 </li>
 </ul>
 <a name="getMapValue(java.util.Map, java.lang.Object, java.lang.Object)">
