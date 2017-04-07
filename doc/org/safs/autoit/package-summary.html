@@ -75,7 +75,9 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit">AutoItRs.Recognizable</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This interface represents something can be used by automation tool to find AUT's window or component.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/IAutoItRs.html" title="interface in org.safs.autoit">IAutoItRs</a></td>
@@ -101,27 +103,39 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/AutoItRs.html" title="class in org.safs.autoit">AutoItRs</a></td>
 <td class="colLast">
-<div class="block">Class to handle recognition string parsing for the AutoIt engine.<br/>
- Window Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsadvanced.htm">AUTOIT engine window's RS</a>.<br/>
- Child Control Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/controls.htm">AUTOIT engine control's RS</a>.<br/>
- The TEXT in Window Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsbasic.htm#specialtext">Window Text</a>.<br/></div>
+<div class="block">Class to handle recognition-string-parsing for the AutoIt engine.<br/>
+ <b>Window Recognition String</b> will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsadvanced.htm"><b>AUTOIT window's RS</b></a>.<br/>
+ <b>Child Recognition String</b> will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/controls.htm"><b>AUTOIT control's RS</b></a>.<br/>
+ The <b>TEXT</b> in Window Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsbasic.htm#specialtext"><b>Window Text</b></a>.<br/></div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/AutoItRs.Control.html" title="class in org.safs.autoit">AutoItRs.Control</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">The AUTOIT Control object, the implementation of <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a></div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizable</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This class provides default implementation of interface <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a>.<br/>
+ As the field of name starting with <a href="../../../org/safs/Constants.AutoItConstants.html#PREFIX_PROPERTY_FOR_RS"><code>Constants.AutoItConstants.PREFIX_PROPERTY_FOR_RS</code></a>
+ will be used for generating recognition string, please avoid adding new fields of
+ name starting with <a href="../../../org/safs/Constants.AutoItConstants.html#PREFIX_PROPERTY_FOR_RS"><code>Constants.AutoItConstants.PREFIX_PROPERTY_FOR_RS</code></a> to this class
+ when refactoring this class.<br/></div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizableAutoIt</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">This class provides default implementation of interface <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a> for AUTOIT engine.<br/></div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../org/safs/autoit/AutoItRs.Window.html" title="class in org.safs.autoit">AutoItRs.Window</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">The AUTOIT Window object, the implementation of <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a></div>
+</td>
 </tr>
 </tbody>
 </table>

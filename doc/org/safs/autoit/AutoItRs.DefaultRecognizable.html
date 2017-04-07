@@ -114,6 +114,11 @@
 <pre>protected static class <span class="strong">AutoItRs.DefaultRecognizable</span>
 extends <a href="../../../org/safs/persist/PersistableDefault.html" title="class in org.safs.persist">PersistableDefault</a>
 implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit">AutoItRs.Recognizable</a></pre>
+<div class="block">This class provides default implementation of interface <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a>.<br/>
+ As the field of name starting with <a href="../../../org/safs/Constants.AutoItConstants.html#PREFIX_PROPERTY_FOR_RS"><code>Constants.AutoItConstants.PREFIX_PROPERTY_FOR_RS</code></a>
+ will be used for generating recognition string, please avoid adding new fields of
+ name starting with <a href="../../../org/safs/Constants.AutoItConstants.html#PREFIX_PROPERTY_FOR_RS"><code>Constants.AutoItConstants.PREFIX_PROPERTY_FOR_RS</code></a> to this class
+ when refactoring this class.<br/></div>
 </li>
 </ul>
 </div>
@@ -224,7 +229,7 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.util.Set&lt;java.lang.String&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getIgnoredRecognizableFields()">getIgnoredRecognizableFields</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getNonRecognizableFields()">getNonRecognizableFields</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
@@ -242,26 +247,30 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getRecognizableFields()">getRecognizableFields</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>protected java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getRecognizableFieldToRsKeyMap()">getRecognizableFieldToRsKeyMap</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getTopMostClassname()">getTopMostClassname</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#parseRawRS()">parseRawRS</a></strong>()</code>
 <div class="block">This method should parse the raw RS</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#parsing()">parsing</a></strong>()</code>
 <div class="block">Parse the raw recognition string so that the engine RS will be produced.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#setEngineRS(java.lang.String)">setEngineRS</a></strong>(java.lang.String&nbsp;engineRS)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#setRawRS(java.lang.String)">setRawRS</a></strong>(java.lang.String&nbsp;rawRS)</code>&nbsp;</td>
 </tr>
@@ -462,24 +471,35 @@ implements <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="
 <dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a Map containing a pair(fieldName, persistKey) to persist.</dd></dl>
 </li>
 </ul>
-<a name="getIgnoredRecognizableFields()">
+<a name="getTopMostClassname()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getIgnoredRecognizableFields</h4>
-<pre>protected&nbsp;java.util.Set&lt;java.lang.String&gt;&nbsp;getIgnoredRecognizableFields()</pre>
+<h4>getTopMostClassname</h4>
+<pre>protected&nbsp;java.lang.String&nbsp;getTopMostClassname()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>String, the name of the class representing the top most class to check recursively.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getPersitableFields()"><code>getPersitableFields()</code></a>, 
+<a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html#getNonRecognizableFields()"><code>getNonRecognizableFields()</code></a></dd></dl>
+</li>
+</ul>
+<a name="getNonRecognizableFields()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNonRecognizableFields</h4>
+<pre>protected&nbsp;java.util.Set&lt;java.lang.String&gt;&nbsp;getNonRecognizableFields()</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>Set<String>, a set containing the fields NOT for generating the "engine RS".</dd></dl>
 </li>
 </ul>
-<a name="getRecognizableFields()">
+<a name="getRecognizableFieldToRsKeyMap()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getRecognizableFields</h4>
-<pre>public&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;getRecognizableFields()</pre>
-<dl><dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a map containing the fields for generating the "engine RS".</dd></dl>
+<h4>getRecognizableFieldToRsKeyMap</h4>
+<pre>protected&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;getRecognizableFieldToRsKeyMap()</pre>
+<dl><dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a map containing the pairs of (field, RsKey) for generating the "engine RS".</dd></dl>
 </li>
 </ul>
 </li>

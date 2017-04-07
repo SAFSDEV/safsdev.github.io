@@ -101,17 +101,17 @@
 <pre>public class <span class="strong">AutoItRs</span>
 extends java.lang.Object
 implements <a href="../../../org/safs/autoit/IAutoItRs.html" title="interface in org.safs.autoit">IAutoItRs</a></pre>
-<div class="block">Class to handle recognition string parsing for the AutoIt engine.<br/>
- Window Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsadvanced.htm">AUTOIT engine window's RS</a>.<br/>
- Child Control Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/controls.htm">AUTOIT engine control's RS</a>.<br/>
- The TEXT in Window Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsbasic.htm#specialtext">Window Text</a>.<br/>
+<div class="block">Class to handle recognition-string-parsing for the AutoIt engine.<br/>
+ <b>Window Recognition String</b> will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsadvanced.htm"><b>AUTOIT window's RS</b></a>.<br/>
+ <b>Child Recognition String</b> will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/controls.htm"><b>AUTOIT control's RS</b></a>.<br/>
+ The <b>TEXT</b> in Window Recognition String will be converted to <a href="https://www.autoitscript.com/autoit3/docs/intro/windowsbasic.htm#specialtext"><b>Window Text</b></a>.<br/>
  <p>
  The recognition string is composed with pairs of <b>RsKey=value</b> separated by semi-colon <b>;</b> such as <b>key1=value;key2=value</b><br/>
  <br/>
 
  <b>Window Recognition</b>:<br/>
- Note: the case-insensitive "<b>:autoit:</b>" prefix MUST appear in Window RS and will be removed as needed.<br/>
- The window's <b>RS KEY</b> (case-insensitive) can be
+ Note: the case-insensitive "<b>:autoit:</b>" prefix MUST appear in Window RS and will be removed when parsing.<br/>
+ The window's <b>RsKey</b> (case-insensitive) can be
  <ul>
  <li><b>TITLE \ CAPTION</b> - Window title.<br/>
                    By default, The <b>TITLE</b> or <b>CAPTION</b> must be the beginning part of the title.
@@ -135,7 +135,7 @@ implements <a href="../../../org/safs/autoit/IAutoItRs.html" title="interface in
                    <li>Control text
                    <li>Misc text - sometimes you don't know what it is :)
                    </ul>
-                   When you specify the text parameter in a window function it is treated as a <b>substring</b>.<br/>
+                   When you specify the TEXT RsKey, it is treated as a <b>substring</b>.<br/>
                    <br/>
  <li><b>CLASS</b> - The internal window classname
  <li><b>REGEXPTITLE</b> - Window title using a regular expression
@@ -145,17 +145,17 @@ implements <a href="../../../org/safs/autoit/IAutoItRs.html" title="interface in
  <li><b>X</b> \ <b>Y</b> \ <b>W</b> \ <b>H</b> - The position and size of a window
  <li><b>INDEX \ INSTANCE</b> - The 1-based instance when all given properties match
  </ul>
-
+ <br/>
  <b>Child Control Recognition</b>:<br/>
- Note: the case-insensitive "<b>:autoit:</b>" prefix CAN appear in Control RS and will be removed if present.<br/>
- The control's <b>RS KEY</b> (case-insensitive) can be
+ Note: the case-insensitive "<b>:autoit:</b>" prefix CAN appear in Control RS and will be removed if present when parsing.<br/>
+ The control's <b>RsKey</b> (case-insensitive) can be
  <ul>
  <li><b>ID</b> - The internal control ID. The Control ID is the internal numeric identifier that windows gives to each control. It is generally the best method of identifying controls.
  <li><b>TEXT</b> - The text on a control, for example "&Next" on a button
  <li><b>CLASS</b> - The internal control classname such as "Edit" or "Button"
  <li><b>CLASSNN</b> - The ClassnameNN value as used in previous versions of AutoIt, such as "Edit1"
- <li><b>NAME</b> - The internal .NET Framework WinForms name (if available)
  <li><b>REGEXPCLASS</b> - Control classname using a regular expression
+ <li><b>NAME</b> - The internal .NET Framework WinForms name (if available)
  <li><b>X</b> \ <b>Y</b> \ <b>W</b> \ <b>H</b> - The position and size of a control.
  <li><b>INDEX \ INSTANCE</b> - The 1-based instance when all given properties match.
  </ul>
@@ -209,23 +209,37 @@ implements <a href="../../../org/safs/autoit/IAutoItRs.html" title="interface in
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.Control.html" title="class in org.safs.autoit">AutoItRs.Control</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.Control.html" title="class in org.safs.autoit">AutoItRs.Control</a></strong></code>
+<div class="block">The AUTOIT Control object, the implementation of <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a></div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizable</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizable.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizable</a></strong></code>
+<div class="block">This class provides default implementation of interface <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a>.<br/>
+ As the field of name starting with <a href="../../../org/safs/Constants.AutoItConstants.html#PREFIX_PROPERTY_FOR_RS"><code>Constants.AutoItConstants.PREFIX_PROPERTY_FOR_RS</code></a>
+ will be used for generating recognition string, please avoid adding new fields of
+ name starting with <a href="../../../org/safs/Constants.AutoItConstants.html#PREFIX_PROPERTY_FOR_RS"><code>Constants.AutoItConstants.PREFIX_PROPERTY_FOR_RS</code></a> to this class
+ when refactoring this class.<br/></div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizableAutoIt</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.DefaultRecognizableAutoIt.html" title="class in org.safs.autoit">AutoItRs.DefaultRecognizableAutoIt</a></strong></code>
+<div class="block">This class provides default implementation of interface <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a> for AUTOIT engine.<br/></div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected static interface&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit">AutoItRs.Recognizable</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit">AutoItRs.Recognizable</a></strong></code>
+<div class="block">This interface represents something can be used by automation tool to find AUT's window or component.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected static class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.Window.html" title="class in org.safs.autoit">AutoItRs.Window</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/autoit/AutoItRs.Window.html" title="class in org.safs.autoit">AutoItRs.Window</a></strong></code>
+<div class="block">The AUTOIT Window object, the implementation of <a href="../../../org/safs/autoit/AutoItRs.Recognizable.html" title="interface in org.safs.autoit"><code>AutoItRs.Recognizable</code></a></div>
+</td>
 </tr>
 </table>
 </li>
