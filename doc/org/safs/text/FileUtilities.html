@@ -174,6 +174,13 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.Placement.html" title="enum in org.safs.text">FileUtilities.Placement</a></strong></code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>static interface&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.Predicate.html" title="interface in org.safs.text">FileUtilities.Predicate</a>&lt;<a href="../../../org/safs/text/FileUtilities.Predicate.html" title="type parameter in FileUtilities.Predicate">T</a>&gt;</strong></code>
+<div class="block">Provides one method test() returning boolean.<br/>
+ A copy from Java 8, this interface could be removed when using Java 8 or later.<br/></div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -641,12 +648,19 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#unzipJAR(java.lang.String,%20java.io.File,%20boolean,%20org.safs.text.FileUtilities.Predicate)">unzipJAR</a></strong>(java.lang.String&nbsp;zipFileName,
+        java.io.File&nbsp;root,
+        boolean&nbsp;verbose,
+        <a href="../../../org/safs/text/FileUtilities.Predicate.html" title="interface in org.safs.text">FileUtilities.Predicate</a>&lt;java.lang.String&gt;&nbsp;skipPredicator)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToFile(java.io.BufferedWriter,%20java.util.Collection)">writeCollectionToFile</a></strong>(java.io.BufferedWriter&nbsp;writer,
                      java.util.Collection&nbsp;list)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToFile(java.io.BufferedWriter,%20java.util.Collection,%20java.lang.String)">writeCollectionToFile</a></strong>(java.io.BufferedWriter&nbsp;writer,
                      java.util.Collection&nbsp;list,
@@ -654,35 +668,35 @@ extends java.lang.Object</pre>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToSystemFile(java.lang.String,%20java.util.Collection)">writeCollectionToSystemFile</a></strong>(java.lang.String&nbsp;filename,
                            java.util.Collection&nbsp;list)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToUTF8File(java.lang.String,%20java.util.Collection)">writeCollectionToUTF8File</a></strong>(java.lang.String&nbsp;filename,
                          java.util.Collection&nbsp;list)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writePropertiesFile(java.io.BufferedWriter,%20java.util.Map)">writePropertiesFile</a></strong>(java.io.BufferedWriter&nbsp;writer,
                    java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;props)</code>
 <div class="block"><br><em>Purpose:</em> write Properties contents to BufferedWriter in a SAFS Properties file format:</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeStringToFile(java.io.BufferedWriter,%20java.lang.String)">writeStringToFile</a></strong>(java.io.BufferedWriter&nbsp;writer,
                  java.lang.String&nbsp;data)</code>
 <div class="block">Output a String to a new file.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeStringToFile(java.lang.String,%20java.lang.String,%20java.lang.String)">writeStringToFile</a></strong>(java.lang.String&nbsp;filename,
                  java.lang.String&nbsp;encoding,
@@ -690,14 +704,14 @@ extends java.lang.Object</pre>
 <div class="block">Output the String in a new file.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeStringToSystemFile(java.lang.String,%20java.lang.String)">writeStringToSystemFile</a></strong>(java.lang.String&nbsp;filename,
                        java.lang.String&nbsp;data)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeStringToUTF8File(java.lang.String,%20java.lang.String)">writeStringToUTF8File</a></strong>(java.lang.String&nbsp;filename,
                      java.lang.String&nbsp;data)</code>
@@ -1677,6 +1691,24 @@ extends java.lang.Object</pre>
                      throws java.io.IOException,
                             java.io.FileNotFoundException</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>zipFileName,</code> - String, the 'zip' or 'jar' file to be uncompressed.</dd><dd><code>root,</code> - File, the directory to store the uncompressed files.</dd><dd><code>verbose,</code> - boolean, if the uncompressed message will be printed to console.</dd><dd><code>noMETADir,</code> - true to bypass the META-INF directory and MANIFEST.MF file.</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+<dd><code>java.io.FileNotFoundException</code></dd></dl>
+</li>
+</ul>
+<a name="unzipJAR(java.lang.String, java.io.File, boolean, org.safs.text.FileUtilities.Predicate)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unzipJAR</h4>
+<pre>public static&nbsp;void&nbsp;unzipJAR(java.lang.String&nbsp;zipFileName,
+            java.io.File&nbsp;root,
+            boolean&nbsp;verbose,
+            <a href="../../../org/safs/text/FileUtilities.Predicate.html" title="interface in org.safs.text">FileUtilities.Predicate</a>&lt;java.lang.String&gt;&nbsp;skipPredicator)
+                     throws java.io.IOException,
+                            java.io.FileNotFoundException</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>zipFileName</code> - String, the 'zip' or 'jar' file to be uncompressed.</dd><dd><code>root</code> - File, the directory to store the uncompressed files.</dd><dd><code>verbose</code> - boolean, if the uncompressed message will be printed to console.</dd><dd><code>skipPredicator</code> - Predicate, if its method test(T) returns true, then skip the file when unzip files.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
 <dd><code>java.io.FileNotFoundException</code></dd></dl>

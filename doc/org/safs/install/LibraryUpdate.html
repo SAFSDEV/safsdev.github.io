@@ -96,7 +96,7 @@
 <br>
 <pre>public class <span class="strong">LibraryUpdate</span>
 extends java.lang.Object</pre>
-<div class="block">A generic customizable File directory updater for SAFS users wishing to update certain library assets 
+<div class="block">A generic customizable File directory updater for SAFS users wishing to update certain library assets
  with newer assets that might be available on the network in a central location.
  <p>
  For example, users can use this to grab centrally located build assets to update the SAFS\lib JAR files.
@@ -115,7 +115,7 @@ extends java.lang.Object</pre>
  <p>
  In addition, only source assets dated newer than Aug 01, 2012 are considered for update.
  <p>
- The class supports backing up older files into any specified directory.  
+ The class supports backing up older files into any specified directory.
  It also supports directory recursion, and an option to override the prompting for file replacement.
  <p>
  There are no SAFS dependencies in this class and can be packaged stand-alone in an executable JAR file.
@@ -124,10 +124,10 @@ extends java.lang.Object</pre>
  <p><code><big><ul><table>
  <tr><td style="vertical-align: top;white-space:nowrap;">-q           <td>(quiet mode, no prompt dialog), it should be put before other argument if present"
  <tr><td style="vertical-align: top;white-space:nowrap;">"-prompt:titlebar" <td>(alternate prompt title bar message)<br>
- This parameter should appear before other parameters (at this time) 
+ This parameter should appear before other parameters (at this time)
  <tr ><td style="vertical-align: top;white-space:nowrap;">-b:backupdir <td>**(backup dir for replaced files)
  <tr><td style="vertical-align: top;white-space:nowrap;">-s:sourcedir <td>* (source dir containing newer files, or an HTTP URL to a ZIP)<br>
- Supports HTTP URL to a ZIP file that would be downloaded and extracted into a temporary directory 
+ Supports HTTP URL to a ZIP file that would be downloaded and extracted into a temporary directory
  to be used as the sourcedir for the update.<br>
  Note: Any spaces in the URL should be retained as spaces--not URLEncoded.<br>
  The code will handle URL encoding of spaces.<br>
@@ -137,7 +137,7 @@ extends java.lang.Object</pre>
  <tr><td style="vertical-align: top;white-space:nowrap;">-r           <td>(recurse into sub-directories)
  <tr><td style="vertical-align: top;white-space:nowrap;">-a           <td>(file of all types will be copy, default false)"
  <tr><td style="vertical-align: top;white-space:nowrap;">-nob         <td>(no file backups required)
- <tr><td> &nbsp;&nbsp; <td> &nbsp;&nbsp;   
+ <tr><td> &nbsp;&nbsp; <td> &nbsp;&nbsp;
  <tr><td><td>*  - required parameter.
  <tr><td><td>** - only required if -nob not provided.
  </table></big></code></ul>
@@ -289,40 +289,52 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#OLDEST_DATE">OLDEST_DATE</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a></code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#productInfo">productInfo</a></strong></code>
+<div class="block">Used to get the information of the current installed product.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>(package private) int</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#progress">progress</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) <a href="../../../org/safs/install/ProgressIndicator.html" title="class in org.safs.install">ProgressIndicator</a></code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#progressor">progressor</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>(package private) java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#prompt">prompt</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#quiet">quiet</a></strong></code>
 <div class="block">quiet mode, if true then no dialog will prompt for confirmation, default is  'false'.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>(package private) boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#recurse">recurse</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) java.io.File</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#sourcedir">sourcedir</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>(package private) java.io.File</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#targetdir">targetdir</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#unzipDone">unzipDone</a></strong></code>
 <div class="block">If we need to download zip file from Internet and unzip it in a separate thread,<br>
  we need to set this field to false in the main thread.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../org/safs/text/FileUtilities.Predicate.html" title="interface in org.safs.text">FileUtilities.Predicate</a>&lt;java.lang.String&gt;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#unzipSkipPredicator">unzipSkipPredicator</a></strong></code>
+<div class="block">Used to skip any files when un-zip file.</div>
 </td>
 </tr>
 </table>
@@ -746,6 +758,27 @@ extends java.lang.Object</pre>
 <pre>int progress</pre>
 </li>
 </ul>
+<a name="unzipSkipPredicator">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unzipSkipPredicator</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/text/FileUtilities.Predicate.html" title="interface in org.safs.text">FileUtilities.Predicate</a>&lt;java.lang.String&gt; unzipSkipPredicator</pre>
+<div class="block">Used to skip any files when un-zip file. It is initialized in <a href="../../../org/safs/install/LibraryUpdate.html#init()"><code>init()</code></a>.</div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/LibraryUpdate.html#init()"><code>init()</code></a></dd></dl>
+</li>
+</ul>
+<a name="productInfo">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>productInfo</h4>
+<pre>protected&nbsp;<a href="../../../org/safs/selenium/util/SePlusInstallInfo.html" title="class in org.safs.selenium.util">SePlusInstallInfo</a> productInfo</pre>
+<div class="block">Used to get the information of the current installed product.</div>
+</li>
+</ul>
 <a name="help_string">
 <!--   -->
 </a>
@@ -872,7 +905,7 @@ extends java.lang.Object</pre>
 <div class="block">Main entry point for an instance of the class not executing from the command-line.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>args</code> - command-line args</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if the args processed OK and the updateDirectory process completed successfully.
- returns false if the user canceled the update or an error occurred in processing the args or 
+ returns false if the user canceled the update or an error occurred in processing the args or
  performing the update.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd></dl>
@@ -921,7 +954,7 @@ extends java.lang.Object</pre>
               java.io.File&nbsp;backupdir)
           throws java.lang.Exception</pre>
 <div class="block">Uses copyFile to backup a targetfile to a backup directory.
- Retains a storage reference to every file backed up in the event 
+ Retains a storage reference to every file backed up in the event
  that an attempt is made to roll-back the update following some type of update failure.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>targetfile</code> - </dd><dd><code>backupdir</code> - </dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -954,7 +987,7 @@ extends java.lang.Object</pre>
                    java.io.File&nbsp;sourcedir,
                    java.io.File&nbsp;backupdir)
                throws java.lang.Exception</pre>
-<div class="block">Re-entrant routine to process the provided directories.  If recurse is true, 
+<div class="block">Re-entrant routine to process the provided directories.  If recurse is true,
  the routine will call itself with each new source subdirectory encountered.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>targetdir</code> - </dd><dd><code>sourcedir</code> - </dd><dd><code>backupdir</code> - </dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -1012,10 +1045,10 @@ extends java.lang.Object</pre>
  <p><code><big><ul><table>
  <tr><td style="vertical-align: top;white-space:nowrap;">-q           <td>(quiet mode, no prompt dialog), it should be put before other argument if present"
  <tr><td style="vertical-align: top;white-space:nowrap;">"-prompt:titlebar" <td>(alternate prompt title bar message)<br>
- This parameter should appear before other parameters (at this time) 
+ This parameter should appear before other parameters (at this time)
  <tr ><td style="vertical-align: top;white-space:nowrap;">-b:backupdir <td>**(backup dir for replaced files)
  <tr><td style="vertical-align: top;white-space:nowrap;">-s:sourcedir <td>* (source dir containing newer files, or an HTTP URL to a ZIP)<br>
- Supports HTTP URL to a ZIP file that would be downloaded and extracted into a temporary directory 
+ Supports HTTP URL to a ZIP file that would be downloaded and extracted into a temporary directory
  to be used as the sourcedir for the update.<br>
  Note: Any spaces in the URL should be retained as spaces--not URLEncoded.<br>
  The code will handle URL encoding of spaces.<br>
@@ -1025,7 +1058,7 @@ extends java.lang.Object</pre>
  <tr><td style="vertical-align: top;white-space:nowrap;">-r           <td>(recurse into sub-directories)
  <tr><td style="vertical-align: top;white-space:nowrap;">-a           <td>(file of all types will be copy, default false)"
  <tr><td style="vertical-align: top;white-space:nowrap;">-nob         <td>(no file backups required)
- <tr><td> &nbsp;&nbsp; <td> &nbsp;&nbsp;   
+ <tr><td> &nbsp;&nbsp; <td> &nbsp;&nbsp;
  <tr><td><td>*  - required parameter.
  <tr><td><td>** - only required if -nob not provided.
  </table></big></code></ul></dd></dl>
