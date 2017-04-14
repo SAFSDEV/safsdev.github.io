@@ -112,10 +112,10 @@ extends <a href="../../org/safs/Processor.html" title="class in org.safs">Proces
 <div class="block"><br><em>Purpose:</em> abstract ComponentFunction, enforces that the 'process' method be implemented
   <br>
  <ul>
- <li>COMPONENT FUNCTIONS (so far...): 
+ <li>COMPONENT FUNCTIONS (so far...):
  <ul>
  <li>  CFButton
- 
+
  <li>  CFCheckBox
  <ul>
  <li>    check
@@ -127,7 +127,7 @@ extends <a href="../../org/safs/Processor.html" title="class in org.safs">Proces
  <li>      Example: TF,Frame,rememberPasswordCheckBox,uncheck
  </ul>
  </ul>
- 
+
  <li>  CFComboBox
  <ul>
  <li>    selectIndex
@@ -150,7 +150,7 @@ extends <a href="../../org/safs/Processor.html" title="class in org.safs">Proces
  <li>      Example: T,Frame,nameComboComboBox,showlist
  </ul>
  </ul>
- 
+
  <li>  CFComponent (Available to nearly all components)
  <ul>
  <li>    click/rightClick
@@ -217,7 +217,7 @@ extends <a href="../../org/safs/Processor.html" title="class in org.safs">Proces
  </ul>
  </ul>
  <li>  CFLabel
- 
+
  <li>  CFList (similar to combobox)
  <ul>
  <li>    activatetextitem
@@ -962,7 +962,7 @@ Subclass should give its own implementation<br></div>
  "Coords=x;y"
  "Coords=x,y"
  "Coords=x y"
-  
+ 
  into a java.awt.Point object.</div>
 </td>
 </tr>
@@ -977,7 +977,7 @@ Subclass should give its own implementation<br></div>
  "Coords=x1;y1;x2;y2"
  "Coords=x1,y1,x2,y2"
  "Coords=x1 y1 x2 y2"
-  
+ 
  into a java.awt.Polygon object.</div>
 </td>
 </tr>
@@ -999,7 +999,7 @@ Subclass should give its own implementation<br></div>
  "Coords=x;y;width;height;Status=status"
  "Coords=x,y,width,height,Status=status"
  "Coords=x y width height Status=status"
-  
+ 
  into a org.safs.ComponentFunction.Window object.</div>
 </td>
 </tr>
@@ -1014,7 +1014,7 @@ Subclass should give its own implementation<br></div>
  "Coords=x;y;width;height;Status=status"
  "Coords=x,y,width,height,Status=status"
  "Coords=x y width height Status=status"
-  
+ 
  into a org.safs.ComponentFunction.Window object.</div>
 </td>
 </tr>
@@ -1038,7 +1038,7 @@ Subclass should give its own implementation<br></div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>java.util.Collection</code></td>
+<td class="colFirst"><code>java.util.Collection&lt;java.lang.String&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#getAlternateParams()">getAlternateParams</a></strong>()</code>
 <div class="block"><br><em>Purpose:</em> zero-based params with: <br>
  
@@ -1164,7 +1164,7 @@ Subclass should give its own implementation<br></div>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueFileErrorFailure(java.lang.String)">issueFileErrorFailure</a></strong>(java.lang.String&nbsp;filename)</code>
-<div class="block">Issue a file error and failure message 
+<div class="block">Issue a file error and failure message
  Filename does not need to be localized.</div>
 </td>
 </tr>
@@ -1202,7 +1202,7 @@ Subclass should give its own implementation<br></div>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#issueUnknownErrorFailure(java.lang.String)">issueUnknownErrorFailure</a></strong>(java.lang.String&nbsp;cause)</code>
-<div class="block">Issue a generic error and failure message 
+<div class="block">Issue a generic error and failure message
  The cause parameter is expected to already be localized.</div>
 </td>
 </tr>
@@ -1316,7 +1316,7 @@ Subclass should give its own implementation<br></div>
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#setRectVars(java.awt.Rectangle,%20java.lang.String)">setRectVars</a></strong>(java.awt.Rectangle&nbsp;rect,
            java.lang.String&nbsp;varname)</code>
-<div class="block">Set the varname.x, varname.y, varname.w, and varname.h variables to the 
+<div class="block">Set the varname.x, varname.y, varname.w, and varname.h variables to the
  values retrieved from the rectangle.</div>
 </td>
 </tr>
@@ -1330,7 +1330,7 @@ Subclass should give its own implementation<br></div>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/ComponentFunction.html#updateFromTestRecordData()">updateFromTestRecordData</a></strong>()</code>
-<div class="block">Updates our internal storage for action, windowName, compName, and mapname from 
+<div class="block">Updates our internal storage for action, windowName, compName, and mapname from
  the current TestRecordData.</div>
 </td>
 </tr>
@@ -2240,8 +2240,8 @@ Subclass should give its own implementation<br></div>
 <li class="blockList">
 <h4>updateFromTestRecordData</h4>
 <pre>protected&nbsp;void&nbsp;updateFromTestRecordData()</pre>
-<div class="block">Updates our internal storage for action, windowName, compName, and mapname from 
- the current TestRecordData.  Missing items in the TestRecordData will update our 
+<div class="block">Updates our internal storage for action, windowName, compName, and mapname from
+ the current TestRecordData.  Missing items in the TestRecordData will update our
  storage with null.</div>
 </li>
 </ul>
@@ -2269,7 +2269,7 @@ Subclass should give its own implementation<br></div>
 <ul class="blockList">
 <li class="blockList">
 <h4>getAlternateParams</h4>
-<pre>public&nbsp;java.util.Collection&nbsp;getAlternateParams()</pre>
+<pre>public&nbsp;java.util.Collection&lt;java.lang.String&gt;&nbsp;getAlternateParams()</pre>
 <div class="block"><br><em>Purpose:</em> zero-based params with: <br>
  <ol>
  <li>windowname
@@ -2320,7 +2320,7 @@ Subclass should give its own implementation<br></div>
 <pre>public&nbsp;java.lang.Integer&nbsp;convertNum(java.lang.String&nbsp;num)</pre>
 <div class="block"><br><em>Purpose:</em> convertNum: convert into a number
  <br><em>Assumptions:</em>  all exceptions are handled.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>numStr,</code> - String 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>numStr,</code> - String
  (indexed from 1, 1 will be subtracted from the number before returned)</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Integer if successful, null otherwise (if alpha chars instead
  of digits are encountered; or if number is less than one)</dd></dl>
@@ -2336,11 +2336,11 @@ Subclass should give its own implementation<br></div>
 <div class="block"><br>
  <em>Purpose:</em> check 'iterator' for coords, either a map reference, or x;y notation
  and convert it into Point.
- 
+
  The 'coords' could be provided in 2 formats:<br>
  It could be <b>number, such as "12, 15", "5, 10"</b>.
- Or it could be in <b>percentage format, such as "30%, 45%", "0.25, 0.8"</b>. With this 
- format, the method <a href="../../org/safs/ComponentFunction.html#getComponentRectangle()"><code>getComponentRectangle()</code></a> should be provided in subclass, component's width and 
+ Or it could be in <b>percentage format, such as "30%, 45%", "0.25, 0.8"</b>. With this
+ format, the method <a href="../../org/safs/ComponentFunction.html#getComponentRectangle()"><code>getComponentRectangle()</code></a> should be provided in subclass, component's width and
  height are necessary to calculate the coordinate.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>iterator</code> - Iterator, whose next element is the coords parameter or map-reference</dd>
 <dt><span class="strong">Returns:</span></dt><dd>java.awt.Point, null if iterator doesn't have another element</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/ComponentFunction.html#checkForCoord(java.lang.String)"><code>checkForCoord(String)</code></a>, 
@@ -2356,11 +2356,11 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;java.awt.Point&nbsp;checkForCoord(java.lang.String&nbsp;coordinate)</pre>
 <div class="block"><em>Purpose:</em> check for coords, either a map reference, or x;y notation
  and convert it into Point.
- 
+
  The 'coords' could be provided in 2 formats:<br>
  It could be <b>number, such as "12, 15", "5, 10"</b>.
- Or it could be in <b>percentage format, such as "30%, 45%", "0.25, 0.8"</b>. With this 
- format, the method <a href="../../org/safs/ComponentFunction.html#getComponentRectangle()"><code>getComponentRectangle()</code></a> should be provided in subclass, component's width and 
+ Or it could be in <b>percentage format, such as "30%, 45%", "0.25, 0.8"</b>. With this
+ format, the method <a href="../../org/safs/ComponentFunction.html#getComponentRectangle()"><code>getComponentRectangle()</code></a> should be provided in subclass, component's width and
  height are necessary to calculate the coordinate.<br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>coordinate</code> - String, either an AppMap reference, or (x;y) notation</dd>
 <dt><span class="strong">Returns:</span></dt><dd>java.awt.Point, null if coordinate is null or empty</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/ComponentFunction.html#getComponentRectangle()"><code>getComponentRectangle()</code></a></dd></dl>
@@ -2381,10 +2381,10 @@ Subclass should give its own implementation<br></div>
  <li>"Coords=x;y"
  <li>"Coords=x,y"
  <li>"Coords=x y"
- </ul> 
+ </ul>
  into a java.awt.Point object.
  <p>
- Subclasses may override to convert alternative values, such 
+ Subclasses may override to convert alternative values, such
  as Row and Col values as is done in org.safs.rational.CFTable</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>coords,</code> - String x;y or x,y or Coords=x;y  or Coords=x,y</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Point if successful, null otherwise</dd></dl>
@@ -2405,7 +2405,7 @@ Subclass should give its own implementation<br></div>
  <li>"Coords=x1;y1;x2;y2"
  <li>"Coords=x1,y1,x2,y2"
  <li>"Coords=x1 y1 x2 y2"
- </ul> 
+ </ul>
  into a java.awt.Polygon object.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>coords,</code> - String x1;y1;x2;y2 or x1,y1,x2,y2 or Coords=x1;y1;x2;y2  or Coords=x1,y1,x2,y2</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Polygon if successful, null otherwise</dd></dl>
@@ -2426,7 +2426,7 @@ Subclass should give its own implementation<br></div>
  <li>"Coords=x;y;width;height;Status=status"
  <li>"Coords=x,y,width,height,Status=status"
  <li>"Coords=x y width height Status=status"
- </ul> 
+ </ul>
  into a org.safs.ComponentFunction.Window object.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>windowPosition</code> - String, window's position-size-status string; or a map reference for window's status string.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>org.safs.ComponentFunction.Window if successful, null otherwise</dd></dl>
@@ -2455,7 +2455,7 @@ Subclass should give its own implementation<br></div>
 <div class="block">lookupAppMapCoordReference: uses 'convertCoords'
  after the call to 'lookupAppMapReference'.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>referenceName,</code> - String, the reference name passed on to
-         method 'lookupAppMapReference' to lookup the coordinate string 
+         method 'lookupAppMapReference' to lookup the coordinate string
          from an AppMap. Then that value is passed on to convertCoords.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Point if successful, null otherwise (if alpha chars instead
           of digits are encountered; or if row or col less than one)</dd></dl>
@@ -2471,7 +2471,7 @@ Subclass should give its own implementation<br></div>
 <div class="block">lookupAppMapLineReference: uses 'convertLine'
  after the call to 'lookupAppMapReference'.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>referenceName,</code> - String, the reference name passed on to
-         method 'lookupAppMapReference' to lookup the Line string 
+         method 'lookupAppMapReference' to lookup the Line string
          from an AppMap. Then that value is passed on to convertLine.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Polygon if successful, null otherwise (if alpha chars instead
           of digits are encountered; or if less than 2 points are detected.)</dd></dl>
@@ -2508,7 +2508,7 @@ Subclass should give its own implementation<br></div>
  <li>"Coords=x;y;width;height;Status=status"
  <li>"Coords=x,y,width,height,Status=status"
  <li>"Coords=x y width height Status=status"
- </ul> 
+ </ul>
  into a org.safs.ComponentFunction.Window object.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>windowPosition</code> - String, window's position-size-status string</dd>
 <dt><span class="strong">Returns:</span></dt><dd>org.safs.ComponentFunction.Window if successful, null otherwise</dd></dl>
@@ -2632,8 +2632,8 @@ Subclass should give its own implementation<br></div>
                     throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">perform SetPosition to move Main Window, resize it and set its status.
  Format: "Coords=0,0,640,480;Status=NORMAL". Status can be NORMAL, MINIMAZED and MAXMAZED
- Alteratively, semi-colon (;) can be used instead of comma (,) to separate 
- numeric data.  This would be required when placing the data directly in the 
+ Alteratively, semi-colon (;) can be used instead of comma (,) to separate
+ numeric data.  This would be required when placing the data directly in the
  test record and NOT in the App Map when using comma-delimited test tables.</div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd></dl>
@@ -2711,7 +2711,7 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;componentFailureMessage(java.lang.String&nbsp;detail)</pre>
 <div class="block">"Unable to perform action on compName in file line N."
  "[Detail]"
- <br><em>Purpose:</em> log an "Unable to perform function" FAILED_MESSAGE with detail. 
+ <br><em>Purpose:</em> log an "Unable to perform function" FAILED_MESSAGE with detail.
  Expects testRecordData to already have filename, lineNumber, compName, and command.</div>
 </li>
 </ul>
@@ -2724,10 +2724,10 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;componentExecutedFailureMessage(java.lang.String&nbsp;error)</pre>
 <div class="block">"windowname compName action processed with a negative result."
  "Error at line number in file: [detail]"
- <br><em>Purpose:</em> log a simple failure message when a test record got processed with negative result. When an 
-            action intends to make a judgment, a negative result is gotten if the logical result of the judgment 
+ <br><em>Purpose:</em> log a simple failure message when a test record got processed with negative result. When an
+            action intends to make a judgment, a negative result is gotten if the logical result of the judgment
             is false; the test step will be logged as 'FAIL' although it got executed correctly. Called by some comparing actions.
-              
+
  E.g. When doing verifyCaptureText, the result is negative if the body test captured doesn't match the bench mark file.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>error</code> - -- a error message</dd></dl>
 </li>
@@ -2771,7 +2771,7 @@ Subclass should give its own implementation<br></div>
 <li class="blockList">
 <h4>issueFileErrorFailure</h4>
 <pre>protected&nbsp;void&nbsp;issueFileErrorFailure(java.lang.String&nbsp;filename)</pre>
-<div class="block">Issue a file error and failure message 
+<div class="block">Issue a file error and failure message
  Filename does not need to be localized.</div>
 </li>
 </ul>
@@ -2782,7 +2782,7 @@ Subclass should give its own implementation<br></div>
 <li class="blockList">
 <h4>issueUnknownErrorFailure</h4>
 <pre>protected&nbsp;void&nbsp;issueUnknownErrorFailure(java.lang.String&nbsp;cause)</pre>
-<div class="block">Issue a generic error and failure message 
+<div class="block">Issue a generic error and failure message
  The cause parameter is expected to already be localized.</div>
 </li>
 </ul>
@@ -2794,7 +2794,7 @@ Subclass should give its own implementation<br></div>
 <h4>deduceImageRect</h4>
 <pre>protected&nbsp;java.awt.Rectangle&nbsp;deduceImageRect(java.lang.String&nbsp;subareaMapKey)
                                       throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>subareaMapKey,</code> - String, the reference in Map file, represent the subarea; 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>subareaMapKey,</code> - String, the reference in Map file, represent the subarea;
                                or the subarea itself. The subares is defined as (x, y, width, height)
                                for example like (0, 0, %50, %90)</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Rectangle, The subarea rectangle deduced from the 'Component Rectangle' and 'subarea'</dd>
@@ -2821,12 +2821,12 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;action_getGuiImage()
                            throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Processes a Component Function Test Record to capture a screen GUI image to a file.
- Currently, the available formats for the output file are JPG, BMP, TIF, GIF, PNG and PNM. 
+ Currently, the available formats for the output file are JPG, BMP, TIF, GIF, PNG and PNM.
  Optionally, the user may utilize the SubArea parameter to only capture a portion of the Component.
- This routine expects to be called by subclasses only and the subclass must override 
- the getComponentRectangle method to provide the necessary location of the 
- desired Component.  Subclasses must also have already set the fields for mapname, 
- windowName, compName, and action.  This is usually already done in the process() call 
+ This routine expects to be called by subclasses only and the subclass must override
+ the getComponentRectangle method to provide the necessary location of the
+ desired Component.  Subclasses must also have already set the fields for mapname,
+ windowName, compName, and action.  This is usually already done in the process() call
  from the subclasses.
  This routine utilizes Java Advanced Imaging (JAI) to output the screen image to the file.
  JAI must be installed at compile time and runtime.</div>
@@ -2859,12 +2859,12 @@ Subclass should give its own implementation<br></div>
 <pre>protected&nbsp;void&nbsp;action_verifyGuiImageToFile()
                                     throws <a href="../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Processes a Component Function Test Record to verify a screen GUI image to a file.
- Currently, the available formats for the output file are BMP, JPG, TIFF, GIF, PNG, and PNM.  
+ Currently, the available formats for the output file are BMP, JPG, TIFF, GIF, PNG, and PNM.
  Optionally, the user may utilize the SubArea parameter to only capture a portion of the Component.
- This routine expects to be called by subclasses only and the subclass must override 
- the getComponentRectangle method to provide the necessary location of the 
- desired Component.  Subclasses must also have already set the fields for mapname, 
- windowName, compName, and action.  This is usually already done in the process() call 
+ This routine expects to be called by subclasses only and the subclass must override
+ the getComponentRectangle method to provide the necessary location of the
+ desired Component.  Subclasses must also have already set the fields for mapname,
+ windowName, compName, and action.  This is usually already done in the process() call
  from the subclasses.
  This routine utilizes Java Advanced Imaging (JAI) to output the screen image to the file.
  JAI must be installed at compile time and runtime.</div>
@@ -2880,7 +2880,7 @@ Subclass should give its own implementation<br></div>
 <h4>setRectVars</h4>
 <pre>protected&nbsp;boolean&nbsp;setRectVars(java.awt.Rectangle&nbsp;rect,
                   java.lang.String&nbsp;varname)</pre>
-<div class="block">Set the varname.x, varname.y, varname.w, and varname.h variables to the 
+<div class="block">Set the varname.x, varname.y, varname.w, and varname.h variables to the
  values retrieved from the rectangle.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>rect</code> - Rectangle,</dd><dd><code>varname</code> - String,</dd>
 <dt><span class="strong">Returns:</span></dt><dd></dd></dl>
@@ -3171,7 +3171,7 @@ Subclass should give its own implementation<br></div>
 <div class="block"><em>Purpose:</em> Response for HOVERMOUSE; called by componentProcess() to hover mouse.<br>
  <pre>
  Parameters:
- CoordinationMapKey String, The offset from 'Uper-Left corner' of component, 
+ CoordinationMapKey String, The offset from 'Uper-Left corner' of component,
                             such as "20;40", or a mapKey defined under "ComponentName" or "ApplicationConstants" in map file.
  HoverTime int, milliseconds to hover
  support different format of test record:
@@ -3299,16 +3299,16 @@ Subclass should give its own implementation<br></div>
 <div class="block"><em>Purpose:</em> Response for HOVERMOUSE; called by componentProcess() to hover mouse.<br>
  <pre>
  Parameters:
- VarName String, The root name of the collection of variables to receive the location and dimensions. 
+ VarName String, The root name of the collection of variables to receive the location and dimensions.
  WhomRelativeTo String, "screen" or "parent"
  T  WindowName  CompName  LocateScreenImage  VarName [WhomRelativeTo]
         [WhomRelativeTo]: relative to the screen or parentWindow
         default(not set): relative to the screen
                   screen: relative to the screen
-                  parent: relative to the parent window       
-                         
+                  parent: relative to the parent window
+
  locate the GUI if CompName in the GUI of WindowName and write the area to Varname
- 
+
  variables set:
    varname=x y w h  (space delimited)
    varname.x=x
@@ -3568,14 +3568,14 @@ Subclass should give its own implementation<br></div>
 <h4>getComponentRectangle</h4>
 <pre>protected&nbsp;java.awt.Rectangle&nbsp;getComponentRectangle()</pre>
 <div class="block">Do nothing method returns null.
- Subclasses should override to provide the 'Rectangle bounds' of the Component 
+ Subclasses should override to provide the 'Rectangle bounds' of the Component
  currently represented in the current testRecordData. The 'Rectangle bounds' may be
  absolute on screen or relative to a window/browser, this is decided by subclass.
- If returned 'Rectangle bounds' is NOT absolute on screen, the the method 
+ If returned 'Rectangle bounds' is NOT absolute on screen, the the method
  <a href="../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)"><code>getRectangleImage(Rectangle)</code></a> SHOULD be overridden in subclass to provide appropriate implementation.
  <br>
- Subclasses should assume the mapname, windowName, and compName currently stored 
- for the instance hold the information needed to identify and locate the Component 
+ Subclasses should assume the mapname, windowName, and compName currently stored
+ for the instance hold the information needed to identify and locate the Component
  on the screen or in the system.
  <br>
  This method is called by <a href="../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)"><code>deduceImageRect(String)</code></a> to get a subarea rectangle.

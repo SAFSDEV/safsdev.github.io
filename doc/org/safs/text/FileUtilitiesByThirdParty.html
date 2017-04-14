@@ -98,10 +98,10 @@
 extends java.lang.Object</pre>
 <div class="block"><p>
  This class will use some third-party jars to provide some functionalities.
- For example, method <a href="../../../org/safs/text/FileUtilitiesByThirdParty.html#detectFileEncoding(java.lang.String)"><code>detectFileEncoding(String)</code></a> will depend on 
+ For example, method <a href="../../../org/safs/text/FileUtilitiesByThirdParty.html#detectFileEncoding(java.lang.String)"><code>detectFileEncoding(String)</code></a> will depend on
  <a href="http://code.google.com/p/juniversalchardet/">juniversalchardet</a>
  <p>
- This class is created for making class <a href="../../../org/safs/text/FileUtilities.html" title="class in org.safs.text"><code>FileUtilities</code></a> independent 
+ This class is created for making class <a href="../../../org/safs/text/FileUtilities.html" title="class in org.safs.text"><code>FileUtilities</code></a> independent
  of these third-party jars. In <a href="../../../org/safs/text/FileUtilities.html" title="class in org.safs.text"><code>FileUtilities</code></a>, we use java-reflection
  to call methods in this class.</div>
 </li>
@@ -235,10 +235,13 @@ extends java.lang.Object</pre>
 <h4>detectFileEncoding</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;detectFileEncoding(java.lang.String&nbsp;filename)</pre>
 <div class="block">Opens a FileInputStream and detects its encoding. If no encoding is detected, the default system
- encoding will be returned.
- <code>http://code.google.com/p/juniversalchardet/</code>
- <code>http://www-archive.mozilla.org/projects/intl/UniversalCharsetDetection.html</code></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - case-insensitive absolute filename path.</dd>
+ encoding will be returned.<br/>
+ Refer to
+ <ul>
+ <li><a href="http://code.google.com/p/juniversalchardet/">juniversalchardet</a>
+ <li><a href="http://www-archive.mozilla.org/projects/intl/UniversalCharsetDetection.html>UniversalCharsetDetection</a>
+ </ul></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, case-insensitive absolute filename path.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>String, the file encoding, it might be null.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/text/FileUtilities.html#detectFileEncoding(java.lang.String)"><code>FileUtilities.detectFileEncoding(String)</code></a></dd></dl>
 </li>
 </ul>
@@ -251,9 +254,11 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.String&nbsp;detectStringEncoding(java.lang.String&nbsp;str)</pre>
 <div class="block">Read String as input to find encoding. If no encoding is detected, the default system
  encoding will be returned.
- <code>http://code.google.com/p/juniversalchardet/</code>
- <code>http://www-archive.mozilla.org/projects/intl/UniversalCharsetDetection.html</code></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>String</code> - </dd>
+ <ul>
+ <li><a href="http://code.google.com/p/juniversalchardet/">juniversalchardet</a>
+ <li><a href="http://www-archive.mozilla.org/projects/intl/UniversalCharsetDetection.html>UniversalCharsetDetection</a>
+ </ul></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>str</code> - String, the string according to which the encoding will be detected.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>String, the file encoding, it might be null.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/text/FileUtilities.html#detectFileEncoding(java.lang.String)"><code>FileUtilities.detectFileEncoding(String)</code></a></dd></dl>
 </li>
 </ul>

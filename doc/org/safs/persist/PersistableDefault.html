@@ -191,10 +191,18 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
 <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
 <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colOne" scope="col">Constructor and Description</th>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colLast" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#PersistableDefault()">PersistableDefault</a></strong>()</code>&nbsp;</td>
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#PersistableDefault()">PersistableDefault</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#PersistableDefault(int)">PersistableDefault</a></strong>(int&nbsp;ignoredFiledModifiers)</code>
+<div class="block">Construct a PersistableDefault with modifier to filter the field for persisting.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -272,28 +280,32 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#getThreshold()">getThreshold</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#ignoreFieldForPersist(java.lang.reflect.Field)">ignoreFieldForPersist</a></strong>(java.lang.reflect.Field&nbsp;field)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#isEnabled()">isEnabled</a></strong>()</code>
 <div class="block">Tell us if this object will be persisted or not.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#isIgnoredContentCache()">isIgnoredContentCache</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#isThresholdEnabled()">isThresholdEnabled</a></strong>()</code>
 <div class="block">If enabled, then the data bigger than the 'threshold' will not be printed out.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setEnabled(boolean)">setEnabled</a></strong>(boolean&nbsp;enabled)</code>
 <div class="block">Sometimes, we don't want to persist an object, we disable it.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setField(java.lang.String,%20java.lang.Object)">setField</a></strong>(java.lang.String&nbsp;persistKey,
         java.lang.Object&nbsp;value)</code>
@@ -301,11 +313,11 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
  The field name can be got from <a href="../../../org/safs/persist/Persistable.html#getPersitableFields()"><code>Persistable.getPersitableFields()</code></a> according to the persist-key, then the value will be set to that field.<br/></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setIgnoredContentCache(boolean)">setIgnoredContentCache</a></strong>(boolean&nbsp;ignoredContentCache)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setParent(org.safs.persist.Persistable)">setParent</a></strong>(<a href="../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a>&nbsp;parent)</code>
 <div class="block">Persistable object can contain Persistable object to form a tree-like structure.<br/>
@@ -313,22 +325,22 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
  to make sure that the <a href="../../../org/safs/persist/Persistor.html" title="interface in org.safs.persist"><code>Persistor</code></a> and <a href="../../../org/safs/persist/Verifier.html" title="interface in org.safs.persist"><code>Verifier</code></a> can work correctly.<br/></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setTabulation(int)">setTabulation</a></strong>(int&nbsp;tabulation)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setThreshold(int)">setThreshold</a></strong>(int&nbsp;threshold)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#setThresholdEnabled(boolean)">setThresholdEnabled</a></strong>(boolean&nbsp;thresholdEnabled)</code>
 <div class="block">Enable/disable the "threshold ability".<br/>
  If enabled, then the data bigger than the 'threshold' will not be printed out.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/persist/PersistableDefault.html#toString()">toString</a></strong>()</code>&nbsp;</td>
 </tr>
@@ -450,10 +462,30 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
 <a name="PersistableDefault()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>PersistableDefault</h4>
 <pre>public&nbsp;PersistableDefault()</pre>
+</li>
+</ul>
+<a name="PersistableDefault(int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>PersistableDefault</h4>
+<pre>protected&nbsp;PersistableDefault(int&nbsp;ignoredFiledModifiers)</pre>
+<div class="block">Construct a PersistableDefault with modifier to filter the field for persisting.
+
+ <pre>
+ <b>Note</b>:
+ This constructor is <b>protected</b>, and it is suggested to call it
+ in a constructor without parameter to keep the consistency between "pickle" and "unpickle".
+ If user makes it public in a child class and create a Persistable object with it,
+ then inconsistency may happen between "pickle" and "unpickle", because "unpickle" uses
+ the constructor without parameter, which is different than this one.
+ </pre></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>ignoredFiledModifiers</code> - int, the modifier used to filter the field for persisting.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/persist/PersistableDefault.html#ignoredFiledModifiers"><code>ignoredFiledModifiers</code></a></dd></dl>
 </li>
 </ul>
 </li>
@@ -472,11 +504,23 @@ implements <a href="../../../org/safs/persist/Persistable.html" title="interface
 <h4>getPersitableFields</h4>
 <pre>public&nbsp;java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp;getPersitableFields()</pre>
 <div class="block">This default implementation get all the declared fields <code>Class.getDeclaredFields()</code> and
- put their name as 'fieldName' and 'persistKey' into the 'persistableFields Map'.</div>
+ put their name as 'fieldName' and 'persistKey' into the 'persistableFields Map'. But if
+ <a href="../../../org/safs/persist/PersistableDefault.html#ignoreFieldForPersist(java.lang.reflect.Field)"><code>ignoreFieldForPersist(Field)</code></a> returns true, then that field will not get into 'persistableFields Map'.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../org/safs/persist/Persistable.html#getPersitableFields()">getPersitableFields</a></code>&nbsp;in interface&nbsp;<code><a href="../../../org/safs/persist/Persistable.html" title="interface in org.safs.persist">Persistable</a></code></dd>
-<dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a Map containing a pair(fieldName, persistKey) to persist.</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>Map<String, String>, a Map containing a pair(fieldName, persistKey) to persist.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/persist/PersistableDefault.html#ignoreFieldForPersist(java.lang.reflect.Field)"><code>ignoreFieldForPersist(Field)</code></a></dd></dl>
+</li>
+</ul>
+<a name="ignoreFieldForPersist(java.lang.reflect.Field)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ignoreFieldForPersist</h4>
+<pre>protected&nbsp;boolean&nbsp;ignoreFieldForPersist(java.lang.reflect.Field&nbsp;field)</pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>field</code> - Field, the field to test.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean if true, then the field should be ignored when persisting.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/persist/PersistableDefault.html#getPersitableFields()"><code>getPersitableFields()</code></a></dd></dl>
 </li>
 </ul>
 <a name="getContents()">

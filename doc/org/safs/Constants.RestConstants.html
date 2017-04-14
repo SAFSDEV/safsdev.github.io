@@ -121,17 +121,20 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.RestConstants.html#ITEM_AUTH">ITEM_AUTH</a></strong></code>
-<div class="block">"<b>AUTH</b>" defines a file holding the authorization/authentication information.<br>
+<div class="block">"<b>AUTH</b>" is the "map item" (under section <a href="../../org/safs/Constants.RestConstants.html#SECTION_SAFS_REST"><code>SECTION_SAFS_REST</code></a>) defining a file holding the authorization/authentication information.<br>
  The file can be relative to the project root directory; or it can be an absolute path.<br>
  Examples:<br>
- <b>config\auth2.xml</b> The file &lt;projectRoot>\config\auth2.xml will be used as authorization/authentication information.<br>
- <b>C:\Users\xxx\simpleAuth.xml</b> The file C:\Users\xxx\simpleAuth.xml will be used as authorization/authentication information.<br></div>
+ [SAFS_REST]<br>
+ AUTH=<b>config\auth2.xml</b> The file &lt;projectRoot>\config\auth2.xml will be used as authorization/authentication information.<br>
+ <br/>
+ [SAFS_REST]<br>
+ AUTH=<b>C:\Users\xxx\simpleAuth.xml</b> The file C:\Users\xxx\simpleAuth.xml will be used as authorization/authentication information.<br></div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.RestConstants.html#PROPERTY_AUTH">PROPERTY_AUTH</a></strong></code>
-<div class="block">"<b>safs.rest.auth</b>" defines a file holding the authorization/authentication information.<br>
+<div class="block">"<b>safs.rest.auth</b>" is the JVM property defining a file holding the authorization/authentication information.<br>
  The file can be relative to the project root directory; or it can be an absolute path.<br>
  Examples:<br>
  -Dsafs.rest.auth=<b>config\auth2.xml</b> The file &lt;projectRoot>\config\auth2.xml will be used as authorization/authentication information.<br>
@@ -209,11 +212,14 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>ITEM_AUTH</h4>
 <pre>public static final&nbsp;java.lang.String ITEM_AUTH</pre>
-<div class="block">"<b>AUTH</b>" defines a file holding the authorization/authentication information.<br>
+<div class="block">"<b>AUTH</b>" is the "map item" (under section <a href="../../org/safs/Constants.RestConstants.html#SECTION_SAFS_REST"><code>SECTION_SAFS_REST</code></a>) defining a file holding the authorization/authentication information.<br>
  The file can be relative to the project root directory; or it can be an absolute path.<br>
  Examples:<br>
- <b>config\auth2.xml</b> The file &lt;projectRoot>\config\auth2.xml will be used as authorization/authentication information.<br>
- <b>C:\Users\xxx\simpleAuth.xml</b> The file C:\Users\xxx\simpleAuth.xml will be used as authorization/authentication information.<br></div>
+ [SAFS_REST]<br>
+ AUTH=<b>config\auth2.xml</b> The file &lt;projectRoot>\config\auth2.xml will be used as authorization/authentication information.<br>
+ <br/>
+ [SAFS_REST]<br>
+ AUTH=<b>C:\Users\xxx\simpleAuth.xml</b> The file C:\Users\xxx\simpleAuth.xml will be used as authorization/authentication information.<br></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.RestConstants.ITEM_AUTH">Constant Field Values</a></dd></dl>
 </li>
 </ul>
@@ -224,7 +230,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>PROPERTY_AUTH</h4>
 <pre>public static final&nbsp;java.lang.String PROPERTY_AUTH</pre>
-<div class="block">"<b>safs.rest.auth</b>" defines a file holding the authorization/authentication information.<br>
+<div class="block">"<b>safs.rest.auth</b>" is the JVM property defining a file holding the authorization/authentication information.<br>
  The file can be relative to the project root directory; or it can be an absolute path.<br>
  Examples:<br>
  -Dsafs.rest.auth=<b>config\auth2.xml</b> The file &lt;projectRoot>\config\auth2.xml will be used as authorization/authentication information.<br>

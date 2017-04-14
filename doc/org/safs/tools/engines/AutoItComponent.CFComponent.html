@@ -696,14 +696,14 @@ protected&nbsp;void&nbsp;click(<a href="../../../../org/safs/autoit/AutoItRs.htm
 <pre>protected&nbsp;java.awt.Rectangle&nbsp;getComponentRectangle()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../../org/safs/ComponentFunction.html#getComponentRectangle()">ComponentFunction</a></code></strong></div>
 <div class="block">Do nothing method returns null.
- Subclasses should override to provide the 'Rectangle bounds' of the Component 
+ Subclasses should override to provide the 'Rectangle bounds' of the Component
  currently represented in the current testRecordData. The 'Rectangle bounds' may be
  absolute on screen or relative to a window/browser, this is decided by subclass.
- If returned 'Rectangle bounds' is NOT absolute on screen, the the method 
+ If returned 'Rectangle bounds' is NOT absolute on screen, the the method
  <a href="../../../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)"><code>ComponentFunction.getRectangleImage(Rectangle)</code></a> SHOULD be overridden in subclass to provide appropriate implementation.
  <br>
- Subclasses should assume the mapname, windowName, and compName currently stored 
- for the instance hold the information needed to identify and locate the Component 
+ Subclasses should assume the mapname, windowName, and compName currently stored
+ for the instance hold the information needed to identify and locate the Component
  on the screen or in the system.
  <br>
  This method is called by <a href="../../../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)"><code>ComponentFunction.deduceImageRect(String)</code></a> to get a subarea rectangle.

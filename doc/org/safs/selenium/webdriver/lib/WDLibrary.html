@@ -1886,7 +1886,10 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
               java.awt.Point&nbsp;point,
               int&nbsp;millisStay)
                        throws <a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>we</code> - WebElement, the component to hover mouse</dd><dd><code>point</code> - Point, the position relative to the component to hover the mouse</dd><dd><code>millisStay</code> - double, the period to hover the mouse, in milliseconds</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>we</code> - WebElement, the component to hover mouse</dd><dd><code>point</code> - Point, the position relative to the component to hover the mouse</dd><dd><code>millisStay</code> - int, in milliseconds, the period to hover the mouse; the mouse will
+                        be moved out of screen if it expires.<br/>
+                        if it equals <a href="../../../../../org/safs/Constants.html#TIMEOUT_HOVERMOUSE_STAY_FOREVER"><code>Constants.TIMEOUT_HOVERMOUSE_STAY_FOREVER</code></a>, then
+                        the mouse will always stay there forever.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code> - if the hover fail</dd></dl>
 </li>

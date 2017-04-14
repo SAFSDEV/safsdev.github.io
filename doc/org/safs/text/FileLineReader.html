@@ -105,13 +105,13 @@ extends java.lang.Object</pre>
  <p>
  This FileReader class is intended as a generic file instance class for reading text files.<br>
  <p>
- This class represents the most basic reader functionality.  It will simply read a line 
- of text for each call to readLine().  It uses a java.io.BufferedReader as the underlying 
+ This class represents the most basic reader functionality.  It will simply read a line
+ of text for each call to readLine().  It uses a java.io.BufferedReader as the underlying
  IO mechanism.  The file to be read is expected to be ANSI or a supported Charset encoding.
  <p></div>
 <dl><dt><span class="strong">Version:</span></dt>
   <dd>1.0, 03/24/2004, 11/03/2006 (Carl Nagle) modified to accept mixed-mode UTF-8 files., 03/21/2007 (Carl Nagle) modified to strip utf-8 leader bytes when needed., 07/16/2010 (Carl Nagle) modified to support other Charset encodings., 12/16/2014 (Carl Nagle) Fix NullPointerException on empty files in readLine.
- 
+
  Software Automation Framework Support (SAFS) http://safsdev.sourceforge.net<br>
  Software Testing Automation Framework (STAF) http://staf.sourceforge.net<br></dd>
 <dt><span class="strong">Author:</span></dt>
@@ -269,7 +269,7 @@ extends java.lang.Object</pre>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileLineReader.html#open()">open</a></strong>()</code>
-<div class="block">Subclasses should not need to override this function unless some very interesting things 
+<div class="block">Subclasses should not need to override this function unless some very interesting things
  need to be done before or after the file is opened.</div>
 </td>
 </tr>
@@ -447,7 +447,7 @@ extends java.lang.Object</pre>
 <h4>FileLineReader</h4>
 <pre>public&nbsp;FileLineReader(java.io.File&nbsp;file)</pre>
 <div class="block">The constructor used by the FileReader if the input is a File.
- 
+
  All subclasses using File MUST invoke this constructor prior to completing their initialization.<br>
  Invoke this constructor from the subclass with:
  <p>
@@ -465,13 +465,13 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;FileLineReader(java.io.File&nbsp;file,
               java.lang.String&nbsp;encoding)</pre>
 <div class="block">The constructor used by the FileReader if the input is a File.
- 
+
  All subclasses using File MUST invoke this constructor prior to completing their initialization.<br>
  Invoke this constructor from the subclass with:
  <p>
  &nbsp; &nbsp; super(file);
  <p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>file</code> - A File object that references the file to be opened.</dd><dd><code>encoding.</code> - a valid Charset encoding like "UTF-16", etc...</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>file</code> - File, A File object that references the file to be opened.</dd><dd><code>encoding</code> - String, a valid Charset encoding like "UTF-16", etc...</dd></dl>
 </li>
 </ul>
 <a name="FileLineReader(java.io.InputStream)">
@@ -481,11 +481,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>FileLineReader</h4>
 <pre>public&nbsp;FileLineReader(java.io.InputStream&nbsp;stream)</pre>
-<div class="block">The constructor used by the FileReader if the input is an InputStream.  For example, 
- resources or files stored in JARs loaded via ClassLoaders.  Files can be loaded from 
- the file system if the directory is in the System CLASSPATH where getSystemResourceAsStream 
+<div class="block">The constructor used by the FileReader if the input is an InputStream.  For example,
+ resources or files stored in JARs loaded via ClassLoaders.  Files can be loaded from
+ the file system if the directory is in the System CLASSPATH where getSystemResourceAsStream
  can find it.
- 
+
  All subclasses using InputStreams MUST invoke this constructor prior to completing their initialization.<br>
  Invoke this constructor from the subclass with:
  <p>
@@ -502,17 +502,17 @@ extends java.lang.Object</pre>
 <h4>FileLineReader</h4>
 <pre>public&nbsp;FileLineReader(java.io.InputStream&nbsp;stream,
               java.lang.String&nbsp;encoding)</pre>
-<div class="block">The constructor used by the FileReader if the input is an InputStream.  For example, 
- resources or files stored in JARs loaded via ClassLoaders.  Files can be loaded from 
- the file system if the directory is in the System CLASSPATH where getSystemResourceAsStream 
+<div class="block">The constructor used by the FileReader if the input is an InputStream.  For example,
+ resources or files stored in JARs loaded via ClassLoaders.  Files can be loaded from
+ the file system if the directory is in the System CLASSPATH where getSystemResourceAsStream
  can find it.
- 
+
  All subclasses using InputStreams MUST invoke this constructor prior to completing their initialization.<br>
  Invoke this constructor from the subclass with:
  <p>
  &nbsp; &nbsp; super(stream);
  <p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>stream</code> - an InputStream object that references the data to be opened.</dd><dd><code>encoding.</code> - a valid Charset encoding like "UTF-16", etc...</dd><dt><span class="strong">See Also:</span></dt><dd><code>ClassLoader.getSystemResourceAsStream(java.lang.String)</code></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>stream</code> - InputStream, an InputStream object that references the data to be opened.</dd><dd><code>encoding</code> - String, a valid Charset encoding like "UTF-16", etc...</dd><dt><span class="strong">See Also:</span></dt><dd><code>ClassLoader.getSystemResourceAsStream(java.lang.String)</code></dd></dl>
 </li>
 </ul>
 </li>
@@ -554,7 +554,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;java.lang.String&nbsp;getFilename()</pre>
 <div class="block">Subclasses should not need to override this function.
  <p></div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the short format of the filename--no path information. An empty string if this 
+<dl><dt><span class="strong">Returns:</span></dt><dd>the short format of the filename--no path information. An empty string if this
          object failed to open the file.</dd></dl>
 </li>
 </ul>
@@ -567,7 +567,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;java.lang.String&nbsp;getFullpath()</pre>
 <div class="block">Subclasses should not need to override this function.
  <p></div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the full filename path of the file.  An empty string if this object failed to 
+<dl><dt><span class="strong">Returns:</span></dt><dd>the full filename path of the file.  An empty string if this object failed to
          open.</dd></dl>
 </li>
 </ul>
@@ -592,8 +592,8 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;boolean&nbsp;isEOF()</pre>
 <div class="block">Subclasses should not need to override this function.
  <p></div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>true if we have reached the end of the file.  Reaching end of file does not 
-         Close the file.  However, this file cannot be reset.  So reaching end of file 
+<dl><dt><span class="strong">Returns:</span></dt><dd>true if we have reached the end of the file.  Reaching end of file does not
+         Close the file.  However, this file cannot be reset.  So reaching end of file
          pretty much means this object has reached the end of its usefulness.</dd></dl>
 </li>
 </ul>
@@ -604,21 +604,21 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>readLine</h4>
 <pre>public&nbsp;java.lang.String&nbsp;readLine()</pre>
-<div class="block">This routine is the most basic readLine function.  It simply gets the next line in the 
- file.  It will remove any leading ignorable Unicode FORMAT character from the first line 
- of a file.  This is generally required when reading UTF-8 files with the leading FORMAT 
- marker (BOM).  
+<div class="block">This routine is the most basic readLine function.  It simply gets the next line in the
+ file.  It will remove any leading ignorable Unicode FORMAT character from the first line
+ of a file.  This is generally required when reading UTF-8 files with the leading FORMAT
+ marker (BOM).
  <p>
- Subclasses that intend to maintain any kind of pointers MUST override this method in order 
- to maintain their pointer counts but should still call this method with super.readLine() 
+ Subclasses that intend to maintain any kind of pointers MUST override this method in order
+ to maintain their pointer counts but should still call this method with super.readLine()
  to retain the Unicode character removal on the retrieved text.
  <p>
- It is still desirable to maintain the basic functionality of returning the text 
- value unmodified in each subclass intending to return lines of text.  A subclass wishing 
- to embellish or otherwise process the line of text before returning it should do so in 
+ It is still desirable to maintain the basic functionality of returning the text
+ value unmodified in each subclass intending to return lines of text.  A subclass wishing
+ to embellish or otherwise process the line of text before returning it should do so in
  a different method specific to that subclass.
  <p></div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>the next line in the file.  If the file is closed or has reached the end of file, 
+<dl><dt><span class="strong">Returns:</span></dt><dd>the next line in the file.  If the file is closed or has reached the end of file,
          then a NULL value is returned and EOF is set true.</dd></dl>
 </li>
 </ul>
@@ -630,7 +630,7 @@ extends java.lang.Object</pre>
 <h4>resetpointers</h4>
 <pre>protected&nbsp;void&nbsp;resetpointers()</pre>
 <div class="block">Resets important fields during Close and other operations.
- Subclasses should override this function to add any additional pointer or value reset 
+ Subclasses should override this function to add any additional pointer or value reset
  operations.  Those subclasses should still call the superclass method with:
  <p>
  &nbsp; &nbsp; super.resetpointers();
@@ -666,8 +666,8 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>open</h4>
 <pre>public&nbsp;void&nbsp;open()</pre>
-<div class="block">Subclasses should not need to override this function unless some very interesting things 
- need to be done before or after the file is opened.  However, since the file is opened 
+<div class="block">Subclasses should not need to override this function unless some very interesting things
+ need to be done before or after the file is opened.  However, since the file is opened
  during object construction, all that interesting stuff should be handled there, not here.
  <p></div>
 </li>
@@ -690,12 +690,12 @@ extends java.lang.Object</pre>
 <h4>close</h4>
 <pre>public&nbsp;void&nbsp;close()</pre>
 <div class="block">A call to this routine is essentially telling the object that its useful life is over.
- This is the equivalent of "terminate".  You are soon to be NULLED and garbage collected.  
- The open BufferedReader is closed by calling closeReader.  The remaining API 
+ This is the equivalent of "terminate".  You are soon to be NULLED and garbage collected.
+ The open BufferedReader is closed by calling closeReader.  The remaining API
  will respond accordingly signalling that the file isClosed.
  <p>
- Subclasses should not need to override this function unless there is additional cleanup 
- needed prior to getting whacked.  If the method is overridden, the subclass should still 
+ Subclasses should not need to override this function unless there is additional cleanup
+ needed prior to getting whacked.  If the method is overridden, the subclass should still
  call this routine with:
  <p>
  &nbsp; &nbsp; super.close();

@@ -613,7 +613,7 @@ extends java.lang.Object</pre>
                                      java.lang.String&nbsp;replaceString,
                                      boolean&nbsp;isCaseSensitive)</code>
 <div class="block">Recursively replaceDirectoryFileSubstrings in all matching files in the directory and all
- subdirectories.</div>
+ sub-directories.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -656,14 +656,14 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToFile(java.io.BufferedWriter,%20java.util.Collection)">writeCollectionToFile</a></strong>(java.io.BufferedWriter&nbsp;writer,
-                     java.util.Collection&nbsp;list)</code>
+                     java.util.Collection&lt;?&gt;&nbsp;list)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToFile(java.io.BufferedWriter,%20java.util.Collection,%20java.lang.String)">writeCollectionToFile</a></strong>(java.io.BufferedWriter&nbsp;writer,
-                     java.util.Collection&nbsp;list,
+                     java.util.Collection&lt;?&gt;&nbsp;list,
                      java.lang.String&nbsp;newline)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
@@ -671,14 +671,14 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToSystemFile(java.lang.String,%20java.util.Collection)">writeCollectionToSystemFile</a></strong>(java.lang.String&nbsp;filename,
-                           java.util.Collection&nbsp;list)</code>
+                           java.util.Collection&lt;?&gt;&nbsp;list)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/text/FileUtilities.html#writeCollectionToUTF8File(java.lang.String,%20java.util.Collection)">writeCollectionToUTF8File</a></strong>(java.lang.String&nbsp;filename,
-                         java.util.Collection&nbsp;list)</code>
+                         java.util.Collection&lt;?&gt;&nbsp;list)</code>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.</div>
 </td>
 </tr>
@@ -1084,7 +1084,7 @@ extends java.lang.Object</pre>
                           throws java.io.FileNotFoundException,
                                  java.io.IOException</pre>
 <div class="block">Opens a FileInputStream and checks for UTF-8 0xEF 0xBB 0xBF marker bytes and closes the file.
- <code>http://en.wikipedia.org/wiki/Byte_Order_Mark#Representations_of_byte_order_marks_by_encoding</code></div>
+ See <a href="http://en.wikipedia.org/wiki/Byte_Order_Mark#Representations_of_byte_order_marks_by_encoding">Representations_of_byte_order_marks_by_encoding</a></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - case-insensitive absolute filename path.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if the file starts with the UTF-8 marker bytes. false otherwise--including if there
  are not 3 bytes of data available to be read from the file.</dd>
@@ -1297,7 +1297,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>writeCollectionToFile</h4>
 <pre>public static&nbsp;void&nbsp;writeCollectionToFile(java.io.BufferedWriter&nbsp;writer,
-                         java.util.Collection&nbsp;list,
+                         java.util.Collection&lt;?&gt;&nbsp;list,
                          java.lang.String&nbsp;newline)
                                   throws java.io.IOException</pre>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.
@@ -1328,7 +1328,7 @@ extends java.lang.Object</pre>
  :PROPERTY:propertyName
  etc...
  </pre></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>reader</code> - </dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>writer</code> - BufferedWriter</dd><dd><code>props</code> - Map, the properties to write</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd></dl>
 </li>
@@ -1415,7 +1415,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>writeCollectionToFile</h4>
 <pre>public static&nbsp;void&nbsp;writeCollectionToFile(java.io.BufferedWriter&nbsp;writer,
-                         java.util.Collection&nbsp;list)
+                         java.util.Collection&lt;?&gt;&nbsp;list)
                                   throws java.io.IOException</pre>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.
  Each line is ended with the System line.separator property appropriate for the
@@ -1434,7 +1434,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>writeCollectionToSystemFile</h4>
 <pre>public static&nbsp;void&nbsp;writeCollectionToSystemFile(java.lang.String&nbsp;filename,
-                               java.util.Collection&nbsp;list)
+                               java.util.Collection&lt;?&gt;&nbsp;list)
                                         throws java.io.FileNotFoundException,
                                                java.io.IOException</pre>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.
@@ -1453,7 +1453,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>writeCollectionToUTF8File</h4>
 <pre>public static&nbsp;void&nbsp;writeCollectionToUTF8File(java.lang.String&nbsp;filename,
-                             java.util.Collection&nbsp;list)
+                             java.util.Collection&lt;?&gt;&nbsp;list)
                                       throws java.io.FileNotFoundException,
                                              java.io.IOException</pre>
 <div class="block">Output the toString() values in a Collection as separate lines in a new file.
@@ -1474,7 +1474,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;java.lang.String&nbsp;readStringFromFile(java.io.BufferedReader&nbsp;reader)
                                            throws java.io.IOException</pre>
 <div class="block">Read file contents into a String.  The String is expected to contain all formatting,
- tabs, and newlines, etc.. and will be returned unmodifed.
+ tabs, and newlines, etc.. and will be returned unmodified.
 
  The character decoding is determined by the BufferedReader provided.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>reader</code> - BufferedReader determines the character decoding.</dd>
@@ -1500,8 +1500,7 @@ extends java.lang.Object</pre>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>filepath</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd>String[] contents of file</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code>java.io.IOException</code> - thrown if an IO error occurs.</dd><dt><span class="strong">See Also:</span></dt><dd><code>#readStringFromFile(BuffereReader)</code>, 
-<a href="../../../org/safs/text/FileUtilities.html#readStringFromSystemFile(java.lang.String)"><code>readStringFromSystemFile(String)</code></a>, 
+<dd><code>java.io.IOException</code> - thrown if an IO error occurs.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/text/FileUtilities.html#readStringFromSystemFile(java.lang.String)"><code>readStringFromSystemFile(String)</code></a>, 
 <a href="../../../org/safs/text/FileUtilities.html#readStringFromUTF8File(java.lang.String)"><code>readStringFromUTF8File(String)</code></a></dd></dl>
 </li>
 </ul>
@@ -1518,7 +1517,7 @@ extends java.lang.Object</pre>
                                          boolean&nbsp;isCaseSensitive)
                                                   throws java.io.IOException</pre>
 <div class="block">Recursively replaceDirectoryFileSubstrings in all matching files in the directory and all
- subdirectories.</div>
+ sub-directories.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>directory</code> - </dd><dd><code>fileEndings</code> - </dd><dd><code>findString</code> - </dd><dd><code>replaceString</code> - </dd><dd><code>isCaseSensitive</code> - </dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/text/FileUtilities.html#replaceDirectoryFilesSubstrings(java.lang.String,%20java.lang.String[],%20java.lang.String,%20java.lang.String,%20boolean)"><code>replaceDirectoryFilesSubstrings(String, String[], String, String, boolean)</code></a></dd></dl>
@@ -1560,7 +1559,7 @@ extends java.lang.Object</pre>
                                                  throws java.io.FileNotFoundException,
                                                         java.io.IOException</pre>
 <div class="block">Read file contents into a String.  The String is expected to contain all formatting,
- tabs, and newlines, etc.. and will be returned unmodifed.
+ tabs, and newlines, etc.. and will be returned unmodified.
 
  The default System character decoding is assumed.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - </dd>
@@ -1672,7 +1671,7 @@ extends java.lang.Object</pre>
                       throws java.io.IOException,
                              java.io.FileNotFoundException</pre>
 <div class="block">Calls unzipJAR with noMETATDir as false.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>zipFileName,</code> - String, the 'zip file' to be uncompressed.</dd><dd><code>root,</code> - File, the directory to store the uncompressed files.</dd><dd><code>verbose,</code> - boolean, if the uncompressed message will be printed to console.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>zipFileName</code> - String, the 'zip file' to be uncompressed.</dd><dd><code>root</code> - File, the directory to store the uncompressed files.</dd><dd><code>verbose</code> - boolean, if the uncompressed message will be printed to console.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
 <dd><code>java.io.FileNotFoundException</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/text/FileUtilities.html#unzipJAR(java.lang.String,%20java.io.File,%20boolean,%20boolean)"><code>unzipJAR(String, File, boolean, boolean)</code></a></dd></dl>
@@ -1690,7 +1689,7 @@ extends java.lang.Object</pre>
             boolean&nbsp;noMETADir)
                      throws java.io.IOException,
                             java.io.FileNotFoundException</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>zipFileName,</code> - String, the 'zip' or 'jar' file to be uncompressed.</dd><dd><code>root,</code> - File, the directory to store the uncompressed files.</dd><dd><code>verbose,</code> - boolean, if the uncompressed message will be printed to console.</dd><dd><code>noMETADir,</code> - true to bypass the META-INF directory and MANIFEST.MF file.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>zipFileName</code> - String, the 'zip' or 'jar' file to be uncompressed.</dd><dd><code>root</code> - File, the directory to store the uncompressed files.</dd><dd><code>verbose</code> - boolean, if the uncompressed message will be printed to console.</dd><dd><code>noMETADir</code> - true to bypass the META-INF directory and MANIFEST.MF file.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd>
 <dd><code>java.io.FileNotFoundException</code></dd></dl>
@@ -1723,7 +1722,7 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;void&nbsp;copyFile(java.io.InputStream&nbsp;in,
             java.io.OutputStream&nbsp;out)
                      throws java.io.IOException</pre>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>in,</code> - InputStream, The InputStream of the source file to be copied.</dd><dd><code>out,</code> - OutputStream, The OutputStream of the destination file.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>in</code> - InputStream, The InputStream of the source file to be copied.</dd><dd><code>out</code> - OutputStream, The OutputStream of the destination file.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.io.IOException</code></dd></dl>
 </li>
@@ -1737,8 +1736,8 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;int&nbsp;deleteDirectoryRecursively(java.lang.String&nbsp;directory,
                              boolean&nbsp;verbose)</pre>
 <div class="block">Remove directory recursively by JAVA API</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>directory,</code> - String, the directory to be recursively deleted.</dd><dd><code>verbose,</code> - boolean, if the error message will be printed to console.</dd>
-<dt><span class="strong">Returns:</span></dt><dd></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>directory</code> - String, the directory to be recursively deleted.</dd><dd><code>verbose</code> - boolean, if the error message will be printed to console.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>int</dd></dl>
 </li>
 </ul>
 <a name="copyDirectoryRecursively(java.io.File, java.io.File)">
@@ -1852,7 +1851,7 @@ extends java.lang.Object</pre>
                       <a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;data)
                                throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Deduce the absolute full path to a project-relative, test-relative, bench-relative, diff-relative filename.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename,</code> - String, usually a relative path filename.
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, usually a relative path filename.
  <p>
  There is a caveat for test/bench/diff-relative filenames.  If there is any File.separator
  present in the relative path then the path is considered relative to whatever is considered the
@@ -1866,7 +1865,7 @@ extends java.lang.Object</pre>
  and the filepath sought is of type Test or Diff, then the filename/filepath will be converted to a comparable
  relative path off the Test or Diff directories as appropriate.  This is done to avoid unintentional overwriting
  of benchmark files by test/actual and diff files.
- <p></dd><dd><code>type,</code> - int, the type of the file: test-relative, bench-relative, project-relative.</dd><dd><code>RuntimeDataInterface</code> - to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
+ <p></dd><dd><code>type</code> - int, the type of the file: test-relative, bench-relative, project-relative.</dd><dd><code>data</code> - RuntimeDataInterface to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the absolute full path test/bench/diff file.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#FILE_TYPE_TEST}</code>, 
@@ -1886,7 +1885,7 @@ extends java.lang.Object</pre>
                           <a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;data)
                                    throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Deduce the absolute full path test-relative file.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename,</code> - String, the test/actual file name.  If there are any File.separators in the
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, the test/actual file name.  If there are any File.separators in the
  relative path then the path is actually considered relative to the Datapool
  directory unless it does not exist, or is already an absolute file path.
  <p>
@@ -1895,10 +1894,10 @@ extends java.lang.Object</pre>
  <p>
  If it is an absolute path, and contains a root path that includes the Bench directory, then the
  file will be converted to a comparable relative path off the Test directory.
- <p></dd><dd><code>RuntimeDataInterface</code> - to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
+ <p></dd><dd><code>data</code> - RuntimeDataInterface to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the absolute full path test file.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int)}</code></dd></dl>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int, RuntimeDataInterface)}</code></dd></dl>
 </li>
 </ul>
 <a name="deduceDiffFile(java.lang.String, org.safs.tools.RuntimeDataInterface)">
@@ -1911,7 +1910,7 @@ extends java.lang.Object</pre>
                           <a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;data)
                                    throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Deduce the absolute full path Diff-relative file.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename,</code> - String, the diff file name.  If there are any File.separators in the
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, the diff file name.  If there are any File.separators in the
  relative path then the path is actually considered relative to the Datapool
  directory unless it does not exist, or is already an absolute file path.
  <p>
@@ -1920,10 +1919,10 @@ extends java.lang.Object</pre>
  <p>
  If it is an absolute path, and contains a root path that includes the Bench directory, then the
  file will be converted to a comparable relative path off the Diff directory.
- <p></dd><dd><code>RuntimeDataInterface</code> - to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
+ <p></dd><dd><code>data</code> - RuntimeDataInterface to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the absolute full path diff file.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int)}</code></dd></dl>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int, RuntimeDataInterface)}</code></dd></dl>
 </li>
 </ul>
 <a name="deduceBenchFile(java.lang.String, org.safs.tools.RuntimeDataInterface)">
@@ -1936,14 +1935,14 @@ extends java.lang.Object</pre>
                            <a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;data)
                                     throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Deduce the absolute full path bench-relative file.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename,</code> - String, the test file name.  If there are any File.separators in the
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, the test file name.  If there are any File.separators in the
  relative path then the path is actually considered relative to the Datapool
  directory unless it does not exist, or is already an absolute file path.
  If a relative directory path does not exist relative to the Datapool directory then
- the final path will be relative to the Project directory.</dd><dd><code>RuntimeDataInterface</code> - to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
+ the final path will be relative to the Project directory.</dd><dd><code>data</code> - RuntimeDataInterface to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the absolute full path bench file.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int)}</code></dd></dl>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int, RuntimeDataInterface)}</code></dd></dl>
 </li>
 </ul>
 <a name="deduceProjectFile(java.lang.String, org.safs.tools.RuntimeDataInterface)">
@@ -1956,12 +1955,12 @@ extends java.lang.Object</pre>
                              <a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;data)
                                       throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Deduce the absolute full path to a project-relative file.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename,</code> - String, the test file name.  The path is ALWAYS considered relative
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, the test file name.  The path is ALWAYS considered relative
  to the project root directory regardless of the absence or presence of File.separators
- unless the file is already an absolute path.</dd><dd><code>RuntimeDataInterface</code> - to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
+ unless the file is already an absolute path.</dd><dd><code>data</code> - RuntimeDataInterface to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the absolute full path bench file.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int)}</code></dd></dl>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int, RuntimeDataInterface)}</code></dd></dl>
 </li>
 </ul>
 <a name="deduceDatapoolFile(java.lang.String, org.safs.tools.RuntimeDataInterface)">
@@ -1974,10 +1973,10 @@ extends java.lang.Object</pre>
                               <a href="../../../org/safs/tools/RuntimeDataInterface.html" title="interface in org.safs.tools">RuntimeDataInterface</a>&nbsp;data)
                                        throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block">Deduce the absolute full path datapool-relative file.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename,</code> - String, the data file name. It can contain sub directories.</dd><dd><code>RuntimeDataInterface</code> - to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>filename</code> - String, the data file name. It can contain sub directories.</dd><dd><code>data</code> - RuntimeDataInterface to access runtime data (directories). Like a subclass of GenericEngine, or Processor.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>File, the absolute full path datapool file.</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int)}</code></dd></dl>
+<dd><code><a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></code></dd><dt><span class="strong">See Also:</span></dt><dd><code>#deduceFile(String, int, RuntimeDataInterface)}</code></dd></dl>
 </li>
 </ul>
 <a name="getFileAttribute(java.io.File)">

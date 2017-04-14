@@ -631,12 +631,12 @@ extends <a href="../../../org/safs/ComponentFunction.html" title="class in org.s
                            throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../org/safs/ComponentFunction.html#action_getGuiImage()">ComponentFunction</a></code></strong></div>
 <div class="block">Processes a Component Function Test Record to capture a screen GUI image to a file.
- Currently, the available formats for the output file are JPG, BMP, TIF, GIF, PNG and PNM. 
+ Currently, the available formats for the output file are JPG, BMP, TIF, GIF, PNG and PNM.
  Optionally, the user may utilize the SubArea parameter to only capture a portion of the Component.
- This routine expects to be called by subclasses only and the subclass must override 
- the getComponentRectangle method to provide the necessary location of the 
- desired Component.  Subclasses must also have already set the fields for mapname, 
- windowName, compName, and action.  This is usually already done in the process() call 
+ This routine expects to be called by subclasses only and the subclass must override
+ the getComponentRectangle method to provide the necessary location of the
+ desired Component.  Subclasses must also have already set the fields for mapname,
+ windowName, compName, and action.  This is usually already done in the process() call
  from the subclasses.
  This routine utilizes Java Advanced Imaging (JAI) to output the screen image to the file.
  JAI must be installed at compile time and runtime.</div>
@@ -657,12 +657,12 @@ extends <a href="../../../org/safs/ComponentFunction.html" title="class in org.s
                                     throws <a href="../../../org/safs/SAFSException.html" title="class in org.safs">SAFSException</a></pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../org/safs/ComponentFunction.html#action_verifyGuiImageToFile()">ComponentFunction</a></code></strong></div>
 <div class="block">Processes a Component Function Test Record to verify a screen GUI image to a file.
- Currently, the available formats for the output file are BMP, JPG, TIFF, GIF, PNG, and PNM.  
+ Currently, the available formats for the output file are BMP, JPG, TIFF, GIF, PNG, and PNM.
  Optionally, the user may utilize the SubArea parameter to only capture a portion of the Component.
- This routine expects to be called by subclasses only and the subclass must override 
- the getComponentRectangle method to provide the necessary location of the 
- desired Component.  Subclasses must also have already set the fields for mapname, 
- windowName, compName, and action.  This is usually already done in the process() call 
+ This routine expects to be called by subclasses only and the subclass must override
+ the getComponentRectangle method to provide the necessary location of the
+ desired Component.  Subclasses must also have already set the fields for mapname,
+ windowName, compName, and action.  This is usually already done in the process() call
  from the subclasses.
  This routine utilizes Java Advanced Imaging (JAI) to output the screen image to the file.
  JAI must be installed at compile time and runtime.</div>
@@ -780,8 +780,8 @@ extends <a href="../../../org/safs/ComponentFunction.html" title="class in org.s
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../org/safs/ComponentFunction.html#setPosition()">ComponentFunction</a></code></strong></div>
 <div class="block">perform SetPosition to move Main Window, resize it and set its status.
  Format: "Coords=0,0,640,480;Status=NORMAL". Status can be NORMAL, MINIMAZED and MAXMAZED
- Alteratively, semi-colon (;) can be used instead of comma (,) to separate 
- numeric data.  This would be required when placing the data directly in the 
+ Alteratively, semi-colon (;) can be used instead of comma (,) to separate
+ numeric data.  This would be required when placing the data directly in the
  test record and NOT in the App Map when using comma-delimited test tables.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
@@ -898,14 +898,14 @@ extends <a href="../../../org/safs/ComponentFunction.html" title="class in org.s
 <pre>protected&nbsp;java.awt.Rectangle&nbsp;getComponentRectangle()</pre>
 <div class="block"><strong>Description copied from class:&nbsp;<code><a href="../../../org/safs/ComponentFunction.html#getComponentRectangle()">ComponentFunction</a></code></strong></div>
 <div class="block">Do nothing method returns null.
- Subclasses should override to provide the 'Rectangle bounds' of the Component 
+ Subclasses should override to provide the 'Rectangle bounds' of the Component
  currently represented in the current testRecordData. The 'Rectangle bounds' may be
  absolute on screen or relative to a window/browser, this is decided by subclass.
- If returned 'Rectangle bounds' is NOT absolute on screen, the the method 
+ If returned 'Rectangle bounds' is NOT absolute on screen, the the method
  <a href="../../../org/safs/ComponentFunction.html#getRectangleImage(java.awt.Rectangle)"><code>ComponentFunction.getRectangleImage(Rectangle)</code></a> SHOULD be overridden in subclass to provide appropriate implementation.
  <br>
- Subclasses should assume the mapname, windowName, and compName currently stored 
- for the instance hold the information needed to identify and locate the Component 
+ Subclasses should assume the mapname, windowName, and compName currently stored
+ for the instance hold the information needed to identify and locate the Component
  on the screen or in the system.
  <br>
  This method is called by <a href="../../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)"><code>ComponentFunction.deduceImageRect(String)</code></a> to get a subarea rectangle.
