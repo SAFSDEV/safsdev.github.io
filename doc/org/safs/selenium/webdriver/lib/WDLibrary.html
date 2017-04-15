@@ -826,7 +826,7 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#runSeleniumBuilderScript(java.lang.String,%20org.apache.commons.logging.Log,%20boolean)">runSeleniumBuilderScript</a></strong>(java.lang.String&nbsp;path,
                         org.apache.commons.logging.Log&nbsp;log,
                         boolean&nbsp;allowClose)</code>
-<div class="block">Run a SeBuilder JSON Script explictly using the existing WebDriver instance.</div>
+<div class="block">Run a SeBuilder JSON Script explicitly using the existing WebDriver instance.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -1285,7 +1285,7 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
          java.lang.String...&nbsp;optional)
                   throws <a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
 <div class="block">Click(Mouse Left Button) the WebElement at center with a special key pressed.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>clickable</code> - WebElement, the WebElement to click on</dd><dd><code>specialKey</code> - Keys, the special key to presse during the click</dd><dd><code>optional</code> - String[], the optional parameters
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>clickable</code> - WebElement, the WebElement to click on</dd><dd><code>specialKey</code> - Keys, the special key to press during the click</dd><dd><code>optional</code> - String[], the optional parameters
  <ul>
  <li> optional[0] autoscroll boolean, if the component will be scrolled into view automatically before clicking.
                                       if not provided, the default value is true.
@@ -1478,7 +1478,7 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
                java.lang.String...&nbsp;optional)
                         throws <a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
 <div class="block">Double-Click(Mouse Left Button) the WebElement at the center with a special key pressed.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>clickable</code> - WebElement, the WebElement to click on</dd><dd><code>specialKey</code> - Keys, the special key to presse during the click</dd><dd><code>optional</code> - String[], the optional parameters
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>clickable</code> - WebElement, the WebElement to click on</dd><dd><code>specialKey</code> - Keys, the special key to press during the click</dd><dd><code>optional</code> - String[], the optional parameters
  <ul>
  <li> optional[0] autoscroll boolean, if the component will be scrolled into view automatically before clicking.
                                       if not provided, the default value is true.
@@ -2023,7 +2023,7 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
 <div class="block">Given the element, and the (offsetX, offsetY) relative to element.
  This function will calculate the offset point screen coordination.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>element</code> - WebElement, the element relative to which the coordination will be calculated.</dd><dd><code>offsetX</code> - String, the offset on x axis, in pixel or in percentage, for example 15 or 30%.</dd><dd><code>offsetX</code> - String, the offset on y axis, in pixel or in percentage, for example 45 or 50%.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Point, the offset point screen coordination; or null if any exception occured.</dd></dl>
+<dt><span class="strong">Returns:</span></dt><dd>Point, the offset point screen coordination; or null if any exception occurred.</dd></dl>
 </li>
 </ul>
 <a name="captureScreen(org.openqa.selenium.WebElement, java.lang.String, java.lang.String)">
@@ -2566,7 +2566,7 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
                                boolean&nbsp;allowClose)
                                         throws java.io.FileNotFoundException,
                                                java.lang.RuntimeException</pre>
-<div class="block">Run a SeBuilder JSON Script explictly using the existing WebDriver instance.
+<div class="block">Run a SeBuilder JSON Script explicitly using the existing WebDriver instance.
  <p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - - fullpath to JSON script file.
  <p></dd><dd><code>log</code> - - An appropriate logging interface--such as the ApacheLogUtilities we instantiate
@@ -2692,7 +2692,7 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
 <div class="block">Attempts to fire (dispatchEvent) a MouseEvent.
  The MouseEvent should be suitable and contain all relevant and necessary information for the event.
  This is typically used to re-fire a MouseEvent that might have been captured with DocumentClickCapture
- but was not allowed to propogate to the actual element.</div>
+ but was not allowed to propagate to the actual element.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>event</code> - </dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code> - on an execution error.</dd>
