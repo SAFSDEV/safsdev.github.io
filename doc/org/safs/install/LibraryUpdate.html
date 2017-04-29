@@ -220,7 +220,7 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#backupFiles">backupFiles</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>(package private) java.util.HashMap</code></td>
+<td class="colFirst"><code>(package private) java.util.HashMap&lt;java.io.File,java.io.File&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#backups">backups</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -258,7 +258,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#help_string">help_string</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#HELP_STRING">HELP_STRING</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>(package private) static java.lang.String</code></td>
@@ -391,11 +391,20 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#close()">close</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) void</code></td>
 <td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#copyFile(java.io.File,%20java.io.File)">copyFile</a></strong>(java.io.File&nbsp;sourcefile,
         java.io.File&nbsp;targetfile)</code>
 <div class="block">Copy a sourcefile to a targetfile location.</div>
 </td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/LibraryUpdate.html#download(java.lang.String,%20java.io.File)">download</a></strong>(java.lang.String&nbsp;url,
+        java.io.File&nbsp;outfile)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>(package private) void</code></td>
@@ -779,14 +788,14 @@ extends java.lang.Object</pre>
 <div class="block">Used to get the information of the current installed product.</div>
 </li>
 </ul>
-<a name="help_string">
+<a name="HELP_STRING">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>help_string</h4>
-<pre>public static final&nbsp;java.lang.String help_string</pre>
-<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.LibraryUpdate.help_string">Constant Field Values</a></dd></dl>
+<h4>HELP_STRING</h4>
+<pre>public static final&nbsp;java.lang.String HELP_STRING</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../constant-values.html#org.safs.install.LibraryUpdate.HELP_STRING">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 <a name="LC_JAR">
@@ -845,7 +854,7 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>backups</h4>
-<pre>java.util.HashMap backups</pre>
+<pre>java.util.HashMap&lt;java.io.File,java.io.File&gt; backups</pre>
 </li>
 </ul>
 </li>
@@ -892,6 +901,15 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>init</h4>
 <pre>protected&nbsp;void&nbsp;init()</pre>
+</li>
+</ul>
+<a name="close()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>close</h4>
+<pre>protected&nbsp;void&nbsp;close()</pre>
 </li>
 </ul>
 <a name="processArgs(java.lang.String[])">
@@ -1017,10 +1035,8 @@ extends java.lang.Object</pre>
 <h4>downloadURL</h4>
 <pre>void&nbsp;downloadURL(java.lang.String&nbsp;url,
                java.io.File&nbsp;outfile)
-           throws java.net.MalformedURLException,
-                  java.io.IOException</pre>
+           throws java.io.IOException</pre>
 <dl><dt><span class="strong">Throws:</span></dt>
-<dd><code>java.net.MalformedURLException</code></dd>
 <dd><code>java.io.IOException</code></dd></dl>
 </li>
 </ul>
@@ -1031,6 +1047,16 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isQuiet</h4>
 <pre>public&nbsp;boolean&nbsp;isQuiet()</pre>
+</li>
+</ul>
+<a name="download(java.lang.String, java.io.File)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>download</h4>
+<pre>public static&nbsp;boolean&nbsp;download(java.lang.String&nbsp;url,
+               java.io.File&nbsp;outfile)</pre>
 </li>
 </ul>
 <a name="main(java.lang.String[])">

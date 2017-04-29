@@ -949,22 +949,30 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#switchWindow(java.lang.String,%20java.lang.String,%20boolean...)">switchWindow</a></strong>(java.lang.String&nbsp;browserID,
+            java.lang.String&nbsp;title,
+            boolean...&nbsp;optionals)</code>
+<div class="block">Switch to a certain window according to its title.<br/></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>(package private) static int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#toJavaKeyCode(org.openqa.selenium.Keys)">toJavaKeyCode</a></strong>(org.openqa.selenium.Keys&nbsp;key)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#windowSetFocus(java.lang.String)">windowSetFocus</a></strong>(java.lang.String&nbsp;titleRegExp)</code>
 <div class="block">Set a specific Window matching the provided title to be the foreground window.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#windowSetFocus(org.openqa.selenium.WebDriver)">windowSetFocus</a></strong>(org.openqa.selenium.WebDriver&nbsp;adriver)</code>
 <div class="block">Attempt to SetFocus on the topmost window for the provided WebDriver.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#windowSetFocus(org.openqa.selenium.WebElement)">windowSetFocus</a></strong>(org.openqa.selenium.WebElement&nbsp;element)</code>
 <div class="block">Attempt to SetFocus on the topmost window containing the WebElement.</div>
@@ -2369,6 +2377,28 @@ extends <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.htm
  This also makes that WebDriver the "current" or "lastUsedWD".</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>title</code> - </dd>
 <dt><span class="strong">Returns:</span></dt><dd></dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code></dd></dl>
+</li>
+</ul>
+<a name="switchWindow(java.lang.String, java.lang.String, boolean...)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>switchWindow</h4>
+<pre>public static&nbsp;boolean&nbsp;switchWindow(java.lang.String&nbsp;browserID,
+                   java.lang.String&nbsp;title,
+                   boolean...&nbsp;optionals)
+                            throws <a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
+<div class="block">Switch to a certain window according to its title.<br/></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>browserID</code> - String, the browser ID when calling <a href="../../../../../org/safs/selenium/webdriver/lib/WDLibrary.html#startBrowser(java.lang.String,%20java.lang.String,%20java.lang.String,%20int,%20boolean)"><code>startBrowser(String, String, String, int, boolean)</code></a></dd><dd><code>title</code> - String, the title of the window to switch to. It can be a normal string, a regexp string or a wildcard string.
+                      If it is regexp string, the optional parameters will be ignored.</dd><dd><code>optionals</code> - boolean[]
+ <ul>
+ <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is not regexp string;
+ <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is not regexp string;
+ </ul></dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean true if successfully switched</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code></dd></dl>
 </li>
