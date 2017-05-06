@@ -186,54 +186,61 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#DEFAULT_CONNECTION_TEST_COMMAND">DEFAULT_CONNECTION_TEST_COMMAND</a></strong></code>
+<div class="block">"<b>getAlertText</b>" defines the default <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ used to test the connection between WebDriver and BrowserDriver.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#isGrid">isGrid</a></strong></code>
 <div class="block">if this is a grid-hub server</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#JAVA_TMPDIR">JAVA_TMPDIR</a></strong></code>
 <div class="block">"java.io.tmpdir"</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#LAST_SESSION_KEY">LAST_SESSION_KEY</a></strong></code>
 <div class="block">"LASTSESSION"</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_hostname">remote_hostname</a></strong></code>
 <div class="block">parsed hostname of the remote selenium server (standalone or grid-hub)
  might be needed for additional Selenium RMI Server communication.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_port">remote_port</a></strong></code>
 <div class="block">parsed port number of the remote selenium server (standalone or grid-hub)
  might be needed for get grid-node information.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>java.net.URL</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#remote_URL">remote_URL</a></strong></code>
 <div class="block">The URL provided at construction time.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#rmi_hostname">rmi_hostname</a></strong></code>
 <div class="block">hostname of the remote grid-node.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#rmi_registry_port">rmi_registry_port</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/safs/selenium/rmi/agent/SeleniumAgent.html" title="class in org.safs.selenium.rmi.agent">SeleniumAgent</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#rmiAgent">rmiAgent</a></strong></code>
 <div class="block">A SeleniumRMIAgent, if enabled, to communicate with a remote SAFS Selenium RMI Server.<br>
@@ -241,7 +248,7 @@ implements org.openqa.selenium.TakesScreenshot</pre>
  This may also be non-null, but not connected to an RMI server if the server is not running.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#SESSION_FILE">SESSION_FILE</a></strong></code>
 <div class="block">"selenium.session.tmp"</div>
@@ -324,22 +331,35 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#getDriverVersion()">getDriverVersion</a></strong>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#getExecutionTime(java.lang.String,%20int)">getExecutionTime</a></strong>(java.lang.String&nbsp;command,
+                int&nbsp;timeoutWaitForComponent)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#getPlatform()">getPlatform</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>&lt;X&gt;&nbsp;X</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#getScreenshotAs(org.openqa.selenium.OutputType)">getScreenshotAs</a></strong>(org.openqa.selenium.OutputType&lt;X&gt;&nbsp;target)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.SessionInfo.html" title="class in org.safs.selenium.webdriver.lib">RemoteDriver.SessionInfo</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#getSessionsFromFile()">getSessionsFromFile</a></strong>()</code>
 <div class="block">Returns a List of SessionInfo objects.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#hasQuit()">hasQuit</a></strong>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/RemoteDriver.html#isConnectionFine(java.lang.String,%20long,%20int)">isConnectionFine</a></strong>(java.lang.String&nbsp;command,
+                long&nbsp;maxDuration,
+                int&nbsp;timeoutWaitForComponent)</code>
+<div class="block">Test if the connection between WebDriver and the browser-driver is good enough to satisfy user's need.<br></div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -583,6 +603,18 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <div class="block">if this is a grid-hub server</div>
 </li>
 </ul>
+<a name="DEFAULT_CONNECTION_TEST_COMMAND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_CONNECTION_TEST_COMMAND</h4>
+<pre>public static final&nbsp;java.lang.String DEFAULT_CONNECTION_TEST_COMMAND</pre>
+<div class="block">"<b>getAlertText</b>" defines the default <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ used to test the connection between WebDriver and BrowserDriver.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.safs.selenium.webdriver.lib.RemoteDriver.DEFAULT_CONNECTION_TEST_COMMAND">Constant Field Values</a></dd></dl>
+</li>
+</ul>
 <a name="debugLogFile">
 <!--   -->
 </a>
@@ -754,6 +786,38 @@ implements org.openqa.selenium.TakesScreenshot</pre>
 <dt><strong>Overrides:</strong></dt>
 <dd><code>startSession</code>&nbsp;in class&nbsp;<code>org.openqa.selenium.remote.RemoteWebDriver</code></dd>
 </dl>
+</li>
+</ul>
+<a name="isConnectionFine(java.lang.String, long, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isConnectionFine</h4>
+<pre>public&nbsp;boolean&nbsp;isConnectionFine(java.lang.String&nbsp;command,
+                       long&nbsp;maxDuration,
+                       int&nbsp;timeoutWaitForComponent)
+                         throws <a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
+<div class="block">Test if the connection between WebDriver and the browser-driver is good enough to satisfy user's need.<br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - String, the selenium driver command to use to test execution time</dd><dd><code>maxDuration</code> - long, the maximum execution duration that user can accept</dd><dd><code>timeoutWaitForComponent</code> - int, the original timeout to wait for a GUI component</dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean true if the connection is good enough</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code> - if the parameter command is null or empty</dd></dl>
+</li>
+</ul>
+<a name="getExecutionTime(java.lang.String, int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getExecutionTime</h4>
+<pre>public&nbsp;long&nbsp;getExecutionTime(java.lang.String&nbsp;command,
+                    int&nbsp;timeoutWaitForComponent)
+                      throws <a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - String, the selenium driver command to use to test execution time</dd><dd><code>timeoutWaitForComponent</code> - int, the original timeout to wait for a GUI component</dd>
+<dt><span class="strong">Returns:</span></dt><dd>long, the time (in milliseconds) consumed by the command execution</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="../../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></code> - if the parameter command is null or empty</dd></dl>
 </li>
 </ul>
 <a name="execute(java.lang.String, java.util.Map)">

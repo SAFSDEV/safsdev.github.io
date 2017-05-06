@@ -135,13 +135,9 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#ITEM_WEB_DRIVERS">ITEM_WEB_DRIVERS</a></strong></code>
-<div class="block">"<b>WEB_DRIVERS</b>" defines a set of drivers to start with the selenium-server.<br>
- The value can be a combination (separated by a colon :) of<br>
- 
- <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
- <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
- <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
- BrowserConstants.BROWSER_NAME_XXX might be supported.</div>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>please use <a href="../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_WEB_DRIVERS"><code>DriverConstant.SeleniumConfigConstant.ITEM_WEB_DRIVERS</code></a> instead.</i></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -154,13 +150,9 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Constants.SeleniumConstants.html#PROPERTY_WEB_DRIVERS">PROPERTY_WEB_DRIVERS</a></strong></code>
-<div class="block">"<b>safs.selenium.web.drivers</b>" defines a set of drivers to start with the selenium-server.<br>
- The value can be a combination (separated by a colon :) of<br>
- 
- <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
- <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
- <a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
- BrowserConstants.BROWSER_NAME_XXX might be supported.</div>
+<div class="block"><strong>Deprecated.</strong>&nbsp;
+<div class="block"><i>please use <a href="../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_WEB_DRIVERS"><code>DriverConstant.SeleniumConfigConstant.PROPERTY_WEB_DRIVERS</code></a> instead.</i></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -368,18 +360,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>ITEM_WEB_DRIVERS</h4>
-<pre>public static final&nbsp;java.lang.String ITEM_WEB_DRIVERS</pre>
-<div class="block">"<b>WEB_DRIVERS</b>" defines a set of drivers to start with the selenium-server.<br>
- The value can be a combination (separated by a colon :) of<br>
- <ul>
- <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
- <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
- <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
- <li>BrowserConstants.BROWSER_NAME_XXX might be supported.
- </ul>
- Examples:<br>
- <b>explorer</b> Only IEDriver will start with the selenium-server.<br>
- <b>explorer:chrome:MicrosoftEdge</b> IEDriver, ChromeDriver and EdgeDriver will start with the selenium-server.<br></div>
+<pre>@Deprecated
+public static final&nbsp;java.lang.String ITEM_WEB_DRIVERS</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>please use <a href="../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_WEB_DRIVERS"><code>DriverConstant.SeleniumConfigConstant.ITEM_WEB_DRIVERS</code></a> instead.</i></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.SeleniumConstants.ITEM_WEB_DRIVERS">Constant Field Values</a></dd></dl>
 </li>
 </ul>
@@ -389,18 +372,9 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>PROPERTY_WEB_DRIVERS</h4>
-<pre>public static final&nbsp;java.lang.String PROPERTY_WEB_DRIVERS</pre>
-<div class="block">"<b>safs.selenium.web.drivers</b>" defines a set of drivers to start with the selenium-server.<br>
- The value can be a combination (separated by a colon :) of<br>
- <ul>
- <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
- <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
- <li><a href="../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
- <li>BrowserConstants.BROWSER_NAME_XXX might be supported.
- </ul>
- Examples:<br>
- -Dsafs.selenium.web.drivers=<b>explorer</b> Only IEDriver will start with the selenium-server.<br>
- -Dsafs.selenium.web.drivers=<b>explorer:chrome:MicrosoftEdge</b> IEDriver, ChromeDriver and EdgeDriver will start with the selenium-server.<br></div>
+<pre>@Deprecated
+public static final&nbsp;java.lang.String PROPERTY_WEB_DRIVERS</pre>
+<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>please use <a href="../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_WEB_DRIVERS"><code>DriverConstant.SeleniumConfigConstant.PROPERTY_WEB_DRIVERS</code></a> instead.</i></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../constant-values.html#org.safs.Constants.SeleniumConstants.PROPERTY_WEB_DRIVERS">Constant Field Values</a></dd></dl>
 </li>
 </ul>

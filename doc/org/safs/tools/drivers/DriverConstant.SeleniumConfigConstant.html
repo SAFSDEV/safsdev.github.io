@@ -125,6 +125,20 @@ extends <a href="../../../../org/safs/Constants.SeleniumConstants.html" title="c
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#DEFAULT_CONNECTION_TEST_MAX_DURATION">DEFAULT_CONNECTION_TEST_MAX_DURATION</a></strong></code>
+<div class="block"><b>5000</b> defines the default maximum duration (in <b>milliseconds</b>) that user can accept when executing
+ <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ defined by <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND"><code>PROPERTY_CONNECTION_TEST_COMMAND</code></a> or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND"><code>ITEM_CONNECTION_TEST_COMMAND</code></a>.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#DEFAULT_CONNECTION_TEST_MAX_TRY">DEFAULT_CONNECTION_TEST_MAX_TRY</a></strong></code>
+<div class="block"><b>2</b> defines the maximum times to try to get a good connection.<b></div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#DEFAULT_JVM_MEMORY_MAXIMUM">DEFAULT_JVM_MEMORY_MAXIMUM</a></strong></code>
 <div class="block">"2g" default maximum memory for the SELENIUM server</div>
@@ -174,16 +188,110 @@ extends <a href="../../../../org/safs/Constants.SeleniumConstants.html" title="c
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND">ITEM_CONNECTION_TEST_COMMAND</a></strong></code>
+<div class="block">"<b>connection.test.command</b>" defines the <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ used to test the connection between WebDriver and BrowserDriver.<br>
+ selenium-driver-command is a string understood by a remote server using the JSON wire protocol.<br>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ connection.test.command=<b>getAlertText</b><br>
+ connection.test.command=<b>getCurrentWindowSize</b><br></div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_MAX_DURATION">ITEM_CONNECTION_TEST_MAX_DURATION</a></strong></code>
+<div class="block">"<b>connection.test.max.duration</b>" defines the maximum duration (in <b>milliseconds</b>) that user can accept when executing
+ <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ defined by <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND"><code>PROPERTY_CONNECTION_TEST_COMMAND</code></a> or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND"><code>ITEM_CONNECTION_TEST_COMMAND</code></a>.<br>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ connection.test.max.duration=<b>3000</b><br></div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_MAX_TRY">ITEM_CONNECTION_TEST_MAX_TRY</a></strong></code>
+<div class="block">"<b>connection.test.max.try</b>" defines the maximum times to try to get a good connection between WebDriver and BrowserDriver<br>
+ <br>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ connection.test.max.try=<b>10</b><br></div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONSOLE_STATE">ITEM_CONSOLE_STATE</a></strong></code>
 <div class="block">"CONSOLE_STATE" defines the state of the JVM console for the SELENIUM server<br>
  The value can be: MAX|MIN|NORMAL|MAXIMIZE|MINIMIZE<br></div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_WEB_DRIVERS">ITEM_WEB_DRIVERS</a></strong></code>
+<div class="block">"<b>WEB_DRIVERS</b>" defines a set of drivers to start with the selenium-server.<br>
+ The value can be a combination (separated by a colon :) of<br>
+ 
+ <a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ BrowserConstants.BROWSER_NAME_XXX might be supported.</div>
+</td>
+</tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND">PROPERTY_CONNECTION_TEST_COMMAND</a></strong></code>
+<div class="block">"<b>connection.test.command</b>" defines the <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ used to test the connection between WebDriver and BrowserDriver.<br>
+ selenium-driver-command is a string understood by a remote server using the JSON wire protocol.<br>
+ Examples:<br>
+ -Dconnection.test.command=<b>getAlertText</b><br>
+ -Dconnection.test.command=<b>getCurrentWindowSize</b><br></div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_MAX_DURATION">PROPERTY_CONNECTION_TEST_MAX_DURATION</a></strong></code>
+<div class="block">"<b>connection.test.max.duration</b>" defines the maximum duration (in <b>milliseconds</b>) that user can accept when executing
+ <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ defined by <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND"><code>PROPERTY_CONNECTION_TEST_COMMAND</code></a> or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND"><code>ITEM_CONNECTION_TEST_COMMAND</code></a>.<br>
+ <br>
+ Examples:<br>
+ -Dconnection.test.max.duration=<b>3000</b><br></div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_MAX_TRY">PROPERTY_CONNECTION_TEST_MAX_TRY</a></strong></code>
+<div class="block">"<b>connection.test.max.try</b>" defines the maximum times to try to get a good connection between WebDriver and BrowserDriver<br>
+ <br>
+ Examples:<br>
+ -Dconnection.test.max.try=<b>10</b><br></div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONSOLE_STATE">PROPERTY_CONSOLE_STATE</a></strong></code>
 <div class="block">"safs.selenium.console.state" defines the state of the JVM console for the SELENIUM server<br>
  JVM command line: -Dsafs.selenium.console.state=MAX|MIN|NORMAL|MAXIMIZE|MINIMIZE</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_WEB_DRIVERS">PROPERTY_WEB_DRIVERS</a></strong></code>
+<div class="block">"<b>safs.selenium.web.drivers</b>" defines a set of drivers to start with the selenium-server.<br>
+ The value can be a combination (separated by a colon :) of<br>
+ 
+ <a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ BrowserConstants.BROWSER_NAME_XXX might be supported.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -237,7 +345,7 @@ extends <a href="../../../../org/safs/Constants.SeleniumConstants.html" title="c
 <!--   -->
 </a>
 <h3>Fields inherited from class&nbsp;org.safs.<a href="../../../../org/safs/Constants.SeleniumConstants.html" title="class in org.safs">Constants.SeleniumConstants</a></h3>
-<code><a href="../../../../org/safs/Constants.SeleniumConstants.html#DRIVER_SHORT_NAME_MAP">DRIVER_SHORT_NAME_MAP</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#ITEM_WEB_DRIVERS">ITEM_WEB_DRIVERS</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#KEY_GRID_NODES_SETTING">KEY_GRID_NODES_SETTING</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#PROPERTY_WEB_DRIVERS">PROPERTY_WEB_DRIVERS</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_BROWSER_NAME">SYSTEM_PROPERTY_BROWSER_NAME</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_BROWSER_REMOTE">SYSTEM_PROPERTY_BROWSER_REMOTE</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_HOST">SYSTEM_PROPERTY_SELENIUM_HOST</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_NODE">SYSTEM_PROPERTY_SELENIUM_NODE</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_PORT">SYSTEM_PROPERTY_SELENIUM_PORT</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_CHROME">SYSTEM_PROPERTY_WEBDRIVER_CHROME</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_EDGE">SYSTEM_PROPERTY_WEBDRIVER_EDGE</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_IE">SYSTEM_PROPERTY_WEBDRIVER_IE</a></code></li>
+<code><a href="../../../../org/safs/Constants.SeleniumConstants.html#DRIVER_SHORT_NAME_MAP">DRIVER_SHORT_NAME_MAP</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#KEY_GRID_NODES_SETTING">KEY_GRID_NODES_SETTING</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_BROWSER_NAME">SYSTEM_PROPERTY_BROWSER_NAME</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_BROWSER_REMOTE">SYSTEM_PROPERTY_BROWSER_REMOTE</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_HOST">SYSTEM_PROPERTY_SELENIUM_HOST</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_NODE">SYSTEM_PROPERTY_SELENIUM_NODE</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_SELENIUM_PORT">SYSTEM_PROPERTY_SELENIUM_PORT</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_CHROME">SYSTEM_PROPERTY_WEBDRIVER_CHROME</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_EDGE">SYSTEM_PROPERTY_WEBDRIVER_EDGE</a>, <a href="../../../../org/safs/Constants.SeleniumConstants.html#SYSTEM_PROPERTY_WEBDRIVER_IE">SYSTEM_PROPERTY_WEBDRIVER_IE</a></code></li>
 </ul>
 </li>
 </ul>
@@ -483,13 +591,183 @@ extends <a href="../../../../org/safs/Constants.SeleniumConstants.html" title="c
 <a name="PROPERTY_CONSOLE_STATE">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>PROPERTY_CONSOLE_STATE</h4>
 <pre>public static final&nbsp;java.lang.String PROPERTY_CONSOLE_STATE</pre>
 <div class="block">"safs.selenium.console.state" defines the state of the JVM console for the SELENIUM server<br>
  JVM command line: -Dsafs.selenium.console.state=MAX|MIN|NORMAL|MAXIMIZE|MINIMIZE</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.PROPERTY_CONSOLE_STATE">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ITEM_WEB_DRIVERS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ITEM_WEB_DRIVERS</h4>
+<pre>public static final&nbsp;java.lang.String ITEM_WEB_DRIVERS</pre>
+<div class="block">"<b>WEB_DRIVERS</b>" defines a set of drivers to start with the selenium-server.<br>
+ The value can be a combination (separated by a colon :) of<br>
+ <ul>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ <li>BrowserConstants.BROWSER_NAME_XXX might be supported.
+ </ul>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ WEB_DRIVERS=<b>explorer</b> Only IEDriver will start with the selenium-server.<br>
+ WEB_DRIVERS=<b>explorer:chrome:MicrosoftEdge</b> IEDriver, ChromeDriver and EdgeDriver will start with the selenium-server.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.ITEM_WEB_DRIVERS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PROPERTY_WEB_DRIVERS">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PROPERTY_WEB_DRIVERS</h4>
+<pre>public static final&nbsp;java.lang.String PROPERTY_WEB_DRIVERS</pre>
+<div class="block">"<b>safs.selenium.web.drivers</b>" defines a set of drivers to start with the selenium-server.<br>
+ The value can be a combination (separated by a colon :) of<br>
+ <ul>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_IE"><code>Constants.BrowserConstants.BROWSER_NAME_IE</code></a>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_CHROME"><code>Constants.BrowserConstants.BROWSER_NAME_CHROME</code></a>
+ <li><a href="../../../../org/safs/Constants.BrowserConstants.html#BROWSER_NAME_EDGE"><code>Constants.BrowserConstants.BROWSER_NAME_EDGE</code></a>
+ <li>BrowserConstants.BROWSER_NAME_XXX might be supported.
+ </ul>
+
+ Examples:<br>
+ -Dsafs.selenium.web.drivers=<b>explorer</b> Only IEDriver will start with the selenium-server.<br>
+ -Dsafs.selenium.web.drivers=<b>explorer:chrome:MicrosoftEdge</b> IEDriver, ChromeDriver and EdgeDriver will start with the selenium-server.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.PROPERTY_WEB_DRIVERS">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PROPERTY_CONNECTION_TEST_COMMAND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PROPERTY_CONNECTION_TEST_COMMAND</h4>
+<pre>public static final&nbsp;java.lang.String PROPERTY_CONNECTION_TEST_COMMAND</pre>
+<div class="block">"<b>connection.test.command</b>" defines the <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ used to test the connection between WebDriver and BrowserDriver.<br>
+ selenium-driver-command is a string understood by a remote server using the JSON wire protocol.<br>
+ Examples:<br>
+ -Dconnection.test.command=<b>getAlertText</b><br>
+ -Dconnection.test.command=<b>getCurrentWindowSize</b><br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.PROPERTY_CONNECTION_TEST_COMMAND">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ITEM_CONNECTION_TEST_COMMAND">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ITEM_CONNECTION_TEST_COMMAND</h4>
+<pre>public static final&nbsp;java.lang.String ITEM_CONNECTION_TEST_COMMAND</pre>
+<div class="block">"<b>connection.test.command</b>" defines the <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ used to test the connection between WebDriver and BrowserDriver.<br>
+ selenium-driver-command is a string understood by a remote server using the JSON wire protocol.<br>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ connection.test.command=<b>getAlertText</b><br>
+ connection.test.command=<b>getCurrentWindowSize</b><br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.ITEM_CONNECTION_TEST_COMMAND">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PROPERTY_CONNECTION_TEST_MAX_DURATION">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PROPERTY_CONNECTION_TEST_MAX_DURATION</h4>
+<pre>public static final&nbsp;java.lang.String PROPERTY_CONNECTION_TEST_MAX_DURATION</pre>
+<div class="block">"<b>connection.test.max.duration</b>" defines the maximum duration (in <b>milliseconds</b>) that user can accept when executing
+ <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ defined by <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND"><code>PROPERTY_CONNECTION_TEST_COMMAND</code></a> or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND"><code>ITEM_CONNECTION_TEST_COMMAND</code></a>.<br>
+ <br>
+ Examples:<br>
+ -Dconnection.test.max.duration=<b>3000</b><br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.PROPERTY_CONNECTION_TEST_MAX_DURATION">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ITEM_CONNECTION_TEST_MAX_DURATION">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ITEM_CONNECTION_TEST_MAX_DURATION</h4>
+<pre>public static final&nbsp;java.lang.String ITEM_CONNECTION_TEST_MAX_DURATION</pre>
+<div class="block">"<b>connection.test.max.duration</b>" defines the maximum duration (in <b>milliseconds</b>) that user can accept when executing
+ <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ defined by <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND"><code>PROPERTY_CONNECTION_TEST_COMMAND</code></a> or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND"><code>ITEM_CONNECTION_TEST_COMMAND</code></a>.<br>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ connection.test.max.duration=<b>3000</b><br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.ITEM_CONNECTION_TEST_MAX_DURATION">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_CONNECTION_TEST_MAX_DURATION">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_CONNECTION_TEST_MAX_DURATION</h4>
+<pre>public static final&nbsp;int DEFAULT_CONNECTION_TEST_MAX_DURATION</pre>
+<div class="block"><b>5000</b> defines the default maximum duration (in <b>milliseconds</b>) that user can accept when executing
+ <a href="https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/DriverCommand.html">selenium-driver-command</a>
+ defined by <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#PROPERTY_CONNECTION_TEST_COMMAND"><code>PROPERTY_CONNECTION_TEST_COMMAND</code></a> or <a href="../../../../org/safs/tools/drivers/DriverConstant.SeleniumConfigConstant.html#ITEM_CONNECTION_TEST_COMMAND"><code>ITEM_CONNECTION_TEST_COMMAND</code></a>.<br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.DEFAULT_CONNECTION_TEST_MAX_DURATION">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="PROPERTY_CONNECTION_TEST_MAX_TRY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PROPERTY_CONNECTION_TEST_MAX_TRY</h4>
+<pre>public static final&nbsp;java.lang.String PROPERTY_CONNECTION_TEST_MAX_TRY</pre>
+<div class="block">"<b>connection.test.max.try</b>" defines the maximum times to try to get a good connection between WebDriver and BrowserDriver<br>
+ <br>
+ Examples:<br>
+ -Dconnection.test.max.try=<b>10</b><br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.PROPERTY_CONNECTION_TEST_MAX_TRY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="ITEM_CONNECTION_TEST_MAX_TRY">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ITEM_CONNECTION_TEST_MAX_TRY</h4>
+<pre>public static final&nbsp;java.lang.String ITEM_CONNECTION_TEST_MAX_TRY</pre>
+<div class="block">"<b>connection.test.max.try</b>" defines the maximum times to try to get a good connection between WebDriver and BrowserDriver<br>
+ <br>
+ It is an item under section <a href="../../../../org/safs/tools/drivers/DriverConstant.html#SECTION_SAFS_SELENIUM"><code>DriverConstant.SECTION_SAFS_SELENIUM</code></a><br/>
+ <br>
+ Examples:<br>
+ [SAFS_SELENIUM]<br/>
+ connection.test.max.try=<b>10</b><br></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.ITEM_CONNECTION_TEST_MAX_TRY">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_CONNECTION_TEST_MAX_TRY">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DEFAULT_CONNECTION_TEST_MAX_TRY</h4>
+<pre>public static final&nbsp;int DEFAULT_CONNECTION_TEST_MAX_TRY</pre>
+<div class="block"><b>2</b> defines the maximum times to try to get a good connection.<b></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.drivers.DriverConstant.SeleniumConfigConstant.DEFAULT_CONNECTION_TEST_MAX_TRY">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 </li>
