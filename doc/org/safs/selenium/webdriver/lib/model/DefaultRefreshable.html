@@ -106,10 +106,10 @@
 extends java.lang.Object
 implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRefreshable.html" title="interface in org.safs.selenium.webdriver.lib.model">IRefreshable</a></pre>
 <div class="block">History:<br>
- 
-  <br>   Jun 12, 2014    (Lei Wang) Initial release.
-  <br>   Nov 05, 2014    (Lei Wang) Modify refresh(): if the 'id' is not null and we cannot get object by id, then stop searching.
-                                                    if we cannot get fresh-webelement, we will not update fields like id, tagname etc.
+
+  <br>   JUN 12, 2014    (Lei Wang) Initial release.
+  <br>   NOV 05, 2014    (Lei Wang) Modify refresh(): if the 'id' is not null and we cannot get object by id, then stop searching.
+                                                    if we cannot get fresh-webelement, we will not update fields like id, tag-name etc.
   <br>   FEB 25, 2016    (Lei Wang) Modify refresh(): log a warning message instead of throwing out an Exception if we cannot get webelement by id.
                                   Modify searchWebElement(): Use WebDriver as SearchContext to find the object, if it cannot be found with given SearchContext.</div>
 </li>
@@ -151,10 +151,10 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#object">object</a></strong></code>
-<div class="block">The wrapped object, represents a control object on the web application<br> 
- This object is refreshable, which means it can be reset if the control object<br>
+<div class="block">The wrapped object, represents a control object on the web application<br>
+ This object is refresh-able, which means it can be reset if the control object<br>
  of web application has changed its status.<br>
- For now, 2 kinds of type can be accepted, Map returned from a javascript fucntion;<br>
+ For now, 2 kinds of type can be accepted, Map returned from a javascript function;<br>
  WebElement returned by Selenium WebDriver (with certain search criterion).</div>
 </td>
 </tr>
@@ -202,17 +202,21 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <tr class="altColor">
 <td class="colFirst"><code>protected </code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#DefaultRefreshable()">DefaultRefreshable</a></strong>()</code>
-<div class="block">Counstructor ONLY for subclass, cannot be used to create an instance outside.</div>
+<div class="block">Constructor ONLY for subclass, cannot be used to create an instance outside.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#DefaultRefreshable(java.lang.Object)">DefaultRefreshable</a></strong>(java.lang.Object&nbsp;object)</code>
 <div class="block">Constructor used to create an uniformed DefaultRefreshable object.<br>
- User may override this one to parse their own object, if there are some new attritues<br>
+ User may override this one to parse their own object, if there are some new attributes<br>
  to analyze, then user should override <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a> and he MUST TAKE CARE:<br>
- in the overrided constructor, DO NOT forget to call <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a> after calling<br>
- super(object), below is an exmaple of implementation in subclass.<br></div>
+ <br/>
+ There are 2 ways to write the overridden constructor:
+ 
+ 
+ DO NOT forget to call <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a> after calling<br>
+ super(object), below is an example of implementation in subclass.<br></div>
 </td>
 </tr>
 </table>
@@ -330,7 +334,7 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <td class="colLast"><code><strong><a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()">updateFields</a></strong>()</code>
 <div class="block">set/update the class's local fields through the underlying WebElement.<br>
  Especially after calling <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#refresh(boolean)"><code>refresh(boolean)</code></a>, the underlying WebElement may have been<br>
- refreshed, and the associated attributes may have different value, it is recommanded<br>
+ refreshed, and the associated attributes may have different value, it is recommended<br>
  to call this method to update the class's local field.<br></div>
 </td>
 </tr>
@@ -363,11 +367,11 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <li class="blockList">
 <h4>object</h4>
 <pre>protected&nbsp;java.lang.Object object</pre>
-<div class="block">The wrapped object, represents a control object on the web application<br> 
- This object is refreshable, which means it can be reset if the control object<br>
+<div class="block">The wrapped object, represents a control object on the web application<br>
+ This object is refresh-able, which means it can be reset if the control object<br>
  of web application has changed its status.<br>
- For now, 2 kinds of type can be accepted, Map returned from a javascript fucntion;<br>
- WebElement returned by Selenium WebDriver (with certain search criterion). There are convinient<br>
+ For now, 2 kinds of type can be accepted, Map returned from a javascript function;<br>
+ WebElement returned by Selenium WebDriver (with certain search criterion). There are convenient<br>
  references for them, <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#map"><code>map</code></a> and <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#webelement"><code>webelement</code></a>.<br>
  For now, Only WebElement can be refreshed by method <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#refresh(boolean)"><code>refresh(boolean)</code></a>.<br></div>
 </li>
@@ -460,7 +464,7 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <li class="blockList">
 <h4>DefaultRefreshable</h4>
 <pre>protected&nbsp;DefaultRefreshable()</pre>
-<div class="block">Counstructor ONLY for subclass, cannot be used to create an instance outside.</div>
+<div class="block">Constructor ONLY for subclass, cannot be used to create an instance outside.</div>
 </li>
 </ul>
 <a name="DefaultRefreshable(java.lang.Object)">
@@ -471,10 +475,14 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <h4>DefaultRefreshable</h4>
 <pre>public&nbsp;DefaultRefreshable(java.lang.Object&nbsp;object)</pre>
 <div class="block">Constructor used to create an uniformed DefaultRefreshable object.<br>
- User may override this one to parse their own object, if there are some new attritues<br>
+ User may override this one to parse their own object, if there are some new attributes<br>
  to analyze, then user should override <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a> and he MUST TAKE CARE:<br>
- in the overrided constructor, DO NOT forget to call <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a> after calling<br>
- super(object), below is an exmaple of implementation in subclass.<br>
+ <br/>
+ There are 2 ways to write the overridden constructor:
+ <ul>
+ <li>
+ DO NOT forget to call <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a> after calling<br>
+ super(object), below is an example of implementation in subclass.<br>
  <pre>
  <code>super(object);
  updateFields();
@@ -485,14 +493,21 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
  some fields of sub-class during instantiation of sub-class which overrides method <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a>,<br>
  but after calling of super(object) in the constructor of sub-class, all fields of sub-class will be<br>
  initialized to the default value; What is set HERE will be LOST!!!<br>
- 
+ </li>
+ <li>
  Or there is a better way, in the sub class's constructor user just need to call <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a>.<br>
+ <pre>
+ <code>initialize(Object);
+ </code>
+ </pre>
  in that constructor, the no-parameter constructor <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#DefaultRefreshable()"><code>DefaultRefreshable()</code></a> will be called implicitly,<br>
- and the fileds of subclass will be initialized, then the method <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a> will be called,<br>
- no fileds of subclass will be reinitialized!<br>
- But we should NEVER do anything except calling <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a> in the constructor, the reason is<br>
+ and the fields of subclass will be initialized, then the method <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a> will be called,<br>
+ no fields of subclass will be reinitialized!<br>
+ But we should NEVER do anything except calling <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a> in this constructor, the reason is<br>
  that the no-parameter constructor will be called in subclass's constructor, and everything we added here will <br>
- not be visible for constructor in subclass. We MUST do that work in the method <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a> or <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a><br></div>
+ not be visible for constructor in subclass. We MUST do that work in the method <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#initialize(java.lang.Object)"><code>initialize(Object)</code></a> or <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#updateFields()"><code>updateFields()</code></a><br>
+ </li>
+ </ul></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>object</code> - Object, the element object. It may be a Map returned from javascript; it may be a WebElement.</dd></dl>
 </li>
 </ul>
@@ -524,7 +539,7 @@ implements <a href="../../../../../../org/safs/selenium/webdriver/lib/model/IRef
 <pre>protected&nbsp;void&nbsp;updateFields()</pre>
 <div class="block">set/update the class's local fields through the underlying WebElement.<br>
  Especially after calling <a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#refresh(boolean)"><code>refresh(boolean)</code></a>, the underlying WebElement may have been<br>
- refreshed, and the associated attributes may have different value, it is recommanded<br>
+ refreshed, and the associated attributes may have different value, it is recommended<br>
  to call this method to update the class's local field.<br></div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../org/safs/selenium/webdriver/lib/model/DefaultRefreshable.html#refresh(boolean)"><code>refresh(boolean)</code></a></dd></dl>
 </li>

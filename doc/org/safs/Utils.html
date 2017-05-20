@@ -224,17 +224,23 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/Utils.html#makeRunAsAdministrator(java.lang.String)">makeRunAsAdministrator</a></strong>(java.lang.String&nbsp;lnkFileName)</code>
+<div class="block">Change the windows .lnk file's property to make it "Run As Administrator".</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#parseValue(java.lang.Class,%20java.lang.Object)">parseValue</a></strong>(java.lang.Class&lt;?&gt;&nbsp;expectedType,
           java.lang.Object&nbsp;value)</code>
 <div class="block">Convert the parameter 'value' to an appropriate Object according to the expectedType.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#setNumLock(boolean)">setNumLock</a></strong>(boolean&nbsp;onOff)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/Utils.html#toString(java.lang.Object)">toString</a></strong>(java.lang.Object&nbsp;object)</code>
 <div class="block">Convert an Object to a string, even this object is a multiple dimension array.</div>
@@ -477,6 +483,20 @@ extends java.lang.Object</pre>
 <div class="block">Compare 2 objects even they are multiple-dimension arrays.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>value1</code> - Object</dd><dd><code>value2</code> - Object</dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean</dd></dl>
+</li>
+</ul>
+<a name="makeRunAsAdministrator(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>makeRunAsAdministrator</h4>
+<pre>public static&nbsp;void&nbsp;makeRunAsAdministrator(java.lang.String&nbsp;lnkFileName)
+                                   throws java.io.IOException</pre>
+<div class="block">Change the windows .lnk file's property to make it "Run As Administrator".</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>lnkFileName</code> - String, the full path to a link file</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd></dl>
 </li>
 </ul>
 <a name="main(java.lang.String[])">

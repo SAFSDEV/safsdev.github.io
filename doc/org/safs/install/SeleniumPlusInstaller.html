@@ -303,7 +303,9 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>(package private) static boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../org/safs/install/SeleniumPlusInstaller.html#createSeleniumPlusProgramGroup()">createSeleniumPlusProgramGroup</a></strong>()</code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../org/safs/install/SeleniumPlusInstaller.html#createSeleniumPlusProgramGroup()">createSeleniumPlusProgramGroup</a></strong>()</code>
+<div class="block">Create SeleniumPlus Program Group and shortcuts.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>(package private) static int</code></td>
@@ -722,7 +724,7 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
 <div class="block">Perform STAF install.
  If -silent parameter was specified then a silent install will be done.<br>
  Currently all installs are silent.<br>
- If -staf parameter was specified then the install will attempt to use any 
+ If -staf parameter was specified then the install will attempt to use any
  provided user-specified directory for the install.</div>
 </li>
 </ul>
@@ -754,6 +756,8 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
 <li class="blockList">
 <h4>createSeleniumPlusProgramGroup</h4>
 <pre>static&nbsp;boolean&nbsp;createSeleniumPlusProgramGroup()</pre>
+<div class="block">Create SeleniumPlus Program Group and shortcuts.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>boolean true if successful</dd></dl>
 </li>
 </ul>
 <a name="install(java.lang.String...)">
@@ -764,9 +768,9 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
 <h4>install</h4>
 <pre>public&nbsp;boolean&nbsp;install(java.lang.String...&nbsp;args)</pre>
 <div class="block">Currently assumes SeleniumPlus has been installed (unzipped) and SELENIUM_PLUS is already set.
- Can set SELENIUM_PLUS if args[0] is given a valid value to use.  
+ Can set SELENIUM_PLUS if args[0] is given a valid value to use.
  If args[0] is provided, the path will be validated before it is used.
- Adds SeleniumPlus paths to CLASSPATH and PATH Environment Variables as long as SeleniumPlus JAR 
+ Adds SeleniumPlus paths to CLASSPATH and PATH Environment Variables as long as SeleniumPlus JAR
  is found to exist.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
@@ -799,7 +803,7 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
 <h4>main</h4>
 <pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
 <div class="block">This Installer provides no GUI, but will accept some configuration parameters.
- Any user-specified directories must exist; or, we must not be denied the ability to 
+ Any user-specified directories must exist; or, we must not be denied the ability to
  create them and write/copy files to them.
  <p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>args[]</code> - The following parameters or arguments can be specified:<br>
@@ -812,16 +816,16 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
      perform an uninstall instead of install.
      <p>
    <li>-np<br>
-     If the -np option is not provided, then the installer will propogate and execute 
+     If the -np option is not provided, then the installer will propogate and execute
      other necessary Installers.
      <p>
    <li>-nostaf<br>
      Skip the installation of STAF.
      <p>
    <li>-staf "alternate STAF directory"<br>
-     Install STAF files and services to the user specified directory 
+     Install STAF files and services to the user specified directory
      instead of the default install directory.<br>
-     The -staf argument does not have to be specified to install to the 
+     The -staf argument does not have to be specified to install to the
      default directory (root\STAF).
      <p>
    <li>-removestaf installedstafdir<br>
@@ -833,22 +837,22 @@ implements <a href="../../../org/safs/sockets/DebugListener.html" title="interfa
      This will override the STAF 3 or later default executable.
      <p>
  </ul>
- 
+
  Main Java executable.  Primarily to run standalone outside of a larger process.
  <p>
  %SELENIUMPLUSDIR%\Java\jre\bin\java org.safs.install.SeleniumPlusInstaller [C:\SeleniumPlus]
  <p>
  %SELENIUMPLUSDIR%\Java\jre\bin\java org.safs.install.SeleniumPlusInstaller -u [C:\SeleniumPlus]
  <p>
- If the -np option is not provided, then the installer will propogate and execute 
+ If the -np option is not provided, then the installer will propogate and execute
  other necessary SAFS Framework Installers.
  <p>
  System.exit(0) on perceived success.<br>
  System.exit(-1) on perceived failure.</dd><dd><code>args:</code> - <p><ul>
  "-u"  -- to perform an uninstall instead of install.<br>
- "-np" -- do not propogate to other installers.<br> 
+ "-np" -- do not propogate to other installers.<br>
  Any first arg other than (-u or -np) will be considered the path for SELENIUMPLUSDIR.<br>
- The path for SELENIUMPLUSDIR does NOT need to be provided if the System Environment Variable 
+ The path for SELENIUMPLUSDIR does NOT need to be provided if the System Environment Variable
  already exists with a valid setting.<br>
  </ul></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../org/safs/install/SilentInstaller.html" title="class in org.safs.install"><code>SilentInstaller</code></a>, 
 <a href="../../../org/safs/install/SeleniumPlusInstaller.html#propogate"><code>propogate</code></a></dd></dl>
