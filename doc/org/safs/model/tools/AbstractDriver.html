@@ -231,7 +231,7 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String[]</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/tools/AbstractDriver.html#processExpressions(java.lang.String...)">processExpressions</a></strong>(java.lang.String...&nbsp;parameters)</code>
-<div class="block">Used internally to handle the potential that passed parameters may include embedded  
+<div class="block">Used internally to handle the potential that passed parameters may include embedded
  SAFS Expressions or embedded SAFS variable references.</div>
 </td>
 </tr>
@@ -443,7 +443,7 @@ extends java.lang.Object</pre>
 <pre>protected&nbsp;void&nbsp;preloadAppMaps()</pre>
 <div class="block">Internal Use Only<p>
  Seek an AppMap.order file in the Datapool directory.
- <p>By default the file sought is AppMap.order.  However, the user can specify an alternate 
+ <p>By default the file sought is AppMap.order.  However, the user can specify an alternate
  AppMap order file or AppMap files by using the following JVM Argument:
  <p><ul>Examples:
  <p>
@@ -463,9 +463,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>processExpressions</h4>
 <pre>protected&nbsp;java.lang.String[]&nbsp;processExpressions(java.lang.String...&nbsp;parameters)</pre>
-<div class="block">Used internally to handle the potential that passed parameters may include embedded  
- SAFS Expressions or embedded SAFS variable references.  This method is automatically 
- called by the internal SAFS DriverCommands or SAFS ComponentFunctions calls and would 
+<div class="block">Used internally to handle the potential that passed parameters may include embedded
+ SAFS Expressions or embedded SAFS variable references.  This method is automatically
+ called by the internal SAFS DriverCommands or SAFS ComponentFunctions calls and would
  normally not be called by the user directly.
  <p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>parameters</code> - String[] of optional parameters. Can be (String[])null.</dd>
@@ -503,8 +503,8 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;<a href="../../../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a>&nbsp;runComponentFunction(java.lang.String&nbsp;command,
                                     java.lang.String&nbsp;parent)
                                       throws java.lang.Throwable</pre>
-<div class="block">Run a SAFS Component Function on a top-level component (Window).  
- The particular safs action takes no additional parameters. 
+<div class="block">Run a SAFS Component Function on a top-level component (Window).
+ The particular safs action takes no additional parameters.
  This method performs SAFS Expression processing on all input parameters.
  This method is normally called internally by other methods and classes</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The ComponentFunction keyword (action) to perform</dd><dd><code>parent</code> - The ComponentFunction parent window name to act on</dd>
@@ -526,9 +526,9 @@ extends java.lang.Object</pre>
                                     java.lang.String&nbsp;child,
                                     java.lang.String&nbsp;parent)
                                       throws java.lang.Throwable</pre>
-<div class="block">Run a SAFS Component Function on a child component in a parent (Window).  
+<div class="block">Run a SAFS Component Function on a child component in a parent (Window).
  The particular safs action takes no additional parameters.
- This method performs SAFS Expression processing on all input parameters. 
+ This method performs SAFS Expression processing on all input parameters.
  This method is normally called internally by other methods and classes.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The ComponentFunction keyword (action) to perform</dd><dd><code>child</code> - The ComponentFunction child component name to act on</dd><dd><code>parent</code> - The ComponentFunction parent window name to act on</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -572,7 +572,7 @@ extends java.lang.Object</pre>
                                   throws java.lang.Throwable</pre>
 <div class="block">Run the specified DriverCommand requiring zero or more parameters.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - -- Cannot be null and is not case-sensitive.</dd><dd><code>parameters</code> - -- optional.  Can be (String[])null.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>TestRecordHelper. Use getStatusCode() and getStatusInfo() for information 
+<dt><span class="strong">Returns:</span></dt><dd>TestRecordHelper. Use getStatusCode() and getStatusInfo() for information
  on execution results.</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code>java.lang.Throwable</code></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/StatusCodes.html#GENERAL_SCRIPT_FAILURE"><code>StatusCodes.GENERAL_SCRIPT_FAILURE</code></a>, 
@@ -592,7 +592,7 @@ extends java.lang.Object</pre>
                                            throws java.lang.Throwable</pre>
 <div class="block">Run a SAFS Driver Command.
  The safs command may take one or more parameters.
- This method is normally called internally by overloaded methods and performs no SAFS Expression 
+ This method is normally called internally by overloaded methods and performs no SAFS Expression
  processing on the input parameters.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The DriverCommand keyword (command) to perform</dd><dd><code>parameters</code> - String[] of parameters used by the command.  Can be null.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -615,7 +615,7 @@ extends java.lang.Object</pre>
                                                throws java.lang.Throwable</pre>
 <div class="block">Run a SAFS Component Function on a child component in a parent (Window).
  The safs action may take one or more parameters.
- This method is typically called internally and performs no SAFS Expression processing on the input 
+ This method is typically called internally and performs no SAFS Expression processing on the input
  parameters.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - The ComponentFunction keyword (action) to perform</dd><dd><code>child</code> - The ComponentFunction child component name to act on</dd><dd><code>parent</code> - The ComponentFunction parent window name to act on</dd><dd><code>parameters</code> - String[] of parameters used by the command.  Can be null.</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -634,7 +634,7 @@ extends java.lang.Object</pre>
 <pre>public&nbsp;<a href="../../../../org/safs/tools/drivers/DriverInterface.html" title="interface in org.safs.tools.drivers">DriverInterface</a>&nbsp;iDriver()</pre>
 <dl><dt><span class="strong">Returns:</span></dt><dd>DriverInterface currently being used.<br>
  Could be a JSAFSDriver.  Could be an InputProcessor.<br>
- Subclasses should override to support other DriverInterface instances not tracked in this superclass.  
+ Subclasses should override to support other DriverInterface instances not tracked in this superclass.
  Can be null if none are set.</dd><dt><span class="strong">See Also:</span></dt><dd><code>#setIDriver(DriverInterface)</code>, 
 <a href="../../../../org/safs/tools/drivers/JSAFSDriver.html" title="class in org.safs.tools.drivers"><code>JSAFSDriver</code></a>, 
 <a href="../../../../org/safs/tools/drivers/InputProcessor.html" title="class in org.safs.tools.drivers"><code>InputProcessor</code></a></dd></dl>

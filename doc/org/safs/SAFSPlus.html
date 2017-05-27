@@ -378,21 +378,25 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#normalizeTextForInput">normalizeTextForInput</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../org/safs/TestRecordHelper.html" title="class in org.safs">TestRecordHelper</a></code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#prevResults">prevResults</a></strong></code>
 <div class="block">Holds the TestRecordHelper object containing detailed information and results for
  the last action or command executed.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#RELATIVE_TO_PARENT">RELATIVE_TO_PARENT</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#RELATIVE_TO_SCREEN">RELATIVE_TO_SCREEN</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static <a href="../../org/safs/model/tools/AbstractRunner.html" title="class in org.safs.model.tools">AbstractRunner</a></code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#Runner">Runner</a></strong></code>
 <div class="block">The Runner object providing access to the underlying Engines, like RFT, TestComplete, Selenium etc.</div>
@@ -517,16 +521,22 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#normalizeTextForInput(java.lang.String)">normalizeTextForInput</a></strong>(java.lang.String&nbsp;text)</code>
+<div class="block">Normalize text string for input.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#quote(java.lang.String)">quote</a></strong>(java.lang.String&nbsp;parameter)</code>
 <div class="block">Add double-quote around a string value.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#quotePath(java.lang.String)">quotePath</a></strong>(java.lang.String&nbsp;path)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected static java.lang.String[]</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#replaceSeparator(java.lang.String...)">replaceSeparator</a></strong>(java.lang.String...&nbsp;params)</code>
 <div class="block">Sometimes the parameter (like coordination) will contain separator, but if this one is<br>
@@ -535,19 +545,36 @@ extends java.lang.Object</pre>
  To replace the possible conflicted separator in parameters.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>abstract void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#runTest()">runTest</a></strong>()</code>
 <div class="block">INTERNAL USE ONLY.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#setAllowExit(boolean)">setAllowExit</a></strong>(boolean&nbsp;allow)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#setExitCode(int)">setExitCode</a></strong>(int&nbsp;rcCode)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.html#setNormalizeTextForInput(boolean)">setNormalizeTextForInput</a></strong>(boolean&nbsp;bool)</code>
+<div class="block">Please call this method to set a true value, if the leading/ending "whitespace"
+ needs to be kept when calling API (handles text input), such as
+ 
+  <a href="../../org/safs/SAFSPlus.Component.html#TypeKeys(java.lang.String)"><code>SAFSPlus.Component.TypeKeys(String)</code></a>
+  <a href="../../org/safs/SAFSPlus.Component.html#TypeChars(java.lang.String)"><code>SAFSPlus.Component.TypeChars(String)</code></a>
+  <a href="../../org/safs/SAFSPlus.Component.html#InputKeys(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.Component.InputKeys(org.safs.model.Component, String)</code></a>
+  <a href="../../org/safs/SAFSPlus.Component.html#InputCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.Component.InputCharacters(org.safs.model.Component, String)</code></a>
+  <a href="../../org/safs/SAFSPlus.EditBox.html#SetTextCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetTextCharacters(org.safs.model.Component, String)</code></a>
+  <a href="../../org/safs/SAFSPlus.EditBox.html#SetTextValue(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetTextValue(org.safs.model.Component, String)</code></a>
+  <a href="../../org/safs/SAFSPlus.EditBox.html#SetUnverifiedTextCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetUnverifiedTextCharacters(org.safs.model.Component, String)</code></a>
+  <a href="../../org/safs/SAFSPlus.EditBox.html#SetUnverifiedTextValue(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetUnverifiedTextValue(org.safs.model.Component, String)</code></a>
+ </div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
@@ -742,6 +769,15 @@ extends java.lang.Object</pre>
 <pre>protected static&nbsp;java.lang.String _junit</pre>
 </li>
 </ul>
+<a name="normalizeTextForInput">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>normalizeTextForInput</h4>
+<pre>protected static&nbsp;boolean normalizeTextForInput</pre>
+</li>
+</ul>
 <a name="exitCode">
 <!--   -->
 </a>
@@ -837,6 +873,64 @@ extends java.lang.Object</pre>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed, false otherwise.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>prevResults</code></a>, 
 <a href="../../org/safs/SAFSPlus.DriverCommand.html#SetVariableValues(java.lang.String,%20java.lang.String...)"><code>SAFSPlus.DriverCommand.SetVariableValues(String, String...)</code></a>, 
 <a href="../../org/safs/SAFSPlus.DriverCommand.html#SetVariableValueEx(java.lang.String,%20java.lang.String)"><code>SAFSPlus.DriverCommand.SetVariableValueEx(String, String)</code></a></dd></dl>
+</li>
+</ul>
+<a name="setNormalizeTextForInput(boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setNormalizeTextForInput</h4>
+<pre>public static&nbsp;boolean&nbsp;setNormalizeTextForInput(boolean&nbsp;bool)</pre>
+<div class="block">Please call this method to set a true value, if the leading/ending "whitespace"
+ needs to be kept when calling API (handles text input), such as
+ <ul>
+ <li> <a href="../../org/safs/SAFSPlus.Component.html#TypeKeys(java.lang.String)"><code>SAFSPlus.Component.TypeKeys(String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.Component.html#TypeChars(java.lang.String)"><code>SAFSPlus.Component.TypeChars(String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.Component.html#InputKeys(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.Component.InputKeys(org.safs.model.Component, String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.Component.html#InputCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.Component.InputCharacters(org.safs.model.Component, String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.EditBox.html#SetTextCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetTextCharacters(org.safs.model.Component, String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.EditBox.html#SetTextValue(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetTextValue(org.safs.model.Component, String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.EditBox.html#SetUnverifiedTextCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetUnverifiedTextCharacters(org.safs.model.Component, String)</code></a>
+ <li> <a href="../../org/safs/SAFSPlus.EditBox.html#SetUnverifiedTextValue(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetUnverifiedTextValue(org.safs.model.Component, String)</code></a>
+ </ul></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>bool</code> - boolean, if normalization is needed for text when inputing</dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean, the previous boolean value</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#normalizeTextForInput(java.lang.String)"><code>normalizeTextForInput(String)</code></a></dd></dl>
+</li>
+</ul>
+<a name="normalizeTextForInput(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>normalizeTextForInput</h4>
+<pre>protected static&nbsp;java.lang.String&nbsp;normalizeTextForInput(java.lang.String&nbsp;text)</pre>
+<div class="block">Normalize text string for input. Add wrapping double quotes if the text string contains
+ leading/ending "whitespace" (TABS, SPACE, and other chars that are considered "whitespace").
+ <br>
+ For example:<br>
+ " " will be returned as "" ""<br>
+ "^ " will be returned as ""^ ""<br>
+ <pre>
+ In SAFSPlus/SeleniumPlus, if the parameter contains leading/ending spaces, it will be trimmed.
+ For most methods, it is expected;
+ But for InputKeys, InputChars, TypeKeys and TypeChars, this implicit
+ action is <b>NOT expected</b>.
+ If user wants to input a space, he uses <b>Component.TypeChars(" ");</b> but the parameter is trimmed
+ and he will not get the result he expects.
+ If user wants to type a short-cut "Ctrl+Space", he uses <b>Component.TypeKeys("^ ");</b> but the parameter is trimmed
+ and he will not get the result he expects and even worse the "Ctrl key" will not be released!
+ At this situation, we use this method to double-quote the parameter to avoid these unexpected behaviors.
+ </pre></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>text</code> - String, the text string to normalize.</dd>
+<dt><span class="strong">Returns:</span></dt><dd>String, the normalized text string.</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.Component.html#TypeKeys(java.lang.String)"><code>SAFSPlus.Component.TypeKeys(String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.Component.html#TypeChars(java.lang.String)"><code>SAFSPlus.Component.TypeChars(String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.Component.html#InputKeys(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.Component.InputKeys(org.safs.model.Component, String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.Component.html#InputCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.Component.InputCharacters(org.safs.model.Component, String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.EditBox.html#SetTextCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetTextCharacters(org.safs.model.Component, String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.EditBox.html#SetTextValue(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetTextValue(org.safs.model.Component, String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.EditBox.html#SetUnverifiedTextCharacters(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetUnverifiedTextCharacters(org.safs.model.Component, String)</code></a>, 
+<a href="../../org/safs/SAFSPlus.EditBox.html#SetUnverifiedTextValue(org.safs.model.Component,%20java.lang.String)"><code>SAFSPlus.EditBox.SetUnverifiedTextValue(org.safs.model.Component, String)</code></a></dd></dl>
 </li>
 </ul>
 <a name="GetVariableValue(java.lang.String)">

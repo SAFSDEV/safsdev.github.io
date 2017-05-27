@@ -96,57 +96,57 @@
 <br>
 <pre>public class <span class="strong">CreateUnicodeMap</span>
 extends java.lang.Object</pre>
-<div class="block">Create a Unicode output file for the running version of Java that can be used 
- during testing and test development to map SAFS keystroke definitions to the 
+<div class="block">Create a Unicode output file for the running version of Java that can be used
+ during testing and test development to map SAFS keystroke definitions to the
  Java keycodes needed by java.awt.Robot.
  <p>
- This class can be used to map the default US English 
- character map and then may be copied and\or modified to generate keycode 
- character maps for other locales or languages.  The generation of the US 
+ This class can be used to map the default US English
+ character map and then may be copied and\or modified to generate keycode
+ character maps for other locales or languages.  The generation of the US
  English map is already done and provided with the released package.
  <p>
- The class creates a file (SAFSKeycodeMap.dat) mapping text string sequences to the keycode 
+ The class creates a file (SAFSKeycodeMap.dat) mapping text string sequences to the keycode
  used by the AWT Robot.  For example:
  <p><ul>
  ENTER=10
  </ul>
- <p> 
- The example shows that the literal text "ENTER" will be mapped to keycode integer 
- 10.  These keycodes are generally those defined in the java.awt.event.KeyEvent 
+ <p>
+ The example shows that the literal text "ENTER" will be mapped to keycode integer
+ 10.  These keycodes are generally those defined in the java.awt.event.KeyEvent
  class.
  <p>
  SAFS text string sequences for commands like InputKeys are supported as follows.
- In general, these are the same strings used by IBM Rational Robot and Microsoft 
+ In general, these are the same strings used by IBM Rational Robot and Microsoft
  standards for defining keystrokes in scripting languages:
  <p><ul>
- Some characters in the string are passed to the active window as literal characters, 
- meaning that they are passed just as they appear in the string. For example, the 
- letters a through z and the numbers 0 through 9. 
+ Some characters in the string are passed to the active window as literal characters,
+ meaning that they are passed just as they appear in the string. For example, the
+ letters a through z and the numbers 0 through 9.
  <p>
  The following characters cause the associated keystroke to be performed:
  <p><ul><pre>
  ~      Causes the Enter key to be pressed.
- +      Causes the Shift key to be pressed and held down while the next character 
+ +      Causes the Shift key to be pressed and held down while the next character
       is pressed.
- ^      Causes the Control key to be pressed and held down while the next character 
+ ^      Causes the Control key to be pressed and held down while the next character
       is pressed.
  %      Causes the Alt key to be pressed and held down while the next character is pressed.
  </pre></ul>
  <p>
- If a group of characters is enclosed in parentheses, all the characters are affected 
- by the special character that precedes the parentheses. For example, the following 
+ If a group of characters is enclosed in parentheses, all the characters are affected
+ by the special character that precedes the parentheses. For example, the following
  string inserts ABCD into the active window:
  <p><ul>
  "+(abcd)"
  <p></ul>
- Keys associated with non-printable characters (such as the Escape key and arrow keys) 
- and keys on the numeric and extended keypads are represented by descriptive names in 
- curly braces ( {} ). Names are not case-sensitive. The valid key names you can specify 
+ Keys associated with non-printable characters (such as the Escape key and arrow keys)
+ and keys on the numeric and extended keypads are represented by descriptive names in
+ curly braces ( {} ). Names are not case-sensitive. The valid key names you can specify
  in curly braces are included in the table at the end of the Comments section.
  <p>
- To insert one of the above special characters, that is, ~+^%({ as itself rather 
- than as the special activity that it represents, enclose the character in curly 
- braces. For example, the following command inserts a plus sign (+) into the active 
+ To insert one of the above special characters, that is, ~+^%({ as itself rather
+ than as the special activity that it represents, enclose the character in curly
+ braces. For example, the following command inserts a plus sign (+) into the active
  window:
  <p><ul>
  "{+}"
@@ -155,9 +155,9 @@ extends java.lang.Object</pre>
  <p><ul>
  <table>
  <tr>
- <td>Keytext value      <td>Keyboard equivalent 
+ <td>Keytext value      <td>Keyboard equivalent
  <tr><td>Actual printable character.<br>Examples:  A1.&
- <td>Letters A-Z, a-z, numbers 0-9, punctuation, other printable characters on the main 
+ <td>Letters A-Z, a-z, numbers 0-9, punctuation, other printable characters on the main
  keyboard.
  <tr><td>{Alt}<td>Default Alt key (either left or right).
  <tr><td>{BackSpace}<br>{BS}<br>{BkSp}<td>      Backspace.
@@ -264,25 +264,29 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#PARENLEFT">PARENLEFT</a></strong></code>&nbsp;</td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#KEY_SPACE">KEY_SPACE</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#PARENLEFT">PARENLEFT</a></strong></code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#PARENRIGHT">PARENRIGHT</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#SHIFT">SHIFT</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#SPECIAL">SPECIAL</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#STANDARD">STANDARD</a></strong></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/input/CreateUnicodeMap.html#TOKENS">TOKENS</a></strong></code>&nbsp;</td>
 </tr>
@@ -502,11 +506,21 @@ extends java.lang.Object</pre>
 <a name="ENTER">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ENTER</h4>
 <pre>public static final&nbsp;java.lang.String ENTER</pre>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.input.CreateUnicodeMap.ENTER">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="KEY_SPACE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>KEY_SPACE</h4>
+<pre>public static final&nbsp;java.lang.String KEY_SPACE</pre>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../constant-values.html#org.safs.tools.input.CreateUnicodeMap.KEY_SPACE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 </li>
@@ -541,7 +555,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>getNewLine</h4>
 <pre>public static&nbsp;java.lang.String&nbsp;getNewLine()</pre>
-<div class="block">Return the current line separator used for file output.  By default 
+<div class="block">Return the current line separator used for file output.  By default
  this is the System line separator.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>the current line separator used for file output.</dd></dl>
 </li>
@@ -553,9 +567,9 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>setNewLine</h4>
 <pre>public static&nbsp;void&nbsp;setNewLine(java.lang.String&nbsp;lineseparator)</pre>
-<div class="block">Set a different file line separator.  By default the System default 
+<div class="block">Set a different file line separator.  By default the System default
  line separator is used.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>lineseparator</code> - -- the String to use for line separation in the 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>lineseparator</code> - -- the String to use for line separation in the
  output file.</dd></dl>
 </li>
 </ul>

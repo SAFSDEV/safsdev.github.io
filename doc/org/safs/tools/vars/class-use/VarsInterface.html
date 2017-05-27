@@ -128,6 +128,29 @@
 </tr>
 </tbody>
 </table>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/safs/tools/drivers/package-summary.html">org.safs.tools.drivers</a> with parameters of type <a href="../../../../../org/safs/tools/vars/VarsInterface.html" title="interface in org.safs.tools.vars">VarsInterface</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static java.lang.String</code></td>
+<td class="colLast"><span class="strong">JSAFSDriver.</span><code><strong><a href="../../../../../org/safs/tools/drivers/JSAFSDriver.html#resolveExpression(java.lang.String,%20java.lang.String,%20org.safs.tools.vars.VarsInterface)">resolveExpression</a></strong>(java.lang.String&nbsp;testRecord,
+                 java.lang.String&nbsp;separator,
+                 <a href="../../../../../org/safs/tools/vars/VarsInterface.html" title="interface in org.safs.tools.vars">VarsInterface</a>&nbsp;varService)</code>
+<div class="block">Resolve the testRecord for supported "numeric/string expressions" and "DDVariable".<br>
+ If <a href="../../../../../org/safs/tools/drivers/AbstractDriver.html#isExpressionsEnabled()"><code>AbstractDriver.isExpressionsEnabled()</code></a> is false, then "numeric/string expressions" will not
+ be resolved; But the "DDVariable" will be always evaluated.<br>
+ The input record fields are delimited by the provided separator, and each
+ field is separately processed for expressions.<br>
+ <br>
+ <b>Note: How the wrapping-double-quotes are handled after evaluation?</b></div>
+</td>
+</tr>
+</tbody>
+</table>
 </li>
 <li class="blockList"><a name="org.safs.tools.status">
 <!--   -->

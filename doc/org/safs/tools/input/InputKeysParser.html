@@ -97,23 +97,7 @@
 <pre>public class <span class="strong">InputKeysParser</span>
 extends java.lang.Object</pre>
 <dl><dt><span class="strong">Author:</span></dt>
-  <dd>Carl Nagle FEB 13, 2007</dd>
-<dt><span class="strong">See Also:</span></dt><dd><code>Robot</code>, 
-<code><br> SEP 22, 2008  (JunwuMa) Add NLS 'keyboard' input support. Actually it is not a REAL keyboard input support. 
-                    Instead it uses an alternative way. NLS characters in an input string will NOT be translated 
-                    to keystrokes in certain IME, for the reason of 1) too much code points in some Non-English 
-                    languages (Chinese), 2)a NLS character owns different keystrokes in different IME and 3)keystrokes for a Chinese character relies 
-                    on IME too much.
- 					  Two steps for inputting NLS characters.
-					  1.	Copy NLS characters to system Clipboard. Add an event: SetClipboardEvent.
-                    2.	Add 'Ctrl+V' keyboard event to paste the content in system Clipboard to focused control.
-                    Possible drawbacks:
-                    Not sure if it can be used by controls that prevents 'Ctrl+V' from Window OS. If yes, a REAL unique hot 
-                    key (Ctrl+Shift+V ?) may be introduced for doing so on OS level.
- <br>	JAN 06, 2009  (LeiWang)	Modify method parseBraces(): Use standards instead of special to get character mapping.
- 															 Otherwise {a 4} will not be treated as inputting 'aaaa' because special does not
- 															 contains mapping of 'a'.
- <br>	DEC 07, 2010  (LeiWang)	Add method antiParse(), parseKeyCode(), getReverseMap(): Convert a list of RobotKeyEvent to a SAFS's key string</code></dd></dl>
+  <dd>Carl Nagle FEB 13, 2007</dd></dl>
 </li>
 </ul>
 </div>
@@ -569,9 +553,9 @@ extends java.lang.Object</pre>
 <div class="block"><b>Note:</b>     This method do the opposite work of <a href="../../../../org/safs/tools/input/InputKeysParser.html#parseInput(java.lang.String)"><code>parseInput(String)</code></a><br></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>keys</code> - List of RobotKeyEvent</dd>
 <dt><span class="strong">Returns:</span></dt><dd>String: the script string that user use to input<br>
-                  The sring's format should be consistent with specification in 
+                  The sring's format should be consistent with specification in
                   <a href="../../../../org/safs/tools/input/CreateUnicodeMap.html" title="class in org.safs.tools.input"><code>CreateUnicodeMap</code></a><br><br>
- 
+
  Ex.<br>
  keys = {
                         RobotKeyEvent(KEY_PRESS,KeyEvent.VK_SHIFT),
@@ -583,7 +567,7 @@ extends java.lang.Object</pre>
                         RobotKeyEvent(KEY_TYPE,KeyEvent.VK_D),
                         RobotKeyEvent(KEY_RELEASE,KeyEvent.VK_SHIFT)
               }<br><br>
- 
+
  Returned string will be AAAB{%}D</dd></dl>
 </li>
 </ul>
@@ -614,7 +598,7 @@ extends java.lang.Object</pre>
 <pre>protected&nbsp;int&nbsp;getKeyCode(java.lang.String&nbsp;_char)</pre>
 <div class="block">Retrieve the stored "standard" keycode of the provided character.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>_char</code> - -- String of one char.</dd>
-<dt><span class="strong">Returns:</span></dt><dd>Integer of keycode OR'd with key modifiers. -1 OR'd with modifiers 
+<dt><span class="strong">Returns:</span></dt><dd>Integer of keycode OR'd with key modifiers. -1 OR'd with modifiers
  if the char keycode is not found.</dd></dl>
 </li>
 </ul>
@@ -652,7 +636,7 @@ extends java.lang.Object</pre>
 <h4>parseBraces</h4>
 <pre>protected&nbsp;java.util.Vector&nbsp;parseBraces(java.lang.String&nbsp;content)</pre>
 <div class="block">Process the string previously extracted from between braces.
- This is one special character String or a special character String followed by a 
+ This is one special character String or a special character String followed by a
  space and the number of times to repeat it.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>content</code> - -- the string in between braces { }</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Vector of Integer keycodes</dd></dl>

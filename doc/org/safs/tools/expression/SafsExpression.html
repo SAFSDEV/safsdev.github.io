@@ -96,8 +96,8 @@
 <br>
 <pre>public class <span class="strong">SafsExpression</span>
 extends java.lang.Object</pre>
-<div class="block"><pre> (Copied from RRAFS StringUtilities -- the original implementation.)
- 
+<div class="block"><pre> (Copied from <a href="http://safsdev.sourceforge.net/sqabasic2000/StringUtilities.htm#processexpression" target="_blank">RRAFS StringUtilities</a> -- the original implementation.)
+
       Given an expression attempt to locate variable assignment references
       and other operators and process the expressions into a result string.
 
@@ -138,7 +138,7 @@ extends java.lang.Object</pre>
 
       Variable names must conform to the SAFS standard (need link).
 
-      Variable lookups(GET) and assignments(SET) will be done via the current 
+      Variable lookups(GET) and assignments(SET) will be done via the current
       SAFSVARS service or its equivalent.
 
       If the proposed value is NOT another variable reference then the proposed
@@ -151,7 +151,7 @@ extends java.lang.Object</pre>
       NOTE:
       Expressions containing groupings but no other legitimate operators may
       produce unexpected results that may not be the same on later versions of
-      these routines.      
+      these routines.
  </pre></div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Jack</dd></dl>
@@ -443,99 +443,103 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#isNumericOperator(java.lang.String)">isNumericOperator</a></strong>(java.lang.String&nbsp;sOperator)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#main(java.lang.String[])">main</a></strong>(java.lang.String[]&nbsp;args)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#numDecimalPlaces()">numDecimalPlaces</a></strong>()</code>
 <div class="block">Method numDecimalPlaces.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#numDecimalPlaces(int)">numDecimalPlaces</a></strong>(int&nbsp;i)</code>
 <div class="block">Method numDecimalPlaces.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#setExpression(java.lang.String)">setExpression</a></strong>(java.lang.String&nbsp;sText)</code>
 <div class="block">Method setExpression.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#setVariableNames()">setVariableNames</a></strong>()</code>
 <div class="block">Method setVariableNames.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#setVarInterface(org.safs.tools.vars.SimpleVarsInterface)">setVarInterface</a></strong>(<a href="../../../../org/safs/tools/vars/SimpleVarsInterface.html" title="interface in org.safs.tools.vars">SimpleVarsInterface</a>&nbsp;vi)</code>
 <div class="block">Method setVarInterface.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#setVarValue(java.lang.String,%20java.lang.String)">setVarValue</a></strong>(java.lang.String&nbsp;strVarName,
            java.lang.String&nbsp;strVarValue)</code>
 <div class="block">Method setVarValue.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#stripLeadZero()">stripLeadZero</a></strong>()</code>
 <div class="block">Method stripLeadZero.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#stripLeadZero(boolean)">stripLeadZero</a></strong>(boolean&nbsp;b)</code>
 <div class="block">Method stripLeadZero.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#stripTrailingDecimalPoint()">stripTrailingDecimalPoint</a></strong>()</code>
 <div class="block">Method stripTrailingDecimalPoint.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#stripTrailingDecimalPoint(boolean)">stripTrailingDecimalPoint</a></strong>(boolean&nbsp;b)</code>
 <div class="block">Method stripTrailingDecimalPoint.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#stripTrailingZeros()">stripTrailingZeros</a></strong>()</code>
 <div class="block">Method stripTrailingZeros.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#stripTrailingZeros(boolean)">stripTrailingZeros</a></strong>(boolean&nbsp;b)</code>
 <div class="block">Method stripTrailingZeros.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#substituteVariables(java.lang.String)">substituteVariables</a></strong>(java.lang.String&nbsp;strExpr)</code>
 <div class="block">called internally by evalVariables</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#validateParens()">validateParens</a></strong>()</code>
 <div class="block">Method validateParens.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#validateQuoteMatches()">validateQuoteMatches</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#validateVariableAssignments()">validateVariableAssignments</a></strong>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/tools/expression/SafsExpression.html#validateVariableNames()">validateVariableNames</a></strong>()</code>
 <div class="block">Method validateVariableNames.</div>
@@ -912,7 +916,7 @@ extends java.lang.Object</pre>
  sets option to strip the leading zero from expression results.  For example,
  if the expression evaluates to 0.1 and stripLeadZero is true, the result will
  be formatted such that the leading zero is not shown, which would be .1</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>b</code> - true or false specifying wheather or not leading zeros should be stripped</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>b</code> - true or false specifying whether or not leading zeros should be stripped</dd></dl>
 </li>
 </ul>
 <a name="stripLeadZero()">
@@ -938,7 +942,7 @@ extends java.lang.Object</pre>
  sets option to strip the trailing zeros from expression results.  For example,
  if the expression evaluates to 1.100 and stripTrailingZeros is true, the result will
  be formatted such that the trailing zeros are not shown, which would be 1.1</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>b</code> - true or false specifying wheather or not trailing zeros should be stripped</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>b</code> - true or false specifying whether or not trailing zeros should be stripped</dd></dl>
 </li>
 </ul>
 <a name="stripTrailingZeros()">
@@ -964,7 +968,7 @@ extends java.lang.Object</pre>
  sets option to strip the trailing decimal points from expression results.  For example,
  if the expression evaluates to 1. and stripTrailingDecimalPoint is true, the result will
  be formatted such that the trailing zeros are not shown, which would be 1</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>b</code> - true or false specifying wheather or not trailing decimal points should be stripped</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>b</code> - true or false specifying whether or not trailing decimal points should be stripped</dd></dl>
 </li>
 </ul>
 <a name="stripTrailingDecimalPoint()">
@@ -1065,7 +1069,7 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>validateParens</h4>
 <pre>protected&nbsp;boolean&nbsp;validateParens()</pre>
-<div class="block">Method validateParens.  Returns true or false specifying wheather or not the expression has correctly matched parentheses</div>
+<div class="block">Method validateParens.  Returns true or false specifying whether or not the expression has correctly matched parentheses</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>boolean</dd></dl>
 </li>
 </ul>
@@ -1162,7 +1166,7 @@ extends java.lang.Object</pre>
 <h4>evalVariables</h4>
 <pre>protected&nbsp;java.lang.String&nbsp;evalVariables(java.lang.String&nbsp;strExpr)</pre>
 <div class="block">Method evalVariables.  Supports old-style variables processing when expressions are not enabled.
- This essentially requires that the first char of strExpr is a CARET (^).  If not, the 
+ This essentially requires that the first char of strExpr is a CARET (^).  If not, the
  input string is returned unaltered.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>strExpr</code> - The expression to evaluate</dd>
 <dt><span class="strong">Returns:</span></dt><dd>String  The result of the evaluation</dd></dl>
@@ -1215,7 +1219,7 @@ extends java.lang.Object</pre>
 <pre>protected&nbsp;java.lang.String&nbsp;encodeDereferencedVariable(java.lang.String&nbsp;strText)</pre>
 <div class="block">Method encodeDereferencedVariable.  If strText is a variable, return its value.
  Encode any embedded quotes with the non-printable encoding character.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>strText</code> - The string to check wich may or may not be a variable</dd>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>strText</code> - The string to check which may or may not be a variable</dd>
 <dt><span class="strong">Returns:</span></dt><dd>String  The string strText or the value of the variable if strText is a variable</dd></dl>
 </li>
 </ul>
@@ -1250,7 +1254,7 @@ extends java.lang.Object</pre>
 <a name="evalPrimative(java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>evalPrimative</h4>
 <pre>protected&nbsp;java.lang.String&nbsp;evalPrimative(java.lang.String&nbsp;strLeftOperand,
@@ -1259,6 +1263,15 @@ extends java.lang.Object</pre>
 <div class="block">Method evalPrimative.  Primative means an expression in infix notation as "LeftOperand Operator RightOperand" only</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>strLeftOperand</code> - The left operand</dd><dd><code>strOperator</code> - The operator</dd><dd><code>strRightOperand</code> - The right operand</dd>
 <dt><span class="strong">Returns:</span></dt><dd>String  The result of evaluating "LeftOperand Operator RightOperand"</dd></dl>
+</li>
+</ul>
+<a name="main(java.lang.String[])">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>main</h4>
+<pre>public static&nbsp;void&nbsp;main(java.lang.String[]&nbsp;args)</pre>
 </li>
 </ul>
 </li>
