@@ -1,0 +1,117 @@
+<DIV NAME="detail" ID="detail" xmlns="http://www.w3.org/TR/REC-html40"><H3><A NAME='detail_SwitchWindow'></A>DDDriverCommands::<BIG>SwitchWindow</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Switch between multiple windows according to its title.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>Title</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The Title of the window to switch to.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">The title can be a normal string; a wildcard string or a regular-expression string.
+		     </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>BrowserID</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The ID representing the opened browser from where to search the window.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">The browser ID is assigned by user when calling StartWebBrowser.
+		                    This parameter is optional, if not provided then the last opened browser will be used.
+		     </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>ExpectedMatchIndex</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">If more than one windows can be found according to the title, then this parameter
+		               will decide which one to return, the index is 1 based.
+		     </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">The default index is 1, which means the first matched window will be returned.
+             </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>PartialMatch</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">If the parameter 'title' will match partially (be sub-string) with
+                          the title of the existing windows.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">The default value is false; which means that the parameter 'title'
+                             should be fully matched.<br>
+                             This parameter will only be valid if the parameter 'title' is normal string.
+              </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>IgnoreCase</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">If the parameter 'title' will match case-insentitively with
+                          the title of the existing windows.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">The default value is true; which means that the parameter 'title'
+                             will be matched case insensitively.<br>
+                             This parameter will only be valid if the parameter 'title' is normal string.
+              </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, SwitchWindow, "Google"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+             Switch to the first window having "Google" as title within the last used browser.
+           </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, SwitchWindow, "[G|g]oogle"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+               Switch to the first window having "Google" or "google" as title within the last used browser.
+             </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+               The parameter 'title' is provided as a regular expression.
+             </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, SwitchWindow, "Google", "TestGooglePage"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+             Switch to the first window having "Google" as title within the browser opened with ID "TestGooglePage".
+           </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, SwitchWindow, "Google", "TestGooglePage" ,2</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+             Switch to the 2th window having "Google" as title within the browser opened with ID "TestGooglePage".
+           </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, SwitchWindow, "gle", "TestGooglePage", 2, true</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+             Switch to the 2th window having title containing "gle" within the browser opened with ID "TestGooglePage".
+           </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, SwitchWindow, "Goog", "TestGooglePage", 2, true, false</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+             Switch to the 2th window having title containing "Goog" (case sensitive) within the browser opened with ID "TestGooglePage".
+           </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+</DIV>
+	
