@@ -672,7 +672,7 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
  try{
    super.localProcess();
    subLibrary = (SubComponentLibrary) libComponent;
-   
+
  }catch(SeleniumPlusException se){
    testRecordData.setStatusCode(StatusCodes.GENERAL_SCRIPT_FAILURE);
  }
@@ -1086,8 +1086,8 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code><a href="../../../../org/safs/ComponentFunction.html#getComponentRectangle()">getComponentRectangle</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/safs/ComponentFunction.html" title="class in org.safs">ComponentFunction</a></code></dd>
-<dt><span class="strong">Returns:</span></dt><dd>Rectangle, the rectangle relative to the browser. 
- 
+<dt><span class="strong">Returns:</span></dt><dd>Rectangle, the rectangle relative to the browser.
+
  If this return 'absolute rectangle on screen', we SHOULD remove override method <a href="../../../../org/safs/selenium/webdriver/CFComponent.html#getRectangleImage(java.awt.Rectangle)"><code>getRectangleImage(Rectangle)</code></a>.<br>
  But we need to be careful, Robot will be used to get image, we have to implement RMI to get image if the <br>
  browser is running on a remote machine.<br></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../org/safs/ComponentFunction.html#deduceImageRect(java.lang.String)"><code>ComponentFunction.deduceImageRect(String)</code></a></dd></dl>
@@ -1200,9 +1200,9 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
              boolean&nbsp;isCharacter,
              boolean&nbsp;needVerify)</pre>
 <div class="block">Set the text of Component box.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>libName</code> - String,         the concrete Component name of class, which calls 'doSetText()' method, 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>libName</code> - String,         the concrete Component name of class, which calls 'doSetText()' method,
                                                           like 'EditBox', 'ComboBox'.</dd><dd><code>isCharacter</code> - boolean,          if true, the text'll be treated as plain text, without special key dealing; <br>
-                                                              if false, the text'll be treated as special keys.</dd><dd><code>needVerify</code> - boolean,          if true, verify if the text has been correctly entered.(But if the text contains special keys, 
+                                                              if false, the text'll be treated as special keys.</dd><dd><code>needVerify</code> - boolean,          if true, verify if the text has been correctly entered.(But if the text contains special keys,
                                                                                    i.e. isCharacter is false, there's no verification.)
                                                                   if false, no verification.</dd></dl>
 </li>
@@ -1218,7 +1218,7 @@ extends <a href="../../../../org/safs/ComponentFunction.html" title="class in or
            java.lang.String&nbsp;text)
                 throws <a href="../../../../org/safs/selenium/webdriver/lib/SeleniumPlusException.html" title="class in org.safs.selenium.webdriver.lib">SeleniumPlusException</a></pre>
 <div class="block">Clear the content of Component box first, and then enter the text into it.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>libName</code> - String,         the concrete Component name of class, which calls 'setText()' method, 
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>libName</code> - String,         the concrete Component name of class, which calls 'setText()' method,
                                                           like 'EditBox', 'ComboBox'.</dd><dd><code>isCharacter</code> - boolean,          if true, the text'll be treated as plain text, without special key dealing; <br>
                                                               if false, the text'll be treated as special keys.</dd><dd><code>text</code> - String,                   the content to be entered into Component box.</dd>
 <dt><span class="strong">Throws:</span></dt>
