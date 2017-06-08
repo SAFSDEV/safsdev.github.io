@@ -293,15 +293,27 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#CSS_SELECTOR_BY_ID">CSS_SELECTOR_BY_ID</a></strong></code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#DEFAULT_IGNORE_CASE">DEFAULT_IGNORE_CASE</a></strong></code>
+<div class="block"><b>true</b></div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#DEFAULT_JS_EXECUTION_DELAY">DEFAULT_JS_EXECUTION_DELAY</a></strong></code>
 <div class="block">0</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static long</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#DEFAULT_JS_TIMEOUT">DEFAULT_JS_TIMEOUT</a></strong></code>
 <div class="block">'5000' milliseconds</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#DEFAULT_PARTIAL_MATCH">DEFAULT_PARTIAL_MATCH</a></strong></code>
+<div class="block"><b>false</b></div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -1852,12 +1864,34 @@ extends java.lang.Object</pre>
 <a name="MATCHED_ONE_TIME">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>MATCHED_ONE_TIME</h4>
 <pre>public static final&nbsp;int MATCHED_ONE_TIME</pre>
 <div class="block"><b>1</b> integer one</div>
 <dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.safs.selenium.webdriver.lib.SearchObject.MATCHED_ONE_TIME">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_PARTIAL_MATCH">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT_PARTIAL_MATCH</h4>
+<pre>public static final&nbsp;boolean DEFAULT_PARTIAL_MATCH</pre>
+<div class="block"><b>false</b></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.safs.selenium.webdriver.lib.SearchObject.DEFAULT_PARTIAL_MATCH">Constant Field Values</a></dd></dl>
+</li>
+</ul>
+<a name="DEFAULT_IGNORE_CASE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DEFAULT_IGNORE_CASE</h4>
+<pre>public static final&nbsp;boolean DEFAULT_IGNORE_CASE</pre>
+<div class="block"><b>true</b></div>
+<dl><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../constant-values.html#org.safs.selenium.webdriver.lib.SearchObject.DEFAULT_IGNORE_CASE">Constant Field Values</a></dd></dl>
 </li>
 </ul>
 </li>
@@ -3282,10 +3316,10 @@ public static&nbsp;java.lang.String&nbsp;generateUniqueName(java.lang.String&nbs
 <div class="block">Switch to a certain window according to its title, this method will search it from all opened browsers.<br/>
  <b>NOTE:</b> Once successfully switched, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastUsedWD"><code>lastUsedWD</code></a>, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastJS"><code>lastJS</code></a> may probably get changed.<br/></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>title</code> - String, the title of the window to switch to. It can be a normal string, a regexp string or a wildcard string.
-                      If it is regexp string, the optional parameters will be ignored.</dd><dd><code>optionals</code> - boolean[]
+                      If it is regexp/wildcard string, the optional parameters will be ignored.</dd><dd><code>optionals</code> - boolean[]
  <ul>
- <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is not regexp string;
- <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is not regexp string;
+ <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is normal string;
+ <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is normal string;
  </ul></dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successfully switched to window matching parameter title</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -3305,11 +3339,11 @@ public static&nbsp;java.lang.String&nbsp;generateUniqueName(java.lang.String&nbs
 <div class="block">Switch to a certain window according to its title, this method will search it from all opened browsers.<br/>
  <b>NOTE:</b> Once successfully switched, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastUsedWD"><code>lastUsedWD</code></a>, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastJS"><code>lastJS</code></a> may probably get changed.<br/></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>title</code> - String, the title of the window to switch to. It can be a normal string, a regexp string or a wildcard string.
-                      If it is regexp string, the optional parameters will be ignored.</dd><dd><code>expectedMatchIndex</code> - int, the index of matched window if multiple windows match. These windows are ordered according to
-                                their title alphabet order. It should be bigger than <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#MATCHED_ZERO_TIMES"><code>MATCHED_ZERO_TIMES</code></a></dd><dd><code>optionals</code> - boolean[]
+                      If it is regexp/wildcard string, the optional parameters will be ignored.</dd><dd><code>expectedMatchIndex</code> - int, the index of matched window if multiple windows match. These windows are ordered according to
+                                their title alphabet order. It is 1-based index and should be bigger than <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#MATCHED_ZERO_TIMES"><code>MATCHED_ZERO_TIMES</code></a></dd><dd><code>optionals</code> - boolean[]
  <ul>
- <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is not regexp string;
- <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is not regexp string;
+ <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is normal string;
+ <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is normal string;
  </ul></dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successfully switched to window matching parameter title</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -3329,10 +3363,10 @@ public static&nbsp;java.lang.String&nbsp;generateUniqueName(java.lang.String&nbs
 <div class="block">Switch to a certain window according to its title within browser identified by parameter 'browserID'.<br/>
  <b>NOTE:</b> Once successfully switched, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastUsedWD"><code>lastUsedWD</code></a>, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastJS"><code>lastJS</code></a> may probably get changed.<br/></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>browserID</code> - String, the browser ID when calling <code>#startBrowser(String, String, String, int, boolean)</code></dd><dd><code>title</code> - String, the title of the window to switch to. It can be a normal string, a regexp string or a wildcard string.
-                      If it is regexp string, the optional parameters will be ignored.</dd><dd><code>optionals</code> - boolean[]
+                      If it is regexp/wildcard string, the optional parameters will be ignored.</dd><dd><code>optionals</code> - boolean[]
  <ul>
- <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is not regexp string;
- <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is not regexp string;
+ <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is normal string;
+ <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is normal string;
  </ul></dd>
 <dt><span class="strong">Returns:</span></dt><dd>boolean true if successfully switched</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -3353,11 +3387,11 @@ public static&nbsp;java.lang.String&nbsp;generateUniqueName(java.lang.String&nbs
 <div class="block">Switch to a certain window according to its title within browser identified by parameter 'browserID'.<br/>
  <b>NOTE:</b> Once successfully switched, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastUsedWD"><code>lastUsedWD</code></a>, <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#lastJS"><code>lastJS</code></a> may probably get changed.<br/></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>browserID</code> - String, the browser ID when calling <code>#startBrowser(String, String, String, int, boolean)</code></dd><dd><code>title</code> - String, the title of the window to switch to. It can be a normal string, a regexp string or a wildcard string.
-                      If it is regexp string, the optional parameters will be ignored.</dd><dd><code>expectedMatchIndex</code> - int, the index of matched window if multiple windows match. These windows are ordered according to
-                                their title alphabet order. It should be bigger than <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#MATCHED_ZERO_TIMES"><code>MATCHED_ZERO_TIMES</code></a></dd><dd><code>optionals</code> - boolean[]
+                      If it is regexp/wildcard string, the optional parameters will be ignored.</dd><dd><code>expectedMatchIndex</code> - int, the index of matched window if multiple windows match. These windows are ordered according to
+                                their title alphabet order. It is 1-based index and should be bigger than <a href="../../../../../org/safs/selenium/webdriver/lib/SearchObject.html#MATCHED_ZERO_TIMES"><code>MATCHED_ZERO_TIMES</code></a></dd><dd><code>optionals</code> - boolean[]
  <ul>
- <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is not regexp string;
- <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is not regexp string;
+ <li>optionals[0] <b>partialMatch</b> boolean, if the title is provided as sub-string. The default value is false. It is valid ONLY when <b>title</b> is normal string;
+ <li>optionals[1] <b>ignoreCase</b> boolean, if the title are case in-sensitive to compare. The default value is true. It is valid ONLY when <b>title</b> is normal string;
  </ul></dd>
 <dt><span class="strong">Returns:</span></dt><dd>int the matched times.</dd>
 <dt><span class="strong">Throws:</span></dt>
