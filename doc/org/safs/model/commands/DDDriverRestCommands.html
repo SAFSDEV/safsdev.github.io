@@ -186,34 +186,26 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponse(java.lang.String[])">restDeleteResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponse(java.lang.String)">restDeleteResponse</a></strong>(java.lang.String&nbsp;responseID)</code>
 <div class="block">
-                                        Delete a REST response (and request if it is stored) from the persistent storage.</div>
+                                        Delete a REST response (and request if stored) from the persistent storages.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponse(java.lang.String,%20java.lang.String)">restDeleteResponse</a></strong>(java.lang.String&nbsp;variablePrefix,
-                  java.lang.String&nbsp;persistFile)</code>
-<div class="block">
-                                        Delete a REST response (and request if it is stored) from the persistent storage.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponseStore()">restDeleteResponseStore</a></strong>()</code>
 <div class="block">
-                    Delete ALL REST responses (and requests if stored) from the persistent storage.</div>
+                    Delete ALL REST responses (and requests if stored) from the persistent storages.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restHeadersLoad(java.lang.String[])">restHeadersLoad</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">
                     Load headers from a file.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restHeadersLoad(java.lang.String,%20java.lang.String,%20java.lang.String)">restHeadersLoad</a></strong>(java.lang.String&nbsp;headersFile,
                java.lang.String&nbsp;method,
@@ -222,46 +214,55 @@ extends java.lang.Object</pre>
                     Load headers from a file.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String[])">restStoreResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Save a REST response into a persistent storage.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restStoreResponse</a></strong>(java.lang.String&nbsp;responseID,
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restStoreResponse</a></strong>(java.lang.String&nbsp;responseID,
                  java.lang.String&nbsp;variablePrefix,
                  java.lang.String&nbsp;storeRequest,
-                 java.lang.String&nbsp;persistFile)</code>
+                 java.lang.String&nbsp;persistenceType,
+                 java.lang.String&nbsp;fileType)</code>
 <div class="block">Save a REST response into a persistent storage.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponse(java.lang.String[])">restVerifyResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Verify a REST response is what is expected.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponse(java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponse</a></strong>(java.lang.String&nbsp;responseID,
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponse</a></strong>(java.lang.String&nbsp;responseID,
                   java.lang.String&nbsp;benchFile,
-                  java.lang.String&nbsp;result)</code>
+                  java.lang.String&nbsp;fileType,
+                  java.lang.String&nbsp;result,
+                  java.lang.String&nbsp;verifyRequest,
+                  java.lang.String&nbsp;valueContains,
+                  java.lang.String&nbsp;valueCaseSensitive)</code>
 <div class="block">Verify a REST response is what is expected.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String[])">restVerifyResponseContains</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Verify a REST response contains what is expected.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponseContains</a></strong>(java.lang.String&nbsp;responseID,
+<td class="colLast"><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponseContains</a></strong>(java.lang.String&nbsp;responseID,
                           java.lang.String&nbsp;benchFile,
-                          java.lang.String&nbsp;result)</code>
+                          java.lang.String&nbsp;fileType,
+                          java.lang.String&nbsp;result,
+                          java.lang.String&nbsp;verifyRequest,
+                          java.lang.String&nbsp;valueContains,
+                          java.lang.String&nbsp;valueCaseSensitive)</code>
 <div class="block">Verify a REST response contains what is expected.</div>
 </td>
 </tr>
@@ -396,7 +397,7 @@ extends java.lang.Object</pre>
                     The REST response/request is stored internally in a Map of pair (responsID, Response).
 
                         BE CAREFUL WHNE CALLING THIS KEYWORD! It will clean Response from internal Map, and
-                        can cause other keyword fails to work.
+                        can cause other keyword failing to work.
 
                     </pre>    Supporting Engines:
     <P/><UL>
@@ -406,62 +407,30 @@ extends java.lang.Object</pre>
                             The ID used to delete Response Object from internal Map.</dd></dl>
 </li>
 </ul>
-<a name="restDeleteResponse(java.lang.String, java.lang.String)">
+<a name="restDeleteResponse(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>restDeleteResponse</h4>
-<pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restDeleteResponse(java.lang.String&nbsp;variablePrefix,
-                               java.lang.String&nbsp;persistFile)</pre>
+<pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restDeleteResponse(java.lang.String&nbsp;responseID)</pre>
 <div class="block"><pre>
-                                        Delete a REST response (and request if it is stored) from the persistent storage.
+                                        Delete a REST response (and request if stored) from the persistent storages.
 
-                                        Delete a REST response (and request if it is stored) from the persistent storage.
-                                        The REST response/request is supposed to store in a persistent storage.
-                                        The persistent storage can be a series of variables, a file or something else, 
-                                        please refer to explanation of parameter variablePrefix).
+                                        Delete a REST response (and request if stored) from the persistent storages.
+                                        The REST response/request is supposed to be in the persistent storages.
+                                        The response/request can be in more than one type of persistence storage, and
+                                        it can be a series of variables, a file or something else, please refer to 
+                                        explanation of parameters of keyword RestStoreResponse.
+                                        For example, if the Response/Request is stored be in a XML file, a JSON file 
+                                        and "a series of variables" at the same time, then this keyword will delete 
+                                        all of them (XML file, JSON file and variables).
                                     </pre>    Supporting Engines:
     <P/><UL>
         <LI>SAFS TIDDriverCommands</LI>
     </UL></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>variablePrefix</code> - Optional:NO
-                                                        The prefix of the variables (storing the information of a REST response/request) to be deleted.
-                                                        Or the name of the file (holding the information of a REST response/request) to be deleted.</dd><dd><code>persistFile</code> - Optional:YES  DefaultVal:False
-                            If this parameter is true, then the parameter 'variablePrefix' represents
-                            persistent file holding Response/Request information.</dd></dl>
-</li>
-</ul>
-<a name="restDeleteResponse(java.lang.String[])">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>restDeleteResponse</h4>
-<pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restDeleteResponse(java.lang.String[]&nbsp;parameters)</pre>
-<div class="block"><pre>
-                                        Delete a REST response (and request if it is stored) from the persistent storage.
-
-                                        Delete a REST response (and request if it is stored) from the persistent storage.
-                                        The REST response/request is supposed to store in a persistent storage.
-                                        The persistent storage can be a series of variables, a file or something else, 
-                                        please refer to explanation of parameter variablePrefix).
-                                    </pre>    
-    Supporting Engines:
-    <P/><UL>
-        <LI>SAFS TIDDriverCommands</LI>
-    </UL></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>parameters</code> - Optional:NO
-            An array containing the following parameters:
-    <UL>
-<BR/>        variablePrefix -- Optional:NO
-                                                        The prefix of the variables (storing the information of a REST response/request) to be deleted.
-                                                        Or the name of the file (holding the information of a REST response/request) to be deleted.
-                                                <BR/>        persistFile -- Optional:YES  DefaultVal:False
-                            If this parameter is true, then the parameter 'variablePrefix' represents
-                            persistent file holding Response/Request information.
-
-    </UL></dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>responseID</code> - Optional:NO
+                                                        The ID of the Response/Request (stored in persistence storages) to be deleted.</dd></dl>
 </li>
 </ul>
 <a name="restDeleteResponseStore()">
@@ -472,14 +441,18 @@ extends java.lang.Object</pre>
 <h4>restDeleteResponseStore</h4>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restDeleteResponseStore()</pre>
 <div class="block"><pre>
-                    Delete ALL REST responses (and requests if stored) from the persistent storage.
+                    Delete ALL REST responses (and requests if stored) from the persistent storages.
 
-                    Delete ALL REST responses (and requests if stored) from the persistent storage. 
-                    The REST response/request is supposed to store in the persistent storage.
-                    The persistent storage can be a series of variables, a file or something else, 
-                    please refer to explanation of parameter variablePrefix).
-                    So these variables, files related to all responses/requests will be deleted, which
-                    means the persistent storage will be cleaned up for all REST responses/requests.                    
+                    Delete ALL REST responses (and requests if stored) from the persistent storages. 
+                    The REST response/request is supposed to be in the persistent storages.
+                    The response/request can be in more than one type of persistence storage, and
+                    it can be a series of variables, a file or something else, please refer to 
+                    explanation of parameters of keyword RestStoreResponse.
+                    For example, if there are 2 Responses/Requests have been persisted, 
+                    one is stored be in a XML file, a JSON file and "a series of variables" at the same time,
+                    the other is stored in JSON file and "a series of variables", then this keyword will delete 
+                    all of them (XML file, JSON file and variables of the first Response/Request, 
+                    JSON file and "a series of variables" of the second Response/Request).
                     </pre>    Supporting Engines:
     <P/><UL>
         <LI>SAFS TIDDriverCommands</LI>
@@ -546,7 +519,7 @@ extends java.lang.Object</pre>
     </UL></dd></dl>
 </li>
 </ul>
-<a name="restStoreResponse(java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
+<a name="restStoreResponse(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -555,19 +528,20 @@ extends java.lang.Object</pre>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restStoreResponse(java.lang.String&nbsp;responseID,
                               java.lang.String&nbsp;variablePrefix,
                               java.lang.String&nbsp;storeRequest,
-                              java.lang.String&nbsp;persistFile)</pre>
+                              java.lang.String&nbsp;persistenceType,
+                              java.lang.String&nbsp;fileType)</pre>
 <div class="block"><pre>Save a REST response into a persistent storage.
                     Retrieve a REST response according to the responseID, and store the response into
                     a persistent storage. The persistent storage can be a series of variables, a file 
-                    or something else, please refer to explanation of parameter variablePrefix).
+                    or something else, please refer to explanation of parameters.
                     </pre>    Supporting Engines:
     <P/><UL>
         <LI>SAFS TIDDriverCommands</LI>
     </UL></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>responseID</code> - Optional:NO
                             The ID used to retrieve Response Object from internal Map.</dd><dd><code>variablePrefix</code> - Optional:NO
-                            The prefix of the variables to store the information of a REST response.
-                            Or the file name holding the information of a REST response.</dd><dd><code>storeRequest</code> - Optional:YES  DefaultVal:FalseStore the originating Request information if this parameter is true. The default value is false.</dd><dd><code>persistFile</code> - Optional:YES  DefaultVal:FalseStore the Response/Request information into a file if this parameter is true.</dd></dl>
+                            The prefix of the variables to store the information of a REST response/request if parameter persistenceType is VARIABLE.
+                            Or the file name holding the information of a REST response/request if parameter persistenceType is FILE.</dd><dd><code>storeRequest</code> - Optional:YES  DefaultVal:FalseStore the originating Request information if this parameter is true. The default value is false.</dd><dd><code>persistenceType</code> - Optional:YES  DefaultVal:VARIABLEThe type of the persistence storage to save the Response/Request information.</dd><dd><code>fileType</code> - Optional:YES  DefaultVal:JSONThe Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"</dd></dl>
 </li>
 </ul>
 <a name="restStoreResponse(java.lang.String[])">
@@ -580,7 +554,7 @@ extends java.lang.Object</pre>
 <div class="block"><pre>Save a REST response into a persistent storage.
                     Retrieve a REST response according to the responseID, and store the response into
                     a persistent storage. The persistent storage can be a series of variables, a file 
-                    or something else, please refer to explanation of parameter variablePrefix).
+                    or something else, please refer to explanation of parameters.
                     </pre>    
     Supporting Engines:
     <P/><UL>
@@ -592,13 +566,13 @@ extends java.lang.Object</pre>
 <BR/>        responseID -- Optional:NO
                             The ID used to retrieve Response Object from internal Map.
                         <BR/>        variablePrefix -- Optional:NO
-                            The prefix of the variables to store the information of a REST response.
-                            Or the file name holding the information of a REST response.
-                        <BR/>        storeRequest -- Optional:YES  DefaultVal:FalseStore the originating Request information if this parameter is true. The default value is false.<BR/>        persistFile -- Optional:YES  DefaultVal:FalseStore the Response/Request information into a file if this parameter is true.
+                            The prefix of the variables to store the information of a REST response/request if parameter persistenceType is VARIABLE.
+                            Or the file name holding the information of a REST response/request if parameter persistenceType is FILE.
+                        <BR/>        storeRequest -- Optional:YES  DefaultVal:FalseStore the originating Request information if this parameter is true. The default value is false.<BR/>        persistenceType -- Optional:YES  DefaultVal:VARIABLEThe type of the persistence storage to save the Response/Request information.<BR/>        fileType -- Optional:YES  DefaultVal:JSONThe Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"
     </UL></dd></dl>
 </li>
 </ul>
-<a name="restVerifyResponse(java.lang.String, java.lang.String, java.lang.String)">
+<a name="restVerifyResponse(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -606,18 +580,31 @@ extends java.lang.Object</pre>
 <h4>restVerifyResponse</h4>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restVerifyResponse(java.lang.String&nbsp;responseID,
                                java.lang.String&nbsp;benchFile,
-                               java.lang.String&nbsp;result)</pre>
+                               java.lang.String&nbsp;fileType,
+                               java.lang.String&nbsp;result,
+                               java.lang.String&nbsp;verifyRequest,
+                               java.lang.String&nbsp;valueContains,
+                               java.lang.String&nbsp;valueCaseSensitive)</pre>
 <div class="block"><pre>Verify a REST response is what is expected.
                     Retrieve a REST response according to the responseID, and compare the response with
                     the content stored in a bench file.
+                    The comparison should be defined by parameter verifyRequest, valueContains and valueCaseSensitive.
                     </pre>    Supporting Engines:
     <P/><UL>
         <LI>SAFS TIDDriverCommands</LI>
     </UL></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>responseID</code> - Optional:NO
                             The ID used to retrieve Response Object from internal Map.</dd><dd><code>benchFile</code> - Optional:NO
-                            The bench file for verifying a REST response.</dd><dd><code>result</code> - Optional:YES
-                            The variable holding the verification result.</dd></dl>
+                            The bench file for verifying a REST response.</dd><dd><code>fileType</code> - Optional:YES  DefaultVal:JSONThe Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"</dd><dd><code>result</code> - Optional:YES  DefaultVal:<responseID>.verification.result
+                            The variable holding the verification result.</dd><dd><code>verifyRequest</code> - Optional:YES  DefaultVal:FALSE
+                            If it is true, then verify also the Request; otherwise only the Response will be verified.
+                            The default value is 'false', which means only the Response will be verified.</dd><dd><code>valueContains</code> - Optional:YES  DefaultVal:FALSE
+                            If true, then verify that Response/Request field's value contains that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches wholly with that in benchFile;
+                            The default value is false;</dd><dd><code>valueCaseSensitive</code> - Optional:YES  DefaultVal:TRUE
+                            If true, then verify that Response/Request field's value matches case sensitively with that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches case insensitively with that in benchFile;
+                            The default value is true;</dd></dl>
 </li>
 </ul>
 <a name="restVerifyResponse(java.lang.String[])">
@@ -630,6 +617,7 @@ extends java.lang.Object</pre>
 <div class="block"><pre>Verify a REST response is what is expected.
                     Retrieve a REST response according to the responseID, and compare the response with
                     the content stored in a bench file.
+                    The comparison should be defined by parameter verifyRequest, valueContains and valueCaseSensitive.
                     </pre>    
     Supporting Engines:
     <P/><UL>
@@ -642,13 +630,24 @@ extends java.lang.Object</pre>
                             The ID used to retrieve Response Object from internal Map.
                         <BR/>        benchFile -- Optional:NO
                             The bench file for verifying a REST response.
-                        <BR/>        result -- Optional:YES
+                        <BR/>        fileType -- Optional:YES  DefaultVal:JSONThe Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"<BR/>        result -- Optional:YES  DefaultVal:<responseID>.verification.result
                             The variable holding the verification result.
+                        <BR/>        verifyRequest -- Optional:YES  DefaultVal:FALSE
+                            If it is true, then verify also the Request; otherwise only the Response will be verified.
+                            The default value is 'false', which means only the Response will be verified.
+                        <BR/>        valueContains -- Optional:YES  DefaultVal:FALSE
+                            If true, then verify that Response/Request field's value contains that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches wholly with that in benchFile;
+                            The default value is false;
+                        <BR/>        valueCaseSensitive -- Optional:YES  DefaultVal:TRUE
+                            If true, then verify that Response/Request field's value matches case sensitively with that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches case insensitively with that in benchFile;
+                            The default value is true;
 
     </UL></dd></dl>
 </li>
 </ul>
-<a name="restVerifyResponseContains(java.lang.String, java.lang.String, java.lang.String)">
+<a name="restVerifyResponseContains(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -656,20 +655,33 @@ extends java.lang.Object</pre>
 <h4>restVerifyResponseContains</h4>
 <pre>public static&nbsp;<a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a>&nbsp;restVerifyResponseContains(java.lang.String&nbsp;responseID,
                                        java.lang.String&nbsp;benchFile,
-                                       java.lang.String&nbsp;result)</pre>
+                                       java.lang.String&nbsp;fileType,
+                                       java.lang.String&nbsp;result,
+                                       java.lang.String&nbsp;verifyRequest,
+                                       java.lang.String&nbsp;valueContains,
+                                       java.lang.String&nbsp;valueCaseSensitive)</pre>
 <div class="block"><pre>Verify a REST response contains what is expected.
                     Retrieve a REST response according to the responseID, and verify that the response contains
                     the content stored in a bench file.
-                    The Contains in keyword RestVerifyResponseContains means the Response contains the fields
-                     defined in the bench file, for the field's value, it should be exact match.
+                    The Contains in keyword RestVerifyResponseContains means the Response/Request contains the fields
+                    defined in the bench file, that is to say not all fields of Response/Request should be matched
+                    For the field's value, it should be defined by parameter valueContains and valueCaseSensitive.
                     </pre>    Supporting Engines:
     <P/><UL>
         <LI>SAFS TIDDriverCommands</LI>
     </UL></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>responseID</code> - Optional:NO
                             The ID used to retrieve Response Object from internal Map.</dd><dd><code>benchFile</code> - Optional:NO
-                            The bench file for verifying a REST response.</dd><dd><code>result</code> - Optional:YES
-                            The variable holding the verification result.</dd></dl>
+                            The bench file for verifying a REST response.</dd><dd><code>fileType</code> - Optional:YES  DefaultVal:JSONThe Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"</dd><dd><code>result</code> - Optional:YES  DefaultVal:<responseID>.verification.result
+                            The variable holding the verification result.</dd><dd><code>verifyRequest</code> - Optional:YES  DefaultVal:FALSE
+                            If it is true, then verify also the Request; otherwise only the Response will be verified.
+                            The default value is 'false', which means only the Response will be verified.</dd><dd><code>valueContains</code> - Optional:YES  DefaultVal:FALSE
+                            If true, then verify that Response/Request field's value contains that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches wholly with that in benchFile;
+                            The default value is false;</dd><dd><code>valueCaseSensitive</code> - Optional:YES  DefaultVal:TRUE
+                            If true, then verify that Response/Request field's value matches case sensitively with that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches case insensitively with that in benchFile;
+                            The default value is true;</dd></dl>
 </li>
 </ul>
 <a name="restVerifyResponseContains(java.lang.String[])">
@@ -682,8 +694,9 @@ extends java.lang.Object</pre>
 <div class="block"><pre>Verify a REST response contains what is expected.
                     Retrieve a REST response according to the responseID, and verify that the response contains
                     the content stored in a bench file.
-                    The Contains in keyword RestVerifyResponseContains means the Response contains the fields
-                     defined in the bench file, for the field's value, it should be exact match.
+                    The Contains in keyword RestVerifyResponseContains means the Response/Request contains the fields
+                    defined in the bench file, that is to say not all fields of Response/Request should be matched
+                    For the field's value, it should be defined by parameter valueContains and valueCaseSensitive.
                     </pre>    
     Supporting Engines:
     <P/><UL>
@@ -696,8 +709,19 @@ extends java.lang.Object</pre>
                             The ID used to retrieve Response Object from internal Map.
                         <BR/>        benchFile -- Optional:NO
                             The bench file for verifying a REST response.
-                        <BR/>        result -- Optional:YES
+                        <BR/>        fileType -- Optional:YES  DefaultVal:JSONThe Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"<BR/>        result -- Optional:YES  DefaultVal:<responseID>.verification.result
                             The variable holding the verification result.
+                        <BR/>        verifyRequest -- Optional:YES  DefaultVal:FALSE
+                            If it is true, then verify also the Request; otherwise only the Response will be verified.
+                            The default value is 'false', which means only the Response will be verified.
+                        <BR/>        valueContains -- Optional:YES  DefaultVal:FALSE
+                            If true, then verify that Response/Request field's value contains that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches wholly with that in benchFile;
+                            The default value is false;
+                        <BR/>        valueCaseSensitive -- Optional:YES  DefaultVal:TRUE
+                            If true, then verify that Response/Request field's value matches case sensitively with that in benchFile;
+                            Otherwise, then verify that Response/Request field's value matches case insensitively with that in benchFile;
+                            The default value is true;
 
     </UL></dd></dl>
 </li>

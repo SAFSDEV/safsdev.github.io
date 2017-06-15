@@ -483,14 +483,20 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../org/safs/RSA.html" title="class in org.safs">RSA</a></td>
 <td class="colLast">
-<div class="block">
-Usage:
-java org.safs.RSA -gen
-java org.safs.RSA -gen -out outputfile
-java org.safs.RSA -encrypt -data data/file -key publickey/file
-java org.safs.RSA -encrypt -data data/file -key publickey/file -out outputfile
-java org.safs.RSA -decrypt -data data/file -key privatekey/file
-java org.safs.RSA -decrypt -data data/file -key privatekey/file -out outputfile</div>
+<div class="block">This class provides the functionality to
+ 
+ generate the RSA public/private key pair
+ encrypt the secrete data with public key
+ decrypt the encrypted data by private key
+ 
+
+ Usage:
+ 
+ <br>//generate a pair (public-key and private-key) and print them to console
+ <br>//user needs to move the mouse on the screen to provide random data for generating keys
+ <b>java org.safs.RSA -gen</b>
+ <br>//generate a pair (public-key and private-key) and print them to file 'outputfile'
+ <b>java org.safs.RSA -gen -out outputfile</b></div>
 </td>
 </tr>
 <tr class="altColor">

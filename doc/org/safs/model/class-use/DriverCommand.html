@@ -3993,36 +3993,65 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restCleanResponseMap(java.lang.String)">restCleanResponseMap</a></strong>(java.lang.String&nbsp;responseID)</code>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restCleanResponseMap(java.lang.String)">restCleanResponseMap</a></strong>(java.lang.String&nbsp;responseID)</code>
 <div class="block">
                     Delete REST response (and request if it is stored) from the internal Map.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponse(java.lang.String[])">restDeleteResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restCleanResponseMap(java.lang.String)">restCleanResponseMap</a></strong>(java.lang.String&nbsp;responseID)</code>
 <div class="block">
-                                        Delete a REST response (and request if it is stored) from the persistent storage.</div>
+                    Delete REST response (and request if it is stored) from the internal Map.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponse(java.lang.String,%20java.lang.String)">restDeleteResponse</a></strong>(java.lang.String&nbsp;variablePrefix,
-                  java.lang.String&nbsp;persistFile)</code>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restDeleteResponse(java.lang.String)">restDeleteResponse</a></strong>(java.lang.String&nbsp;responseID)</code>
 <div class="block">
-                                        Delete a REST response (and request if it is stored) from the persistent storage.</div>
+                                        Delete a REST response (and request if stored) from the persistent storages.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponse(java.lang.String)">restDeleteResponse</a></strong>(java.lang.String&nbsp;responseID)</code>
+<div class="block">
+                                        Delete a REST response (and request if stored) from the persistent storages.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restDeleteResponseStore()">restDeleteResponseStore</a></strong>()</code>
+<div class="block">
+                    Delete ALL REST responses (and requests if stored) from the persistent storages.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restDeleteResponseStore()">restDeleteResponseStore</a></strong>()</code>
 <div class="block">
-                    Delete ALL REST responses (and requests if stored) from the persistent storage.</div>
+                    Delete ALL REST responses (and requests if stored) from the persistent storages.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restHeadersLoad(java.lang.String[])">restHeadersLoad</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                    Load headers from a file.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restHeadersLoad(java.lang.String[])">restHeadersLoad</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">
+                    Load headers from a file.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restHeadersLoad(java.lang.String,%20java.lang.String,%20java.lang.String)">restHeadersLoad</a></strong>(java.lang.String&nbsp;headersFile,
+               java.lang.String&nbsp;method,
+               java.lang.String&nbsp;type)</code>
 <div class="block">
                     Load headers from a file.</div>
 </td>
@@ -4038,44 +4067,105 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String[])">restStoreResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restStoreResponse(java.lang.String[])">restStoreResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Save a REST response into a persistent storage.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restStoreResponse</a></strong>(java.lang.String&nbsp;responseID,
-                 java.lang.String&nbsp;variablePrefix,
-                 java.lang.String&nbsp;storeRequest,
-                 java.lang.String&nbsp;persistFile)</code>
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String[])">restStoreResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Save a REST response into a persistent storage.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restStoreResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restStoreResponse</a></strong>(java.lang.String&nbsp;responseID,
+                 java.lang.String&nbsp;variablePrefix,
+                 java.lang.String&nbsp;storeRequest,
+                 java.lang.String&nbsp;persistenceType,
+                 java.lang.String&nbsp;fileType)</code>
+<div class="block">Save a REST response into a persistent storage.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restStoreResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restStoreResponse</a></strong>(java.lang.String&nbsp;responseID,
+                 java.lang.String&nbsp;variablePrefix,
+                 java.lang.String&nbsp;storeRequest,
+                 java.lang.String&nbsp;persistenceType,
+                 java.lang.String&nbsp;fileType)</code>
+<div class="block">Save a REST response into a persistent storage.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restVerifyResponse(java.lang.String[])">restVerifyResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">Verify a REST response is what is expected.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
 <td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponse(java.lang.String[])">restVerifyResponse</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Verify a REST response is what is expected.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restVerifyResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponse</a></strong>(java.lang.String&nbsp;responseID,
+                  java.lang.String&nbsp;benchFile,
+                  java.lang.String&nbsp;fileType,
+                  java.lang.String&nbsp;result,
+                  java.lang.String&nbsp;verifyRequest,
+                  java.lang.String&nbsp;valueContains,
+                  java.lang.String&nbsp;valueCaseSensitive)</code>
+<div class="block">Verify a REST response is what is expected.</div>
+</td>
+</tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponse(java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponse</a></strong>(java.lang.String&nbsp;responseID,
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponse(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponse</a></strong>(java.lang.String&nbsp;responseID,
                   java.lang.String&nbsp;benchFile,
-                  java.lang.String&nbsp;result)</code>
+                  java.lang.String&nbsp;fileType,
+                  java.lang.String&nbsp;result,
+                  java.lang.String&nbsp;verifyRequest,
+                  java.lang.String&nbsp;valueContains,
+                  java.lang.String&nbsp;valueCaseSensitive)</code>
 <div class="block">Verify a REST response is what is expected.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String[])">restVerifyResponseContains</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restVerifyResponseContains(java.lang.String[])">restVerifyResponseContains</a></strong>(java.lang.String[]&nbsp;parameters)</code>
 <div class="block">Verify a REST response contains what is expected.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
-<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponseContains</a></strong>(java.lang.String&nbsp;responseID,
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String[])">restVerifyResponseContains</a></strong>(java.lang.String[]&nbsp;parameters)</code>
+<div class="block">Verify a REST response contains what is expected.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DriverCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DriverCommands.html#restVerifyResponseContains(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponseContains</a></strong>(java.lang.String&nbsp;responseID,
                           java.lang.String&nbsp;benchFile,
-                          java.lang.String&nbsp;result)</code>
+                          java.lang.String&nbsp;fileType,
+                          java.lang.String&nbsp;result,
+                          java.lang.String&nbsp;verifyRequest,
+                          java.lang.String&nbsp;valueContains,
+                          java.lang.String&nbsp;valueCaseSensitive)</code>
+<div class="block">Verify a REST response contains what is expected.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../org/safs/model/DriverCommand.html" title="class in org.safs.model">DriverCommand</a></code></td>
+<td class="colLast"><span class="strong">DDDriverRestCommands.</span><code><strong><a href="../../../../org/safs/model/commands/DDDriverRestCommands.html#restVerifyResponseContains(java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String,%20java.lang.String)">restVerifyResponseContains</a></strong>(java.lang.String&nbsp;responseID,
+                          java.lang.String&nbsp;benchFile,
+                          java.lang.String&nbsp;fileType,
+                          java.lang.String&nbsp;result,
+                          java.lang.String&nbsp;verifyRequest,
+                          java.lang.String&nbsp;valueContains,
+                          java.lang.String&nbsp;valueCaseSensitive)</code>
 <div class="block">Verify a REST response contains what is expected.</div>
 </td>
 </tr>

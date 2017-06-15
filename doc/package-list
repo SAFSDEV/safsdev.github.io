@@ -54,6 +54,11 @@ org.safs.natives.win32
 org.safs.net
 org.safs.persist
 org.safs.persist.test
+org.safs.projects.common.projects
+org.safs.projects.common.projects.callbacks
+org.safs.projects.common.projects.pojo
+org.safs.projects.seleniumplus.popupmenu
+org.safs.projects.seleniumplus.projects
 org.safs.rational
 org.safs.rational.custom
 org.safs.rational.flex
