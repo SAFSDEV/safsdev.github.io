@@ -1,0 +1,74 @@
+<DIV NAME="detail" ID="detail" xmlns="http://www.w3.org/TR/REC-html40"><H3><A NAME='detail_RestStartServiceSession'></A>RobotJ TIDRestFunctions::<BIG>RestStartServiceSession</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Start a session for a REST service.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>Currently the "base URL" and "authentication information" will be stored for the opened session.</p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>baseURL</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The base URL to be stored with a session.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This base URL will be prepended to a relative URI to form a REST service URL for the 
+                           later invocation of other REST actions. 
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The file holding authentication information to be used during this session.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            Normally, the authentication information will be loaded from "JVM -D parameters", "Map", or global
+                            external file, those settings are considered to be global. This parameter can
+                            be used to alternate the authentication information, it will override the global settings.<br>
+                            It is normally provided as a file name holding the authentication information. The file is relative
+                            to the project's root directory, and it can contain sub directories.<br>
+                            If it is provided as <b>NOAUTHENTICATION</b>, then no authentication is needed during the session
+                            even the global settings are set.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Start a session for a REST service based on URL "http://www.thomas-bayer.com/".
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", configure/simpleauth.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Start a session for a REST service based on URL "http://www.thomas-bayer.com/", and this session will use
+                            authentication information stored in file &lt;project&gt;/configure/simpleauth.xml.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be identified by ID, which is already defined by map-item BayerSessionID under section SAFSREST.</p>
+                            The file &lt;project&gt;/configure/simpleauth.xml contains authentication information, example as below:
+<pre>
+  &lt;SimpleAuth classname="org.safs.auth.SimpleAuth"&gt;
+    &lt;password&gt;unitA123&lt;/password&gt;
+    &lt;userName&gt;Mark&lt;/userName&gt;
+  &lt;/SimpleAuth&gt;
+</pre></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+</DIV>
+	

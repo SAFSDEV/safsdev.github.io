@@ -1,0 +1,111 @@
+<DIV NAME="detail" ID="detail" xmlns="http://www.w3.org/TR/REC-html40"><H3><A NAME='detail_RestHeadersLoad'></A>Autoit DDDriverRestCommands::<BIG>RestHeadersLoad</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Load headers from a file.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    This might be called before invoking a REST action, like RESTGetXML etc.
+                    And the loaded headers will be used when executing that REST action 
+                    if no headers are provided as parameter of that REST action.
+                </detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>headersFile</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The path to file holding headers information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The content is to be decided.<!-- TODO what is the format, a properties file, a json file, XML file? -->
+                            JSON=single/multi-line header<br>
+                            XML=single/multi-line header<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>method</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The method is used to load the "headers" from a file.<br>
+                            If this parameter is not provided, then "headers" of all methods will be loaded.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The possible methods are listed below:
+                            <ul>
+<li>DELETE</li>
+<li>GET</li>
+<li>HEAD</li>
+<li>PATCH</li>
+<li>POST</li>
+<li>PUT</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>type</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The type is used to load the "headers" from a file.<br>
+                            If this parameter is not provided, then "headers" of all types will be loaded.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The possible types are listed below:
+                            <ul>
+<li>BINARY</li>
+<li>CSS</li>
+<li>CUSTOM</li>
+<li>HTML</li>
+<li>JSON</li>
+<li>IMAGE</li>
+<li>SCRIPT</li>
+<li>TEXT</li>
+<li>XML</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile, GET, JSON</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load the "headers" of type "JSON" for method "GET" from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile, DELETE</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load the "headers" of all types for method "DELETE" from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile, , JSON</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load the "headers" of type "JSON" for all methods from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load all "headers" from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+</DIV>
+	

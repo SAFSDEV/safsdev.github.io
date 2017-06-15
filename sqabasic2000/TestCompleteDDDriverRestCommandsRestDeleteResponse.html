@@ -1,0 +1,71 @@
+<DIV NAME="detail" ID="detail" xmlns="http://www.w3.org/TR/REC-html40"><H3><A NAME='detail_RestDeleteResponse'></A>TestComplete DDDriverRestCommands::<BIG>RestDeleteResponse</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+					Delete a REST response (and request if stored) from the persistent storages.
+				</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+					Delete a REST response (and request if stored) from the persistent storages.
+					The REST response/request is supposed to be in the persistent storages.
+					The response/request can be in more than one type of persistence storage, and
+					it can be a series of variables, a file or something else, please refer to 
+					explanation of parameters of keyword <a href="#detail_RestStoreResponse"><b>RestStoreResponse</b></a>.
+					For example, if the Response/Request is stored be in a XML file, a JSON file 
+					and "a series of variables" at the same time, then this keyword will delete 
+					all of them (XML file, JSON file and variables).
+				</detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>responseID</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+							The ID of the Response/Request (stored in persistence storages) to be deleted.
+						</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                                The Response/Request can stored be in more than one type of persistence storage; 
+                                For example, it can be in a XML file, a JSON file and "a series of variables" at the same time. 
+                                This keyword will delete all of them.<br>
+	                            Please refer to keyword <a href="#detail_RestStoreResponse"><b>RestStoreResponse</b></a> if you want to know exactly what type
+	                            of persistence storage can be used to save a REST response/request.
+                            </p></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestDeleteResponse, ResponseID</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+							Delete REST response/request (identified by ResponseID) from persistence storages.
+						</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+						    If the response/request (identified by ResponseID) has be stored to
+						    <b>variables</b> prefixed with 'BayerCustomerGet' and <b>JSON</b> file 'BayerCustomerGet.json'.
+                            The variables listed as below will be deleted:
+                            <ul>
+<li>BayerCustomerGet.Response.Id</li>
+<li>BayerCustomerGet.Response.StatusCode</li>
+<li>BayerCustomerGet.Response.HttpVersion</li>
+<li>etc...</li>
+</ul>
+<ul>
+<li>BayerCustomerGet.Request.Method</li>
+<li>BayerCustomerGet.Request.URI</li>
+<li>etc...</li>
+</ul>
+	                        The file 'BayerCustomerGet.json' will also be deleted.
+						</detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+</DIV>
+	

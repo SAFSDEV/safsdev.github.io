@@ -85,8 +85,8 @@
 	              </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-	                If not specified, the mouse will hover for 2000 milliseconds over the object,
-	              </detailed_desc><BR/>
+	                If not specified, the mouse will hover for 2000 milliseconds over the object.<br>
+	                If it is provided as <a href="http://safsdev.github.io/doc/org/safs/Constants.html#TIMEOUT_HOVERMOUSE_STAY_FOREVER" target="_blank">Constants.TIMEOUT_HOVERMOUSE_STAY_FOREVER</a>, the mouse will saty forever over the object.<br></detailed_desc><BR/>
 		</DIV>
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
@@ -102,14 +102,25 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, WINDOW, AnObject, HoverMouse, "Coords=200,400"</usage></B>
+<B><usage xmlns="">T, WINDOW, WINDOW, HoverMouse, , -1</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
-	       Hover the mouse over coordinates 200,400 of AnObject for 2000 milliseconds.
-	      </short_desc></DIV>
+               Hover the mouse over the center of WINDOW forever.
+              </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""> 
-	       Hover the mouse over coordinates 200,400 of AnObject for 2000 milliseconds.
-	      </detailed_desc><BR/>
+               Hover the mouse over the center of WINDOW forever.
+              </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, WINDOW, AnObject, HoverMouse, "Coords=200,400"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+		       Hover the mouse over coordinates 200,400 of AnObject for 2000 milliseconds.
+		      </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""> 
+		       Hover the mouse over coordinates 200,400 of AnObject for 2000 milliseconds.
+		      </detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
@@ -131,12 +142,12 @@
 <BR/><LI>
 <B><usage xmlns="">T, WINDOW, AnObject, HoverMouse, , 3000</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
-	       Hover the mouse over the center of AnObject for 3000 milliseconds.
-	      </short_desc></DIV>
+		       Hover the mouse over the center of AnObject for 3000 milliseconds.
+		      </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""> 
-	       Hover the mouse over the center of AnObject for 3000 milliseconds.
-	      </detailed_desc><BR/>
+		       Hover the mouse over the center of AnObject for 3000 milliseconds.
+		      </detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/></UL>
