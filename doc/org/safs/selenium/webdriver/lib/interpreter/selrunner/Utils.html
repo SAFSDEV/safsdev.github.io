@@ -146,10 +146,29 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/interpreter/selrunner/Utils.html#isNegativeCommand(java.lang.String)">isNegativeCommand</a></strong>(java.lang.String&nbsp;command)</code>
+<div class="block">Some command (such as 'assert', 'verify' and 'waitFor') can be
+ appended with a getter (such as 'Text', 'Location' etc.) to form
+ a positive command (assertText, verifyLocation); they can also be
+ appended '<b>Not</b>' before the getter to form a negative command
+ (assertNotText, verifyNotLocation).<br>
+ This method will tell us if the command is a negative command.<br></div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/interpreter/selrunner/Utils.html#normalize(java.lang.String)">normalize</a></strong>(java.lang.String&nbsp;jscode)</code>
 <div class="block">The testing tool (such as Selenium IDE) generated-javascript may
  be embedded between <a href="../../../../../../../org/safs/selenium/webdriver/lib/interpreter/selrunner/Constants.html#PARAM_SCRIPT_PREFIX"><code>Constants.PARAM_SCRIPT_PREFIX</code></a> and <a href="../../../../../../../org/safs/selenium/webdriver/lib/interpreter/selrunner/Constants.html#PARAM_SCRIPT_SUFFIX"><code>Constants.PARAM_SCRIPT_SUFFIX</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static void</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../../org/safs/selenium/webdriver/lib/interpreter/selrunner/Utils.html#setParam(com.sebuilder.interpreter.Step,%20com.sebuilder.interpreter.Getter,%20java.lang.String)">setParam</a></strong>(com.sebuilder.interpreter.Step&nbsp;step,
+        com.sebuilder.interpreter.Getter&nbsp;getter,
+        java.lang.String&nbsp;parameter)</code>
+<div class="block">According the step type, set the parameter into the step's variable store.</div>
 </td>
 </tr>
 </table>
@@ -220,7 +239,7 @@ extends java.lang.Object</pre>
 <a name="executeScript(com.sebuilder.interpreter.TestRun, java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>executeScript</h4>
 <pre>public static&nbsp;java.lang.Object&nbsp;executeScript(com.sebuilder.interpreter.TestRun&nbsp;ctx,
@@ -229,6 +248,38 @@ extends java.lang.Object</pre>
  holding variables in the variable store of context (TestRun), and then execute them together.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>ctx</code> - TestRun, the context within which to execute the script</dd><dd><code>script</code> - String, the script to execute, it should be normalized.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>Object, the result</dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../../../../../../org/safs/selenium/webdriver/lib/interpreter/selrunner/Utils.html#defineStoredVars(com.sebuilder.interpreter.TestRun)"><code>defineStoredVars(TestRun)</code></a></dd></dl>
+</li>
+</ul>
+<a name="setParam(com.sebuilder.interpreter.Step, com.sebuilder.interpreter.Getter, java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setParam</h4>
+<pre>public static&nbsp;void&nbsp;setParam(com.sebuilder.interpreter.Step&nbsp;step,
+            com.sebuilder.interpreter.Getter&nbsp;getter,
+            java.lang.String&nbsp;parameter)</pre>
+<div class="block">According the step type, set the parameter into the step's variable store.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>step</code> - Step, for which to set the parameter</dd><dd><code>getter</code> - Getter, from which to get the parameter's name</dd><dd><code>parameter</code> - String, the parameter to store. <br>
+                          It may be literal string to compare;<br>
+                          or a variable name to hold the returned value.<br></dd></dl>
+</li>
+</ul>
+<a name="isNegativeCommand(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isNegativeCommand</h4>
+<pre>public static&nbsp;boolean&nbsp;isNegativeCommand(java.lang.String&nbsp;command)</pre>
+<div class="block">Some command (such as 'assert', 'verify' and 'waitFor') can be
+ appended with a getter (such as 'Text', 'Location' etc.) to form
+ a positive command (assertText, verifyLocation); they can also be
+ appended '<b>Not</b>' before the getter to form a negative command
+ (assertNotText, verifyNotLocation).<br>
+ This method will tell us if the command is a negative command.<br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>command</code> - String, the name of command</dd>
+<dt><span class="strong">Returns:</span></dt><dd>boolean, if the command is negative</dd></dl>
 </li>
 </ul>
 </li>

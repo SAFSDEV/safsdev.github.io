@@ -166,7 +166,8 @@ extends java.lang.Object</pre>
 <tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><code><strong><a href="../../org/safs/SAFSPlus.DriverCommand.html#CallScript(java.lang.String)">CallScript</a></strong>(java.lang.String&nbsp;path)</code>
-<div class="block">Execute a SeBuilder JSON script in the currently running WebDriver.</div>
+<div class="block">Execute an external <b>selenium script</b> in the currently running WebDriver.<br>
+                The external <b>selenium script</b> is recorded by a testing tool, such as "Selenium Builder" or "Selenium IDE".</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -615,24 +616,39 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>CallScript</h4>
 <pre>public static&nbsp;boolean&nbsp;CallScript(java.lang.String&nbsp;path)</pre>
-<div class="block">Execute a SeBuilder JSON script in the currently running WebDriver.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - -- full absolute path or project-relative path to an existing SeBuilder
-                JSON script to execute.</dd>
+<div class="block">Execute an external <b>selenium script</b> in the currently running WebDriver.<br>
+                The external <b>selenium script</b> is recorded by a testing tool, such as "Selenium Builder" or "Selenium IDE".
+                <br>
+        Supported script types are
+        <ul>
+        <li><a href="http://seleniumbuilder.github.io/se-builder/">Selenium Builder</a> <a href="https://github.com/SeleniumBuilder/se-builder/wiki/JSON-Format">JSON</a> format.
+        <li><a href="http://www.seleniumhq.org/projects/ide/">Selenium IDE</a> or <a href="http://***REMOVED***/wikipedia/SelRunner">SelRunner</a> <a href="https://raw.githubusercontent.com/SAFSDEV/SeleniumPlus-REGRESSION/master/SeBuilder/Scripts/FormsSRTest.htm">HTML</a> format.
+        </ul>
+        Please refer to <a href="http://safsdev.github.io/selenium/doc/SeleniumPlus-Welcome.html#usingseleniumscripts">Using SeleniumScripts</a> for details.<br>
+        <br></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>path</code> - -- full absolute path or project-relative path to an existing script to execute.</dd>
 <dt><span class="strong">Returns:</span></dt><dd>true if successfully executed with a successful result,
         false if the script reports failure or an error occurred during execution.<p></dd><dt><span class="strong">See Also:</span></dt><dd><a href="../../org/safs/SAFSPlus.html#prevResults"><code>SAFSPlus.prevResults</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusCode()"><code>TestRecordData.getStatusCode()</code></a>, 
 <a href="../../org/safs/TestRecordData.html#getStatusInfo()"><code><p></code></a></dd><dt><span class="strong">Example:</span></dt>
   <dd><pre>
- <code>//checkbox.json path is centrally stored in the App Map.
+ <code>//Run a JSON script stored centrally in the App Map.
+  //-- Map File --------------
+  //[ApplicationConstants]
+  //CheckBoxJSONScript=C:\Automation\SharedStorage\Selenium\checkbox.json
+  //---------------------------
   boolean success = Misc.CallScript(Map.CheckBoxJSONScript());
 
   //Literal String examples (not recommended):
 
-  //checkbox.json is in a Scripts sub-directory for the Project.
+  //Run a JSON script (checkbox.json), which is in a Scripts sub-directory for the Project.
   boolean success = Misc.CallScript("Scripts\checkbox.json");
 
-  //checkbox.json is provided using a full absolute path.
+  //Run a JSON script (checkbox.json), which is provided using a full absolute path.
   boolean success = Misc.CallScript("C:\Automation\SharedStorage\Selenium\checkbox.json");
+
+  //Run an HTML script (checkbox.html), which is in Scripts sub-directory for the Project.
+  boolean success = Misc.CallScript("Scripts\checkbox.html");
  </code>
  </pre></dd></dl>
 </li>
