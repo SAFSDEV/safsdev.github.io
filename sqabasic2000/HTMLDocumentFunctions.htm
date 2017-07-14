@@ -1,0 +1,339 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic HTMLDocumentFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "HTMLDocumentFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=HTMLDOCUMENT objects in
+      Data-Driven Automation.  In general, these functions are used to verify
+      the data of an HTML page, or to locate and act upon specific items within
+      the page based on partial recognition information.
+
+      The recognition for the HTMLDOCUMENT is expected to contain the
+      TYPE=HTMLDocument portion in the recognition method.  These routines will not
+      properly locate the HTML document based solely on FRAME or WINDOW
+      recognition methods.
+
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      ClickLink               'click an HTML Link based on its text.
+      ClickLinkMatching       'same as ClickLink.
+      ClickLinkBeginning      'click an HTML Link based on its starting text.
+      ClickLinkContaining     'click an HTML Link based on text at any position.
+      VerifyBodySource        'Verify the HTML source of the complete doc BODY tag.
+      VerifyBodyText          'Verify the visible text of the complete doc BODY tag.
+      CaptureBodySourceToFile 'save the HTML source of the complete doc BODY tag to file.
+      CaptureBodyTextToFile   'save the visible text of the complete doc BODY tag to file.
+
+      (Consult <a href="GenericMasterFunctions.htm">GenericMasterFunctions</a> for additional generic commands.)
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="clicklinkbeginning"></a>
+   Sub ClickLinkBeginning()
+
+
+ DESCRIPTION:
+
+      Performs an HTMLLink Click based on a partial match of text found on
+      Links within this HTMLDOCUMENT object.  The text of the Link is
+      expected to BEGIN with the text provided by the user.  Optionally,
+      the user can also specify a match index to indicate that the desired
+      Link is the "nth" Link that matches the text criteria.
+
+      The text comparison for the Link is NOT case-sensitive by default.
+
+      Leading and trailing whitespace will be removed from the links as they
+      are compared unless the link in the HTML itself is quoted.
+      In addition, any Line Feeds and Carriage Returns will be removed.
+      For the link, we use the outerText property to locate the text.
+
+
+      Example 1: Perform an HTMLLink Click on the Link beginning with "View Report"
+      in the text.
+
+          T  BrowserWindow  AnHTMLDOCUMENT  ClickLinkBeginning  "View Report"
+
+      This will Click on the first Link starting with the "View Report" text.
+
+
+      Example 2: Perform an HTMLLink Click on the 4th Link beginning with
+                 "View Report" in the text.
+
+          T  BrowserWindow  AnHTMLDOCUMENT  ClickLinkBeginning  "View Report"  4
+
+      This will Click on the 4th Link starting with the "View Report" text.
+
+
+      The routine expects that the browser already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The text to compare with the beginning of each Link.
+              This is NOT case-sensitive.
+
+      [6]     Optional match index indicating the desired link is not the first
+              link that matches, but the "nth" link that matches.
+              The index is 1-based.  "1" selects the first matching link,
+              "2" selects the second matching link, etc..
+
+      [7]     Optional "Case-Sensitive", "CaseSensitive", or "True" to force a
+              case-sensitive match.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 01, 2001
+ History:
+
+      MAY 01, 2001    Original Release
+      FEB 12, 2006    (Carl Nagle) Allow case-senstive compares
+
+</pre>
+<hr>
+<pre>
+
+<a name="clicklinkcontaining"></a>
+   Sub ClickLinkContaining(Optional fulltext)
+
+
+ DESCRIPTION:
+
+      Performs an HTMLLink Click based on a match of text found on
+      Links within this HTMLDOCUMENT object.  The text of the Link is
+      expected to CONTAIN the text provided by the user at any position in
+      the Link text--not strictly the beginning as in ClickLinkBeginning.
+      ClickLink and ClickLinkMatching are exactly the same action.
+      ClickLink expects the full text of the link, not just a substring.
+
+      Optionally, the user can also specify a match index to indicate that
+      the desired Link is the "nth" Link that matches the text criteria.
+
+      The text comparison for the Link is NOT case-sensitive by default.
+
+      Leading and trailing whitespace will be removed from the links as they
+      are compared unless the link in the HTML itself is quoted.
+      In addition, any Line Feeds and Carriage Returns will be removed.
+      For the link, we use the outerText property to locate the text.
+
+
+      Example 1: Perform an HTMLLink Click on the Link containing "View Report"
+      in the text.
+
+          T  BrowserWindow  AnHTMLDOCUMENT  ClickLinkContaining  "View Report"
+
+      This will Click on the first Link containing the "View Report" text.
+
+
+      Example 2: Perform an HTMLLink Click on the 4th Link containing
+                 "View Report" in the text.
+
+          T  BrowserWindow  AnHTMLDOCUMENT  ClickLinkContaining  "View Report"  4
+
+      This will Click on the 4th Link containing the "View Report" text.
+
+
+      The routine expects that the browser already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      fulltext  Must do a full text match, not a partial substring match. (ClickLink)
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The text to compare with each Link.
+              This is NOT case-sensitive.
+
+      [6]     Optional match index indicating the desired link is not the first
+              link that matches, but the "nth" link that matches.
+              The index is 1-based.  "1" selects the first matching link,
+              "2" selects the second matching link, etc..
+
+      [7]     "CASE-SENSITIVE", "CASESENSITIVE", or "TRUE" will make the comparisons case-sensitive.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 01, 2001
+ History:
+
+      MAY 01, 2001    Original Release
+      OCT 29, 2004    (Carl Nagle) Added ClickLink and CASE-SENSITIVE Support
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifybodysource"></a>
+   Sub VerifyBodySource(Optional mode, Optional nocompare)
+
+
+ DESCRIPTION:
+
+      VerifyBodySource compares the HTML source of the BODY tag with that of a
+      benchmark file.  This includes the BODY tag itself, everything inside it,
+      and the closing /Body tag as well.
+
+      The routine will automatically create a temporary ObjectData VP with a
+      dummy baseline, capture the actual file, transfer it to the active "Test"
+      directory, and compare it with the benchmark.  The routine will then
+      delete all significant remnants of the temporary ObjectData VP.
+
+      VerifyBodyText simarly compares just the visible content of a the document,
+      without all the source tags.
+
+      These routines requires that the following files exist in the
+      DDE_RUNTIME directory:
+
+          HTMLDocumentHTML.grd
+          HTMLDocumentHTML.vpm
+          HTMLDocumentText.grd
+          HTMLDocumentText.vpm
+
+      These commands supports the "TW" record type when the user has configured
+      a diff tool for which we have no means to automatically verify the results.
+      The command may produce a WARNING if such a tool is configured and used.
+
+ PARAMETERS:
+
+      mode = 0 = VerifyBodySource
+      mode = 1 = VerifyBodyText
+
+      nocompare = 0 = Verify commands
+      nocompare = 1 = CaptureToFile commands
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the benchmark file in the active "Bench" directory to
+              use for the actual test file comparison.  This is the name
+              only, no path information is expected.  If the file extension
+              is omitted then the default extension of ".TXT" will be used.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 23, 2001
+ History:
+
+      MAY 23, 2001    Original Release
+      AUG 18, 2003    (Carl Nagle) Mod to allow alternate file comparator tools.
+                      Also added support for the VerifyBodyText command.
+      OCT 29, 2004    (Carl Nagle) Added CaptureBodySourceToFile and CaptureBodyTextToFile.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a HTMLDOCUMENT.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 01, 2001
+ History:
+
+      MAY 01, 2001    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      AUG 18, 2003    (Carl Nagle) Added support for the VerifyBodyText command.
+      OCT 29, 2004    (Carl Nagle) Added CaptureBodySourceToFile and CaptureBodyTextToFile
+      OCT 29, 2004    (Carl Nagle) Added ClickLink and ClickLinkMatching
+      OCT 19, 2005    (Carl Nagle) Removed CLICK, CompareStoredProperties and
+                               CompareStoredData which are still supported as Generic.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

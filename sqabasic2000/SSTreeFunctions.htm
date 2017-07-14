@@ -1,0 +1,385 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic SSTreeFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "SSTreeFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on Sheridan Class=SSTree objects in
+      Data-Driven Automation.  As of Version 7.5 this control is still found
+      as a GenericObject.  TreeView functions like CLICKS etc. will not
+      work reliably (or at all) on this Sheridan class of TreeViews.
+
+      However, with the experimental VBInfiltrators available from Rational we
+      are able to get a good list of the properties of these objects including
+      the Nodes.  Unfortunately, there has been no success in selecting a node
+      through the GUI other than by the x,y coordinate relative to the object.
+      Thus, while we can verify some state information, can find the index of
+      a node by its text; we are still stuck with x,y coordinates to select an
+      item through the GUI (without significantly more programming).
+
+      In the App Map, the Tree will be mapped as a child to its window, and the
+      Nodes will be mapped as children to the Tree.  The Node names are not
+      expected to actually match the text of the actual nodes in the tree.
+      Additionally, if a node moves due to expanding or collapsing branches then
+      additional named references will be needed for the different coordinates.
+
+      Example:
+
+      [WindowName]
+      WindowName="Type=Window;Caption=Main Window"
+      TreeLabel="Type=Label;Text=Folder Tree:"
+      FolderTree="Type=Generic;Name=folderTree"       &lt;= this is our SSTree
+
+      [FolderTree]
+      NodeName1="20,8"            'can work with or without "Coords="
+      NodeName2="Coords=20,20"
+      NodeName3="Coords=20,35"
+
+      Remember that these x,y coordinate restrictions ONLY apply when trying
+      to select, expand, collapse, or otherwise CLICK on one of these nodes.
+      We are otherwise able to retrieve node text, indexes, and state information
+      through normal methods.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>Declare Function GetNodeIndexExpandedState BasicLib "<a href="TreeViewFunctions.htm">TreeViewFunctions</a>"
+<li>Declare Function GetNodeIndexFullPathText  BasicLib "<a href="TreeViewFunctions.htm">TreeViewFunctions</a>"
+<li>Declare Function GetTextNodeIndex BasicLib "<a href="TreeViewFunctions.htm">TreeViewFunctions</a>"
+<li>Declare   Sub    HandleGenericCommand BasicLib "<a href="GenericObjectFunctions.htm">GenericObjectFunctions</a>" Alias "<a href="GenericObjectFunctions.htm#main">Main</a>"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      VerifyProperty          'verify a single property
+      VerifyArrayProperty     'verify an array property
+      VerifySelectedText      'verify the text of the selected node
+      VerifyExpandedState     'verify the state of the Expanded property
+      ExpandNode              'Expand a Node by its App Map reference (x,y)
+      CollapseNode            'Collapse a Node by its App Map reference (x,y)
+      SelectNode              'Select a Node by its App Map reference (x,y)
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifyproperty"></a>
+   Sub VerifyProperty ()
+
+ DESCRIPTION:
+
+      Routine to verify the value of a property as a String.  Uses
+      <a href="GenericMasterFunctions.htm#GenericVerifyProperty">GenericMasterFunctions:GenericVerifyProperty</a>
+      to verify the property.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive name of property to verify
+       6      Case-sensitive expected value of property
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyarrayproperty"></a>
+   Sub VerifyArrayProperty ()
+
+ DESCRIPTION:
+
+      Routine to verify the array values of a property as a String.  Uses
+      <a href="GenericMasterFunctions.htm#GenericVerifyArrayProperty">GenericMasterFunctions:GenericVerifyArrayProperty</a>
+      to verify the array property.
+
+ DATA TABLE PARAMETERS:
+
+      TBD
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifytextnodeselection"></a>
+  Function  VerifyTextNodeSelection  (nodetext As String)  As Integer
+
+  Description:
+
+      Verifies the currently selected item text matches that provided.
+
+      Failure messages are generated on error, mismatch, or no node selected.
+      Warning message generated if more than one node is selected.
+      Pass message generated if (first) selected node text matches nodetext.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function including message logging.
+
+      This routine is considered a utility routine for the other Subs in this
+      Library.  Thus, the StepDriverTestInfo.statuscode is not modified for
+      success or failure by this routine.  That must be done as needed by the
+      calling routine.
+
+  Parameters:
+
+      nodetext    Case-sensitive visible text of the node to locate.
+
+  Returns:
+
+      0 if a scripting error occurs, if does not match, or no node is selected.
+      1 if it matches (success)
+
+  Errors:
+
+      (none)
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyselectedtext"></a>
+   Sub VerifySelectedText ()
+
+
+ DESCRIPTION:
+
+      Routine to verify the text of the currently selected node.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text expected in the selected node.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyexpandedstate"></a>
+   Sub VerifyExpandedState ()
+
+
+ DESCRIPTION:
+
+      Routine to verify the state of the Expanded property--True or False--
+      for the node with the provided text.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of the node to check.
+       6      Expected State: "True" or "False" (not case-sensitive)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="dblclicknode"></a>
+   Sub DblClickNode ()
+
+
+ DESCRIPTION:
+
+      Routine to DblClick a node according to its AppMap reference.  Because
+      the SSTree is unsupported, this reference is the x,y coordinate of a
+      GenericObject DblClick command in the form x,y (i.e. "25,10").
+      Because of the nature of the reference, we cannot check whether or
+      not the node is collapsed/expanded before or after this routine or
+      even if we clicked on the right node.  Verify the selection and
+      expanded state of the node before and/or after to check.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      the named reference of the coordinates to expand/collapse
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+      JUL 21, 2000    (Carl Nagle) Made "Coords=" optionally allowed in app map.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectnode"></a>
+   Sub SelectNode ()
+
+
+ DESCRIPTION:
+
+      Routine to select a node according to its AppMap reference.  Because
+      the SSTree is unsupported this reference is the x,y coordinate of a
+      GenericObject Click command in the form x,y (i.e. "25,10").
+      Because of the nature of the reference, we cannot check whether or
+      not the node is collapsed/expanded before or after this routine or
+      even if we clicked on the right node.  Verify the selection and
+      expanded state of the node before and/or after to check.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      the named reference of the coordinates to click
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+      JUL 21, 2000    (Carl Nagle) Made "Coords=" optionally allowed in app map.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a Sheridan SSTREE.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 29, 2000
+ History:
+
+      MAR 29, 2000    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

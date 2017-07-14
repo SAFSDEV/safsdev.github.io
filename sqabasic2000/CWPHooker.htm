@@ -1,0 +1,429 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic CWPHooker Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "CWPHooker" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+  This DLL has been designed to HOOK into the Windows message system and
+  look for ALL WM_MENUSELECT messages sent by Windows to any application.
+
+  The WM_MENUSELECT message seems to be the ONLY message which contains a
+  handle to the POPUP menu that is currently active.  In order to evaluate
+  and otherwise test the contents of a POPUP menu we need to get hold of this
+  menu handle.
+
+  A WM_MENUSELECT message can be invoked by activating a POPUP menu and then
+  forcing a menu item to become highlighted by a KEYBOARD UP or DOWN.
+  In this manner, no menuitem is actually being activated, only
+  selected for highlighting.  The message will be broadcast and we can grab
+  hold of the menu handle and other relevant information and the POPUP will
+  still remain active and ready for continued application testing.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "CWPHooker.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>(none)
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#ispopupinfovalid">IsPopupInfoValid</a>           Lib   CWPHOOKER                     
+Function <a href="#iscwphooked">IsCWPHooked</a>                Lib   CWPHOOKER                     
+Function <a href="#setmessagehook">SetMessageHook</a>             Lib   CWPHOOKER                     
+Function <a href="#removemessagehook">RemoveMessageHook</a>          Lib   CWPHOOKER                     
+Function <a href="#getpopupmenu">GetPopupMenu</a>               Lib   CWPHOOKER                     
+Function <a href="#getpopupwindow">GetPopupWindow</a>             Lib   CWPHOOKER                     
+Function <a href="#getpopupowner">GetPopupOwner</a>              Lib   CWPHOOKER                     
+Function <a href="#getselectedmenuitem">GetSelectedMenuItem</a>        Lib   CWPHOOKER                     
+Function <a href="#getselectedmenuitemflags">GetSelectedMenuItemFlags</a>     Lib   CWPHOOKER                     
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ispopupinfovalid"></a>
+  Function IsPopupInfoValid () As Long
+
+ DESCRIPTION:
+
+  Determine if the DLL contains valid information on a Popup menu that is
+  still actively displayed by the system.  If the internal test for this
+  fails, then all the information is reset to NULL (not valid) values.
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       Non-Zero (usually 1) if the captured Popup is still alive and well.
+       0 if there is no longer a captured Popup around.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="iscwphooked"></a>
+  Function IsCWPHooked () As Long
+
+ DESCRIPTION:
+
+  Determine if the hook is already running.
+
+  Use <a href="#SetMessageHook">SetMessageHook</a> to install the hook if it is not running.
+  Use <a href="#RemoveMessageHook">RemoveMessageHook</a> to remove the hook if it is running.
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       Non-Zero (usually 1) if hook is found to be installed.
+       0 if the hook is not installed.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setmessagehook"></a>
+  Function SetMessageHook () As Long
+
+ DESCRIPTION:
+
+  Set the message hook.  This is needed to capture the WM_MENUSELECT messages
+  which allows us to capture the POPUP information needed for testing.  If
+  the hook is already set then the routine exits with success.
+
+  You should only Set this hook for brief periods when you want to capture
+  this information.  Once done, you should remove the hook with
+  <a href="#RemoveMessageHook">RemoveMessageHook</a> in order to improve
+  your normal machine throughput.
+
+  If you fail to remove the message hook when you are finished with it
+  your system will likely appear significantly slower.  This is because
+  EVERY windows message processed by the system flows through this
+  hook.
+
+  You should keep this hook in place only for as long as is necessary and
+  remove it prompty for better system performance.  Did I say that already?
+
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       Non-Zero if the hook was successfully set.
+       0 if an error occurred while setting the hook.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="removemessagehook"></a>
+  Function RemoveMessageHook () As Long
+
+ DESCRIPTION:
+
+  Remove the message hook inserted by <a href="#SetMessageHook">SetMessageHook</a>.
+  If you fail to remove the message hook when you are finished with it
+  your system will likely appear significantly slower.  This is because
+  because EVERY windows message processed by the system flows through this
+  hook.
+
+  You should keep this hook in place only for as long as is necessary and
+  remove it prompty for better system performance.
+
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       Non-Zero (usually 1) if the hook was successfully removed.
+       0 if some type of failure occurred.  I haven't seen this happen yet.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getpopupmenu"></a>
+  Function GetPopupMenu () As Long
+
+ DESCRIPTION:
+
+  Get the handle to the POPUP menu found during the last WM_MENUSELECT message.
+
+  This will only be valid if the POPUP is still found to be valid by the DLL.
+
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       The handle to the POPUP menu.
+       0 if there is no longer a captured Popup around.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getpopupowner"></a>
+  Function GetPopupOwner () As Long
+
+ DESCRIPTION:
+
+  Get the handle to the window that OWNS the POPUP menu found during the
+  last WM_MENUSELECT message.
+
+  This will only be valid if the POPUP is still found to be valid by the DLL.
+
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       The handle to the window that OWNS the POPUP menu.
+       0 if there is no longer a captured Popup around.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getpopupwindow"></a>
+  Function GetPopupWindow () As Long
+
+ DESCRIPTION:
+
+  Get the handle to the window that contains the POPUP menu found during the
+  last WM_MENUSELECT message.
+
+  This is usually the topmost windows class #32768.
+  Generally can't do too much with this.
+
+  This will only be valid if the POPUP is still found to be valid by the DLL.
+
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       The handle to the window containing the Popup menu.
+
+       0 if there is no longer a captured Popup around.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getselectedmenuitem"></a>
+  Function GetSelectedMenuItem () As Long
+
+ DESCRIPTION:
+
+  Get the MENUITEM found during the last WM_MENUSELECT message.
+  This will only be valid if the POPUP is still found to be valid by the DLL.
+
+  If it is a true command menuItem, then the identifier (menuID) of
+  the menuItem is returned.
+
+  If the menuItem is actually an item that contains a submenu, then
+  this is the index of that menuItem.  Use the WIN32 GetSubMenu function
+  using this index and the menuHandle from GetPopupMenu provided by this
+  library to retrieve a handle to the submenu.
+
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+      The LOWORD (MENUITEM) of WPARAM in WM_MENUSELECT.
+
+       0 if there is no longer a captured Popup around.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getselectedmenuitemflags"></a>
+  Function GetSelectedMenuItemFlags () As Long
+
+ DESCRIPTION:
+
+  Get the MENU FLAGS found during the last WM_MENUSELECT message.
+  This will only be valid if the POPUP is still found to be valid by the DLL.
+
+  These are defined in WinUser.H of the WIN32 API and can be one or more of:
+
+      MF_BITMAP           Item displays a bitmap
+      MF_CHECKED          Item is CHECKED
+      MF_DISABLED         Item is DISABlED
+      MF_GRAYED           Item is GRAYED
+      MF_HILITE           Item is HIGHLITED
+      MF_MOUSESELECT      Item is selected with the mouse.
+      MF_OWNERDRAW        Item is an owner-drawn item (custom image)
+      MF_POPUP            Item opens a submenu or new drop-down menu
+      MF_SYSMENU          Item is part of the window menu. (probably not)
+
+ PARAMETERS:
+
+       none
+
+ RETURNS:
+
+       The HIWORD (FLAGS) of WPARAM in WM_MENUSELECT.
+
+       0 if there is no longer a captured Popup around.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 2000
+ History:
+
+      AUG 04, 2000    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

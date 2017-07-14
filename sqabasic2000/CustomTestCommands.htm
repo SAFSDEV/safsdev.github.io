@@ -1,0 +1,283 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic CustomTestCommands Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "CustomTestCommands" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Used to implement custom test commands for STEP DRIVER that should not
+      or cannot become part of the core DDE.  A STEP DRIVER test command is
+      also called a Component Function--which is a function or action usually
+      performed on a specific GUI component in the application.
+
+
+      It is important to note that this library is NOT used to extend Cycle
+      and Suite level test commands.  This library only extends the ability
+      to implement additional component functions for the Step Driver test
+      level.  You can, however, implement <a href="CustomRecordTypes.htm">Custom Record Types</a> and
+      <a href="CustomDriverCommands.htm">Custom Driver Commands</a> for the Cycle and Suite levels as appropriate.
+
+
+      A STEP DRIVER test record is a record whose first field (field #1) has a
+      record type or value of "T". The second field (field #2) would contain
+      the WindowID AppMap reference for the Window.  The third field (field #3)
+      would contain a GUIID AppMap reference for the Component.  Then, the
+      fourth field (field #4) would contain the keyword or action command for
+      acting on that component.  Example:
+
+         F#1    F#2       F#3     F#4
+         =============================
+          T, LoginWin, OKButton, Click
+
+      Any number of additional parameters can be included in fields 5 thru N.
+      These additional fields are generally command specific and would be
+      documented with the associated action command.
+
+
+      The DDE attempts Component Function routing in the following manner:
+
+      1) StepDriver validates the existence of the Window and Component.
+      2) StepDriver routes the record to the component function library that
+         handles the TYPE of the component. (i.e. CheckboxFunctions library,
+         EditboxFunctions library, etc.)
+      3) The component function library evaluates the action command and
+         routes the record to the appropriate function in the library.
+      4) If the component function library does not implement the action
+         command, then the record is routed to the GenericMasterFunctions
+         library.
+      5) If the GenericMasterFunctions library does not implement the action
+         command, then the record is routed to the <a href="#customddetestcommand">CustomDDETestCommand</a> function
+         in this library to see if the user has implemented the command as a
+         custom test command.
+      6) Otherwise, the DDE generates an "Unknown/Unimplemented Command" error.
+
+
+      The call to <a href-"#customddetestcommand">CustomDDETestCommand</a> comes from the
+      <a href="GenericMasterFunctions.htm#genericunimplementedcommand">GenericMasterFunctions</a> library.
+
+      The developer can implement their routines in this file, or any number
+      of SBL files.  Note, however, that the namespace for public routines and
+      other public items is shared with the Core DDE.  So you cannot
+      duplicate the name of any public item or routine in your custom libraries.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriver.htm">SuiteDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "CustomTestCommands.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "CustomTestCommands_X.SBH"
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriver.htm">SuiteDriver</a>.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#customddetestcommand">CustomDDETestCommand</a>    BasicLib CustomTestCommands 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ctcsamplekeyword"></a>
+  Sub CTCSampleKeyword(TestCommand As String, guiInfo As AUGUIInfo, statusInfo As AUStatusInfo)
+
+ DESCRIPTION:
+
+      This simply shows an example of how a sample test command can be
+      implemented and documented.
+
+         COMMAND         Fld# PARAMETER
+      ==============      ====================================================
+      SampleKeyword       5 - AParameter string.
+
+
+ ERRORS:
+
+      (none)  (List/Describe ERRORS "thrown" by this routine.)
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 31, 2002
+ History:
+
+      JAN 31, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="customddetestcommand"></a>
+  Function CustomDDETestCommand (TestCommand As String,
+                                 guiInfo As AUGUIInfo,
+                                 statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      This function allows the custom implementation and extension of the
+      core DDE.  This routine will be called if the record extracted from
+      the current Step table is a Test Record (field #1="T") and the
+      value of field #4--the Action Command--does not match any of the
+      action commands in either the appropriate component function library
+      or in the GenericMasterFunctions library.
+
+      The format of the record is expected to match that for all records
+      processed by the core Drivers.  Minimally, that means the record is
+      a collection of fields delimited by some character--like commas or TABS.
+
+      The first field will have already been parsed and routed as a Test
+      Record ("T").
+
+      The second and third fields will have already been verified as valid
+      Window/Component GUI objects via StepDriver.
+
+      The fourth field in the record is the action command that has not been
+      implemented by any previous component function library and thus has
+      been routed to this library.
+
+      The remaining fields can contain anything.  The routines that
+      parse the remainder of the record will determine what each subsequent
+      field in the record contains.  So, those remaining fields can be
+      whatever you need them to be and will likely be defined by the
+      command being implemented.
+
+      See <a href="ApplicationUtilities.htm#user_defined_types">ApplicationUtilities User-Defined Types</a> for
+      the information already parsed and available to you for the record
+      being processed.  The AUGUIInfo and AUStatusInfo UDT definitions are key.
+
+                          *******************************
+
+      The default implementation for this function is to process the record
+      based on the action command provided.  This is NOT, however, the only
+      mechanism possible.  This mechanism assumes either that ALL component types
+      supported by the custom extension can successfully use the action command,
+      or that additional routing will occur based on the components TYPE.
+
+      It is just as valid to duplicate StepDriver's routing mechanism in which
+      the record would first be routed according to component type.  Then,
+      additional routing would be based on the action commands supported by
+      that handler.
+
+      Just remember that the DDE will call this specific CustomDDETestCommand
+      function.  The declaration signature/parameters for this command and the
+      valid return types cannot change, but the processing inside the function
+      can be modified to support whatever routing mechanism is preferred.
+
+                          *******************************
+
+      Note that the entire record will have already received
+      processing of DDVariables.  That is, each field in the record will
+      have already had all expressions converted to their final values.
+      All DDVariables would have already had their values assigned and/or
+      extracted.
+
+      This routine is called from the <a href="GenericMasterFunctions.htm#genericunimplementedcommand">GenericMasterFunctions</a> library.
+
+ PARAMETERS:
+
+      TestCommand     PreParsed TestCommand (field #4) from the record.
+      AUGUIInfo       from Step Driver
+      AUStatusInfo    from Step Driver
+                      (See <a href="ApplicationUtilities.htm#user_defined_types">ApplicationUtilities User-Defined Types</a> for
+                      the information available to you for the record
+                      being processed.)
+
+ RETURNS:
+
+      Returns DDU_SCRIPT_NOT_EXECUTED if no appropriate match is found.
+      This custom processing should return the following values:
+
+            INCREMENTS *GENERAL* STATUS COUNTERS AUTOMATICALLY--BUT NOT TEST PASS/FAIL COUNTERS
+            ===================================================================================
+            DDU_NO_SCRIPT_FAILURE       = -1      'we DID process the record (failures may have been logged)
+            DDU_SCRIPT_WARNING          = -2      'a process failure OR unrecognized command
+            DDU_GENERAL_SCRIPT_FAILURE  = 0       'a general failure in the command handling
+            DDU_INVALID_FILE_IO         = 2       'an IO failure in command handling
+
+            DOES NOT INCREMENT ANY STATUS COUNTERS AUTOMATICALLY
+            =======================================================================
+            DDU_SCRIPT_NOT_EXECUTED     = 4       'generally means noone tried to process the record
+            DDU_EXIT_TABLE_COMMAND      = 8       'force immediate exit of current test table
+            DDU_IGNORE_RETURN_CODE      = 16      'drivers ignore this one
+
+      The routines for incrementing counters can be found in the <a href="ApplicationUtilities.htm">ApplicationUtilities</a> library.
+
+ ERRORS:
+
+      (none)  (List/Describe ERRORS "thrown" by this routine.)
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 31, 2002
+ History:
+
+      JAN 31, 2002    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

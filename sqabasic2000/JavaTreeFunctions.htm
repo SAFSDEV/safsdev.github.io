@@ -1,0 +1,271 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic JavaTreeFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "JavaTreeFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=JAVATREE Java Swing JTree objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      ExpandTextNode                  'Expand a Text Node
+      ExpandUnverifiedTextNode        'Blindly expand a Text Node
+      ExpandPartialTextNode           'Expand a Text Node based on a partial text match
+      CollapseTextNode                'Collapse a Text Node
+      CollapseUnverifiedTextNode      'Blindly collapse a Text Node
+      CollapsePartialTextNode         'Collapse a Text Node based on a partial text match
+      SelectTextNode                  'Select a Text Node
+      SelectUnverifiedTextNode        'Blindly select a Text Node
+      SelectPartialTextNode           'Select a Text Node based on a partial text match
+      SelectAnotherTextNode           'Select a Text Node, in addition to any other selected Text Nodes
+      SelectAnotherUnverifiedTextNode 'Blindly select a Text Node, in addition to any other selected Text Nodes
+      SelectAnotherPartialTextNode    'Select a Text Node based on a partial text match, in addition to any other
+                                       selected Text Nodes
+
+      ClickTextNode                   'Click a text node
+      DoubleClickTextNode             'Double-click a text node
+      RightClickTextNode              'Right-click a text node
+      ClickUnverifiedTextNode         'Blindly click a text node
+      DoubleClickUnverifiedTextNode   'Blindly double-click a text node
+      RightClickUnverifiedTextNode    'Blindly right-click a text node
+
+      CaptureTreeDataToFile           'Captures Tree node information (full branch path specified) to a file
+      PartialMatchTreeDataToFile      'Captures Tree node information (partial branch path specified) to a file
+
+      VerifyTreeContainsNode          'Verify that a Node (full path specified) is present in a Tree
+      VerifyTreeContainsPartialMatch  'Verify that a Node (partial path specified) is present in a Tree
+
+      SetTreeContainsNode             'Set a variable to reflect that a Node (full path specified) is present in a Tree
+      SetTreeContainsPartialMatch     'Set a variable to reflect that a Node (partial path specified) is present in a Tree
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (EXPAND_ACTION, Optional mode, Optional unverified)
+
+
+ DESCRIPTION:
+
+      Routine to expand a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to expand.
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial..." text node commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node to expand.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 14, 2003
+ History:
+
+      JAN 14, 2003    Original Release
+      May 30, 2003    (Brian English) Added EXTENDSELECT_ACTION
+      JUL 07, 2003    (Carl Nagle) Added handling of trees with no true root node.
+      OCT 15, 2004    (Bob Lawler) Updated EXTENDSELECT_ACTION to call CTRL_Click when running
+                               Robot 2003 or greater (RJL).
+      SEP 08,  2005   (Bob Lawler) Updated to handle partial matching of the root node. RJL
+                               Updated to improve failure message. RJL
+                               Updated to trim off hidden root node before logging success. RJL
+      JUN 11,  2007   (Carl Nagle) Adding UNVERIFIED versions of commands
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (COLLAPSE_ACTION, Optional mode)
+
+
+ DESCRIPTION:
+
+      Routine to collapse a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to collapse
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial..." text node commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 14, 2003
+ History:
+
+      JAN 14, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (SELECT_ACTION, Optional mode)
+
+
+ DESCRIPTION:
+
+      Routine to select a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial..." text node commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 14, 2003
+ History:
+
+      JAN 14, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a JAVATREE.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 14, 2003
+ History:
+
+      JAN 14, 2003    Original Release
+      May 30, 2003    (Brian English) Added SelectAnotherTextNode and SelectAnotherPartialTextNode Actions
+      MAY 03, 2005    (Bob Lawler) Added CaptureTreeDataToFile command in TreeViewFunctions
+      JAN 17, 2006    (Bob Lawler) Added VerifyTreeContainsNode and SetTreeContainsNode commands in
+                               TreeViewFunctions
+      JUN 11,  2007   (Carl Nagle) Adding UNVERIFIED versions of commands
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

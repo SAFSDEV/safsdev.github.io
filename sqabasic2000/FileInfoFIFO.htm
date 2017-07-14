@@ -1,0 +1,448 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic FileInfoFIFO Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "FileInfoFIFO" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Routines for implementing FileInfo FIFO storage buffers.
+
+ NOTE:
+ SQABasic does not allow an array to be part of a user-defined data type.
+ Because of this, a FIFO buffer is actually comprised of two things referred
+ to as a buffer pairing:
+
+      <a href="BufferUtilities.htm#user_defined">BufferInfo</a> tracks pointers for read and write and size information
+      Buffer array of <a href=FileUtilities.htm#user_defined">FileInfos</a> used as the buffer.
+
+ These buffer pairings actually get modified separately and care must be taken to
+ insure that they remain in sync with each other.  If they do not remain in
+ sync then data corruption and unexpected program behavior (or maybe even
+ access violations) could result.
+
+ The routines in this library are intended to maintain bot items in the
+ buffer pairing.  See <a href="BufferUtilities.htm">BufferUtilities</a> for more information
+ and routines used here to maintain this FIFO.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>_X.SBH"
+<li>'$INCLUDE: "FileInfoFIFO.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#isfilefifoinit">IsFileFIFOInit</a>          BasicLib FileInfoFifo                  
+Function <a href="#initfileinfofifo">InitFileInfoFIFO</a>        BasicLib FileInfoFifo                  
+Function <a href="#getfileinfofifosize">GetFileInfoFIFOSize</a>     BasicLib FileInfoFifo                  
+Function <a href="#fileinfofifoisempty">FileInfoFIFOIsEmpty</a>     BasicLib FileInfoFifo                  
+Function <a href="#optimizefileinfofifo">OptimizeFileInfoFIFO</a>    BasicLib FileInfoFifo                  
+Function <a href="#expandfileinfofifo">ExpandFileInfoFIFO</a>      BasicLib FileInfoFifo                  
+Function <a href="#pushfileinfofifo">PushFileInfoFIFO</a>        BasicLib FileInfoFifo                  
+Function <a href="#popfileinfofifo">PopFileInfoFIFO</a>         BasicLib FileInfoFifo                  
+Function <a href="#peekfileinfofifo">PeekFileInfoFIFO</a>        BasicLib FileInfoFifo                  
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="isfilefifoinit"></a>
+ Function IsFileFIFOInit(buffer() As FileInfo, info As BufferInfo) As Integer
+
+ DESCRIPTION:
+
+  Verifies that the FIFO appears to have been initialized.
+
+ PARAMETERS:
+
+      buffer  reference to the buffer array of the buffer pairing.
+      info    the paired BufferInfo
+
+ RETURNS:
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_INITIALIZED       If FIFO appears initialized.
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED  One or more fields has unexpected values (usually 0)
+
+ ERRORS:
+
+   none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="initfileinfofifo"></a>
+  Function InitFileInfoFIFO (buffer() As FileInfo, info As BufferInfo,
+                             size   As Integer ,  inc As Integer)
+                             As Integer
+
+ DESCRIPTION:
+
+      Creates and returns a FIFO pairing with the initial size and increment
+      value as provided.  The pairing is already initialized and ready for
+      use.
+
+ PARAMETERS:
+
+      buffer  reference to the buffer array of the buffer pairing.
+      info    reference to the buffer info of the buffer pairing.
+      size    the size to initially allocate for the FIFO buffer.
+      inc     the increment value used when increasing the buffer size.
+
+ RETURNS:
+
+      N           The initialized size of the FIFO buffer on exit.
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If a problem occurred.
+
+ ERRORS:
+
+       none
+
+ Note:
+ SQABasic does not allow an array to be part of a user-defined data type.
+ Because of this, a FIFO or STACK or other buffer type is actually comprised
+ of two things referred to as a buffer pairing:
+
+      BufferInfo  tracks pointers for read and write and size information
+      Buffer      array of the desired type used as the buffer
+
+ These buffer pairings actually get modified separately and care must be taken to
+ insure that they remain in sync with each other.  If they do not remain in
+ sync then data corruption and unexpected program behavior (or maybe even
+ access violations) could result.
+
+ The routines in this library are meant to fully implement the buffer
+ pairings for the user.  Calls to the routines in the BufferUtilities
+ library are not necessary and should be avoided.
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfileinfofifosize"></a>
+  Function GetFileInfoFIFOSize (buffer() As FileInfo, info as BufferInfo) As Integer
+
+ DESCRIPTION:
+
+      Retrieves the number of items currently stored in the FIFO buffer.
+      This routine calculates the number of items based on the current
+      values of the reader and writer indices in the provided BufferInfo.
+      You CANNOT simply read the value of the info.size field.
+
+ PARAMETERS:
+
+      buffer  reference to the FileInfo array of the buffer pairing to
+              optimize.
+
+      info    reference to the BufferInfo part of the buffer pairing to
+              optimize
+
+ RETURNS:
+
+      N           The current number of items in the FIFO buffer.
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If a problem occurred.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="fileinfofifoisempty"></a>
+  Function FileInfoFIFOIsEmpty (buffer() As FileInfo, info as BufferInfo) As Integer
+
+ DESCRIPTION:
+
+      Determines if there are no entries in the FIFO.
+
+ PARAMETERS:
+
+      buffer  reference to the FileInfo array of the buffer pairing to
+              optimize.
+
+      info    reference to the BufferInfo part of the buffer pairing to
+              optimize
+
+ RETURNS:
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_INITIALIZED       If FIFO is NOT empty.
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_IS_EMPTY          If FIFO is empty.
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If FIFO appears uninitialized.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="optimizefileinfofifo"></a>
+  Function OptimizeFileInfoFIFO (buffer() As FileInfo, info As BufferInfo) As Integer
+
+ DESCRIPTION:
+
+      If the FIFO is not already optimized then optimize it.
+      This will remove any old entries that have already been read.
+      This is the first step in making a FIFO not "FULL".
+
+ PARAMETERS:
+
+      buffer  reference to the FileInfo array of the buffer pairing to
+              optimize.
+
+      info    reference to the BufferInfo part of the buffer pairing to
+              optimize
+
+ RETURNS:
+
+      N                       The number of items in the buffer.
+                              (This number should not change between entry
+                               and exit.)
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If FIFO appears uninitialized.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="expandfileinfofifo"></a>
+  Function ExpandFileInfoFIFO (buffer() As FileInfo, info As BufferInfo) As Integer
+
+ DESCRIPTION:
+
+      Expand the FIFO by the amount stored as the redimIncrement.
+      First, the FIFO will be optimized although some routines might have
+      already done this for us.  Next the FIFO is redimmed PRESERVing the
+      existing contents.
+
+ PARAMETERS:
+
+      buffer  reference to the FileInfo array of the buffer pairing to
+              optimize.
+
+      info    reference to the BufferInfo part of the buffer pairing to
+              optimize
+
+ RETURNS:
+
+      N               The number of available (unused) items in the buffer.
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If FIFO appears uninitialized.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="pushfileinfofifo"></a>
+  Function PushFileInfoFIFO (buffer() As FileInfo, info As BufferInfo, _
+                             entry As FileInfo) As Integer
+
+ DESCRIPTION:
+
+      Pushes a value into the FIFO
+
+ PARAMETERS:
+
+      buffer()    reference to the buffer array of the buffer pairing.
+      info        reference to the buffer info of the buffer pairing.
+      entry       reference to the FileInfo to add to the FIFO
+
+ RETURNS:
+
+      N                          new calculated count of items in the FIFO.
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_IS_FULL     error if FIFO is FULL and fails to be
+                                  expanded (which is attempted).
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If FIFO appears uninitialized.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="popfileinfofifo"></a>
+  Function  PopFileInfoFIFO (buffer() As FileInfo, info As BufferInfo, _
+                             entry As FileInfo) As Integer
+
+ DESCRIPTION:
+
+      Pops a value off the FIFO.
+
+ PARAMETERS:
+
+      buffer()    reference to the buffer array of the buffer pairing.
+      info        reference to the buffer info of the buffer pairing.
+      entry       a FileInfo reference to receive the popped object
+
+ RETURNS:
+
+      N                          new calculated count of items in the FIFO.
+                                  (0 if empty AFTER the POP.)
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_IS_EMPTY          If FIFO is empty on entry.
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If FIFO appears uninitialized.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+<pre>
+
+<a name="peekfileinfofifo"></a>
+  Function  PeekFileInfoFIFO (buffer() As FileInfo, info As BufferInfo, _
+                               entry As FileInfo) As Integer
+
+ DESCRIPTION:
+
+      Retrieves the next value from the FIFO without popping it off.
+
+ PARAMETERS:
+
+      buffer()    reference to the buffer array of the buffer pairing.
+      info        reference to the buffer info of the buffer pairing.
+      entry       a FileInfo reference to receive the object
+
+ RETURNS:
+
+   N                              the count of items in the FIFO.
+
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_IS_EMPTY          If FIFO is empty on entry.
+      <a href="BufferUtilities.htm#constants">BufferUtilities</a>.BUFFER_NOT_INITIALIZED   If FIFO appears uninitialized.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUN 29, 2000    (Carl Nagle) Conversion for new BufferUtilities
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

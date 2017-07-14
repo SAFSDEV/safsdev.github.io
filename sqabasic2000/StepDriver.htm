@@ -1,0 +1,666 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic StepDriver Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "StepDriver" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Application-independent driver for data driven automation with SQA.
+      Used in conjunction with <a href="CycleDriver.htm">CycleDriver</a> and <a href="SuiteDriver.htm">SuiteDriver</a>.
+      The three driver routines form the primary data-driven engine for test
+      automation.
+
+      StepDriver is the primary GUI driver, exercising the AUT and verifying
+      AUT status and data via lists or tables of user-defined instructions.
+      The format of these instructions is easy to understand, is AUT
+      independent, is automation tool independent, and can be used as scripts
+      for manual testing.  They are generally very short, performing only
+      a few simple steps to drive, test, or verify a small piece of a particular
+      application state or function.  For example, one table may verify the text
+      of a set of controls or window.  Another may check that particular
+      menuitems are present and in the proper state.  Another may activate a
+      particular control and ensure the AUT responded accordingly.
+
+      <a href="SuiteDriver.htm">SuiteDriver</a> is the mid-level driver whose
+      data tables are generally user-defined lists of StepDriver tables.
+      Here the simple StepDriver tables are linked together to form more
+      complex sets of tests.  Each Suite might test an entire area of functionality
+      for a given AUT.  For example, there may be a Suite to test the entire Reports
+      section of an app, another to fully test Data entry.
+
+      <a href="CycleDriver.htm">CycleDriver</a> is the highest level driver whose
+      data-tables are generally lists of Suites to provide the SuiteDriver.  Thus
+      this defines the total test for the AUT through the data-driven engine.
+      Since CycleDriver is the highest level of data-driven automation, it is generally
+      invoked by a Robot Script which has been setup to perform a particular Test
+      Cycle.  For example, there may be an Integration Test Cycle, a Systems Test Cycle,
+      a Build Verification Cycle, a Regression Test Cycle, as well as versions of these
+      for different versions of the AUT.
+
+
+      DATA TABLE FORMAT:
+
+          Each command line or record in the provided filename represents the
+          start of a new record/command/entry.
+
+          It is possible for a single command to use multiple lines if its syntax
+          or implementation provides that capability.  This routine, at this time,
+          expects the information it needs to reside on the current command line.
+
+          Blank Lines are ignored.
+
+          For each valid record:
+
+          Field #1:   Represents one of the StepDriver<a href="#recordtypes">RECORD TYPES</a>.
+          Remaining Fields (2-N) are interpreted based on the StepDriver RECORD TYPE.
+          Consult the various routines of this driver to determine the format
+          and number of fields needed for each StepDriver RECORD TYPE.
+
+          If Field #1 is empty, the entire record is skipped.
+
+          If Field #1 contains an entry other than a known record type, we
+          will assume it is the name of a runnable Robot script and will attempt
+          to execute it.  This is called IMPLIED SCRIPT EXECUTION.
+          See <a href="DDDriverCommands.htm#DDECallScript">DDECallScript</a> for more information
+          on running scripts from within the DDE.
+
+          Comment Lines begin with a comment delimiter(s) RECORD TYPE.
+          (Generally, ['] and [;] will be treated as comment lines as well as
+           and record whose first field is empty.)
+
+          All fields not containing variables (see below) within a record can
+          be enclosed in quotation marks to help visually delimit field.
+
+          Valid record fields can be used to set and receive variable values
+          that can be used for the current table and any subsequent tables.
+          Where a field is used to set a value it is also immediately replaced
+          by that value for immediate use.  Variables are references by immediately
+          preceding their names with a caret (^).  The symbol must be the first
+          non-whitespace character in the field. Variable references cannot reside
+          inside of quotation marks or they will be left as literal strings.
+
+          It is important to note that a field that is replaced by a variable's
+          value will be enclosed in quotes.
+
+          See <a href="DDVariableStore.htm">DDVariableStore</a> for more information on the use of variables in
+          these data tables.  Specifically, <a href="DDVariableStore.htm#DDVSubstituteVariables">DDVSubstituteVariables</a> and
+          <a href="DDVariableStore.htm#DDVExtractVariables">DDVExtractVariables</a>.
+
+      SAMPLE DATA TABLE:
+
+      ' Data Table Sample
+      ' Some StepDriver Record Types:
+      ' B = Define a Named Block within the file
+      ' C = StepDriver Command
+      ' S = SKIP this Record
+      ' T = Perform a ComponentFunction action or test
+
+      c, Version , "1.0"
+      c, SetApplicationMap , "AppMap.map"
+      c, LaunchApplication , MyApp , "C:\SomeDir\MyApp.exe", , , "AppMap.map"
+      c,    WaitForGUI     , LoginWindow , LoginWindow , 30
+
+      ' Do some LoginWindow tests here....
+      t, LoginWindow , UserIDField , VerifyProperty , "Text" , "userid"
+      t, LoginWindow , UserIDField , SetTextValue   , ^USER = "MyUserID"
+      t, LoginWindow ,   OKButton  ,   Click
+
+      t, MainWindow  , MainWindow  , VerifyProperty , "Caption", ^USER
+
+
+      A user or developer would normally only call the <a href="#sdstepdriver">SDStepDriver</a>
+      routine.  This is the entry point used by <a href="SuiteDriver.htm">SuiteDriver</a> to
+      perform data-driven automation.
+      All other routines are called by the Stepdriver routine as required.
+      (Some multi-line test commands may eventually call <a href="#sdgetlineinput">SDGetLineInput</a>.)
+
+      NOTE:
+               ****       ****        ****        ****        ****
+      SQARobot must be configured to "Continue Execution" upon Script Command
+      Failures in order for this to work properly.  Where appropriate we set
+      flags and status to recognize, report, and work with these failures.
+               ****       ****        ****        ****        ****
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "StepDriver_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\StepDriver.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriverSTACK.htm">StepDriverSTACK</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriver.htm">SuiteDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriverSTACK.htm">SuiteDriverSTACK</a>_X.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="CycleDriverSTACK.htm">CycleDriverSTACK</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="Cache.htm">Cache</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="StepDriverSTACK.htm">StepDriverSTACK</a>.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriver.htm">SuiteDriver</a>.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriverSTACK.htm">SuiteDriverSTACK</a>.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>.SBH"
+<li>'$INCLUDE: "<a href="CycleDriverSTACK.htm">CycleDriverSTACK</a>.SBH"
+<li>'$INCLUDE: "<a href="Cache.htm">Cache</a>.SBH"
+<li>'$INCLUDE: "<a href="ComponentFunctions.htm">ComponentFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="DDDriverCommands.htm">DDDriverCommands</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#optimizestepdriver">OptimizeStepDriver</a>      BasicLib StepDriver                    
+   Sub   <a href="#sdstepdriver">SDStepDriver</a>            BasicLib StepDriver                    
+Function <a href="#sdgetlineinput">SDGetLineInput</a>          BasicLib StepDriver                    
+   Sub   <a href="#sdtryrobotj">SDTryRobotJ</a>             BasicLib StepDriver                    
+   Sub   <a href="#sdtryselenium">SDTrySelenium</a>           BasicLib StepDriver                    
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+'<a name="#modes"></a>  Step Driver MODES
+Const SDStandAloneMode      = DDU_STAND_ALONE_MODE    'script called
+Const SDSuiteDrivenMode     = DDU_DRIVEN_MODE         'driver called
+
+'<a name="#returncodes"></a>  StepDriver RETURN CODES
+Const SDNoScriptFailure       = DDU_NO_SCRIPT_FAILURE
+Const SDScriptWarning         = DDU_SCRIPT_WARNING
+Const SDGeneralScriptFailure  = DDU_GENERAL_SCRIPT_FAILURE
+Const SDInvalidFileIO         = DDU_INVALID_FILE_IO
+Const SDScriptNotExecuted     = DDU_SCRIPT_NOT_EXECUTED
+
+
+'<a name="#recordtypes"></a>  StepDriver RECORD TYPES
+Const SDCOMMENT_BLOCK_DELIMITER = DDU_COMMENT_BLOCK_DELIMITER   'Used to mark the start/end of comment block
+Const SDCOMMENT_DELIMITER       = DDU_COMMENT_DELIMITER    'Used to mark a comment line within a block
+                                          '(A single quote by itself will also work)
+Const SDBLOCKID               = DDU_BLOCKID
+Const SDDRIVER_COMMAND        = DDU_DRIVER_COMMAND
+Const SDSKIP_TEST_STEP        = DDU_SKIP_TEST_STEP
+Const SDTEST_STEP             = DDU_TEST_STEP
+
+
+'<a name="#drivercommands"></a> Step Driver DRIVER COMMANDS
+'newer driver commands may not appear here because they are implemented
+'more globally in <a href="DDUtilities.htm#drivercommands">DDUtilities</a> for ALL the drivers.
+
+Const SDDATA_VERSION          = DDU_DATA_VERSION
+Const SDLOG_GENERIC_MESSAGE   = DDU_LOG_GENERIC_MESSAGE
+
+Const SDLAUNCH_APPLICATION    = DDU_LAUNCH_APPLICATION
+Const SDCLOSE_APPLICATION     = DDU_CLOSE_APPLICATION
+Const SDSET_APPLICATION_MAP   = DDU_SET_APPLICATION_MAP
+Const SDCALL_SCRIPT           = DDU_CALL_SCRIPT
+Const SDCALL_CYCLE            = DDU_CALL_CYCLE
+Const SDCALL_SUITE            = DDU_CALL_SUITE
+Const SDCALL_STEP             = DDU_CALL_STEP
+
+Const SDSTART_WEB_BROWSER     = DDU_START_WEB_BROWSER
+Const SDWAIT_FOR_WEB_PAGE     = DDU_WAIT_FOR_WEB_PAGE
+
+Const SDWAIT_FOR_GUI                 = DDU_WAIT_FOR_GUI
+Const SDWAIT_FOR_GUI_GONE            = DDU_WAIT_FOR_GUI_GONE
+Const SDWAIT_FOR_PROPERTY_VALUE      = DDU_WAIT_FOR_PROPERTY_VALUE
+Const SDWAIT_FOR_PROPERTY_VALUE_GONE = DDU_WAIT_FOR_PROPERTY_VALUE_GONE
+
+Const SDPAUSE                   = DDU_PAUSE
+
+Const SDSET_TESTCASE          = DDU_SET_TESTCASE
+Const SDEND_TESTCASE          = DDU_END_TESTCASE
+
+Const SDSET_REQUIREMENT       = DDU_SET_REQUIREMENT
+Const SDEND_REQUIREMENT       = DDU_END_REQUIREMENT
+
+'<a name="#popupmenuactions"></a>POPUP MENU CONSTANTS for <a href="PopupMenuFunctions.htm">PopupMenuFunctions</a>.
+Const SDPOPUP_MENU_COMPONENT_TYPE     = DDU_POPUP_MENU_COMPONENT_TYPE
+Const SDSELECT_POPUP_MENUITEM_COMMAND = DDU_SELECT_POPUP_MENUITEM_COMMAND
+Const SDSELECT_UNVERIFIED_POPUP_MENUITEM_COMMAND = DDU_SELECT_UNVERIFIED_POPUP_MENUITEM_COMMAND
+Const SDSELECT_POPUP_MENUID_COMMAND   = DDU_SELECT_POPUP_MENUID_COMMAND
+Const SDVERIFY_POPUP_MENUITEM_COMMAND = DDU_VERIFY_POPUP_MENUITEM_COMMAND
+Const SDVERIFY_POPUP_MENUID_COMMAND   = DDU_VERIFY_POPUP_MENUID_COMMAND
+Const SDVERIFY_POPUP_MENU_COMMAND     = DDU_VERIFY_POPUP_MENU_COMMAND
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+'                    (to <a href="ApplicationUtilities.htm#user_defined">AUStatusInfo</a>)
+Global StepDriverInfo As AUStatusInfo    'status of overall test 
+                                         
+'                        (to <a href="ApplicationUtilities.htm#user_defined">AUGUIInfo</a>)
+Global StepDriverTestInfo As AUGUIInfo   'info for component tests
+
+Global SDFieldSeparator As String   'current StepDriver field separator (for files)
+
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="optimizestepdriver"></a>
+    Sub OptimizeStepDriver( optimize as Integer )
+
+ DESCRIPTION:
+
+
+
+ PARAMETERS:
+
+      optimize    'false' will disable new performance enhancements.  At this
+                  time we have disabled the populating of the following
+                  properties in the StepDriverTestInfo (AUGUIInfo):
+
+                      .compModule
+                      .compFULLID
+
+                  These are not currently used in our internal code and only
+                  need to be populated for custom scripts and commands.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 28, 2005
+ History:
+
+      APR 28, 2005    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="sdtryrobotj"></a>
+    Sub SDTryRobotJ()
+
+ DESCRIPTION:
+
+     Routine checks the availability of RobotJ and will attempt one initial
+     time to launch it if it is not running.
+
+     Once RobotJ is running; or if it was already running; then the current
+     Step level record is sent to RobotJ for execution.
+
+
+ PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: NOV 14, 2003
+ History:
+
+      NOV 14, 2003    Original Release
+      DEC 15, 2003    (Carl Nagle) Added AutoLaunch of RobotJ if able
+
+</pre>
+<hr>
+<pre>
+
+<a name="sdtryselenium"></a>
+    Sub SDTrySelenium()
+
+ DESCRIPTION:
+
+     Routine checks the availability of Selenium and will attempt one initial
+     time to launch it if it is not running.
+
+     Once Selenium is running; or if it was already running; then the current
+     Step level record is sent to Selenium for execution.
+
+
+ PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2007
+ History:
+
+      APR 13, 2007    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="sdprocesstestrecord"></a>
+  Function SDProcessTestRecord () As Integer
+
+ DESCRIPTION:
+
+      At this point the Driver has determined we are dealing with a Test Record.
+      A Test Record is one acting on a window or a component within a window.
+
+      Field #1:   The TEST record type (T).
+
+      Subsequent fields would be as follows (with a separator between each field):
+
+      Field:  #2            #3          #4          #5 - N
+      ==============  ==============  ========  ===============
+         WINDOWNAME,  COMPONENTNAME,   ACTION,  [PARAMETER(S),]
+
+      WINDOWNAME is the name given the window in the appmap that you intend to
+      have focus for this test step.
+
+      COMPONENTNAME is the name of the component within that window you intend
+      to perform some function or test on.  If it is the window itself then
+      the COMPONENTNAME should be the same as the WINDOWNAME.
+
+      ACTION is the command or test you wish to perform.  Different types of
+      components support different types of actions.  Almost all support some
+      versions of VERIFY actions.  Pushbuttons can be CLICKed etc... Consult
+      each Component's TYPE or CLASS documentation for the actions available for
+      the component.
+
+      PARAMETER(s) are the additional fields needed based upon the action to
+      be completed.  Each action can have its own unique set of parameters.
+      Some actions may take no parameters at all.  Consult the component's
+      TYPE or CLASS documentation for the parameters needed for a given action.
+
+      Although the separator used in the example above is a comma, any separator
+      can be used as long as it is specified at the time the file is provided or
+      in subsequent command lines which might change the separator in use.
+      (Currently, changes are limited to a per file bases, but per line changes
+      will be easy to implement when the need arises.)
+
+      The test record is processed out to functions according to the "Type" of the
+      component in the record.  Thus, components of Type=Window are sent to
+      WindowFunctions and components of Type=Pushbutton are sent to PushbuttonFunctions.
+      Currently, some Types of Generic, Other, and other oddities are processed out
+      to Window or GenericObjectFunctions.  This will allow some property verifications
+      and maybe some image testcases but probably not too much else.
+
+      Some special handling occurs for certain Java components.
+      In the event the compType, compModule, and compClass are ALL "Unknown"; we
+      perform a check to see if "Java" appears anywhere in the recognition method
+      provided by the user for the component.  If it does, then we attempt to
+      extract the component type out of the recognition method using the last
+      "Type=" part of the string.  If this is successful, we will then set
+      the compType to that component type and set the compModule to "Java".
+      This enables us to try and process Java components to the correct
+      ComponentFunction even though Robot does not seem to properly recognize
+      the type of component it is dealing with.
+
+      Popup menus are not of a real Component Type.  The action commands
+      for Popup menus are intercepted here and routed to the PopupMenuFunctions
+      without doing the normal processing and verification of window and child
+      objects.  This is required due to the special nature of Popup menus and
+      how they are handled by the operating system.
+
+      The same holds true for DatabaseFunctions.  They are intercepted here and
+      routed accordingly. (BETA)
+
+
+      NOTE:
+      A user or developer would not normally call this routine.  This
+      routine is intended to be called from the StepDriver routine as
+      deemed necessary by the input records of the data table provided to
+      the StepDriver routine.  The internals of this routine and the declaration
+      and parameters are all subject to change as necessary.
+
+ PARAMETERS:
+
+      (none) Uses all the info within Global structures.
+
+ RETURNS:
+
+      See <a href="#returncodes">RETURN CODES</a>
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 19, 1999
+ History:
+
+      JUL 19, 1999    Original Release (no functionality)
+      JUL 21, 1999    (Carl Nagle) Added true functionality
+      JUL 27, 1999    (Carl Nagle) Added Calls to Component Functions
+      SEP 03, 1999    (Carl Nagle) Global DDRecordFieldSeparator no longer used.
+      MAR 22, 2000    (Carl Nagle) Increased window search time and made the
+                               search for the component more accurate.
+      APR 10, 2000    (Carl Nagle) Move reset of StepDriverTestInfo to SDStepDriver
+                               to accomodate other commands which may also
+                               need that structure reset.
+      JUL 17, 2000    (Carl Nagle) Added HTMLImage and HTMLLink support.
+      AUG 08, 2000    (Carl Nagle) Added POPUP menu processing.
+      JAN 28, 2001    (MPH-PHASYS) Added GraphicControl support
+      FEB 26, 2001    (Carl Nagle) Added HTMLTable support and special Java processing
+      MAR 19, 2001    (Carl Nagle) Added DatabaseFunction processing (BETA).
+      MAY 01, 2001    (Carl Nagle) Added HTMLDocument support.
+      MAY 17, 2001    (Carl Nagle) Added test for Taskbar to bypass Windows Exist VP.
+      OCT 01, 2001    (Carl Nagle) Enabling DEBUG MODE.
+      APR 30, 2002    (JCRUNK/Carl Nagle) Enabled ComboEditBoxFunctions.
+      OCT 01, 2002    (DCOEN)  Enabled HTML Functions.
+      NOV 06, 2002    (YWANG)  Bypass Window/GUI verification for test commands
+                               VerifyFileToFile, VerifyTextFileToFile, & VerifyBinaryFileToFile
+      NOV 26, 2002    (Jack Imbriani) Bypass Window/GUI verification for test command VerifyValueContains
+      JAN 15, 2003    (Carl Nagle) Added JavaTreeFunctions and JavaTableFunctions
+      JAN 22, 2003    (Carl Nagle) Added JavaMenuFunctions
+      JAN 28, 2003    (Carl Nagle) Added DDU_DELETE_DB_TABLE_RECORDS to GUI BYPASS commands
+      FEB 18, 2003    (bnat)   Added Toolbar Functions.
+      JUN 12, 2003    (bnat)   Added GUI BYPASS commands DDU_EXEC_SQL_QUERY,
+                                                 DDU_GET_DB_TABLE_COLUMN_COUNT, DDU_GET_DB_TABLE_ROW_COUNT
+                                                 and DDU_GET_DB_VALUE.
+      SEP 12, 2003    (bnat)   Added DDU_COPY_DB_TABLE_TO_FILE to GUI BYPASS commands
+      SEP 16, 2003    (bnat)   Added DDU_COPY_DB_TABLE_COLUMN_TO_FILE to GUI BYPASS commands
+      NOV 14, 2003    (Carl Nagle) Enabled IMPLICIT use of RobotJ Driver Command processing
+      JUL 08, 2004    (Carl Nagle) Added JavaPopupMenu support
+      AUG 05, 2004    (Jim Bartos/Carl Nagle) Added .NET support for Hex Window handles.
+      AUG 30, 2004    (REDDY/Carl Nagle) Send .NET FORM processing to WindowFunctions.
+      OCT 29, 2004    (Carl Nagle) Support empty .compGUIID for "current" object.
+      APR 28, 2005    (Carl Nagle) Additional performance enhancements
+      DEC 20,2005     (RDANTONI) Added SelectUnverifiedPopupMenuItem to PopUp Menu Bypass Commands.
+
+</pre>
+<hr>
+<pre>
+
+<a name="sdstepdriver"></a>
+  Sub SDStepDriver (filename As String, separator As String,
+                    fac As LogFacility, Optional mode)
+
+ DESCRIPTION:
+
+      Main application-independent driver for data driven automation with SQA.
+      This is the routine that the SuiteDriver or other user script or utility
+      should call within this library.  All the other routines are called from
+      this routine based upon the input records of the provided data table.
+
+      This routine loops through the provided file processing each line or record.
+
+      DATA TABLE FORMAT:
+
+          Each command line or record in the provided filename represents the
+          start of a new record/command/entry.
+          It is possible for a single command to use multiple lines if its syntax
+          or implementation provides that capability.  This routine, at this time,
+          expects the information it needs (only the record type) to reside on the
+          current command line.
+
+          Blank Lines are ignored.
+
+          For each valid record:
+          Field #1:   Represents one of the driver <a href="#recordtypes">RECORD TYPES</a>.
+          Remaining Fields (2-N) are interpreted based on the RECORD TYPE.
+          Consult the various routines of this driver and <a href="DDDriverCommands.htm">DDDriverCommands</a> to
+          determine the format and number of fields needed for each RECORD TYPE.
+
+          If Field #1 is empty, then the entire record is skipped.
+
+          If Field #1 is an unrecognized record type, the Driver will attempt to
+          execute it as a Script.  In that case, subsequent fields in the input
+          record can contain any parameters or DDVariables the script might want or need.
+          See <a href="UsingDDVariables.htm">Using DDVariables</a> for more information on this nifty capability!
+
+          Comment Lines begin with a comment delimiter RECORD TYPE--a single quote (').
+          Lines whose first non-blank character is a semicolon (;) are also ignored.
+
+      For each line or record, the StepDriverTestInfo structure is reset with
+      default values (mostly empty "") and the information pertinent to the current loop.
+
+      The routine does not have a return value since it is a subroutine.
+      However, upon exit, the <a href="#globals">GLOBAL</a> StepDriverInfo will contain all the status
+      information available on the results of the call.
+
+ PARAMETERS:
+
+      filename    String filename to the data table to use as input.
+                  The routine tries to locate the file as if it were a full path.
+                  If it doesn't find it then it attempts to locate the file
+                  relative to the repository, the project, the project\datapool.
+
+      separator   field separator string to isolate fields within each
+                  data table record.
+                  If not provided(""), uses last defined separator.
+                  If none ever provided then uses a comma (,).
+
+      fac         LogFacility to use for test logging.
+
+      mode        Optional parameter specifying in what mode StepDriver should
+                  be running.  By default, StepDriver runs in StandAlone mode
+                  and outputs additional test information for each
+                  data table it processes.  In a Suite Driven mode this additional
+                  information may not be desirable.
+                  See <a href="#modes">Step Driver Modes</a> in the CONSTANTS section
+                  for valid StepDriver modes.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 19, 1999
+ History:
+
+      JUL 19, 1999    Original Release
+      AUG 03, 1999    (Carl Nagle) Added ability to use short filenames with Datapool
+      AUG 24, 1999    (Carl Nagle) Enhanced data file search and Step Driver modes.
+      SEP 03, 1999    (Carl Nagle) Global DDRecordFieldSeparator no longer used.
+      APR 10, 2000    (Carl Nagle) Reset of StepDriverTestInfo here to accomodate
+                               the CallScript driver command which CAN perform
+                               tests.
+      JUN 05, 2000    (Carl Nagle) Skip lines with a blank Field#1.  Also, allow
+                               for IMPLIED CallScript functionality.
+      JUL 11, 2000    (Carl Nagle) Implement StepDriverSTACK
+      JUL 20, 2000    (Carl Nagle) Added support for setting and using variables.
+      JAN 21, 2001    (Carl Nagle) Redesigned reentrancy and the STACK.
+      APR 23, 2001    (Carl Nagle) Removed SDCallScriptMode Global and related constants.
+                               Consolidated functionality into DDDriverCommands lib.
+      JUN 20, 2001    (Carl Nagle) Added FlowControl and Error Recovery Handling.
+      OCT 01, 2001    (Carl Nagle) Enabling DEBUG MODES and enhanced expressions.
+      OCT 18, 2002    (Carl Nagle) Added Expected Failure support.
+      NOV 22, 2002    (YWANG)  Enabled END DATATABLE log message
+      APR 01, 2005    (RDUCHARME) Added logic to support table caching
+      Apr 22, 2005    (Carl Nagle) Update to allow initialization of caching.
+      MAY 14, 2005    (Carl Nagle) Fixed EOF detection for non-cached branching.
+      JUN 06, 2005    (Carl Nagle) Fixed blank field 1 handling to treat as comment.
+      DEC 13, 2005    (Carl Nagle) Added support for safsActiveStep DDVariable.
+      FEB 07, 2006    (Carl Nagle) Added support .statusinfo and BRANCH_TO_BLOCKID return code
+      MAR 20, 2007    (Carl Nagle) Added support to ignore UTF-8 leader characters.
+
+</pre>
+<hr>
+<pre>
+
+<a name="sdgetlineinput"></a>
+  Function SDGetLineInput(fileref As Integer) As String
+
+ DESCRIPTION:
+
+      Routine returns the next line from the fileref provided
+      and increments the <a href="#globals">StepDriverInfo.linecount</a> counter.
+      The routine returns the line--which is a result of a Line Input #fileref
+      statement--unmodified.
+
+      All routines which input records from the StepDriver data table should
+      call this routine for their line input in order to maintain an accurate
+      linecount.
+
+
+ PARAMETERS:
+
+      fileref     Integer from file's OPEN statement.
+
+ RESULTS:
+
+      String  returned from Line Input statement unmodified.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 23, 1999
+ History:
+
+      JUL 23, 1999    Original Release
+      AUG 24, 1999    (Carl Nagle) Added (and removed) TestInfo.linenumber inc.
+      APR 01, 2005    (RDUCHARME) Added logic to support table caching
+      MAY 14, 2005    (Carl Nagle) Fixed EOF detection for non-cached branching.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

@@ -1,0 +1,1555 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ApplicationUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ApplicationUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Routines to work with applications that SQARobot needs to launch, use,
+ or terminate.  This library also provides comprehensive support for tracking
+ status as tests execute.
+
+ The framework now implements two types of status counters.
+
+  1) Traditional, framework-defined, global counters at each test level tracking
+     the status of ongoing tests for each level.  Test results from lower levels
+     are rolled up into higher level counters.  Thus, a STEP level counter
+     will contain the status for itself.  These results will also roll up into
+     the calling SUITE.  The SUITE will have the sum of all the STEP tests it
+     called plus any results from local driver commands and non-STEP level
+     execution.  These SUITE results will also roll up into the calling CYCLE.
+     The CYCLE will have the sum of all the SUITE tests it called plus any
+     results from local driver commands and non-SUITE level execution.
+     That means the CYCLE level tracking has the sum of all test results.
+
+     All of this tracking is done via <a href="#user_defined" target="_blank">AUStatusInfo</a> storage with separate
+     Global counters for each test table at time of execution.
+
+     <a href="CycleDriver.htm#globals" target="_blank">CycleDriver Storage</a>
+     <a href="SuiteDriver.htm#globals" target="_blank">SuiteDriver Storage</a>
+     <a href="StepDriver.htm#globals" target="_blank">StepDriver Storage</a>
+
+     Of course, it is a little more complicated than that due to the reentrant
+     capabilities of the framework and, thus, the use of stacks.
+
+
+  2)  Innumerable, user-named counters we will call "private counters".
+      These counters are created and initialized at the discretion
+      of the user.  They can be named, configured, started, stopped, reset,
+      stored, output, and deleted as desired to track different kinds of
+      status information.  Each such counter is completely independent of
+      any other counter.
+
+
+ Among many other supporting routines, these are often used in conjunction
+ with status tracking:
+
+      <a href="#auvariablestorestatusinfo" target="_blank">AUVariableStoreStatusInfo</a> to store status values in DDVariables.
+      <a href="LogUtilities.htm#lulogstatusinfo" target="_blank">LULogStatusInfo</a> to output status values to logs.
+
+ Status tracking can also be suspended or resumed as necessary.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "ApplicationUtilities_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\ApplicationUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WIN32Utilities.htm">WIN32Utilities</a>.SBH"
+<li>'$INCLUDE: "<a href="CustomStatusUtilities.htm">CustomStatusUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#augetapplicationindex">AUGetApplicationIndex</a>   BasicLib ApplicationUtilities 
+Function <a href="#aulaunchapplication">AULaunchApplication</a>     BasicLib ApplicationUtilities 
+   Sub   <a href="#auterminateallapps">AUTerminateAllApps</a>      BasicLib ApplicationUtilities 
+Function <a href="#audeleteapplicationindex">AUDeleteApplicationIndex</a>  BasicLib ApplicationUtilities 
+Function <a href="#auterminatestoredapp">AUTerminateStoredApp</a>    BasicLib ApplicationUtilities 
+Function <a href="#ausetcurrentappmap">AUSetCurrentAppMap</a>      BasicLib ApplicationUtilities 
+Function <a href="#augetcurrentappmap">AUGetCurrentAppMap</a>      BasicLib ApplicationUtilities 
+   Sub   <a href="#aucopystatusinfo">AUCopyStatusInfo</a>        BasicLib ApplicationUtilities 
+   Sub   <a href="#aucopyguiinfo">AUCopyGUIInfo</a>           BasicLib ApplicationUtilities 
+   Sub   <a href="#ausumstatusinfo">AUSumStatusInfo</a>         BasicLib ApplicationUtilities 
+   Sub   <a href="#audifstatusinfo">AUDifStatusInfo</a>         BasicLib ApplicationUtilities 
+   Sub   <a href="#auclearstatusinfo">AUClearStatusInfo</a>       BasicLib ApplicationUtilities 
+   Sub   <a href="#auclearguiinfo">AUClearGUIInfo</a>          BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementstatuscounters">AUIncrementStatusCounters</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementtestfailures">AUIncrementTestFailures</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementtestwarnings">AUIncrementTestWarnings</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementtestpasses">AUIncrementTestPasses</a>   BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementgeneralfailures">AUIncrementGeneralFailures</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementgeneralsuccesses">AUIncrementGeneralSuccesses</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementgeneralwarnings">AUIncrementGeneralWarnings</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementiofailures">AUIncrementIOFailures</a>   BasicLib ApplicationUtilities 
+   Sub   <a href="#auincrementskippedrecords">AUIncrementSkippedRecords</a>  BasicLib ApplicationUtilities 
+Function <a href="#augetstatuscounterindex">AUGetStatusCounterIndex</a>  BasicLib ApplicationUtilities 
+Function <a href="#ausetstatuscountermode">AUSetStatusCounterMode</a>  BasicLib ApplicationUtilities 
+Function <a href="#austartstatuscounter">AUStartStatusCounter</a>    BasicLib ApplicationUtilities 
+Function <a href="#austopstatuscounter">AUStopStatusCounter</a>     BasicLib ApplicationUtilities 
+Function <a href="#auresetstatuscounter">AUResetStatusCounter</a>    BasicLib ApplicationUtilities 
+   Sub   <a href="#audeletestatuscounter">AUDeleteStatusCounter</a>   BasicLib ApplicationUtilities 
+Function <a href="#augetstatuscounterstatus">AUGetStatusCounterStatus</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auvariablestorestatusinfo">AUVariableStoreStatusInfo</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#aususpendstatuscounting">AUSuspendStatusCounting</a>  BasicLib ApplicationUtilities 
+   Sub   <a href="#auresumestatuscounting">AUResumeStatusCounting</a>  BasicLib ApplicationUtilities 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+'STATUS values for AUIncrementStatusCounters and CustomStatusUtilities
+
+Const AU_TEST_PASS       = 0
+Const AU_TEST_WARNING    = 1
+Const AU_TEST_FAILURE    = 2
+Const AU_GENERAL_PASS    = 3
+Const AU_GENERAL_WARNING = 4
+Const AU_GENERAL_FAILURE = 5
+Const AU_SKIPPED_RECORD  = 6
+Const AU_IO_FAILURE      = 7
+
+Const AU_STATUSMODE_UNDEFINED      = 0
+Const AU_STATUSMODE_ALLSTATUS      = 1
+Const AU_STATUSMODE_STEPTESTSONLY  = 2
+Const AU_STATUSMODE_BYPASSONCE_RESET = 100
+Const AU_STATUSMODE_BYPASSONCE_MIN   = 101
+Const AU_STATUSMODE_BYPASSONCE_MAX   = 200
+'STATUSMODE 1 thru 200 reserved
+'MODES 3 thru 100 are future modes
+'MODES 101 thru 200 are MODES 1 thru 100 with temporary, one-time skip (mode+100) enabled
+'ALL NEGATIVE STATUSMODE VALUES RESERVED.  
+'Negative values represent temporarily suspended (stop counting) modes.
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+Global AUCurrentAppMap       As String      'path to appmap in current use
+                                            '08/07/2001  Historically, READ ONLY!
+                                            'Use 
+                                            '    AUSetCurrentAppMap  
+                                            '    AUGetCurrentAppMap  
+                                            'for this value.  
+                                            'AUCurrentAppMap will be going away.
+
+
+'these two Globals below are set by StepDriver, SuiteDriver, or CycleDriver to
+'pass their information onto a script that is being called.  In this way, 
+'a script can get needed information and set status regardless of which
+'driver called it.  The script should immediately get the contents of these 
+'with since they are only temporary in nature.  
+'If the script is going to launch more data driven tests, then it should not
+'update or change any of the information in these structures.  The data driven
+'tests will do that.
+'If the script is NOT going to launch data driven tests, then it can update
+'and add to status information in the ScriptStatusInfo.
+
+Global ScriptGUIInfo         AS AUGUIInfo   'temp store for scripts to copy
+                                            'on entry so they can use the
+                                            'data for their own purposes.
+
+Global ScriptStatusInfo     As AUStatusInfo 'temp store for scripts to copy
+                                            'on entry so they can use the 
+                                            'data to record test results and
+                                            'other status information                                            
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+'                       Info stored for apps launched by AULaunchApplication
+Type AUApplicationInfo
+
+    appname     As String       'Ex: CFO Vision
+    fullpath    As String       'Ex: c:\cfo3\cfo.exe
+    defaultdir  As String       'Ex: c:\cfo3  OR ""
+    commandline As String       'Ex: -this value -that value -others OR ""
+    taskid      As Long         'returned by SHELL command (if used) -1 or 0 if invalid
+    appmappath  As String       'Ex: c:\sqa7\cfo3\cfo3.map  OR ""
+    
+End Type
+
+'                    App Status information used by external Libraries
+Type AUStatusInfo
+
+    successes     As Long        'count of all successes (passed)
+    warnings      As Long        'count of all warnings
+    general_failures As Long     'count of all general failures
+    IO_failures   As Long        'count of all IO failures
+    test_passes   As Long        'count of passed test records only
+    test_warnings As Long        'count of warnings of test records only
+    test_failures As Long        'count of failures of test records only
+    
+    'note record counts do not include comment lines
+    test_records    As Long      'count of total test records only
+    skipped_records As Long      'count of total skipped records
+    total_records   As Long      'count of total records
+    
+    filename  As String             'filename of the test table OR private counterID.
+    linecount As Integer            'running line count of the file.  Also reserved, 
+                                    'but not yet used by private counters.
+    mode      As Integer            'mode driver is running in OR private counter mode.
+    level     As String             'CYCLE,SUITE, OR STEP set by drivers. Also reserved, 
+                                    'but not yet used by private counters
+End Type
+
+'                   Used by StepDriver and other App Driver Utilities
+Type AUGUIInfo
+
+    fileref     As Integer      'assigned from file OPEN statement
+    filename    As String       'same as in StepInfo.lincount
+    linenumber  As Integer      'line# in file for this test step
+    inputrecord As String       'the file record for this test step
+    separator   As String       'RecordFieldSeparator to use on record
+    recordType  As String       'UCASE$ RecordType stored for this record
+    windowname  As String       'appmap WINDOWNAME of window for this test step
+    windowGUIName As String     'actual name given window by developer (if any)
+    windowGUIID As String       'retrieved recognition method for the window
+    compname    As String       'appmap COMPONENTNAME of component for this test step
+    compGUIName As String       'actual name given component by developer (if any)
+    compGUIID   As String       'retrieved recognition method for the component
+    compFULLID  As String       'complete GUIID all the way to desktop
+    compType    As String       'the retrieved components Type
+    compClass   As String       'the retrieved components Class
+    compModule  As String       'the retrieved components EXE or DLL source
+    environment As String       'the retrieved components Environment (Java, etc..)
+    compHandle  As Variant      'comp (hWnd) handle if available
+    testcommand As String       'the action command field from the input record
+    fac         As LogFacility  'where messages should be logged
+    statuscode  As Integer      'status code set by external procedures
+    statusinfo  As String       'additional info relating to certain status codes like BRANCH_TO_BLOCKID
+
+End Type
+
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="augetapplicationindex"></a>
+  Function AUGetApplicationIndex (appname As String) As Integer
+
+ DESCRIPTION:
+
+      Locate the current index of the AUApplicationInfo we created at the
+      time a particular application was launched using the
+      <a href="#aulaunchapplication">AULaunchApplication</a> command.
+
+      Externally, this can only be used to verify that a particular
+      AUApplicationInfo is valid and still exists.
+
+ PARAMETERS:
+
+       appname    String used to reference the application provided to
+                  AULaunchApplication when it was launched.
+                  This comparison is case-INsensitive.
+
+ RETURNS:
+
+       N  index of the AUApplicationStore for this appname
+      -1 on failure or no appname match found
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 25, 1999
+ History:
+
+      AUG 25, 1999    Original Release
+      JUN 27, 2000    (Carl Nagle) ApplicationStore is NO longer Global.
+
+</pre>
+<hr>
+<pre>
+
+<a name="aulaunchapplication"></a>
+  Function AULaunchApplication (appname As String, apppath    As String, _
+                                appdir  As String, appcommand As String _
+                                appmap  As String) As Integer
+
+ DESCRIPTION:
+
+      Launch an application based upon the provided parameters and store the
+      information into internal storage for general reference.
+
+      The application and associated information can later be referenced
+      merely by the appname provided at the time of launch.
+
+ PARAMETERS:
+
+      appname     String used to reference the application.  This is used
+                  in subsequent calls to other routines in this library to
+                  identify which application is being referenced.
+
+      apppath     relative or explicit path to the application so that it
+                  will be found for the system.  If the ENVIRONMENT variable
+                  already contains sufficient PATH information then only the
+                  filename.ext need be provided.
+
+      appdir      default directory to provide to the application.  In most cases
+                  this is not needed and should be "".  With "" the launch will
+                  occur using the Shell command and a PROCESSID is returned.  With
+                  this PROCESSID we can terminate the app later if necessary.
+
+                  If a default directory other than "" is provided then the launch
+                  will occur using the ShellExecute command.  This will NOT return
+                  a PROCESSID for the application.  Thus, we will not be able to
+                  terminate the application later if necessary.
+
+      appcommand  command line parameters for the application.
+
+      appmap      path to an application map for the application.
+                  The app map is normally stored within the repository.
+                  You can provide a full explicit path to the map, but this is less
+                  portable across computers.
+                  Preferrably, provide a path relative to the active repository or
+                  the project within the repository.  This is more portable across
+                  hosts. (see <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> for more
+                  info on specifying this relative path.)
+
+ RETURNS:
+
+       N  temporarily valid index of the AUApplicationStore for this application.
+          (Externally, this can only be used to indicate success.)
+
+      -1 on general failure of the routine.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 25, 1999
+ History:
+
+      AUG 25, 1999    Original Release
+      APR 25, 2000    (Carl Nagle) Error trapping added
+
+</pre>
+<hr>
+<pre>
+
+<a name="auterminateallapps"></a>
+  Sub AUTerminateAllApps ()
+
+ DESCRIPTION:
+
+      Terminates apps that have been launched by this Utility.
+      Only apps that were opened with the Shell command version of
+      <a href="#aulaunchapplication">AULaunchApplication</a> can be terminated.
+      All others will have to be terminated some other way.
+
+      This is NOT a gracefull shutdown but instead invokes the WIN32
+      TerminateProcess function.
+
+      Upon exit the appinfo storage array will be cleared.
+
+ PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 25, 1999
+ History:
+
+      AUG 25, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="audeleteapplicationindex"></a>
+  Function AUDeleteApplicationIndex ( index as Integer) As Integer
+
+ DESCRIPTION:
+
+      Deletes a stored application at the appinfo index provided.
+      Only apps that were opened with <a href="#aulaunchapplication">AULaunchApplication</a> can be "deleted".
+      Normally a developer would not call this routine directly.  This
+      routine is automatically called by the <a href="#auterminatestoredapp">AUTerminateStoredApp</a> routine.
+      Thus, the developer should not have to call it.
+
+      Upon exit the app info will no longer be present in the appinfo storage array.
+
+ PARAMETERS:
+
+      index       the index of the app to delete from the store.
+
+ RETURN:
+
+       0 on success
+      -1 on invalid index provided
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 18, 2002
+ History:
+
+      OCT 18, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="auterminatestoredapp"></a>
+  Function AUTerminateStoredApp ( appname as String) As Integer
+
+ DESCRIPTION:
+
+      Terminates a stored app that was launched by this Utility.
+      Only apps that were opened with the Shell command version of
+      <a href="#aulaunchapplication">AULaunchApplication</a> can be terminated.
+      All others will have to be terminated some other way.
+
+      This is NOT a gracefull shutdown but instead invokes the WIN32
+      TerminateProcess function.
+
+      Upon exit the app will no longer be present in the appinfo storage array.
+
+ PARAMETERS:
+
+      appname     the named reference for the app to terminate.  This name
+                  must match that give to AULaunchApplication when it was
+                  launched.
+
+ RETURN:
+
+       0 on success
+      -1 on failure to identify the app in storage
+      -2 if no TASKID provided in storage (not retrievable at launch).
+      -3 if app not successfully removed from appinfo storage.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 18, 2002
+ History:
+
+      OCT 18, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="ausetcurrentappmap"></a>
+  Function AUSetCurrentAppMap (reference As String) As String
+
+ DESCRIPTION:
+
+      Sets the active AppMap to the one provided.  It uses <a href="FileUtilities.htm#findsqafile">FindSQAFile</a>
+      to locate the full path to the file provided if it is not already a
+      full path specification. You CAN provide a full explicit path to the
+      map, but this is less portable across computers.
+
+      Preferrably, provide a path relative to the active repository or the
+      project within the repository.  This is more portable across hosts.
+      (see <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> for more info
+       on specifying this relative path.)
+
+      Additionally, you may specify to use the AppMap stored with a specific
+      Application merely by referencing the name given that application at
+      the time it was launched by the <a href="#aulaunchapplication">AULaunchApplication</a> command.
+
+ PARAMETERS:
+
+      reference   a full or relative path to the Application map to use.
+                  (see <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> for more
+                  information on how to use the relative path.
+                  The relative path is preferred for portability across
+                  runtime hosts.
+
+                  Better yet, you can also merely specify the appname you wish
+                  to reference and the current app map will be set to that
+                  provided with the application when it was launched.
+
+                  If reference is "" then we will try to use any setting that
+                  currently exists for AUCurrentAppMap.
+
+ RETURNS:
+
+      String      The full path to the found app map  OR
+                  "" if the map was not found or some other error occurred.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 25, 1999
+ History:
+
+      AUG 25, 1999    Original Release
+      DEC 07, 2006    (Carl Nagle) Added direct STAF support to bypass DDVariableStore.DLL
+
+</pre>
+<hr>
+<pre>
+
+<a name="augetcurrentappmap"></a>
+  Function AUGetCurrentAppMap () As String
+
+ DESCRIPTION:
+
+      Retrieves the active AppMap path. Also sets AUCurrentAppMap Global.
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      String      The full path to the current app map  OR
+                  "" if the map was not found or some other error occurred.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2001
+ History:
+
+      AUG 07, 2001    Original Release
+      DEC 07, 2006    (Carl Nagle) Added direct STAF support to bypass DDVariableStore.DLL
+
+</pre>
+<hr>
+<pre>
+
+<a name="aucopystatusinfo"></a>
+  Sub AUCopyStatusInfo (source As AUStatusInfo, target As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Copy the contents of one AUStatusInfo into the other.
+  Overwrites any preexisting contents.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to copy from.
+      target  AUStatusInfo to copy to.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 11, 2000
+ History:
+
+      JUL 11, 2000    Original Release
+      JUN 21, 2001    (Carl Nagle) Added Level to StatusInfo UDT.
+
+</pre>
+<hr>
+<pre>
+
+<a name="aucopyguiinfo"></a>
+  Sub AUCopyGUIInfo (source As AUGUIInfo, target As AUGUIInfo)
+
+ DESCRIPTION:
+
+  Copy the contents of one AUGUIInfo into the other.
+  Overwrites any preexisting contents.
+
+ PARAMETERS:
+
+      source  AUGUIInfo to copy from.
+      target  AUGUIInfo to copy to.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 11, 2000
+ History:
+
+      JUL 11, 2000    Original Release
+      FEB 07, 2006    (Carl Nagle) Added GUIInfo.statusinfo support
+
+</pre>
+<hr>
+<pre>
+
+<a name="ausumstatusinfo"></a>
+  Sub AUSumStatusInfo (source As AUStatusInfo, target As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Sum the status counts from the source AUStatusInfo with the target.
+  Summation results overwrite preexisting status counts in the target.
+  Note: the .linecount field is not summed or modified since this is
+  a linecounter for file access and not considered a test statistic.
+
+ PARAMETERS:
+
+      source  AUStatusInfo statistics to add to target statistics.
+      target  AUStatusInfo to sum with source and retain results.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 11, 2000
+ History:
+
+      JUL 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="audifstatusinfo"></a>
+  Sub AUDifStatusInfo (source As AUStatusInfo, target As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Subtract the status counts of the source AUStatusInfo from the target.
+  Difference results overwrite preexisting status counts in the source.
+  Note: the .linecount field is not summed or modified since this is
+  a linecounter for file access and not considered a test statistic.
+
+ PARAMETERS:
+
+      source  AUStatusInfo statistics to subtract from target statistics
+              and retain the results.
+
+      target  AUStatusInfo statistics to subtract from.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 11, 2000
+ History:
+
+      JUL 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auclearstatusinfo"></a>
+  Sub AUClearStatusInfo (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Clear all counters in the provided StatusInfo (set to 0).  This is the
+  status information only.  The linecount is not set to 0.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to clear (set all status counts to 0)
+              (This does NOT set the linecount to 0.)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auclearguiinfo"></a>
+  Sub AUClearGUIInfo (source As AUGUIInfo)
+
+ DESCRIPTION:
+
+  Clear all numeric elements to 0 and string to empty strings with a couple
+  exceptions:
+
+      .compHandle is set to -1
+      .statuscode is set to DDU_SCRIPT_NOT_EXECUTED
+      .fac LogFacility is NOT modified
+
+ PARAMETERS:
+
+      source  AUGUIInfo to clear
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 2001
+ History:
+
+      JUN 29, 2001    Original Release
+      FEB 07, 2006    (Carl Nagle) Added GUIInfo.statusinfo support
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementstatuscounters"></a>
+  Sub AUIncrementStatusCounters (statusInfo As AUStatusInfo, status as Integer)
+
+ DESCRIPTION:
+
+  Increment all enabled status counters by 1 according to the input status.
+  This includes the total records count AND the test records count by 1 where
+  appropriate.
+
+  The routine will also call the "hook" for custom status counting.
+  The hook will not generally bypass existing status tracking.  It will
+  allow the end-user to implement their own means of status tracking.
+
+
+ PARAMETERS:
+
+      statusInfo  AUStatusInfo provided from other AUIncrement routines.
+                  We are not incrementing this AUStatusInfo.  Instead, we may
+                  reference fields such as .filename or .level
+                  Otherwise, this parameter is not used, but will be passed on
+                  to the CustomStatusUtilities.
+
+      status      The status type to increment.  Valid values are defined in
+                  the CONSTANTS section.  For example: AU_TEST_FAILURE,
+                  AU_TEST_PASS, etc..
+                  Unrecognized status values are ignored.  They are passed
+                  on to the custom hook, though.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementtestfailures"></a>
+  Sub AUIncrementTestFailures (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the test failure count in the provided StatusInfo by 1.
+  This also increments the total records count AND the test records count by 1.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment test failure, test records, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementtestwarnings"></a>
+  Sub AUIncrementTestWarnings (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the test warnings count in the provided StatusInfo by 1.
+  This also increments the total records count AND the test records count by 1.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment test warnings, test records, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementtestpasses"></a>
+  Sub AUIncrementTestPasses (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the test passes count in the provided StatusInfo by 1.
+  This also increments the total records count AND the test records count by 1.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment test passes, test records, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementgeneralfailures"></a>
+  Sub AUIncrementGeneralFailures (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the general failures count in the provided StatusInfo by 1.
+  This also increments the total records count by 1.
+  General failures are failures that occur other than test failures.
+  Such as problems in script execution or some other step that is not
+  officially categorized as a test.
+
+  The opposite of a general failure is a success.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment general failures, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementiofailures"></a>
+  Sub AUIncrementIOFailures (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the IO failures count in the provided StatusInfo by 1.
+  This also increments the total records count by 1.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment IO failures, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementskippedrecords"></a>
+  Sub AUIncrementSkippedRecords (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the skipped records count in the provided StatusInfo by 1.
+  This also increments the total records count by 1.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment skipped records, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementgeneralsuccesses"></a>
+  Sub AUIncrementGeneralSuccesses (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the general successes count in the provided StatusInfo by 1.
+  This also increments the total records count by 1.
+  These are execution successes that are NOT test records.
+
+  For example, we might increment the successes and total records counter
+  at the successful execution of the script.  Not that any tests in the
+  script passed or failed, but that we were able to find and execute the
+  script.  The actual pass and failure of tests will be counted in the
+  test record counters.
+
+  The opposite of this kind of success is a general failure.
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment general successes, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auincrementgeneralwarnings"></a>
+  Sub AUIncrementGeneralWarnings (source As AUStatusInfo)
+
+ DESCRIPTION:
+
+  Increment the record warnings count in the provided StatusInfo by 1.
+  This also increments the total records count by 1.
+  These are execution warnings that are NOT test records.
+
+  We might increment the warnings and total records counter
+  at the failure of locating something or deleting something that we know
+  might not be there.  An example of this is giving the command to close
+  a window and then testing to see that it has closed.  This test should first
+  locate the window and then loop until it disappears.  However, the window
+  may have already closed before we could go out and look for it.  In that
+  case, we would issue a warning saying the window we were suppose to watch
+  close was never found in the first place.
+
+
+ PARAMETERS:
+
+      source  AUStatusInfo to increment general warnings, and
+              total record counts.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 18, 2001
+ History:
+
+      JAN 18, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="augetstatuscounterindex"></a>
+  Function AUGetStatusCounterIndex(counterID as String, Optional automode) As Integer
+
+ DESCRIPTION:
+
+      Locate the index of the status counter whose name matches counterID.
+      If no match is found, then auto-create a new status counter with the
+      provided counterID name (unless the optional automode = -1).
+
+      Any auto-created counter is set with mode = 1; log all status info.
+
+      There really is no external, public use for this function other
+      than to verify the existence of a particular named status counter.
+
+
+ PARAMETERS:
+
+      counterID   String name of the counter to locate/create.
+
+      automode    Optional. Set to -1 to disallow the auto-create feature of
+                  this function.  With auto-create disabled we will not
+                  create a new counter if no counterID match is found.
+                  By default, auto-create is enabled and this parameter is
+                  not needed.
+
+ RETURNS:
+
+       0 to N     Index of the status counter whose name matches counterID.
+                  This can be a brand new counter if it did not exist.
+
+      -1          Empty counterID, error, or no match found and auto-create
+                  disabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ausetstatuscountermode"></a>
+  Function AUSetStatusCounterMode(counterID as String, mode As Integer) As Integer
+
+ DESCRIPTION:
+
+      Locate the status counter whose name matches counterID.
+      If no match is found, then auto-create a new status counter with the
+      provided counterID name.  Then set the counter mode to the provided
+      value.
+
+
+ PARAMETERS:
+
+      counterID   String name of the counter to locate/create.
+
+           mode   0 :(undefined-no counts-empty counter) will likely be set
+                     to 1 or -1 on certain calls if counterID is not empty.
+                     For example, a call to AUStartStatusCounter with a
+                     counter whose mode=0 will have that mode set to 1.
+                     A subsequent call to AUStopStatusCounter will have
+                     the mode set to -1.
+
+                     Normal counting operations will skip counters when
+                     mode=0.  They assume these are empty, unassigned
+                     counters.
+
+                  1 :(default) count all types of available status info.
+
+                  2 :track only STEP level test counts and status. Private
+                     counters with this mode will only count status when the
+                     statusInfo provided to <a href="#auincrementstatuscounters" target="_blank">AUIncrementStatusCounters</a> has
+                     the value <a href="DDUtilities.htm#constants" target="_blank">DDU_STEP_TEST_LEVEL</a> stored in statusInfo.level.
+                     This statusInfo.level value is automatically set by
+                     StepDriver during test execution of STEP level tables.
+                     You do not normally have to worry or set statusInfo.level
+                     unless you are sending your own custom instances of
+                     statusInfos through these routines.
+                     (And why would you do that?!)
+
+                  3 to 200  Reserved for future use.
+                  Other positive values may be used for custom extensions.
+
+                +100 :Set the counter mode to a valid mode (1 to 100) and
+                      add 100 to bypass a single status count.  This is
+                      generally set by the engine via a DriverCommand that is
+                      creating or modifying a counter. The idea is that we may
+                      not want the DriverCommand counter creation/modification
+                      recorded within the counter itself.  This feature will
+                      only recognize values of 101 - 200.
+
+                 -N :(stopped) do not increment counter.
+                     The absolute value of the mode is that counter mode
+                     that will be used when status counting is allowed to
+                     commence.
+
+                     For example, a mode=-2 will revert to mode=2 when
+                     AUStartStatusCounter is called for this status counter.
+
+ RETURNS:
+
+       0          Exited normally.
+
+      -1          Empty counterID or some other error.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="austartstatuscounter"></a>
+  Function AUStartStatusCounter(counterID as String) As Integer
+
+ DESCRIPTION:
+
+      Locate the status counter whose name matches counterID.
+      If no match is found, then auto-create a new status counter with the
+      provided counterID name.
+
+      Any auto-created counter is set with mode = 1; log all status info.
+
+      If mode=0 (undefined), then set it to mode=1; log all status info.
+      Otherwise, just enable the preset counter mode.
+
+
+ PARAMETERS:
+
+      counterID   String name of the counter to (re)enable status counting.
+
+
+ RETURNS:
+
+       0          Exited normally.
+
+      -1          Empty counterID or some other error.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="austopstatuscounter"></a>
+  Function AUStopStatusCounter(counterID as String) As Integer
+
+ DESCRIPTION:
+
+      Locate the status counter whose name matches counterID.
+      If no match is found, then auto-create a new status counter with the
+      provided counterID name.
+
+      Any auto-created counter is set with mode = -1; allowed to count all
+      status info, but currently suspended.
+
+      If mode=0 (undefined), then set it to mode=-1; allowed to count all
+      status info, but currently suspended.
+      Otherwise, just suspend the preset counter mode.
+
+
+ PARAMETERS:
+
+      counterID   String name of the counter to suspend status counting.
+
+
+ RETURNS:
+
+       0          Exited normally.
+
+      -1          Empty counterID or some other error.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auresetstatuscounter"></a>
+  Function AUResetStatusCounter(counterID as String) As Integer
+
+ DESCRIPTION:
+
+      Locate the status counter whose name matches counterID.
+      If no match is found, then auto-create a new status counter with the
+      provided counterID name.
+
+      Any auto-created counter is set with mode = 1; log all status info.
+
+      Reset all counts to 0.  Leave other information, like mode, unmodified.
+
+
+ PARAMETERS:
+
+      counterID   String name of the counter to reset counts.
+
+
+ RETURNS:
+
+       0          Exited normally.
+
+      -1          Empty counterID or some other error.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="audeletestatuscounter"></a>
+  Sub AUDeleteStatusCounter (counterID As String)
+
+ DESCRIPTION:
+
+      Locate the status counter whose name matches counterID and delete it.
+
+
+ PARAMETERS:
+
+      counterID   String name of the counter to delete.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="augetstatuscounterstatus"></a>
+  Function AUGetStatusCounterStatus (counterID as String,
+                                     statusInfo as AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Locate the status counter whose name matches counterID.
+      If no match is found, then auto-create a new status counter with the
+      provided counterID name.
+
+      Any auto-created counter is set with mode = 1; log all status info.
+
+      Copy the current counts, name, mode, etc. into the provided AUStatusInfo.
+      The true counter still remains.  The filled statusInfo contains just
+      a snapshot of the current state.
+
+      The AUStatusInfo fields contain the following information in addition
+      to all the status counts:
+
+          statusInfo.filename  = the counter's counterID/name
+          statusInfo.mode      = the counter's mode
+          statusInfo.level     = (future) should be "" (empty)
+          statusInfo.linecount = (future) should be 0
+
+      This routine is often used in conjunction with these related routines:
+
+          <a href="#auvariablestorestatusinfo" target="_blank">AUVariableStoreStatusInfo</a> to store status values in DDVariables.
+          <a href="LogUtilities.htm#lulogstatusinfo" target="_blank">LULogStatusInfo</a> to output status values to logs.
+
+ PARAMETERS:
+
+      counterID   String name of the counter to snapshot.
+
+      statusInfo  An AUStatusInfo to receive a snapshot of the current status.
+
+
+ RETURNS:
+
+       0          Exited normally.
+
+      -1          Empty counterID or some other error.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auvariablestorestatusinfo"></a>
+  Sub AUVariableStoreStatusInfo(statusInfo as AUStatusInfo, basename as String)
+
+
+ DESCRIPTION:
+
+      Takes all data members of the provided statusInfo and stores them in
+      DDVariables for use by scripts, driver or test commands, or other
+      applications.
+
+      Each member is stored in a separate variable as a pseudo-child of the
+      provided variable basename.  Thus, this routine does not store any
+      value in a DDVariable with the provided basename.  It only uses
+      the basename as the prefix, along with a period (.), to form the full
+      variable name of each new variable.
+
+      Example showing statusInfo elements stored with a basename of
+      "Regression".  While not shown, ALL the elements of the statusInfo
+      will be stored and retrievable in this way.
+
+
+      AUStatusInfo element                stored in DDVariable
+      =============================       ===================================
+      statusInfo.test_failures            Regression.test_failures
+      statusInfo.total_records            Regression.total_records
+      ...                                 ...
+      statusInfo.level                    Regression.level
+
+
+ PARAMETERS:
+
+      statusInfo      <a href="#user_defined" target="_blank">AUStatusInfo</a> to extract and store values from.
+
+
+      basename        String basename to use in creating the DDVariables for
+                      each statusInfo element.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="aususpendstatuscounting"></a>
+  Sub AUSuspendStatusCounting()
+
+
+ DESCRIPTION:
+
+      Places ALL status incrementing on hold.  This includes Global and
+      private status counters.  Of course, this only applies to status
+      incrementing that occurs through this ApplicationUtilities library.
+
+
+ PARAMETERS:
+
+      none
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="auresumestatuscounting"></a>
+  Sub AUResumeStatusCounting()
+
+
+ DESCRIPTION:
+
+      Resumes normal status counting.  This includes Global and
+      private status counters.  Of course, this only applies to status
+      incrementing that occurs through this ApplicationUtilities library.
+
+      Private counters that were enabled for incrementing will resume
+      counting.  Private counters that were stopped prior to any SUSPEND
+      will remain stopped.
+
+
+ PARAMETERS:
+
+      none
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="incrementinteger"></a>
+  Function IncrementInteger(ByRef target As Integer, Optional by As Integer) As Integer
+
+
+ DESCRIPTION:
+
+      Increments an integer by the specified amount "safely".
+
+      This function checks condition for integer overflow. Range of
+      SQABasic Integer data type is -32,768 to 32,767. If the result after
+      the increment is out of the range, it is maxed out at the boundary
+      value, thus avoid the overflow runtime error.
+
+ PARAMETERS:
+
+      target  Integer value to increment.
+      by      Optional. Amount to increment the target by. If omitted,
+              target is incremented by 1.
+
+ RETURNS:
+
+      Integer value after increment.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: MAY 07, 2003
+ History:
+
+      MAY 07, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="incrementlong"></a>
+  Function IncrementLong(ByRef target As Long, Optional by As Variant) As Long
+
+
+ DESCRIPTION:
+
+      Increments a Long by the specified amount "safely".
+
+      This function checks condition for long overflow. Range of
+      SQABasic Integer data type is -2,147,483,648 to 2,147,483,647. If the
+      result after the increment is out of the range, it is maxed out at the
+      boundary value, thus avoid the overflow runtime error.
+
+ PARAMETERS:
+
+      target  Long value to increment.
+      by      Optional. Amount to increment the target by. If omitted,
+              target is incremented by 1.
+
+ RETURNS:
+
+      Integer value after increment.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: MAY 09, 2003
+ History:
+
+      MAY 09, 2003    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

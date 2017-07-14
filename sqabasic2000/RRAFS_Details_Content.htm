@@ -1,0 +1,820 @@
+<HTML>
+<HEAD>
+<TITLE>RRAFS\DDE Framework Details Content</TITLE>
+</HEAD>
+<BODY>
+<A name=top /><A name=intro />
+<H1>Introduction</H1>
+<small>
+    <script language="JavaScript">document.write(document.lastModified)</script>
+</small>
+<P>
+This material is expected to provide a good review of the overall framework design and implementation for the Rational Robot SAFS Engine--also known as the "RRAFS Engine", or "DDE".  The material is designed to help automators understand the engine infrastructure, and provides instruction for enhancing the engine with new functionality, keywords, or customizations.
+</P>
+<P><A name=review />
+<TABLE border=1 id="framework_elements_table" align=center >
+	<CAPTION><H4>Review Major Framework Elements</H4></CAPTION>
+	<TR id="header_row">
+		<TH>ELEMENT</TH><TH>FILES</TH><TH>DESCRIPTION</TH>
+	<TR id="cycle_driver_row">
+		<TD ALIGN=CENTER><A href="CycleDriver.htm">Cycle Driver</A></TD>
+		<TD ALIGN=CENTER>CycleDriver.SBL</TD>
+		<TD>The domain of the Test Designer.  Executes a test that is, generally, a collection of test suites.  CycleDriver invokes SuiteDriver for each suite in the test.  At the Cycle level, suites are specified via a Test "T" record type.
+		</TD>
+	</TR>
+	<TR id="suite_driver_row">
+		<TD  ALIGN=CENTER><A href="SuiteDriver.htm">Suite Driver</A></TD>
+		<TD  ALIGN=CENTER>SuiteDriver.SBL</TD>
+		<TD>  The domain of the Test Designer.  Executes a suite that is, generally, a collection of action commands ordered to accomplish larger tasks.  SuiteDriver invokes StepDriver for each action, or step, in the test.  At the Suite level, these actions or tests are specified via a Test "T" record type.
+		</TD>
+	</TR>
+	<TR id="step_driver_row">
+		<TD ALIGN=CENTER><A href="StepDriver.htm">Step Driver</A></TD>
+		<TD ALIGN=CENTER>StepDriver.SBL</TD>
+		<TD>The domain of the Test Automator.  Executes the steps necessary to complete the specified action.  This is typically an assortment of Driver Commands "C" and Component Function Test "T" actions.
+		</TD>
+	</TR>
+	<TR id="driver_commands_row">
+		<TD NOWRAP ALIGN=CENTER><A href="DDEngineReference.htm#core_drivers">Driver Commands</A></TD>
+		<TD NOWRAP ALIGN=CENTER>DDDriverCommands.SBL</TD>
+		<TD>Commands provided by the DDE to accomplish general purpose tasks generally not considered "tests".  Things like setting global variables or execution parameters, launching applications, or waiting for other things to happen.  At all test levels, Driver Commands are specified via the Command "C" record type.
+		<P>There are actually several Driver Command libraries chained together at runtime.  Among these are:
+		<UL>
+			<LI>DDDriverCommands.SBL</LI>
+			<LI>DDDriverFlowCommands.SBL</LI>
+			<LI>DDDriverLogCommands.SBL</LI>
+    		<LI>DDDriverCounterCommands.SBL</LI>
+    		<LI>DDDriverDebugCommands.SBL</LI>
+    		<LI>DDDriverDeprecatedCommands.SBL</LI>
+    	</UL>
+    	</P><P>
+    	There are also other engines like SAFS/DriverCommands that are independent of the RRAFS implementation.   These can be launched and invoked by RRAFS to process additional Driver Commands that are not otherwise supported.
+    	</P>
+    	</TD>
+	</TR>
+	<TR id="component_functions_row">
+		<TD NOWRAP ALIGN=CENTER><A href="DDEngineReference.htm#component_functions">Component Functions</A></TD>
+		<TD NOWRAP ALIGN=CENTER>??????????Functions.SBL</TD>
+		<TD>Libraries that implement the low-level actions for individual GUI components.  Each library generally provides a set of actions for one specific type of component.  CheckboxFunctions.SBL implements actions for Checkbox components.  EditboxFunctions.SBL implements actions for Editbox components.  And so on.
+		<P>Low-level actions are things like "Click" the Button, "Set" the text value of an Editbox, or "Select" a RadioButton.  Valid at the step level ONLY, component functions are called via the Test "T" record type.
+    	</P><P>
+    	There are also other engines like SAFS/RobotJ that are independent of the RRAFS implementation.   These can be launched and invoked by RRAFS to process additional Component Functions that are not otherwise supported.
+    	</P>
+		</TD>
+	</TR>
+	<TR id="action_map_row">
+		<TD NOWRAP ALIGN=CENTER>Action Map</TD>
+		<TD NOWRAP ALIGN=CENTER>XSLComponentActions.MAP</TD>
+		<TD>This is, essentially, a shorthand dictionary of all the component function actions implemented by the core RRAFS engine.  The component function libraries use this dictionary to determine if they support an action that has been fed to them, or if they need to forward this action down the execution chain.
+		<P>
+		The engine will not act on any core component action command that does not exist in this Action Map.</P>
+		</TD>
+	</TR>
+	<TR id="framework_utilities_row">
+		<TD NOWRAP ALIGN=CENTER><A href="SQABasicLibraries.htm">Framework API\Utilities</A></TD>
+		<TD NOWRAP ALIGN=CENTER>??????????Utilities.SBL</TD>
+		<TD>Support libraries implementing general purpose routines for facilitating test automation with Rational Robot.  Utilities for working with files, strings, menus, or any other utility function we might have need for.
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<HR />
+
+<A name="source_structure" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Source Structure</H3>
+<P>
+Robot's SQABasic does not support conditional compilation or inclusion based on something like #ifdef.  Thus, it has an inherent problem with circular references or believing it has found duplicate definitions for the same item.  The below 3-file library system minimizes the occurrence of duplicate definitions and\or circular references.
+</P>
+<P>
+<TABLE  border=1 cellpadding=10 align=center>
+	<CAPTION><B>Source Structure for SQABasic Libraries</B></CAPTION>
+	<TR><TD>SomeUtilities.SBL</TD><TD>library sourcecode\logic; private stuff, etc.</TD></TR>
+	<TR><TD>SomeUtilities_X.SBH</TD><TD>public Asset Header (constants, globals, types, etc.)</TD></TR>
+	<TR><TD>SomeUtilities.SBH</TD><TD>public API Header for API declarations</TD></TR>
+</TABLE>
+</P>
+<P>
+Most support libraries and drivers use the 3-file system defined above.  The named library will $Include its own Assets Header but will NOT include its API Header because that will cause duplicate definition compile errors.  Other libraries wishing to take advantage of the named library will $Include both the Asset Header and the API Header--in that order.
+</P>
+<P>
+Some libraries do not require the 3-file system.  These libraries do not have public Assets or API to $Include or reference in other libraries.  That may change over time.  When a library exposes no public Assets, then it is completely self-contained in the SBL library file.  The appropriate header file(s) get added later as needed to expose public assets or API declarations.
+</P>
+<P>If you attempt to call a routine in a library that has not made that routine publicly available via an API Header, then you are asking for trouble.  A routine that is not exposed in such a public header is allowed to change its signature.  If it does, your private declarations for those routines will each have to be "fixed".  So stick with the public API declarations provided by the public API headers.  You have been warned.
+</P>
+<P>
+Most all of the frameworks public Asset and API Headers can be included in your project with a single $Include statement:
+<UL type=disc>
+	<LI>'$Include: "DDEngine.SBH"</LI>
+</UL>
+This single header contains most key $Includes needed by developers working on scripts or libraries that are not part of the core framework.
+</P>
+<HR />
+
+<A name="runtime_project_locations" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>DDE_RUNTIME vs. Project Locations</H3>
+<P>
+<UL type=disc>
+	<LI><B>DDE_RUNTIME</B>
+		<P>
+		The DDE_RUNTIME location is where the ".\Rational\Rational Test\sqabas32" subdirectory resides.  This is a subdirectory of the folder where the Rational Software products have been installed. By default, this is in "c:\Program Files\".  This is not a Rational project repository location.  It is where Rational hides things like SQAUtils so they are available to ALL projects.  This is where we must install our framework source, headers, and executables for production use across all projects.
+		</P><P>
+		Any enhancements to the core framework done in any other location must be pushed to this DDE_RUNTIME location for it to be available across all projects.
+		</P>
+	</LI>
+	<LI><B>FRAMEWORK DEVELOPMENT</B>
+		<P>
+		A true Rational project repository dedicated for ongoing development and testing of the core framework.  This project allows for development of new features and support without impacting the production version of the framework deployed in the DDE_RUNTIME location.  Libraries and headers in development reside in the project's TMS_Scripts\sqabas32 subdirectory.
+		</P><P>
+		This project should have all of the framework regression tests and scripts available to it for comprehensive testing during your development effort.  We don't want to co-mingle our framework regression tests and libraries with tests and libraries for some other application.  This project only needs the source and headers copied into it that you intend to modify.  The rest can remain in the DDE_RUNTIME location.
+		</P>
+		<P>
+		Any enhancements to the core framework done in the project space must be pushed to the DDE_RUNTIME location to be made available across all projects.  Any changes made to the core framework in the project space will override those in the DDE_RUNTIME location but only as long as you are running Robot from this project location.  When you move to a different project, those changes not pushed to DDE_RUNTIME will NOT be available in the new project.
+		</P>
+	</LI>
+	<LI><B>APP TEST DEVELOPMENT</B>
+		<P>
+		The Rational project for whatever application you are testing.  In this project you generally won't have any of the framework source, headers, or executables.  They are already available via the DDE_RUNTIME location.  However, if you find you need to add a new feature or Component Function to support your application, you may determine it is easier to do it here.  This is also a great location for project-specific <a href="#custom_core_actions">Custom Extensions</a>.
+		</P><P>
+		This project will NOT have all of the framework regression tests and scripts available to it. So, you will need to transfer any final changes to the FRAMEWORK DEVELOPMENT project so they can be fully tested with the framework regression tests.  For example, you want to make sure your changes in support of a VB application did not break support for Web or Java applications.
+		</P>
+		<P>
+		The APP TEST project only needs to have the source and headers copied into it that you intend to modify.  The rest can remain in the DDE_RUNTIME location.
+		</P><P>
+		Any enhancements to the core framework done in this location must be pushed to the DDE_RUNTIME location to be made available across all projects.  Any changes made to the core framework here will override those in the DDE_RUNTIME location but only as long as you are running Robot from this project location.  When you move to a different project, those changes not pushed to DDE_RUNTIME will NOT be available in the new project.
+		</P>
+	</LI>
+</UL>
+</P>
+<HR />
+
+<A name="execution_flow" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Review DDE Execution Flow</H3>
+<P>
+<UL>
+	<LI><A name="executing_driver_commands" />
+		<H4>Driver Commands ("C")</H4>
+		<P>
+		Review a Driver Command routed through CycleDriver into the DDDriverCommands library.  This process is the same for CycleDriver, SuiteDriver, and StepDriver.  They all call DDDriverCommands.
+		</P>
+		<P>
+		Example: CycleDriver executing a Driver Command ("C")
+		</P>
+		<UL type=disc>
+			<LI>C,  SetApplicationMap,  "MyApp.Map"</LI>
+		</UL>
+		</P>
+		<P>
+		<OL>
+			<LI>Locate and open sourcecode <B>CycleDriver.SBL</B></LI>
+			<LI>In <B>CycleDriver.SBL</B> locate subroutine <A href="CycleDriver.htm#cdcycledriver">CDCycleDriver</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Find where processing RecordType DDU_DRIVER_COMMAND occurs.</LI>
+			<LI>Locate and open sourcecode <B>DDDriverCommands.SBL</B></LI>
+			<LI>In <B>DDDriverCommands.SBL</B> locate function <A href="DDDriverCommands.htm#ddedrivercommand">DDEDriverCommand</A>.</LI>
+			<LI>Review the function sourcecode.</LI>
+		</OL>
+		</P>
+	</LI>
+
+	<LI><A name="executing_test_records" />
+		<H4>High-level Test Records ("T" for Cycles and Suites)</H4>
+		<P>
+		Review a test record routed through SuiteDriver to invoke StepDriver.  The process is the same when CycleDriver is calling SuiteDriver.  Effectively, the caller invokes the next lower driver passing in the test record--a filename--to be processed by that driver.  Remember, CycleDriver calls SuiteDriver. SuiteDriver calls StepDriver. 		</P>
+		<P>
+		(It should be noted that to promote maximum reuse, you cannot bypass test levels in your calls.  CycleDriver cannot make direct calls to StepDriver or attempt to execute Component Functions.  SuiteDriver cannot call Component Functions, either.  However, a driver can call a higher driver or another test at the same level via the appropriate Driver Commands.  As example, StepDriver can invoke SuiteDriver via the CallSuite Driver Command.)
+		</P>
+		<P>
+		Example: SuiteDriver executing a Test Record ("T")
+		</P>
+		<UL type=disc>
+			<LI>T,  AddUserAccount,,  ^user=Name</LI>
+		</UL>
+		</P>
+		<P>
+		<OL>
+			<LI>Locate and open sourcecode <B>SuiteDriver.SBL</B></LI>
+			<LI>In <B>SuiteDriver.SBL</B> locate subroutine <A href="SuiteDriver.htm#stsuitedriver">STSuiteDriver</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Find where processing RecordType DDU_TEST_STEP occurs.</LI>
+			<LI>In <B>SuiteDriver.SBL</B> locate subroutine <A href="SuiteDriver.htm#stprocesstestrecord">STProcessTestRecord</A>.</LI>
+			<LI>Review the function sourcecode.</LI>
+			<LI>Find where SDStepDriver is called.</LI>
+			<LI>Locate and open sourcecode <B>StepDriver.SBL</B></LI>
+			<LI>In <B>StepDriver.SBL</B> locate subroutine <A href="StepDriver.htm#sdstepdriver">SDStepDriver</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+		</OL>
+		</P>
+	</LI>
+
+	<LI><A name="executing_component_functions" />
+		<H4>Component Test Records (Steps)</H4>
+		<P>
+		Review a Component Function test record (Pushbutton Click) routed through StepDriver into the PushbuttonFunctions library.
+		</P>
+		<P>
+		Example: StepDriver executing a PushButton Click
+		</P>
+		<P>
+		<UL type=disc>
+			<LI>T,  MessageBox,  OKButton,  Click</LI>
+		</UL>
+		</P>
+		<P>
+		<OL>
+			<LI>Locate and open sourcecode <B>StepDriver.SBL</B></LI>
+			<LI>In <B>StepDriver.SBL</B> locate subroutine <A href="StepDriver.htm#sdstepdriver">SDStepDriver</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Find where processing RecordType DDU_TEST_STEP occurs.</LI>
+			<LI>In <B>StepDriver.SBL</B> locate subroutine <A href="StepDriver.htm#sdprocesstestrecord">SDProcessTestRecord</A>.</LI>
+			<LI>Review the function sourcecode.</LI>
+			<LI>Find where PushButtonFunctions is called.</LI>
+			<LI>Locate and open sourcecode <B>PushButtonFunctions.SBL</B></LI>
+			<LI>In <B>PushButtonFunctions.SBL</B> locate subroutine <A href="PushButtonFunctions.htm#main">Main</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Find where processing .testcommand CLICK_COMMAND occurs.</LI>
+			<LI>In <B>PushButtonFunctions.SBL</B> locate subroutine <A href="PushButtonFunctions.htm#pushbuttonclick">PushButtonClick</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+		</OL>
+		</P>
+	</LI>
+
+	<LI><A name="executing_generic_tests" />
+		<H4>Generic Test Records (GenericObject & GenericMasterFunctions)</H4>
+		<P>
+		Review a Component Function test record (Pushbutton VerifyProperty) routed through StepDriver into the PushButtonFunctions library.  We will find that PushButtonFunctions does NOT implement this command because it is generic enough to be implemented for all components in the GenericMasterFunctions library.
+		</P>
+		<P>
+		There is a default chain of execution that applies for nearly all Component Functions which is outlined below for PushButtonFunctions:
+		</P>
+		<P>
+		<OL>
+			<LI>PushbuttonFunctions (unimplemented) falls thru to </LI>
+			<LI>GenericObjectFunctions (unimplemented) falls thru to </LI>
+			<LI>GenericMasterFunctions where it is implemented.</LI>
+		</OL>
+		</P>
+		<P>
+		Example: StepDriver executing a Generic Component Function
+		</P>
+		<P>
+		<UL type=disc>
+			<LI>T,  MessageBox,  OKButton,  VerifyProperty,  "Text",  "OK"</LI>
+		</UL>
+		</P>
+		<P>
+		<OL>
+			<LI>Locate and open sourcecode <B>StepDriver.SBL</B></LI>
+			<LI>In <B>StepDriver.SBL</B> locate subroutine <A href="StepDriver.htm#sdstepdriver">SDStepDriver</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Find where processing RecordType DDU_TEST_STEP occurs.</LI>
+			<LI>In <B>StepDriver.SBL</B> locate subroutine <A href="StepDriver.htm#sdprocesstestrecord">SDProcessTestRecord</A>.</LI>
+			<LI>Review the function sourcecode.</LI>
+			<LI>Find where PushButtonFunctions is called.</LI>
+			<LI>Locate and open sourcecode <B>PushButtonFunctions.SBL</B></LI>
+			<LI>In <B>PushButtonFunctions.SBL</B> locate subroutine <A href="PushButtonFunctions.htm#main">PushButtonFunctions Main</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Notice there is no apparent support for VerifyProperty in PushButtonFunctions.<BR />
+			(You can verify this in the XSLComponentActions.MAP)</LI>
+			<LI>Find where HandleGenericCommand is called.</LI>
+			<LI>Locate and open sourcecode <B>GenericObjectFunctions.SBL</B></LI>
+			<LI>In <B>GenericObjectFunctions.SBL</B> locate subroutine <A href="GenericObjectFunctions.htm#main">GenericObjectFunctions Main</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Notice there is no apparent support for VerifyProperty in GenericObjectFunctions.<BR />
+			(You can verify this in the XSLComponentActions.MAP)</LI>
+			<LI>Find where GenericUnimplementedCommand is called.</LI>
+			<LI>Locate and open sourcecode <B>GenericMasterFunctions.SBL</B></LI>
+			<LI>In <B>GenericMasterFunctions.SBL</B> locate subroutine <A href="GenericMasterFunctions.htm#main">GenericMasterFunctions Main</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+			<LI>Find where processing .testcommand GENERIC_VERIFY_PROPERTY_COMMAND occurs.</LI>
+			<LI>In <B>GenericMasterFunctions.SBL</B> locate subroutine <A href="GenericMasterFunctions.htm#genericverifyproperty">GenericVerifyProperty</A>.</LI>
+			<LI>Review the subroutine sourcecode.</LI>
+		</OL>
+		</P>
+	</LI>
+</UL>
+</P>
+<HR />
+
+<A name="custom_core_actions" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Custom vs. Core Actions</H3>
+<P>
+<UL>
+	<LI><A name="custom_actions" />
+		<H4>Custom are app-specific</H4>
+		<P>
+		Truly custom driver commands or component functions are not intended to ever be part of the shared core framework because they have no global applicability.  These should be pretty rare when dealing with near-standard components or common test activities.  Some actions that appear custom may simply need to be broken down into more generic and globally useful core actions or engine enhancements.
+		</P>
+		<P>
+		Example: An app-specific customization that need not be custom
+		</P>
+		<P>
+		<UL type=disc>
+			<LI>C,  ReformatCRMLog,  "CRMLog.log",  "CRMLog.pdf"</LI>
+		</UL>
+		</P>
+		<P>
+		This CRM (app-specific) custom command can be broken down into smaller steps, at least one of which (shown below) will be globally useful:
+		</P>
+		<P>
+		Example:  Make the customization globally useful
+		</P>
+		<P>
+		<UL type=disc>
+			<LI>C,  ConvertText2PDF,  "CRMLog.log",  "CRMLog.pdf"</LI>
+		</UL>
+		</P>
+	</LI>
+
+	<LI><A name="core_actions" />
+		<H4>Core actions are app-independent</H4>
+		<P>
+		Core driver commands and component functions are generic and globally useful across many testable applications.  Most actions with near-standard components or common test activities can be implemented as core driver commands or component functions.  Some actions that appear custom because they are not implememted are really globally useful and should be implemented as core functionality.
+		</P>
+		<P>
+		Example: Commands or actions that might initially appear custom
+		</P>
+		<P>
+		<UL type=disc>
+			<LI>C,  RunXSLT,  ^xml="file.xml",  ^xsl="file.xsl",  ^out="file.htm"</LI><BR />
+			and<BR />
+			<LI>T,  MessageBox,  SubmitButton,  Disable</LI>
+		</UL>
+		</P>
+	</LI>
+</UL>
+</P>
+<HR />
+
+<A name="adding_core_actions" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Adding Core Actions</H3>
+<P>
+As a reminder, and you will see this in the existing sourcecode, action commands and parameters are position dependent.  The implementation expects to find parameters in specific fields.  While many people may use DDVariable references to identify a parameter, the DDVariable itself is NOT used by the DDE in locating parameters.  Parameters MUST reside in the specific field location identified for them.
+</P>
+<P>
+Working example:
+</P>
+<P>
+<UL>
+	<LI>C,  SetContext,   "MainWin",   "ChildComp"</LI>
+	<LI>C,  SetContext,   ^win="MainWin",   ^cmp="ChildComp"</LI>
+</UL>
+</P>
+<P>
+The two previous records are equivalent and will function.  However, the following record is NOT equivalent and will probably generate an AppMap reference error:
+</P>
+<P>
+Incorrect example:
+</P>
+<P>
+<UL>
+	<LI>C,  SetContext,  ^cmp="ChildComp",  ^win="MainWin"</LI>
+</UL>
+</P>
+<P>
+The reason for the error is because SetContext is specifically looking for a Window reference in field #3, and a Child component reference in field #4.  You cannot switch them around or assume they will be correctly interpreted by giving them some useful DDVariable reference.
+</P>
+
+<P>
+<UL>
+	<LI><A name="adding_driver_commands" />
+		<H4>Adding Driver Commands</H4>
+		<P>
+		It is very easy to add a new Driver Command.  Especially since there are already at least 60 different Driver Commands to use as reference for implementing your own.
+		</P>
+		<P>
+		As of this writing, there are at least 6 libraries of Driver Commands:
+		</P>
+		<P>
+		<UL type=disc>
+		    <LI>DDDriverCommands.SBL</LI>
+		    <LI>DDDriverFlowCommands.SBL</LI>
+		    <LI>DDDriverLogCommands.SBL</LI>
+		    <LI>DDDriverCounterCommands.SBL</LI>
+		    <LI>DDDriverDebugCommands.SBL</LI>
+		    <LI>DDDriverDeprecatedCommands.SBL</LI>
+		</UL>
+		</P>
+		<P>
+		You need to make sure you pick the library that is most appropriate for what you are trying to implement.  DDDriverCommands.SBL is the one to use if your command doesn't seem to fit in any of the other categories.
+		</P>
+		<P>
+		In general, to add your own Driver Command you must:
+		</P>
+		<P>
+		<OL>
+			<LI>Add your action Keyword Constant to DDUtilities_X.SBH</LI>
+			<LI>Implement the action in the appropriate Driver Command library.</LI><BR />
+		    (Use existing action implementations as reference.)<BR />
+			<LI>Document your API within the source like all the others.</LI><BR />
+		    (Use existing documentation source as reference.)<BR />
+			<LI>Document your action within the XML like all the others.</LI><BR />
+			It is especially critical that you provide accurate and complete XML documentation since online documentation and other key files are built from this XML.<BR />
+		    (Use existing documentation XML as reference.)<BR />
+			<LI>Test your action implementation before deploying.</LI>
+			<LI><A href="#sqa_library_publishing">Publish</A> all modified library doc.</LI>
+			<LI><A href="#ddengine_reference_publishing">Build</A> updated documentation based on the updated XML.</LI>
+		</OL>
+		</P>
+		<P>
+		You will notice that Driver Commands are NOT generally implemented in separate functions.  Instead, they are usually just a few lines of code within the bounds of a large SELECT CASE statement--a CASE for each command.  If your Driver Command contains a significant amount of code, you should consider implementing it in an appropriate core library as a separate function and calling the function from the CASE statement.
+		</P>
+		<P>
+		Adding a new action to a Driver Commands library generally does not change anything about the core engine other than the files actually touched.  Thus, implementing a new action usually means that only the modified library must be recompiled.  Of course, any modified header files must also be distributed.
+		</P>
+	</LI>
+	<LI><A name="adding_component_functions" />
+		<H4>Adding a Component Function</H4>
+		<P>
+		It is very easy to add a new Action to an existing Component Functions library.  Especially since there are already at least 25 different libraries implementing scores of action commands to use as reference for implementing your own.
+		</P><P>
+		As shown earlier, the framework routes a StepDriver Test (T) record through the <A href="StepDriver.htm#sdprocesstestrecord">SDProcessTestRecord</A> function in StepDriver.SBL according to the component type encountered at runtime.  If the component is determined to be a Pushbutton, then SDProcessTestRecord routes the record to be processed by PushbuttonFunctions.SBL.  If the component is determined to be a Checkbox, then the record is forwarded to CheckboxFunctions.SBL.
+		</P><P>
+		So, it is of utmost importance that you implement your commands in the correct library for the component you wish to act upon.  Unless, of course, the action is applicable to all components and the implementation works for all components.  In that case, the action should be implemented in GenericMasterFunctions.SBL.  (Note, GenericObjectFunctions.SBL is really reserved for components that are specifically recognized as component type "Generic".)
+		</P><P>
+		For the sake of clarity, I will list the details for adding a new action command to CheckboxFunctions.SBL.  You would perform the same steps for adding a new action to any of the other Component Functions libraries.
+		</P>
+		<P>
+		<OL>
+			<LI>Add the action keyword Const to CheckboxFunctions.SBL where the other action keyword Constants can be found.<BR />
+			(Some Component Functions libraries use the separate header file for storing public Constants, but most do not.  Historically this has been because we don't consider the action keywords as public constants.  They are not referenced anywhere EXCEPT in the library that implements the action.  If the library you are editing uses a separate header--for example: GenericMasterFunctions_X.SBH--then the keyword Constant will likely go there, instead.)
+			</LI>
+			<LI>Implement the action in the CheckboxFunctions.SBL library.<BR />
+		    (Use existing action implementations as reference.)
+		    </LI>
+			<LI>Document your API within the source like all the others.<BR />
+		    </LI>(Use existing documentation source as reference.)
+			<LI>Document your action within the XML like all the others.<BR />
+			It is especially critical that you provide accurate and complete XML documentation since online documentation and other key files like the XSLComponentActions.MAP are built from this XML.<BR />
+		    </LI>(Use existing documentation XML as reference.)
+			<LI>Implement the routing for that action in Sub "main" of CheckboxFunctions.SBL.  The action will never be invoked if you don't enable the routing for it in Sub "main".
+			</LI>
+			<LI>Expose any public API in CheckboxFunctions.SBH.<BR />
+			(Most older Component Functions libraries do not expose a public API.  This was because the subroutines and functions were intended for the DDE command routing mechanism.  This mechanism provides global variables containing essential parameters used by all Component Functions.   New implementations should attempt to expose a public API to their functions whenever the coding overhead is not too great.)
+			</LI>
+			<LI><A href="#sqa_library_publishing">Publish</A> all modified libraries.</LI>
+			<LI><A href="#action_map_publishing">Build</A> or manually edit an updated XSLComponentActions.MAP.</LI>
+			<LI>Test your action implementation and any API before deploying.</LI>
+			<LI><A href="#ddengine_reference_publishing">Build</A> an updated DDEngine Reference based on the updated XML.</LI>
+		</OL>
+		</P><P>
+		Unlike Driver Commands, each Component Function is generally implemented in its own separate subroutine.  This routine is called via the SELECT CASE routing mechanism found in Sub "main" in each Component Functions library as seen in item #4.
+		</P><P>
+		Adding a new action to an existing Component Functions library generally does not change anything about the core engine other than the files actually modified.  Thus, implementing a new action usually means that only the modified library must be recompiled.  Of course, any modified header files must also be distributed.
+		</P>
+	</LI>
+
+	<LI><A name="adding_new_component" />
+		<H4>Adding support for a New Component Type</H4>
+		<P>
+		Adding support for an entirely new component type is a little more involved than simply adding an action to an existing library.  This is primarily because we have to develop a new library and then tell StepDriver how to find it.
+		</P><P>
+		Below are the general steps necessary to implement support for an entirely new Component Functions library.  The example is for a hypothetical component type "CoolWidget".
+		</P><P>
+		<OL>
+			<LI>Create a new CoolWidgetFunctions.SBL library.<BR />
+			(Use an existing library as a template.)
+			</LI>
+			<LI>Implement your new action(s) in the CoolWidget.SBL library just as you would for adding new actions to an existing library.<BR />
+			(Use existing library implementations as reference.)
+			</LI>
+			<LI>Document your library API within the source like all the other libraries.</BR>
+			(Use existing API documentation as reference.)
+			</LI>
+			<LI>
+			Provide accurate XML documentation since published documentation and other key files like the XSLComponentActions.MAP are built from this XML.  Your XML may be appropriate to add to an existing XML file if there is a reasonable association present.  Otherwise, you may need to develop an entirely new XML file and make it known in the XSLComponentFunctions.XML file.
+		    <BR />
+		    (Use existing XML documentation as reference.)
+		    </LI>
+			<LI>Implement the routing for each action in Sub "main" of the CoolWidget.SBL library.  Don't forget to include the default routing in the final CASE ELSE statement so that the new library can take advantage of all the pre-existing Generic implementations.<BR />
+			(These actions will never be invoked if you don't enable the routing for them in Sub "main".)
+		    </LI>
+			<LI>Expose any public API in a CoolWidgetFunctions.SBH header file.<BR />
+			(Most older Component Functions libraries do not expose a public API and do not have a similar .SBH header file.  This was because the subroutines and functions were intended for the DDE command routing mechanism.  This mechanism provides global variables containing essential parameters used by all Component Functions.   New implementations should attempt to expose a public API to their functions whenever the coding overhead is not too great.)
+			</LI>
+			<LI>Add the appropriate routine declaration for the CoolWidgetFunctions library in the ComponentFunctions.SBH header.<BR />
+			(Use the existing declarations there as reference.  This declaration will be used by StepDriver to route commands to your new library whenever a component of type CoolWidget is encountered.)
+			</LI>
+			<LI>Modify the StepDriver.SBL library routine <A href="StepDriver.htm#sdprocesstestrecord">SDProcessTestRecord</A> to include a call to your new library when the component type CoolWidget is actually encountered.<BR />
+			(You will be calling the funtion you just added to ComponentFunctions.SBH.  This is done in a SELECT CASE statement where routing occurs based on the component type found at runtime.  Use the existing CASE statements as reference.)
+			</LI>
+			<LI>Add the appropriate XML entry for the CoolWidgetFunctions.XML documentation in the XSLComponentFunctions.XML file, if necessary.<BR />
+			(Use the existing entries as reference.  This entry will be used when building the DDEngine Reference and other reference documentation or databases.)
+			</LI>
+			<LI><A href="#sqa_library_publishing">Publish</A> all modified libraries.</LI>
+			<LI><A href="#action_map_publishing">Build</A> or manually edit an updated XSLComponentActions.MAP.</LI>
+			<LI>Test your action implementations and any API before deploying.</LI>
+			<LI><A href="#ddengine_reference_publishing">Build</A> an updated DDEngine Reference from the new/updated XML.</LI>
+		</OL>
+		</P>
+	</LI>
+</UL>
+</P>
+<HR />
+
+<A name="namespaces" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Understanding Namespaces (also known as Scope)</H3>
+<P>
+The record types like "C" and "T" not only differentiate record format, routing, and intent; they also separate different namespaces.  Driver Commands have a separate namespace from Component Functions.
+</P><P>
+<UL>
+	<LI>C,  SomeAction, ....</LI>
+</UL>
+</P><P>
+The above is implemented and executed within the Driver Command libraries which have their own namespace.  The call below happens to use the same action keyword, "SomeAction", but it is implemented in the libraries and namespace for Component Functions.  It is a different action.
+</P><P>
+<UL>
+	<LI>T,  MainWin,  OKButton,  SomeAction, ....</LI>
+</UL>
+</P><P>
+There are some not-so-obvious implications to this as we consider adding new Driver Commands and Component Functions.
+</P><P>
+Command processing will very often go through a long chain of attempts to locate a command implementation.  Processing will continue until the first implementation of the command is found in the namespace, or until the entire chain has been searched and no implementation found.
+</P><P>
+For example, there are at least six libraries implementing Driver Commands <A href="#review"><SMALL>(review)</SMALL></A>.  At runtime command processing will go through each of these libraries to locate the first implementation of a driver command and it will then execute that command.  This obviously doesn't seem too problematic since all core driver commands must be unique.  However, this is not so obvious when we are dealing with component function libraries and component actions.
+</P><P>
+Component Function actions like "Click" often get duplicated.  There is a "Click" for a Pushbutton and there is a "Click" for a Window.  (But not all components explicitly implement a "Click" action.) Each supported component type has its own Component Functions library where those actions are implemented.  However, there is also a chain of libraries searched in the event the requested action is not implemented in the called library.  This was demonstrated with the VerifyProperty action when we reviewed <A href="#executing_generic_tests">Generic Test Records</A>.
+</P><P>
+So, while each Component Functions library loosely has its own namespace, this namespace is shared with a select few libraries in the chain of Generic command handling.  This Generic handling chain is shown below:
+</P><P>
+<OL>
+	<LI>&lt;componentType&gt;Functions.SBL (ex: PushButtonFunctions.SBL)</LI>
+	<LI>GenericObjectFunctions.SBL</LI>
+	<LI>GenericMasterFunctions.SBL</LI>
+	<LI>CustomTestCommands.SBL</LI>
+</OL>
+</P><P>
+This has the consequences shown in the following 2 lists:
+</P><P>
+<B>Seeking a command in the chain that may be unimplemented:</B>
+</P><P>
+<OL>
+	<LI>&lt;componentType&gt;Functions.SBL 	falls thru to</LI>
+	<LI>GenericObjectFunctions.SBL		falls thru to</LI>
+	<LI>GenericMasterFunctions.SBL		falls thru to</LI>
+	<LI>CustomTestCommands.SBL		error: unimplemented.</LI>
+</OL>
+</P><P>
+<B>Implemented commands override implementations further down the chain:</B>
+</P><P>
+<OL>
+	<LI>&lt;componentType&gt;Functions.SBL 	overrides</LI>
+	<LI>GenericObjectFunctions.SBL		overrides</LI>
+	<LI>GenericMasterFunctions.SBL		overrides</LI>
+	<LI>CustomTestCommands.SBL		may never get reached.</LI>
+</OL>
+</P><P>
+More information on avoiding namespace conflicts with truly custom actions is provided in the following section on Adding Custom Extensions.
+</P>
+<HR />
+
+<A name="adding_custom_extensions" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Adding Custom Extensions</H3>
+<P>
+<a href="UsingCustomExtensions.htm">Custom extensions</a> are those that are application or site-specific and cannot be distributed as part of the core framework.  The DDE framework provides a mechanism by which you can implement custom features without modifying the core framework source.  This enables you to continue to use and upgrade to future releases of the framework without losing your customizations and without going through a painful source merging process.
+</P>
+
+<P>
+<UL>
+	<LI><A name="custom_extension_namespace" />
+		<H4>Custom Extension Namespace</H4>
+		<P>
+		It is extremely critical to note that the namespace for each type of custom extension is shared with the core framework.  Because we default to custom extensions only after we exhaust core framework implementations, custom extensions cannot override or replace core framework implementations.  For example, you cannot attempt to implement a custom "T" record type.  The DDE will always find the core implemention of the "T" record type first and process it there.
+		</P><P>
+		<B>IMPORTANT: You must realize that future core implementations of items will automatically override any identical customizations you have previously implemented.</B>
+		</P><P>
+		For example, you might decide you want to implement a new "D" record type for some truly novel processing that is very specific to data formats output from your application.  You note the "D" record type is not currently implemented by the DDE, so it seems safe to use it for your custom implementation.
+		</P><P>
+		However, 6 months later a new release of the core DDE framework suddenly contains its own "D" record type!  All of your tests using the custom "D" record type will now fail because the core framework will automatically try to process these records using the core implementation instead of your custom one.  And, of course, your tests will fail miserably.
+		</P><P>
+		<B>You must make every effort to ensure your keyword customizations are sufficiently unique to your site such that they don't conflict with current and future core framework implementations.</B>
+		</P><P>
+		One of the best ways to ensure this is to use a site-specific, dept-specific, or app-specific prefix or suffix--ANYTHING--that is unlikely to ever be used in the core implementation.
+		</P><P>
+		<TABLE border=1 align=center>
+			<CAPTION><B>Examples of Customization Keywords</B></CAPTION>
+			<TR>
+				<TD>D,  MyCustomRecordInfo, ...</TD><TD>EVIL Custom Record Type</TD>
+			</TR>
+			<TR>
+				<TD>APT_D,  MyCustomRecordInfo,  ...</TD><TD>GOOD Custom Record Type</TD>
+			</TR>
+			<TR>
+				<TD>C,  NewDriverCommand,  ...</TD><TD>EVIL Custom Driver Command</TD>
+			</TR>
+			<TR>
+				<TD>C,  NewDriverCommand_SAS ,  ...</TD><TD>GOOD Custom Driver Command</TD>
+			</TR>
+			<TR>
+				<TD>T,  Window,  Component,  NewTestAction,  ...</TD><TD>EVIL Custom Test Command</TD>
+			</TR>
+			<TR>
+				<TD>T,  Window,  Component,  SRM_NewTestAction,  ...</TD><TD>GOOD Custom Test Command</TD>
+			</TR>
+		</TABLE>
+		</P>
+	</LI>
+
+	<LI><A name="custom_record_types" />
+		<H4>Custom Record Types</H4>
+		<P>
+		A custom record allows you to define a complete new structure for your record.  Of course, it means you must also provide all the code for handling that new structure and functionality.  You do this via the <A href="CustomRecordTypes.htm">CustomRecordTypes</A> library and any other supporting libraries you wish to implement.
+		</P><P>
+		CycleDriver, SuiteDriver, and StepDriver all parse the first field as the Record Type.  If the Record Type is not recognized, they then attempt to see if you are trying to call a tool-specific script.  This is called an <A href="DDDriverCommands.htm#ddeimpliedcallscript"><I>Implied</I> CallScript</A> command.  If no matching script is found, then we call the "<A href="CustomRecordTypes.htm#customdderecord">CustomDDERecord</A>" routine in the CustomRecordTypes library.  By default, this routine is nothing but a hook that will return the equivalent of "unknown record type" to the DDE.  It is here, in the CustomRecordTypes library that a user can insert their code for processing custom record types.
+		</P>
+	</LI>
+
+	<LI><A name="custom_driver_commands" />
+		<H4>Custom Driver Commands</H4>
+		<P>
+		A custom driver command allows you to define a site, dept, or app-specific command.  Of course, it means you must also provide all the code for handling that new command.  You do this via the <A href="CustomDriverCommands.htm">CustomDriverCommands</A> library and any support libraries you wish to implement.
+		</P><P>
+		The <A href="DDDriverCommands.htm">DDDriverCommands</A> parser attempts to locate the command within the libraries it already provides.  If the command is not recognized, we call the "<A href="CustomDriverCommands.htm#customddedrivercommand">CustomDDEDriverCommand</A>" routine in the CustomDriverCommands library.  By default, this routine is nothing but a hook that will return the equivalent of "unknown driver command" to the DDE.  It is here, in the CustomDriverCommands library that a user can insert their code for processing custom driver commands.
+		</P>
+	</LI>
+
+	<LI><A name="custom_test_commands" />
+		<H4>Custom Test Commands (Component Functions)</H4>
+		<P>
+		A custom test command allows you to define a site, dept, or app-specific Component Function action.  Of course, it means you must also provide all the code for handling that new action.  You do this via the <A href="CustomTestCommands.htm">CustomTestCommands</A> library and any other supporting libraries you wish to implement.
+		</P><P>
+		After the action has passed through unimplemented in the appropriate Component Function library, GenericObjectFunctions, and GenericMasterFunctions--GenericMasterFunctions will call the "<A href="CustomTestCommands.htm#customddetestcommand">CustomDDETestCommand</A>" routine in the CustomTestCommands library.  By default, this routine is nothing but a hook that will return the equivalent of "unimplemented action command" to the DDE.  It is here, in the CustomTestCommands library, that a user can insert their code for processing custom component actions.
+		</P>
+	</LI>
+</UL>
+</P>
+<HR />
+
+<A name="framework_documentation_standards" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Framework Documentation Standards</H3>
+<P>
+There are two types of documentation that must be considered when reviewing or enhancing the framework libraries.
+</P>
+<P>
+<OL>
+	<LI>The API Documentation provided by EACH library which represents how we call the routines provided by that library.  This documentation is embedded in the library source.</LI>
+	<P></P>
+	<LI>The separate XML Documentation for Keyword/Command syntax for the Core Driver Commands and Component Functions.</LI>
+</OL>
+</P><P>
+Originally, there was no separate XML Documentation Format.  All API and Keyword documentation was embedded in the library API format.  That did not allow for the automated publication of comprehensive reference material like the <A href="RRAFSReference.htm">SAFS Reference</A>.  We have since separated these two different types of documentation content.  Some older API-format documentation still contains what is now migrating into the XML format.  Over time, this duplication should be eliminated.
+</P><P>
+<UL>
+	<LI><A name="api_doc_format" />
+		<H4>API Documentation Format</H4>
+		<P>
+		(TO BE DEVELOPED)<BR />
+		Use API documentation in existing libraries as reference.  API documentation is that documentation provided in ALL libraries to document the actual library API--which is different than documenting Keywords and their syntax.
+		</P><P>
+		Some older libraries contain API-style documentation that includes information on how to use the Keywords they support.  This style of documentation was in place before the introduction of XML.  We do not intend to carry that tradition forward as it represents a duplicate documentation workload.
+		</P>
+	</LI>
+
+	<LI><A name="xml_doc_format" />
+		<H4>XML Documentation Format</H4>
+		<P>
+		(TO BE DEVELOPED)<BR />
+		Use XML documentation existing Driver Command and Component Function XML files as reference.  The XML is generally stored in the .\SAFS\keywords directory where the SAFS Framework was installed.  A purely RRAFS-only installation may not have the XML installed.
+		</P>
+	</LI>
+</UL>
+</P>
+<HR />
+
+<A name="publishing_tools" />
+<SMALL><A href="#review">Back to Top</A></SMALL>
+<H3>Doc Publishing Tools</H3>
+<P>
+The framework primarily relies on <A href="#framework_documentation_standards">structured documentation</A> embedded within the sourcecode and in separate XML files.  Tools exist to extract that documentation and publish it in HTML format for the web.  Other tools process the separate XML keywords documentation to merge content into single-point references or data for use by other tools.
+</P><P>
+The framework developer needs to use these tools to (re)publish changes that occur to existing libraries or new documentation from new libraries.
+</P><P>
+XML processing uses the MSXML Parser and MSXSL.EXE from Microsoft.  As of Oct, 2002 these have been bundled with the install of the RRAFS\DDE framework.  They can also be downloaded and installed from Microsoft's <A href="http://msdn.microsoft.com/xml">XML Support Pages</A>.
+</P><P>
+<UL>
+	<LI><A name="sqa_library_publishing" />
+		<H4>SQA Library Publishing</H4>
+		<P>
+		These tools are currently coded in SQABasic libraries.  They extract the API format documentation from the RRAFS library source and create HTML doc like <a href="CheckBoxFunctions.htm">CheckBoxFunctions</a>.<BR />
+		(These tool docs may need some updating...)
+		</P><P>
+		<UL type=disc>
+			<LI>The <A href="Publish.htm">Publish</A> tool provides a GUI front-end to SQAPublisher.</LI>
+			<LI><A href="SQAPublisher.htm">SQAPublisher</A> is the workhorse.
+		</UL>
+		</P>
+	</LI>
+
+	<LI><A name="action_map_publishing" />
+		<H4>Action Map Publishing (XSLComponentActions.MAP)</H4>
+		<P>
+		We have created an XSL Stylesheet and a Windows Batch program that enable us to automatically publish the XSLComponentActions.MAP required by the engine.  This uses the same XML files used to generate the SAFS Reference.</P>
+		<P>
+		The XML and XSL stylesheets should be installed in the .\SAFS\keywords directory for the SAFS Framework.  If you have a RRAFS-only install, these files may not be available.
+		</P><P>
+		The Batch programs are installed in the  .\SAFS\bin  directory.  Again, a RRAFS-only install may not have these files available.
+		</P><P>
+		<TABLE border=1>
+			<CAPTION><B>Key Files Associated with XSLComponentActions.MAP Publishing</B></CAPTION>
+			<TR>
+				<TD>XSLComponentFunctions.XML</TD><TD>List of XML files containing Component Functions</TD>
+			</TR><TR>
+				<TD>XSLComponentActionsMap.XSL</TD><TD>Templates for building the XSLComponentActions.MAP needed by the engine.</TD>
+			</TR><TR>
+				<TD>XSLComponentActionsMap.BAT</TD><TD>Batch program to automatically build the Actions Map.</TD>
+			</TR>
+		</TABLE>
+		</P><P>
+		With a successfull SAFS Framework install, the Batch file XSLComponentActionsMap.BAT will not need any modification.  If all expected XML files exist and contain properly formatted XML then all you have to do is run the XSLComponentActionsMap.BAT batch program.
+		</P>
+		<P>
+		The resulting XSLComponentActions.MAP file should appear in the .\SAFS\data  directory.  The file must then be placed in either your project's Datapool\Runtime directory for project-specific enhancements, or in your DDE_RUNTIME directory for enhancements that are ultimately intended to be global in nature.  The engine will not recognize any new action command if it does not find it in the available XSLComponentActions.MAP file.
+		</P>
+	</LI>
+
+	<LI><A name="ddengine_reference_publishing" />
+		<H4>XML Reference Publishing</H4>
+		<P>
+		We have created some supporting XML files, XSL Stylesheets, and Windows Batch programs that enable us to automatically generate the <A href="RRAFSReference.htm">SAFS Reference</A>.  The SAFS Reference is the single-point HTML reference for all the Driver Commands and Component Functions made available via the framework.
+		</P><P>
+		The XML and XSL stylesheets should be installed in the .\SAFS\keywords directory for the SAFS Framework.  If you have a RRAFS-only install, these files may not be available.
+		</P><P>
+		The Batch programs are installed in the  .\SAFS\bin  directory.  Again, a RRAFS-only install may not have these files available.
+		</P><P>
+		<TABLE border=1>
+			<CAPTION><B>Key Files Associated with XML Reference Publishing</B></CAPTION>
+			<TR>
+				<TD>XSLDriverCommands.XML</TD><TD>List of XML files containing Driver Commands</TD>
+			</TR><TR>
+				<TD>XSLComponentFunctions.XML</TD><TD>List of XML files containing Component Functions</TD>
+			</TR><TR>
+				<TD>XSLCommonDDE.XSL</TD><TD>Some common and reusable XSL templates for our reference material</TD>
+			</TR><TR>
+				<TD>XSLDDEngineReference.XSL</TD><TD>HTML and templates for building the SAFS Reference and <a href="DDEngineReference.htm">DDEngine Reference</a></TD>
+			</TR><TR>
+				<TD>XSLBuildDDEngineReference.BAT</TD><TD>Batch program to automatically build the reference</TD>
+			</TR>
+		</TABLE>
+		</P><P>
+		After a successful SAFS Framework install, the Batch file XSLBuildDDEngineReference.BAT will not need any modification to execute properly.  If all expected XML files exist and contain properly formatted XML, then all you have to do is run the XSLBuildDDEngineReference.BAT batch program.  The results will appear in the .\SAFS\doc  directory.
+		</P>
+	</LI>
+
+	<LI><A name="xml_db_transform" />
+		<H4>XML2DB Publishing</H4>
+		<P>
+		Right now this is really just a sample\experiment.  In essence, all we do here is combine all the XML information extracted from all the Driver Command libraries and form a single TAB delimited flat file datatable.
+		</P><P>
+		The table contains records providing the following fields (among others):
+		</P><P>
+		<UL type=disc>
+			<LI>Driver Command Keyword</LI>
+			<LI>Driver Command Description</LI>
+			<LI>Number of Parameters used by the Driver Command</LI>
+			<LI>Names of each of those Parameters</LI>
+		</UL>
+		</P><P>
+		<TABLE border=1>
+			<CAPTION><B>Key Files associated with XML2DB Publishing</B></CAPTION>
+			<TR>
+				<TD>XSLDriverCommands.XML</TD><TD>List of extracted XML files containing Driver Commands</TD>
+			</TR><TR>
+				<TD>XSLCombineDriverCommands.XSL</TD><TD>Templates for building the TAB delimited table</TD>
+			</TR><TR>
+				<TD>XSLCombineDriverCommands.BAT</TD><TD>Batch program to automatically build the datatable</TD>
+			</TR>
+		</TABLE>
+		</P><P>
+		With a successful SAFS Framework install, the Batch file XSLCombineDriverCommands.BAT will not need any modification.  If all expected XML files exist and contain properly formatted XML then all you have to do is run the XSLCombineDriverCommands.BAT batch program.  The results should appear in the .\SAFS\data  directory.
+		</P>
+	</LI>
+
+	<LI><A name="debug_xml_publishing" />
+		<H4>Debug XML Publishing</H4>
+		<P>
+		A common failure results when one or more XML files are improperly formatted, contain missing XML tags, XML tags out of sequence, or mixed-case start and end tags that don't match up.  XML is case-sensitive.
+		</P><P>
+		The developer may have to perform an iterative process until all XML failures are resolved:
+		</P>
+		<P>
+		<OL>
+			<LI>Fix the XML in the file(s)</LI>
+			<LI>Optionally check the XML via Internet Explorer for errors</LI>
+			<LI>Re-run the publishing batch program</LI>
+		</OL>
+		</P><P>
+		(Oh yeah, it pays to get your XML right early on :)
+		</P>
+	</LI>
+</UL>
+</P>
+
+</BODY>
+</HTML>

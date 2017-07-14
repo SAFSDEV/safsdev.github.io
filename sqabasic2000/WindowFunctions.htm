@@ -1,0 +1,959 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic WindowFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "WindowFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=WINDOW objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="MenuUtilities.htm">MenuUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="MenuUtilities.htm">MenuUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAUtil.htm">SQAUtil</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      CloseWindow             'Send a CloseWindow command to the window
+
+      SelectMenuID            'select a menuitem by its ID
+      SelectMenuItem          'select a text menuitem
+      SelectMenuItemContains  'select a menuitem via a partial text match
+
+      SetPosition             'set the size, position, and state of a window
+      Minimize                'minimizes the window
+      Maximize                'maximizes the window
+      Restore                 'restores the window
+
+      VerifyImage             'CompareImage OR RegionImage against a stored VP
+      VerifyOCRValue          'Retrieve and compare OCR text with an ImageVP
+
+      VerifyMainMenu          'verify the full menu structure against bench file
+      VerifyMenuID            'verify the state of a menuitem by its ID
+      VerifyMenuItem          'verify the state of a text menuitem
+      VerifyMenuItemContains  'verify the state of a menuitem found via partial text match
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifyimage"></a>
+   Sub VerifyImage()
+
+
+ DESCRIPTION:
+
+      Performs a WindowVP CompareImage OR a RegionImageVP on an object.
+      The benchmark VP must already exist and be an asset of the currently
+      running script.
+
+      A RegionImageVP can be accomplished by having the name of the VP as an item
+      under the component in the application map.  The item's value must be
+      the coordinate values required by the RegionImageVP (i.e. "65,100,200,250").
+
+      Example 1: Perform a WindowVP CompareImage
+
+          MainWindow SomeWindowObject VerifyImage StoredVP
+
+          (no StoredVP item found in the app map under SomeWindowObject)
+
+      The named VP (StoredVP) must not exist in the application map.  The
+      entire panel/object of SomeWindowObject will be captured and compared
+      against the StoredVP baseline which must already exist as an asset of the
+      currently running script.
+
+      Example 2: Perform a RegionImageVP on a particular area of the screen
+
+          MainWindow SomeWindowObject VerifyImage StoredVP
+
+          (StoredVP found as:
+
+               "65,100,200,250"   OR
+               "Coords=65,100,200,250"
+
+           in the SomeWindowObject section of the app map)
+
+      The named VP (StoredVP) is found to exist in the application map as a
+      subitem in the SomeWindowObject section of the map.  This causes
+      the routine to attempt a RegionImageVP using the map's value of the StoredVP
+      item as the coordinates for the region to capture.  StoredVP is ALSO the
+      name of the VP which must already exist as an asset of the currently
+      running script.
+
+
+      The routine expects that the menu's Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the pre-existing VP asset stored in the currently running script.
+              If the name also exists in the app map under the component then
+              a RegionImageVP will be attempted.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 20, 2000
+ History:
+
+      MAR 20, 2000    Original Release
+      APR 11, 2000    (Carl Nagle) Added RegionImageVP capability
+      JUL 17, 2000    (Carl Nagle) Made "Coords=" allowed in App Map stored String.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyocrvalue"></a>
+   Sub VerifyOCRValue()
+
+
+ DESCRIPTION:
+
+      Performs an UNLOGGED WindowVP CompareImage OR a RegionImageVP on an
+      object then attempts to retrieve and compare OCR text to the expected
+      value provided.
+      The benchmark VP must already exist and be an asset of the currently
+      running script.
+
+      A RegionImageVP can be accomplished by having the name of the VP as an item
+      under the component in the application map.  The item's value must be
+      the coordinate values required by the RegionImageVP
+      (i.e. "Coords=65,100,200,250").
+
+      EXAMPLE 1 : Perform a WindowVP CompareImage before OCR Test
+
+   Record: t, MainWindow, SomeWindowObject, VerifyOCRValue, StoredVP, 1, "Expected Text"
+
+          (no StoredVP item found in the app map under SomeWindowObject)
+
+      The named VP (StoredVP) must not exist in the application map if you
+      intend to compare the entire window.  The entire panel/object of
+      SomeWindowObject will be captured and compared against the StoredVP
+      baseline.  This VP must already exist as an asset of the
+      currently running script.
+
+
+      EXAMPLE 2 : Perform a RegionImageVP before the OCR test
+
+   Record: t, MainWindow, SomeWindowObject, VerifyOCRValue, StoredVP, DataField, "Expected Text"
+
+          StoredVP found in Application Map like below:
+
+          [SomeWindowObject]
+          SomeWindowObject="Type=Something...."
+          StoredVP="Coords=65,100,200,250"        --- invokes a RegionImageVP
+          ....
+
+      When the named VP (StoredVP) is found to exist in the application map as a
+      subitem in the SomeWindowObject section of the map then a RegionImageVP
+      will be invoked using the value of the StoredVP item as the coordinates
+      for the region to capture.
+
+      StoredVP is ALSO the name of the VP which must already exist as an asset
+      of the currently running script.
+
+
+      Once the unlogged VP has been completed, we attempt to retrieve the text
+      of a predefined OCR region mask that should exist in the VP.
+
+      We can use the OCRRegion value provided from the inputrecord to identify
+      the OCR mask number as needed by the SQAGetOcrRegionText function in Robot.
+      Example 1 above shows we are looking for OCR region #1.
+
+      The OCRRegion value in the inputrecord can also be a reference in the
+      Application Map in a section with the same name as the VP as shown below.
+
+          [SomeWindowObject]
+          SomeWindowObject="Type=Something...."
+          StoredVP="Coords=65,100,200,250"
+          ....
+
+          [StoredVP]
+          DataField=1
+          AnotherField=2
+          ....
+
+      Example 2 above shows that we have given region #1 a name of DataField.
+
+
+      Once retrieved, the OCR text (if any) is compared against the expected
+      results provided.
+
+      The routine expects that the menu's Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the pre-existing VP asset stored in the currently running script.
+              If the name also exists in the app map under the component then
+              a RegionImageVP will be invoked instead of a CompareImageVP.
+
+       6      Numeric OCR region mask to get the text from.  These values are defined
+              in the VP itself and can be viewed in Robot's ImageComparator/Editor.
+              A number can be used directly or a named reference can be used if
+              it is found to exist in the Application Map in a section with the
+              same name as the VP.
+
+       7      Text baseline to compare against the retrieved OCR text.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 20, 2000
+ History:
+
+      AUG 09, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifymainmenu"></a>
+   Sub VerifyMainMenu()
+
+
+ DESCRIPTION:
+
+      Retrieves the active windows menu system and outputs the full structure
+      with status to a file.  It then compares that file with the specified
+      benchmark file and sets pass/fail conditions for the test.
+      Uses the <a href="GenericMasterFunctions.htm#GenericVerifyMenuStructure">GenericMasterFunctions.GenericVerifyMenuStructure</a> routine.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that the menu's Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name.ext of benchmark file on repositiory's Datapool\Bench directory
+      [6]     Optional expected descriptive text at start of file (first line of bench).
+              (If bench has this descriptive text this field is REQUIRED to pass.)
+      [7]     optional name.ext to give current structure in repository's
+              Datapool\Test directory for compare with benchmark.
+              If no name is given then the bench name is used.
+      [8]     optional name.ext to store difference information in repository's Datapool\Dif.
+              If no name is given then the bench name is used.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 02, 1999
+ History:
+      AUG 02, 1999    Original Release
+      AUG 05, 1999    (Carl Nagle) Made Test and Dif filenames optional.
+      AUG 09, 1999    (Carl Nagle) Reduced timeout for FileCompare to occur.
+      AUG 11, 1999    (Carl Nagle) Changed VerifyMainMenu to show ALL mismatches.
+      AUG 07, 2000    (Carl Nagle) Converted to using GenericMasterFunctions.
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifymenuitem"></a>
+   Sub VerifyMenuItem()
+
+
+ DESCRIPTION:
+
+      Attempts to verify the state information of a particular text string
+      menuitem.  The menuitem should be specified in the form
+      "Menu->Menu->MenuItem   CTRL+V" with the full text (ampersands optional),
+      spaces(if any), and keyboard shortcut text (if any).
+      (The ampersands precede any character in the menuitem that is underlined.)
+      Uses the <a href="GenericMasterFunctions.htm#GenericVerifyMenuItem">GenericMasterFunctions.GenericVerifyMenuItem</a> routine.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Menu->MenuItem hierarchy string to identify which menuitem to test.
+              This menu hierarchy IS case-sensitive
+
+       6      Expected status string (or part thereof) to verify.
+              Ex: "Enabled Checked"         OR  "Disabled Grayed"    etc.
+              Each item separated by a space will be evaluated separately so
+              the order of the status items does not matter.
+              These status items ARE case-sensitive.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 03, 1999
+ History:
+
+      AUG 03, 1999    Original Release
+      APR 27, 2000    (Carl Nagle) Made ampersands optional.
+      AUG 07, 2000    (Carl Nagle) Converted to using GenericMasterFunctions.
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifymenuitemcontains"></a>
+   Sub VerifyMenuItemContains()
+
+
+ DESCRIPTION:
+
+      Attempts to verify the state information of a particular text string
+      menuitem.  The menuitem should be specified in the form
+      "Menu->Menu->MenuItem".  Ampersands are optional.
+      (The ampersands precede any character in the menuitem that is underlined.)
+      Uses the <a href="GenericMasterFunctions.htm#GenericVerifyMenuItem">GenericMasterFunctions.GenericVerifyMenuItem</a> routine.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Menu->MenuItem hierarchy string to identify which menuitem to test.
+              This menu hierarchy IS case-sensitive
+
+       6      Expected status string (or part thereof) to verify.
+              Ex: "Enabled Checked"         OR  "Disabled Grayed"    etc.
+              Each item separated by a space will be evaluated separately so
+              the order of the status items does not matter.
+              These status items ARE case-sensitive.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 30, 2002
+ History:
+
+      APR 30, 2002    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifymenuid"></a>
+   Sub VerifyMenuID()
+
+
+ DESCRIPTION:
+
+      Attempts to verify the state information of a particular menuitem
+      identified by MenuID.  This is generally used when the menuitem is a
+      bitmap or other item that does not have text.
+      This value can be retrieved from the the menu by index or by manual
+      lookup from a menu structure output from MenuUtilities.
+      Uses the <a href="GenericMasterFunctions.htm#GenericVerifyMenuID">GenericMasterFunctions.GenericVerifyMenuID</a> routine.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      MenuID to identify which menuitem to test.  This is generally used
+              when the menuitem is a bitmap or other item that does not have text.
+              This value can be retrieved from the the menu by index or by manual
+              lookup from a menu structure output from MenuUtilities.
+
+       6      Expected status string (or part thereof) to verify.
+              Ex: "Enabled Checked"         OR  "Disabled Grayed"    etc.
+              Each item separated by a space will be evaluated separately so
+              the order of the status items does not matter.
+              These status items ARE case-sensitive.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 03, 1999
+ History:
+
+      AUG 03, 1999    Original Release
+      AUG 07, 2000    (Carl Nagle) Converted to using GenericMasterFunctions.
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectmenuitem"></a>
+   Sub SelectMenuItem()
+
+
+ DESCRIPTION:
+
+      Attempts to select a particular text string menuitem.  The menuitem
+      should be specified in the form "Menu->Menu->MenuItem   CTRL+V"
+      with the full text, spaces(if any), and keyboard shortcut text (if
+      any).
+
+      Ampersands preceding underlined characters are optional.
+      The routine first verifies that the specified menuitem exists
+      and exits with error if it does not.
+      If it does exist then the selection proceeds using the MenuID retrieved
+      from the found menuitem.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Menu->MenuItem hierarchy string to identify which menuitem to select.
+
+              NOTE:SQA can only handle submenus up to 5 levels deep.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 1999
+ History:
+
+      AUG 04, 1999    Original Release
+      APR 27, 2000    (Carl Nagle) Made ampersands optional
+      JUN 01, 2000    (Carl Nagle) Switched to MenuIDSelect after existence is
+                               verified (problems with MenuSelect).
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectmenuitemcontains"></a>
+   Sub SelectMenuItemContains()
+
+
+ DESCRIPTION:
+
+      Attempts to select a particular text string menuitem.  The menuitem
+      should be specified in the form "Menu->Menu->MenuItem".
+
+      Ampersands preceding underlined characters are optional.
+      The routine first verifies that the specified menuitem exists
+      and exits with error if it does not.
+      If it does exist then the selection proceeds using the MenuID retrieved
+      from the found menuitem.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Menu->MenuItem hierarchy string to identify which menuitem to select.
+
+              NOTE:SQA can only handle submenus up to 5 levels deep.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 30, 2002
+ History:
+
+      APR 30, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectmenuid"></a>
+   Sub SelectMenuID()
+
+
+ DESCRIPTION:
+
+      Attempts to select a particular menuitem by menuID.  This is generally
+      used when the menuitem is a bitmap or other item that does not have
+      text.  This value can be retrieved from the the menu by index or by
+      manual lookup from a menu structure output from MenuUtilities.
+      The routine first verifies that the specified menuitem exists and exits
+      with error if it does not.  If it does exist then the selection proceeds.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      MenuID to identify which menuitem to select.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 05, 1999
+ History:
+
+      AUG 05, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="closewindowobject"></a>
+   Sub CloseWindowObject()
+
+
+ DESCRIPTION:
+
+      Sends a Close command to the active window.
+
+      This Window command has a problem in that it does not want to
+      use the same recognition methods used by the other Window commands (like
+      SetContext).  Particularly, it does not accept the Type=Window portion
+      of these recognition methods.  In addition, if the window is a child
+      window of a parent then it expects the ";ChildWindow" add-on in the
+      recognition method.  The child may also need the parent as part of its
+      full recognition string like:
+
+          ChildWindow=Type=Window;&lt;parent rec&gt;;\;Caption=&lt;caption&gt;;ChildWindow
+
+      To handle these child windows, we parse the typical recognition method for
+      our window and attempt to handle these issues.  Once SetContext has
+      successfully set our window, we then remove any "Type=Window" substring
+      if present and add the ";ChildWindow" substring if not present.
+
+      To take advantage of this, this routine must be called with the child
+      window as a component of the parent window like below:
+
+          t, ParentWindow, ChildWindow, CloseWindow
+
+      If the routine is called like either of the examples below then default
+      processing will occur.  This will merely SetContext on the provided
+      Window and use "CurrentWindow" as the parameter to the command.
+
+          t, ParentWindow, ParentWindow, CloseWindow
+          t, ChildWindow , ChildWindow , CloseWindow  (normally won't work)
+
+
+      The routine expects that the Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (none)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 21, 2000
+ History:
+
+      MAR 21, 2000    Original Release
+      JUL 27, 2000    (Carl Nagle) Eliminated "CurrentWindow" problem for most
+                               child windows.
+      JUN 19, 2001    (Carl Nagle) Renamed CloseWindow to CloseWindowObject due
+                               to conflict with WinAPI CloseWindow.
+      JUL 31, 2002    (WPAGOT) Fixes since CurrentWindow doesn't work for child windows
+
+</pre>
+<hr>
+<pre>
+
+<a name="restorewindow"></a>
+   Sub RestoreWindow()
+
+
+ DESCRIPTION:
+
+      Sends a RestorePos command to the active window.
+
+      This Window command has a problem in that it does not want to
+      use the same recognition methods used by the other Window commands (like
+      SetContext).  Particularly, it does not accept the Type=Window portion
+      of these recognition methods.  In addition, if the window is a child
+      window of a parent then it expects the ";ChildWindow" add-on in the
+      recognition method.  The child may also need the parent as part of its
+      full recognition string like:
+
+          ChildWindow=Type=Window;&lt;parent rec&gt;;\;Caption=&lt;caption&gt;;ChildWindow
+
+      To handle these child windows, we parse the typical recognition method for
+      our window and attempt to handle these issues.  Once SetContext has
+      successfully set our window, we then remove any "Type=Window" substring
+      if present and add the ";ChildWindow" substring if not present.
+
+      To take advantage of this, this routine must be called with the child
+      window as a component of the parent window like below:
+
+          t, ParentWindow, ChildWindow, Restore
+
+      If the routine is called like either of the examples below then default
+      processing will occur.  This will merely SetContext on the provided
+      Window and use "CurrentWindow" as the parameter to the command.
+
+          t, ParentWindow, ParentWindow, Restore
+          t, ChildWindow , ChildWindow , Restore      (normally won't work)
+
+
+      The routine expects that the Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (none)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2000
+ History:
+
+      APR 13, 2000    Original Release
+      JUL 27, 2000    (Carl Nagle) Eliminated "CurrentWindow" problem for most
+                               child windows.
+      JUL 31, 2002    (WPAGOT) Fixes since CurrentWindow doesn't work for child windows
+
+</pre>
+<hr>
+<pre>
+
+<a name="maximizewindow"></a>
+   Sub MaximizeWindow()
+
+
+ DESCRIPTION:
+
+      Sends a WMaximize command to the active window.
+
+      This Window command has a problem in that it does not want to
+      use the same recognition methods used by the other Window commands (like
+      SetContext).  Particularly, it does not accept the Type=Window portion
+      of these recognition methods.  In addition, if the window is a child
+      window of a parent then it expects the ";ChildWindow" add-on in the
+      recognition method.  The child may also need the parent as part of its
+      full recognition string like:
+
+          ChildWindow=Type=Window;&lt;parent rec&gt;;\;Caption=&lt;caption&gt;;ChildWindow
+
+      To handle these child windows, we parse the typical recognition method for
+      our window and attempt to handle these issues.  Once SetContext has
+      successfully set our window, we then remove any "Type=Window" substring
+      if present and add the ";ChildWindow" substring if not present.
+
+      To take advantage of this, this routine must be called with the child
+      window as a component of the parent window like below:
+
+          t, ParentWindow, ChildWindow, Maximize
+
+      If the routine is called like either of the examples below then default
+      processing will occur.  This will merely SetContext on the provided
+      Window and use "CurrentWindow" as the parameter to the command.
+
+          t, ParentWindow, ParentWindow, Maximize
+          t, ChildWindow , ChildWindow , Maximize   (normally won't work)
+
+
+      The routine expects that the Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (none)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2000
+ History:
+
+      APR 13, 2000    Original Release
+      JUL 27, 2000    (Carl Nagle) Eliminated "CurrentWindow" problem for most
+                               child windows.
+      JUL 31, 2002    (WPAGOT) Fixes since CurrentWindow doesn't work for child windows
+
+</pre>
+<hr>
+<pre>
+
+<a name="minimizewindow"></a>
+   Sub MinimizeWindow()
+
+
+ DESCRIPTION:
+
+      Sends a WMinimize command to the active window.
+
+      This Window command has a problem in that it does not want to
+      use the same recognition methods used by the other Window commands (like
+      SetContext).  Particularly, it does not accept the Type=Window portion
+      of these recognition methods.  In addition, if the window is a child
+      window of a parent then it expects the ";ChildWindow" add-on in the
+      recognition method.  The child may also need the parent as part of its
+      full recognition string like:
+
+          ChildWindow=Type=Window;&lt;parent rec&gt;;\;Caption=&lt;caption&gt;;ChildWindow
+
+      To handle these child windows, we parse the typical recognition method for
+      our window and attempt to handle these issues.  Once SetContext has
+      successfully set our window, we then remove any "Type=Window" substring
+      if present and add the ";ChildWindow" substring if not present.
+
+      To take advantage of this, this routine must be called with the child
+      window as a component of the parent window like below:
+
+          t, ParentWindow, ChildWindow, Minimize
+
+      If the routine is called like either of the examples below then default
+      processing will occur.  This will merely SetContext on the provided
+      Window and use "CurrentWindow" as the parameter to the command.
+
+          t, ParentWindow, ParentWindow, Minimize
+          t, ChildWindow , ChildWindow , Minimize   (normally won't work)
+
+
+      The routine expects that the Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (none)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2000
+ History:
+
+      APR 13, 2000    Original Release
+      JUL 27, 2000    (Carl Nagle) Eliminated "CurrentWindow" problem for most
+                               child windows.
+      JUL 31, 2002    (WPAGOT) Fixes since CurrentWindow doesn't work for child windows
+
+</pre>
+<hr>
+<pre>
+
+<a name="setwindowposition"></a>
+   Sub SetWindowPosition()
+
+
+ DESCRIPTION:
+
+      Sends a SetPosition command to the window to set the position, size,
+      and status of the window.  The position, size, and status information
+      is stored in the app map as a subitem in the section for the window.
+      The information should be in the format of:
+
+          "0,0,640,480;Status=NORMAL"    OR
+          "Coords=0,0,640,480;Status=NORMAL"
+
+      That example positions the window at 0,0; sizes it to 640 x 480, and
+      sets it's status to NORMAL.  Valid values for STATUS are:
+
+          NORMAL, MINIMIZED, and MAXIMIZED
+
+
+      The Window SetPosition command has a problem in that it does not want to
+      use the same recognition methods used by the other Window commands (like
+      SetContext).  Particularly, it does not accept the Type=Window portion
+      of these recognition methods.  In addition, if the window is a child
+      window of a parent then it expects the ";ChildWindow" add-on in the
+      recognition method.  The child may also need the parent as part of its
+      full recognition string like:
+
+          ChildWindow=Type=Window;&lt;parent rec&gt;;\;Caption=&lt;caption&gt;;ChildWindow
+
+      To handle these child windows, we parse the typical recognition method for
+      our window and attempt to handle these issues.  Once SetContext has
+      successfully set our window, we then remove any "Type=Window" substring
+      if present and add the ";ChildWindow" substring if not present.
+
+      To take advantage of this, this routine must be called with the child
+      window as a component of the parent window like below:
+
+          t, ParentWindow, ChildWindow, SetPosition, ChildPositionReference
+
+      If the routine is called like either of the examples below then default
+      processing will occur.  This will merely SetContext on the provided
+      Window and use "CurrentWindow" as the parameter to SetPosition.
+
+          t, ParentWindow, ParentWindow, SetPosition, ParentPosition
+          t, ChildWindow , ChildWindow , SetPosition, ChildPosition   (normally won't work)
+
+
+      This routine expects that Global StepDriverTestInfo contains all the
+      information it needs to perform its function and that the current app
+      map exists and contains the required information.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The name of the reference in the window section containing the
+              position, size, and status information string.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2000
+ History:
+
+      APR 13, 2000    Original Release
+      JUL 18, 2000    (Carl Nagle) Made "Coords=" allowed in app map string.
+      JUL 27, 2000    (Carl Nagle) Eliminated "CurrentWindow" problem for most
+                               child windows.
+      JUL 31, 2002    (WPAGOT) Fixes since CurrentWindow doesn't work for child windows
+      APR 19, 2005    (Carl Nagle) "Coords=" not assumed.
+      MAY 18, 2005    (Carl Nagle) Set NoScriptFailure return on success.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a WINDOW.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      MAR 20, 2000    (Carl Nagle) Added VerifyImage functionality.
+      MAR 21, 2000    (Carl Nagle) Added InputKeystrokes functionality.
+      APR 13, 2000    (Carl Nagle) Added SetPosition, Minimize, Maximize, & Restore
+      APR 13, 2000    (Carl Nagle) Added VerifyOCRValue
+      APR 30, 2002    (Carl Nagle) Added VerifyMenuItemContains & SelectMenuItemContains
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      APR 19, 2005    (Carl Nagle) Combined Click ops into WindowClick.
+      DEC 07, 2005    (Carl Nagle) Removed Clicks, InputKeys, InputChars, and
+                               CompareStoredProperties in favor of Generic Object implementations.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

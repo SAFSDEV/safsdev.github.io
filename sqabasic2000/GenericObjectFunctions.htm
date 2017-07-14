@@ -1,0 +1,669 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic GenericObjectFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "GenericObjectFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=GENERIC objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      VerifyImage             'CompareImage OR RegionImage against a stored VP
+      VerifyProperty          'verify a single property
+      VerifyArrayProperty     'verify an array property
+
+      Click                   'Click an x,y coordinate within the object
+                              ;(mostly for otherwise unknown components)
+
+      DoubleClick             'Double Click an x,y coordinate within the object
+                              ;(mostly for otherwise unknown components)
+
+      RightClick              'Right Click an x,y coordinate within the object
+                              ;(mostly for otherwise unknown components)
+
+      CtrlClick               'Ctrl Click an x,y coordinate within the object
+                              ;(mostly for otherwise unknown components)
+
+      CtrlRightClick          'Ctrl Right Click an x,y coordinate within the object
+                              ;(mostly for otherwise unknown components)
+
+      ShiftClick              'Shift Click an x,y coordinate within the object
+                              ;(mostly for otherwise unknown components)
+
+      LeftDrag                'Left drag starting from an x,y coordinate and ending
+                              'at another. For drawing field rectangles or drag'n'drop
+
+      RightDrag               'Right drag starting from an x,y coordinate and ending
+                              'at another. For drawing field rectangles or drag'n'drop
+
+      CompareStoredProperties 'perform CompareProperties against a stored VP
+      CompareStoredData       'perform CompareData against a stored VP
+
+      JavaMenuSelect          'Select a JAVA Menu item
+      HScrollTo               'Scroll horizontally to an absolute position
+      VScrollTo               'Scroll vertically to an absolute position
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifyproperty"></a>
+   Sub VerifyProperty ()
+
+ DESCRIPTION:
+
+      Routine to verify the value of a property as a String.  Uses
+      <a href="GenericMasterFunctions.htm#GenericVerifyProperty">GenericMasterFunctions:GenericVerifyProperty</a>
+      to verify the property.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive name of the object property to verify
+       6      the expected string value to get from the property
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 31, 2000
+ History:
+
+      MAR 31, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyarrayproperty"></a>
+   Sub VerifyArrayProperty ()
+
+ DESCRIPTION:
+
+      Routine to verify the array values of a property as a String.  Uses
+      <a href="GenericMasterFunctions.htm#GenericVerifyArrayProperty">GenericMasterFunctions:GenericVerifyArrayProperty</a>
+      to verify the array property.
+
+ DATA TABLE PARAMETERS:
+
+      TBD
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 31, 2000
+ History:
+
+      MAR 31, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyimage"></a>
+   Sub VerifyImage()
+
+
+ DESCRIPTION:
+
+      Performs a GenericObjectVP CompareImage OR a RegionImageVP on an object.
+      The benchmark VP must already exist and be an asset of the currently
+      running script.
+
+      A RegionImageVP can be accomplished by having the name of the VP as an item
+      under the component in the application map.  The item's value must be
+      the coordinate values required by the RegionImageVP (i.e. "65,100,200,250").
+
+      Example 1: Perform a GenericObjectVP CompareImage
+
+          MainWindow SomeGenericObject VerifyImage StoredVP
+
+          (no StoredVP item found in the app map under SomeGenericObject)
+
+      The named VP (StoredVP) must not exist in the application map.  The
+      entire panel/object of SomeGenericObject will be captured and compared
+      against the StoredVP baseline which must already exist as an asset of the
+      currently running script.
+
+      Example 2: Perform a RegionImageVP on a particular area of the screen
+
+          MainWindow SomeGenericObject VerifyImage StoredVP
+
+          (StoredVP found as:
+
+               "65,100,200,250"   OR
+               "Coords=65,100,200,250"
+
+           in the SomeGenericObject section of the app map)
+
+      The named VP (StoredVP) is found to exist in the application map as a
+      subitem in the SomeGenericObject section of the map.  This causes
+      the routine to attempt a RegionImageVP using the map's value of the StoredVP
+      item as the coordinates for the region to capture.  StoredVP is ALSO the
+      name of the VP which must already exist as an asset of the currently
+      running script.
+
+
+      The routine expects that the object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the pre-existing VP asset stored in the currently running script.
+              If the name also exists in the app map under the component then
+              a RegionImageVP will be attempted.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 31, 2000
+ History:
+
+      MAR 31, 2000    Original Release
+      APR 11, 2000    (Carl Nagle) Added RegionImageVP capability to VerifyImage
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      JUL 17, 2000    (Carl Nagle) Made "Coords=" allowed in App Map stored String.
+
+</pre>
+<hr>
+<pre>
+
+<a name="comparestoredproperties"></a>
+   Sub CompareStoredProperties(Optional action)
+
+
+ DESCRIPTION:
+
+      Performs a GenericObjectVP CompareProperties on an object.
+      The benchmark VP must already exist and be an asset of the currently
+      running script.
+
+      Example 1: Perform a GenericObjectVP on a given window.  To perform
+      a basic CompareProperties the name "MainSetupVP1" will not exist in the app map:
+
+      t, MainWindow, SomeGenericObject, CompareStoredProperties, MainSetupVP1
+
+
+      Example 2: Perform a HTMLImage CompareProperties providing addition
+      parameter information (such as ExpectedResult=FAIL).  To do this the
+      HTMLImage object must have its own section in the app map and an item
+      with the same name as the StoredVP.  The value of that item will be
+      appended to the standard VP argument with a semicolon.
+
+      Part of App Map:
+
+          [BrowserWindow]
+          BrowserWindow=WindowTag=WEBBrowser
+          AnHTMLImage=&lt;snipped for brevity&gt;;\;Type=HTMLImage;Index=1
+          ...
+          [AnHTMLImage]
+          StoredVP=ExpectedResult=FAIL;Wait=3,30
+
+
+      The Step File call:
+
+          BrowserWindow AnHTMLImage CompareStoredProperties StoredVP
+
+      This will produce a VP with all the parameters appended
+      like this: "VP=StoredVP;ExpectedResult=FAIL;Wait=3,30".
+      NOTE:When stored parameters are found in the app map then the default Wait=
+      parameter used in the standard compare is no longer provided.  If you still
+      need a Wait= parameter, then it must be included in the stored parameters.
+
+
+      The routine expects that the Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      action   CompareProperties or CompareData SQABasic constants
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the pre-existing VP asset stored in the currently running script.
+
+      [6]     any additional parameters to append to any stored parameters.  This allows
+              us to use literal text instead of stored App Map parameters.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 21, 2000
+ History:
+
+      JUL 21, 2000    Original Release
+      OCT 14, 2005    (Carl Nagle) Added support for additional parameters and
+                               combined CompareStoredData
+      OCT 20, 2005    (Carl Nagle) Added support for additional control types.
+
+</pre>
+<hr>
+<pre>
+
+<a name="comparestoreddata"></a>
+   Sub CompareStoredData()
+
+
+ DESCRIPTION:
+
+      Performs a Robot GenericObjectVP CompareData on an object.
+
+      THE ROBOT BENCHMARK VP MUST ALREADY EXIST AND BE AN ASSET OF THE
+      CURRENTLY RUNNING ROBOT SCRIPT.
+
+      Modified VP parameter information can be added to the standard
+      VP=VPName by including the VPName reference in the application map
+      in a section defined for the object.  If this is done, the value
+      retrieved from the application map will be appended to VP=VPName.
+      The required semicolon separator for this append will be provided
+      if needed.
+
+      Example 1: Perform a standard HTMLImage CompareData.  To perform
+      a basic CompareData the name "StoredVP" will not exist in the app map:
+
+      The Step File call:
+
+          BrowserWindow AnHTMLImage CompareStoredData StoredVP
+
+      This will produce a CompareData VP with "VP=StoredVP;Wait=2,10".
+
+      The StoredVP baseline MUST already exist as an asset of the
+      currently running script.
+
+
+      Example 2: Perform a HTMLImage CompareData providing addition
+      parameter information (such as ExpectedResult=FAIL).  To do this the
+      HTMLImage object must have its own section in the app map and an item
+      with the same name as the StoredVP.  The value of that item will be
+      appended to the standard VP argument with a semicolon.
+
+      Part of App Map:
+
+          [BrowserWindow]
+          BrowserWindow=WindowTag=WEBBrowser
+          AnHTMLImage=&lt;snipped for brevity&gt;;\;Type=HTMLImage;Index=1
+          ...
+          [AnHTMLImage]
+          StoredVP=ExpectedResult=FAIL;Wait=3,30
+
+
+      The Step File call:
+
+          BrowserWindow AnHTMLImage CompareStoredData StoredVP
+
+      This will produce a CompareData VP with all the parameters appended
+      like this: "VP=StoredVP;ExpectedResult=FAIL;Wait=3,30".
+      NOTE:When stored parameters are found in the app map then the default Wait=
+      parameter used in the standard compare is no longer provided.  If you still
+      need a Wait= parameter, then it must be included in the stored parameters.
+
+      The StoredVP baseline MUST already exist as an asset of the
+      currently running script.
+
+
+      The routine expects that the menu's Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the pre-existing VP asset stored in the currently running script.
+              If the name also exists in the app map under the component then the
+              additional stored parameters are appended to the VP call.
+
+      [6]     any additional parameters to append to any stored parameters.  This allows
+              us to use literal text instead of stored App Map parameters.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 14, 2005
+ History:
+
+      OCT 14, 2005    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericclick"></a>
+   Sub GenericClick( Optional action)
+
+
+ DESCRIPTION:
+
+      For components that are unrecognized, like ActiveToolbar menuitems,
+      we can click on these or any part of an object based on a stored x,y
+      coordinate or other component-specific criteria (like Table Col Header, etc.).
+      The object containing the coordinate is first given
+      context and then a click is generated where specified per the syntax allowed
+      by Robot for the component.
+
+      Thus, an item or object can be referenced by name even though it is only recognized
+      via coordinates.  If no such location is specified, Robot will perform
+      the click on the center of the component.
+
+      The "where" lookup is done with the component name of the record AND
+      Field #5.  If no matching App Map reference is found the text of Field#5 will
+      be used "as is".  That is, we will assume it is the "where" information itself.
+      "Coords=" will be prefixed to any "where" info beginning with numeric data (x,y coords).
+
+      Typical Data Table records:
+
+      (1) t MainWindow MainWindow  Click AnObject
+      (2) t MainWindow FolderTree  Click Node1
+      (3) t MainWindow FolderTree  Click                (defaults to center)
+      (4) t MainWindow FolderTree  Click 10,15          (use "as is")
+      (5) t MainWindow FolderTree  Click Coords=10,15   (use "as is")
+
+      #1 above will contain an AnObject="3,10" entry in the MainWindow section
+         of the Application Map to click at x=3, y=10 in the MainWindow.
+
+      #2 above will contain a FolderTree entry in the MainWindow section with
+         normal recognition information for it.  FolderTree will also have it's
+         own section in the Application Map in which there will be an entry like
+         Node1="15,30".  This will tell Robot to locate the FolderTree Generic
+         object and click at the coordinates specified by the reference.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      (Optional) name of the AppMap subkey to lookup and use for the click.
+              If provided, we expect the AppMap to contain the item in the format "x,y".
+
+              [FolderTree]
+              Node1="33,120"      OR
+              Node1="Coords=33,120"
+              Node1="Icon" (or whatever is appropriate)
+
+              Numeric-prefixed results (ex: 15,30) from the lookup are appended to the
+              "Coords=" string used by the Click command in Robot (if necessary).
+              So any valid content used with the Click command can be part of
+              this AppMap entry.
+
+
+              Both Fields #3 and #5 are used to locate the item in the App Map.
+              This routine does not specify an App Map so only the current Map
+              is used and it is expected to be valid.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 31, 2000
+ History:
+
+      MAR 31, 2000    Original Release
+      JUL 18, 2000    (Carl Nagle) Made "Coords=" allowed in App Map string.
+      OCT 29, 2004    (Carl Nagle) Use GenericClick for MOST click type operations
+      APR 18, 2005    (Carl Nagle) Modified CLICK param so that "Coords=" is not assumed.
+      OCT 14, 2005    (Carl Nagle) Modified to handle (possible) HTMLImage click special cases.
+      OCT 19, 2005    (Carl Nagle) Modified to support GraphicControl Pushbutton CLICK.
+      OCT 20, 2005    (Carl Nagle) Modified to support additional control types.
+      AUG 20, 2006    (PESAVI) Added CtrlRightClick action.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericdrag"></a>
+   Sub GenericDrag(Optional action)
+
+
+ DESCRIPTION:
+
+      For components that are unrecognized, we can make a mouse drag in these
+      to draw fields(rectangles) or do drag and drop, based on stored x,y start
+      and end coordinates (or other Robot-allowed syntax).
+
+      The object containing the starting "from" info is first
+      given context and then a left/right mouse drag is performed with the stored "from" info.
+
+      The "from" lookup is done with the component name(Field #3) of the record AND
+      Field #5.
+
+      Typical Data Table records:
+
+      (1) t MainWindow GenericItem LeftDrag DragName
+
+      #1 above will contain a GenericItem entry in the MainWindow section with
+         normal recognition information for it .  GenericItem will also have it's
+         own section in the Application Map in which there will be an entry like:
+
+              DragName="15,30,60,90"    OR
+              DragName="Coords=15,30,60,90"
+
+         This will tell Robot to locate the GenericItem Window object and left/right drag
+         from coordinates 15,30 to 60,90.
+
+ PARAMETERS:
+
+      action  Robot Constant Left_Drag or Right_Drag.  Default is Left_Drag.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the AppMap subkey to lookup and use for the left drag.
+              We expect the AppMap to contain the item in the format "x,y,x,y":
+
+              [GenericItem]
+              DragName="3,10,12,20"     OR
+              DragName="Coords=3,10,12,20"
+
+              The results from the lookup are appended to the "Coords=" string
+              used by the GenericObject command in Robot (if necessary).
+              So any valid content used with the command can be
+              part of this AppMap entry.
+
+
+              Both Fields #3 and #5 are used to locate the item in the App Map.
+              This routine does not specify an App Map so only the current Map
+              is used and it is expected to be valid.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Lars Gustafsson
+ Orig   Date: JAN 16, 2001
+ History:
+
+      JAN 16, 2001    Original Release
+      OCT 29, 2004    (Carl Nagle) Combined Left_Drag and Right_Drag code.
+      APR 18, 2005    (Carl Nagle) Modified param so that "Coords=" is not assumed.
+
+</pre>
+<hr>
+<pre>
+
+<a name="javamenumakeselection"></a>
+   Sub JavaMenuMakeSelection()
+
+
+ DESCRIPTION:
+
+      This function implements the JavaMenu Click command for java menus
+
+      The path lookup is done with the component name of the record AND
+      Field #5.
+
+      Typical Data Table records:
+
+      (1) t MainWindow MainMenu JavaMenuSelect FileOpen
+
+      #1 above will contain a FileOpen="Path=File->Open" entry in the MainMenu section
+         of the Application Map to select the "Open" entry in the "File" menu.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the AppMap subkey to lookup and use for the selection.
+              We expect the AppMap to contain the item in the format:
+
+              [MainMenu]
+              FileOpen="Path=File->Open"
+
+              Both Fields #3 and #5 are used to locate the item in the App Map.
+              This routine does not specify an App Map so only the current Map
+              is used and it is expected to be valid.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Bernd Weber
+ Orig   Date: OCT 27, 2001
+ History:
+
+      OCT 27, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollto"></a>
+   Sub ScrollTo (ScrollDir As Integer)
+
+
+ DESCRIPTION:
+
+      Tries to perform a HScrollTo or VScrollTo on an object.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      ScrollDir   Scroll direction.
+                  0 for horizontal (HScrollTo action)
+                  1 for vertical (VScrollTo action)
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Integer value that specifies the absolute position to scroll to,
+              as would be used in "Position=%" parameter for the HScrollTo and
+              VScrollTo actions of the SQABasic GenericObject command.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: DEC 08, 2003
+ History:
+
+      DEC 08, 2003    Original Release
+      DEC 09, 2003    (YWANG) Renamed and moved from ScrollBarFunctions.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a GENERIC OBJECT.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 31, 2000
+ History:
+
+      MAR 31, 2000    Original Release
+      JAN 16, 2001    (LARSGU) Added LeftDrag action (based on previously
+                               defined actions).
+      JAN 17, 2001    (Carl Nagle) Added RightDrag action
+      OCT 27, 2001    (BWEBER) Added JavaMenuSelect Commands
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      DEC 09, 2003    (YWANG)  Moved HScrollTo and VScrollTo from ScrollBarFunctions.
+      OCT 29, 2004    (Carl Nagle) Use GenericClick for MOST click type operations
+      OCT 14, 2005    (Carl Nagle) Added CompareStoredData
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

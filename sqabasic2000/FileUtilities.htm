@@ -1,0 +1,709 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic FileUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "FileUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Utilities for working with Files and Directories in SQA Robot.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "FileUtilities_X.sbh"
+<li>'$INCLUDE: "FileUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#getfileattributes">GetFileAttributes</a>       BasicLib FileUtilities                 
+Function <a href="#getfilemode">GetFileMode</a>             BasicLib FileUtilities                 
+Function <a href="#getshortfilename">GetShortFilename</a>        BasicLib FileUtilities                 
+Function <a href="#getdosfilename">GetDOSFileName</a>          BasicLib FileUtilities                 
+Function <a href="#removefileextension">RemoveFileExtension</a>     BasicLib FileUtilities                 
+Function <a href="#findsqafile">FindSQAFile</a>             BasicLib FileUtilities                 
+Function <a href="#finddderuntimefile">FindDDERuntimeFile</a>      BasicLib FileUtilities                 
+Function <a href="#waituntilfilegone">WaitUntilFileGone</a>       BasicLib FileUtilities                 
+Function <a href="#initfileinfo">InitFileInfo</a>            BasicLib FileUtilities                 
+Function <a href="#getfileinfo">GetFileInfo</a>             BasicLib FileUtilities                 
+Function <a href="#comparefileinfos">CompareFileInfos</a>        BasicLib FileUtilities                 
+Function <a href="#getsubfolders">GetSubfolders</a>           BasicLib FileUtilities                 
+Function <a href="#getfiles">GetFiles</a>                BasicLib FileUtilities                 
+Function <a href="#buildfullpath">BuildFullPath</a>           BasicLib FileUtilities                 
+Function <a href="#fucopyvpfile">FUCopyVPFile</a>            BasicLib FileUtilities                 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+'                           Valid compare modes OR'd for FileInfo compares
+Const   FILENAME_COMPARE    = 1
+Const   LENGTH_COMPARE      = 2
+Const   VERSION_COMPARE     = 4
+Const   ATTRIBUTES_COMPARE  = 8
+Const   PATH_COMPARE        = 16
+Const   BINARY_COMPARE      = 32
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+Type FileInfo
+    
+    filename    As String       'the short filename part only. ""=no file
+    length      As Integer      'length = 0 may indicate a directory
+    version     As String       'a period (.) should indicate a directory
+    attributes  As Integer      '-1=no file.  AND 16 indicates directory
+    path        As String       'the full blown path and name. ""=no file
+        
+End Type
+
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="getfileattributes"></a>
+  Function GetFileAttributes (path As String) As Integer
+
+ DESCRIPTION:
+
+      Gets the file attributes on the associated file but traps any errors
+      if there is a problem with the provided path.
+
+ PARAMETERS:
+
+      path    the full path for the file to get attributes on.
+
+ RETURNS:
+
+       File Attributes as defined by SQA's GetAttr function.
+      -1 on failure.  Usually means an invalid path (File Not Found).
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfilemode"></a>
+  Function GetFileMode(fileref As Integer) As Integer
+
+ DESCRIPTION:
+
+      Returns the SQABasic FileAttr of a given fileref while trapping errors.
+
+ PARAMETERS:
+
+      fileref     the file reference number used in the files Open call.
+
+ RETURNS:
+
+      0   File not open in any mode (may not even exist)
+      1   open for input.
+      2   open for output.
+      8   open for append.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getshortfilename"></a>
+  Function GetShortFilename(path As String) As String
+
+ DESCRIPTION:
+
+      Given a full path string, returns only the filename without the path.
+      Returns the filename or an empty string "" if one cannot be determined.
+      Returns an empty string if the last (\) IS the last chr in path.  Thus, to
+      get the last name of a directory structure do not include an ending (\).
+
+      Example1: path=c:\benchfiles\sasroot
+                The routine will return just "sasroot"
+
+      Example2: path=c:\benchfiles\sasroot\
+                The routine will return ""
+
+      Example3: path=c:\benchfiles\sasroot\sas.exe
+                The routine will return just "sas.exe"
+
+      Example4: path=sas.exe
+                The routine will return just "sas.exe"
+
+ PARAMETERS:
+
+      path    the full path to the file or directory name
+
+ RETURNS:
+
+      String  representing the filename only part of the path.  This can
+              be a filename.ext or just a directory name.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+      FEB 03, 2000    (Carl Nagle) Returns a valid string if filename is already short.
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdosfilename"></a>
+  Function GetDOSFileName(path As String) As String
+
+ DESCRIPTION:
+
+      Given a full path string that contains a long filename (LFN), returns
+      the DOS 8.3 short filename (SFN).
+      Returns the filename or an empty string "" if one cannot be determined.
+      Returns an empty string if the last (\) IS the last chr in path.  Thus, to
+      get the last name of a directory structure do not include an ending (\).
+
+      Example1: path=c:\bench files\sasroot
+                The routine will return just "c:\benchf~1\sasroot"
+
+      Example2: path=c:\benchfiles\sasroot\
+                The routine will return ""
+
+      Example3: path=c:\benchfiles\sasroot\sas.exe
+                The routine will return just "c:\benchf~1\sasroot\sas.exe"
+
+      Example4: path=sas.exe
+                The routine will return just "sas.exe"
+
+ PARAMETERS:
+
+      path    the full path to the file or directory name
+
+ RETURNS:
+
+      String  representing the DOS 8.3 filename.  This can
+              be a filename.ext or just a directory name.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Patrick J. Cuff jr.
+ Orig   Date: JUN 28, 2005
+ History:
+
+      JUN 28, 2005    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="removefileextension"></a>
+  Function RemoveFileExtension(path As String) As String
+
+ DESCRIPTION:
+
+      Remove any file extension info from the path string provided.
+
+      Example1: path=c:\benchfiles.dir\
+                The routine will return "c:\benchfiles.dir\"
+
+      Example2: path=c:\benchfiles.dir\sasroot
+                The routine will return "c:\benchfiles.dir\sasroot"
+
+      Example3: path=c:\benchfiles\sasroot.dir\sas.exe
+                The routine will return "c:\benchfiles\sasroot.dir\sas"
+
+      Example4: path=sas.xml
+                The routine will return "sas"
+
+
+ PARAMETERS:
+
+      path    the string to parse, usually a filename
+
+ RETURNS:
+
+      String  path string with any .ext info removed.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 15, 2003
+ History:
+
+      AUG 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="findsqafile"></a>
+  Function FindSQAFile(relativepath As String) As String
+
+ DESCRIPTION:
+
+      Attempts to locate a relative file within SQA Repository or
+      Project locations Relative to:
+
+          GetDDEDatapoolDirectory()\
+          GetDDEProjectDirectory()\
+          Scripts\
+          VPS\
+          Repository\
+          GetDDEBenchDirectory()\
+
+      If the file is not found relative to these locations then we attempt
+      to find it simply as its own full path.
+
+      Example: file called "TestData.dat" in the current project's VPs directory
+      could be specified to this routine merely as "TestData.dat".  The routine
+      will search first for:
+
+          GetDDEDatapoolDirectory()\TestData.dat (not found)
+          GetDDEProjectDirectory()\TestData.dat  (not found)
+          SQAGetDir(SQA_DIR_VPS)\TestData.dat    (found)
+
+ PARAMETERS:
+
+      relativepath    The filename to look for.  This may be a partial path
+                      filename that we then try to locate relative to the
+                      SQA directories in use by Robot.
+
+ RETURNS:
+
+      The full complete path to the file if successful.
+      "" if not successful in locating the file.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 24, 1999
+ History:
+
+      AUG 24, 1999    Original Release
+      JUL 11, 2000    (Carl Nagle) Added VP directory to search.
+      JUL 20, 2000    (Carl Nagle) Fixed problem with matches to current directory.
+      JAN 02, 2001    (Carl Nagle) Modified and enhanced for V2001 and V2001 compatibility.
+      FEB 26, 2001    (Carl Nagle) Added Datapool\Bench to the search.
+      AUG 03, 2001    (Carl Nagle) Converted to Dir$ vs FileTC
+      AUG 07, 2001    (Carl Nagle) Added use of PathStore cache
+      AUG 12, 2003    (Carl Nagle) Use DDUtilities Get Directory routines.
+      SEP 26, 2003    (Carl Nagle) Removed relative path filename caching since dynamic
+                               paths are now allowed.
+      APR 26, 2005    (Carl Nagle) Circumvent infinite loop that has suddenly appeared..
+
+</pre>
+<hr>
+<pre>
+
+<a name="finddderuntimefile"></a>
+  Function FindDDERuntimeFile(relativepath As String) As String
+
+ DESCRIPTION:
+
+      Attempts to locate the specified file within any possible DDE runtime
+      location.  These locations are where DDE executables might be located,
+      which is different from where application data might be located.
+
+      Checks locations:
+
+          SQABasic Source Dir\relativepath
+          DDE_RUNTIME Dir\relativepath
+          RATL_RTHOME\sqabas32\relativepath
+          RTHOME\sqabas32\relativepath
+          relativepath    (the path provided)
+
+
+ PARAMETERS:
+
+      relativepath    The filename to look for.  This may be a partial path
+                      filename that we then try to locate relative to the
+                      runtime directories in use by the DDE.
+
+ RETURNS:
+
+      The full complete path to the file if successful.
+      "" if not successful in locating the file.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 07, 2001
+ History:
+
+      FEB 07, 2001    Original Release
+      AUG 03, 2001    (Carl Nagle) Added RATL_RTHOME for V2001a
+
+</pre>
+<hr>
+<pre>
+
+<a name="waituntilfilegone"></a>
+  Function WaitUntilFileGone (file As String, timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Suspends SQARobot until a specified file no longer exists or a max
+      timeout has been reached.  The check for the file existence is done
+      about once a second.
+
+ PARAMETERS:
+
+      file        full path and filename of file to "watch".
+
+      timeout     A maximum timeout period to wait before exiting with
+                  error.  If the provided timeout is <= 0 then the routine
+                  will wait indefinitely (which can deadlock the machine).
+                  Timeout value is in seconds.
+
+ RETURNS:
+
+       0 on Failure. Either the file did not go away (if it existed at all)
+         or the timeout was reached.
+
+      -1 Success.  The file went away (or did not exist) within the timeout
+         period.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 06, 1999
+ History:
+
+      JUL 06, 1999    Original Release
+      OCT 08, 1999    (Carl Nagle) Corrected some doc issues.
+
+</pre>
+<hr>
+<pre>
+
+<a name="initfileinfo"></a>
+  Function InitFileInfo(aInfo As FileInfo) As Integer
+
+ DESCRIPTION:
+
+      (Re)Sets all FileInfo values to default.
+        .path       = ""
+        .length     = 0
+        .version    = "."
+        .attributes = -1
+        .filename   = ""
+
+ PARAMETERS:
+
+      aInfo   reference to the FileInfo to clear.
+
+ RETURNS:
+
+       0 on pass
+      -1 on failure.  Cannot happen at this time.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfileinfo"></a>
+  Function GetFileInfo (source As String, target As FileInfo) As Integer
+
+ DESCRIPTION:
+
+      Fills the provided FileInfo with the details of the provided source.
+      The provided target FileInfo is first initialized with default values.
+      target.path will contain the provided source string, and
+      target.filename will contain the GetShortFilename version of the source
+      string even if the provided source string is not a valid path or
+      filename.
+      The return value which is the value of target.attributes determines
+      the validity of the resulting info.
+
+ PARAMETERS:
+
+      source      full pathname of file or directory to get FileInfo on.
+                  Traps expected errors when a directory is provided in which
+                  case the .length and .version information remains at their
+                  default values.
+
+      target      FileInfo reference to initialize and fill with source
+                  FileInfo information.
+
+ RETURNS:
+
+       The file attributes as returned by GetFileAttributes.
+      -1 on failure.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="comparefileinfos"></a>
+  Function CompareFileInfos(aInfo As FileInfo, bInfo As FileInfo, mode As Integer) As Integer
+
+ DESCRIPTION:
+
+      Compares the fields of aInfo against bInfo.
+      The provided mode value determines which fields to compare and which
+      to ignore.  Usually you would not compare the path of the two infos
+      because they are almost always different.  Additionally, if mode has
+      the value of BINARY_COMPARE it is ignored.
+
+ PARAMETERS:
+
+      aInfo   reference to the first FileInfo
+      bInfo   reference to the second FileInfo
+      mode    items in FileInfo to compare. See the COMPARE CONSTANTS for
+              valid values of mode.
+
+ RETURNS:
+
+       The number of errors found (0 to +N)
+      -1 on failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsubfolders"></a>
+ Function GetSubfolders( _
+     folderSpec as string, _
+     sfArr() as string ) As long
+
+ DESCRIPTION:
+
+      Get the full paths to the immediate subfolders of the specified folder.
+
+ PARAMETERS:
+
+      folderSpec  String expression that identifies the folder whose
+                  subfolders are to be retrieved.
+      sfArr       1 base dynamic array that will receive the subfolders.
+                  ReDim'ed by function, so previous content will be lost.
+
+ RETURNS:
+
+      Total number of subfolders found (length of sfArr), or -1 if error
+      occured.
+
+ ERRORS:
+
+       (none)
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JUL 09, 2002
+ History:
+
+      JUL 09, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfiles"></a>
+  Function GetFiles( folderSpec as string, fArr() as string ) As long
+
+ DESCRIPTION:
+
+      Get the full paths to the files immediately under the specified folder.
+
+ PARAMETERS:
+
+      folderSpec  String expression that identifies the folder whose
+                  files are to be retrieved.
+      fArr        1-based dynamic array that will receive the files. ReDim'ed
+                  by function, so previous content will be lost.
+
+ RETURNS:
+
+      Total number of files found (length of fArr), or -1 if error occured.
+
+ ERRORS:
+
+       (none)
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JUL 09, 2002
+ History:
+
+      JUL 09, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="buildfullpath"></a>
+ Function BuildFullPath( pathSpec as string ) As string
+
+ DESCRIPTION:
+
+      Build a full path from a provided path specification.
+      If pathSpec is a relative path, it is appended to the full path of the
+      current project folder to build a full path. This function does not
+      verify the existence of the file/folder specified by pathSpec.
+
+ PARAMETERS:
+
+      pathSpec    String expression that identifies the full/relative path to
+                  a file or folder. Network path is OK, but no wildcard is
+                  allowed.
+
+ RETURNS:
+
+      Full path without the trailing "\" (for folder, unless it is the root
+      folder of a drive). If pathSpec can't be resolved or error occured,
+      pathSpec is returned unchanged.
+
+ ERRORS:
+
+       (none)
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JUL 10, 2002
+ History:
+
+      JUL 10, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="fucopyvpfile"></a>
+  Function FUCopyVPFile(source as String, destination as String) As Integer
+
+ DESCRIPTION:
+
+      Copies the contents from one file to a new file location.
+      The source file is generally a file resulting from a Rational VP.
+      The routine processes the file for Rational VP remnants.
+      Currently, this is only filtering out a trailing Chr$(0) at the end
+      of the file.
+
+      Note: the routine does not always seem to be reliable if ever trying
+      to copy more than 1 character at a time.  Thus, since we are copying
+      only 1 character at a time, larger files will take longer than
+      normal copy techniques.
+
+
+ PARAMETERS:
+
+      source      the full path to the file to be filtered and copied.
+
+      destination the full path to the final destination of the copy.
+                  If the file already exists there, it will be deleted.
+
+ RETURNS:
+
+       0 on success.
+      -1 on failure, usually invalid parameters
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 19, 2003
+ History:
+
+      AUG 19, 2003    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

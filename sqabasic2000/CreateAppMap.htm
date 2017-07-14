@@ -1,0 +1,359 @@
+<HTML>
+<HEAD>
+<TITLE>Application Maps</TITLE>
+</HEAD>
+<BODY>
+<H1><B><CENTER>Application Maps<br>
+for<br>
+RRAFS and the SAFS Framework</CENTER></B></H1>
+
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#ddv_resolve">Embedding DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a>,&nbsp;
+<a href="#child_definitions">Modifying Child Definitions</a> <a name="window_definitions"></a><br>Last Updated: 08/03/2006</small>
+
+<p><h3>Window Definitions</h3>
+
+<p>Application Maps for SAFS engines are implemented using the Windows INI file format.  With this format the file is broken up into named sections with named items in each section.  The RRAFS library's
+<a href="ProcessContainer.htm" target="processor">ProcessContainer</a> tool is a very useful tool aiding in the creation of these application maps for Rational Robot.  In addition, ProcessContainer stores critical information in separate reference files about the Window, its children, all the available properties, and the menu structure of the Window (if a standard menu is present).  It can also help by appending data to existing INI file format application maps OR output this data to Excel for Excel-based application maps. (Use the .XLS filename extension for Excel-based application maps.)</p>
+<p>
+Comparable ProcessContainer tools are being developed for Rational Functional Tester, Abbot, and other SAFS testing engines.
+</p>
+<p>A sample application map Window section:
+<p><code>
+&nbsp;&nbsp;&nbsp;[LoginWindow]<br>
+&nbsp;&nbsp;&nbsp;LoginWindow="Type=Window;Caption=Login"
+</code>
+
+<p>Notice that this begins a Window definition section and also contains the Window item itself.  The section is denoted by the name of the Window in the brackets.  The first item in the section is the same Window name followed by the string the engine needs to uniquely identify that Window during runtime.  For a Window, the section name and the item name must match.
+
+<p>The string that uniquely identifies the Window item is specific to Robot and the newer <a href="../doc/SAFSComponentRecognition.htm" target="_blank">SAFS Component Recognition</a> algorithm.  RRAFS'
+<a href="ProcessContainer.htm" target="processor">ProcessContainer</a> tool usually provides the most correct string to uniquely identify a Window or child component.  However, modifications might have to be made in order for the engine to consistently find the object in all situations.  Of critical importance is the 'Type=&lt;component type&gt;' portion of this string.  It is almost always required for consistent performance.  For RRAFS, consult Rational's documentation for Object Scripting Recognition Methods to become familiar with the proper formatting of component recognition strings.
+
+<p>Now, referencing the above Window in a sample data file:
+
+<p>
+<code>Fields:<br>
+&nbsp;&nbsp;#1 ---- 2 --------- 3 ---------- 4 ---------- 5 ------ 6 --<br>
+&nbsp;&nbsp;&nbsp;T LoginWindow LoginWindow VerifyProperty "Caption" "Login"
+</code>
+
+<p>References are located in the application map by first identifying which section to search for an item followed by which item to retrieve.  The sample above would be interpreted as follows:
+
+<p><code>"In the LoginWindow section find the LoginWindow item and verify the property called 'Caption' contains 'Login'."</code>
+
+<p>If the Window has child components they would be placed in the Window section below the Window item.  The example below shows the Window and child objects typically found in a simple Login prompt:
+
+<p><code>
+&nbsp;&nbsp;&nbsp;[LoginWindow]<br>
+&nbsp;&nbsp;&nbsp;LoginWindow="Type=Window;Caption=Login"<br>
+&nbsp;&nbsp;&nbsp;UserIDLabel="Type=Label;Text=UserID:"<br>
+&nbsp;&nbsp;&nbsp;UserIDBox="Type=EditBox;ObjectIndex=1"<br>
+&nbsp;&nbsp;&nbsp;PasswordLabel="Type=Label;Text=Password:"<br>
+&nbsp;&nbsp;&nbsp;PasswordBox="Type=EditBox;ObjectIndex=2"<br>
+&nbsp;&nbsp;&nbsp;OKButton="Type=PushButton;Text=OK"<br>
+&nbsp;&nbsp;&nbsp;CancelButton="Type=PushButton;Text=Cancel"
+</code>
+
+<p>Referencing these items in another sample data file:
+
+<p>
+<code>Fields:<br>
+&nbsp;&nbsp;#1 ----- 2 ---------- 3 ----------- 4 ------------ 5 --------- 6 --<br>
+&nbsp;&nbsp;&nbsp;T, LoginWindow, LoginWindow, VerifyProperty, &nbsp;"Caption" &nbsp;, "Login"<br>
+&nbsp;&nbsp;&nbsp;T, LoginWindow, &nbsp;UserIDBox ,&nbsp;&nbsp;SetTextValue&nbsp;, "MyUserName"<br>
+&nbsp;&nbsp;&nbsp;T, LoginWindow, PasswordBox, &nbsp;SetTextValue&nbsp;, "MyPassword"<br>
+&nbsp;&nbsp;&nbsp;T, LoginWindow, &nbsp;OKButton &nbsp;, &nbsp; &nbsp; Click
+</code>
+
+<p>Those four lines will make the Login Window the active Window, verify the Caption is 'Login', set the username and password, and finally click the OK button.  Of course, since the Window Caption happens to be part of its recognition string (not all Windows will use their Caption as part of their recognition string), the line verifying the Caption is performing a redundant test.  But the line is retained here for demonstration purposes.
+
+<p>
+
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#ddv_resolve">Embedding DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a>,&nbsp;
+<a href="#child_definitions">Modifying Child Definitions</a></small>
+<HR>
+<a name="application_constants"></a>
+
+<h3>ApplicationConstants</h3>
+<p>Currently there is another section that is typically defined (but not required) in an Application Map.  That is the ApplicationConstants section.
+
+<p><code>
+&nbsp;&nbsp;&nbsp;[ApplicationConstants]
+</code>
+
+<p>There are currently no predefined or required items that go in this section.  However, some of the engine's routines will look in this section for certain parameters.  If it finds the item in this section, it will use the value stored for that item.
+
+<p>One example of this is StepDriver's driver command 'LaunchApplication'.  The parameter for the full pathname to the application can be a literal string OR an item stored in the ApplicationConstants section of the Application Map.  The routine will first look for the item in the map, if it finds
+the item, it will use the item's value which will be the stored pathname.  If it doesn't find the item, it will treat the string as the literal pathname for the application to launch.
+
+<p>A sample ApplicationConstants section in our Application Map:
+<p><code>
+&nbsp;&nbsp;&nbsp;[ApplicationConstants]<br>
+&nbsp;&nbsp;&nbsp;AppExecutable="c:\SomeDirectory\MyApplication.EXE"<br>
+&nbsp;&nbsp;&nbsp;AnotherConstant="Something Else"
+</code>
+
+<p>Thus, the following two data file records produce the same result:
+
+<p>
+<code>Fields:<br>
+&nbsp;&nbsp;#1 ------- 2 ------------ 3 ----------------------------- <br>
+&nbsp;&nbsp;&nbsp;C LaunchApplication AppExecutable<br>
+&nbsp;&nbsp;&nbsp;C LaunchApplication "C:\SomeDirectory\MyApplication.EXE"
+</code>
+
+<p>Details for constants that can be referenced within the Application Map will be found in the documentation for the individual commands that use them.
+
+<p>In addition to the above, if an engine is seeking a particular Window or Component Definition and it is not found in the expected section then the routine will resort to searching the ApplicationConstants section for the sought definition.  Thus, a single definition stored in ApplicationConstants could be shared by multiple Windows.
+
+<p>The <a href="http://safsdev.sourceforge.net/doc/org/safs/staf/service/SAFSAppMapService.html" target="_blank">SAFSMAPS service</a> provided by the SAFS Framework will take this AppMap processing one step further.  If the item is not found in the ApplicationConstants section the routine will look for it in an unnamed section which, by definition, must be at the top of the AppMap file before any sections are defined.
+
+<p>A SAFSMAPS supported constant with no section in our Application Map:
+<p><code>
+&nbsp;&nbsp;&nbsp;;top of file<br>
+&nbsp;&nbsp;&nbsp;;can hold constants with no section definition<br>
+<br>
+&nbsp;&nbsp;&nbsp;DefaultConstant="Some Value"<br>
+<br>
+&nbsp;&nbsp;&nbsp;[ApplicationConstants]<br>
+&nbsp;&nbsp;&nbsp;AppExecutable="c:\SomeDirectory\MyApplication.EXE"<br>
+&nbsp;&nbsp;&nbsp;AnotherConstant="Something Else"
+</code>
+
+<p>
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#ddv_resolve">Embedding DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a>,&nbsp;
+<a href="#child_definitions">Modifying Child Definitions</a></small>
+<hr>
+<a name=ddv_lookup></a>
+
+<h3>DDVariables for Dynamic Recognition</h3>
+
+<p>RRAFS and the SAFS Framework now support the lookup of component recognition strings via DDVariables.  While the framework has always supported the dynamic assignment of the componentID with DDVariables, there was not a good way to dynamically create or modify recognition strings used for any given AppMap component.</p>
+
+<p>The following shows how DDVariables could be used to change the componentID of a given record.  The AppMap segment shows the field for entering a userid named "UserIDBox".  That is the item that must ultimately be retrieved from the AppMap.</p>
+
+<p>AppMap Segment:</p>
+<p><code>
+&nbsp;&nbsp;&nbsp;[LoginWindow]<br>
+&nbsp;&nbsp;&nbsp;LoginWindow="Type=Window;Caption=Login"<br>
+&nbsp;&nbsp;&nbsp;UserIDBox="Type=EditBox;ObjectIndex=1"<br>
+</code>
+
+<p>Dynamic ComponentID Usage:</p>
+<p><code>
+&nbsp;&nbsp;&nbsp;C, SetVariableValues, ^UserIDField="UserIDBox"<br><br>
+&nbsp;&nbsp;&nbsp;T, LoginWindow, ^UserIDField ,&nbsp;SetTextValue&nbsp;, "MyUserName"<br>
+</code>
+
+<p>In the above example, the framework will find the value of the ^UserIDField to be the literal string "UserIDBox".  The framework will then use that value to lookup the
+recognition string inside the AppMap in the LoginWindow section.  Notice, though, we have not dynamically altered the recognition string of any component.  We have merely changed which component it is we want to lookup.  To dynamically change a components recognition string, we need to tell the framework that the recognition string itself is to be retrieved via a
+<a href="UsingDDVariables.htm" target="_blank">DDVariable</a> lookup.</p>
+
+<p>In order to retain our ability to use dynamic component IDs and enable dynamic recognition strings we actually replace the recognition string in the AppMap itself.  By inserting a predefined "_DDV:" prefix to the stored value in the AppMap we can tell the framework to do a lookup in our DDVariable storage instead.</p>
+
+<p>Below are examples of just how this should work.</p>
+
+<p>AppMap Segment:</p>
+<p><code>
+&nbsp;&nbsp;&nbsp;[DataWindow]<br>
+&nbsp;&nbsp;&nbsp;DataWindow="Type=Window;Caption=TableViewer"<br>
+&nbsp;&nbsp;&nbsp;TableCell1="_DDV:"<br>
+&nbsp;&nbsp;&nbsp;TableCell2="_DDV:CellID"<br>
+</code>
+
+<p>Note the two TableCell entries show different usage.  TableCell1 does not
+list a DDVariable name after the prefix.  This tells the framework to use the given ComponentID as the name of the DDVariable to lookup.  The framework will retrieve the
+value of a DDVariable named "TableCell1" and use that value as the recognition string for the component TableCell1.</p>
+
+<p>The TableCell2 entry does list the name of a DDVariable, so the framework will use that name instead of the given ComponentID.  The framework will retrieve the value of a DDVariable named "CellID" and use that value as the recognition string for the component TableCell2.</p>
+
+<p>This is what we might find in a test table assuming the AppMap segment above.<p>
+
+<p>
+<code>
+&nbsp;&nbsp;&nbsp;C, SetVariableValues, ^CellID="Type=HTMLTableCell;Index=" &amp; ^cellIndex<br><br>
+&nbsp;&nbsp;&nbsp;T, DataWindow, TableCell2 ,&nbsp;Click<br>
+</code>
+
+<p>The framework will lookup the value of TableCell2 in the AppMap.  Because of the
+presence of the "_DDV:" prefix the framework knows it must subsequently find the
+real recognition string of TableCell2 by looking up the value of DDVariable
+"CellID".  The framework will then use that value as the recognition string for
+TableCell2.</p>
+
+<p>
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#ddv_resolve">Embedding DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a>,&nbsp;
+<a href="#child_definitions">Modifying Child Definitions</a></small>
+<hr>
+<a name=ddv_resolve></a>
+
+<h3>Resolving DDVariables for Dynamic Recognition</h3>
+<p>
+The SAFS Framework <a href="http://safsdev.sourceforge.net/doc/org/safs/staf/service/SAFSAppMapService.html" target="_blank">SAFSMAPS service</a> now supports resolving DDVariable references directly in an AppMap entry.  That is, instead of replacing the entire recognition string with the value of a DDVariable as discussed in the last section, the AppMap entry can contain static recognition information with references to one or more DDVariables that will be resolved and embedded to complete the recognition string.  Below is an example of such an entry:
+<p>
+&nbsp;&nbsp;&nbsp;[ApplicationConstants]<br>
+&nbsp;&nbsp;&nbsp;does_not_contain="contains"<br>
+<br>
+&nbsp;&nbsp;&nbsp;[Section1]<br>
+&nbsp;&nbsp;&nbsp;EmbedVar="This string {^does_not_contain} an embedded string."<br>
+&nbsp;&nbsp;&nbsp;LoginLink="Type=HTMLLink;HTMLText={^login_link}"<br>
+<p>
+As a result of this feature the final 'EmbedVar' value retrieved will be:
+<p>
+&nbsp;&nbsp;&nbsp;"This string contains an embedded string."
+<p>
+The second example using LoginLink shows how this feature can be useful for NLS (localization) testing.  The recognition string can be provided in an App Map that is shared by all NLS test configurations.  The text associated with the link--which will be different for each language tested--will be embedded dynamically at runtime based on the value of the ^login_link variable.
+<p>
+It is important to note the following:
+<p><ul>
+a) RRAFS users must enable the SAFS Framework to take advantage of this functionality.
+<p>
+b) Some tight format constraints on embedding DDVariable references in this way.  The embedded reference cannot contain any spaces between the curly braces.  There must be absolutely nothing between the open brace and the close brace EXCEPT the DDVariable reference.  If the syntax appears invalid in any way, the SAFSMAPS service will assume the string is literal text and should return it unmodified (unresolved).
+</ul>
+<p>
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#ddv_resolve">Embedding DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a>,&nbsp;
+<a href="#child_definitions">Modifying Child Definitions</a></small>
+<hr>
+<a name=coordinate_references></a>
+
+<h3>Coordinate Based References</h3>
+
+<p>One of the problems often faced in automated testing is dealing with
+unsupported components.&nbsp; Sometimes the tool knows they are there, but
+doesn't know how to deal with them.&nbsp; Sometimes, the components are merely
+painted controls the tool doesn't even know are there.&nbsp; When unsupported
+controls are encountered the testing tool usually resorts to actions based on
+X/Y coordinates of the components in the Window.</p>
+<p>This complicates testing and verification because the controls might be at
+different coordinates based upon the resolution of the computer running the
+tests or the position of the Windows on the screen.&nbsp; When your application
+must resort to coordinate-based testing there are some things that must be done.</p>
+<ol>
+  <li>The tests must be setup to run with a specific screen resolution.</li>
+  <li>The tests must be setup to run with a specific color scheme (palette).</li>
+  <li>The tests must be setup to run with a specific&nbsp; color resolution</li>
+  <li>Application windows should be set to a specific size and position if they
+    contain coordinate-based items.</li>
+  <li>At playback, the test computers must be forced to the screen resolution,
+    color resolution, and color scheme used to develop the tests.</li>
+</ol>
+<p>Once all of this is in place we can start working with coordinate-based
+testing with fairly good success.</p>
+<p>The Application Map allows us to provide named references for items that are
+unsupported by Robot and use coordinate-based activities.&nbsp; One great
+advantage of this is that changes to the position of these items do not break
+our test data files.&nbsp; We need merely to update the coordinate-based
+information once in the Application Map and every instance of its use is
+inherently fixed.&nbsp; Additionally, items can be referenced by a meaningful
+name rather than an X/Y coordinate on the screen.</p>
+<p>Currently, the most frequent use for this type of reference is for the
+various Mouse Click commands on Windows and GenericObjects containing painted
+controls.&nbsp; But it is also used when defining regions for RegionImage VPs
+and Window's SetPosition commands.&nbsp; Invariably, other uses will be
+implemented.&nbsp;&nbsp;You will need to consult the documentation for the
+specific&nbsp; command or routine for information on the syntax and use of
+particular coordinate-based references.</p>
+<p>There are generally two ways that these named references get placed into the
+Application Map.&nbsp;&nbsp;</p>
+<p> The first method is when the referenced item is actually
+considered a child of the Window itself (vs. being a sub-item in a child of the
+Window).&nbsp; In this instance, the named reference will actually be placed
+inside the Window definition section for that Window.</p>
+<p>Example: Defining a default size and position for the Window and an unrecognized painted checkbox in our Login Window section
+of the Application Map:</p>
+<p><code>
+&nbsp;&nbsp;&nbsp;[LoginWindow]<br>
+&nbsp;&nbsp;&nbsp;LoginWindow=&quot;Type=Window;Caption=Login&quot;<br>
+&nbsp;&nbsp;&nbsp;DefaultSizeNPosition=&quot;10,10,700,500;Status=NORMAL&quot;<br>
+&nbsp;&nbsp;&nbsp;WeirdCheckbox=&quot;200,300&quot;
+</code>
+
+
+<p>Now using the references in commands for the Window in a data file:</p>
+
+<p>
+<code>Fields:<br>
+&nbsp;&nbsp;#1 ----- 2 ---------- 3 ---------- 4 ------------ 5 -----------<br>
+&nbsp;&nbsp;&nbsp;t, LoginWindow, LoginWindow, SetPosition, DefaultSizeNPosition<br>
+&nbsp;&nbsp;&nbsp;t, LoginWindow, LoginWindow,&nbsp;&nbsp;&nbsp; Click&nbsp;&nbsp;
+, WeirdCheckbox
+</code>
+
+<p>&nbsp;The second method of coordinate-based referencing is used when the referenced
+item is actually considered a sub-item within a recognized child of the
+Window.&nbsp; In this case, the child of the window will have a new section in
+the Application Map devoted for just such special case information. This is
+necessary because, generally, the child of the Window is recognized by Robot as
+a valid object of some type (not a painted control) and needs to have a valid
+Robot recognition string in the Application Map.&nbsp; But Robot will not be
+able to recognize any of the sub-items in that object.&nbsp; When this is the
+case, we use another section to reference these coordinate-based sub-items for the engine.</p>
+<p>Example: Defining an unknown (but findable) Generic object in our Login Window section
+of the Application Map.&nbsp; This Generic object also contains elements that we need to
+interact with but Robot can only do so with coordinate-based references:</p>
+<p><code>
+&nbsp;&nbsp;&nbsp;[LoginWindow]<br>
+&nbsp;&nbsp;&nbsp;LoginWindow=&quot;Type=Window;Caption=Login&quot;<br>
+&nbsp;&nbsp;&nbsp;DefaultSizeNPosition=&quot;10,10,700,500;Status=NORMAL&quot;<br>
+&nbsp;&nbsp;&nbsp;WeirdGenericObject=&quot;Type=Generic;Class=SomeClass;ClassIndex=1&quot;</code>
+
+
+<p><code>
+&nbsp;&nbsp;&nbsp;[WeirdGenericObject]<br>
+&nbsp;&nbsp;&nbsp;ThePaintedButton=&quot;20,100&quot;<br>
+&nbsp;&nbsp;&nbsp;AnotherWidget=&quot;50,150&quot;<br>
+&nbsp;&nbsp;&nbsp;LastThingy=&quot;80,150&quot;</code>
+
+<p>Now let's do some things inside that Generic object with our data files:</p>
+
+<p>
+<code>Fields:<br>
+&nbsp;&nbsp;#1 ----- 2 ------------- 3 -------------- 4 ------------ 5 -----------<br>
+&nbsp;&nbsp;&nbsp;t, LoginWindow,&nbsp;&nbsp;&nbsp;&nbsp;LoginWindow&nbsp; &nbsp;
+, SetPosition, DefaultSizeNPosition<br>
+&nbsp;&nbsp;&nbsp;t, LoginWindow, WeirdGenericObject,&nbsp;&nbsp;&nbsp; Click&nbsp;&nbsp;
+, ThePaintedButton<br>
+&nbsp;&nbsp;&nbsp;t, LoginWindow, WeirdGenericObject, DoubleClick, AnotherWidget<br>
+&nbsp;&nbsp;&nbsp;t, LoginWindow, WeirdGenericObject, RightClick , LastThingy</code>
+
+<p>It's generally easier to comprehend what's going on when looking at lines
+like those above then it is when looking at Robot ciphers like these below:
+
+<p><code>
+&nbsp; &nbsp; Window&nbsp; SetPosition, &quot;Type=Window;Caption=Login&quot;,
+&quot;Coords=10,10,700,500;Status=NORMAL&quot;<br>
+&nbsp; &nbsp; GenericObject Click, &quot;Type=Generic;Class=SomeClass;ClassIndex=1&quot;,
+&quot;Coords=20,100&quot;<br>
+&nbsp; &nbsp; GenericObject Click, &quot;Type=Generic;Class=SomeClass;ClassIndex=1&quot;,
+&quot;Coords=50,150&quot;<br>
+&nbsp; &nbsp; GenericObject Click, &quot;Type=Generic;Class=SomeClass;ClassIndex=1&quot;,
+&quot;Coords=80,150&quot;</code></p>
+
+<p>
+
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#ddv_resolve">Embedding DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a>,&nbsp;
+<a href="#child_definitions">Modifying Child Definitions</a></small>
+<hr>
+<a name=child_definitions></a>
+
+<h3>Identifying and Modifying Child Definitions</h3>
+
+<p>All the above information might make it look fairly simple to create these Application Maps.&nbsp;
+Without the <a href="ProcessContainer.htm" target="processor">ProcessContainer</a>
+tool, or some other tool like it, it indeed might prove to be a daunting
+task.&nbsp; Actually, maybe it is daunting regardless!&nbsp;&nbsp; There still
+is and always will be the need for manual intervention and manipulation to make
+a good working Application Map.<p>The output of the <a href="ProcessContainer.htm" target="processor">ProcessContainer</a>
+tool produces child definitions that need editing to be useful for our data
+files.&nbsp; The reference on this tool contains very useful information on<a href="ProcessContainer.htm#child_definitions" target="processor">
+modifying child definitions</a> produced by the tool.
+<p>
+<small>Contents: <a href="#window_definitions"> Window Definitions</a>,&nbsp; <a href="#application_constants">Application
+Constants</a>,&nbsp; <a href="#ddv_lookup">DDVariables for Dynamic Recognition</a>,&nbsp; <a href="#coordinate_references">Coordinate-Based References</a></small>
+</BODY>
+</HTML>

@@ -1,0 +1,1422 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic XMLUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "XMLUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Contains functions for interacting with XML documents
+
+ XML Terms
+ ----------
+
+ Element    : An XML tag enclosed in &lt;&gt;s.  Ex: &lt;TestCase&gt;
+              This is the TestCase Element.
+
+ Attribute  : A data value within an Element.  Ex: In &lt;TestCase id="Test01"&gt;,
+              "id" is an Attribute (with a value of "Test01") in the
+              TestCase Element.
+
+ Text       : Generally, The content portion of an XML Tag.
+              Ex: In &lt;TestCase id="Test01"&gt;CONTENT&lt;/TestCase&gt;,
+              "CONTENT" is the text or content of the TestCase Element.
+
+ Node       : Virtually any type of object supported by the DOM is represented
+              as a Node.  Elements, Attributes, Comments, Text content, and the
+              Document itself are all represented by their own specific Nodes.
+              The various Node Types can be determined via function calls.
+
+              Valid NodeTypes include:
+
+                  Attribute
+                  CDataSection
+                  Comment
+                  Document
+                  DocumentFragment
+                  DocumentType
+                  Element
+                  Entity
+                  EntityReference
+                  Notation
+                  ProcessingInstruction
+                  Text
+
+
+ XML Parser : A program written by Microsoft (or other companies -- this library
+              uses Microsoft's, however) to read in XML, parse it for
+              well-formedness and validity, and make the values available to
+              programs, such as Robot scripts.  These routines were written to
+              use v3.0 of Microsoft's parser.
+              You will need to <a href="http://msdn.microsoft.com/xml/default.asp">install a parser</a> if you do not already have it
+              on your system.
+
+
+ Well-formedness: The document follows the rules of XML:
+
+              1)  The document has one single root element, that all other elements
+                  are descended from;
+
+              2)  Every element has a corresponding closing tag (NOTE: If an
+                  element has no content other than attributes, it can be closed by
+                  putting a / within the opening tag.  Ex: &lt;TestCase/&gt;);
+
+              3)  Elements are properly nested (i.e., if you open an element within
+                  another element the inner element must be closed before the outer,
+                  so &lt;TestCase&gt;&lt;TestStep&gt;Click here&lt;/TestStep&gt;&lt;/TestCase&gt; is valid,
+                  while &lt;TestCase&gt;&lt;TestStep&gt;Click here &lt;/TestCase&gt;&lt;/TestStep&gt; is not);
+
+              4)  All entities are declared; and
+
+              5)  All attribute values are enclosed in quote marks (either single
+                  or double as long as the opening and closing quote marks around
+                  a value are the same type)
+
+ Validity   : The document conforms to the rules set forth in its associated DTD or
+              Schema document.  If a document does not have an associated DTD or Schema,
+              it can not be declared valid (it can still be well-formed, though).
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "XMLUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "XMLUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#openxmlfile">OpenXMLFile</a>             BasicLib XMLUtilities                  
+Function <a href="#createxmlfile">CreateXMLFile</a>           BasicLib XMLUtilities                  
+Function <a href="#appendxmlelement">AppendXMLElement</a>        BasicLib XMLUtilities                  
+Function <a href="#gotoxmldocument">GoToXMLDocument</a>         BasicLib XMLUtilities                  
+Function <a href="#getxmldocument">GetXMLDocument</a>          BasicLib XMLUtilities                  
+Function <a href="#gotorootxmlelement">GoToRootXMLElement</a>      BasicLib XMLUtilities                  
+Function <a href="#gotocurrentxmlnodeparent">GoToCurrentXMLNodeParent</a>  BasicLib XMLUtilities                  
+Function <a href="#gotoselectedxmlelement">GoToSelectedXMLElement</a>  BasicLib XMLUtilities                  
+Function <a href="#gotonextxmlelement">GoToNextXMLElement</a>      BasicLib XMLUtilities                  
+Function <a href="#gotonextxmlnode">GoToNextXMLNode</a>         BasicLib XMLUtilities                  
+Function <a href="#gotopreviousxmlelement">GoToPreviousXMLElement</a>  BasicLib XMLUtilities                  
+Function <a href="#gotopreviousxmlnode">GoToPreviousXMLNode</a>     BasicLib XMLUtilities                  
+Function <a href="#getxmlnode">GetXMLNode</a>              BasicLib XMLUtilities                  
+Function <a href="#getxmlnodename">GetXMLNodeName</a>          BasicLib XMLUtilities                  
+Function <a href="#getxmlnodevalue">GetXMLNodeValue</a>         BasicLib XMLUtilities                  
+Function <a href="#getxmlnodetext">GetXMLNodeText</a>          BasicLib XMLUtilities                  
+Function <a href="#setxmlnodetext">SetXMLNodeText</a>          BasicLib XMLUtilities                  
+Function <a href="#getxmlnodetypestring">GetXMLNodeTypeString</a>    BasicLib XMLUtilities                  
+Function <a href="#getxmlnodetype">GetXMLNodeType</a>          BasicLib XMLUtilities                  
+Function <a href="#getxmlchildcount">GetXMLChildCount</a>        BasicLib XMLUtilities                  
+Function <a href="#getxmlattributevalue">GetXMLAttributeValue</a>    BasicLib XMLUtilities                  
+Function <a href="#setxmlattributevalue">SetXMLAttributeValue</a>    BasicLib XMLUtilities                  
+Function <a href="#savexmlfile">SaveXMLFile</a>             BasicLib XMLUtilities                  
+Function <a href="#closexmlfile">CloseXMLFile</a>            BasicLib XMLUtilities                  
+Function <a href="#runmsxsltransform">RunMSXSLTransform</a>       BasicLib XMLUtilities                  
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+Const XML_SHORT_NAME        As Integer=1
+Const XML_FILE_PATH         As Integer=2
+Const XML_NODE_REFERENCE    As Integer=3
+Const XML_OBJECT            As Integer=4
+Const XML_NUM_COLUMNS       As Integer=4 
+
+'XML DOM NodeType CONSTANTS
+Const XMLNODE_ELEMENT                = 1
+Const XMLNODE_ATTRIBUTE              = 2
+Const XMLNODE_TEXT                   = 3
+Const XMLNODE_CDATA_SECTION          = 4
+Const XMLNODE_ENTITY_REFERENCE       = 5
+Const XMLNODE_ENTITY                 = 6
+Const XMLNODE_PROCESSING_INSTRUCTION = 7
+Const XMLNODE_COMMENT                = 8
+Const XMLNODE_DOCUMENT               = 9
+Const XMLNODE_DOCUMENT_TYPE          = 10
+Const XMLNODE_DOCUMENT_FRAGMENT      = 11
+Const XMLNODE_NOTATION               = 12
+
+'XML DOM NodeTypeString CONSTANTS
+Const XMLNODESTRING_ELEMENT                = "element"
+Const XMLNODESTRING_ATTRIBUTE              = "attribute"
+Const XMLNODESTRING_TEXT                   = "text"
+Const XMLNODESTRING_CDATA_SECTION          = "cdatasection"
+Const XMLNODESTRING_ENTITY_REFERENCE       = "entityreference"
+Const XMLNODESTRING_ENTITY                 = "entity"
+Const XMLNODESTRING_PROCESSING_INSTRUCTION = "processinginstruction"
+Const XMLNODESTRING_COMMENT                = "comment"
+Const XMLNODESTRING_DOCUMENT               = "document"
+Const XMLNODESTRING_DOCUMENT_TYPE          = "documenttype"
+Const XMLNODESTRING_DOCUMENT_FRAGMENT      = "documentfragment"
+Const XMLNODESTRING_NOTATION               = "notation"
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="openxmlfile"></a>
+ Function OpenXMLFile (XMLPath As String, ShortName As String, Optional Validate) As Integer
+
+ DESCRIPTION:
+
+ Opens an XML file, making it available for retrieving values from.
+ The Root Document Element is set as the current node reference.
+
+ PARAMETERS:
+
+      XMLPath     The full path to the XML file to open
+
+      ShortName   The name that will be used to refer to this file for
+                  future accesses
+
+      Validate    OPTIONAL.  Set to 1 to cause the parser to validate
+                  the XML during parsing.  This is the default behavior.
+                  Set to 0 to bypass validation.
+
+ RETURNS:
+
+      sqaPass     if successful
+
+      sqaFail     otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+      JUL 09, 2001    (Carl Nagle) Added OPTIONAL validation
+
+</pre>
+<hr>
+<pre>
+
+<a name="createxmlfile"></a>
+ Function CreateXMLFile (ShortName As String,
+                         Optional Version  As Variant,
+                         Optional Encoding As Variant,
+                         Optional FilePath As Variant) As Integer
+
+ DESCRIPTION:
+
+ Creates a new XML doc/file stub with the optionally provided version and
+ encoding strings.  The version default is "1.0" and need not be specified.
+ Note, an incorrect or unsupported encoding will produce a stub with no special
+ encoding declaration.  By default, XML encoding is UTF-8 and need not be
+ specified.
+
+ Example input codings and their resulting XML stub:
+
+  VERSION     ENCODING        RESULTING XML STUB
+  =======     ========        ================================
+   &lt;none&gt;      &lt;none&gt;         &lt;?xml version="1.0" ?&gt;                      'default
+   &lt;none&gt;     "UTF-8"         &lt;?xml version="1.0" encoding="UTF-8" ?&gt;     'UTF-8 (default)
+   "1.0"      "UTF-16"        &lt;?xml version="1.0" encoding="UTF-16" ?&gt;    'UTF-16
+
+ I believe Version 1.0 is currently the only valid version.
+
+ Consult the documentation for MSXML 3.0 for details on whether the version (future)
+ or encoding you need is supported.  Most users of this library will likely be using
+ the default UTF-8 encoding.  This routine will return with SQAPASS, even if a
+ provided Encoding string is invalid, as long as the XML document was created.
+
+ The FilePath is used to save the file later, if desired.  It can be specified
+ at creation, or at the time the save is actually performed.  Any value/object
+ suitable for the MSXML doc.save routine can be specified.  The value specified
+ here can be overridden by the Save operation.
+
+
+ Once created, all the rest of these library routines can be used to add to,
+ enhance and edit the XML structure just as if it was from a pre-existing XML
+ file.  Upon exit, the current node IS the XML document itself.
+
+ Remember, all of this is happening in memory.
+ You must SaveXMLFile in order to output the XML to a permanent file.
+
+
+ PARAMETERS:
+
+      ShortName   The name that will be used to refer to this document for
+                  future accesses
+
+      Version     Optional XML version.  Like "1.0"
+                  Currently, only 1.0 is valid (I think) and that is the
+                  default version used if unspecified.
+
+      Encoding    Optional encoding string to use.  Like "UTF-16", etc.
+                  XML defaults to UTF-8 when unspecified.
+
+      FilePath    Optional path or other value/object suitable for use by
+                  the MSXML doc.save routine.  Normally, this would be a
+                  String fullpath with name and extension specified.
+
+
+ RETURNS:
+
+      sqaPass     if successful
+
+      sqaFail     otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotoxmldocument"></a>
+ Function GoToXMLDocument (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Resets the current node reference to that of the document object itself.
+ This is the same as going to the parent of the root element.
+
+ Example Usage:
+
+      Result = GoToXMLDocument("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: Feb 01, 2001
+
+ HISTORY:
+
+      FEB 01, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmldocument"></a>
+ Function GetXMLDocument (ShortName As String) As Object
+
+ DESCRIPTION:
+
+ Returns the document object itself.
+ Keep in mind there may be issues involved if you attempt to play with the
+ DOM via this library AND the object reference you receive.
+
+ Example Usage:
+
+      Set object = GetXMLDocument("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The DOM document object, or NOTHING on error
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: Feb 01, 2001
+
+ HISTORY:
+
+      FEB 01, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlnode"></a>
+ Function GetXMLNode (ShortName As String) As Object
+
+ DESCRIPTION:
+
+ Returns the current DOM node object.
+
+ Example Usage:
+
+      CurrentNode = GetXMLNode("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The current node object, or NULL/NOTHING on error
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotorootxmlelement"></a>
+ Function GoToRootXMLElement (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Resets the current element reference for a file to point to the root element
+ of the document
+
+ Example Usage:
+
+      Result = GoToRootXMLElement("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotocurrentxmlnodeparent"></a>
+ Function GoToCurrentXMLNodeParent (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Sets the current node pointer to point to the node that is the parent
+ of the current node.
+
+ Example Usage:
+
+      Result = GoToCurrentXMLNodeParent("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotoselectedxmlelement"></a>
+ Function GoToSelectedXMLElement ( ShortName As String, _
+                                   Optional StartFromRoot      As Variant, _
+                                   Optional ElementName        As Variant, _
+                                   Optional AttributeName      As Variant, _
+                                   Optional AttributeValue     As Variant, _
+                                   Optional NumberOfOccurrence As Variant, _
+                                   Optional GivenXPathQuery    As Variant _
+                                 ) As Integer
+
+ DESCRIPTION:
+
+ Changes the current element (as used by the other XML functions) to the
+ first element that matches the specified name and attribute values (if either
+ the name or the attribute is not specified, they will not be used to find the
+ match.
+
+ Example Usage:
+
+      To find the first element in the document that you opened with a
+      short name of "TestCases", use:
+
+      Result = GoToSelectedXMLElement("TestCases", StartFromRoot:=TRUE)
+
+      To find the first element named "TestCase" in the document that you
+      opened with a short name of "TestCases", use:
+
+      Result = GoToSelectedXMLElement("TestCases", StartFromRoot:=TRUE, _
+                                       ElementName:="TestCase")
+
+      To find the first element named "TestCase" that has an attribute named
+      "person_responsible" in the document that you opened with a short name
+      of "TestCases", use:
+
+      Result = GoToSelectedXMLElement("TestCases", StartFromRoot:=TRUE, _
+                                      ElementName:="TestCase", _
+                                      AttributeName:="person_responsible")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file when it
+                  was opened
+
+      StartFromRoot   Optional.  Set to TRUE if you want the searching to
+                  begin at the root element of the document or FALSE if you
+                  want the searching to only be within the context of the
+                  current node (that is within the children of the node that
+                  is current).  Default is FALSE.
+
+      ElementName     Optional.  The name the element you want to select should
+                  have.  If no name is specified, this will search either by
+                  attribute value (if one is given) or simply return the first
+                  element found by the routine.  If the element you are looking
+                  for is not a direct child of the current node, and you're
+                  searching within the context of the current node, you can put
+                  multiple element names in here, separated by "/"  OR "-&gt;"
+                  (Ex: If you have a TestCase element as the current node, with
+                  a child of TestCaseSteps, which then has a child itself of
+                  DataValue, to select the DataValue, you should use
+
+                          "TestCaseSteps-&gt;DataValue"  OR
+                          "TestCaseSteps/DataValue"
+
+      AttributeName   Optional.  The name of the attribute that you want the
+                      element selected by this function to have.
+
+      AttributeValue  Optional.  The value of the attribute that you want the
+                      element selected by this function to have.
+
+      NumberOfOccurrence   Optional.  Specifies the 1-based index of the
+                  element in the collection of all elements that match the
+                  other specified criteria.  For example, if you wanted to
+                  select the third element that met your other criteria, you
+                  would set this parameter to 3 (since 1 is the first element).
+
+      GivenXPathQuery     Optional.  Allows you to specify an XPath expression
+                  to use to find the particular node you're looking for.
+                  Specifying a value for this parameter causes all other
+                  optional parameters to be ignored.  Note that this function
+                  sets the current node pointer in the XML File array to point
+                  to the first node found, regardless of whether your XPath
+                  query returns an attribute or an element.  The other functions
+                  in this file were designed with the assumption that the
+                  CurrentNode pointer points to an element.  While they may work
+                  with a pointer that points to an attribute, they haven't been
+                  tested in that context and may not work correctly.
+
+ RETURNS:
+
+      sqaPass if the CurrentNode is set successfully, sqaFail otherwise.
+
+      If no node is found that matches your search criteria, sqaFail
+      is returned and the current node remains set where it was.
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+      FEB 01, 2001    (Carl Nagle) Added optional "-&gt;" separator
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotonextxmlelement"></a>
+ Function GoToNextXMLElement (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Go to the next Element after the current Element in the specified XML
+ document.  The next Element is the first node that appears immediately after
+ the current node (a child, sibling etc.) in the document that is of the
+ Element nodetype.  This routine advances the internal node reference to that
+ next Element.  Use GetXMLNodeName to retrieve the name of the retrieved
+ Element or GetXMLAttributeValue to retrieve the value
+ of the attributes of this node.
+
+ If no subsequent Element was found than we retain the current Element as our
+ current context reference.
+
+
+ PARAMETERS:
+
+      ShortName   The name that was assigned to the XML file when it was opened
+
+ RETURNS:
+
+      sqaPass     if successful
+
+      sqaFail     otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham, Jim Cook, Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotonextxmlnode"></a>
+ Function GoToNextXMLNode (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Go to the next node after the current node from the specified XML
+ document.  The next node is the node that appears immediately after
+ the current node (a child, sibling etc.) in the document.  This routine advances
+ the internal node reference to that next node.  Use GetXMLNodeName to retrieve
+ the name of the retrieved node or GetXMLAttributeValue to retrieve the value
+ of the attributes of this node (if it supports attributes).
+
+ PARAMETERS:
+
+      ShortName   The name that was assigned to the XML file when it was opened
+
+ RETURNS:
+
+      sqaPass     if successful
+
+      sqaFail     otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotopreviousxmlnode"></a>
+ Function GoToPreviousXMLNode (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Sets the current node reference to point to the node immediately before the
+ current node.  Remember that the text portion or contents of an Element is,
+ itself, a separate node.
+
+ The previous node can be a childless previous sibling, the lowest level
+ lastChild of a previous sibling with children, or the parent node.  If we
+ are already at the absolute top of the hierarchy, the routine exits with
+ failure leaving all references as they were on entry.
+
+ For example:
+
+  &lt;element1&gt;content1&lt;/element1&gt;
+  &lt;element2&gt;content2&lt;/element2&gt;
+  &lt;element3&gt;content3&lt;/element3&gt;
+
+ contains 6 nodes.  Each "element" node in this example contains 1 child "text"
+ node.  Thus, if we are processing "element3" and we ask for the previous node,
+ we are going to get the child text node associated with element2.  We will not
+ get element2 itself.  To get element2, use GotoPreviousXMLElement.
+
+
+ PARAMETERS:
+
+      ShortName   the identifier assigned to the XML file when it was opened
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gotopreviousxmlelement"></a>
+ Function GoToPreviousXMLElement (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Sets the current node reference to point to the Element immediately before
+ the current node.
+
+ The previous Element can be a childless previous sibling Element, the lowest
+ level lastChild Element of a previous sibling with children, or the parent
+ Element node.  If we are already at the absolute top of the hierarchy, the
+ routine exits with failure leaving all references as they were on entry.
+
+
+ PARAMETERS:
+
+      ShortName   the identifier assigned to the XML file when it was opened
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham, Jim Cook, Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlnodename"></a>
+ Function GetXMLNodeName (ShortName As String) As String
+
+ DESCRIPTION:
+
+ Returns the name of the current node.  For example, if the current node is
+ element &lt;TestCase id="Test01"&gt;&lt;/TestCase&gt;, this routine would
+ return "TestCase".
+
+ Example Usage:
+
+      CurrentName = GetXMLNodeName("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The name of the node, or an empty string on error or if no name exists
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlnodevalue"></a>
+ Function GetXMLNodeValue (ShortName As String) As String
+
+ DESCRIPTION:
+
+ Retrieves the value of the current node.  For most nodes, this value
+ property is empty, but for elements whose name is #text or #comment,
+ retrieving this property will give you the actual text or comment.
+
+ Uses theNodeType.nodeValue in the DOM.
+
+ Example Usage:
+
+      CurrentValue = GetXMLNodeValue("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The value of the node, or an empty string on error or if none exists
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlnodetext"></a>
+ Function GetXMLNodeText (ShortName As String) As String
+
+ DESCRIPTION:
+
+ Returns the node contents or text.  This will also include the text content
+ from all child nodes or elements, concatenated in document order. For example:
+
+ <count>
+   <item>one</item>
+   <item>two</item>
+   <item>three</item>
+ </count>
+
+ will return "one two three".
+
+ Uses theNodeType.text in the DOM.
+
+ Example Usage:
+
+      CurrentText = GetXMLNodeText("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The text of the node, or an empty string on error or none exists
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01,2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setxmlnodetext"></a>
+ Function SetXMLNodeText (ShortName As String, content As String) As Integer
+
+ DESCRIPTION:
+
+ Sets the element content.  This must include the full content for
+ all child elements(if any), concatenated in document order.  For example:
+
+ &lt; count &gt;
+   &lt; item &gt; one &lt; /item &gt;
+   &lt; item &gt; two&lt; /item &gt;
+   &lt; item &gt; three &lt; /item &gt;
+ &lt; /count &gt;
+
+ The content string for "count" must be the full text of everything between
+ &lt; count &gt; and '# &lt; /count &gt;
+
+ Uses theNodeType.text in the DOM.
+
+ Example Usage:
+
+      result = SetXMLNodeText("Test Cases", "a content string")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+      content     the string to provide to .text
+
+ RETURNS:
+
+      sqaPass     on success, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01,2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="appendxmlelement"></a>
+ Function AppendXMLElement (ShortName As String, NodeName As String,
+                            Optional content as Variant) As Integer
+
+ DESCRIPTION:
+
+ Creates and appends a new XML element to the current node structure.
+ It is an error to attempt to add a new Element to the Document node if it
+ already has its root Element.
+
+ Any supplied content must include the full content for
+ all child elements(if any), concatenated in document order.
+
+ For example a new "count" element: NodeName = "count":
+
+ &lt; count &gt;HRPREFS&lt; /count &gt;
+
+ The content string, if supplied, for "count" must be the full text of everything
+ between &lt; count &gt; and '# &lt; /count &gt;
+
+ Uses theNodeType.text in the DOM to set the content.
+ The currently selected node remains the same and the new element is a child
+ of that node.
+
+
+ Example Usage:
+
+      result = AppendXMLElement("Test Cases", "count")
+      result = AppendXMLElement("Test Cases", "count", "HRPREFS")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+      NodeName    the name to give the new element. The name IS the element
+                  identifier.
+
+      content     Optional string to provide to .text
+
+
+ RETURNS:
+
+      sqaPass     on success, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01,2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlnodetype"></a>
+ Function GetXMLNodeType (ShortName As String) As Long
+
+ DESCRIPTION:
+
+ Returns the current node's nodeType.  The possible values:
+
+     XMLNODE_ELEMENT                = 1
+     XMLNODE_ATTRIBUTE              = 2
+     XMLNODE_TEXT                   = 3
+     XMLNODE_CDATA_SECTION          = 4
+     XMLNODE_ENTITY_REFERENCE       = 5
+     XMLNODE_ENTITY                 = 6
+     XMLNODE_PROCESSING_INSTRUCTION = 7
+     XMLNODE_COMMENT                = 8
+     XMLNODE_DOCUMENT               = 9
+     XMLNODE_DOCUMENT_TYPE          = 10
+     XMLNODE_DOCUMENT_FRAGMENT      = 11
+     XMLNODE_NOTATION               = 12
+
+
+ Uses Node.nodeType in the DOM.
+
+ Example Usage:
+
+      CurrentType = GetXMLNodeType("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The LONG representing the current node type
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01,2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlnodetypestring"></a>
+ Function GetXMLNodeTypeString (ShortName As String) As String
+
+ DESCRIPTION:
+
+ Returns the node's nodeType as a string.  Some possible values:
+
+      cdatasection
+      attribute
+      document
+      element
+      entity
+      text
+
+ and several others.
+
+ Uses Element.nodeTypeString in the DOM.
+
+ Example Usage:
+
+      CurrentType = GetXMLNodeTypeString("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      The text representing the current node type
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 01, 2001
+
+ HISTORY:
+
+      FEB 01,2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlchildcount"></a>
+ Function GetXMLChildCount (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Get the number of Children for the current node.
+
+ PARAMETERS:
+
+      ShortName   the identifier assigned to the XML file when it was opened
+
+ RETURNS:
+
+      The number of child nodes that the current node has
+      -1 on failure to process the file (command may not be supported)
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+      FEB 01, 2001    (Carl Nagle) Added failure return code.
+
+</pre>
+<hr>
+<pre>
+
+<a name="getxmlattributevalue"></a>
+ Function GetXMLAttributeValue (ShortName As String,
+                                Attribute As String) As String
+
+ DESCRIPTION:
+
+ Retrieves the value of a given attribute from the current element in an XML
+ file.  NOTE: Attribute names are case-sensitive
+
+ Example Usage:
+
+      DataValueAction = GetXMLAttributeValue("Test Cases", "action")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+      Attribute   the name of the attribute you want to retrieve
+
+ RETURNS:
+
+      The value given to the attribute for the current element, or an empty
+      string if the value doesn't exist for the current element
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setxmlattributevalue"></a>
+ Function SetXMLAttributeValue (ShortName As String,
+                                  Attribute As String,
+                                  Value As String) As Integer
+
+ DESCRIPTION:
+
+ Changes an attribute value for the current node.  Changes will not
+ be reflected in the actual file until the document is saved.
+ If an attribute with that name already exists, its value is changed.
+ If an attribute with that name does not exist, it is created.
+
+ Example Usage:
+
+      Result = SetXMLAttributeValue("Test Cases","Last_Status","Passed")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+      Attribute   the name of Attribute (ie.Last_Status)
+
+      Value       the value to be assigned to the Attribute (ie. Passed)
+
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="savexmlfile"></a>
+ Function SaveXMLFile (ShortName As String,
+                       Optional SavePath As Variant) As Integer
+
+ DESCRIPTION:
+
+ Save the current state of an XML doc/file.   The routine will save
+ to the same file that was opened or to a different supplied SavePath.
+ Note: XML docs created by this library (CreateXMLFiles) MUST have a SavePath
+ specified if it was not provided previously since they were not loaded from
+ a pre-existing file.
+
+ Note: the SavePath can be any string path OR object that the MSXML 3.0
+ parser will accept in its  doc.save  method.
+
+
+ Example Usage:
+
+      Result = SaveXMLFile("Test Cases")
+      Result = SaveXMLFile("Test Cases", "\\someOtherPath\file.xml")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the open XML file you
+                  want to save
+
+      SavePath    Optional path or object to use when saving the file.  Docs
+                  created with CreateXMLFile must have a SavePath supplied if
+                  one was not previously supplied.  This can also be any object
+                  supported by the MSXML parser's doc.save method.  Providing
+                  a SavePath parameter overrides any setting already
+                  stored with the in-memory doc.
+
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+      FEB 01, 2001    (Carl Nagle) Added optional SavePath.
+
+</pre>
+<hr>
+<pre>
+
+<a name="closexmlfile"></a>
+ Function CloseXMLFile (ShortName As String) As Integer
+
+ DESCRIPTION:
+
+ Closes an open XML file, and shuts down the XML parser if no other documents
+ are open
+
+ Example Usage:
+
+      Result = CloseXMLFile("Test Cases")
+
+
+ PARAMETERS:
+
+      ShortName   the identifier that was assigned to the XML file you want
+                  to read from when it was opened
+
+ RETURNS:
+
+      sqaPass if the document is closed successfully, sqaFail otherwise
+
+ ERRORS:
+
+      (none)
+
+
+ Orig Author: Andy Tinkham and Jim Cook
+ Orig   Date: DEC 11, 2000
+
+ HISTORY:
+
+      DEC 11, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="runmsxsltransform"></a>
+ Function RunMSXSLTransform  (XMLPath As String, XSLPath As String,
+                              OutPath As String, Optional MSoptions) as Integer
+
+ DESCRIPTION:
+
+  Performs an XML transformation using the MSXSL.EXE tool available from Microsoft.
+  This tool is normally included as part of the installation process of this
+  SAFS engine.  No path information will be provided to invoke the MSXSL tool,
+  so it must be available in the standard search path used by Windows.
+
+ PARAMETERS:
+
+      XMLPath     Complete path and filename to valid XML to transform.
+
+      XSLPath     Complete path and filename to valid XSL Stylesheet desired
+                  for the transform.
+
+      OutPath     Complete path and filename for target output file.  If this
+                  exists on entry, it will be deleted before the transform
+                  is attempted.  The routine will only return success if a new
+                  version of this file is successfully created.  (Though the
+                  contents of the file cannot be evaluated, of course.)
+
+      MSoptions   Optional string of options and parameters to pass to
+                  MSXSL.EXE.  The -o <outname> option does not have to be
+                  specified as we will use -o <OutPath> to specify the output
+                  target.
+
+ RETURNS:
+
+      sqaPass     if outFile exists at end of routine
+
+      sqaFail     if it does not, or if invalid path parameters are provided.
+
+ ERRORS:
+
+      (none)
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 26, 2003
+
+ HISTORY:
+
+ SEP 26, 2003    Original Release
+ OCT 29, 2003    (Carl Nagle) Made RunMSXSLTransform Synchronous
+ JUN 28, 2005    (PCUFF)  Added double quotes to filenames in order to work
+                 around issue of RunWshShellProgram not working with long
+                 filenames that contain embedded spaces. Added return code
+                 check as well.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (2001,2002,2003) Andy Tinkham.
+This program is free software; you can redistribute it and/or modify it under 
+the terms of the GNU General Public License Version 2 as published by the Free 
+Software Foundation. This license version can be viewed in its entirety at:
+http://www.opensource.org/licenses/gpl-license.php
+
+THIS CODE IS PROVIDED "AS IS".  THERE ARE NO REPRESENTATIONS OR WARRANTIES, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR ANY PARTICULAR PURPOSE, AND NONINFRINGEMENT.  IN NO EVENT SHALL 
+ANYONE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING IN CONNECTION 
+WITH THE CODE OR ITS USE.  
+
+You should have received a copy of the GNU General Public License along with 
+this program; if not, write to:
+the Free Software Foundation, Inc., 
+59 Temple Place, Suite 330
+Boston, MA 02111-1307 USA
+===============================================================================
+</pre>
+</BODY>
+</HTML>

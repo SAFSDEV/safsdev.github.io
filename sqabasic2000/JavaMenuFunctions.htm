@@ -1,0 +1,181 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic JavaMenuFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "JavaMenuFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=JAVAMENU Java Swing JMenu objects in
+      Data-Driven Automation.
+
+      "SelectMenuItem" should work on both JavaMenus and JavaPopupMenus.
+      "SelectMenuItemContains" will only work on normal JavaMenus.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      SelectMenuItem           'Select a Menu item from a full case-sensitive match
+      SelectMenuItemContains   'Select a Menu item based on a partial, case-insensitive match
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (Optional mode)
+
+
+ DESCRIPTION:
+
+      Routine to select a menuitem according to its text value.
+      Parent-child relationships are separated with "->"
+
+      "SelectMenuItem" should work on both JavaMenus and JavaPopupMenus.
+      "SelectMenuItemContains" will only work on JavaMenus.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of item to select
+              Parent-child relationships are separated with "->"
+              Example: "File->Exit"
+
+              Alternatively, this can be an App Map key used in conjunction
+              with the component Name in Field #3 to allow us to store menuitem
+              text in the App Map for lookup (and easier maintenance).
+
+              Sample with App Map key reference:
+              ==================================
+              T, Window, AJMenu, SelectMenuItem, "FileOpen"
+
+              App Map Sample:
+              ===============
+              [AJMenu]
+              FileOpen="File->Open"       OR
+              FileOpen="Path=File->Open"  OR
+              FileOpen="f->open"          (ex: for ...MenuItemContains partial matches)
+
+
+              For ...MenuItemContains command(s):
+              ------------------------------
+              The "Contains" version of the command will not work on Popup menus.
+
+              TextValue can be the case-insensitive text of the menuitem.
+              For each level, a text comparison is performed. If the item
+              contains the requested substring anywhere in its text, then
+              that item is considered a match.
+              Example: "f->x"  will successfully identify the item
+                       "File->Exit"
+
+
+              It should be noted that SQABasic allows the item text to be
+              part of the recognition string of the menuitem.  Thus, if
+              the user uses a fully qualified recognition string to the
+              item, then field #5 becomes optional.  In fact, any value
+              entered for field #5 will be appended to any ;PATH= recognition
+              string in order to fully qualify the path to the item.
+
+              While having the menuitem text appear in the recognition path and
+              not using field #5 is possible, that may not be compatible with
+              other engines using different toolsets.  For the best chance of
+              multi-engine compatibility, use field #5 for providing the item
+              hierarchy separate from the menu recognition string.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 22, 2003
+ History:
+
+      JAN 22, 2003    Original Release
+      JUL 08, 2004    (Carl Nagle) Added PopupMenu support
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a JAVAMENU.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 22, 2003
+ History:
+
+      JAN 22, 2003    Original Release
+      JUL 08, 2004    (Carl Nagle) Added PopupMenu support
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

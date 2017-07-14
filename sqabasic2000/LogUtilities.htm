@@ -1,0 +1,1331 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic LogUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "LogUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines that allow us to log messages and test results to any
+      combination of SQA Robot log, text logs, XML logs, and console output.
+      It also provides a GLOBAL MainLog <a href="#user_defined" target="LU">LogFacility</a> which any procedure
+      wishing to log results should use as its primary log.
+
+      There are also functions to suspend and resume framework controlled logging.
+
+      A LogFacility is a specification for a particular log.  It is possible
+      to have multiple logs active at once and a given message is posted to a
+      particular log by specifying which LogFacility to use.
+
+      NOTE: However, since there is only one active SQA Robot log (sort of),
+      multiple LogFacilities which have logmode SQALOG_ENABLED will all write
+      to the one SQA Robot log.
+
+      Additionally, since there is only one SQA Robot Console all LogFacilities
+      with CONSOLE_ENABLED will all write to the one console.
+
+      A standard implementation would have the highest level procedure
+      initialize the MainLog with the desired logmodes.  All subsequent
+      procedures wishing to write results or information to the log(s) would
+      merely call the LogMessage routine with the message, the LogFacility to use
+      and optionally the type of the message we are logging.
+      See the LogUtilities MessageType identifiers for valid types of messages.
+
+      Example1:
+
+          Call InitLogFacility(SQALOG_ENABLED, MainLog, logid:="Systems Test")
+
+      This will initialize the MainLog facility with the standard SQA Robot
+      results log as the only active log.  Subsequent use of the log would look
+      like this:
+
+          LogMessage "some text to put in log", MainLog              OR
+
+          LogMessage "some text to put in log", MainLog, _
+                     msgDescription:="some additional description or information."
+
+                                                                     OR
+
+          LogMessage "test failed somehow", MainLog, FAILED_MESSAGE  OR
+
+          LogMessage "test failed somehow", MainLog, FAILED_MESSAGE, _
+                     "Additional detailed description if we know what happened."
+
+      Example2:
+
+          Dim logmode As Integer
+          logmode = CONSOLE_ENABLED OR TXTLOG_ENABLED OR XMLLOG_ENABLED
+
+          Call InitializeLogFacility(logmode, MainLog, logid:="Regression")
+
+      This will initialize the MainLog facility's SQA Console logging, the
+      traditional framework text log, AND an XML log.  Both the text log and
+      XML log will be stored in the project's "Datapool\Logs\" directory.
+      The filenames will be "Regression.txt" and "Regression.xml", respectively.
+
+      The calls to LogMessage as shown in Example1 would remain the same,
+      however, each message will be sent to all of these logs.
+
+      NOTE:
+      (1)When all is said and done with a LogFacility with an enabled textlog
+      and/or xmllog you should close it using the <a href="#closealllogs" target="LU">CloseAllLogs</a> routine.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "LogUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\LogUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="CustomLogUtilities.htm">CustomLogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAUtil.htm">SQAUtil</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#initlogfacility">InitLogFacility</a>         BasicLib LogUtilities                  
+Function <a href="#istextlogenabled">IsTextLogEnabled</a>        BasicLib LogUtilities                  
+Function <a href="#isxmllogenabled">IsXMLLogEnabled</a>         BasicLib LogUtilities                  
+   Sub   <a href="#settextlogenabled">SetTextLogEnabled</a>       BasicLib LogUtilities                  
+   Sub   <a href="#setxmllogenabled">SetXMLLogEnabled</a>        BasicLib LogUtilities                  
+Function <a href="#ishtmllogenabled">IsHTMLLogEnabled</a>        BasicLib LogUtilities                  
+Function <a href="#issqalogenabled">IsSQALogEnabled</a>         BasicLib LogUtilities                  
+   Sub   <a href="#setsqalogenabled">SetSQALogEnabled</a>        BasicLib LogUtilities                  
+Function <a href="#isconsoleenabled">IsConsoleEnabled</a>        BasicLib LogUtilities                  
+   Sub   <a href="#setconsoleenabled">SetConsoleEnabled</a>       BasicLib LogUtilities                  
+Function <a href="#isloggingenabled">IsLoggingEnabled</a>        BasicLib LogUtilities                  
+   Sub   <a href="#lususpendallddelogging">LUSuspendAllDDELogging</a>  BasicLib LogUtilities                  
+   Sub   <a href="#luresumeallddelogging">LUResumeAllDDELogging</a>   BasicLib LogUtilities                  
+Function <a href="#opentextlog">OpenTextLog</a>             BasicLib LogUtilities                  
+Function <a href="#openxmllog">OpenXMLLog</a>              BasicLib LogUtilities                  
+   Sub   <a href="#closetextlog">CloseTextLog</a>            BasicLib LogUtilities                  
+   Sub   <a href="#closexmllog">CloseXMLLog</a>             BasicLib LogUtilities                  
+   Sub   <a href="#closealllogs">CloseAllLogs</a>            BasicLib LogUtilities                  
+Function <a href="#lucapxmllog">LUCapXMLLog</a>             BasicLib LogUtilities                  
+   Sub   <a href="#copylogfacility">CopyLogFacility</a>         BasicLib LogUtilities                  
+   Sub   <a href="#logmessage">LogMessage</a>              BasicLib LogUtilities                  
+   Sub   <a href="#lulogstatusinfo">LULogStatusInfo</a>         BasicLib LogUtilities                  
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+' The default (Global) .logID of any active log.
+Const  LUDefaultLogID        = "TESTLOG"
+
+' The default (Global)TextLogName of any active TEXT log.
+Const  TextLogDefaultName    = "TESTLOG.TXT"
+
+
+' The default (Global)HTMLLogName of any active HTML log.
+Const  HTMLLogDefaultName    = "TESTLOG.HTM"
+
+' The default (Global)XMLLogName of any active XML log.
+Const  XMLLogDefaultName       = "TESTLOG.XML"
+Const  DEFAULT_SAFS_LOG_HEADER = "SAFS_LOG_HEADER.XML"
+Const  DEFAULT_SAFS_LOG_FOOTER = "SAFS_LOG_FOOTER.XML"
+
+'Log version information
+Const MAJOR_VERSION = "1"
+Const MINOR_VERSION = "1"
+
+
+' Values for LogFacility.logmode   Can be none(0), some, or all(31).
+' These values are BINARY bit values
+Const  LOGGING_DISABLED     = 0
+Const  SQALOG_ENABLED       = 1
+Const  TEXTLOG_ENABLED      = 2
+Const  HTMLLOG_ENABLED      = 4
+Const  CONSOLE_ENABLED      = 8
+Const  XMLLOG_ENABLED       = 16
+'Const  RESERVED            = 32
+'Const  RESERVED            = 64
+'Const  RESERVED            = 128
+Const  MAX_LOGMODE          = 31
+
+
+' Values for LogFacility.extmode
+'Also used by the Global LU_DDE_LOGGING_DISABLED
+
+Const  LU_NORMAL_DDE_LOGGING   = 0      'use normal logging in addition to any custom extensions
+Const  LU_BYPASS_DDE_LOGGING   = -1     'bypass normal logging. custom logging used exclusively
+
+
+' MessageType identifiers for the message being logged with LogMessage function.
+' The core DDE reserves MessageType values 0 thru 5000.
+' Custom Message types must reside outside of this range.
+
+Const  GENERIC_MESSAGE       = 0
+Const  START_PROCEDURE       = 1
+Const  END_PROCEDURE         = 2
+Const  START_DATATABLE       = 3
+Const  START_TESTCASE        = 4
+Const  START_SUITE           = 5
+Const  END_SUITE             = 6
+Const  END_TESTCASE          = 8
+Const  START_CYCLE           = 9
+Const  END_CYCLE             = 10
+Const  START_COUNTER         = 11
+Const  END_COUNTER           = 12
+Const  SUSPEND_STATUS_COUNTS = 13
+Const  RESUME_STATUS_COUNTS  = 14
+
+Const  START_LOGGING         = 16
+Const  STOP_LOGGING          = 32
+
+Const  STATUS_REPORT_START            = 17
+Const  STATUS_REPORT_RECORDS          = 18
+Const  STATUS_REPORT_SKIPPED          = 19
+Const  STATUS_REPORT_TESTS            = 20
+Const  STATUS_REPORT_TEST_PASSES      = 21
+Const  STATUS_REPORT_TEST_WARNINGS    = 22
+Const  STATUS_REPORT_TEST_FAILURES    = 23
+Const  STATUS_REPORT_GENERAL_WARNINGS = 24
+Const  STATUS_REPORT_GENERAL_FAILURES = 25
+Const  STATUS_REPORT_IO_FAILURES      = 26
+'Const  STATUS_REPORT_RESERVED         = 27
+'Const  STATUS_REPORT_RESERVED         = 28
+'Const  STATUS_REPORT_RESERVED         = 29
+'Const  STATUS_REPORT_RESERVED         = 30
+Const  STATUS_REPORT_END              = 31
+
+Const  START_REQUIREMENT     = 64
+Const  END_REQUIREMENT       = 128
+Const  SKIPPED_TEST_MESSAGE  = 256
+Const  END_DATATABLE         = 512
+
+Const  FAILED_MESSAGE        = 1024
+Const  FAILED_OK_MESSAGE     = 1025
+Const  PASSED_MESSAGE        = 2048
+Const  WARNING_MESSAGE       = 4096
+Const  WARNING_OK_MESSAGE    = 4097
+
+' The core DDE reserves MessageType values 0 thru 5000.
+' Custom Message types must reside outside of this range.
+
+
+'TextLog format constants
+Const  HEADER_OFFSET           = 10               'col offset for START descriptions
+Const  FOOTER_OFFSET           = 10               'col offset for END descriptions
+Const  STANDARD_OFFSET         = 10               'col offset for messages
+
+
+Const  GENERIC_MESSAGE_XML_PREFIX       = "GENERIC"
+Const  START_DATATABLE_XML_PREFIX       = "START DATATABLE"
+Const  END_DATATABLE_XML_PREFIX         = "END DATATABLE"
+Const  START_PROCEDURE_XML_PREFIX       = "START PROCEDURE"
+Const  END_PROCEDURE_XML_PREFIX         = "STOP PROCEDURE"
+Const  START_TESTCASE_XML_PREFIX        = "START TESTCASE"
+Const  END_TESTCASE_XML_PREFIX          = "STOP TESTCASE"
+Const  START_SUITE_XML_PREFIX           = "START SUITE"
+Const  END_SUITE_XML_PREFIX             = "STOP SUITE"
+Const  START_COUNTER_XML_PREFIX         = "START COUNTER"
+Const  END_COUNTER_XML_PREFIX           = "STOP COUNTER"
+Const  SUSPEND_COUNTERS_XML_PREFIX      = "SUSPEND COUNTERS"
+Const  RESUME_COUNTERS_XML_PREFIX       = "RESUME COUNTERS"
+Const  START_CYCLE_XML_PREFIX           = "START CYCLE"
+Const  END_CYCLE_XML_PREFIX             = "STOP CYCLE"
+Const  START_LOGGING_XML_PREFIX         = "START LOGGING"
+Const  STOP_LOGGING_XML_PREFIX          = "STOP LOGGING"
+Const  START_REQUIREMENT_XML_PREFIX     = "START REQUIREMENT"
+Const  END_REQUIREMENT_XML_PREFIX       = "STOP REQUIREMENT"
+
+Const  GENERIC_MESSAGE_PREFIX       = "          "  'SPACE$(STANDARD_OFFSET)
+Const  START_DATATABLE_PREFIX       = "  ------  START DATATABLE: "
+Const  END_DATATABLE_PREFIX         = "  ------  END DATATABLE: "
+Const  START_PROCEDURE_PREFIX       = "  >>>>>>  START PROCEDURE "
+Const  END_PROCEDURE_PREFIX         = "  <<<<<<  STOP PROCEDURE "
+Const  START_TESTCASE_PREFIX        = "  >>>>>>  START TESTCASE "
+Const  END_TESTCASE_PREFIX          = "  <<<<<<  STOP TESTCASE "
+Const  START_SUITE_PREFIX           = "  >>>>>>  START SUITE "
+Const  END_SUITE_PREFIX             = "  <<<<<<  STOP SUITE "
+Const  START_COUNTER_PREFIX         = "  >>>>>>  START STATUS COUNTER "
+Const  END_COUNTER_PREFIX           = "  <<<<<<  STOP STATUS COUNTER "
+Const  SUSPEND_COUNTERS_PREFIX      = "  <!<!<!  SUSPEND STATUS COUNTERS "
+Const  RESUME_COUNTERS_PREFIX       = "  !>!>!>  RESUME STATUS COUNTERS "
+Const  START_CYCLE_PREFIX           = "  >>>>>>  START CYCLE "
+Const  END_CYCLE_PREFIX             = "  <<<<<<  STOP CYCLE "
+Const  START_LOGGING_PREFIX         = "  ......  START LOGGING "
+Const  STOP_LOGGING_PREFIX          = "  ......  STOP LOGGING "
+Const  START_REQUIREMENT_PREFIX     = "  ......  START REQUIREMENT "
+Const  END_REQUIREMENT_PREFIX       = "  ......  STOP REQUIREMENT "
+
+Const  STATUS_REPORT_START_XML_PREFIX            = "BEGIN STATUS REPORT"
+Const  STATUS_REPORT_RECORDS_XML_PREFIX          = "TOTAL RECORDS"
+Const  STATUS_REPORT_SKIPPED_XML_PREFIX          = "SKIPPED RECORDS"
+Const  STATUS_REPORT_TESTS_XML_PREFIX            = "TEST RECORDS"
+Const  STATUS_REPORT_TEST_PASSES_XML_PREFIX      = "TESTS PASSED"
+Const  STATUS_REPORT_TEST_WARNINGS_XML_PREFIX    = "TEST WARNINGS"
+Const  STATUS_REPORT_TEST_FAILURES_XML_PREFIX    = "TEST FAILURES"
+Const  STATUS_REPORT_GENERAL_WARNINGS_XML_PREFIX = "GENERAL WARNINGS"
+Const  STATUS_REPORT_GENERAL_FAILURES_XML_PREFIX = "GENERAL FAILURES"
+Const  STATUS_REPORT_IO_FAILURES_XML_PREFIX      = "IO FAILURES"
+'Const  STATUS_REPORT_RESERVED_XML_PREFIX        = 
+'Const  STATUS_REPORT_RESERVED_XML_PREFIX        = 
+'Const  STATUS_REPORT_RESERVED_XML_PREFIX        = 
+'Const  STATUS_REPORT_RESERVED_XML_PREFIX        = 
+Const  STATUS_REPORT_END_XML_PREFIX              = "END STATUS REPORT"
+
+Const  STATUS_REPORT_START_PREFIX            = " ======== BEGIN STATUS REPORT: "
+Const  STATUS_REPORT_RECORDS_PREFIX          = "   TOTAL RECORDS: "
+Const  STATUS_REPORT_SKIPPED_PREFIX          = " SKIPPED RECORDS: "
+Const  STATUS_REPORT_TESTS_PREFIX            = "    TEST RECORDS: "
+Const  STATUS_REPORT_TEST_PASSES_PREFIX      = "    TESTS PASSED: "
+Const  STATUS_REPORT_TEST_WARNINGS_PREFIX    = "   TEST WARNINGS: "
+Const  STATUS_REPORT_TEST_FAILURES_PREFIX    = "   TEST FAILURES: "
+Const  STATUS_REPORT_GENERAL_WARNINGS_PREFIX = "GENERAL WARNINGS: "
+Const  STATUS_REPORT_GENERAL_FAILURES_PREFIX = "GENERAL FAILURES: "
+Const  STATUS_REPORT_IO_FAILURES_PREFIX      = "     IO FAILURES: "
+'Const  STATUS_REPORT_RESERVED_PREFIX        = 
+'Const  STATUS_REPORT_RESERVED_PREFIX        = 
+'Const  STATUS_REPORT_RESERVED_PREFIX        = 
+'Const  STATUS_REPORT_RESERVED_PREFIX        = 
+Const  STATUS_REPORT_END_PREFIX              = " ======== END STATUS REPORT: "
+
+Const  SKIPPED_TEST_XML_PREFIX          = "SKIPPED RECORD"
+Const  FAILED_MESSAGE_XML_PREFIX        = "FAILED"
+Const  FAILED_OK_MESSAGE_XML_PREFIX     = "FAILURE EXPECTED"
+Const  PASSED_MESSAGE_XML_PREFIX        = "PASSED"
+Const  WARNING_MESSAGE_XML_PREFIX       = "WARNING"
+Const  WARNING_OK_MESSAGE_XML_PREFIX    = "WARNING EXPECTED"
+
+Const  SKIPPED_TEST_PREFIX          = "- SKIPPED "
+Const  FAILED_MESSAGE_PREFIX        = "**FAILED**"
+Const  FAILED_OK_MESSAGE_PREFIX     = "FAILED OK "
+Const  PASSED_MESSAGE_PREFIX        = "    OK    "
+Const  WARNING_MESSAGE_PREFIX       = "- WARNING "
+Const  WARNING_OK_MESSAGE_PREFIX    = " WARN OK  "
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+Global MainLog                 As LogFacility
+Global LU_DDE_LOGGING_DISABLED As Integer
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+Type LogFacility
+    logid  As String            ' (custom/future) a name to reference this LogFacility by
+    logmode As Integer          ' Test logging mode
+    textlog As String           ' full pathname for any TEXT log
+    xmllog As String            ' full pathname for any XML log
+    textref As Integer          ' 0 means log closed/inactive
+    xmlref As Integer           ' 0 means log closed/inactive
+    extmode As Integer          ' Custom Log Extensions mode for DDE_LOGGING
+    linkedlog As String         ' (custom/future) logid of another linked Log
+End Type
+
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="initlogfacility"></a>
+  Function InitLogFacility(mode As Integer,
+                           fac As LogFacility,
+                           Optional textlog As String,
+                           Optional xmllog As String,
+                           Optional logid As String,
+                           Optional linkedlog As String
+                          ) As Integer
+
+ DESCRIPTION:
+
+      Initialize all log facility global values and log modes.  Open log
+      file if TEXT or XML logging has been enabled.  TEXT and XML logs are always opened
+      in APPEND mode.  Thus, if you intend to start a new log with the same full
+      path  and filename of an existing log, you must first move or delete the
+      existing log.
+
+      This routine should only be called on a new uninitialized LogFacility
+      object or open files could be left in limbo until they were closed by
+      the operating system.
+
+      After normal initialization the routine calls <a href="CustomLogUtilities.htm#customddeloginitialization" target="CLU">CustomDDELogInitialization</a>
+      to allow site or project specific initialization activities.  The log
+      facility will contain full path filenames and FileRef handles for any
+      open TEXT or XML log.
+
+ PARAMETERS:
+
+      mode        OR'd value(s) for the <a href="#constants" target="_blank">logmode</a>.  A log should be
+                  initialized with at least one valid mode.  If no valid mode is
+                  provided the mode will default to SQALOG_ENABLED.  However, this
+                  can be disabled after initialization is completed if absolutuly no
+                  logging is required.
+
+      fac         reference to the <a href="#user_defined" target="_blank">LogFacility</a> to initialize.
+
+      textlog     Optional full pathname for any TEXT log.
+                  If mode has enabled the textlog but no textlog
+                  filename is given and no textlog filename is currently
+                  set, then we will try a filename based on the logid to be
+                  stored in the project's "Datapool\Logs\" directory.  If no
+                  logid is given then the TextLogDefaultName is used in the
+                  "Datapool\Logs\" directory.
+
+      xmllog      Optional full pathname for any XML log.
+                  If mode has enabled the XML log but no XML log
+                  filename is given and no XML log filename is currently
+                  set, then we will try a filename based on the logid to be
+                  stored in the project's "Datapool\Logs\" directory.  If no
+                  logid is given then the XMLLogDefaultName is used in the
+                  "Datapool\Logs\" directory.
+
+      logid       Optional name reference to use for this log.  This reference
+                  may be used in future functionality to differentiate one LogFacility
+                  from another.  This feature may also prove useful in
+                  CustomLogFacilities.
+
+      linkedlog   Optional logid of another LogFacility linked to this one.
+                  This reference may be used in future functionality.
+                  This feature may also prove useful in CustomLogFacilities.
+
+ RETURNS:
+
+       0 on initialization successful.
+      -1 on initialization failure.  Normally this only happens if TEXT or XML
+         logging is enabled and IO problems have occurred.
+         The DDE also reserves codes -99 thru +99.
+      Any other code may be returned from CustomDDELogInitialization and will
+      be returned by this function.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+      JUL 02, 1999    (Carl Nagle) Removed HTML logging opting for post-processing of a
+                      TEXT log to create HTML reports.
+      JAN 17, 2001    (Carl Nagle) Default log moved to Datapool\Logs directory.
+      JUN 22, 2002    (Carl Nagle) Enabling XML logging and other features.
+      SEP 26, 2003    (Carl Nagle) Default LogID enabled when none set.
+      OCT 27, 2003    (Carl Nagle) Fixed another bug to trap STAF NOT INSTALLED error.
+      DEC 15, 2003    (Carl Nagle) Attempt SAFS AutoLaunch on Init
+      DEC 18, 2003    (Carl Nagle) Allow for AutoLaunch of Logs only.
+
+</pre>
+<hr>
+<pre>
+
+<a name="istextlogenabled"></a>
+  Function IsTextLogEnabled(fac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Return a TRUE (1) result if the textlog is enabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to evaluate.
+
+ RETURNS:
+
+       0  TextLog is NOT enabled
+       1  TextLog IS enabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="settextlogenabled"></a>
+  Sub SetTextLogEnabled(fac As LogFacility, enable As Integer) As Integer
+
+ DESCRIPTION:
+
+      Enable or disable a TextLog.
+      This routine will not actually open or close a textlog but will merely
+      enable or disable the flag within the provided facility.  This is
+      normally used to temporarily disable an active textlog and then later
+      reenable it.
+      If you enable a textlog that is undefined or inactive
+      we try to ignore the setting.  In some cases, it may eventually get
+      reset back to disabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to use.
+      enable  1 will enable the textlog flag. 0 will disable it.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 02, 1999
+ History:
+
+      JUL 02, 1999    Original Release
+      JUL 06, 1999    (Carl Nagle) Corrected bug in LogMessage calls.
+
+</pre>
+<hr>
+<pre>
+
+<a name="isxmllogenabled"></a>
+  Function IsXMLLogEnabled(fac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Return a TRUE (1) result if the XML log is enabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to evaluate.
+
+ RETURNS:
+
+       0  XML Log is NOT enabled
+       1  XML Log IS enabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setxmllogenabled"></a>
+  Sub SetXMLLogEnabled(fac As LogFacility, enable As Integer) As Integer
+
+ DESCRIPTION:
+
+      Enable or disable a XMLLog.
+      This routine will not actually open or close a XML log but will merely
+      enable or disable the flag within the provided facility.  This is
+      normally used to temporarily disable an active log and then later
+      reenable it.
+
+      If you enable a XML log that is undefined or inactive
+      we try to ignore the setting.  In some cases, it may eventually get
+      reset back to disabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to use.
+      enable  1 will enable the xmllog flag. 0 will disable it.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ishtmllogenabled"></a>
+  Function IsHTMLLogEnabled(fac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Return a TRUE (1) result if the htmllog is enabled.
+      The HTML log is not a realtime log but more of a flag that tells us
+      to post-process a text log and create an html report.
+      NOTE: Since an HTML log will be a post-processing affair their is no
+      temporary enabling or disabling feature for HTML logging.  Whatever
+      the value is at the time of post-processing is what will occur.
+
+ PARAMETERS:
+
+      fac     LogFacility to evaluate.
+
+ RETURNS:
+
+       0  HTMLLog is NOT enabled
+       1  HTMLLog IS enabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="isconsoleenabled"></a>
+  Function IsConsoleEnabled(fac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Return a TRUE (1) result if console output is enabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to evaluate.
+
+ RETURNS:
+
+       0  Console is NOT enabled
+       1  Console IS enabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 02, 1999
+ History:
+
+      JUL 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setconsoleenabled"></a>
+  Sub SetConsoleEnabled(fac As LogFacility, enable As Integer) As Integer
+
+ DESCRIPTION:
+
+      Enable or disable Console logging.
+      This routine will not actually open or close the console but will merely
+      enable or disable the flag within the provided facility.  This is
+      normally used to temporarily disable active console output and then later
+      reenable it.
+
+ PARAMETERS:
+
+      fac     LogFacility to use.
+      enable  1 will enable console logging flag. 0 will disable it.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 02, 1999
+ History:
+
+      JUL 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="issqalogenabled"></a>
+  Function IsSQALogEnabled(fac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Return a TRUE (1) result if the SQAlog is enabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to evaluate.
+
+ RETURNS:
+
+       0  SQALog is NOT enabled
+       1  SQALog IS enabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setsqalogenabled"></a>
+  Sub SetSQALogEnabled(fac As LogFacility, enable As Integer) As Integer
+
+ DESCRIPTION:
+
+      Enable or disable a SQALog.
+      This routine will not actually open or close the SQA log but will merely
+      enable or disable the flag within the provided facility.  This is
+      normally used to temporarily disable active SQAlog output and then later
+      reenable it.
+      If you enable a SQALog that is undefined or inactive
+      we try to ignore the setting.  In some cases, it may eventually get
+      reset back to disabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to use.
+      enable  1 will enable the SQAlog flag. 0 will disable it.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 02, 1999
+ History:
+
+      JUL 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="isloggingenabled"></a>
+  Function IsLoggingEnabled(fac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Return a TRUE (1) result if the any logging is enabled.
+
+ PARAMETERS:
+
+      fac     LogFacility to evaluate.
+
+ RETURNS:
+
+       0  Logging is NOT enabled
+       1  Any Logging IS enabled.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="lususpendallddelogging"></a>
+  Sub LUSuspendAllDDELogging(fac As LogFacility)
+
+ DESCRIPTION:
+
+      Sets the Global LU_DDE_LOGGING_DISABLED to LU_BYPASS_DDE_LOGGING.
+      The LogMessage routine evaluates this for all message logging.
+
+      When logging is disabled, the <a href="#logmessage" target="_blank">LogMessage</a> routine bypasses ALL
+      logging INCLUDING the <a href="CustomLogUtilities.htm#customddelogmessage" target="_blank">CustomDDELogMessage</a> hook.
+
+      A message will be sent to the provided log indicating subsequent logging
+      has been suspended.
+
+
+ PARAMETERS:
+
+      fac         <a href="#user_defined" target="_blank">LogFacility</a> to receive suspension notice.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+      AUG 26, 2003    (Carl Nagle) Fixed bug to trap STAF NOT INSTALLED error.
+
+</pre>
+<hr>
+<pre>
+
+<a name="luresumeallddelogging"></a>
+  Sub LUResumeAllDDELogging(fac As LogFacility)
+
+ DESCRIPTION:
+
+      Sets the Global LU_DDE_LOGGING_DISABLED to LU_NORMAL_DDE_LOGGING.
+      The LogMessage routine evaluates this for all message logging.
+
+      When logging is disabled, the <a href="#logmessage" target="_blank">LogMessage</a> routine bypasses ALL
+      logging INCLUDING the <a href="CustomLogUtilities.htm#customddelogmessage" target="_blank">CustomDDELogMessage</a> hook.
+
+      A message will be sent to the provided log indicating logging has resumed.
+
+
+ PARAMETERS:
+
+      fac         <a href="#user_defined" target="_blank">LogFacility</a> to receive resumption notice.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+      AUG 26, 2003    (Carl Nagle) Fixed bug to trap STAF NOT INSTALLED error.
+
+</pre>
+<hr>
+<pre>
+
+<a name="opentextlog"></a>
+  Function OpenTextLog(fac As LogFacility, doHeader As Integer,
+                       Optional textlog) As Integer
+
+ DESCRIPTION:
+
+      For non-STAF log handling only. If the SAFSLOGS service is handling
+      logging then a call to this function does nothing.
+
+      (Re)opens the provided LogFacility's TextLog if inactive.
+      If no filename has been set and the optional textlog parameter is
+      not provided then we will attempt to open a log based on the fac.logid,
+      if one has been set.  Otherwise, we will use TextLogDefaultName.
+      Logs based on the logid or this default will be located in the project's
+      Datapool\Logs directory.
+
+      If doHeader is True (1) then log a full header with date/time stamp.
+      If doHeader is False (0) then log a brief date/time stamp only.
+      Sets the fac.textref to that provided by freefile and enables text
+      logging if successful.
+      Note that opening a log does not overwrite it.  We only append. If
+      you wish to start clean you must rename or delete the file before
+      calling this routine.
+
+ PARAMETERS:
+
+      fac         LogFacility to enable.
+
+      doHeader    1 means log a full header entry.
+                  0 means to log only a brief date/time stamp.
+
+      textlog     Optional. Change the log file used in the log facility.
+
+ RETURNS:
+
+      0 on failure. Usually an invalid file specification OR an already
+      active log that is different from that defined in the provided optional
+      textlog parameter.  If the return value is 0 but the fac.textref is
+      not 0 then there is already an active textlog with a filename as
+      specified in fac.textlog.  In that case, no Open event logging occurs.
+      Close down the active log prior to opening your new one.
+
+      Otherwise returns the fileref% used to open the file or the fileref%
+      of the file already opened.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+      JAN 17, 2001    (Carl Nagle) Default log moved to Datapool\Logs directory.
+      AUG 13, 2003    (Carl Nagle) Changed to use DDUtilities for directory lookups.
+      SEP 26, 2003    (Carl Nagle) enabled service log handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="closetextlog"></a>
+  Sub CloseTextLog(fac As LogFacility, finalize As Integer)
+
+ DESCRIPTION:
+
+      If STAF SAFSLOGS is active, the finalize parameter is ignored and
+      SAFSLOGS closes ALL logs associated with the provided LogFacility.
+
+      Otheriwse:
+      Closes the provided LogFacility's TextLog if active.
+      If finalize is False (0) then it closes the log with a brief
+      Date/Time stamp message.  It does not place any final closing text
+      into the log.
+      If finalize is True (1) then additional closing text is added to
+      the log. (Currently there is none.)
+      Resets the fileref to 0 and disables TextLog mode.
+
+ PARAMETERS:
+
+      fac         LogFacility to close/disable.
+
+      finalize    1 instructs routine to write extra finalization text to
+                  the log.
+                  0 instructs the routine to only write the closing
+                  date/time stamp.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 1999
+ History:
+
+      JUL 01, 1999    Original Release
+      SEP 26, 2003    (Carl Nagle) enabled closing service logs.
+
+</pre>
+<hr>
+<pre>
+
+<a name="openxmllog"></a>
+  Function OpenXMLLog(fac As LogFacility, doHeader As Integer,
+                       Optional xmllog) As Integer
+
+ DESCRIPTION:
+
+      For non-STAF log handling only. If the SAFSLOGS service is handling
+      logging then a call to this function does nothing.
+
+      (Re)opens the provided LogFacility's XML Log if inactive.
+      If no filename has been set and the optional xmllog parameter is
+      not provided then we will attempt to open a log based on the fac.logid,
+      if one has been set.  Otherwise, we will use XMLLogDefaultName.
+      Logs based on the logid or this default will be located in the project's
+      Datapool\Logs directory.
+
+      If doHeader is True (1) then log a LOG_OPENED element with date and time
+      attributes then log a LOG_VERSION element with major and minor attributes.
+      More header information may be developed in the future.
+
+      If doHeader is False (0) then log a LOG_OPENED element with date and time
+      attributes only.
+
+      Sets the fac.xmlref to that provided by freefile and enables text
+      logging if successful.
+
+      Note that opening a log does not overwrite it.  We only append. If
+      you wish to start clean you must rename or delete the file before
+      calling this routine.
+
+ PARAMETERS:
+
+      fac         LogFacility to enable.
+
+      doHeader    1 means log a date/time AND version information.
+                  0 means to log only a brief date/time stamp.
+
+      xmllog      Optional. Change the log file used in the log facility.
+
+
+ RETURNS:
+
+      0 on failure. Usually an invalid file specification OR an already
+      active log that is different from that defined in the provided optional
+      xmllog parameter.  If the return value is 0 but the fac.xmlref is
+      not 0 then there is already an active xmllog with a filename as
+      specified in fac.xmllog.  In that case, no Open event logging occurs.
+      Close down the active log prior to opening your new one.
+
+      Otherwise returns the fileref% used to open the file or the fileref%
+      of the file already opened.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+      SEP 26, 2003    (Carl Nagle) enabled service log handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="closexmllog"></a>
+  Sub CloseXMLLog(fac As LogFacility, finalize As Integer)
+
+ DESCRIPTION:
+
+      If STAF SAFSLOGS is active, the finalize parameter is ignored and
+      SAFSLOGS closes ALL logs associated with the provided LogFacility.
+
+      Otheriwse:
+      Closes the provided LogFacility's XML Log if active.
+
+      If finalize is False (0) then it closes the log with a LOG_CLOSED
+      element containing date and time attributes.
+
+      If finalize is True (1) then additional closing text is added to
+      the log. (Currently there is none.)
+
+      Resets the fileref to 0 and disables XMLLog mode.
+
+ PARAMETERS:
+
+      fac         LogFacility to close/disable.
+
+      finalize    1 instructs routine to write extra finalization text to
+                  the log.
+                  0 instructs the routine to only write the closing
+                  date/time stamp.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+      SEP 26, 2003    (Carl Nagle) enabled closing service logs.
+
+</pre>
+<hr>
+<pre>
+
+<a name="closealllogs"></a>
+  Sub CloseAllLogs(fac As LogFacility, finalize As Integer)
+
+ DESCRIPTION:
+
+      Closes all file related Logs (text, xml, etc..) if active.
+
+      If finalize is False (0) then it closes the log with simple date and
+      time information.
+
+      If finalize is True (1) then additional closing text is added to
+      the log. (Currently there is little to none.)
+
+      Resets the fileref for each log to 0 and disables associated log modes.
+
+      This routine will first call the <a href="CustomLogUtilities.htm#customddelogfinalization">CustomDDELogFinalization</a> routine.
+      That routine can choose to handle some or all finalization and can
+      bypass this routine.
+
+      Alternatively, CustomDDELogFinalization can simply write more
+      information to the logs prior to closing by this routine.
+
+ PARAMETERS:
+
+      fac         LogFacility to close/disable.
+
+      finalize    1 instructs routine to write extra finalization text to
+                  the log.
+                  0 instructs the routine to only write the closing
+                  date/time stamp.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 22, 2002
+ History:
+
+      JUN 22, 2002    Original Release
+      AUG 14, 2002    KJONES added close for SAFSLOG service
+      AUG 26, 2003    (Carl Nagle) Fixed bug to trap STAF NOT INSTALLED error.
+
+</pre>
+<hr>
+<pre>
+
+<a name="lucapxmllog"></a>
+  Function LUCapXMLLog(xmllog as String, Optional headerFile, Optional footerFile) as Integer
+
+
+ DESCRIPTION:
+
+      Attempts to Prepend an appropriate XML header to a completed XML log.
+      Attempts to  Append an appropriate XML footer to a completed XML log.
+      This is required because the XML log will not be valid until an appropriate
+      header and footer is applied to the log.
+
+ PARAMETERS:
+
+      xmllog      The xmllog filename to cap.  The .XML extension is not necessary.
+                  The routine expects to find the XML log in the Datapool\Logs
+                  directory.
+                  Otherwise, we will use <a href="FileUtilities.htm#findsqafile" target="_blank">FindSQAFile</a> to attempt to locate
+                  any other file specified.
+
+      headerFile  Optional filename to use as the XML header to a completed XML
+                  log.  The XML log will not be valid without the header.  If no
+                  filename is provided then we use the default SAFS_LOG_HEADER.XML
+                  file located in the DDE_RUNTIME directory.
+                  We will use <a href="FileUtilities.htm#finddderuntimefile" target="_blank">FindDDERuntimeFile</a> to attempt to locate
+                  any other file specified.
+                  We will use <a href="FileUtilities.htm#findsqafile" target="_blank">FindSQAFile</a> to attempt to locate
+                  any other file specified.
+
+      footerFile  Optional filename to use as the XML footer to a completed XML
+                  log.  The XML log will not be valid without the footer.  If no
+                  filename is provided then we use the default SAFS_LOG_FOOTER.XML
+                  file located in the DDE_RUNTIME directory.
+                  We will use <a href="FileUtilities.htm#finddderuntimefile" target="_blank">FindDDERuntimeFile</a> to attempt to locate
+                  any other file specified.
+                  We will use <a href="FileUtilities.htm#findsqafile" target="_blank">FindSQAFile</a> to attempt to locate
+                  any other file specified.
+
+
+ RETURNS:
+
+      -1 on failure. Usually an invalid file specification.
+       0 on success.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 19, 2002
+ History:
+
+      JUL 19, 2002    Original Release
+      SEP 26, 2003    (Carl Nagle) Re-enabled log capping even when SAFSLOGS is
+                               used. Someone had disabled this.
+
+</pre>
+<hr>
+<pre>
+
+<a name="logmessage"></a>
+  Sub LogMessage (msgText As String, fac As LogFacility,
+                  Optional msgType, Optional msgDescription)
+
+ DESCRIPTION:
+
+      Logs messages as enabled in the provided LogFacility's logmode.
+
+      A <a href="#user_defined" target="LU">LogFacility</a> is a specification for a particular log.  It is possible
+      to have multiple logs active at once and a given message is posted to a
+      particular log by specifying which LogFacility to use.  However, since
+      there is only one SQA Robot log, multiple LogFacilities which have logmode
+      SQALOG_ENABLED will all write to the one SQA Robot log.
+
+      A standard implementation would have the highest level procedure
+      InitializeLogFacility with <a href="#globals" target="LU">MainLog</a> and the desired logmodes.
+
+      All subsequent procedures wishing to write results or information to the
+      log(s) would merely call this routine with the message, the LogFacility to
+      use (usually MainLog), and optionally the type of the message we are logging.
+      See the LogUtilities <a href="#constants" target="LU">MessageType identifiers</a> for valid types of messages.
+
+      If no msgType is provided then a GENERIC_MESSAGE type is used which is
+      equivalent to SQA Robot's type of sqaNone.
+      The optional msgDescription parameter is for additional info to provide
+      SQARobot if so desired.  See SQA Robot Reference for SQALogMessage.
+
+
+ PARAMETERS:
+
+      msgText     string text of message to send to the LogFacility
+
+      msgType     optional integer of type of message we are logging.
+                  (see <a href="#constants">CONSTANTS</a> MessageType identifiers)
+                  if none is provided then a GENERIC_MESSAGE is sent.
+
+      fac         LogFacility to send messages to.
+
+      msgDescription  optional additional descriptive text for message.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 02, 1999
+ History:
+
+      JUL 02, 1999    Original Release
+      JUL 16, 1999    (Carl Nagle) Added START and END REQUIREMENT message types.
+      JUL 19, 1999    (Carl Nagle) Corrected errors in documentation.
+      SEP 03, 1999    (Carl Nagle) Added START_DATATABLE message type.
+      JUN 22, 2002    (Carl Nagle) Enabled CustomLogUtilities and other features.
+      AUG 14, 2002    (KEJONE) adding logging to SAFSLOG service
+      JAN 17, 2006    (Bob Lawler) Updated to better handle empty Optional msgDescription to
+                               avoid STAF RC=7, Description requires a value error. (RJL)
+
+</pre>
+<hr>
+<pre>
+
+<a name="copylogfacility"></a>
+  Sub CopyLogFacility(source As LogFacility, target As LogFacility)
+
+ DESCRIPTION:
+
+      Copies one LogFacility field values to another.
+
+ PARAMETERS:
+
+      source  LogFacility to copy from.
+      target  LogFacility to copy to.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 11, 2000
+ History:
+
+      JUL 11, 2000    Original Release
+      JUN 22, 2002    (Carl Nagle) Enabled CustomLogUtilities and many features.
+
+</pre>
+<hr>
+<pre>
+
+<a name="lulogstatusinfo"></a>
+  Sub LULogStatusInfo(info as AUStatusInfo, fac As LogFacility, Optional infoID)
+
+ DESCRIPTION:
+
+      Outputs the current status values of the given <a href="ApplicationUtilities.htm#user_defined" target="AU">AUStatusInfo</a> to the
+      <a href="#user_defined" target="_blank">LogFacility</a>.  Will optionally identify the block of information with
+      the infoID provided.  This infoID allows you to associate a block of
+      status information with a test, testcase, requirement, test table, or
+      anything you wish to identify by this infoID reference.
+
+      Different types of log format the output differently, but the information
+      is basically the same for each type of log.  Below is an example for
+      the status of a particular item where "Testcase 42" was provided for
+      the infoID:
+
+      Start Status Report: Testcase 42
+            TOTAL RECORDS: N
+          SKIPPed RECORDS: N
+
+             TEST RECORDS: N
+            TEST FAILURES: N
+            TEST WARNINGS: N
+             TESTS PASSED: N
+
+         GENERAL FAILURES: N
+         GENERAL WARNINGS: N
+              IO FAILURES: N
+      End Status Report: Testcase 42
+
+
+ PARAMETERS:
+
+      info    The <a href="ApplicationUtilities.htm#user_defined" target="AU">AUStatusInfo</a> to output to the log.
+
+      fac     <a href="#user_defined" target="LU">LogFacility</a> to write to.
+
+      infoID  Optional name or ID to give to the status information.
+              This is usually used to show the subject of the status information.
+              For example, "Regression Test", "Testcase 123456", etc..
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 1, 2002
+ History:
+
+      JUL 1, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="isservicesqalogenabled"></a>
+  Function isServiceSQALogEnabled as Integer
+
+ DESCRIPTION:
+
+      Determines whether or not the Tool Log is enabled
+
+
+
+ PARAMETERS:
+
+      fac - LogFacility to check
+
+ ERRORS:
+
+       none
+
+ RETURNS:
+      0 if enabled
+
+ Orig Author: Kevjorik Jones
+ Orig   Date: AUG 19, 2003
+ History:
+
+      AUG 19, 2003    Original Release
+      AUG 26, 2003    (Carl Nagle) Fixed bug to trap STAF NOT INSTALLED error.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

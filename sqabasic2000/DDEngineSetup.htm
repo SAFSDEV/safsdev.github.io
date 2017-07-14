@@ -1,0 +1,450 @@
+<html>
+<head>
+<title>RRAFS Engine Setup</title>
+</head>
+<body>
+<center>
+<h1>RRAFS V200704.18 Engine Setup<br>
+for Robot Versions 2000 and later</h1>
+</center>
+<p><pre>
+==========================================================================
+Author: Carl Nagle
+UPDATED: Apr 18, 2007
+
+Copyright (C) SAS Institute
+<a href="http://www.opensource.org/licenses/gpl-license.php" target="reference">General Public License</a>: http://www.opensource.org/licenses/gpl-license.php
+==========================================================================
+</pre>
+Remember: "RobotJ", "XDE Tester", and "Functional Tester" are names for the
+same IBM Rational test tool as habitually (re)named by IBM Rational.&nbsp; We collectively
+refer to all of these as "RobotJ", or simply "RJ" in much of our documentation and class names.
+&nbsp;(After all, we can't continuously rework all our documentation and class implementations just
+because IBM Rational has an identity problem.)
+<p>
+<b><font size="5">Backup selected customized files before installation:</font></b><br>
+If you have never installed RRAFS or SAFS before, then this doesn't apply to
+you.<br>
+If you have previously installed but never modified any of the files then this doesn't apply
+to you.&nbsp; Still, you may want to review the mentioned files &quot;just in case&quot;. </p>
+<p>Affected customizable files from previous releases:</p>
+<ul>
+  <li>RRAFS.INI </li>
+  <li>RRAFS Custom Extension Libraries </li>
+  <li>Any modifications in SAFS\bin\ or SAFS\samples batch files (*.bat or *.vbs).</li>
+  <li>Any modifications to SAFSTID.INI files in SAFS\</li>
+</ul>
+<p>If you have taken advantage of any of the customization capabilities of this framework,
+then you must take some simple precautions prior to installing this new release.&nbsp;
+Installing a new version of the framework will install new, default versions of these
+files.&nbsp; Failure to perform any of these prescribed backups may erase your previous
+customizations. Hopefully, you have backed them up somewhere already as part of your normal
+ongoing activities...You have done this, right?! </p>
+<ul>
+  <li><b>RRAFS.INI</b><br>
+  Nothing was added to RRAFS.INI that is <em>required</em>.
+  &nbsp; You can continue to use your old file.</li>
+  <p>
+  <li><b>Custom Extensions</b><br>
+  Backup any Custom Extension libraries in which you have implemented
+  customizations. Users who have implemented customizations in older versions of those
+  libraries can then overwrite the newly installed files with those older versions. This
+  effectively reinserts your customizations into the new version of the framework. Consult
+  <a href="http://safsdev.sourceforge.net/sqabasic2000/UsingCustomExtensions.htm">
+  Using Custom Extensions</a> for additional information on Custom Extensions with this
+  framework. This HTML doc is also provided in your RRAFS install directory.</li>
+  <p>
+  <li><b>SAFSTID.INI</b><br/>
+  You should make a backup of any SAFSTID.INI in your SAFS install directory (SAFS\) if you
+  have this file and modified settings.  Then evaluate how and if you want to merge with the
+  new file.
+  <p>
+  <li><b>SAFS Batch Files</b><br>
+  If you have previously installed the SAFS Framework separately--such as when it was offered
+  via a supplemental Patch in Oct 2003--then you may have manually modified batch files or
+  VBS script(s) to handle custom project paths.  You will need to backup modified files and
+  evaluate how and if you want to merge such changes with the new files. </li>
+</ul>
+<hr>
+<p><b><font size="5">Uninstall Pre-2003.08 RRAFS Release: </font></b></p>
+<p>
+Installations of RRAFS Release 2003.01.27 (Jan 2003) and earlier installed via the Windows
+Installer .MSI need to be uninstalled before installing this new release.&nbsp; You must do
+this to avoid unexpected backward versioning that can occur if the Windows Installer update or
+repair feature is ever invoked. </p>
+<p>
+RRAFS Release 2003.08.27 (Aug 2003) and later do not have this uninstall
+requirement as we implemented the ability to patch and install on top of
+releases using different technologies.</p>
+<p>
+To uninstall these older releases, uninstall "<b>SAFS Engine for Rational Robot</b>" from the
+Windows Control Panel &quot;Add/Remove Programs&quot; application if present. </p>
+<p>
+Future releases of the framework will not have this problem as we will have the ability to
+patch and install on top of releases using Scripting technology.  If you manually installed
+the engine previously, you should not need to delete your existing installation. Manual
+installation and the new Installer will simply overwrite existing files. Instructions for
+manually installing the engine are at the end of this document. </p>
+<p>
+<hr>
+<p><b><font size="5">Basic Install Steps if Accepting all Defaults: </font></b>
+<p>
+<ol>
+   <li>(Optional) Check Java and WSH prerequisites
+   <li>Download the latest RRAFS Release
+   <li>UnZip the Release into your "C:\Program&nbsp;Files\Rational\Rational&nbsp;Test\sqabas32" directory.
+   <li>Double-Click&nbsp;"<b>SetupRRAFS.wsf</b>" in that directory.
+   <li>Check Robot configuration settings
+</ol>
+<p><i>Now, on to <b>"why you should read the rest of this first..."</b></i>
+<p><font size="4"><b>Install Java Runtime Necessary for SAFS Framework.</b></font></p>
+<p>
+The additional SAFS installation requires that a Java Runtime Rnvironment (JRE) is already
+installed on the target machine. For best results and ease of installation, a JRE version of
+1.4.2 or higher is recommended.<br>
+<i>Note: The automated install of old STAF versions (before 2.6.10) will fail with Java V1.5.&nbsp;
+However, Java V1.5 should work fine once the STAF install with a lesser version of Java
+is successful.&nbsp; This has not been evaluated.</i> &nbsp;We now distribute STAF version 2.6.10
+so new installations with this version of STAF should have no problems using and installing
+with Java 1.5.
+<p>
+The JRE must be in the normal search path for the system.&nbsp; The install scripts
+now check this automatically.  You can check this manually using the following command typed
+at any command prompt: </p>
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; java -version </p>
+<p>
+The command should list the version of JRE installed.&nbsp; You can download and install
+a JRE if necessary from the <a href="http://java.sun.com/j2se/" >Java Sun Site</a>
+</p>
+<p>
+You may also be able to use the JRE that is installed as part of the IBM Rational TeamTest,
+IBM Rational XDE Tester or Functional Tester if the version is high enough. </p>
+<p>
+<h3>Install Windows Scripting Host 5.6</h3>
+<p>
+Windows Scripting Host 5.6 must be installed and available via the normal
+system search path for the install script to run. STAF and the SAFS pieces can be installed
+manually without the script, but the script can automatically error-correct important values
+and set environment variables that the separate Java installs cannot. </p>
+<p>
+The install scripts now check this automatically.&nbsp;  You can check this manually using
+the following command typed at any command prompt: </p>
+<pre>    cscript
+</pre>
+<p>
+The command should list the version of Windows Scripting Host installed.&nbsp; You can download
+and install WSH 5.6 if necessary from
+<a href="http://msdn.microsoft.com/downloads/list/webdev.asp" >Microsoft Windows Script Downloads</a>
+<p>
+<h3>Download, UnZip/Extract, and Run the Installation Script</h3>
+<p>
+The RRAFS engine installation uses simple Scripting technology. It
+includes everything you need to use the engine with the latest version of Robot.
+Even compiled versions of all the core libraries are included. &nbsp;
+You can download the installation from our
+<a href="http://sourceforge.net/project/showfiles.php?group_id=56751">SAFSDEV
+Project FileList Page</a>. </p>
+<ol>
+  <li><b>Download</b> the latest RRAFS release ZIP file&nbsp; </li>
+  <li><b>UnZIP/Extract</b> &quot;All Files&quot; into your Rational install directory
+  "C:\Program&nbsp;Files\Rational\Rational&nbsp;Test\sqabas32"<br>
+  (This is a.k.a. the DDE_RUNTIME location.) </li>
+  <li>With Windows Explorer, <b>locate</b> the newly extracted "<b>SetupRRAFS.wsf</b>" script
+  in that directory and double-click to launch it.</li>
+  <li>Once complete, you will be prompted to proceed with the installation of
+  STAF and the shared SAFS Framework.<br>
+  It is recommended you select &quot;YES&quot;--even
+  if you initially think you won't be using these features.<br>
+  You can select &quot;NO&quot; if you wish to perform this install at a later time. </li>
+</ol>
+<p>
+Consult <a href="http://safsdev.sourceforge.net/sqabasic2000/SetupSAFS.README.htm"  >
+SetupSAFS.README</a> to proceed with additional steps necessary to take advantage of the many
+new features provided by the shared SAFS Framework. </p>
+<p>
+If necessary, you can instead perform a <a href="#manual_installation">manual
+install</a>.&nbsp; A manual install requires extra install steps that are prone to human
+error.&nbsp; Manual installs are not recommended, but not terribly difficult.</p>
+<hr>
+<p><b><font size="5">Further Setup is necessary for: </font></b></p>
+<ul>
+  <li><font size="3"><b>Rational Robot Configuration </b></font></li>
+  <li><font size="3"><b>(Optional) RRAFS.INI configuration and customization </b></font>
+  </li>
+  <li><font size="3"><b>(Optional) Setup Development environment</b></font></li>
+</ul>
+<p>
+<b><font size="3">Rational Robot Configuration</font></b><br>
+In order to use the Rational Robot implementation of the engine there are a few
+settings that should be made in Robot.&nbsp; In addition, the routines currently expect
+a specific directory structure to exist in each of the projects that intend to
+make use of the engine. </p>
+<p>
+<b>*Required* Robot Playback Option Settings:</b> </p>
+<ul>
+  <li>On Script Command Failure: &nbsp;Continue Execution </li>
+  <li>On Verification Point Failure: &nbsp;Continue Execution </li>
+  <li>Output Playback Results to Log should be enabled.<br>
+  (View Log after Playback is very much optional.) </li>
+  <li>On Failure to remove Unexpected Active Window: &nbsp;Continue Running </li>
+</ul>
+<p>
+<b>Recommended Playback Options:</b> </p>
+<blockquote>
+  <p>The RRAFS engine has thus far proven very robust. Low settings for command
+  and keystroke delays have not adversely affected playback accuracy in the
+  limited number of applications that have been tested with it. Thus, you may be
+  able to set Robot's playback delays extremely low (less than 10 milliseconds)
+  or even to 0. These delay settings can be found in Robot's Playback Options
+  dialog. </p>
+</blockquote>
+<ul>
+  <li>Delay between Commands (milliseconds): &nbsp;0 </li>
+  <li>Delay between Keystrokes (milliseconds): &nbsp;0 </li>
+  <li>Diagnostics--Timeout Delay Multiplier: &nbsp;1 </li>
+  <li>Detect Unexpected Active Window:&nbsp; Disabled </li>
+</ul>
+<blockquote>
+  <p>
+  Recommendations would be to start with no delays ( 0 milliseconds ).&nbsp; If
+  your tests experience no inexplicable playback problems then you can keep
+  these settings.&nbsp; However, if playback experiences problems with object clicking
+  or other activities that might be attributable to Robot running too fast,
+  increase the delay settings to see if that resolves the problem.&nbsp; But remember,
+  there can be other causes to playback errors.&nbsp; If larger delays do not fix
+  these problems, don't forget to go back and set your delays to their original
+  low settings.&nbsp; This will help improve the performance of your RRAFS tests.</p>
+</blockquote>
+<p>
+<b>Disable Unnecessary Extensions:</b></p>
+<blockquote>
+  <p>
+  To significantly improve performance, you should disable all unnecessary
+  extensions in Robot. You do this via Robot's <b>Tools-&gt;Extension Manager</b>
+  dialog. Disable all extensions you do not need. You may need to restart Robot
+  for the changes to take affect. </p>
+</blockquote>
+<p>
+<b>Required Robot Project Subdirectories:</b> </p>
+<ul>
+  <li><b>[Project]\Datapool\Bench</b> </li>
+  <li><b>[Project]\Datapool\Dif</b> </li>
+  <li><b>[Project]\Datapool\Logs</b> </li>
+  <li><b>[Project]\Datapool\Runtime</b> (* OPTIONALLY REQUIRED) </li>
+  <li><b>[Project]\Datapool\Test</b> </li>
+  <p>
+  * The Datapool\Runtime directory is used to store project-specific RRAFS.INI files and other
+  project-specific items we may introduce over time.
+  <p>
+  Following an install, there should be <b>SetupSAFSProject.VBS</b> script in the DDE_RUNTIME
+  install directory and in SAFS\bin (if installed).&nbsp; This script can be placed in a
+  project's root directory, executed, and it will create the default directory structure for
+  you.
+  <p>
+  You can also just Drag-N-Drop the files and subdirectory structure from \SAFS\Project\*.* to
+  your project's root directory.  You don't copy the "SAFS\Project\" folder itself, just all
+  the files and folders beneath it.
+</ul>
+<p>
+<hr>
+<h3>&nbsp;</h3>
+<h3>RRAFS.INI Configuration and Customization</h3>
+<p>
+The <b>RRAFS.INI</b> configuration file actually lets the user configure the
+framework to use alternate locations for the Bench, Dif, Logs, and Test
+directories--among other things. The <b>Datapool\Runtime</b> directory is
+OPTIONAL only as long as you do not intend to place a version of the RRAFS.INI
+file in that location. If you do intend to deploy a project-specific version of
+RRAFS.INI, then it must be placed in the &lt;Project&gt;\Datapool\Runtime location and
+that directory cannot be &quot;moved&quot; to any alternate location.</p>
+<p>
+By default, a &quot;global&quot; copy of the RRAFS.INI exists in the DDE_RUNTIME
+directory (<i>Program Files\Rational\Rational Test\sqabas32</i>) where all the source was
+installed.&nbsp; This copy affects all projects accessed by the local machine. Settings placed
+in a project-specific Datapool\Runtime RRAFS.INI will override the &quot;global&quot; settings
+in DDE_RUNTIME. </p>
+<p>
+<b>Set Windows Environment Variables</b>:</p>
+<p>
+The <b>RRAFS.INI</b> file and other changes have removed most
+requirements for Environment Variable settings for RRAFS. However, the shared
+SAFS Framework and STAF each have one Environment setting noting their root
+install directories.
+<p>
+These root install directories are:
+<ul>
+<li>SAFSDIR = C:\SAFS (default)
+<li>STAFDIR = C:\STAF (default)
+</ul>
+The instructions below provide information for backward compatibility, and some
+older installations.<br>
+The setup for these items must be satisfied before they can be successfully used
+for older installations and installations not deploying a RRAFS.INI
+configuration file.&nbsp; Environment Variable settings can be done via the Control Panel
+&quot;System&quot; application.<br>
+<br>
+Set these as System Variables, rather than User Variables if possible. Robot
+will need rebooting in order to use any new or modified setting.<br>
+<ul>
+  <li>A <b>DDE_RUNTIME </b>system environment variable can be set pointing to
+  the directory where the DDE files(SBH,SBX, etc.) are located for RUNTIME (vs.
+  Development time).&nbsp; This is no longer *required*.<br>
+  Something like DDE_RUNTIME=&quot;<a href="file:///C:/Program%20Files/Rational/Rational%20Test/sqabas32">C:\Program
+  Files\Rational\Rational Test\sqabas32</a>&quot;.</li>
+</ul>
+<ul>
+  <li>File comparison differences (diffs) can be viewed with tools like
+  <a href="http://www.prestosoft.com/examdiff/examdiff.htm"><strong>ExamDiff</strong></a>&nbsp;
+  or <b>Gemini(SAS only)</b>. If the viewer tools are installed and the System
+  PATH environment variable includes the viewer's directory in the PATH. By
+  default, the DDE will reference the
+  <a href="http://www.prestosoft.com/examdiff/examdiff.htm"><strong>ExamDiff</strong></a>
+  <b>&nbsp;</b>tool for post-execution diff viewing. By default, the /t command
+  line option for ExamDiff will be used.<br>
+&nbsp;</li>
+  <li>You can specify a different viewer and\or different command line options
+  by adding the following Environment variables with appropriate values:<br>
+  <br>
+  <b>&nbsp;&nbsp;&nbsp; DDE_DIFF_VIEW_EXE</b>=&lt;viewertool.exe&gt; <br>
+  <b>&nbsp;&nbsp;&nbsp; DDE_DIFF_VIEW_OPTIONS</b>=&lt;alternate options or spaces
+  for none&gt; <br>
+&nbsp;&nbsp;&nbsp; See
+  <a href="http://safsdev.sourceforge.net/sqabasic2000/NTCommandUtilities.htm#run_difftool_exe" target="_blank">
+  NTCommandUtilities</a> for more information.</li>
+</ul>
+<p>
+<ul>
+  <li>(DDE_DIFF...environment variables are not absolutely required. Neither is
+  the installation of ExamDiff, Gemini, or any other comparison viewer.) </li>
+</ul>
+<p>
+<hr>
+<p>
+<b><font size="4">Setup Development Environment </font></b></p>
+<p>
+<b>If/How/Where to Setup and Build a RRAFS development environment:</b> </p>
+<blockquote>
+  <p>
+  The RRAFS release ZIP includes everything you need to use the engine with
+  Robot. Even compiled versions of all the core libraries are included. &nbsp;
+  If you don't intend to add new functionality, then you may not
+  need to setup a development environment and you should not have to compile the
+  code.
+  <p>
+  Of course, if Robot complains about the compiled code format when you
+  attempt to execute a test then you might need to compile the source SBLs with
+  your version of Robot.
+  <p>
+  If you are using an incompatible version of Robot, you may have to create
+  a development project and compile all the libraries to work with your version.
+  You will also need to create a development project if you are planning to
+  develop new functionality or customizations for the engine. </p>
+  <p>
+  To do this, <b>Create a separate Rational project</b>. This one will be
+  your *DEVELOPMENT* project--the one you will use to build the engine (and/or
+  enhance it so that you can pass that on to SAFSDEV and the rest of the world :)
+  <p>
+  This project should not be used for anything other than building, enhancing,
+  and testing the engine. It is not recommended for production testing of another
+  application.
+  <p>
+  Next, UnZIP/Extract the RRAFS release ZIP file into the project's <b>.\TMS_Scripts\SQABas32</b>
+  directory. Only the *.SBL and *.SBH files need to be extracted into this
+  directory. </p>
+</blockquote>
+<p>
+<b><em>You must *NOT* run the &quot;SetupRRAFS.wsf&quot; script from this project directory</em></b>!
+<blockquote>
+  <p>
+  You will then need to do a batch compile in Robot (File-&gt;Batch Compile) of
+  all SQABasic library source. If you make changes that you want available to
+  all projects, then those changes and the associated compiled *.SBX files
+  should be moved or copied to the DDE_RUNTIME location where the Rational
+  product is installed. Changes are only local to that project until they are
+  copied or moved to the DDE_RUNTIME location. </p>
+  <p>
+  Once changes are copied or moved to your DDE_RUNTIME location, ALL projects
+  accessed by this machine will find the modified files in this location. The
+  modified files must also be copied (dragon drop?) to each Robot machine that
+  is to run with the modifications. You only have to modify/build once on one
+  machine. Then just copy to all other machines that need it. The other machines
+  must have completed the initial RRAFS install and the other setup described at
+  the top of this document. </p>
+  <p>
+  This provides a neat development advantage. All projects can use and run a
+  PRODUCTION version of the engine from the DDE_RUNTIME directory. Your special
+  DEVELOPMENT project can be used to play with, modify, and enhance the version
+  in DEVELOPMENT without impacting the PRODUCTION version. And you don't have to
+  do anything special to take advantage of this. Robot always looks for files in
+  the active Project's sqabas32 directory before it goes looking in your
+  DDE_RUNTIME directory. So it will find modified development files before it
+  will find the production DDE_RUNTIME versions. </p>
+</blockquote>
+<p>
+<i>Note: Users who have disabled the Repository or Project SQABas32 directory
+by specifying a path to a &quot;common&quot; directory will either have to temporarily
+disable this setting or use that common directory to build the engine. They will
+then also have to make their own determination as to whether they want to
+install the engine files to each machine's DDE_RUNTIME directory, or leave it in
+the &quot;common&quot; directory. I have not used this type of setup but imagine you loose
+the advantages of separate DEVELOPMENT and RUNTIME environments as discussed
+above.</i></p>
+<hr>
+<p>
+<b><font size="5">Manual Installation Instructions: </font></b></p>
+<p>
+These instructions are for those folks who need to manually install a
+release.&nbsp;&nbsp; This is generally only necessary if you do not have access
+to and/or are not allowed to use Microsoft's Scripting technologies.&nbsp;
+Manual installs are not recommended, but not terribly difficult.&nbsp;&nbsp; Use
+the Scripting technology whenever possible.&nbsp; </p>
+<blockquote>
+<p>1.&nbsp; <b>Download </b>the latest RRAFS release ZIP file. </p>
+<p>2.&nbsp; <b>UnZIP/Extract</b>&nbsp; &quot;All Files&quot; into your Rational install
+directory&nbsp; C:\Program&nbsp;Files\Rational\Rational&nbsp;Test\sqabas32&nbsp; (This is a.k.a. the DDE RUNTIME location.)</p>
+<p>3.&nbsp; <b>Move the following files</b> from your DDE_RUNTIME directory <b>into</b>
+your <b>System Folder</b>. This is often [Windows Dir]\System32.</p>
+<ul><li>CWPHooker.DLL
+<li>STAFWrap.DLL
+<li>MSXSL.EXE
+</ul>
+4.&nbsp; <b>Register</b> the <b>DDVariableStore.DLL </b>extracted into your
+DDE_RUNTIME directory. This is done from a command line with regsvr32:<br>
+<br>
+<b>regsvr32 </b>&quot;[path to DLL]\<b>DDVariableStore.DLL</b>&quot; [Enter] <br>
+<p>
+There is also a DDVariableStoreREGISTER.VBS script you can double-click to do this.
+<p>
+5.&nbsp; The following items need to be installed to take advantage of the
+ever-growing XML features of the engine. However, they do not need to be
+reinstalled for every release. Check with Microsoft or your system administrator
+because you may have these installed already depending on the version of your
+operating system. </p>
+  <ul>
+    <li>&nbsp;If necessary, download and <b>install</b> the <b>Microsoft XML</b>
+    <b>Parser</b> from <a href="http://msdn.microsoft.com/xml" target=_blank >Microsoft XML
+    Core Support</a>.&nbsp; More than likely you don't need to do this.</li>
+  </ul>
+<p>
+  <ul>
+    <li>&nbsp;<b>Optionally download/copy</b> Microsoft's XSL Processor (<b>MSXSL.EXE)</b>
+    and <b>place it in </b>your<b> System Folder</b> directory.&nbsp; (MSXSL.EXE is
+    an addon that probably does not come as part of any Microsoft operating
+    system. You will only need this if you plan to execute any of our XML
+    transformations for documentation or XML log reporting. An older version of
+    this file is included in the DDE_RUNTIME location extracted from the RRAFS
+    release ZIP file.)&nbsp;&nbsp; <br>
+&nbsp;</li>
+  </ul>
+<p>&nbsp;6.&nbsp; Consult
+<a href="http://safsdev.sourceforge.net/sqabasic2000/SetupSAFS.README.htm"  >
+SetupSAFS.README</a>&nbsp; to proceed with additional steps necessary to take
+advantage of the many new features provided by the shared SAFS Framework. <br>
+<br>
+7.&nbsp;&nbsp; Enjoy! <br>
+<hr>
+<a href="http://safsdev.sourceforge.net">SAFSDEV Web</a> and
+<a href="http://sourceforge.net/projects/safsdev">SAFSDEV Project</a> on
+<a href="http://sourceforge.net">SourceForge.net</a>
+</body></html>

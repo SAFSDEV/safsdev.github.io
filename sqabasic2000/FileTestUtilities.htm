@@ -1,0 +1,417 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic FileTestUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "FileTestUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Routines for testing files and/or directories in SQA Robot.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "FileTestUtilities_X.SBH"
+<li>'$INCLUDE: "FileTestUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="FileInfoFIFO.htm">FileInfoFIFO</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#comparedirectories">CompareDirectories</a>      BasicLib FileTestUtilities 
+Function <a href="#comparefilesbypath">CompareFilesByPath</a>      BasicLib FileTestUtilities 
+Function <a href="#comparefilesbyinfo">CompareFilesByInfo</a>      BasicLib FileTestUtilities 
+Function <a href="#separatedirectoryentries">SeparateDirectoryEntries</a>  BasicLib FileTestUtilities 
+Function <a href="#syncfileinfofifos">SyncFileInfoFIFOS</a>       BasicLib FileTestUtilities 
+Function <a href="#filtertextfile">FilterTextFile</a>          BasicLib FileTestUtilities 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+' Text file filter mode constants (for FilterTextFile rountine)
+Const FILE_FILTER_MODE_DEFAULT  As Integer = 0
+Const FILE_FILTER_MODE_REGEXP   As Integer = 1
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="syncfileinfofifos"></a>
+  Function SyncFileInfoFIFOS(aFIFO() As FileInfo, aFIFOInfo As BufferInfo,
+                             bFIFO() As FileInfo, bFIFOInfo As BufferINfo,
+                             logFac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Tries to sync up two FIFOS which supposedly have matching entries.
+      The routine requires the FIFO entries were entered in a sorted fashion
+      so that comparison feedback and synchronization can occur appropriately.
+
+      Example Use: One FIFO contains the FileInfos of a bench directory and
+                   another FIFO contains the FileInfos of a new install.
+
+      This routine helps keep the FileInfo compares in synch when new or
+      missing files are found.
+
+ PARAMETERS:
+
+      aFIFO()     reference FileInfo() for FIFO A
+      aFIFOInfo   reference BufferInfo for FIFO A
+      bFIFO()     reference FileInfo() for FIFO B
+      bFIFOInfo   reference BufferInfo for FIFO B
+      logFac      logFacility to use for reporting errors.
+
+ RETURNS:
+
+       the number of errors encountered during synchronization.
+      -1 on generic failure.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUL 10, 2000    (Carl Nagle)    Modified for new Buffer and FIFO utilities.
+
+</pre>
+<hr>
+<pre>
+
+<a name="separatedirectoryentries"></a>
+  Function SeparateDirectoryEntries (path As String _
+                                     , dBuffer() As FileInfo, dBufferInfo As BufferInfo _
+                                     , fBuffer() As FileInfo, fBufferInfo As BufferInfo) _
+                                     As Integer
+
+ DESCRIPTION:
+
+      Separate the files in a single directory into separate FIFO buffers.
+      One FIFO will contain all non-directory FileInfos.  The other will contain
+      all FileInfos for subdirectories.
+      (.) and (..) directory files are ignored and omitted.
+      This routine does not initialize or clear the FIFOs provided.  It pushes
+      new values into the FIFOs.
+
+ PARAMETERS:
+
+      path            the full path of the directory to parse
+      dBuffer()       reference to the directory FIFO to use
+      dBufferInfo     reference to the directory FIFO BufferInfo to use
+      fBuffer()       reference to the file FIFO to use
+      fBufferInfo     reference to the file FIFO BufferInfo to use
+
+ RETURNS:
+
+       The total number of entries found in the directory excluding (.) or (..)
+      -1 if the path was not a valid directory
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="comparefilesbyinfo"></a>
+  Function CompareFilesByInfo(aInfo As FileInfo, bInfo As FileInfo,
+                              mode As Integer,
+                              logFac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Performs a full compare of two files based on the mode value provided.
+      This will compare the FileInfos AND perform a BINARY_COMPARE of the
+      files if the mode calls for it.  Since this is possible the routine
+      exits with failure if either file does not exist even if BINARY_COMPARE
+      mode is not enabled.
+      Use CompareFileInfos if no BINARY_COMPARE is intended.
+
+ PARAMETERS:
+
+      aInfo   FileInfo reference to the source file to compare
+      bInfo   FileInfo reference to the bench file to compare
+      mode    which items to compare.  See COMPARE CONSTANTS for valid values.
+      logFac  LogFacility to log error messages.
+
+ RETURNS:
+
+      if non-negative the return value is the number of errors found.
+     -1 if target or bench filename is FileNotFound
+     -3 generic unknown failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="comparefilesbypath"></a>
+  Function CompareFilesByPath(aPath As String, bPath As String,
+                              mode As Integer,
+                              logFac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Performs a full compare of two files based on the mode value provided.
+      This will create two FileInfos based on the provided paths then perform
+      the comparison using CompareFilesByInfo.
+      Use CompareFileInfos if no BINARY_COMPARE is intended.
+
+ PARAMETERS:
+
+      aPath   full path to the source file to compare
+      bPath   full path to the bench file to compare
+      mode    which items to compare.  See COMPARE CONSTANTS for valid values.
+      logFac  LogFacility to log error messages.
+
+ RETURNS:
+
+      if non-negative the return value is the number of errors found.
+     -1 if target or bench filename is FileNotFound
+     -3 generic unknown failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="comparedirectories"></a>
+ Function CompareDirectories (target As String, bench As String,
+                              doSubs As Integer,
+                              mode As Integer,
+                              logFac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Compares a target directory structure against a bench directory structure.
+      Compares file names, lengths, time/date stamps, and contents based on
+      the provided mode value.
+
+ PARAMETERS:
+
+      target   filename of directory structure to test against the bench
+      bench    filename of directory structure to use as the bench
+      doSubs   =0 do NOT processes subdirectories. 1 means DO process subdirectories
+      mode    items to compare. See the COMPARE CONSTANTS for valid values of mode.
+              Note that usually you should not include PATH_COMPARE within
+              the mode value since they are almost always different.
+      logFac  LogFacility to log errors messages.
+
+ RETURNS:
+
+      if non-negative the return value is the number of errors found.
+     -1 if target or bench filename is FileNotFound
+     -2 if target or bench filename is NOT A DIRECTORY
+     -3 generic unknown failure
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 27, 1999
+ History:
+
+      AUG 27, 1999    Original Release
+      JUL 10, 2000    (Carl Nagle) Modified for new Buffer and FIFO utilities.
+
+</pre>
+<hr>
+<pre>
+
+<a name="applyregexpfilefilter"></a>
+ Function ApplyRegExpFileFilter ( _
+                                 source As String, _
+                                 target As String, _
+                                 pattern As String, _
+                                 replacewith As String ) As Integer
+
+ DESCRIPTION:
+
+      Applies a regular expression filter on a text file.
+
+      The function parses the source file, replaces all occurences of text
+      that match the specified pattern with a specified string, and saves
+      the parsed text to a new file.
+
+ PARAMETERS:
+
+      source      Required. Full path to the file to be filtered.
+
+      target      Required. Full path to the file to save the filtered text to.
+                  If file exists, it is overwriten. Use the same spec as source
+                  to save changes to the original file.
+
+      pattern     Required. Regular expression pattern to search for. Must not
+                  be empty.
+
+      replacewith Required. String to replace the matching patterns with.
+                  "" to remove the matching patterns.
+
+ RETURNS:
+
+      0   if successful;
+      1   if failed (specified file not found; invalid parameters etc).
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 11, 2002
+ History:
+
+      NOV 11, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="filtertextfile"></a>
+ Function FilterTextFile ( _
+                          source As String, _
+                          target As String, _
+                          Optional mode, _
+                          Optional option1, _
+                          Optional option2, _
+                          Optional option3 ) As Integer
+
+ DESCRIPTION:
+
+      Filters the text content of a file based on provided mode and options.
+
+      The text content of the source file is read in, filtered (i.e.
+      transformed/modified in most cases) and saved to the target file.
+
+ PARAMETERS:
+
+      source  Required. Full path to the file to be filtered.
+
+      target  Required. Full path to the file to save the filtered text to.
+              If file exists, it is overwriten. Use the same spec as source
+              to save changes to the original file.
+
+      mode    Optional. Numeric value that indicates the filter mode. One of
+              the valid FILE_FILTER_MODE constants defined by the library.
+              See table below for a complete list of supported modes. If
+              omitted, FILTER_MODE_DEFAULT is used.
+
+      option1 Optional. Variant value that indicates a parameter for mode.
+              Depending on mode, this has different meanings. See table below.
+
+      option2 Optional. Variant value that indicates a parameter for mode.
+              Depending on mode, this has different meanings. See table below.
+
+      SUPPORTED FILTER MODE AND FILTER OPTIONS
+
+      MODE        OPTIONS                     COMMENT
+      ========================================================================
+      DEFAULT     NONE                        No filtering. source is copied to
+                                              target unchanged.
+
+      REGEXP      1 - PATTERN                 All occurences of regular expression
+                      Required; String        PATTERN in source will be replaced
+                  2 - REPLACEMENT             with REPLACEMENT. Default value for
+                      Optional; String        REPLACEMENT is "", i.e. to remove
+                  3 - IGNORECASE              all text matching PATTERN. Set IGNORECASE
+                      Optional; Integer       to True (-1) to do case-insensitive
+                                              seach when matching pattern. Default
+                                              is False (0).
+
+ RETURNS:
+
+      0   if successful;
+      1   if failed (specified file not found; invalid mode/option spec etc).
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 11, 2002
+ History:
+
+      NOV 11, 2002    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

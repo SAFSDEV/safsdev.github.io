@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>SAFS TestLink Integration</title>
+</head>
+<body>
+<a name="top"/>
+<center><h1>SAFS TestLink Integration</h1>
+<small>
+Updated: 2013.03.20<br>
+by Carl Nagle
+</small>
+</center>
+<hr>
+<p>
+Current Public Development/TestBed: <a href="http://safsworks.com/testlink/" alt="SAFSWorks TestLink Site" title="SAFSWorks TestLink Site" target="_blank">SAFSWorks TestLink</a><br>
+Current TestLink Version: 1.9.5<br>
+Current Database: MySQL<br>
+<hr>
+<a name="assets"/><small>
+<a href="#top" alt="Goto Top"
+                 title="Goto Top">
+                 Top</a>,
+<a href="#local" alt="Goto Local Install/Config Info"
+                 title="Goto Local Install/Config Info">
+                 Local Install</a>,
+<a href="#public" alt="Goto Public Testbed Info"
+                 title="Goto Public Testbed Info">
+                 Public Testbed</a>
+</small><p>
+<h2>Key SAFS Assets</h2>
+<p>
+<ul>
+<li>.\custom_config.inc.php
+<p>
+<li>.\gui\templates\testcases\inc_SAFS_testsuite_viewer_ro.tpl
+<li>.\gui\templates\testcases\tcSAFSStepEdit.tpl
+<li>.\gui\templates\testcases\SAFScontainerView.tpl
+<p>
+<li>.\lib\functions\web_editor.php <b>(may require a merge instead of a copy/overwrite)</b>
+<li>.\lib\functions\testsuite.class.php <b>(may require a merge instead of a copy/overwrite)</b>
+<p>
+<li>.\third_party\safs\safsstepeditor.class.php
+<li>.\third_party\safs\stepeditor.html
+<li>.\third_party\safs\resulteditor.html
+</ul>
+<p><b>
+Note the screenshots are intended to provide an idea of which assets make up which part of the
+SAFS TestLink Modifications. &nbsp;As this editor is currently in-development, the actual content
+of the GUI may differ significantly from what is shown below.
+</b>
+<p>
+<center>
+<ol>
+<b>
+<li>Main SAFS TestSuite Viewer.<br>
+<img src="TestSuiteViewer.png" alt="SAFS TestLink TestSuite Viewer" title="SAFS TestLink TestSuite Viewer" />
+</b><p><b>
+<li>Main TestCase Viewer with no Editor active.<br>
+<img src="TestCaseViewer.png" alt="TestLink TestCase Viewer" title="TestLink TestCase Viewer" />
+</b><p><b>
+<li>tcSAFSStepEditor.tpl Template for custom SAFS Step Editor.<br>
+<img src="tcSAFSStepEditor.png" alt="SAFS TestLink StepEditor" title="SAFS TestLink StepEditor" />
+</b><p><b>
+<li>safsstepeditor.class.php code for custom SAFS Step Editor.<br>
+<img src="safsstepeditor.class.png" alt="SAFS TestLink StepEditor" title="SAFS TestLink StepEditor" />
+</b><p><b>
+<li>stepeditor.html and resulteditor.html code for custom SAFS Step Editor.<br>
+<img src="stepeditor.png" alt="SAFS TestLink StepEditor" title="SAFS TestLink StepEditor" />
+</b></ol>
+</center>
+<hr>
+<a name="local"/><small>
+<a href="#top" alt="Goto Top"
+                 title="Goto Top">
+                 Top</a>,
+<a href="#assets" alt="Goto Key Assets Info"
+                 title="Goto Key Assets Info">
+                 Key Assets</a>,
+<a href="#public" alt="Goto Public Testbed Info"
+                 title="Goto Public Testbed Info">
+                 Public Testbed</a>
+</small><p>
+<h2>Local Server Installation and Configuration</h2>
+<p>
+Local development on local web servers is possible. &nbsp;To do so, the developer must have access to a web server
+meeting TestLink requirements for the web server, PHP, and Database.
+<p>
+<ol>
+<li>Download and Install <a href="http://testlink.sourceforge.net" alt="TestLink Project Home" title="TestLink Project Home" target="_blank">OpenSource TestLink</a> per its installation instructions.
+<li>Create the TestLink Database according to TestLink install instructions.<br>
+(We recommend using MySQL for easier cross-project support from all developers.)
+<li>Change default <b>admin password</b> and hide TestLink <b>install directories</b> as recommended by TestLink install instructions.
+<p>
+<li>Configure\Merge <b>'custom_config.inc.php'</b> where appropriate with entries like below:
+    <p>
+    <ul><pre>
+$tlCfg->default_language = 'en_US';
+
+$tlCfg->document_generator->company_name = 'SAFSWorks LLC';
+$tlCfg->document_generator->company_copyright = 'Copyright (C) SAFSWorks LLC';
+$tlCfg->document_generator->confidential_msg = 'GPL since 1998';
+    </pre>
+    and <b>most importantly</b>:
+    <p><pre>
+$g_tpl = array('tcStepEdit' => 'tcSAFSStepEdit.tpl');
+
+$g_tl_admin_email     = 'your.email@your_company.com'; # for problem/error notification
+$g_from_email         = 'no_reply@your_company.com';  # email sender
+$g_return_path_email  = 'your.email@your_company.com';
+
+$g_log_level='DEBUG';
+
+$tlCfg->log_path = '/a/path/to/logs/testlink/'; (not public on web)
+$tlCfg->smarty_debug = false;                   (true if needed   )
+
+$tlCfg->gui->text_editor['steps_design'] = array( 'type' => 'safsstepedit');
+
+$tlCfg->results['status_code'] = array (
+	'failed'        => 'f',
+	'fail_ok'       => 'fok',
+	'blocked'       => 'b',
+	'generic'       => 'g',
+	'passed'        => 'p',
+	'not_run'       => 'n',
+	'not_available' => 'x',
+	'skipped'       => 's',
+	'unknown'       => 'u',
+	'all'           => 'a',
+	'warn'     	=> 'w',
+	'warn_ok'  	=> 'wok'
+);
+
+$tlCfg->results['status_label'] = array(
+	'failed'        => 'test_status_failure',
+	'fail_ok'       => 'test_status_failure_ok',
+	'blocked'       => 'test_status_blocked',
+	'generic'       => 'test_status_generic',
+	'passed'        => 'test_status_passed',
+	'not_run'       => 'test_status_not_run',
+	'not_available' => 'test_status_not_available',
+	'skipped' 	=> 'test_status_skipped',
+	'unknown'       => 'test_status_unknown',
+	'all'           => 'test_status_all_status',
+	'warn'       	=> 'test_status_warning',
+	'warn_ok'      	=> 'test_status_warning_ok'
+);
+    </pre>
+    </ul>
+<li>Copy\Merge SAFS <b>source/common/testlink/</b> source files into appropriate server directories.
+<p>
+<li>Create one or more TestLink users with 'TEST DESIGNER' roles for testing\developing editor functionality.
+</ol>
+<hr>
+<a name="public"/><small>
+<a href="#top" alt="Goto Top"
+                 title="Goto Top">
+                 Top</a>,
+<a href="#assets" alt="Goto Key Assets Info"
+                 title="Goto Key Assets Info">
+                 Key Assets</a>,
+<a href="#local" alt="Goto Local Install/Config Info"
+                 title="Goto Local Install/Config Info">
+                 Local Install</a>
+</small><p>
+<h2>Public TestBed Development</h2>
+<p>
+Development on the public testbed requires a safsworks userid with FTP write permissions.
+<p>
+<hr>
+</body></html>

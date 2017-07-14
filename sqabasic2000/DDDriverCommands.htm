@@ -1,0 +1,866 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDDriverCommands Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDDriverCommands" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ The documentation for each function is provided as reference for DDE users
+ when developing DDE test tables.  This DDE format and syntax information IS
+ intended for public use and does not normally change with the underlying code.
+
+ The routines themselves are not intended for public use.
+ Their internal functionality and their declaration prototypes
+ are subject to change as deemed necessary to support the drivers
+ mentioned above.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\DDDriverCommands.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>Declare Function DDEDriverDebugCommand      BasicLib "<a href="DDDriverDebugCommands.htm">DDDriverDebugCommands</a>"
+<li>Declare Function DDEDriverCounterCommand    BasicLib "<a href="DDDriverCounterCommands.htm">DDDriverCounterCommands</a>"
+<li>Declare Function DDEDriverFlowCommand       BasicLib "<a href="DDDriverFlowCommands.htm">DDDriverFlowCommands</a>"
+<li>Declare Function DDECallScript              BasicLib "<a href="DDDriverFlowCommands.htm">DDDriverFlowCommands</a>"
+<li>Declare Function DDEDriverStringCommand     BasicLib "<a href="DDDriverStringCommands.htm">DDDriverStringCommands</a>"
+<li>Declare Function DDEDriverLogCommand        BasicLib "<a href="DDDriverLogCommands.htm">DDDriverLogCommands</a>"
+<li>Declare Function DDEDriverDeprecatedCommand BasicLib "<a href="DDDriverDeprecatedCommands.htm">DDDriverDeprecatedCommands</a>"
+<li>Declare Function DDEDriverFileCommand       BasicLib "<a href="DDDriverFileCommands.htm">DDDriverFileCommands</a>"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#ddedrivercommand">DDEDriverCommand</a>        BasicLib DDDriverCommands 
+Function <a href="#ddeskippedrecord">DDESkippedRecord</a>        BasicLib DDDriverCommands 
+Function <a href="#ddeprocessblockid">DDEProcessBlockID</a>       BasicLib DDDriverCommands 
+Function <a href="#ddecallscript">DDECallScript</a>           BasicLib DDDriverFlowCommands 
+Function <a href="#ddeimpliedcallscript">DDEImpliedCallScript</a>    BasicLib DDDriverCommands 
+Function <a href="#ddelocateblockid">DDELocateBlockID</a>        BasicLib DDDriverFlowCommands 
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddeimpliedcallscript"></a>
+  Function DDEImpliedCallScript(scriptName as String,
+                         guiInfo As AUGUIInfo,
+                         statusInfo As AUStatusInfo
+                        ) As Integer
+
+ DESCRIPTION:
+
+      Invokes an automation tool script with the provided scriptName.
+      If the script does NOT exist then the routine routes the record
+      for <a href="CustomRecordTypes.htm">Custom Record Type</a> processing.
+
+      The routine logs the start and end of the script and sets and receives
+      the global <a href="ApplicationUtilities.htm">ApplicationUtilities'</a> ScriptGUIInfo and ScriptStatusInfo
+      structures for the script.  It does this via the DDECallScript routine.
+
+      An implied script invocation is when the record type of the current
+      table is unrecognized.  When this happens the DDE assumes the record type
+      field is actually the name of a tool script to be executed.  This, then, is
+      actually an implied short version of the Driver Command  C,  CallScript
+
+      However, if no such script exists, we check for the implementation
+      of <a href="CustomRecordTypes.htm#customdderecord">Custom Record Type</a>.
+
+
+      CALLING A SCRIPT AND PASSING PARAMETERS TO IT:
+
+      You should assign script arguments or parameters to DDVariables as shown in the
+      example below.  You can simply retrieve the value of each variable using
+      the <a href="DDVariableStore.htm#DDVGetVariableValue">DDVariableStore.DDVGetVariableValue</a> routine.
+
+      CALLING IMPLIED SCRIPT EXAMPLE:
+
+      EnterNewUser   ^name.first=John   ^name.last=Smith   ^dept=BST   ^ext=x9999
+
+      &lt; continue with more table records &gt;
+
+
+      In the above example, "EnterNewUser" is the name of a valid Robot Script
+      that will be executed.  The other fields are DDVariables that are set for
+      use by the script and the rest of the DDE.
+
+      See <a href="UsingDDVariables.htm">Using DDVariables</a> for more information on this nifty capability!
+
+
+      This routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      scriptName      String name of the script to call. (no file extension)
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Returns DDU_SCRIPT_WARNING if no Script or matching CustomRecordType is found.
+      Scripts or CustomRecordType processing should return the following values:
+
+            INCREMENTS GENERAL STATUS COUNTERS AUTOMATICALLY--BUT NOT TEST COUNTERS
+            =======================================================================
+            DDU_NO_SCRIPT_FAILURE       = -1      'we DID process the record (failures may have been logged)
+            DDU_SCRIPT_WARNING          = -2      'a process failure OR no Script/CustomRecordType match
+            DDU_GENERAL_SCRIPT_FAILURE  = 0       'a general failure in the Script/CustomRecordType handling
+            DDU_INVALID_FILE_IO         = 2       'an IO failure occurred
+
+            DOES NOT INCREMENT ANY STATUS COUNTERS AUTOMATICALLY
+            =======================================================================
+            DDU_SCRIPT_NOT_EXECUTED     = 4       'generally means noone tried to process the record
+            DDU_EXIT_TABLE_COMMAND      = 8       'force immediate exit of current test table
+            DDU_IGNORE_RETURN_CODE      = 16      'drivers ignore this one
+
+      The routines for incrementing counters can be found in the <a href="ApplicationUtilities.htm">ApplicationUtilities</a> library.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 23, 2001
+ History:
+
+      APR 23, 2001    Original Release
+      FEB 01, 2002    (Carl Nagle) Added CustomRecordTypes
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddeskippedrecord"></a>
+  Function DDESkippedRecord (guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Processes a SKIPPED RECORD from the InputRecord.
+      This outputs a SKIPPED_TEST_MESSAGE with text retrieved from the 2nd
+      field of the inputrecord.
+
+      Field #1:   The SKIP_TEST_STEP (S).
+      Field #2:   A comment to explain why (like a Defect # or failure info).
+      Field #3-N: Normaly Fields 1-N moved over from the record being skipped.
+
+      Normally, you would merely move pre-existing fields over by preceding
+      them with these two fields (skipped test record type and its comment)
+      so that the test can later be reinstituted by simply deleting these
+      first two fields.
+
+      A normal record NOT skipped:
+
+         T  AFailingTest    ^param1=value   ^param2=value
+
+
+      SKIPPED:
+
+         S  Defect:D12345   T   AFailingTest     ^param1=value   ^param2=value
+
+
+      This routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 19, 2001
+ History:
+
+      APR 19, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddeprocessblockid"></a>
+  Function DDEProcessBlockID (guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Process a BlockId record type from the InputRecord.
+
+      Field #1:   The BLOCKID recordType (B).
+      Field #2:   The user-defined text ID for this block.
+
+      Example:
+
+         B   StartOfTest5
+
+      By itself, there is no real processing of a BlockID.  However, the recordType
+      is used to identify the target location used for many Error Recovery and
+      Flow Control commands. See, <a href="DDDriverFlowCommands.htm">DDDriverFlowCommands</a> and
+      <a href="UsingFlowControl.htm" >Error Recovery and Flow Control</a>.
+
+      This routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 19, 2001
+ History:
+
+      APR 19, 2001    Original Release
+      FEB 04, 2003    (Carl Nagle) Updated documentation.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddedrivercommand"></a>
+  Function DDEDriverCommand(guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Processes a DDE DRIVER COMMAND from the AUGUIInfo.InputRecord provided.
+      Driver commands are not treated as test commands but instructions to
+      the Drivers for setting parameters of the test environment, running
+      other scripts, or other stuff (whatever gets in here).
+
+      Different driver commands have different parameters as described below.
+      For reference, the first fields are defined below:
+
+      Field #1:   The "C" = DRIVER COMMAND.
+      Field #2:   The Driver Command to execute. (see definitions below).
+
+      Example:
+
+          c , SetApplicationMap , "AppMap.map"
+
+      Parameters must be placed in the order specified.
+      Parameters numbered in brackets are optional.
+      However, to use an optional parameter which follows other optional
+      parameters all the preceding parameters must exist or at least have
+      field delimited space reserved for them.
+
+
+         COMMAND         Fld# PARAMETER
+      ==============      ====================================================
+      Version             3 - VERSION string. Initially "1.0"
+
+
+      Expressions         3 - "ON" or "OFF"
+
+
+      SetBenchDirectory   Set/Change the directory in which the framework will
+                          locate benchmark files by default.
+
+                          3 - full or project relative path.
+                              The path must already exist.  If the path is invalid
+                              the previous setting will be retained (and logged).
+                              any incomplete path will be assumed to be relative
+                              to the current project directory.
+
+                              Example path settings resolving to the same loc:
+
+                              "C:\MyRepo\MyProject\AltPath\Bench"   or
+                              "AltPath\Bench"
+
+
+      SetTestDirectory    Set/Change the directory in which the framework will
+                          locate test files (captured "actuals") by default.
+
+                          3 - full or project relative path.
+                              The path must already exist.  If the path is invalid
+                              the previous setting will be retained (and logged).
+                              any incomplete path will be assumed to be relative
+                              to the current project directory.
+
+                              Example path settings resolving to the same loc:
+
+                              "C:\MyRepo\MyProject\AltPath\Test"   or
+                              "AltPath\Test"
+
+
+      SetDifDirectory     Set/Change the directory in which the framework will
+                          locate file compare differences.
+
+                          3 - full or project relative path.
+                              The path must already exist.  If the path is invalid
+                              the previous setting will be retained (and logged).
+                              any incomplete path will be assumed to be relative
+                              to the current project directory.
+
+                              Example path settings resolving to the same loc:
+
+                              "C:\MyRepo\MyProject\AltPath\Dif"   or
+                              "AltPath\Dif"
+
+
+      SetRootVerifyDirectory  Set/Change the Bench, Test, and Dif directories
+                              to be subdirectories off of the provided path.
+
+                          3 - full or project relative path.
+                              The path must already exist.  If the path is invalid
+                              the previous settings for Bench, Test, and Dif will
+                              be retained and a FAILURE will be reported.  The
+                              Bench, Test, and Dif subdirectories must also exist.
+
+                              Any incomplete path will be assumed to be relative
+                              to the current project directory.  It is important
+                              to note that the provided path can be valid, yet
+                              the expected "Bench", "Test", and "Dif" subdirectories
+                              may not be valid.  In that scenario, no failure
+                              will be reported, and the previous settings for
+                              Bench, Test, and Dif will be retained (and logged).
+
+                              Example path settings resolving to the same loc:
+
+                              "C:\MyRepo\MyProject\AltPath"   or
+                              "AltPath"
+
+
+      UseRobotJFunctions         3 - "ON" or "OFF"
+
+
+      UseSAFSFunctions           3 - "ON" or "OFF"
+
+
+      UseSeleniumFunctions       3 - "ON" or "OFF"
+
+
+     SetVariableValues   3-N  Allows the presetting of multiple variable values.
+                              Each field can contain one variable expression.
+                              EX: ^var1=value, ^var2=value2, ^var3=^var1
+
+
+     SetVariableValueEx  Allows the assignment of single variable value.
+                         The primary purpose is to support the generation of dynamically
+                         generated variablenames resulting from expressions.
+
+                         3    Name of the variable
+                         4    Value to assign to the specified variable
+
+
+     CopyVariableValueEx  Allows the explicit copying the value of a (dynamic) variable to another.
+                          This is primarily to dynamically generate variable names and then
+                          assign them stored--possibly dynamic--values.
+
+                         3    Name of the variable to copy
+                         4    Name of the variable to receive the copy
+
+
+      LaunchApplication   3 - Name to reference the application. Ex: CFO Vision
+                          4 - pathname of file findable by the system running it.
+                              This can be an ApplicationConstant in the AppMap in
+                              place of an explicit string.
+                              Example:
+                              [ApplicationConstants]
+                              AppExecutable="C:\SomeDir\MyApp.EXE"
+
+                         [5]- default directory for the application (may be "")
+                              This can be an ApplicationConstant in the AppMap in
+                              place of an explicit string.
+                              Example:
+                              [ApplicationConstants]
+                              AppDirectory="C:\SomeDir\"
+
+                         [6]- command line parameters to use when launching
+                              This can be an ApplicationConstant in the AppMap in
+                              place of an explicit string.
+                              Example:
+                              [ApplicationConstants]
+                              AppParameters="-s -automation"
+
+                         [7]- path to an application map for the application.
+                              Providing the AppMap does not override any currently
+                              active AppMap setting for the Driver.  You must explicitly
+                              use a SetApplicationMap record for this purpose.
+
+                        NOTE: We use the ApplicationUtilities <a href="ApplicationUtilities.htm#aulaunchapplication">AULaunchApplication</a>
+                              to actually run the app.  Consult that function for
+                              more information on providing this parameter.
+
+                        This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+
+      CloseApplication    3 - The name given the application at launch.
+                              Currently we can only "terminate" app processes from
+                              which LaunchApplication successfully retrieved a TASKID.
+
+                          This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+
+      SetApplicationMap   3 - path filename to an application map to use
+
+                        NOTE: We use the ApplicationUtilities <a href="ApplicationUtilities.htm#ausetcurrentappmap">AUSetCurrentAppMap</a>
+                              to actually set the current appmap.  Consult that
+                              function for more information on providing this parameter.
+
+
+      StartWebBrowser    [3]- Optional URL to load.
+
+                         [4]- Optional Name (WindowTag) to identify the instance of the Browser.
+                              If this field is provided then field 3 must be provided but
+                              can be blank or empty ("").  You can provide the "WindowTag=" with
+                              the Name, as in: "WindowTag=WebBrowser"; or you can provide just
+                              the name, "WebBrowser".  This routine will insert the "WindowTag="
+                              portion if it is not provided.
+
+
+      WaitForWebPage     [3]- Optional WINDOW ID of the object to wait for.  Use the name
+                              given the window in the Application map.
+                         [4]- Optional COMPONENT ID of the object to wait for.  Use the
+                              name given the component in the application map.  If field 3
+                              is provided then this field is required.  This must be a
+                              reference to an HTMLFrame, HTMLDocument or similar HTML component.
+                         [5]- Optional maximum timeout in seconds to wait for the page
+                              before failing. (Default is 30 seconds).  If this field is
+                              provided then both fields 3 and 4 are required (but they
+                              can be blank or empty ("").
+
+                         This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+
+      Pause               3 - The number of seconds to pause execution.
+
+
+      WaitForGUI          3 - The WINDOW ID of the object to wait for.  Use the name
+                              given the window in the Application map.
+                          4 - The COMPONENT ID of the object to wait for.  Use the
+                              name given the component in the application map.  If the
+                              window IS the object to wait for then both field 3 and 4
+                              will be the same.
+                         [5]- maximum timeout in seconds to wait for the GUI
+                              before failing. (Default is 15 seconds)
+
+                         This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+                  A standard "C" command will issue a WARNING status count if certain fields are
+                  defaulted or if the GUI object is not found in the timeout period.
+
+                  A "CW" command (WARNING EXPECTED\ALLOWED) may issue warning statements,
+                  but will NOT issue a WARNING status count if the GUI object is not found
+                  in the timeout period.
+
+                  A "CF" command (EXPECTED FAILURE) will NOT issue a WARNING status count if
+                  certain fields are defaulted or if the GUI object is not found in the timeout
+                  period.  However, it WILL issue a FAILURE if the GUI object IS found
+                  within the timeout period.
+
+
+      WaitForGUIGone      3 - The WINDOW ID containing the object to disappear.
+                              Use the name given the window in the Application map.
+                          4 - The COMPONENT ID of the object to disappear.  Use the
+                              name given the component in the application map.  If the
+                              window IS the object to disappear then both field 3 and 4
+                              will be the same.
+                         [5]- maximum timeout in seconds to wait for the GUI to disappear
+                              before failing. (Default is 15 seconds)
+
+                         This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+                  A standard "C" command will issue a WARNING status count if the GUI object
+                  is not located before it disapears or, once found, if it does not disappear
+                  in the timeout period.
+
+                  A "CW" command (WARNING EXPECTED\ALLOWED) may issue warning statements,
+                  but will NOT issue a WARNING status count if the GUI object
+                  is not located before it disapears or, once found, if it does not disappear
+                  in the timeout period.
+
+                  A "CF" command (EXPECTED FAILURE) will NOT issue a WARNING status count if
+                  the GUI object is not located and disappears in the timeout
+                  period.  However, it WILL issue a FAILURE if the GUI object DOES disappear
+                  in the timeout period.
+
+
+
+  WaitForPropertyValue    3 - The WINDOW ID of the object to wait for.  Use the name
+                              given the window in the Application map.
+                          4 - The COMPONENT ID of the object to wait for.  Use the
+                              name given the component in the application map.  If the
+                              window IS the object to wait for then both field 3 and 4
+                              will be the same.
+                          5 - The case-sensitive name of the property to test.
+
+                          6 - The case-sensitive value of the property to watch for.
+
+                         [7]- maximum timeout in seconds to wait for the GUI
+                              before failing. (Default is 15 seconds)
+
+                         This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+                  A standard "C" command will issue a WARNING status count if
+                  the object property value is not found in the timeout period.
+
+                  A "CW" command (WARNING EXPECTED\ALLOWED) may issue warning statements,
+                  but will NOT issue a WARNING status count if the object property value is
+                  not found in the timeout period.
+
+                  A "CF" command (EXPECTED FAILURE) will NOT issue a WARNING status count if
+                  the object property value is not found in the timeout
+                  period.  However, it WILL issue a FAILURE if the property value IS found
+                  within the timeout period.
+
+
+
+ WaitForPropertyValueGone 3 - The WINDOW ID containing the object to disappear.
+                              Use the name given the window in the Application map.
+                          4 - The COMPONENT ID of the object to disappear.  Use the
+                              name given the component in the application map.  If the
+                              window IS the object to disappear then both field 3 and 4
+                              will be the same.
+                          5 - The case-sensitive name of the property to test.
+
+                          6 - The case-sensitive value of the property to watch.
+
+                         [7]- maximum timeout in seconds to wait for the GUI to disappear
+                              before failing. (Default is 15 seconds)
+
+                         This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+                  A standard "C" command will issue a WARNING status count if
+                  the object property value does not disappear in the timeout period.
+
+                  A "CW" command (WARNING EXPECTED\ALLOWED) may issue warning statements,
+                  but will NOT issue a WARNING status count if the object property value does
+                  not disappear in the timeout period.
+
+                  A "CF" command (EXPECTED FAILURE) will NOT issue a WARNING status count if
+                  the object property value does not disappear in the timeout
+                  period.  However, it WILL issue a FAILURE if the property value DOES disappear
+                  within the timeout period.
+
+
+      SetFocus            3 - The WINDOW ID of the object to receive focus.  Use the name
+                              given the window in the Application map.
+                          4 - The COMPONENT ID of the object to receive focus.  Use the
+                              name given the component in the application map.  If the
+                              window IS the object to wait for then both field 3 and 4
+                              will be the same.
+
+                              Note this command only works on objects that have a true
+                              Window handle (HWND) AND meet the API criteria:
+
+                                  The process is the foreground process.
+                                  The process was started by the foreground process.
+                                  The process received the last input event.
+                                  There is no foreground process.
+                                  The foreground process is being debugged.
+                                  The foreground is not locked.
+                                  The foreground lock time-out has expired.
+                                  Windows 2000: No menus are active.
+
+                         This command also supports:
+
+                              CW - Command Warning OK (Expected Warning)
+                              CF - Command Failure OK (Expected Failure)
+
+
+      SetContext          3 - The WINDOW ID of the object to receive context.  Use the name
+                              given the window in the Application map.
+                          4 - The COMPONENT ID of the object to receive context.  Use the
+                              name given the component in the application map.  If the
+                              window IS the object to wait for then both field 3 and 4
+                              will be the same.
+
+                          Note, this does not necessarily SetFocus on the object.  This
+                          sets an object of reference for future Robot commands.  This may
+                          generate an ignored Script Command Failure if the object is not
+                          valid or visible.
+
+                          This command is not necessary for the normal operation of the DDE
+                          and the processing of Test records.  The DDE will automatically
+                          generate numerous SetContext commands during the normal processing
+                          of Test records.  This command is for other extraordinary cases not
+                          covered by normal Test record processing.
+
+
+     ClearClipboard         - Clears the contents of the Windows Clipboard.
+
+
+     ClearAllVariables      - Clears all stored DDVariables.
+
+
+      SaveClipboardToFile     3 - The file to save the clipboard contents to.
+                                  This can be a full path, a relative path, or a file name.
+                                  For relative path, it is appended to the project's path to
+                                  build the full path of the file. For file name, the file
+                                  is saved under the project's Datapool\Test directory. In
+                                  any case the parent folder of the file must exist.
+
+                              This command can only save text contents of the clipboard to a
+                              text file. The length of the clipboard text should not exceed
+                              32,767 characters. This is due to the inherent length limit of
+                              SQABasic's String data type.
+
+
+      GetSystemDate       - Assigns the string value of the system date to a DDVariable.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      The name of the Variable to receive the value.  GetTrimmedQuotedField
+              will be used to extract the name of the variable.
+              The format of the date is MM-DD-YYYY.
+
+              Note, if you supply the name of the variable and include the leading
+              caret (^) symbol then the variable must be enclosed in quotes.
+              Otherwise, that variable will be used like any other variable and the
+              substituted value of that variable will be interpretted as the name
+              of the variable you wish to use.
+
+      Examples:
+
+          Assigns system date to DDVariable ^SystemDate:
+              C, GetSystemDate, SystemDate
+
+          Assigns system date to DDVariable ^SystemDate:
+              C, GetSystemDate, "SystemDate"
+
+          Assigns system date to DDVariable ^SystemDate:
+              C, GetSystemDate, "^SystemDate"
+
+          Assigns system date to DDVariable ^TodaysDate:
+              C, SetVariableValues, ^SystemDate="TodaysDate"
+              C, GetSystemDate, ^SystemDate
+
+
+      GetDeltaDate -- Calculates a deltadate string based on the source date +/- the delta number of days.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString -- string date to add or substract delta days from.
+       4      deltaString -- positive or negative number indicating the number of delta days.
+       5      result -- variable name to receive calculated delta date string.
+
+
+      GetSystemTime       - Assigns the string value of the current system time to a DDVariable.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      The name of the Variable to receive the value.  GetTrimmedQuotedField
+              will be used to extract the name of the variable.
+              The format of the date is HH:MM:SS in military (24 hour) time.
+
+              Note, if you supply the name of the variable and include the leading
+              caret (^) symbol then the variable must be enclosed in quotes.
+              Otherwise, that variable will be used like any other variable and the
+              substituted value of that variable will be interpretted as the name
+              of the variable you wish to use.
+
+      Examples:
+
+          Assigns system time to DDVariable ^SystemTime:
+              C, GetSystemTime, SystemTime
+
+          Assigns system time to DDVariable ^SystemTime:
+              C, GetSystemTime, "SystemTime"
+
+          Assigns system time to DDVariable ^SystemTime:
+              C, GetSystemTime, "^SystemTime"
+
+          Assigns system date to DDVariable ^CurrentTime:
+              C, SetVariableValues, ^SystemTime="CurrentTime"
+              C, GetSystemTime, ^SystemTime
+
+
+
+      GetSystemDateTime  - Assigns the string value of the system date and time to a DDVariable.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      The name of the Variable to receive the value.  GetTrimmedQuotedField
+              will be used to extract the name of the variable.
+              The format of the datetime is MM-DD-YYYY HH:MM:SS (24 hour military).
+
+              Note, if you supply the name of the variable and include the leading
+              caret (^) symbol then the variable must be enclosed in quotes.
+              Otherwise, that variable will be used like any other variable and the
+              substituted value of that variable will be interpretted as the name
+              of the variable you wish to use.
+
+      Examples:
+
+          Assigns system datetime to DDVariable ^SystemDate:
+              C, GetSystemDateTime, SystemDate
+
+          Assigns system datetime to DDVariable ^SystemDate:
+              C, GetSystemDateTime, "SystemDate"
+
+          Assigns system datetime to DDVariable ^SystemDate:
+              C, GetSystemDateTime, "^SystemDate"
+
+          Assigns system datetime to DDVariable ^TodaysDate:
+              C, SetVariableValues, ^SystemDate="TodaysDate"
+              C, GetSystemDateTime, ^SystemDate
+
+
+      FilterTextFile          3 - The file to be filtered.
+                                  This can be a full path, a relative path, or a file name.
+                                  For relative path, it is appended to the project's path to
+                                  build the full path of the file. For file name, the file
+                                  is saved under the project's Datapool\Test directory. In
+                                  any case the parent folder of the file must exist.
+
+                              [4] -   Filter mode.
+                                      Must be one of the valid string values. See table below.
+                                      If omitted, it is set to DEFAULT.
+
+                              [5-N] - Additional filter options.
+                                      Some filter modes may require one or more filter options.
+
+                              This command can be used to process a text file based on the
+                              provided parameters, such as replacing text in a file that
+                              matches a specific pattern. This command is experimental.
+                              command name/parameters are subject to change without notice.
+                              The following table lists all supported filter modes and the
+                              corresponding filter options:
+
+          MODE        OPTIONS                 COMMENTS
+          ==================================================================================
+          Default     None                    Default filtering. File is unchanged.
+
+          RegExp      1 - PATTERN (Required)  Replaces all occurences of text in a file that
+                      2 - REPLACE (Optional)  match regular expression PATTERN with a new
+                      3 - CASE (Optional)     string REPLACE. PATTERN is required and must
+                                              not be empty. Default value for REPLACE is "",
+                                              i.e. to remove matching text from the file.
+                                              Case specifies the case-sensitivity when
+                                              searching for matching text in the file. Use
+                                              CaseInsensitive to ignore case when searching.
+                                              Default is CaseSensitive.
+
+
+
+      This DDEDriver Command routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 19, 2001
+ History:
+
+      APR 19, 2001    Original Release
+      JUN 11, 2001    (Carl Nagle) Added Flow Control Commands
+      JUN 20, 2001    (Carl Nagle) Added Driver Commands SetFocus,
+                                                     SetContext,
+                                                     ClearClipboard,
+                                                     SetVariableValues,
+                                                     LogTestFailure,
+                                                     LogTestWarning,
+                                                     LogTestSuccess,
+                                                     OnEqualGotoBlock,
+                                                     ExitSuite,
+                                                     ExitCycle
+      OCT 01, 2001    (Carl Nagle) Enabling DEBUG MODE and EXPRESSION commands.
+      OCT 17, 2001    (YUESONG WANG) Added CaseInsensitive to OnEqualGotoBlockID
+      JAN 25, 2002    (DAWN COEN) Added Driver Command GetSystemDate (SDGET_SYSTEM_DATE case)
+      JAN 29, 2002    (Carl Nagle) Added DriverCommands GetSystemTime, GetSystemDateTime
+      FEB 04, 2002    (Carl Nagle) Added CustomDriverCommands
+      APR 26, 2002    (JCRUNK) Added Driver Command OnNotEqualGotoBlockID
+      JUN 18, 2002    (Carl Nagle) Fixed OnNotEqualGotoBlockID log text.
+      OCT 11, 2002    (YWANG) Added Get\SetVariableValueEX commands.
+      OCT 18, 2002    (Carl Nagle) Added Expected Failure support.
+      FEB 04, 2003    (Carl Nagle) Fixed? WaitForWebPage :)
+      MAY 13, 2003    (RDANT) Added Support for Driver File Command Library
+      AUG 21, 2003    (Carl Nagle) Added SetBench..., SetTest..., SetDif...,
+                               and SetRoot... commands
+      AUG 28, 2003    (Carl Nagle) Enabled EXPLICIT use of RobotJ Driver Command processing
+      NOV 14, 2003    (Carl Nagle) Enabled IMPLICIT use of RobotJ Driver Command processing
+      DEC 15, 2003    (Carl Nagle) Refactored for use of SAFSUtilities
+      SEP 08, 2004    (Carl Nagle) Do NOT send SetVariableValues to other engines.
+      DEC 15, 2004    (Carl Nagle) ClearAllVariables added.
+      JAN 18, 2005    (Bob Lawler) Added window handler conversion to Long (if necessary) in DDU_SET_FOCUS (RJL)
+      APR 26, 2005    (Carl Nagle) Added DDDriverStringCommands
+      DEC 20, 2005    (Carl Nagle) Added GetDeltaDate
+      DEC 22, 2006    (Carl Nagle) Added UseSAFSFunctions command
+      APR 13, 2007    (Carl Nagle) Added UseSeleniumFunctions command
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

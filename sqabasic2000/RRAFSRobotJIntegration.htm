@@ -1,0 +1,144 @@
+<HTML>
+<HEAD><TITLE>
+
+RRAFS RobotJ Integration with STAF
+
+</TITLE></HEAD>
+<BODY bgcolor="#FFFFFF" color="#000000">
+<CENTER>
+<H1>
+
+RRAFS RobotJ Integration with STAF
+
+</H1>
+
+Updated:
+<SCRIPT language="JavaScript">
+    document.write(document.lastModified)
+</SCRIPT>
+<BR />
+
+by Carl Nagle
+
+</CENTER>
+
+<HR />
+<!-- ================================================================================ -->
+
+<A name="overview" />
+<A HREF="#processes"> Processes </A>&nbsp;
+<A HREF="#thread"> Hook Thread </A>&nbsp;
+<BR />
+
+<H3>Overview</H3>
+
+<P>
+RobotJ integration into the RRAFS engine is striving to be transparent.  That is, the RRAFS engine currently based on Rational Robot Classic will still contain the bulk of our functionality.  The engine will only make calls to RobotJ Scripts and APIs if and when Robot Classic cannot satisfy the desired functionality, or if we instruct it to do so.  (I will often refer to Robot Classic as simply "Classic" in the remainder of this document.)  See more on the <A HREF="RRAFSRobotJImplementation.htm">RRAFS RobotJ Implementation</A>.
+</P>
+<P>
+We have implemented STAF Services to provide access to RobotJ and ANY future SAFS Engine.  These STAF Services provide standardized SAFS Engine support independently of either Classic or RobotJ.  So these standard features will be available to other tools we may implement now or in the future.
+</P>
+<P>
+
+<TABLE NAME="overviewTable" ALIGN="center" BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR ALIGN="center">
+	<TD>
+	    <IMG NAME="overviewImage" SRC="STAF_Overview.GIF" ALT="STAF Integratioin Overview" />
+	</TD>
+</TR>
+<TR ALIGN="center">
+	<TD> Fig. 1
+	</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+Fig. 1 shows that Classic is still in the picture.  In fact, Classic is still our primary Java support vehicle--though that can readily change.  We want to minimize duplicate development and maintenance efforts.  Thus, we will NOT be implementing a full-blown, standalone engine in RobotJ at this time.  Any such effort will actually be a continuation of the current tool-independent effort.  Once completely tool-independent drivers, parsers, and supporting utility services are available; we can choose to upgrade RobotJ to take advantage of them.
+</P>
+<P>
+However, users will have access to RobotJ functionality.  They can develop RobotJ scripts or other Java programs.  We can launch them from Classic or RobotJ during normal execution.
+</P>
+
+<HR />
+<!-- ================================================================================ -->
+
+<A NAME="processes" />
+<A HREF="#overview"> Overview </A>&nbsp;
+<A HREF="#thread"> Hook Thread </A>&nbsp;
+<BR />
+
+<H3>Processes</H3>
+
+<P>
+Fig. 2 shows what might not be readily apparent to all developers.  Classic and the Java JVMs are  running in different processes on the system.  Thus, it requires special care and data synchronization.  This is all handled via STAF and our interfacing libraries and classes.  The separate processes will each have a separately loaded instance of a STAF Client.  STAF allows us to synchronize our transferring of data and commands between the two processes.
+</P>
+<P>
+Although not shown in Fig. 2, it is worth noting that the AUT being tested is in yet another separate process.
+</P>
+<P>
+<TABLE NAME="processesTable" ALIGN="center" BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR ALIGN="center">
+	<TD>
+	    <IMG NAME="processesImage" SRC="STAF_Processes.GIF" ALT="Separate Processes" />
+	</TD>
+</TR>
+<TR ALIGN="center">
+	<TD> Fig. 2
+	</TD>
+</TR>
+</TABLE>
+</P>
+
+<HR />
+<!-- ================================================================================ -->
+
+<A NAME="thread" />
+<A HREF="#overview"> Overview </A>&nbsp;
+<A HREF="#processes"> Processes </A>&nbsp;
+<BR />
+
+<H3>Hook Thread</H3>
+
+<P>
+Now the fun part!  Just how do we get Classic and RobotJ to work together?  How do we gain access to all the API and GUI actions available to a RobotJ script and expose them to Classic and the outside world?  Well...
+</P>
+<P>
+
+The Reader's Digest version (shown in Fig. 3):
+
+<OL>
+<LI>Launch a RobotJ JVM.</LI>
+<LI>Run RobotJ with a SAFS STAF-aware "hook" script.</LI>
+<LI>The hook script uses STAF EVENTS to receive and dispatch requests.</LI>
+<LI>ANYONE places Test Record Data inside the STAF shared variable space.</LI>
+<LI>ANYONE dispatches the hook script thread to process the request.</LI>
+<LI>The dispatcher receives the RobotJ results via the STAF shared variable space.</LI>
+<LI>The hook script resets and waits for the next dispatch request.</LI>
+</OL>
+</P>
+
+<P>
+<TABLE NAME="threadTable" ALIGN="center" BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR ALIGN="center">
+	<TD>
+	    <IMG NAME="threadImage" SRC="STAF_Thread.GIF" ALT="RobotJ Hook Thread" />
+	</TD>
+</TR>
+<TR ALIGN="center">
+	<TD> Fig. 3
+	</TD>
+</TR>
+</TABLE>
+</P>
+<P>
+Again, although not shown in Fig. 3, it is worth noting that the AUT being tested is in yet another separate process.
+</P>
+
+<A HREF="#overview"> Overview </A>&nbsp;
+<A HREF="#processes"> Processes </A>&nbsp;
+<A HREF="#thread"> Thread </A>&nbsp;
+<HR />
+
+</BODY>
+</HTML>

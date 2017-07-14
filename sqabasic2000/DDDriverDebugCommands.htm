@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDDriverDebugCommands Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDDriverDebugCommands" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ The documentation for each function is provided as reference for DDE users
+ when developing DDE test tables.  This DDE format and syntax information IS
+ intended for public use and does not normally change with the underlying code.
+
+ The routines themselves are not intended for public use.
+ Their internal functionality and their declaration prototypes
+ are subject to change as deemed necessary to support the drivers
+ mentioned above.
+
+
+ This library is defined by:
+
+ DDDriverDebugCommands.SBL      Sourcecode and Detailed Documentation
+ DDDriverDebugCommands.SBX      Compiled executable library
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 2002
+ History:
+
+      JUL 16, 2002    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented CF and CW record types.
+
+ Copyright (2002) SAS Institute Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>(none)
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+   *** NO SUPPORTED ACTION COMMANDS SECTION FOUND ***
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddedriverdebugcommand"></a>
+  Function DDEDriverDebugCommand(guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Processes a DDE DRIVER COMMAND from the AUGUIInfo.InputRecord provided.
+      Driver commands are not treated as test commands but instructions to
+      the Drivers for setting parameters of the test environment, running
+      other scripts, or other stuff (whatever gets in here).
+
+      Different driver commands have different parameters as described below.
+      For reference, the first fields are defined below:
+
+      Field #1:   The "C" = DRIVER COMMAND.
+      Field #2:   The Driver Command to execute. (see definitions below).
+
+      Example:
+
+          c , SetApplicationMap , "AppMap.map"
+
+
+      Parameters must be placed in the order specified.
+      Parameters numbered in brackets are optional.
+      However, to use an optional parameter which follows other optional
+      parameters all the preceding parameters must exist or at least have
+      field delimited space reserved for them.
+
+
+         COMMAND         Fld# PARAMETER
+      ==============      ====================================================
+
+      Breakpoints         3 - "ON" or "OFF"
+
+
+      CommandDebug        3 - "ON" or "OFF"
+
+
+      TestDebug           3 - "ON" or "OFF"
+
+
+      RecordsDebug        3 - "ON" or "OFF"
+
+
+
+      This DDEDriver Command routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      DriverCMD       from the calling DDDriverCommands library.
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+      Returns DDU_SCRIPT_NOT_EXECUTED if no matching driver command was found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 2002
+ History:
+
+      JUL 16, 2002    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented CF and CW record types.
+      APR 26, 2005    (Carl Nagle) Removed that warning. Duplicate warnings issued.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

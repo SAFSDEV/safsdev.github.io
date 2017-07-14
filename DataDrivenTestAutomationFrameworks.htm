@@ -1,0 +1,2179 @@
+<HTML>
+<HEAD>
+<META http-equiv="Content-Language" content="en-us">
+<META http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<TITLE>Design For Test Automation</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<A NAME="Title">
+<B><FONT FACE="Arial" SIZE=6><P ALIGN="CENTER">Test Automation Frameworks</P>
+</B></FONT><BR></A>
+
+<A NAME="CoolQuote1">
+<P ALIGN="CENTER">&quot;<I>When developing our test strategy, we must minimize the impact caused by changes in the applications we are testing, and changes in the tools we use to test them</I>.&quot;</P>
+<P ALIGN="RIGHT">--Carl J. Nagle</P></A>
+
+<A NAME="Section_1.1"><A NAME="ThinkingPastTheProject">
+<B><FONT FACE="Arial" SIZE=5><P>1.1 Thinking Past  &quot;The Project&quot;</A></A></P>
+</B></FONT>
+
+<P ALIGN="JUSTIFY">In today’s environment of plummeting cycle times, test automation becomes an increasingly critical and strategic necessity.  Assuming the level of testing in the past was sufficient (which is rarely the case), how do we possibly keep up with this new explosive pace of web-enabled deployment while retaining satisfactory test coverage and reducing risk?  The answer is either more people for manual testing, or a greater level of test automation.  After all, a reduction in project cycle times generally correlates to a reduction of time for test.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">With the onset and demand for rapidly developed and deployed web clients test automation is even more crucial.  Add to this the cold, hard reality that we are often facing more than one active project at a time.  For example, perhaps the team is finishing up Version 1.0, adding the needed new features to Version 1.1, and prototyping some new technologies for Version 2.0!  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Better still; maybe our test team is actually a pool of testers supporting many diverse applications completely unrelated to each other.  If each project implements a unique test strategy, then testers moving among different projects can potentially be more a hindrance rather than a help.  The time needed for the tester to become productive in the new environment just may not be there. And, it may surely detract from the productivity of those bringing the new tester up to speed.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">To handle this chaos we have to think past the project.  We cannot afford to engineer or reengineer automation frameworks for each and every new application that comes along.  We must strive to develop a single framework that will grow and continuously improve with each application and every diverse project that challenges us.  We will see the advantages and disadvantages of these different approaches in <A HREF="#Section_1.2">Section 1.2</A></P><BR>
+
+<A NAME="Section_1.1.1"><A NAME="ProblemsWithTestAutomation">
+<B><FONT FACE="Arial"><P>1.1.1 Problems with Test Automation</A></A></P>
+</B></FONT>
+
+<P ALIGN="JUSTIFY">Historically, test automation has not met with the level of success that it could.  Time and again test automation efforts are born, stumble, and die.  Most often this is the result of misconceived perceptions of the effort and resources necessary to implement a successful, long-lasting automation framework.  Why is this, we might ask?   Well, there are several reasons.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Foremost among this list is that automation tool vendors do not provide completely forthright demonstrations when showcasing the &quot;simplicity&quot; of their tools. We have seen the vendor’s sample applications.  We have seen the tools play nice with <I>those</I> applications.  And we try to get the tools to play nice with <I>our</I> applications just as fluently.   Inherently, project after project, we do not achieve the same level of success.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">This usually boils down to the fact that our applications most often contain elements that are not compatible with the tools we use to test them.  Consequently, we must often mastermind technically creative solutions to make these automation tools work with our applications.  Yet, this is rarely ever mentioned in the literature or the sales pitch.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The commercial automation tools have been chiefly marketed for use as solutions for testing an application.  They should instead be sought as the cornerstone for an enterprise-wide test automation framework.  And, while virtually all of the automation tools contain some scripting language allowing us to get past each tool’s failings, testers have typically neither held the development experience nor received the training necessary to exploit these programming environments.  </P>
+<P ALIGN="JUSTIFY"></P>
+
+<A NAME="CoolQuote2"><HR>
+<P ALIGN="CENTER"><B><I>&quot;For the most part, testers have been testers, not programmers.  Consequently, the ‘simple’ commercial solutions have been far too complex to implement and maintain; and they become shelfware.&quot;</I></B></P>
+<HR></A>
+
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Most unfortunate of all, otherwise fully capable testers are seldom given the time required to gain the appropriate software development skills.  For the most part, testers have been testers, not programmers.  Consequently, the &quot;simple&quot; commercial solutions have been far too complex to implement and maintain; and they become shelfware.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Test automation must be approached as a full-blown software development effort in its own right.  Without this, it is most likely destined to failure in the long term.</P>
+<P ALIGN="JUSTIFY"></P><BR>
+
+<A NAME="CaseStudy">
+<FONT FACE="Arial"><B><P ALIGN="CENTER">Case Study: Costly Automation Failures</P></B></A>
+</FONT><P ALIGN="JUSTIFY"></P>
+
+<P ALIGN="JUSTIFY">In 1996, one large corporation set out evaluating the various commercial automation tools that were available at that time.  They brought in eager technical sales staff from the various vendors, watched demonstrations, and performed some fairly thorough internal evaluations of each tool.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">By 1998, they had chosen one particular vendor and placed an initial order for over $250,000 worth of product licensing, maintenance contracts, and onsite training.  The tools and training were distributed throughout the company into various test departments--each working on their own projects.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">None of these test projects had anything in common.  The applications were vastly different. The projects each had individual schedules and deadlines to meet.  Yet, every one of these departments began separately coding functionally identical common libraries.  They made routines for setting up the Windows test environment.  They each made routines for accessing the Windows programming interface.  They made file-handling routines, string utilities, database access routines--the list of code duplication was disheartening!</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">For their test designs, they each captured application specific interactive tests using the capture\replay tools.  Some groups went the next step and modularized key reusable sections, creating reusable libraries of application-specific test functions or scenarios.  This was to reduce the amount of code duplication and maintenance that so profusely occurs in pure captured test scripts.  For some of the projects, this might have been appropriate if done with sufficient planning and an appropriate automation framework.  But this was seldom the case.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">With all these modularized libraries testers could create functional automated tests in the automation tool’s proprietary scripting language via a combination of interactive test capture, manual editing, and manual scripting.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">One problem was, as separate test teams they did not think past their own individual projects.  And although they were each setting up something of a reusable framework, each was completely unique--even where the common library functions were the same!  This meant duplicate development, duplicate debugging, and duplicate maintenance.  Understandably, each separate project still had looming deadlines, and each was forced to limit their automation efforts in order to get <I>real</I> testing done.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">As changes to the various applications began breaking automated tests, script maintenance and debugging became a significant challenge.  Additionally, upgrades in the automation tools themselves caused significant and unexpected script failures.  In some cases, the necessity to revert back (downgrade) to older versions of the automation tools was indicated.   Resource allocation for continued test development <I>and</I> test code maintenance became a difficult issue.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Eventually, most of these automation projects were put on hold.  By the end of 1999--less than two years from the inception of this large-scale automation effort--over 75% of the test automation tools were back on the shelves waiting for a new chance to try again at some later date.</P><BR>
+
+<A NAME="Section_1.1.2"><A NAME="SomeTestStrategyGuidelines">
+<B><FONT FACE="Arial"><P>1.1.2 Some Test Strategy Guidelines</A></A></P>
+</B></FONT>
+
+<P ALIGN="JUSTIFY">Past failings like these have been lessons for the entire testing community.  Realizing that we must develop reusable test strategies is no different than the reusability concerns of any good application development project.  As we set out on our task of automating test, we must keep these past lessons forefront.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">In order to make the most of our test strategy, we need to make it reusable and manageable.  To that end, there are some essential guiding principles we should follow when developing our overall test strategy:</P>
+
+<UL>
+<LI>Test automation is a fulltime effort, not a sideline.</LI>
+<LI>The test design and the test framework are totally separate entities.</LI>
+<LI>The test framework should be application-independent.</LI>
+<LI>The test framework must be easy to expand, maintain, and perpetuate.</LI>
+<LI>The test strategy/design vocabulary should be framework independent.</LI>
+<LI>The test strategy/design should remove most testers from the complexities of the test framework.</LI></UL>
+<P>These ideals are not earth shattering.  They are not relatively new.  Yet, it is seldom these principles are fully understood and instrumented.  </P>
+<P>So what do they mean?</P><BR>
+
+<A NAME="Section_1.1.3"><A NAME="TestAutomationIsFulltimeEffort">
+<B><FONT FACE="Arial"><P>1.1.3&#9;Test automation is a fulltime effort, not a sideline.</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">While not necessarily typical design criteria, it bears repeating.  The test framework design and the coding of that design together require significant front-loaded time and effort.  These are not things that someone can do when they have a little extra time here, or there, or between projects.  The test framework must be well thought out.  It must be documented.  It should be reviewed.  It should be tested.  It is a full software development project like any other.  This bears repeating--again.</P>
+<P>Will our test framework development have all of these wonderful documentation, design, review, and test processes?  Does our application development team?</P>
+<P>We should continuously push for both endeavors to implement all these critical practices.</P>
+<BR>
+
+<A NAME="Section_1.1.4"><A NAME="TestDesignAndTestFrameworkAreSeparate">
+<B><FONT FACE="Arial"><P>1.1.4&#9;The test design and the test framework are totally separate entities.</A></A></P></B></FONT>
+
+<P>The test design details how the particular functions and features of our application will be tested.  It will tell us what to do, how and when to do it, what data to use as input, and what results we expect to find.  All of this is specific to the particular application or item being tested.  Little of this requires any knowledge or care of whether the application will be tested automatically or manually.  It is, essentially, the &quot;how to&quot; of what needs to be tested in the application.</P>
+<P>On the other hand, the test framework, or specifically, the test automation framework is an execution environment for automated tests.  It is the overall system in which our tests will be automated.  The development of this framework requires completely different technical skills than those needed for test design.</P><BR>
+
+<A NAME="Section_1.1.5"><A NAME="TestFrameworkIsApplicationIndependent">
+<B><FONT FACE="Arial"><P>1.1.5&#9;The test framework should be application-independent.</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">Although applications are relatively unique, the components that comprise them, in general, are not.  Thus, we should focus our automation framework to deal with the common components that make up our unique applications.  By doing this, we can remove all application-specific context from our framework and reuse virtually everything we develop for every application that comes through the automated test process.</P>
+
+<A NAME="CoolQuote3">
+<HR>
+<P ALIGN="CENTER"><B><I>&quot;We should focus our automation framework to deal with the common components that make up our unique applications.&quot;</I></B></P>
+<HR></A>
+
+<P>Nearly all applications come with some form of menu system.  They also have buttons to push, boxes to check, lists to view, and so on.   In a typical automation tool script there is, generally, a very small number of component functions for each type of component.  These functions work with the component objects independent of the applications that contain them.</P>
+<P>Traditional, captured automation scripts are filled with thousands of calls to these component functions.  So the tools already exist to achieve application independence.  The problem is, most of these scripts construct the function calls using application-specific, hard coded values.  This immediately reduces their effectiveness as application-independent constructs.  Furthermore, the functions by themselves are prone to failure unless a very specific application state or synchronization exists at the time they are executed.  There is little error correction or prevention built-in to these functions.</P>
+<P>To deal with this in traditional scripts we must place additional code before and\or after the command, or a set of commands, to insure the proper application state and synchronization is maintained.  We need to make sure our window has the current focus.  We need to make sure the component we want to select, or press, or edit exists and is in the proper state.  Only then can we perform the desired operation and separately verify the result of our actions.</P>
+<P>For maximum robustness, we would have to code these state and synchronization tests for every component function call in our scripts.  Realistically, we could never afford to do this.  It would make the scripts huge, nearly unreadable, and difficult to maintain.  Yet, where we forego this extra effort, we increase the possibility of script failure.</P>
+<P>What we must do is develop a truly application-independent framework for these component functions.  This will allow us to implement that extra effort just once, and execute it for every call to any component function.  This framework should handle all the details of insuring we have the correct window, verifying the element of interest is in the proper state, doing something with that element, and logging the success or failure of the entire activity.  </P>
+<P>We do this by using variables, and providing application-specific data to our application-independent framework.  In essence, we will provide our completed test designs as executable input into our automation framework.</P>
+<P>Does this mean that we will <I>never</I> have to develop application-specific test scripts?  Of course not.  However, if we can limit our application-specific test scripts to some small percentage, while reusing the best features of our automation framework, we will reap the rewards project after project.</P>
+<BR>
+
+<A NAME="Section_1.1.6"><A NAME="TestFrameworkEasyToExpand">
+<B><FONT FACE="Arial"><P>1.1.6&#9;The test framework must be easy to expand, maintain, and perpetuate.</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">One of our goals should be a highly modular and maintainable framework.  Generally, each module should be independent and separate from all the other modules.  What happens inside one is of no concern to the others.</P>
+<P ALIGN="JUSTIFY"> </P>
+<P ALIGN="JUSTIFY">With this modular black-box approach, the functionality available within each module can be readily expanded without affecting any other part of the system.  This makes code maintenance much simpler.  Additionally, the complexity of any one module will likely be quite minimal.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">However, modularity alone will not be enough to ensure a highly maintainable framework.  Like any good software project, our design must be fully documented and published.  Without adequate, published documentation it will be very difficult for anyone to decipher what it is the framework is designed to do.  Any hope of maintenance will not last far beyond the departure of the original framework designers.  Our test automation efforts will eventually become another negative statistic.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">To prevent this, we should define documentation standards and templates.  Wherever possible, module documentation should be developed &quot;in-context&quot;.  That is, directly in the source code itself.  Tools should be retained, or designed and developed, so that we can automatically extract and publish the documentation.  This will eliminate the task of maintaining two separate sets of files: the source code, and its documentation.  It will also provide those doing the code maintenance quite a ready reference.  Nearly everything they need to know should exist right there in the code.</P>
+<P ALIGN="JUSTIFY"></P>
+
+<A NAME="CoolQuote4">
+<HR>
+<P ALIGN="CENTER"><I><B>&quot;We must always remember: our ultimate goal is to simplify and perpetuate a successful automation framework.&quot;</I></B></P>
+<HR></A>
+
+<P ALIGN="JUSTIFY">We must always remember: our ultimate goal is to simplify and perpetuate a successful test automation framework.  To put something in place that people will use and reuse for as long as it is technically viable and productive.</P><BR>
+
+<A NAME="Section_1.1.7"><A NAME="TestStrategyVocabularyIsFrameworkIndependent">
+<B><FONT FACE="Arial"><P>1.1.7&#9;The test strategy/design vocabulary should be framework independent.</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">As noted before, the framework refers to the overall environment we construct to execute our tests.  The centerpiece is usually one of many commercially available automation tools.  In good time, it may be more than one.  In some rare circumstances, it might even be a proprietary tool developed or contracted specifically for our test automation needs. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The point is, different tools exist and some will work better for us than others in certain situations.  While one tool might have worked best with our Visual Basic or C/C++ applications, we may need to use a different tool for our web clients.  By keeping a specific tool consideration out of our test designs, we avoid limiting our tests to that tool alone.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The overall test strategy will define the format and <I>low-level</I> vocabulary we use to test <I>all</I> applications much like an automation tool defines the format and syntax of the scripting language it provides.  Our vocabulary, however, will be independent of any particular test framework employed.  The same vocabulary will migrate with us from framework to framework, and application to application.  This means, for example, the syntax used to click a button will be the same regardless of the tool we use to execute the instruction or the application that contains the button.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The test design for a particular application, however, will define a <I>high-level</I> vocabulary that is specific to that application.  While this high-level vocabulary will be application specific, it is still independent of the test framework used to execute it.  This means that the high-level instruction to login to our website with a particular user ID and password will be the same regardless of the tool we use to execute it.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">When we provide <I>all</I> the instructions necessary to test a particular application, we should be able to use the exact same instructions on any number of different framework implementations capable of testing that application.  We must also consider the very likely scenario that some or all of this testing may, at one time or another, be manual testing.  This means that our overall test strategy should not only facilitate test automation, it should also support manual testing.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Consequently, the format and vocabulary we use to test our applications should be intuitive enough for mere mortals to comprehend and execute.  We should be able to hand our test over to a person, point to an area that failed, and that person should be able to manually reproduce the steps necessary to duplicate the failure.</P>
+
+<A NAME="CoolQuote5">
+<HR>
+<P ALIGN="CENTER"><I><B>&quot;A good test strategy can remove the necessity for both manual and automated test scripts.  The same ‘script’ should suffice for both.&quot;</I></B></P>
+<HR></A>
+
+<P>A good test strategy, comprised of our test designs and our test framework, can remove the necessity for both manual and automated test scripts for the same test.  The same &quot;script&quot; should suffice for both.  The important thing is that the vocabulary is independent of the framework used to execute it.  And the test strategy must also accommodate manual testing.</P><BR>
+
+<A NAME="Section_1.1.8"><A NAME="TestStrategyRemovesComplexityFromTesters">
+<B><FONT FACE="Arial"><P>1.1.8&#9;The test strategy/design should remove most testers from the complexities of the test framework.</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">In practice, we cannot expect all our test personnel to become proficient in the use of the automation tools we use in our test framework.  In some cases, this is not even an option worth considering.  Remember, generally, testers are testers--they are not programmers.  Sometimes our testers are not even professional testers.  Sometimes they are application domain experts with little or no use for the technical skills needed for software development.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Sometimes testers are application developers splitting time between development and test.  And when application developers step in to perform testing roles, they do not want or need a complex test scripting language to learn.  That is what you get with commercial automation tools.  And that may even be counter-productive and promote confusion since some of these scripting languages are modified subsets of standard programming languages.  Others are completely unique and proprietary.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Yet, with the appropriate test strategy and vocabulary as discussed in the previous section, there is no reason we should not be able to use all our test resources to design tests suitable for automation without knowing anything about the automation tools we plan to deploy.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">The bulk of our testers can concentrate on test design, and test design only.  It is the automation framework folks who will focus on the tools and utilities to automate those tests.</P><BR>
+
+<A NAME="Section_1.2"><A NAME="DataDrivenAutomationFrameworks">
+<B><FONT FACE="Arial" SIZE=5><P>1.2 Data Driven Automation Frameworks</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">Over the past several years there have been numerous articles done on various approaches to test automation.  Anyone who has read a fair, unbiased sampling of these knows that we cannot and <I>must</I> <I>not</I> expect pure capture and replay of test scripts to be successful for the life of a product.  We will find nothing but frustration there.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Sometimes this manifesto is hard to explain to people who have not yet performed significant test automation with these capture\replay tools.  But it usually takes less than a week, often less than a day, to hear the most repeated phrase: &quot;It worked when I recorded it, but now it fails when I play it back!&quot;  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Obviously, we are not going to get there from here.</P>
+<FONT FACE="Arial"><P ALIGN="JUSTIFY"></P><BR>
+
+<A NAME="Section_1.2.1"><A NAME="DataDrivenScripts">
+<B><P>1.2.1 Data Driven Scripts</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">Data driven scripts are those application-specific scripts captured or manually coded in the automation tool’s proprietary language and then modified to accommodate variable data.  Variables will be used for key application input fields and program selections allowing the script to drive the application with external data supplied by the calling routine or the shell that invoked the test script.</P>
+<P ALIGN="JUSTIFY"></P>
+<B><U><P ALIGN="JUSTIFY">Variable Data, Hard Coded Component Identification:
+</B></U><BR>
+These data driven scripts often still contain the hard coded and sometimes very fragile recognition strings for the window components they navigate.  When this is the case, the scripts are easily broken when an application change or revision occurs.  And when these scripts start breaking, we are not necessarily talking about just a few.  We are sometimes talking about a great many, if not all the scripts, for the entire application.</P>
+<P ALIGN="JUSTIFY">Figure 1 is an example of activating a server-side image map link in a web application with an automation tool scripting language:</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+
+<A NAME="Figure1">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  638>
+<TR><TD VALIGN="MIDDLE" 31>
+<B><FONT FACE="Courier New" SIZE=2><P ALIGN="CENTER">Image Click &quot;DocumentTitle=Welcome;\;ImageIndex=1&quot; &quot;Coords=25,20&quot;</B></FONT></TD>
+</TR>
+</TABLE>
+</CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 1</P></B></FONT></A>
+
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">This particular scenario of clicking on the image map might exist thousands of times throughout all the scripts that test this application.  The preceding example identifies the image by the title given to the document and the index of the image on the page.  The hard coded image identification <I>might</I> work successfully all the way through the production release of <I>that</I> version of the application.  Consequently, testers responsible for the automated test scripts may gain a false sense of security and satisfaction with these results.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">However, the next release cycle may find some or all of these scripts broken because either the title of the document or the index of the image has changed.  Sometimes, with the right tools, this might not be too hard to fix.  Sometimes, no matter what tools, it will be frustratingly difficult.  </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Remember, we are potentially talking about thousands of broken lines of test script code.  And this is just one particular change.  Where there is one, there will likely be others.</P>
+<P ALIGN="JUSTIFY"></P>
+<B><U><P ALIGN="JUSTIFY">Highly Technical or Duplicate Test Designs:</B></U><BR>
+Another common feature of data driven scripts is that virtually all of the test design effort for the application is developed in the scripting language of the automation tool.  Either that, or it is duplicated in <I>both</I> manual and automated script versions.  This means that everyone involved with automated test development or automated test execution for the application must likely become proficient in the environment and programming language of the automation tool.</P>
+
+<B><U><P ALIGN="JUSTIFY">Findings:</B></U><BR>
+A test automation framework relying on data driven scripts is definitely the easiest and quickest to implement <I>if</I> you have <I>and</I> keep the technical staff to maintain it.  But it is the hardest of the data driven approaches to maintain and perpetuate and very often leads to long-term failure.</P><BR>
+
+<A NAME="Section_1.2.2"><A NAME="KeywordDrivenTestAutomation">
+<B><P>1.2.2 Keyword or Table Driven Test Automation</P></B></FONT></A></A>
+
+<P ALIGN="JUSTIFY">Nearly everything discussed so far defining our ideal automation framework has been describing the best features of &quot;keyword driven&quot; test automation.  Sometimes this is also called &quot;table driven&quot; test automation.  It is typically an application-independent automation framework designed to process our tests.  These tests are developed as data tables using a keyword vocabulary that is independent of the test automation tool used to execute them.  This keyword vocabulary should also be suitable for manual testing, as you will soon see.</P>
+<B><U><P ALIGN="JUSTIFY">Action, Input Data, and Expected Result ALL in One Record:</B></U><BR>
+The data table records contain the keywords that describe the actions we want to perform.  They also provide any additional data needed as input to the application, and where appropriate, the benchmark information we use to verify the state of our components and the application in general.</P>
+<P ALIGN="JUSTIFY">For example, to verify the value of a user ID textbox on a login page, we might have a data table record as seen in Table 1:</P>
+
+<A NAME="Table1">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">WINDOW</B></TD>
+<TD VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">COMPONENT</B></TD>
+<TD VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">EXPECTED</P>
+<P ALIGN="CENTER">VALUE</B></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">LoginPage</B></FONT></TD>
+<TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">UserIDTextbox</B></FONT></TD>
+<TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">VerifyValue</B></FONT></TD>
+<TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">&quot;MyUserID&quot;</B></FONT></TD>
+</TR>
+</TABLE>
+</CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 1</P></FONT></B></A>
+
+<P ALIGN="JUSTIFY"></P>
+<B><U><P ALIGN="JUSTIFY">Reusable Code, Error Correction and Synchronization:</B></U><BR>
+Application-independent component functions are developed that accept application-specific variable data.  Once these component functions exist, they can be used on each and every application we choose to test with the framework.  </P>
+<P ALIGN="JUSTIFY">Figure 2 presents pseudo-code that would interpret the data table record from Table 1 and Table 2.  In our design, the primary loop reads a record from the data table, performs some high-level validation on it, sets focus on the proper object for the instruction, and then routes the complete record to the appropriate component function for full processing.  The component function is responsible for determining what action is being requested, and to further route the record based on the action. </P><BR>
+
+<A NAME="Figure2">
+<CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" 36>
+<B><FONT SIZE=4><P ALIGN="CENTER">Framework Pseudo-Code</B></FONT></TD></TR>
+<TR><TD VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2>
+<P><B>Primary Record Processor Module:</P></B>
+&#9;&nbsp;&nbsp;&nbsp;Verify &quot;LoginPage&quot; Exists. (Attempt recovery if not)<BR>
+&#9;&nbsp;&nbsp;&nbsp;Set focus to &quot;LoginPage&quot;.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Verify &quot;UserIDTextbox&quot; Exists.  (Attempt recovery if not)<BR>
+&#9;&nbsp;&nbsp;&nbsp;Find &quot;Type&quot; of component &quot;UserIDTextbox&quot;. (It is a Textbox)<BR>
+&#9;&nbsp;&nbsp;&nbsp;Call the module that processes ALL Textbox components.<BR>
+<P><B>Textbox Component Module:</P></B>
+&#9;&nbsp;&nbsp;&nbsp;Validate the action keyword &quot;VerifyValue&quot;.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Call the Textbox.VerifyValue function.<BR>
+<P><B>Textbox.VerifyValue Function:</P></B>
+&#9;&nbsp;&nbsp;&nbsp;Get the text stored in the &quot;UserIDTextbox&quot; Textbox.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Compare the retrieved text to &quot;MyUserID&quot;.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Record our success or failure.<BR>
+</FONT></TD></TR>
+</TABLE></CENTER>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 2</P></FONT></B></A>
+
+<B><U><P ALIGN="JUSTIFY">Test Design for Man and Machine, With or Without the Application:</B></U><BR>
+Table 2 reiterates the actual data table record run by the automation framework above:</P><BR>
+
+<A NAME="Table2">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">WINDOW</B></TD>
+<TD VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">COMPONENT</B></TD>
+<TD VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">EXPECTED</P>
+<P ALIGN="CENTER">VALUE</B></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">LoginPage</B></FONT></TD>
+<TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">UserIDTextbox</B></FONT></TD>
+<TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">VerifyValue</B></FONT></TD>
+<TD VALIGN="MIDDLE" 34>
+<B><FONT FACE="Courier New"><P ALIGN="CENTER">&quot;MyUserID&quot;</B></FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 2</P></B></FONT></A>
+
+<P ALIGN="JUSTIFY">Note how the record uses a vocabulary that can be processed by both man and machine.  With <I>minimal</I> training, a human tester can be made to understand the record instruction as deciphered in Figure 3:</P>
+
+<A NAME="Figure3">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="TOP" 18>
+<B><FONT FACE="Courier New">On the LoginPage, in the UserIDTextbox,<BR>
+Verify the Value is &quot;MyUserID&quot;.</B></FONT></TD>
+</TR></TABLE></CENTER>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 3</P></B></FONT></A>
+
+<P ALIGN="JUSTIFY">Once they learn or can reference this simple vocabulary, testers can start designing tests without knowing anything about the automation tool used to execute them.</P>
+<P ALIGN="JUSTIFY">Another advantage of the keyword driven approach is that testers can develop tests without a functioning application as long as preliminary requirements or designs can be determined.  All the tester needs is a fairly reliable definition of what the interface and functional flow is expected to be like.  From this they can write most, if not all, of the data table test records.  </P>
+<P ALIGN="JUSTIFY">Sometimes it is hard to convince people that this advantage is realizable.  Yet, take our login example from Table 2 and Figure 3.  We do not need the application to construct any login tests.  All we have to know is that we will have a login form of some kind that will accept a user ID, a password, and contain a button or two to submit or cancel the request.  A quick discussion with development can confirm or modify our determinations.  We can then complete the test table and move on to another.</P>
+<P ALIGN="JUSTIFY">We can develop other tests similarly for any part of the product we can receive or deduce reliable information.  In fact, if in such a position, testers can actually help guide the development of the UI and flow, providing developers with upfront input on how users might expect the product to function.  And since the test vocabulary we use is suitable for both manual and automated execution, designed testing can commence immediately once the application becomes available.  </P>
+<P ALIGN="JUSTIFY">It is, perhaps, important to note that this does not suggest that these tests can be executed <I>automatically</I> as soon as the application becomes available.  The test record in Table 2 may be perfectly understood and executable by a person, but the automation framework knows nothing about the objects in this record until we can provide that additional information.  That is a separate piece of the framework we will learn about when we discuss application mapping.</P>
+<B><U><P ALIGN="JUSTIFY">Findings:</B></U><BR>
+The keyword driven automation framework is initially the hardest and most time-consuming data driven approach to implement.  After all, we are trying to fully insulate our tests from both the many failings of the automation tools, as well as changes to the application itself.  </P>
+<P ALIGN="JUSTIFY">To accomplish this, we are essentially writing enhancements to many of the component functions already provided by the automation tool: such as error correction, prevention, and enhanced synchronization.</P>
+<P ALIGN="JUSTIFY">Fortunately, this heavy, initial investment is mostly a one-shot deal.  Once in place, keyword driven automation is arguably the easiest of the data driven frameworks to maintain and perpetuate providing the greatest potential for long-term success.  </P>
+<P ALIGN="JUSTIFY">Additionally, there may now be commercial products suitable for your needs to decrease, but not eliminate, much of the up-front technical burden of implementing such a framework.  This was not the case just a few years ago.  We will briefly discuss a couple of these in <A HREF="#Section_1.2.4">Section 1.2.4</A></P><BR>
+
+<A NAME="Section_1.2.3"><A NAME="HybridTestAutomation">
+<B><FONT FACE="Arial"><P>1.2.3&#9;Hybrid Test Automation (or, &quot;All of the Above&quot;)</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">The most successful automation frameworks generally accommodate both keyword driven testing as well as data driven scripts.  This allows data driven scripts to take advantage of the powerful libraries and utilities that usually accompany a keyword driven architecture.  </P>
+<P ALIGN="JUSTIFY">The framework utilities can make the data driven scripts more compact and less prone to failure than they otherwise would have been.  The utilities can also facilitate the gradual and manageable conversion of existing scripts to keyword driven equivalents when and where that appears desirable.</P>
+<P ALIGN="JUSTIFY">On the other hand, the framework can use scripts to perform some tasks that might be too difficult to re-implement in a pure keyword driven approach, or where the keyword driven capabilities are not yet in place. </P><BR>
+
+<A NAME="Section_1.2.4"><A NAME="CommercialKeywordDrivenFrameworks">
+<B><FONT FACE="Arial"><P>1.2.4&#9;Commercial Keyword Driven Frameworks</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">Some commercially available keyword driven frameworks are making inroads in the test automation markets.  These generally come from 3<SUP>rd</SUP> party companies as a bridge between your application and the automation tools you intend to deploy.  They are not out-of-the-box, turnkey automation solutions just as the capture\replay tools are not turnkey solutions.  </P>
+<P ALIGN="JUSTIFY">They still require some up-front investment of time and personnel to complete the bridge between the application and the automation tools, but they can give some automation departments and professionals a huge jumpstart in the right direction for successful long-term test automation.</P>
+<P ALIGN="JUSTIFY">Two particular products to note are the TestFrame<FONT FACE="Symbol">&#228;</FONT>
+ product led by Hans Buwalda of CMG Corp, and the Certify<FONT FACE="Symbol">&#228;</FONT>
+ product developed with Linda Hayes of WorkSoft Inc.   These products each implement their own version of a keyword driven framework and have served as models for the subject at international software testing conferences, training courses, and user-group discussions worldwide.  I’m sure there are others.</P>
+<P ALIGN="JUSTIFY">It really is up to the individual enterprise to evaluate if any of the commercial solutions are suitable for their needs.  This will be based not only on the capabilities of the tools evaluated, but also on how readily they can be modified and expanded to accommodate your current and projected capability requirements.</P><BR>
+
+<A NAME="Section_1.3"><A NAME="KeywordDrivenAutomationFrameworkModel">
+<B><FONT FACE="Arial" SIZE=5><P>1.3 Keyword Driven Automation Framework Model</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">The following automation framework model is the result of over 18 months of planning, design, coding, and sometimes trial and error.  That is not to say that it took 18 months to get it working--it was actually a working prototype at around 3 person-months.  Specifically, one person working on it for 3 months!  </P>
+<P ALIGN="JUSTIFY">The model focuses on implementing a keyword driven automation framework.  It does not include any additional features like tracking requirements or providing traceability between automated test results and any other function of the test process.  It merely provides a model for a keyword driven execution engine for automated tests.</P>
+<P ALIGN="JUSTIFY">The commercially available frameworks generally have many more features and much broader scope.  Of course, they also have the price tag to reflect this.</P><BR>
+
+
+<A NAME="Section_1.3.1"><A NAME="ProjectGuidelines">
+<B><P><FONT FACE="Arial">1.3.1&#9;Project Guidelines</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">The project was informally tasked to follow the guidelines or practices below:</P>
+
+<UL><UL>
+<LI>Implement a test strategy that will allow reasonably intuitive tests to be developed and executed both manually and via the automation framework.<BR><BR>
+</LI>
+<LI>The test strategy will allow each test to include the step to perform, the input data to use, <I>and</I> the expected result all together in one line or record of the input source.<BR><BR>
+</LI>
+<LI>Implement a framework that will integrate keyword driven testing and traditional scripts, allowing both to benefit from the implementation.<BR><BR>
+</LI>
+<LI>Implement the framework to be completely application-independent since it will need to test at least 4 or 5 different applications once deployed.<BR><BR>
+</LI>
+<LI>The framework will be fully documented and published.<BR><BR>
+</LI>
+<LI>The framework will be publicly shared on the intranet for others to use and eventually (hopefully) co-develop.</LI>
+</UL></UL><BR>
+
+<A NAME="Section_1.3.2"><A NAME="CodeAndDocumentationStandards">
+<B><FONT FACE="Arial"><P>1.3.2&#9;Code and Documentation Standards</A></A></P>
+</B></FONT>
+
+<P ALIGN="JUSTIFY">The first thing we did was to define standards for source code files and headers that would provide for in-context documentation intended for publication.   This included standards for how we would use headers and what type of information would go into them.</P>
+<P ALIGN="JUSTIFY">Each source file would start with a structured block of documentation describing the purpose of the module.  Each function or subroutine would likewise have a leading documentation block describing the routine, its arguments, possible return codes, and any errors it might generate.  Similar standards were developed for documenting the constants, variables, dependencies, and other features of the modules.</P>
+<P ALIGN="JUSTIFY">We then developed a tool that would extract and publish the documentation in HTML format directly from the source and header files.  We did this to minimize synchronization problems between the source code and the documentation, and it has worked very well.</P>
+<P ALIGN="JUSTIFY">It is beyond the scope of this work to illustrate how this is done.  In order to produce a single HTML document we parse the source file and that source file’s primary headers.  We format and link public declarations from the headers to the detailed documentation in the source as well as link to any external references for other documentation.  We also format and group public constants, properties or variables, and user-defined types into the appropriate sections of the HTML publication.</P>
+<P ALIGN="JUSTIFY">One nice feature about this is that the HTML publishing tool is made to identify the appropriate documentation blocks and include them pretty much &quot;as is&quot;.  This enables the inclusion of HTML tags within the source documentation blocks that will be properly interpreted by a browser.  Thus, for publication purposes, we can include images or other HTML elements by embedding the proper tags.</P><BR>
+
+<A NAME="Section_1.3.3"><A NAME="OurAutomationFramework">
+<B><FONT FACE="Arial" SIZE=5><P>1.3.3&#9;Our Automation Framework</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">Figure 4 is a diagram representing the design of our automation framework.  It is followed by a description of each of the elements within the framework and how they interact.  Some readers may recognize portions of this design.  It is a compilation of keyword driven automation concepts from several sources.  These include Linda Hayes with WorkSoft, Ed Kit from Software Development Technolgies, Hans Buwalda from CMG Corp, myself, and a few others.</P><BR>
+
+<A NAME="Figure4">
+<CENTER><img src="AutoEngine.gif" ALT="Automation Framework Design" width="573" height="574">
+<B><P>Figure 4</B></CENTER></P></A><BR>
+
+<p>In brief, the framework itself is really defined by the <I>Core Data Driven Engine</I>, the <I>Component Functions</I>, and the <I>Support Libraries</I>.  While the <I>Support Libraries</I> provide generic routines useful even outside the context of a keyword driven framework, the core engine and <I>Component Functions</I> are highly dependent on the existence of all three elements.</P>
+<P ALIGN="JUSTIFY">The test execution starts with the <FONT FACE="Courier New" SIZE=3>LAUNCH TEST</FONT>(1) script.  This script invokes the <I>Core Data Driven Engine</I> by providing one or more <I>High-Level Test Tables</I> to <I>CycleDriver</I>(2).  <I>CycleDriver</I> processes these test tables invoking the <I>SuiteDriver</I>(3) for each <I>Intermediate-Level Test Table</I> it encounters.  <I>SuiteDriver</I> processes these intermediate-level tables invoking <I>StepDriver</I>(4) for each <I>Low-Level Test Table</I> it encounters.  As <I>StepDriver</I> processes these low-level tables it attempts to keep the application in synch with the test.  When <I>StepDriver</I> encounters a low-level command for a specific component, it determines what Type of component is involved and invokes the corresponding <I>Component Function</I>(5) module to handle the task.</P>
+<P ALIGN="JUSTIFY">All of these elements rely on the information provided in the <I>App Map</I> to interface or bridge the automation framework with the application being tested.  Each of these elements will be described in more detail in the following sections.</P><BR>
+
+<A NAME="Section_1.3.4"><A NAME="TheApplicationMap">
+<IMG SRC="AppMapItem.gif" ALT="Application Map Box" ALIGN="LEFT" width="102" height="51">
+<FONT FACE="Arial"><U><B><P ALIGN="JUSTIFY">1.3.4  The Application Map:</U></B></FONT></A></A><BR>
+The <I>Application Map</I> is one of the most critical items in our framework.  It is how we map our objects from names we humans can recognize to a data format useful for the automation tool.  The testers for a given project will define a naming convention or specific names for each component in each window as well as a name for the window itself.  We then use the <I>Application Map</I> to associate that name to the identification method needed by the automation tool to locate and properly manipulate the correct object in the window.</P>
+<P ALIGN="JUSTIFY">Not only does it give us the ability to provide useful names for our objects, it also enables our scripts and keyword driven tests to have a single point of maintenance on our object identification strings.  Thus, if a new version of an application changes the title of our web page or the index of an image element within it, they should not affect our test tables.  The changes will require only a quick modification in one place--inside the <I>Application Map</I>.</P>
+<P ALIGN="JUSTIFY">Figure 5 shows a simple HTML page used in one frame of a HTML frameset.  Table 3 shows the object identification methods for this page for an automation tool.   This illustrates how the tool’s recorded scripts might identify multiple images in the header frame or top frame of a multi-frame web page.  This top frame contains the HTML document with four images used to navigate the site.  Notice that these identification methods are literal strings and potentially appear many times in traditional scripts (a maintenance nightmare!):</P><BR>
+
+<A NAME="Figure5">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE">
+<B><FONT SIZE=4><P ALIGN="CENTER">Simple HTML Document With Four Images</B></FONT></TD>
+</TR>
+<TR><TD VALIGN="TOP" 101><IMG SRC="HTMLImageMaps.gif" ALT="HTML Image Maps" width="482" height="65"></TD>
+</TR>
+</TABLE>
+</CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 5</P></B></FONT></A><BR>
+
+<A NAME="Table3">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 36>
+<B><FONT SIZE=4><P ALIGN="CENTER">Script referencing HTML Document Components with Literal Strings</B></FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 28>
+<B><P>OBJECT</B></TD>
+<TD VALIGN="MIDDLE" 28>
+<B><P>IDENTIFICATION METHOD</B></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Window</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;WindowTag=WebBrowser&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Frame</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;FrameID=top&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Image</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;FrameID=top;\;DocumentTitle=topFrame&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Image</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=1&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Image</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=2&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Image</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=3&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P ALIGN="CENTER">Image</FONT></TD>
+<TD VALIGN="MIDDLE" 22>
+<FONT FACE="Courier New"><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=4&quot;</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 3</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">This particular web page is simple enough.  It contains only four images.  However, when we look at Table 3, how do we determine which image is for Product information, and which is for Services?  We should not assume they are in any particular order based upon how they are presented visually.  Consequently, someone trying to decipher or maintain scripts containing these identification strings can easily get confused.</P>
+<P ALIGN="JUSTIFY">An <I>Application Map</I> will give these elements useful names, and provide our single point of maintenance for the identification strings as shown in Table 4.  The <I>Application Map</I> can be implemented in text files, spreadsheet tables, or your favorite database table format.  The <I>Support Libraries</I> just have to be able to extract and cache the information for when it is needed.</P><BR>
+
+<A NAME="Table4">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 29>
+<B><FONT SIZE=4><P ALIGN="CENTER">An Application Map Provides Named References for Components</B></FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 29>
+<B><P>REFERENCE</B></TD>
+<TD VALIGN="MIDDLE" 29>
+<B><P>IDENTIFICATION METHOD</B></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">Browser</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;WindowTag=WebBrowser&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">TopFrame</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;FrameID=top&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">TopPage</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;FrameID=top;\;DocumentTitle=topFrame&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">CompInfoImage</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=1&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">ProductsImage</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=2&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">ServicesImage</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=3&quot;</FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P ALIGN="CENTER">SiteMapImage</FONT></TD>
+<TD VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New" SIZE=3><P>&quot;FrameID=top;\;DocumentTitle=topFrame;\;ImageIndex=4&quot;</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 4</P></FONT></B></A><BR>
+
+<P ALIGN="JUSTIFY">With the preceding definitions in place, the same scripts can use variables with values from the <I>Application Map</I> instead of those string literals.  Our scripts can now reference these image elements as shown in Table 5.  This reduces the chance of failure caused by changes in the application and provides a single point of maintenance in the <I>Application Map</I> for the identification strings used throughout our tests.  It can also make our scripts easier to read and understand.</P><BR>
+
+<A NAME="Table5">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 32>
+<B><FONT SIZE=4><P ALIGN="CENTER">Script Using Variable References Instead of Literal Strings</B></FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="MIDDLE" 23>
+<B><P>OBJECT</B></TD>
+<TD 71 VALIGN="MIDDLE" 23>
+<B><P>IDENTIFICATION METHOD</B></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Window</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Browser</FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Frame</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">TopFrame</FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Document</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">TopPage</FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Image</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">CompInfoImage</FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Image</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ProductsImage</FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Image</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ServicesImage</FONT></TD>
+</TR>
+<TR><TD 29 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Image</FONT></TD>
+<TD 71 VALIGN="TOP" 20>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">SiteMapImage</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 5</P></B></FONT></A><BR>
+
+<A NAME="Section_1.3.5"><A NAME="TheComponentFunctions">
+<B><U><P><IMG SRC="ComponentFunctionsItem.gif" ALT="Component Functions Box" ALIGN="LEFT" width="122" height="61">
+<FONT FACE="Arial">1.3.5  Component Functions:</A></A></B></U></FONT><BR>
+
+<I>Component Functions</I> are those functions that actively manipulate or interrogate component objects.  In our automation framework we will have a different <I>Component Function</I> module for each Type of component we encounter (Window, CheckBox, TextBox, Image, Link, etc..). </P>
+<P ALIGN="JUSTIFY">Our <I>Component Function</I> modules are the application-independent extensions we apply to the functions already provided by the automation tool.  However, unlike those provided by the tool, we add the extra code to help with error detection, error correction, and synchronization.  We also write these modules to readily use our application-specific data stored in the <I>Application Map</I> and test tables as necessary.  In this way, we only have to develop these <I>Component Functions</I> once, and they will be used again and again by every application we test.</P>
+<P ALIGN="JUSTIFY">Another benefit from <I>Component Functions</I> is that they provide a layer of insulation between our application and the automation tool.  Without this extra layer, changes or &quot;enhancements&quot; in the automation tool itself can break existing scripts and our table driven tests.  With these <I>Component Functions</I>, however, we can insert a &quot;fix&quot;--the code necessary to accommodate these changes that will avert breaking our tests.</P>
+
+<B><U><P ALIGN="JUSTIFY">Component Function Keywords Define Our Low-Level Vocabulary:</B></U><BR>
+Each of these <I>Component Function</I> modules will define the keywords or &quot;action words&quot; that are valid for the particular component type it handles.  For example, the Textbox <I>Component Function</I> module would define and implement the actions or keywords that are valid on a Textbox.  These keywords would describe actions like those in Table 6: </P>
+
+<A NAME="Table6">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 24>
+<B><FONT SIZE=4><P ALIGN="CENTER">Some Component Function Keywords for a Textbox</B></FONT></TD>
+</TR>
+<TR><TD 34 VALIGN="MIDDLE" 21>
+<B><P>KEYWORD</B></TD>
+<TD 66 VALIGN="MIDDLE" 21>
+<B><P>ACTION PERFORMED</B></TD>
+</TR>
+<TR><TD 34 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>InputText</FONT></TD>
+<TD 66 VALIGN="MIDDLE" 21>
+<P>Enter new value into the Textbox</TD>
+</TR>
+<TR><TD 34 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>VerifyValue</FONT></TD>
+<TD 66 VALIGN="MIDDLE" 21>
+<P>Verify the current value of the Textbox</TD>
+</TR>
+<TR><TD 34 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>VerifyProperty</FONT></TD>
+<TD 66 VALIGN="MIDDLE" 21>
+<P>Verify some other attribute of the Textbox</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 6</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">Each action embodied by a keyword may require more information in order to complete its function.  The <FONT FACE="Courier New">InputText </FONT>action needs an additional argument that tells the function what text it is suppose to input.  The <FONT FACE="Courier New">VerifyProperty</FONT> action needs two additional arguments, (1) the name of the property we want to verify, and (2) the value we expect to find.  And, while we need no additional information to <FONT FACE="Courier New">Click</FONT> a Pushbutton, a <FONT FACE="Courier New">Click</FONT> action for an Image map needs to know where we want the click on the image to occur.</P>
+<P ALIGN="JUSTIFY">These <I>Component Function</I> keywords and their arguments define the low-level vocabulary and individual record formats we will use to develop our test tables.  With this vocabulary and the <I>Application Map</I> object references, we can begin to build test tables that our automation framework and our human testers can understand and properly execute.</P><BR>
+
+<A NAME="Section_1.3.6"><A NAME="TheTestTables">
+<B><P ALIGN="JUSTIFY"><IMG SRC="TestTablesItem.gif" ALT="Test Tables Box" ALIGN="LEFT" width="122" height="51"><FONT FACE="Arial">1.3.6  Test Tables:</A></A></FONT></B></A><BR>
+
+<I>Low-level Test Tables</I> or <I>Step Tables</I> contain the detailed step-by-step instructions of our tests.  Using the object names found in the <I>Application Map</I>, and the vocabulary defined by the <I>Component Functions</I>; these tables specify what document, what component, and what action to take on the component.  The following three tables are examples of <I>Step Tables</I> comprised of instructions to be processed by the <I>StepDriver</I> module.  The <I>StepDriver</I> module is the one that initially parses and routes all low-level instructions that ultimately drive our application.</P><BR>
+
+<A NAME="Table7">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  506>
+<TR><TD VALIGN="MIDDLE" COLSPAN=3 23>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: LaunchSite</B></FONT></TD>
+</TR>
+<TR><TD 40 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">COMMAND/DOCUMENT</B></TD>
+<TD 37 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">PARAMETER/ACTION</B></TD>
+<TD 23 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">PARAMETER</B></TD>
+</TR>
+<TR><TD 40 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LaunchBrowser</FONT></TD>
+<TD 37 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Default.htm</FONT></TD>
+<TD 23 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 40 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Browser</FONT></TD>
+<TD 37 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyCaption</FONT></TD>
+<TD 23 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">&quot;Login&quot;</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 7</P></B></FONT></A><BR>
+
+<A NAME="Table8">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  479>
+<TR><TD VALIGN="MIDDLE" COLSPAN=4 21>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: Login</B></FONT></TD>
+</TR>
+<TR><TD 23 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">DOCUMENT</B></TD>
+<TD 29 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">COMPONENT</B></TD>
+<TD 21 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">ACTION</B></TD>
+<TD 27 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">PARAMETER</B></TD>
+</TR>
+<TR><TD 23 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 29 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">UserIDField</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">InputText</FONT></TD>
+<TD 27 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">&quot;MyUserID&quot;</FONT></TD>
+</TR>
+<TR><TD 23 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 29 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">PasswordField</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">InputText</FONT></TD>
+<TD 27 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">&quot;MyPassword&quot;</FONT></TD>
+</TR>
+<TR><TD 23 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 29 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">SubmitButton</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Click</FONT></TD>
+<TD 27 VALIGN="TOP">&nbsp;</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 8</P></B></FONT></A><BR>
+
+<A NAME="Table9">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  317>
+<TR><TD VALIGN="MIDDLE" COLSPAN=3>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: LogOffSite</B></FONT></TD>
+</TR>
+<TR><TD 34 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">DOCUMENT</B></TD>
+<TD 41 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">COMPONENT</B></TD>
+<TD 25 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">ACTION</B></TD>
+</TR>
+<TR><TD 34 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">TOCPage</FONT></TD>
+<TD 41 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LogOffButton</FONT></TD>
+<TD 25 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Click</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 9</P></FONT></B></A><BR>
+
+<P ALIGN="JUSTIFY">Note:<BR>
+In Table 7 we used a System-Level keyword, <FONT FACE="Courier New" SIZE=3>LaunchBrowser</FONT><FONT FACE="Courier New">.</FONT> This is also called a <I>Driver Command</I>.  A <I>Driver Command</I> is a command for the framework itself and not tied to any particular document or component.  Also notice that test tables often consist of records with varying numbers of fields.</P>
+<P ALIGN="JUSTIFY"><I>Intermediate-Level Test Tables</I> or <I>Suite Tables</I> do not normally contain such low-level instructions.  Instead, these tables typically combine <I>Step Tables</I> into <I>Suites</I> in order to perform more useful tasks.  The same <I>Step Tables</I> may be used in many <I>Suites</I>.  In this way we only develop the minimum number of <I>Step Tables</I> necessary.  We then mix-and-match them in <I>Suites</I> according to the purpose and design of our tests, for maximum reusability.</P>
+<P ALIGN="JUSTIFY">The <I>Suite Tables</I> are handled by the <I>SuiteDriver</I> module which passes each <I>Step Table</I> to the <I>StepDriver</I> module for processing.</P>
+<P ALIGN="JUSTIFY">For example, a <I>Suite</I> using two of the preceding <I>Step Tables</I> might look like Table 10:</P><BR>
+
+<A NAME="Table10">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<B><FONT SIZE=4><P ALIGN="CENTER">Suite Table: StartSite</B></FONT></TD>
+</TR>
+<TR><TD 54 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">STEP TABLE REFERENCE</B></TD>
+<TD 46 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">TABLE PURPOSE</B></TD>
+</TR>
+<TR><TD 54 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LaunchSite</FONT></TD>
+<TD 46 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Launch web app for test</TD>
+</TR>
+<TR><TD 54 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Login</FONT></TD>
+<TD 46 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Login &quot;MyUserID&quot; to app</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 10</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">Other <I>Suites</I> might combine other <I>Step Tables</I> like these:</P><BR>
+
+<A NAME="Table11">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  441>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<B><FONT SIZE=4><P ALIGN="CENTER">Suite Table: VerifyTOCPage</B></FONT></TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">STEP TABLE REFERENCE</B></TD>
+<TD 51 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">TABLE PURPOSE</B></TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyTOCContent</FONT></TD>
+<TD 51 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Verify text in Table of Contents</TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyTOCLinks</FONT></TD>
+<TD 51 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Verify links in Table of Contents</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 11</P></B></FONT></A><BR>
+
+<A NAME="Table12">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  376>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<B><FONT SIZE=4><P ALIGN="CENTER">Suite Table: ShutdownSite</B></FONT></TD>
+</TR>
+<TR><TD 57 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">STEP TABLE REFERENCE</B></TD>
+<TD 43 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">TABLE PURPOSE</B></TD>
+</TR>
+<TR><TD 57 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LogOffSite</FONT></TD>
+<TD 43 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Logoff the application</TD>
+</TR>
+<TR><TD 57 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ExitBrowser</FONT></TD>
+<TD 43 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Close the web browser</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 12</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY"><I>High-Level Test Tables</I> or <I>Cycle Tables</I> combine intermediate-level <I>Suites</I> into <I>Cycles</I>.  The <I>Suites</I> can be combined in different ways depending upon the testing <I>Cycle</I> we wish to execute (Regression, Acceptance, Performance…).  Each <I>Cycle</I> will likely specify a different type or number of tests.  These <I>Cycles</I> are handled by the <I>CycleDriver</I> module which passes each <I>Suite</I> to <I>SuiteDriver</I> for processing.</P>
+<P ALIGN="JUSTIFY">A simple example of a <I>Cycle Table</I> using the full set of tables seen thus far is shown in Table 13.</P><BR>
+
+<A NAME="Table13">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2>
+<B><FONT SIZE=4><P ALIGN="CENTER">Cycle Table: SiteRegression</B></FONT></TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">SUITE TABLE REFERENCE</B></TD>
+<TD 51 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">TABLE PURPOSE</B></TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">StartSite</FONT></TD>
+<TD 51 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Launch browser and Login for test</TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyTOCPage</FONT></TD>
+<TD 51 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Verify Table of Contents page</TD>
+</TR>
+<TR><TD 49 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ShutdownSite</FONT></TD>
+<TD 51 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Logoff and Shutdown browser</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 13</P></B></FONT></A><BR>
+
+<A NAME="Section_1.3.7"><A NAME="TheCoreDataDrivenEngine">
+<B><FONT FACE="Arial"><P>1.3.7  The Core Data Driven Engine:</B></FONT></P>
+<P><CENTER><IMG SRC="CoreEngineItem.gif" ALT="Core Data Driven Engine Box" width="529" height="112"></CENTER></A></A></P>
+<P ALIGN="JUSTIFY">We have already talked about the primary purpose of each of the three modules that make up the <I>Core Data Driven Engine</I> part of the automation framework.  But let us reiterate some of that here.</P>
+<P ALIGN="JUSTIFY"><I>CycleDriver</I> processes <I>Cycles</I>, which are high-level tables listing <I>Suites</I> of tests to execute.  <I>CycleDriver</I> reads each record from the <I>Cycle Table</I>, passing <I>SuiteDriver</I> each <I>Suite Table</I> it finds during this process.</P>
+<P ALIGN="JUSTIFY"><I>SuiteDriver</I> processes these <I>Suites</I>, which are intermediate-level tables listing <I>Step Tables</I> to execute.  <I>SuiteDriver</I> reads each record from the <I>Suite Table</I>, passing <I>StepDriver</I> each <I>Step Table</I> it finds during this process.</P>
+<P ALIGN="JUSTIFY"><I>StepDriver</I> processes these <I>Step Tables</I>, which are records of low-level instructions developed in the keyword vocabulary of our <I>Component Functions</I>.  <I>StepDriver</I> parses these records and performs some initial error detection, correction, and synchronization making certain that the document and\or the component we plan to manipulate are available and active.  <I>StepDriver</I> then routes the complete instruction record to the appropriate <I>Component Function</I> for final execution.  </P>
+<P ALIGN="JUSTIFY">Let us again show a sample <I>Step Table</I> record in Table 14 and the overall framework pseudo-code that will process it in Figure 6.</P><BR>
+
+<A NAME="Table14">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=4 25>
+<B><FONT SIZE=4><P ALIGN="CENTER">Single Step Table Record</B></FONT></TD>
+</TR>
+<TR><TD 23 VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">DOCUMENT</B></TD>
+<TD 29 VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">COMPONENT</B></TD>
+<TD 25 VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD 23 VALIGN="MIDDLE" 22>
+<B><P ALIGN="CENTER">EXPECTED</P>
+<P ALIGN="CENTER">VALUE</B></TD>
+</TR>
+<TR><TD 23 VALIGN="MIDDLE" 34>
+<FONT FACE="Courier New"><P ALIGN="CENTER">LoginPage</FONT></TD>
+<TD 29 VALIGN="MIDDLE" 34>
+<FONT FACE="Courier New"><P ALIGN="CENTER">UserIDTextbox</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 34>
+<FONT FACE="Courier New"><P ALIGN="CENTER">VerifyValue</FONT></TD>
+<TD 23 VALIGN="MIDDLE" 34>
+<FONT FACE="Courier New"><P ALIGN="CENTER">&quot;MyUserID&quot;</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 14</P></B></FONT></A><BR>
+
+<A NAME="Figure6">
+<CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" 36>
+<B><FONT SIZE=4><P ALIGN="CENTER">Framework Pseudo-Code</B></FONT></TD></TR>
+<TR><TD VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2>
+<P><B>Primary Record Processor Module:</P></B>
+&#9;&nbsp;&nbsp;&nbsp;Verify &quot;LoginPage&quot; Exists. (Attempt recovery if not)<BR>
+&#9;&nbsp;&nbsp;&nbsp;Set focus to &quot;LoginPage&quot;.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Verify &quot;UserIDTextbox&quot; Exists.  (Attempt recovery if not)<BR>
+&#9;&nbsp;&nbsp;&nbsp;Find &quot;Type&quot; of component &quot;UserIDTextbox&quot;. (It is a Textbox)<BR>
+&#9;&nbsp;&nbsp;&nbsp;Call the module that processes ALL Textbox components.<BR>
+<P><B>Textbox Component Module:</P></B>
+&#9;&nbsp;&nbsp;&nbsp;Validate the action keyword &quot;VerifyValue&quot;.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Call the Textbox.VerifyValue function.<BR>
+<P><B>Textbox.VerifyValue Function:</P></B>
+&#9;&nbsp;&nbsp;&nbsp;Get the text stored in the &quot;UserIDTextbox&quot; Textbox.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Compare the retrieved text to &quot;MyUserID&quot;.<BR>
+&#9;&nbsp;&nbsp;&nbsp;Record our success or failure.<BR>
+</FONT></TD></TR>
+</TABLE></CENTER>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 6</P></FONT></B></A><BR>
+
+<P ALIGN="JUSTIFY">In Figure 6 you may notice that it is not <I>StepDriver</I> that validates the action command or keyword <FONT FACE="Courier New" SIZE=3>VerifyValue</FONT> that will be processed by the Textbox <I>Component Function</I> Module.  This allows the Textbox module to be further developed and expanded without affecting <I>StepDriver</I> or any other part of the framework.  While there are other schemes that might allow <I>StepDriver</I> to effectively make this validation dynamically at runtime, we still chose to do this in the <I>Component Functions</I> themselves.</P>
+
+<B><U><P ALIGN="JUSTIFY">System-Level Commands or Driver Commands:</B></U><BR>
+In addition to this table-processing role, each of the Driver modules has its own set of System-Level keywords or commands also called <I>Driver Commands</I>.  These commands instruct the module to do something other than normal table processing.  </P>
+<P ALIGN="JUSTIFY">For example, the previously shown <FONT FACE="Courier New" SIZE=3>LaunchSite</FONT> <I>Step Table</I> issued the <FONT FACE="Courier New" SIZE=3>LaunchBrowser</FONT> <I>StepDriver</I> command.  This command instructs <I>StepDriver</I> to start a new Browser window with the given URL.  Some common <I>Driver Commands</I> to consider:</P>
+
+<A NAME="Table15">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 29>
+<B><FONT SIZE=4><P ALIGN="CENTER">Common Driver Commands</B></FONT></TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 22>
+<B><P>COMMAND</B></TD>
+<TD 60 VALIGN="MIDDLE" 22>
+<B><P>PURPOSE</B></TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>UseApplicationMap</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Set which Application Map(s) to use</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>LaunchApplication</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Launch a standard application</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>LaunchBrowser</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Launch a web-based app via URL</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>CallScript</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Run an automated tool script</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>WaitForWindow</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Wait for Window or Browser to appear</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>WaitForWindowGone</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Wait for Window or Browser to disappear</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>Pause or Sleep</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Pause for a specified amount of time</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>SetRecoveryProcess</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Set an AUT recovery process</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>SetShutdownProcess</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Set an AUT shutdown process</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>SetRestartProcess</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Set an AUT restart process</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>SetRebootProcess</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Set a System Reboot process</TD>
+</TR>
+<TR><TD 40 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>LogMessage</FONT></TD>
+<TD 60 VALIGN="MIDDLE" 21>
+<P>Enter a message in the log</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 15</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">These are just some examples of possible <I>Driver Commands</I>.  There are surely more that have not been listed and some here which you may not need implemented.</P><BR>
+
+<B><U><P ALIGN="JUSTIFY">All for One, and One for All:</B></U><BR>
+This discussion on the <I>Core Data Driven Engine</I> has identified three separate modules (<I>StepDriver</I>, <I>SuiteDriver</I>, and <I>CycleDriver</I>) that comprise the Core.  This does not, however, make this three-module design an automation framework requirement.  It may be just as valid to sum up all the functionality of those three modules into one module, or any number of discreet modules more suitable to the framework design developed.</P><BR>
+
+<A NAME="Section_1.3.8"><A NAME="TheSupportLibraries">
+<IMG SRC="SupportLibrariesItem.gif" ALT="Support Libraries Box" ALIGN="LEFT" width="102" height="61">
+<B><U><P ALIGN="JUSTIFY"><FONT FACE="Arial">1.3.8  The Support Libraries:</A></A></B></U></FONT><BR>
+The <I>Support Libraries</I> are the general-purpose routines and utilities that let the overall automation framework do what it needs to do.  They are the modules that provide things like:</P>
+
+<UL><UL>
+<LI>File Handling</LI>
+<LI>String Handling</LI>
+<LI>Buffer Handling</LI>
+<LI>Variable Handling</LI>
+<LI>Database Access</LI>
+<LI>Logging Utilities</LI>
+<LI>System\Environment Handling</LI>
+<LI>Application Mapping Functions</LI>
+<LI>System Messaging or System API Enhancements and Wrappers</LI>
+</UL></UL><BR>
+
+<P ALIGN="JUSTIFY">They also provide traditional automation tool scripts access to the features of our automation framework including the <I>Application Map</I> functions and the keyword driven engine itself.  Both of these items can vastly improve the reliability and robustness of these scripts until such time that they can be converted over to keyword driven test tables (if and when that is desirable).</P><BR>
+
+<A NAME="Section_1.4"><A NAME="AutomationFrameworkWorkflow">
+<B><FONT FACE="Arial" SIZE=5><P>1.4  Automation Framework Workflow</A></A></P></B></FONT>
+
+<P ALIGN="JUSTIFY">We have seen the primary features of our automation framework and now we want to put it to the test.  This section provides a test workflow model that works very well with this framework.  Essentially, we start by defining our high level <I>Cycle Tables</I> and provide more and more detail down to our <I>Application Map</I> and low-level <I>Step Tables</I>.</P>
+<P ALIGN="JUSTIFY">For this workflow example, we are going to show the hypothetical test design that might make up security authentication tests for a web site.  The order in which we present the information and construct the tables is an ideal workflow for our automation framework.  It will also illustrate how we do not even need a functioning application in order to start producing these tests.</P><BR>
+
+<A NAME="Section_1.4.1"><A NAME="HighLevelTests">
+<B><FONT FACE="Arial"><P>1.4.1&#9;High-Level Tests -- <I>Cycle Table</P></I></FONT></B></A></A>
+<P ALIGN="JUSTIFY">We will start out by defining our high-level <I>Cycle Table</I> in Table 16.  This will list tests that verify user authentication functionality. There is no application yet, but we do know that we will authenticate users with a user ID and password via some type of Login page.  With this much information we can start designing some tests.  </P>
+<P ALIGN="JUSTIFY">At this level, our tables are merely keywords or actions words of what we propose to do.  The keywords represent the names of <I>Suites</I> we expect to implement when we are ready or when more is known about the application.  </P>
+<P ALIGN="JUSTIFY">We will call this particular high-level test, <FONT FACE="Courier New" SIZE=3>VerifyAuthenticationFunction </FONT>(Table 16).  It will not show all the tests that should be performed to verify the user authentication features of a web site.  Just enough to illustrate our test design process.</P><BR>
+
+<A NAME="Table16">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 21>
+<B><FONT SIZE=4><P ALIGN="CENTER">Cycle Table: VerifyAuthenticationFunction</B></FONT></TD>
+</TR>
+<TR><TD 41 VALIGN="MIDDLE" 21>
+<B><P>KEYWORDS (Suite Tables)</B></TD>
+<TD 59 VALIGN="MIDDLE" 21>
+<B><P>TABLE PURPOSE</B></TD>
+</TR>
+<TR><TD 41 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyInvalidLogin</FONT></TD>
+<TD 59 VALIGN="TOP" 21>
+<P ALIGN="JUSTIFY">Tests with Invalid UserID and/or Password</TD>
+</TR>
+<TR><TD 41 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyBlankLogin</FONT></TD>
+<TD 59 VALIGN="TOP" 21>
+<P ALIGN="JUSTIFY">Tests with Missing UserID and/or Password</TD>
+</TR>
+<TR><TD 41 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyValidLogin</FONT></TD>
+<TD 59 VALIGN="TOP" 21>
+<P ALIGN="JUSTIFY">Tests with Valid UserID and Password</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 16</P></B></FONT></A><BR>
+
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY"></P>
+</FONT><P ALIGN="JUSTIFY">The preceding table illustrates that we plan to run three tests to verify the authentication functionality of our application.  We may add or delete tests from this list in the future, but this is how we currently believe this functionality can be adequately verified.</P><BR>
+
+<A NAME="Section_1.4.2"><A NAME="IntermediateLevelTests">
+<B><FONT FACE="Arial"><P>1.4.2&#9;Intermediate-Level Tests -- <I>Suite Tables</P></B></I></FONT></A></A>
+
+<P ALIGN="JUSTIFY">When we are ready to provide more detail for our authentication test effort we can begin to flesh-out the intermediate-level <I>Suite Tables</I>.  Our high-level <FONT FACE="Courier New" SIZE=3>VerifyAuthenticationFunction</FONT> <I>Cycle Table</I> defined three <I>Suites</I> that we must now expand upon.  </P>
+<P ALIGN="JUSTIFY">First, we plan to verify invalid login attempts--those with an invalid user ID, invalid password, or both.  This first <I>Suite</I> was aptly dubbed, <FONT FACE="Courier New" SIZE=3>VerifyInvalidLogin </FONT>(Table 17).</P>
+<P ALIGN="JUSTIFY">Second, we want to run a simple test without any user ID or password whatsoever.  This second <I>Suite</I> was called, <FONT FACE="Courier New" SIZE=3>VerifyBlankLogin </FONT>(Table 18).</P>
+<P ALIGN="JUSTIFY">The last <I>Suite</I> we must implement is the one that insures we can successfully login when we provide a valid user ID and password.  This one was named, <FONT FACE="Courier New" SIZE=3>VerifyValidLogin </FONT>(Table 19).</P><BR>
+
+<A NAME="Table17">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=3 21>
+<B><FONT SIZE=4><P ALIGN="CENTER">Suite Table: VerifyInvalidLogin</B></FONT></TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<B><P>KEYWORDS (Step Tables)</B></TD>
+<TD 21 VALIGN="MIDDLE" 21>
+<B><P ALIGN="CENTER">USERID</B></TD>
+<TD 31 VALIGN="MIDDLE" 21>
+<B><P ALIGN="CENTER">PASSWORD</B></TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>LaunchSite</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>Login</FONT></TD>
+<TD 21 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>BadUser</FONT></TD>
+<TD 31 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>GoodPassword</FONT></TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>VerifyLoginError</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>Login</FONT></TD>
+<TD 21 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>GoodUser</FONT></TD>
+<TD 31 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>BadPassword</FONT></TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>VerifyLoginError</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>Login</FONT></TD>
+<TD 21 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>BadUser</FONT></TD>
+<TD 31 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>BadPassword</FONT></TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>VerifyLoginError</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 48 VALIGN="MIDDLE" 21>
+<FONT FACE="Courier New"><P>ExitLogin</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 17</P></B></FONT></A><BR>
+
+<A NAME="Table18">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="TOP" COLSPAN=3 22>
+<B><FONT SIZE=4><P ALIGN="CENTER">Suite Table: VerifyBlankLogin</B></FONT></TD>
+</TR>
+<TR><TD 53 VALIGN="TOP" 21>
+<B><P>KEYWORDS (Step Tables)</B></TD>
+<TD 20 VALIGN="TOP" 21>
+<B><P>USERID</B></TD>
+<TD 27 VALIGN="TOP" 21>
+<B><P>PASSWORD</B></TD>
+</TR>
+<TR><TD 53 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LaunchSite</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 53 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Login</FONT></TD>
+<TD 20 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">&quot;&quot;</FONT></TD>
+<TD 27 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">&quot;&quot;</FONT></TD>
+</TR>
+<TR><TD 53 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyLoginError</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 53 VALIGN="TOP" 21>
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ExitLogin</FONT></TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 18</P></B></FONT></A><BR>
+
+<A NAME="Table19">
+<B><P ALIGN="JUSTIFY"></P></B>
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=3>
+<B><FONT SIZE=4><P ALIGN="CENTER">Suite Table: VerifyValidLogin</B></FONT></TD>
+</TR>
+<TR><TD 48 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">KEYWORDS (Step Tables)</B></TD>
+<TD 21 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">USERID</B></TD>
+<TD 31 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">PASSWORD</B></TD>
+</TR>
+<TR><TD 48 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LaunchSite</FONT></TD>
+<TD 21 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 48 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Login</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">GoodUser</FONT></TD>
+<TD 31 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">GoodPassword</FONT></TD>
+</TR>
+<TR><TD 48 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyLoginSuccess</FONT></TD>
+<TD 21 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 48 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ShutdownSite</FONT></TD>
+<TD 21 VALIGN="TOP">&nbsp;</TD>
+<TD 31 VALIGN="TOP">&nbsp;</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 19</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">Notice that we start to see a large amount of test table reuse here.   While not yet defined, we can see that we will be using the <FONT FACE="Courier New" SIZE=3>LaunchSite</FONT>, <FONT FACE="Courier New" SIZE=3>Login</FONT>, <FONT FACE="Courier New" SIZE=3>VerifyLoginError</FONT>, and <FONT FACE="Courier New" SIZE=3>ExitLogin</FONT> tables quite frequently.  As you can probably imagine, <FONT FACE="Courier New" SIZE=3>VerifyLoginSuccess</FONT> and <FONT FACE="Courier New" SIZE=3>ShutdownSite</FONT> would also be used extensively throughout all the tests for this web site, but we are focusing just on user authentication here.</P>
+<P ALIGN="JUSTIFY">You should also notice that our <FONT FACE="Courier New" SIZE=3>Login</FONT> keyword is describing a <I>Step Table</I> that will accept up to two arguments--the user ID and password we want to supply.  We have not gone into the specific design details of how the automation framework should be implemented, but tests accepting variable data like this provide significant reuse advantages.  This same table is used to login with different user ID and password combinations.</P><BR>
+
+<A NAME="Section_1.4.3"><A NAME="ApplicationMapping">
+<B><FONT FACE="Arial"><P>1.4.3&#9;Application Maps</P></B></FONT></A></A>
+
+<P ALIGN="JUSTIFY">Up to this point there was little need for an <I>Application Map</I>.  Nearly all the high-level and intermediate-level test designs are abstract enough to forego references to specific window components.  But as we move towards our final level of test design we indeed must reference specific elements of the application.  Thus, for test automation, we need to make our <I>Application Maps</I>.</P>
+
+<B><U><P ALIGN="JUSTIFY">Naming the Components:</B></U><BR>
+Unless the application has formal design documentation that explicitly provides meaningful names for the windows and components, the test team is going to have to develop this themselves.</P>
+<P ALIGN="JUSTIFY">The team will discuss and agree upon the names for each window and component. Sometimes we can use the names developers have already given the components in the code. But the team can often come up with more meaningful and identifiable names. Regardless, once defined, the names chosen should not change.  However, if the need arises, an item can always have more than one name.</P>
+
+<B><U><P ALIGN="JUSTIFY">Test Design Application Map:</B></U><BR>
+For low-level test design and manual testing, an <I>Application Map</I> suitable for human consumption should be created.  This is often done with screen captures of the various application windows.  These screen captures are then clearly annotated with the names given to each component.  This may also indicate the Type for each component.  </P>
+<P ALIGN="JUSTIFY">While many components may be exactly what they look like, this is not always the case.  Many controls may simply be windowless, painted elements that the underlying environment knows nothing about.  They can also be custom components or COM objects that are functionally different from the controls they appear to emulate.  So care must be taken when identifying the Type of a component.  </P>
+
+<B><U><P ALIGN="JUSTIFY">Automation Framework Application Map:</B></U><BR>
+For automated testing, an <I>Application Map</I> suitable for the automation framework will be created.  We will use the <I>Test Design Application Map</I> as our reference for the names used to identify the components.  The identification syntax suitable for the automation tool will then be mapped to each name as discussed in <A HREF="#Section_1.3.4">Section 1.3.4.</A></P>
+<P ALIGN="JUSTIFY">Our test design so far has indirectly identified three documents or windows that we will interact with: (1) the Login page, (2) an Error dialog or message displayed during our failed Login attempts, and (3) the Home page of our web site displayed following a successful login attempt.   We will also need to reference the browser window itself throughout these tests.</P>
+<P ALIGN="JUSTIFY">We must now create an <I>Application Map</I> that will properly reference these items and their components for the automation framework.  For the sake of simplicity, our Login page in Figure 7 will contain only the two textbox components for user ID and password, and two buttons; Submit and Cancel.</P><BR>
+
+<A NAME="Figure7">
+<P ALIGN="CENTER"><CENTER><TABLE CELLSPACING=0 BORDER=0 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE">
+<B><FONT SIZE=4><P ALIGN="CENTER">Login Page</B></FONT></TD>
+</TR>
+<TR><TD VALIGN="TOP"><P><IMG SRC="LoginForm.gif" ALT="Login Form Image" width="186" height="98"></P></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 7</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">The Error dialog in Figure 8 is actually a system alert dialog.  It has a Label containing the error message and an OK button to dismiss the dialog.</P><BR>
+
+<A NAME="Figure8">
+<P ALIGN="CENTER"><CENTER><TABLE CELLSPACING=0 BORDER=0 CELLPADDING=7  322>
+<TR><TD VALIGN="MIDDLE">
+<B><FONT SIZE=4><P ALIGN="CENTER">Error Dialog</B></FONT></TD>
+</TR>
+<TR><TD VALIGN="MIDDLE"><P><IMG SRC="ErrorDialog.gif" ALT="Error Dialog Image" width="187" height="98"></P></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Figure 8</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">The Home Page of the application may contain many different elements.  However, for the purpose of these tests and this example, we only need to identify the document itself.  We will not interact with any of the components in the Home Page, so we will not define them in this sample <I>Application Map</I>.  </P>
+<P ALIGN="JUSTIFY">Table 20 shows the <I>Application Map</I> we will use to identify the browser window and the three documents in a manner suitable for the automation framework.</P><BR>
+
+<A NAME="Table20">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 24>
+<B><FONT SIZE=4><P ALIGN="CENTER">Site Application Map</B></FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="MIDDLE" 23>
+<B><P>OBJECTNAME</B></TD>
+<TD 78 VALIGN="MIDDLE" 23>
+<B><P>IDENTIFICATION METHOD</B></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">Browser:</FONT></TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   Browser</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">WindowID=WebBrowser</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">&nbsp;</TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">LoginPage:</FONT></TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   LoginPage</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">FrameID=content;\;DocumentTitle=Login</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   UserID</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">FrameID=content;\;DocumentTitle=Login;\;TextBoxIndex=1</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   Password</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">FrameID=content;\;DocumentTitle=Login;\;TextBoxIndex=2</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   SubmitButton</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">FrameID=content;\;DocumentTitle=Login;\;ButtonText=Submit</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   CancelButton</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">FrameID=content;\;DocumentTitle=Login;\;ButtonText=Cancel</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">&nbsp;</TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">ErrorWin:</FONT></TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   ErrorWin</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">WindowCaption=Error</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   ErrorMessage</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">LabelIndex=1</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   OKButton</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">ButtonText=OK</FONT></TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">&nbsp;</TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">HomePage:</FONT></TD>
+<TD 78 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">   HomePage</FONT></TD>
+<TD 78 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=2><P ALIGN="JUSTIFY">FrameID=content;\;DocumentTitle=Home</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 20</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">The physical format of the <I>Application Map</I> will be determined by how the automation framework will access it.  It may be delimited files, database tables, spreadsheets, or any number of other possibilities.  </P>
+<P ALIGN="JUSTIFY">Notice that we have identified each document with its own section in the <I>Application Map </I>of Table 20.  We do this to avoid naming conflicts among the many components of our application.  For instance, there may be many forms that contain a <FONT FACE="Courier New" SIZE=3>Submit</FONT> button.  Each form can name this button the <FONT FACE="Courier New" SIZE=3>SubmitButton</FONT> because the names only have to be unique within each individual section of the <I>Application Map</I>.</P>
+<P ALIGN="JUSTIFY">With this we have now uniquely identified our components for the framework.  The OBJECTNAME is how we reference each component in our low-level <I>Step Tables</I>.  The IDENTIFICATION METHOD is the information the automation tool needs to identify the component within the computer operating system environment.  </P>
+<P ALIGN="JUSTIFY">The syntax for these component identifications is different depending upon the automation tool deployed.  The example syntax we used is not for any particular automation tool, but is representative of what is needed for automation tools in general.  The <I>Application Map</I> designer will need a thorough understanding of the automation tool’s component identification syntax in order to create effective <I>Application Maps</I>.</P><BR>
+
+<B><U><P ALIGN="JUSTIFY">New Component Types:</B></U><BR>
+As we examine the application and develop an <I>Automation Framework Application Map</I> we may find new component types not handled by existing <I>Component Functions</I>.  To deal with this, we need to either implement a new <I>Component Function</I> module for each new component type, or determine how best they can be handled by existing <I>Component Functions</I>.  This, of course, is a job for the automation technical staff.</P><BR>
+
+<A NAME="Section_1.4.4"><A NAME="LowLevelTests">
+<B><FONT FACE="Arial"><P>1.4.4&#9;Low-Level Tests -- Steps Tables</P></B></FONT></A></A>
+<P ALIGN="JUSTIFY">Now that the design of our application is known and our <I>Application Map</I> has been developed, we can get down to the step-by-step detail of our tests.  We can still develop <I>Step Tables</I> without an <I>Application Map.</I>  But without the map, we cannot automatically execute the tests.</P>
+<P ALIGN="JUSTIFY">Looking back at all the <I>Suites</I> that detailed our high-level <FONT FACE="Courier New" SIZE=3>VerifyAuthenticationFunction</FONT> <I>Cycle Table</I>, we see they invoke six reusable, low-level <I>Step Tables</I> that we are now ready to implement.  These are listed in Table 21.</P><BR>
+
+<A NAME="Table21">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD VALIGN="MIDDLE" COLSPAN=2 26>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Tables Invoked by Suites</B></FONT></TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">STEP TABLE</B></TD>
+<TD 62 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">TABLE PURPOSE</B></TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LaunchSite</FONT></TD>
+<TD 62 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Launch the web app for testing</TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Login</FONT></TD>
+<TD 62 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Login with a User ID and Password</TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyLoginError</FONT></TD>
+<TD 62 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Verify an Error Dialog on Invalid Login</TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ExitLogin</FONT></TD>
+<TD 62 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Exit the Login Page via Cancel</TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyLoginSuccess</FONT></TD>
+<TD 62 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Verify Home Page up after Successful Login</TD>
+</TR>
+<TR><TD 38 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">ShutdownSite</FONT></TD>
+<TD 62 VALIGN="TOP">
+<P ALIGN="JUSTIFY">Logoff and close the browser</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 21</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">We develop these <I>Step Tables</I> using the component names defined in our <I>Application Map</I> and the keyword vocabulary defined by our <I>Component Functions</I>.  Where test designers find missing yet needed keywords, actions, or commands in our <I>Component Functions</I>; the technical staff will need to expand the appropriate <I>Component Function</I> module, <I>Driver Commands</I>, <I>Support Libraries</I>, or find some other solution to provide the needed functionality if possible.</P>
+<P ALIGN="JUSTIFY">Now we can provide the detailed test steps that make-up our six <I>Step Tables</I>.</P><BR>
+
+<A NAME="Table22">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7>
+<TR><TD 72 VALIGN="MIDDLE" COLSPAN=4>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: LaunchSite</B></FONT></P></TD>
+</TR>
+<TR><TD 34 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">COMMAND/DOCUMENT</B></TD>
+<TD 27 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">ARG/COMPONENT</B></TD>
+<TD 23 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD 17 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">EXPECTED</P>
+<P ALIGN="CENTER">RESULTS</B></TD>
+</TR>
+<TR><TD 34 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">LaunchBrowser</FONT></TD>
+<TD 27 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Default.htm</FONT></TD>
+<TD 23 VALIGN="TOP">&nbsp;</TD>
+<TD 17 VALIGN="TOP">&nbsp;</TD>
+</TR>
+<TR><TD 34 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">Browser</FONT></TD>
+<TD 27 VALIGN="TOP">&nbsp;</TD>
+<TD 23 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">VerifyCaption</FONT></TD>
+<TD 17 VALIGN="TOP">
+<FONT FACE="Courier New"><P ALIGN="JUSTIFY">&quot;Login&quot;</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 22</P></B></FONT></A><BR>
+
+<A NAME="Table23">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  436>
+<TR><TD VALIGN="MIDDLE" COLSPAN=4>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: Login     &amp;user   &amp;password</B></FONT></TD>
+</TR>
+<TR><TD 25 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">DOCUMENT</B></TD>
+<TD 28 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">COMPONENT</B></TD>
+<TD 21 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">ACTION</B></TD>
+<TD 26 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">INPUT DATA</B></TD>
+</TR>
+<TR><TD 25 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 28 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">UserID</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">InputText</FONT></TD>
+<TD 26 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">&amp;user</FONT></TD>
+</TR>
+<TR><TD 25 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 28 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">Password</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">InputText</FONT></TD>
+<TD 26 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">&amp;password</FONT></TD>
+</TR>
+<TR><TD 25 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 28 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">SubmitButton</FONT></TD>
+<TD 21 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">Click</FONT></TD>
+<TD 26 VALIGN="TOP">&nbsp;</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 23</P></B></FONT></A><BR>
+
+<A NAME="Table24">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  714>
+<TR><TD VALIGN="MIDDLE" COLSPAN=4>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: VerifyLoginError</B></FONT></TD>
+</TR>
+<TR><TD 15 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">DOCUMENT</B></TD>
+<TD 17 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">COMPONENT</B></TD>
+<TD 18 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD 50 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">EXPECTED</P>
+<P ALIGN="CENTER">RESULT</B></TD>
+</TR>
+<TR><TD 15 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">ErrorWin</FONT></TD>
+<TD 17 VALIGN="TOP">&nbsp;</TD>
+<TD 18 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">VerifyCaption</FONT></TD>
+<TD 50 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">&quot;Error&quot;</FONT></TD>
+</TR>
+<TR><TD 15 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">ErrorWin</FONT></TD>
+<TD 17 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">ErrorMessage</FONT></TD>
+<TD 18 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">VerifyText</FONT></TD>
+<TD 50 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">&quot;The User ID or Password was invalid.&quot; </FONT></TD>
+</TR>
+<TR><TD 15 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">ErrorWin</FONT></TD>
+<TD 17 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">OKButton</FONT></TD>
+<TD 18 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">Click</FONT></TD>
+<TD 50 VALIGN="TOP">&nbsp;</TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 24</P></B></FONT></A><BR>
+
+<A NAME="Table25">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  308>
+<TR><TD VALIGN="MIDDLE" COLSPAN=3>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: ExitLogin</B></FONT></TD>
+</TR>
+<TR><TD 36 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">DOCUMENT</B></TD>
+<TD 39 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">COMPONENT</B></TD>
+<TD 25 VALIGN="TOP">
+<B><P ALIGN="JUSTIFY">ACTION</B></TD>
+</TR>
+<TR><TD 36 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">LoginPage</FONT></TD>
+<TD 39 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">CancelButton</FONT></TD>
+<TD 25 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">Click</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 25</P></B></FONT></A><BR>
+
+<A NAME="Table26">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  460>
+<TR><TD VALIGN="MIDDLE" COLSPAN=4>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: VerifyLoginSuccess</B></FONT></TD>
+</TR>
+<TR><TD 24 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">DOCUMENT</B></TD>
+<TD 26 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">COMPONENT</B></TD>
+<TD 28 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD 22 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">EXPECTED</P>
+<P ALIGN="CENTER">RESULT</B></TD>
+</TR>
+<TR><TD 24 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">HomePage</FONT></TD>
+<TD 26 VALIGN="TOP">&nbsp;</TD>
+<TD 28 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">VerifyTitle</FONT></TD>
+<TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">&quot;Home&quot;</FONT></TD>
+</TR>
+<TR><TD 24 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">Browser</FONT></TD>
+<TD 26 VALIGN="TOP">&nbsp;</TD>
+<TD 28 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">VerifyCaption</FONT></TD>
+<TD 22 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">&quot;Welcome&quot;</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 26</P></B></FONT></A><BR>
+
+<A NAME="Table27">
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  480>
+<TR><TD VALIGN="MIDDLE" COLSPAN=4>
+<B><FONT SIZE=4><P ALIGN="CENTER">Step Table: ShutdownSite</B></FONT></TD>
+</TR>
+<TR><TD 23 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">DOCUMENT</B></TD>
+<TD 25 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">COMPONENT</B></TD>
+<TD 29 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">ACTION</B></TD>
+<TD 24 VALIGN="MIDDLE">
+<B><P ALIGN="CENTER">INPUT DATA</B></TD>
+</TR>
+<TR><TD 23 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">Browser</FONT></TD>
+<TD 25 VALIGN="TOP">&nbsp;</TD>
+<TD 29 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">SelectMenuItem</FONT></TD>
+<TD 24 VALIGN="TOP">
+<FONT FACE="Courier New" SIZE=3><P ALIGN="JUSTIFY">File&gt;Exit</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 27</P></B></FONT></A><BR>
+
+<P ALIGN="JUSTIFY">As you can see, our high-level test <FONT FACE="Courier New" SIZE=3>VerifyAuthenticationFunction</FONT> has been detailed down to a very sparse set of highly reusable test steps.  Our test designs have taken a high-level test specification, given that some abstract scenarios to perform, and finally provided the step-by-step instructions to execute those scenarios.  We did all of this without resorting to difficult scripting languages, or complex software development environments.</P>
+<P ALIGN="JUSTIFY">It may seem simple enough, but that is because we have the underlying automation framework doing so much of the work for us.  </P>
+<P ALIGN="JUSTIFY">Now that we have all of this defined, what does it actually do?</P>
+<P ALIGN="JUSTIFY">Remember, the automation framework is invoked with one or more high-level <I>Cycle Tables</I>.  These tables call the test <I>Suites</I> that, in turn, call the <I>Step Tables</I> to perform the low-level test steps that drive the application.</P>
+<P ALIGN="JUSTIFY">We developed our own <I>Cycle Table</I> called <FONT FACE="Courier New" SIZE=3>VerifyAuthenticationFunction</FONT>.  This calls our own collection of <I>Suites</I>, and ultimately the <I>Step Tables</I> we just finished developing.  If you look over all of these tables, you can see they form a relatively small set of reusable instructions that make up this test.  But they generate a large instruction set at time of execution.</P>
+<P ALIGN="JUSTIFY">The following section will actually illustrate the automated execution flow of the test we have just implemented.</P><BR>
+
+<A NAME="Table28">
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 28</P></B></FONT>
+<P ALIGN="CENTER"><CENTER><TABLE BORDER CELLSPACING=2 CELLPADDING=7  698>
+<TR><TD VALIGN="MIDDLE" COLSPAN=5>
+<B><P ALIGN="CENTER">Execution Flow of VerifyAuthenticationFunction Test</B></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE">
+<B><FONT FACE="Courier New" SIZE=2><P>Cycle Table</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suite Table</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step Table</B></FONT></TD>
+<TD 16 VALIGN="MIDDLE">
+<B><FONT FACE="Courier New" SIZE=2><P ALIGN="CENTER">DOCUMENT</P>
+<P ALIGN="CENTER">Or</P>
+<P ALIGN="CENTER">COMMAND</B></FONT></TD>
+<TD 25 VALIGN="MIDDLE">
+<B><FONT FACE="Courier New" SIZE=2><P ALIGN="CENTER">COMPONENT</P>
+<P ALIGN="CENTER">Or</P>
+<P ALIGN="CENTER">COMMAND ARG</B></FONT></TD>
+<TD 16 VALIGN="MIDDLE">
+<B><FONT FACE="Courier New" SIZE=2><P ALIGN="CENTER">ACTION</B></FONT></TD>
+<TD 11 VALIGN="MIDDLE">
+<B><FONT FACE="Courier New" SIZE=2><P ALIGN="CENTER">INPUT DATA</P>
+<P ALIGN="CENTER">Or</P>
+<P ALIGN="CENTER">EXPECTED RESULTS</B></FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 15>
+<FONT FACE="Courier New" SIZE=2><P>VerifyAuthenticationFunction</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 15> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 15> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 15> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 15> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 16>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyInvalidLogin</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 16>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LaunchSite</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 16> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LaunchBrowser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Default.htm</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Browser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Login&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user=BadUser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password=GoodPassword</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>UserID</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Password</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>SubmitButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyLoginError</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Error&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorMessage</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;The User ID or Password was Invalid.&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>OKButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user=GoodUser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password=BadPassword</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>UserID</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Password</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>SubmitButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyLoginError</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Error&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorMessage</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;The User ID or Password was Invalid.&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>OKButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user=BadUser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password=BadPassword</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>UserID</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Password</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>SubmitButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyLoginError</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Error&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorMessage</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;The User ID or Password was Invalid.&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>OKButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExitLogin</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>CancelButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyBlankLogin</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LaunchSite</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LaunchBrowser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Default.htm</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Browser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Login&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user=&quot;&quot;</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password=&quot;&quot;</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>UserID</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Password</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>SubmitButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyLoginError</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Error&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorMessage</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;The User ID or Password was Invalid.&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>ErrorWin</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>OKButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExitLogin</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>CancelButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyValidLogin</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LaunchSite</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LaunchBrowser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Default.htm</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Browser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Login&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user=GoodUser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password=GoodPassword</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>UserID</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;user</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Password</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>InputText</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&amp;password</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>LoginPage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>SubmitButton</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Click</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VerifyLoginSuccess</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>HomePage</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyTitle</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Home&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Browser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>VerifyCaption</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&quot;Welcome&quot;</FONT></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShutdownSite</FONT></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 11 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+</TR>
+<TR><TD 31 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>Browser</FONT></TD>
+<TD 25 VALIGN="MIDDLE" 14> <P>&nbsp;</P></TD>
+<TD 16 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>SelectMenuItem</FONT></TD>
+<TD 11 VALIGN="MIDDLE" 14>
+<FONT FACE="Courier New" SIZE=2><P>File&gt;Exit</FONT></TD>
+</TR></TABLE></CENTER></P>
+<B><FONT SIZE=2><P ALIGN="CENTER">Table 28</P></B></FONT></A><BR>
+
+<A NAME="Section_1.5"><A NAME="Summary">
+<B><FONT FACE="Arial" SIZE=5><P>1.5  Summary</A></A></P></B></FONT>
+<P ALIGN="JUSTIFY">In order to keep up with the pace of product development and delivery it is essential to implement an effective, reusable test automation framework.  </P>
+<P ALIGN="JUSTIFY">We cannot expect the traditional capture/replay framework to fill this role for us.  Past experience has shown that capture\replay tools alone will never provide the long-term automation successes that other more robust test automation strategies can.  </P>
+<P ALIGN="JUSTIFY">A test strategy relying on data driven automation tool scripts is definitely the easiest and quickest to implement if you have and keep the technical staff to handle it.  But it is the hardest of the data driven approaches to maintain and perpetuate and often leads to long-term failure.</P>
+<P ALIGN="JUSTIFY">The most effective test strategies allow us to develop our structured test designs in a format and vocabulary suitable for both manual <I>and</I> automated testing.  This will enable testers to focus on effective test designs unencumbered by the technical details of the framework used to execute them, while technical automation experts implement and maintain a reusable automation framework independent of any application that will be tested by it.</P>
+<P ALIGN="JUSTIFY">A keyword driven automation framework is probably the hardest and potentially most time-consuming data driven approach to implement <I>initially</I>.  However, this investment is mostly a one-shot deal.  Once in place, keyword driven automation is arguably the easiest of the data driven frameworks to maintain and perpetuate providing the greatest potential for long-term success.   There are also a few commercially available products maturing that may be suitable for your needs.</P>
+<P ALIGN="JUSTIFY">What we really want is a framework that can be both keyword driven while also providing enhanced functionality for data driven scripts.  When we integrate these two approaches the results can be <I>very</I> impressive!</P>
+<P ALIGN="JUSTIFY">The essential guiding principles we should follow when developing our overall test strategy (or evaluating the test strategy of a tool we wish to consider):</P>
+
+<UL>
+<LI>The test design and the test framework are totally separate entities.</LI>
+<LI>The test framework should be application-independent.</LI>
+<LI>The test framework must be easy to expand, maintain, and perpetuate.</LI>
+<LI>The test strategy/design vocabulary should be framework independent.</LI>
+<LI>The test strategy/design should isolate testers from the complexities of the test framework.</LI>
+</UL><BR>
+
+<A NAME="Bibliography">
+<B><U><FONT FACE="Arial" SIZE=3><P>Bibliography:</P></B></U></FONT></A>
+
+<OL>
+<FONT SIZE=3>
+<LI>Kit, E. &amp; Prince, S. &quot;A Roadmap for Automating Software Testing&quot; Tutorial presented at STAR’99<I>East</I> Conference, Orlando, Florida, May 10, 1999.
+</LI>
+<P><LI>Hayes, L. &quot;Establishing an Automated Testing Framework&quot; Tutorial presented at STAR’99<I>East</I> Conference, Orlando, Florida, May 11, 1999.
+</LI></P>
+<P><LI>Kit, E. &quot;The Third Generation--Integrated Test Design and Automation&quot; Guest presentation at STAR’99<I>East</I> Conference, Orlando, Florida, May 12, 1999.
+</LI></P>
+<P><LI>Mosley, D. &amp; Posey, B. <I>Just Enough Software Test Automation
+</I>New Jersey: Prentice Hall PTR, 2002.
+</LI></P>
+<P><LI>Wust, G. &quot;A Model for Successful Software Testing Automation&quot; Paper presented at STAR’99<I>East</I> Conference, Orlando, Florida, May 12, 1999.
+</LI></P>
+<P><LI>Dustin, E. <I>Automated Software Testing: Introduction, Management, and Performance</I>. <BR>
+New York: Addison Wesley, 1999.
+</LI></P>
+<P><LI>Fewster &amp; Graham <I>Software Test Automation: Effective use of test execution tools
+</I>New York: Addison Wesley, 1999.
+</LI></P>
+<P><LI>Dustin, E. &quot;Automated Testing Lifecycle Methodology (ATLM)&quot; Paper presented at STAR EAST 2000 Conference, Orlando, Florida, May 3, 2000.</LI>
+<P><LI>Kit, E. &amp; Buwalda, H. &quot;Testing and Test Automation: Establishing Effective Architectures&quot; Presentation at STAR EAST 2000 Conference, Orlando, Florida, May 4, 2000.</LI></P>
+<P><LI>Sweeney, M. &quot;Automation Testing Using Visual Basic&quot; Paper presented at STAR EAST 2000 Conference, Orlando, Florida, May 4, 2000.</LI></P>
+<P><LI>Buwalda, H. &quot;Soap Opera Testing&quot; Guest presentation at STAR EAST 2000 Conference, Orlando, Florida, May 5, 2000.</LI></P>
+<P><LI>Pollner, A. &quot;Advanced Techniques in Test Automation&quot; Paper presented at STAR EAST 2000 Conference, Orlando, Florida, May 5, 2000.</LI></P>
+<P><LI>Cem Kaner, </FONT><A HREF="http://www.kaner.com/"><FONT SIZE=3>http://www.kaner.com</FONT></A></LI></P>
+<FONT SIZE=3>
+<P><LI>Zambelich, K. <I>Totally Data-Driven Automated Testing</I> 1998 <BR>
+</FONT><A HREF="http://www.sqa-test.com/w_paper1.html"><FONT SIZE=3>http://www.sqa-test.com/w_paper1.html</FONT></A></LI></P>
+<FONT SIZE=3>
+<P><LI>SQA Suite Users, Discussions and Archives, 1999-2000,  </FONT><A HREF="http://www.dundee.net/sqa/"><FONT SIZE=3>http://www.dundee.net/sqa/</FONT></A></LI></P>
+<FONT SIZE=3>
+<P><LI>Nagle, C. <I>Data Driven Test Automation: For Rational Robot V2000 </I> 1999-2000<BR>
+</FONT><A HREF="Default.htm"><FONT SIZE=3>DDE Doc Index</FONT></A></LI></P>
+</OL>
+
+</BODY>
+</HTML>

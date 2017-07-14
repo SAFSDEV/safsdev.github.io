@@ -1,0 +1,303 @@
+<HTML>
+<HEAD>
+<TITLE>Enabling SAFS Framework Engines</TITLE>
+</HEAD>
+<BODY>
+<H1><CENTER>Beyond Rational Robot,<br>Enabling SAFS Framework Engines</CENTER></H1>
+<p><pre>
+==========================================================================
+Author: Carl Nagle
+UPDATED: Feb 10, 2006
+
+Copyright (C) SAS Institute
+<a href="http://www.opensource.org/licenses/gpl-license.php" target="reference">General Public License</a>: http://www.opensource.org/licenses/gpl-license.php
+==========================================================================
+</pre><p>
+<h3>Definitions:</h3>
+<table border="2">
+<tr valign="top">
+<td><b>Robot</b>
+<td>IBM Rational Robot: the "classic" automation Robot supporting a wide range of
+application environments including Java, Web, Visual Basic, Delphi, C/C++, and
+a host of others.  We also refer to this as "Robot Classic".
+<tr valign="top">
+<td><b>RobotJ</b>
+<td>Rational RobotJ, aka IBM Rational XDE Tester: now IBM Rational Functional
+Tester in the latest release.  RobotJ and XDE Tester were limited to Java and Web
+testing.  Functional Tester now supports .NET testing and limited Win32 support.
+<tr valign="top">
+<td><b>Abbot</b>
+<td>We are in the midst of developing a SAFS/Abbot Engine using
+<a href="http://abbot.sourceforge.net" alt="Abbot Home Page">Abbot on SourceForge</a>
+to augment our existing tools and provide a solution for testers not already using
+IBM Rational or Mercury Interactive tools.
+<tr valign="top">
+<td><b>DDE_RUNTIME</b>
+<td>This refers to the SQABas32 directory where the Rational products have been
+installed.  By default, this location is at:
+C:\Program&nbsp;Files\Rational\Rational&nbsp;Test\sqabas32
+<tr valign="top">
+<td><b>SAFS</b>
+<td>SAFS--Software Automation Framework Support--is an opensource testing framework
+made available from <a href="http://www.sas.com" target=_blank>SAS</a>.  It is fairly
+well-documented at the following site: <a href="http://safsdev.sourceforge.net"
+alt="SAFSDEV Home Page">SAFS on SourceForge.</a> SAFS allows us to specify keyword-driven
+or action-based tests using your own Domain Specific Language, while also providing a
+language-independent format for expressing low-level GUI actions like Click, Select,
+and InputKeys.
+<tr valign="top">
+<td><b>SAFSDIR</b>
+<td>This refers to the directory where the vendor-independent pieces for SAFS have been
+installed.  By default, this location is at: C:\SAFS
+<tr valign="top">
+<td><b>RRAFS</b>
+<td>The SAFS Engine(s) implemented and installable for IBM Rational tools (Robot,
+RobotJ, XDE Tester, and Functional Tester).  Although sometimes the engine for RobotJ
+is separately referred to as "SAFS/RobotJ" or the "RobotJ Engine" to differentiate it
+from the implementation for IBM Rational Robot.
+<tr valign="top">
+<td><b>STAF</b>
+<td>STAF--Software Testing Automation Framework--is an opensource "middleware" framework
+made available from IBM.  It is fairly well-documented at the following site:
+<a href="http://staf.sourceforge.net" alt="STAF Home Page">STAF on SourceForge.</a>
+We use STAF to build vendor-independent tools and services. STAF also allows our
+different tools and services to talk to one another.
+<tr valign="top">
+<td><b>STAFDIR</b>
+<td>This refers to the directory where STAF has been installed.  By default, this
+location is at: C:\STAF
+<tr valign="top">
+<td><b>SAFSLOGS</b>
+<td>Our vendor-independent logging solution.  This leverages and extends the STAF
+logging service.  It allows all of our different tools to share the same logs.  It
+provides for text logs, XML logs, and communication with the engines to enable and
+disable proprietary console and vendor-specific logs like Robot's TestManager log.
+<tr valign="top">
+<td><b>SAFSVARS</b>
+<td>Our vendor-independent variables solution.  It provides variables storage
+shared and visible to all tools and services on the machine (and remotely, too).
+Variable names are not case-sensitive, and SAFSVARS can provide a pseudo-CONSTANTS
+mechanism by referring to the SAFSMAPS service when it cannot otherwise locate a
+variable value.
+<tr valign="top">
+<td><b>SAFSMAPS</b>
+<td>Our vendor-independent Application Map/Object Map solution.  Essentially, this
+service is able to read traditional Windows INI files and retrieve the value from
+Name/Value pairs stored in named "sections" of the file.  Values can actually be
+"variable" by specifying which SAFSVARS variable holds the true value of the
+Name/Value pair.
+<tr valign="top">
+<td><b>SAFSINPUT</b>
+<td>Our vendor-independent test table handling service.  This service is primarily
+used by SAFSDRIVER to read files in a SAFS test table format and perform much of the
+test file handling  when IBM Rational Robot is not the test driver.
+<tr valign="top">
+<td><b>SAFS/RobotJ</b>
+<td>A SAFS Engine developed for the IBM Rational RobotJ/XDE Tester/Functional Tester tools.
+<tr valign="top">
+<td><b>SAFS/DriverCommands</b>
+<td>A SAFS Engine implemented in Java for tool-independent Driver Commands.  You do
+not need either Robot, or RobotJ to use this SAFS Engine.
+</table>
+<p>
+<h3>Background</h3>
+<p>
+As of this writing, we still consider Rational Robot to be the SAFS Engine of choice
+for executing most of our automated testing when using the Rational toolset.  Yet,
+the featureset with RobotJ is growing.  Once people become more familiar with using
+the separate SAFS Framework pieces, and the new engines I believe things could sway
+away from Robot where that is appropriate--especially when testing Java clients.
+<p>
+<h3>Some Setup Assumptions and Prerequisites</h3>
+<p>
+This document assumes a full, complete, and successfull install of the RRAFS Engine
+and associated SAFS Framework components.  The latest release of RRAFS included
+everything necessary.  A successful run of the "SetupRRAFS.wsf" script from the
+DDE_RUNTIME directory would have installed all the necessary RRAFS files, registered
+the DDVariableStore.DLL, installed the vendor-independent SAFS Framework components,
+installed STAF, and set appropriate environment variables.
+<p>
+Some important implied items from this are:
+<ol>
+<li>Windows Scripting Host Version 5.6 is installed on the system.
+<li>A Java JVM (java.exe) is readily found by the system.
+<li>Programs in SAFS\bin and STAF\bin are readily found by the system.
+<li>SAFS JAR file(s) and STAF JAR file(s) are listed in the system CLASSPATH.
+<li>Environment Variables SAFSDIR and STAFDIR are properly set.
+</ol>
+<p>
+If any of the above items are found to be false, there will be problems running the
+new SAFS components or associated engines.  They may not run at all.  The tester will
+have to revisit the Release Notes and Setup instructions to correct any problems.
+See the <a href="SetupRuntime.README.htm">SetupRuntime.README</a> doc for more
+detailed information.
+<p>
+<hr><p>
+<h3>RRAFS.INI</h3>
+This file is installed into the DDE_RUNTIME location when the Rational Robot Engine
+is installed.&nbsp;  This file contains configuration information and settings that
+the Robot Engine uses at runtime.&nbsp;  Changes in this file in the DDE_RUNTIME
+location affect ALL projects accessed on the machine.&nbsp;  The file can also be
+copied to a project's Datapool\Runtime directory to provide project-specific settings
+that override the DDE_RUNTIME version.&nbsp;  A copy of this file is also stored with
+a SAFS install by default at C:\SAFS\Project\Datapool\Runtime.
+<p>
+Consult the RRAFS.INI file itself for configuration information and available settings.
+<p>
+<ol>
+<li><b>Setup Machine-Specific RRAFS.INI</b><br>
+Edit the existing RRAFS.INI file in the DDE_RUNTIME location.  Changes made here
+affect all Robot projects accessed by this machine.  Be sure to backup your changes of
+this RRAFS.INI prior to any new RRAFS installation.  A new install or patch will likely
+overwrite this file.
+<p>
+<li><b>Setup Project-Specific RRAFS.INI</b><br>
+Copy the RRAFS.INI from the SAFS or DDE_RUNTIME location to the Datapool\Runtime
+directory of your Robot project.  You can now provide project-specific paths and
+other settings that might change from one project to the next.  Settings here will
+override the DDE_RUNTIME RRAFS.INI file.  You can remove all entries in the project-
+specific copy that you do not need, or that you wish to only maintain in the DDE_RUNTIME
+version of the file.
+<p>
+<li><b>RRAFS.INI and "AUTOLAUNCH"</b><br>
+AUTOLAUNCH is a feature that allows the test driver to automatically launch our SAFS
+Framework tools at runtime.  If AUTOLAUNCH=TRUE for SAFSLOGS, SAFSMAPS, and SAFVARS then
+the Robot Engine will launch these at the very beginning of the test.&nbsp; Any tool
+AUTOLAUNCHED by Robot will also be shutdown by this mechanism when the test is completed
+-- even if the user aborts the test and the script is not run to completion.
+<p>
+The STAF daemon is required for these tools.&nbsp;  If STAF is not running, the Robot
+Engine will automatically launch STAF.&nbsp;  If Robot launches STAF then Robot will
+automatically shutdown STAF when the test is completed -- even if the user aborts the
+test and the script is not run to completion.
+<p>
+If AUTOLAUNCH=TRUE for either the SAFS/DriverCommands or SAFS/RobotJ engines, those
+engines will only be launched when specific Driver Commands or Component Functions
+needing those engines are encountered.&nbsp;  These will also be automatically shutdown
+at the end of testing if they were launched with AUTOLAUNCH.
+<p>
+Note: the SAFS/RobotJ engine cannot successfully AUTOLAUNCH until the SAFS_ROBOTJ
+settings in the RRAFS.INI are valid.  However, the SAFS/DriverCommands engine normally
+needs no additional RRAFS.INI configuration information by default.
+<p>
+It is also important to keep in mind that neither of these alternative engines will
+work correctly if the SAFSLOGS, SAFSMAPS, and SAFSVARS tools are not running.  Thus,
+all of these tools must have their AUTOLAUNCH=TRUE; or they must all be launched via
+some other mechanism before the engines can be used.
+<p>
+<li><b>SAFSLOGS and "AUTOLAUNCH"</b><br>
+At runtime, the Robot Engine knows where its output logs are suppose to be located.
+Thus, for default use of SAFSLOGS, no additional options or configuration information
+are needed in the RRAFS.INI file.  Default configuration information will automatically
+be provided by the Robot Engine.  Simply set AUTOLAUNCH=TRUE for SAFSLOGS in the
+RRAFS.INI file to enable its use.
+<p>
+<li><b>SAFSVARS and "AUTOLAUNCH"</b><br>
+For default use of SAFSVARS, no additional options or configuration information are
+needed in the RRAFS.INI file.  Simply set AUTOLAUNCH=TRUE for SAFSVARS in the RRAFS.INI
+file to enable its use.
+<p>
+<li><b>SAFSMAPS and "AUTOLAUNCH"</b><br>
+At runtime, the Robot Engine knows where its App Maps are located by default.  Thus, for
+default use of SAFSMAPS, no additional options or configuration information are needed
+in the RRAFS.INI file.  Simply set AUTOLAUNCH=TRUE for SAFSMAPS in the RRAFS.INI file to
+enable its use.
+<p>
+<li><b>SAFS/DriverCommands and "AUTOLAUNCH"</b><br>
+For default use of SAFS/DriverCommands, no additional options or configuration
+information are needed in the RRAFS.INI file.  Simply set AUTOLAUNCH=TRUE for
+SAFS_DRIVERCOMMANDS in the RRAFS.INI file to enable its use.
+<p>
+<li><b>SAFS/RobotJ and "AUTOLAUNCH"</b><br>
+Valid SAFS_ROBOTJ settings for INSTALLDIR, DATASTORE, PROJECT, USERID, and PASSWORD
+(if required) are needed before the SAFS/RobotJ Engine can successfully be
+AUTOLAUNCHed.<br>
+Note: The RRAFS.INI setting for the TestManager project PASSWORD is not encrypted
+or mangled in any way.  Whatever password is needed (if any) must be entered as it
+would be typed. It will be visible and "in the clear" for all to see.<br/>
+Also know that some or all of PROJECT, USERID, and PASSWORD may not be needed if
+the Datastore has not been associated with any Test Manager project.
+<p>
+The default settings for BUILD, LOGFOLDER, LOG, and HOOKSCRIPT should not normally
+need to be changed if all you want to do is use the RobotJ engine "as is".  However,
+review the BUILD and LOGFOLDER information to make sure they are appropriate for
+your TestManager logging needs.  BUILD, LOGFOLDER, and LOG may not be needed if
+you have not associated the Datastore with any Test Manager project.
+<p>
+Once valid settings are in place for the above items, simply set AUTOLAUNCH=TRUE
+for SAFS_ROBOTJ to enable its use.
+</ol>
+<hr><p>
+<h3>Robot Test Script Enhancements</h3>
+<p>
+At the very beginning of your Robot test script (.REC) it is highly recommended to
+clear any App Map cache:
+<pre><code>
+    DDGClearAppMapCache   'clear stores. See <a href="DDGUIUtilities.htm#ddgclearappmapcache">DDGUIUtilities</a>
+    ...
+</code></pre>
+<p>
+At the end of your script, after all logging has been completed and closed, you can
+explicitly shutdown any of of the tools that were AUTOLAUNCHed by the Robot Engine.&nbsp;
+This is usually not necessary since we now have an automated monitor that will
+shut these tools down for us.  You can even explicitly shutdown STAF if you deem
+that desirable.  Do this via the functions provided by <a href="SAFSUtilities.htm">SAFSUtilities</a>:
+<pre><code>
+    ...
+    SAFSShutdownDriverCommands  'should be closed before SAFS tools
+    SAFSShutdownRobotJ          'should be closed before SAFS tools
+    DelayFor 4000               'allow shutdown activities to complete
+    SAFSShutdownSTAF            'automatically closes SAFS tools with STAF
+</code></pre>
+<p>
+Consult <a href="SetupRuntime.README.htm">SetupRuntime.README</a> for information on
+manual shutdown of engines, tools, and services.
+<p>
+Note:It is safe to call the various shutdown functions even if the associated tools
+are not running.
+<p>
+<hr><p>
+<h3>SAFS/DriverCommands</h3>
+<p>
+This is the first vendor-independent SAFS Engine.  It exposes a number of Driver
+Commands that can be called from any STAF client, or SAFS test Driver.  It does not
+require either Robot or RobotJ.
+<ol>
+<li><b>Setup SAFS/DriverCommands Use</b><br>
+If the SAFS tools SAFSLOGS, SAFSVARS, and others are working via STAF; then there
+is no additional setup required.  Consult
+<a href="SetupRuntime.README.htm">SetupRuntime.README</a> if problems exist.
+<p>
+<li><b>Setup SAFS/DriverCommands Debugging/Development</b><br>
+The SAFSSOURCE.ZIP file containing the Java source can be downloaded separately
+from the SAFSDEV Dowloads site.
+<p>
+For stepping through the code during test execution, you must provide the full path
+of the SAFSSOURCE.ZIP file for the source and the SAFS.JAR file for the classes, or
+extract one or both of these into the Datastore for the debugger (RobotJ/Eclipse
+or other).  If all you want to do is step through the code during execution, those
+settings may be all that is required.  The need to set breakpoints in the code may
+require that the source be extracted out of the ZIP and JAR files.
+<p>
+If the intention is to actually enhance the sourcecode, or provide new features; the
+source files (.java) in SAFSSOURCE.ZIP will need to be extracted out into your
+development environment.
+<p>
+Consult <a href="SetupRobotJ.README.htm">SetupRobotJ.README</a> for more details on
+preparing the RobotJ/Eclipse IDE if that is your target development environment.
+</ol>
+<hr><p>
+<h3>SAFS/RobotJ</h3>
+<p>
+This is the SAFS Engine for RobotJ, XDE Tester, and Functional Tester.  It provides
+Driver Commands and Component Functions for testing Java applications.  Web
+application testing is possible but not supported nearly as well as Java at this
+time.  Funtional Tester also provides support for .NET and (some) Win32 testing.
+Many of the Driver Commands provided by RobotJ are the same as those provided
+by SAFS/DriverCommands.  In fact, they both expose many of these Driver Commands via
+the exact same Java classes.
+<p>
+To setup the SAFS/RobotJ engine for normal use or for development consult:
+<a href="SetupRobotJ.README.htm" target=_blank>SetupRobotJ.README</a>.
+<p>
+</BODY></HTML>

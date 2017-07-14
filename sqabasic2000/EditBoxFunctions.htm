@@ -1,0 +1,215 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic EditBoxFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "EditBoxFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=EDITBOX objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      SetTextValue            'set new text value, using InputKeys special characters
+      SetUnverifiedTextValue  'set unverified new text value, using InputKeys
+                               special characters
+      SetTextCharacters       'set and verify new text value using literal text
+      SetUnverifiedTextCharacters  'set new text value using literal text (no verify)
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="settextvalue"></a>
+   Sub SetTextValue ()
+
+
+
+ DESCRIPTION:
+
+      Routine to set the text of the editbox.  This version allows the use
+      of special character combinations and substrings to identify specific
+      keyboard keys.  These are the same special characters and interpretation
+      used for Robot's InputKeys command and the Windows Scripting Host.
+
+      ~^+%{( are primarily the characters that induce special processing.
+
+      The routine verifies we can read the text property, sets the text value
+      and will verify that the property has been set to that value *IF* none
+      of the special characters exist in the provided text value.  If those
+      special characters exist, then no post-set verification will occur.
+      Also, no post-set verification occurs for any "Unverified" command.
+
+      If you do not want to have any characters converted or interpretted as
+      special characters then you need to use the SetTextCharacters command.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode    0 -- verify the EditBox text value after setting it.
+
+      mode    1 -- bypass verifying the entered text value.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Text to send to editbox.  Quoted text may be used to ensure proper
+              expected value retrieval.
+              There is also no check for a missing field because that would be
+              the same as specifying no text ("")--which is valid.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 06, 1999
+ History:
+
+      AUG 06, 1999    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      JUL 21, 2000    (Carl Nagle) Modifed to accomodate HTML Editboxes.
+      JUN 20, 2001    (Carl Nagle) Removed post-set verification in special case.
+                               Also correct text clearing problem in W2K.
+      NOV 15, 2002    (CHSCHR) Added SetUnverifiedTextValue command.
+
+</pre>
+<hr>
+<pre>
+
+<a name="settextcharacters"></a>
+   Sub SetTextCharacters (Optional mode)
+
+
+ DESCRIPTION:
+
+      Routine to set the text of the editbox.
+      It verifies we can read the property, sets the text value and then
+      verifies that the property has been set to that value.
+      This routine uses only the literal text provided.  It does not attempt
+      to convert or interpret the text provided as special characters.  To
+      do that, see the SetTextValue command.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode    0 -- verify the EditBox text value after setting it.
+
+      mode    1 -- bypass verifying the entered text value.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Text to send to editbox.  Quoted text may be used to ensure proper
+              expected value retrieval.
+              There is also no check for a missing field because that would be
+              the same as specifying no text ("")--which is valid.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 20, 2001
+ History:
+
+      JUN 20, 2001    Original Release
+      JAN 15, 2004    (Carl Nagle) Added "Unverified" mode to this command.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a EDITBOX.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 06, 1999
+ History:
+
+      AUG 06, 1999    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      NOV 15, 2002    (CHSCHR) Added SetUnverifiedTextValue command.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      JAN 15, 2004    (Carl Nagle) Added "SetUnverifiedTextCharacters".
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

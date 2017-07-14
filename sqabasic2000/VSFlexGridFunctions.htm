@@ -1,0 +1,1702 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic VSFlexGridFunctions Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "VSFlexGridFunctions" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=GENERIC;Class=VSFlexGrid objects in
+      Data-Driven Automation.
+
+ SUPPORTED ACTION COMMANDS:
+
+      ClickCell       'Click a Cell in the Grid (edit mode remains active)
+      SelectCell      'Select/Click a Cell in the Grid (edit mode does NOT remain active)
+      VerifyValuesToFile      'Verify values against a benchmark file
+      (FUTURE) SelectFirstBlankRow     'Select the first blank row in a specified column range.
+      (FUTURE) GetRowValues    'Get all the values from a specified row into a pseudo-DDV array.
+      (FUTURE) GetColValues    'Get all the values from a specified Col into a pseudo-DDV array.
+      (FUTURE) GetAllValues    'Get all the values from a grid block into a pseudo-DDV array.
+      (FUTURE) VerifyRowContains       'Verify a row contains a particular value
+      (FUTURE) VerifyColContains       'Verify a col contains a particular value
+      (FUTURE) VerifyCellValue         'Verify the value of a particular cell (row, col)
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 18, 2002
+ History:
+
+      JUN 18, 2002    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities directories.
+      AUG 20, 2003    (Carl Nagle) Mod to use alternate diffs if configured.
+      OCT 17, 2005    (Carl Nagle) Changed Click to ClickCell
+
+ Copyright (2002, 2003) SAS Institute Inc. All rights reserved.
+  General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "VSFlexGridFunctions.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32Utilities.htm">WIN32Utilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WIN32Utilities.htm">WIN32Utilities</a>.SBH"
+<li>'$INCLUDE: "<a href="sqaUtil.htm">sqaUtil</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#vsflockcolumnnames">VSFlockColumnNames</a>      BasicLib VSFlexGridFunctions Alias "lockColumnNames"
+   Sub   <a href="#vsfreleasecolumnnames">VSFreleaseColumnNames</a>   BasicLib VSFlexGridFunctions Alias "releaseColumnNames"
+Function <a href="#vsfiscolumnnameslocked">VSFisColumnNamesLocked</a>  BasicLib VSFlexGridFunctions Alias "isColumnNamesLocked"
+   Sub   <a href="#vsfoutputproperty">VSFoutputProperty</a>       BasicLib VSFlexGridFunctions Alias "outputProperty"
+   Sub   <a href="#vsfoutputkeyproperties">VSFoutputKeyProperties</a>  BasicLib VSFlexGridFunctions Alias "outputKeyProperties"
+Function <a href="#vsfgetmaxrows">VSFgetMaxRows</a>           BasicLib VSFlexGridFunctions Alias "getMaxRows"
+Function <a href="#vsfgetmaxcols">VSFgetMaxCols</a>           BasicLib VSFlexGridFunctions Alias "getMaxCols"
+Function <a href="#vsfisediting">VSFisEditing</a>            BasicLib VSFlexGridFunctions Alias "isEditing"
+Function <a href="#vsfextractcolumnnames">VSFextractColumnNames</a>   BasicLib VSFlexGridFunctions Alias "extractColumnNames"
+   Sub   <a href="#vsfoutputcolumnnames">VSFoutputColumnNames</a>    BasicLib VSFlexGridFunctions Alias "outputColumnNames"
+Function <a href="#vsffindcolnameindex">VSFfindColNameIndex</a>     BasicLib VSFlexGridFunctions Alias "findColNameIndex"
+Function <a href="#vsfshowrowvisible">VSFshowRowVisible</a>       BasicLib VSFlexGridFunctions Alias "showRowVisible"
+Function <a href="#vsfshowcolvisible">VSFshowColVisible</a>       BasicLib VSFlexGridFunctions Alias "showColVisible"
+Function <a href="#vsffindlogicalrow">VSFfindLogicalRow</a>       BasicLib VSFlexGridFunctions Alias "findLogicalRow"
+Function <a href="#vsffindlogicalcol">VSFfindLogicalCol</a>       BasicLib VSFlexGridFunctions Alias "findLogicalCol"
+Function <a href="#vsffindnextnonhiddenitem">VSFfindNextNonHiddenItem</a>  BasicLib VSFlexGridFunctions Alias "findNextNonHiddenItem"
+Function <a href="#vsfvalidateblockparameters">VSFvalidateBlockParameters</a>  BasicLib VSFlexGridFunctions Alias "validateBlockParameters"
+Function <a href="#vsffindblankrow">VSFfindBlankRow</a>         BasicLib VSFlexGridFunctions Alias "findBlankRow"
+Function <a href="#vsfextractgridtext">VSFextractGridText</a>      BasicLib VSFlexGridFunctions Alias "extractGridText"
+Function <a href="#vsfoutputgridtexttofile">VSFoutputGridTextToFile</a>  BasicLib VSFlexGridFunctions Alias "outputGridTextToFile"
+Function <a href="#vsfgetrawcellcoordinates">VSFgetRawCellCoordinates</a>  BasicLib VSFlexGridFunctions Alias "GetRawCellCoordinates"
+Function <a href="#vsfgetcellcoordinates">VSFgetCellCoordinates</a>   BasicLib VSFlexGridFunctions Alias "GetCellCoordinates"
+Function <a href="#vsfclickrawcell">VSFclickRawCell</a>         BasicLib VSFlexGridFunctions Alias "clickRawCell"
+Function <a href="#vsfclickcell">VSFclickCell</a>            BasicLib VSFlexGridFunctions Alias "clickCell"
+Function <a href="#vsfselectrawcell">VSFselectRawCell</a>        BasicLib VSFlexGridFunctions Alias "selectRawCell"
+Function <a href="#vsfselectcell">VSFselectCell</a>           BasicLib VSFlexGridFunctions Alias "selectCell"
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="vsflockcolumnnames"></a>
+   Sub VSFlockColumnNames alias "lockColumnNames" ()
+
+
+ DESCRIPTION:
+
+      Provides a mechanism to prevent the repeated extraction of column
+      names in a single operation.  When a complex operation calls more
+      than one function that might attempt to extract the column names,
+      this lock will prevent subsequent extraction attempts from performing
+      duplicate extractions.
+
+      The user does not normally ever have to call this routine.  The
+      routines themselves will lock the data.  However, a user may choose
+      to call this routine AFTER a successful lock has been released but
+      the user wants the extracted data to remain locked even longer.
+      In general, this is not safe since the contents of the grid could
+      change.
+
+      Just don't call this unless you really know what you are doing ;)
+
+
+ PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfreleasecolumnnames"></a>
+   Sub VSFreleaseColumnNames alias "releaseColumnNames" ()
+
+
+ DESCRIPTION:
+
+      Provides a mechanism to release the lock from lockColumnNames.
+
+      The standard DDE user does not ever have to call this routine.  The
+      routines themselves will lock and unlock the data appropriately.
+
+      However, a user calling routines in this library from a script or a
+      custom library may need to release any lock formed during their calls
+      since directly accessing these library routines does not automatically
+      release any lock.  Though, some routines do automatically SET the lock.
+
+      If you are using these library routines directly, then you should always
+      release the lock between complex operations or after any operation
+      in which the grid column names might have changed in any way.
+
+
+ PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfiscolumnnameslocked"></a>
+   Function VSFisColumnNamesLocked alias "isColumnNamesLocked" () As Integer
+
+
+ DESCRIPTION:
+
+      Tests the state of the lock on stored column names.
+
+
+ PARAMETERS:
+
+      none
+
+
+ RETURNS:
+
+      0   if columnNames are not currently stored and locked.
+     -1   if columnNames are stored and locked.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfoutputproperty"></a>
+   Sub VSFoutputProperty alias "outputProperty" (flexgrid as String, property as String)
+
+
+ DESCRIPTION:
+
+      This routine is for debugging purposes only.  Currently, it only
+      outputs the desired value or errors to the SQAConsole for review.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      property    the property name whose value should be output.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfoutputkeyproperties"></a>
+   Sub VSFoutputKeyProperties alias "outputKeyProperties" (flexgrid as String)
+
+
+ DESCRIPTION:
+
+      This routine is for debugging purposes only.  Currently, it only
+      outputs the listed values or errors to the SQAConsole for review.
+
+          "RowSel"
+          "ColSel"
+          "Row"
+          "Col"
+          "Text"
+          "Clip"
+          "CellTop"
+          "CellLeft"
+          "CellWidth"
+          "CellHeight"
+          "TopRow"
+          "RightCol"
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfisediting"></a>
+   Function VSFisEditing alias "isEditing" (flexgrid As String) As Integer
+
+
+ DESCRIPTION:
+
+      Tests if the grid is in edit mode or not.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+
+ RETURNS:
+
+      1   in edit mode.
+      0   not in edit mode.
+     -1   an error occurred while testing for edit mode.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfgetmaxrows"></a>
+   Function VSFgetMaxRows alias "getMaxRows" (flexgrid As String) As Integer
+
+
+ DESCRIPTION:
+
+      Returns the 1-based count of physical rows in the grid.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+
+ RETURNS:
+
+      N   number of rows.
+     -1   Error occurred.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfgetmaxcols"></a>
+   Function VSFgetMaxCols alias "getMaxCols" (flexgrid As String) As Integer
+
+
+ DESCRIPTION:
+
+      Returns the 1-based count of physical columns in the grid.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+
+ RETURNS:
+
+      N   number of columns.
+     -1   Error occurred.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 06, 2002
+ History:
+
+      AUG 06, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfextractcolumnnames"></a>
+   Function VSFextractColumnNames alias "extractColumnNames" (flexgrid As String) As Integer
+
+
+ DESCRIPTION:
+
+      Extracts the column field names into a module level array.  Sets a
+      counter which specifies the number of fields found.  This routine is
+      generally used internally at this time.
+
+      If column names storage has been locked, we will not perform a duplicate
+      extraction.  We will simply return the existing value of the internal
+      counter which was presumably already set by a previous extraction.
+
+      Any external script calling this function should consider locking the
+      column names once the extraction is completed to avoid the performance
+      hit incurred from other function calls that may also try to extract
+      the column names.
+
+      The  names should then be released when the more complex operation is
+      complete.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+
+ RETURNS:
+
+      N   number of fields extracted.
+     -1   FormatString error.
+     -2   FormatString TEXT location error.
+     -3   FormatString segmentation error.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfoutputcolumnnames"></a>
+   Sub VSFoutputColumnNames alias "outputColumnNames" (flexgrid as String)
+
+
+ DESCRIPTION:
+
+      This routine is for debugging purposes only.  Currently, it only
+      extracts and outputs the column names or errors to the SQAConsole for
+      review.
+
+      If no error occurred, this routine does LOCK the column names after
+      they are extracted.  External scripts will need to RELEASE the data when
+      they are ready to do so.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsffindcolnameindex"></a>
+   Function VSFfindColNameIndex alias "findColNameIndex" ( flexgrid As String,
+                                                           col      As String,
+                                                           Optional matchcount
+                                                         ) as Integer
+
+ DESCRIPTION:
+
+      Extracts the column field names into a module level array if they are
+      not locked.  Then searches for the col index whose header text matches the
+      provided col parameter.  If matchcount is provided and is greater than 1,
+      then we will find the Nth match for the provided col parameter.
+
+      We identify a match with the following precedence:
+
+          1. full-length, case-sensitive match
+          2. full-length, case-INsensitive match
+          3. case-INsensitive partial text match
+
+      If no error occurred, this routine does LOCK the column names after
+      they are extracted.  External scripts will need to RELEASE the data when
+      they are ready to do so.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      col         full or partial header text of field to index
+
+      matchcount  Optionally specify the Nth occurrence of a match. Thus,
+                  2=2nd match occurrence, 3=3rd match, etc...
+
+
+ RETURNS:
+
+      N   1-based col index
+      0   Not found
+     -N   Failure code from extractColumnNames
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfshowrowvisible"></a>
+   Function VSFshowRowVisible alias "showRowVisible"  ( flexgrid As String,
+                                                        row      As Integer,
+                                                        Optional mode
+                                                      ) as Integer
+
+ DESCRIPTION:
+
+      Set the grid to point to the provided row.  The default behavior is
+      to actually set the grid's Row property to the provided row AND then
+      force the grid to move\scroll so the row is visible onscreen.
+
+      However, the user can provide the optional mode parameter to bypass
+      the grid move operation.  If mode=1 then we will set the Row property,
+      but we will not move the grid to bring it in view.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the raw row.  This is the actual row as
+                  it exists in the grid, not a logical row as they are visible
+                  to the user.  For example, the first row actually visible
+                  in the grid may actually be row #3 in the grid.  You would
+                  specify row=3 to "show" that first visible row.
+
+      mode        Optional. if mode=1 then bypass the operation that brings
+                  the row into view.  Just set the Row property.
+
+
+ RETURNS:
+
+      0   No errors detected.
+      N   SQA Errors in working with the ROW property of the grid.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfshowcolvisible"></a>
+   Function VSFshowColVisible alias "showColVisible"  ( flexgrid As String,
+                                                        col      As Integer,
+                                                        Optional mode
+                                                      ) as Integer
+
+ DESCRIPTION:
+
+      Set the grid to point to the provided col.  The default behavior is
+      to actually set the grid's Col property to the provided col AND then
+      force the grid to move\scroll so the col is visible onscreen.
+
+      However, the user can provide the optional mode parameter to bypass
+      the grid move operation.  If mode=1 then we will set the Col property,
+      but we will not move the grid to bring it in view.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      col         1-based index of the raw col.  This is the actual col as
+                  it exists in the grid, not a logical col as they are visible
+                  to the user.  For example, the first col actually visible
+                  in the grid may actually be col #2 in the grid.  You would
+                  specify col=2 to "show" that first visible col.
+
+      mode        Optional. if mode=1 then bypass the operation that brings
+                  the col into view.  Just set the Col property.
+
+
+ RETURNS:
+
+      0   No errors detected.
+      N   SQA Errors in working with the COL property of the grid.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsffindlogicalrow"></a>
+   Function VSFfindLogicalRow alias "findLogicalRow"  ( flexgrid As String,
+                                                        row      As Integer,
+                                                        Optional mode
+                                                      ) as Integer
+
+ DESCRIPTION:
+
+      Identify the true Row index for the logical\visible row requested.
+      Hidden rows and fixed rows are ignored when counting logical rows.
+      For example, logical row #1 is generally the first row containing
+      data values visible to the user.
+
+      Thus, if the grid contains 2 fixed rows and 1 hidden row
+      then the visible data in logical row 1 is actually stored at Row index
+      4.  So, when the caller requests the index for logical row 1 (row=1),
+      this routine would return the number 4.  (Visible row 1 is stored at
+      Row index 4.)
+
+      The user can provide the optional mode parameter to use this found index
+      to perform certain functions:
+
+          mode=0 or not provided: set cursor to row and force it into view
+          mode=1: set cursor to the Row, but do not force it into view
+          mode=2: do not set cursor to the Row
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the logical\visible row.  This is the row as
+                  it appears to the user.  For example, the first logical row
+                  is typcially the first row that actually contains real data.
+                  It excludes the hidden rows or fixed rows often used for
+                  column headers.
+
+      mode        Optional.
+                  mode=0 or not provided: set cursor to row and force it into view
+                  mode=1: set cursor to the Row, but do not force it into view
+                  mode=2: do not set cursor to the Row
+
+
+ RETURNS:
+
+      0   Insufficient rows in grid or other bad input.
+      N   The real 1-based row index for the logical\visible row requested.
+          (Yeah, we know the actual grid is 0-based. Ignore that.)
+     -1   Error retrieving\setting Grid properties.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsffindlogicalcol"></a>
+   Function VSFfindLogicalCol alias "findLogicalCol"  ( flexgrid As String,
+                                                        col      As Variant,
+                                                        Optional mode
+                                                      ) as Integer
+
+ DESCRIPTION:
+
+      Identify the true Col index for the logical\visible col requested.
+      The requested col can be identified by index or by field name.
+
+      Hidden cols and fixed cols are ignored when counting logical cols.
+      For example, logical col #1 is generally the first col containing
+      data values visible to the user.
+
+      Thus, if the grid contains 2 fixed cols and 1 hidden col
+      then the visible data in logical col 1 is actually stored at Col index
+      4.  So, when the caller requests the index for logical col 1 (col=1),
+      this routine would return the number 4.  (Visible col 1 is stored at
+      col index 4.)
+
+      The user can provide the optional mode parameter to use this found index
+      to perform certain functions:
+
+          mode=0 or not provided: set cursor to Col and force it into view
+          mode=1: set cursor to the Col, but do not force it into view
+          mode=2: do not set cursor to the Col
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      col         1-based index of the logical\visible col or the string field
+                  name of the col.  The index is the col as it appears to the
+                  user.  For example, the first logical col is typcially
+                  the first col that actually contains real data.
+                  It excludes the hidden cols or fixed cols often used for
+                  non-data purposes.
+
+      mode        Optional.
+                  mode=0 or not provided: set cursor to Col and force it into view
+                  mode=1: set cursor to the Col, but do not force it into view
+                  mode=2: do not set cursor to the Col
+
+
+ RETURNS:
+
+      0   Insufficient cols in grid or other bad input.
+      N   The real 1-based col index for the logical\visible col requested.
+          (Yeah, we know the actual grid is 0-based. Ignore that.)
+     -1   Error retrieving\setting Grid properties.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfvalidateblockparameters"></a>
+   Function VSFvalidateBlockParameters alias "validateBlockParameters"
+                                                  ( flexgrid As String,
+                                                    maxRows As Integer, maxCols As Integer,
+                                                    rowMin As Integer, rowMax As Integer,
+                                                    colMin As Variant, colMax As Variant,
+                                                    mode As Integer
+                                                  ) as Integer
+
+ DESCRIPTION:
+
+
+      This routine converts input row and column parameters to their real physical
+      cell pointers and verifies that the defined block is valid.  That mins are
+      less than or equal to maxs and allowable maxs are not exceeded.  It will
+      also resolve the column pointers if field names are provided instead.
+
+      If mode = 0, then the input parameters will be interpretted as logical.
+      We only reference non-hidden, non-fixed cells.
+
+      If mode = 1, then the input parameters will be interpretted as real.
+      We will reference ALL cells including hidden and fixed cells.
+
+      colMin and colMax can be specified as indices OR full or partial field names.
+
+      Upon successful completion; rowMin, colMin, rowMax, and colMax will contain
+      the 1-based indices of the physical cells defining the block of grid cells.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      maxRows     1-based maximum number allowed for setting rowMax.
+                  Usually this is retrieved from function getMaxRows.
+
+      maxCols     1-based maximum number allowed for setting colMax.
+                  Usually this is retrieved from function getMaxCols.
+
+      rowMin      1-based index of the first row of the block.
+
+      rowMax      1-based index of the last row of the block.
+
+      colMin      1-based index of the first col in the block.
+                  Can instead be a field name or partial field name.
+
+      colMax      1-based index of the last col in the block.
+                  Can instead be a field name or partial field name.
+
+      mode        mode=1: parameters are interpretted as real indices that
+                  include hidden and fixed data not visible to the user.
+
+                  mode=0: parameters are interpretted as logical indices
+                  that DO NOT include hidden and fixed data not visible to
+                  the user.  Only visible data cells are referenced.
+
+                  Invalid modes will be treated as mode=0 at this time.
+
+
+ RETURNS:
+
+        0          on valid block definition set based on mode provided.
+
+       -1          Grid property access errors.
+       -2          Input parameter errors.
+       -3          Column Names Error.
+       -4          Other errors.
+       -5          Bounds errors.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 06, 2002
+ History:
+
+      AUG 06, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsffindnextnonhiddenitem"></a>
+   Function VSFfindNextNonHiddenItem alias "findNextNonHiddenItem"
+                                                  ( flexgrid As String,
+                                                    itemIndex as Integer,
+                                                    itemMax As Integer,
+                                                    mode As Integer
+                                                  ) as Integer
+
+ DESCRIPTION:
+
+      Attempts to locate the next non-hidden row or column in the grid.
+      The search begins at the provided 1-based itemIndex.
+
+      The mode parameter determines if we are searching rows or columns.
+      If mode=0, we are searching for non-hidden rows.
+      If mode=1, we are searching for non-hidden columns.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      itemIndex   1-based index of the first item to check.
+
+      itemMax     1-based index of the last item to check.
+
+      mode        0; find next non-hidden row.
+                  1; find next non-hidden column.
+
+ RETURNS:
+
+      N       The physical, 1-based index of the next non-hidden item.
+
+      0       None found
+     -2       Object Access Error
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 06, 2002
+ History:
+
+      AUG 06, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsffindblankrow"></a>
+   Function VSFfindBlankRow alias "findBlankRow"  ( flexgrid As String,
+                                                    Optional rowMin, Optional rowMax,
+                                                    Optional colMin, Optional colMax,
+                                                    Optional mode
+                                                  ) as Integer
+
+ DESCRIPTION:
+
+      Attempts to locate the first row having no TEXT (blank) in or between colMin
+      and colMax.  The row search begins at rowMin.  The optional mode parameter
+      determines if we are searching logical, visible data cells only or ALL cells
+      including hidden and fixed cells.
+
+      If mode is not provided or is <> 1, then the input parameters and the search
+      mechanism will be interpretted as logical.  We only count non-hidden, non-fixed
+      cells.
+
+      If mode = 1, then the input parameters and the search mechanism will be
+      interpretted as real.  We will count ALL cells including hidden and fixed cells.
+
+      rowMin will default to 1 if not provided.
+
+      colMin and colMax can be specified as indices OR full or partial field names.
+      If not provided, colMin = 1 and colMax = the last column of the grid.
+
+      The grid's cursor will remain on the last grid tested.  Thus, the cursor should
+      reside on the last tested column of the found blank row, or it will be on the last
+      tested column of the last row checked--even though it was not found to be blank.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      rowMin      1-based index of the first row to search.  Defaults to 1.
+
+      rowMax      1-based index of the first row to search.  Defaults to Last.
+
+      colMin      1-based index of the minimum col to search.  Defaults to 1.
+
+                  Can instead be a field name or partial field name.
+
+      colMax      1-based index of the maximum col to search.  Defaults to Last.
+                  Can instead be a field name or partial field name.
+
+      mode        If provided and mode=1, then parameters
+                  are interpretted as real indices that include hidden and
+                  fixed data not visible to the user.
+
+                  If not provided, or mode <> 1; then parameters
+                  are interpretted as logical indices that DO NOT include hidden
+                  and fixed data not visible to the user.  Only visible data
+                  cells are referenced and checked.
+
+ RETURNS:
+
+      N           The raw 1-based row index of the first row containing no TEXT
+                  in and between colMin and colMax (inclusive).
+
+      0           None Found
+
+     -N           Errors from validateBlockParameters
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 06, 2002
+ History:
+
+      AUG 06, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfextractgridtext"></a>
+   Function VSFextractGridText alias "extractGridText"
+                                                  ( flexgrid As String, _
+                                                    data() as String, _
+                                                    Optional rowMin, Optional rowMax,
+                                                    Optional colMin, Optional colMax,
+                                                    Optional mode
+                                                  ) as Integer
+
+ DESCRIPTION:
+
+      Attempts to extract the Text value from each cell in the block defined
+      by rowMin, colMin, rowMax, colMax.  The row search begins at rowMin.
+      The optional mode parameter determines if we are extracting logical,
+      visible data cells only or ALL cells including hidden and fixed cells.
+
+      Each extracted cell will represent one entry in the 1-based, 2D data array.
+
+      The data array should initially be declared as:
+
+              Dim data() as String
+
+
+      If mode is not provided or is <> 1, then the input parameters and the extract
+      mechanism will be interpretted as logical.  We only count non-hidden, non-fixed
+      cells.
+
+      If mode = 1, then the input parameters and the extract mechanism will be
+      interpretted as real.  We will count ALL cells including hidden and fixed cells.
+
+      If not provided, rowMin = 1 and rowMax = the last row of the grid.
+
+      colMin and colMax can be specified as indices OR full or partial field names.
+      If not provided, colMin = 1 and colMax = the last column of the grid.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      data        String array to be ReDimmed as a 2D array.  Cell Text values will
+                  be returned in this array as columns per row.
+                  The data array will be ReDimmed as a 1-based, 2D String array.
+                  The first element will be element 1,1: row1, col1.
+
+      rowMin      1-based index of the first row to search.  Defaults to 1.
+
+      rowMax      1-based index of the first row to search.  Defaults to Last.
+
+      colMin      1-based index of the minimum col to search.  Defaults to 1.
+                  Can instead be a field name or partial field name.
+
+      colMax      1-based index of the maximum col to search.  Defaults to Last.
+                  Can instead be a field name or partial field name.
+
+      mode        If provided and mode=1, then parameters
+                  are interpretted as real indices that include hidden and
+                  fixed data not visible to the user.
+
+                  If not provided, or mode <> 1; then parameters
+                  are interpretted as logical indices that DO NOT include hidden
+                  and fixed data not visible to the user.  Only visible data
+                  cells are referenced and checked.
+
+ RETURNS:
+
+      N           The number of rows extracted into the 1-based, 2D array.
+
+     -1           Errors from object property lookup.
+     -2           Errors with input parameters.
+     -N           Errors from other routines like validateBlockParameters.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 09, 2002
+ History:
+
+      AUG 09, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfoutputgridtexttofile"></a>
+   Function VSFoutputGridTextToFile alias "outputGridTextToFile"
+                                                  ( flexgrid As String, _
+                                                    filename as String, Optional separator,
+                                                    Optional rowMin, Optional rowMax,
+                                                    Optional colMin, Optional colMax,
+                                                    Optional mode
+                                                  ) as Integer
+
+ DESCRIPTION:
+
+      Attempts to extract the Text value from each cell in the block defined
+      by rowMin, colMin, rowMax, colMax and output them to a delimited file.
+      The row search begins at rowMin.
+
+      The optional mode parameter determines if we are extracting logical,
+      visible data cells only or ALL cells including hidden and fixed cells.
+
+      Each extracted cell will represent one field in the output file.
+      Each field will be separated by the provided separator or, by
+      default, the TAB character.
+      Each row will be output on a separate line.
+
+      If mode is not provided or is <> 1, then the input parameters and the extract
+      mechanism will be interpretted as logical.  We only count non-hidden, non-fixed
+      cells.
+
+      If mode = 1, then the input parameters and the extract mechanism will be
+      interpretted as real.  We will count ALL cells including hidden and fixed cells.
+
+      If not provided, rowMin = 1 and rowMax = the last row of the grid.
+
+      colMin and colMax can be specified as indices OR full or partial field names.
+      If not provided, colMin = 1 and colMax = the last column of the grid.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      filename    fullpath to filename that will be written with contents.
+                  The routine will overwrite the file if it already exists.
+
+      separator   Optional separator to use between fields in each record.
+                  By default, the routine will use the TAB character.
+
+      rowMin      1-based index of the first row to search.  Defaults to 1.
+
+      rowMax      1-based index of the first row to search.  Defaults to Last.
+
+      colMin      1-based index of the minimum col to search.  Defaults to 1.
+                  Can instead be a field name or partial field name.
+
+      colMax      1-based index of the maximum col to search.  Defaults to Last.
+                  Can instead be a field name or partial field name.
+
+      mode        If provided and mode=1, then parameters
+                  are interpretted as real indices that include hidden and
+                  fixed data not visible to the user.
+
+                  If not provided, or mode <> 1; then parameters
+                  are interpretted as logical indices that DO NOT include hidden
+                  and fixed data not visible to the user.  Only visible data
+                  cells are retrieved.
+
+ RETURNS:
+
+      N           The number of rows output into the file.
+
+     -1           Errors from object property lookup.
+     -2           Errors with input parameters.
+     -N           Errors from other routines like validateBlockParameters.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 20, 2002
+ History:
+
+      SEP 20, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfgetrawcellcoordinates"></a>
+   Function VSFgetRawCellCoordinates alias "GetRawCellCoordinates"  ( flexgrid As String,
+                                                                      row      As Integer,
+                                                                      col      As Variant,
+                                                                      x as Integer, y as Integer,
+                                                                      Optional w, Optional h
+                                                                    ) as Integer
+
+ DESCRIPTION:
+
+      Locate the top left coordinate of a grid cell.  We will also fill in the
+      cell's width(w) and height(h) if the parameters are provided.
+
+      row and col indices are 1-based.  col can instead be a non-numeric field
+      name or partial field name.  Indices are based on the raw rows and
+      cols--the actual 1-based indices in the grid whether or not they are hidden
+      or fixed.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the raw row.
+
+      col         1-based index of the raw col.
+                  Can also be a field name or partial field name.
+
+      x           receives the x coordinate in screen pixels of the grid cell.
+                  This is for the top left corner of the cell.
+
+      y           receives the y coordinate in screen pixels of the grid cell.
+                  This is for the top left corner of the cell.
+
+      w           receives the width in screen pixels of the grid cell.
+                  Providing this parameter is optional.
+
+      h           receives the height in screen pixels of the grid cell.
+                  Providing this parameter is optional.
+
+
+ RETURNS:
+
+      0   No errors detected.
+      N   SQA Error codes while extracting property values.
+     -1   Error matching col field name.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfgetcellcoordinates"></a>
+   Function VSFgetCellCoordinates alias "GetCellCoordinates"  ( flexgrid As String,
+                                                                row      As Integer,
+                                                                col      As Variant,
+                                                                x as Integer, y as Integer,
+                                                                Optional w, Optional h
+                                                              ) as Integer
+
+ DESCRIPTION:
+
+      Locate the top left coordinate of a grid cell.  We will also fill in the
+      cell's width(w) and height(h) if the parameters are provided.
+
+      row and col indices are 1-based.  col can instead be a non-numeric field
+      name or partial field name.  Indices are based on the logical rows and
+      cols--those visible to the user.  Thus, the first row of data is row 1.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the logical(visible) row.
+
+      col         1-based index of the logical(visible) col.
+                  Can also be a field name or partial field name.
+
+      x           receives the x coordinate in screen pixels of the grid cell.
+                  This is for the top left corner of the cell.
+
+      y           receives the y coordinate in screen pixels of the grid cell.
+                  This is for the top left corner of the cell.
+
+      w           receives the width in screen pixels of the grid cell.
+                  Providing this parameter is optional.
+
+      h           receives the height in screen pixels of the grid cell.
+                  Providing this parameter is optional.
+
+
+ RETURNS:
+
+      0   No errors detected.
+      N   Errors from GetRawCellCoordinates
+     -1   Errors matching logical row and col.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfclickrawcell"></a>
+   Function VSFclickRawCell alias "clickRawCell"  ( flexgrid As String,
+                                                    row      As Integer,
+                                                    col      As Variant,
+                                                    Optional mode
+                                                  ) as Integer
+
+ DESCRIPTION:
+
+      Click the center of the raw grid cell.  This is the actual 1-based
+      grid cell that includes hidden and fixed rows and columns.
+
+      row and col indices are 1-based.  col can instead be a non-numeric field
+      name or partial field name.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the real row.
+
+      col         1-based index of the real col.
+                  Can instead be a field name or partial field name.
+
+      mode        If provided, and mode=1, then we will send an {ESCAPE} key
+                  to the grid to abort any edit mode that may have initiated.
+                  Otherwise, we will stay in edit mode if active.
+
+ RETURNS:
+
+      0   No errors detected.
+      N   Errors From GetRawCellCoordinates.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfclickcell"></a>
+   Function VSFclickCell alias "clickCell"  ( flexgrid As String,
+                                              row      As Integer,
+                                              col      As Variant,
+                                              Optional mode
+                                            ) as Integer
+
+ DESCRIPTION:
+
+      Click the center of the logical (visible) grid cell.
+
+      row and col indices are 1-based.  col can instead be a non-numeric field
+      name or partial field name.  Indices are based on the logical rows and
+      cols--those visible to the user.  Thus, the first row of data is row 1.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the logical(visible) row.
+
+      col         1-based index of the logical(visible) col.
+                  Can instead be a field name or partial field name.
+
+      mode        If provided, and mode=1, then we will send an {ESCAPE} key
+                  to the grid to abort any edit mode that may have initiated.
+                  Otherwise, we will stay in edit mode if active.
+
+ RETURNS:
+
+      0   No errors detected.
+      N   Errors From clickRawCell.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfselectrawcell"></a>
+   Function VSFselectRawCell alias "selectRawCell"  ( flexgrid As String,
+                                                      row      As Integer,
+                                                      col      As Variant
+                                                    ) as Integer
+
+ DESCRIPTION:
+
+      Click the center of the raw grid cell.
+      If the grid goes into edit mode then ESCAPE out of edit mode.
+
+      row and col indices are 1-based.  col can instead be a non-numeric field
+      name or partial field name.  Indices are based on the real rows and
+      cols which will include hidden and fixed rows.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the real row.
+
+      col         1-based index of the real col.
+                  Can instead be a field name or partial field name.
+
+
+ RETURNS:
+
+      0   No errors detected.
+      N   Errors From clickRawCell.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsfselectcell"></a>
+   Function VSFselectCell alias "selectCell"  ( flexgrid As String,
+                                                row      As Integer,
+                                                col      As Variant
+                                              ) as Integer
+
+ DESCRIPTION:
+
+      Click the center of the logical (visible) grid cell.
+      If the grid goes into edit mode then ESCAPE out of edit mode.
+
+      row and col indices are 1-based.  col can instead be a non-numeric field
+      name or partial field name.  Indices are based on the logical rows and
+      cols--those visible to the user.  Thus, the first row of data is row 1.
+
+
+ PARAMETERS:
+
+      flexgrid    the recognition string for the VSFlexgrid object.
+
+      row         1-based index of the logical(visible) row.
+
+      col         1-based index of the logical(visible) col.
+                  Can instead be a field name or partial field name.
+
+
+ RETURNS:
+
+      0   No errors detected.
+      N   Errors From clickCell.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 31, 2002
+ History:
+
+      JUL 31, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsflexverifyvaluestofile"></a>
+   Sub VSFlexVerifyValuesToFile ()
+
+ DESCRIPTION:
+
+      Routine to verify the string values of a grid block to a file benchmark.
+      You can verify the entire grid, or a user-defined block of values
+      withing the grid.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      This command supports the "TW" record type for user configured file
+      comparators for which we have no means to automatically verify the
+      results.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Benchmark text filename.  Relative paths suitable for FindSQAFile
+              can be used.  Normally, the Benchmark file would reside in the
+              Project's Datapool\Bench directory.
+
+       6      (Optional) rowMin. Specify the first row of the block to capture
+              and verify.  The first row of the Grid is 1.  Row 1 is the default
+              used if no rowMin is specified.
+
+       7      (Optional) rowMax. Specify the last row of the block to capture
+              and verify.  The first row of the Grid is 1.  The last row is the
+              default used if no rowMax is specified.
+
+       8      (Optional) colMin. Specify the first col of the block to capture
+              and verify.  The first col of the Grid is 1.  Col 1 is the default
+              used if no colMin is specified.
+              You can also specify a column via full or partial col header text.
+
+       9      (Optional) colMax. Specify the last col of the block to capture
+              and verify.  The first col of the Grid is 1.  The last col is the
+              default used if no colMax is specified.
+              You can also specify a column via full or partial col header text.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 23, 2002
+ History:
+
+      SEP 23, 2002    Original Release
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities directories.
+      AUG 20, 2003    (Carl Nagle) Mod to use alternate diffs if configured.
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsflexclicklogicalcell"></a>
+   Sub VSFlexClickLogicalCell (Optional mode)
+
+
+
+ DESCRIPTION:
+
+      Attempts to perform a single Click on a logical table cell.
+      The cell to Click is provided in separate row and col
+      parameters.  Missing parameters indicate index=1. The
+      indexes are 1-based.  That is, the first row is row 1.
+      The first col is col 1.
+
+      Logical Cells are those data cells viewable to the
+      user.  They do not include hidden or fixed cells.
+      Thus, the first top left cell for real grid data
+      is considered cell 1,1.
+
+      The grid will remain in edit mode if edit mode goes active.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The ROW of the cell to click. If no ROW is specified then the
+              routine will use ROW=1.
+
+       6      The COLUMN of the cell to click. If no COLUMN is specified then
+              the routine will use COL=1.
+
+
+  NOTE: the routine's MODE parameter is not used by the Click command.  That is
+  provided for other commands such as SelectCell.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 18, 2002
+ History:
+
+      JUN 18, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="vsflexselectlogicalcell"></a>
+   Sub VSFlexSelectLogicalCell () alias VSFlexClickLogicalCell
+
+
+
+ DESCRIPTION:
+
+      Attempts to perform a Select on a logical table cell.
+      The cell to Select is provided in separate row and col
+      parameters.  Missing parameters indicate index=1. The
+      indexes are 1-based.  That is, the first row is row 1.
+      The first col is col 1.
+
+      Logical Cells are those data cells viewable to the
+      user.  They do not include hidden or fixed cells.
+      Thus, the first top left cell for real grid data
+      is considered cell 1,1.
+
+      We will ESCAPE out of edit mode if edit mode goes active.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The ROW of the cell to click. If no ROW is specified then the
+              routine will use ROW=1.
+
+       6      The COLUMN of the cell to click. If no COLUMN is specified then
+              the routine will use COL=1.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 18, 2002
+ History:
+
+      JUN 18, 2002    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a VSFLEXGRID.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized here we will pass processing on
+      to GenericObjectFunctions.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 18, 2002
+ History:
+
+      JUN 18, 2002    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      OCT 17, 2005    (Carl Nagle) Changed Click to ClickCell
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

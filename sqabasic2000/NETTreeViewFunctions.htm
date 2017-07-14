@@ -1,0 +1,654 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic NETTreeViewFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "NETTreeViewFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on TREEVIEW objects in .NET
+      Data-Driven Automation with Robot V2003.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="TreeViewFunctions.htm">TreeViewFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      VerifySelectedNode      'verify a Node is selected
+      VerifyNodeUnselected    'verify a Node IS NOT SELECTED
+      SelectStateIcon           'Select/Check a state icon according to its text value
+      VerifyStateIcon           'verify a particular state icon is selected/Checked
+      VerifyStateIconUnselected 'verify a particular state icon is NOT SELECTED/UnChecked
+      CheckTextNode           'Select/Check a state icon according to its text value
+      UnCheckTextNode         'UnCheck a state icon according to its text value
+      VerifyTextNodeChecked   'verify a particular state icon is Checked
+      VerifyTextNodeUnChecked 'verify a particular state icon is UnChecked
+
+      Expand                  'Expand a Node (full path specified) at Text Label
+      ExpandPartial           'Expand a Node (full path specified) at Text Label based on a partial text match
+      ExpandTextNode          'Expand a Node at Text Label        (deprecated for Expand)
+      Collapse                'Collapse a Node (full path specified) at Text Label
+      CollapsePartial         'Collapse a Node (full path specified) at Text Label based on a partial text match
+      CollapseTextNode        'Collapse a Node at Text Label      (deprecated for Collapse)
+
+      ClickPartial            'Click a Node (full path specified) at Text Label based on a partial text match
+      Select                  'Select a Node (full path specified) at Text Label
+      SelectPartial           'Select a Node (full path specified) at Text Label based on a partial text match
+      SelectTextNode          'Select a Node at Text Label        (deprecated for Select)
+
+      RightClickPartial       'RightClick a Node (full path specified) at Text Label based on a partial text match
+      RightClickTextNode      'Right click a Node at Text Label   (deprecated for RightClick)
+
+      DoubleClickPartial      'DoubleClick a Node (full path specified) at Text Label based on a partial text match
+
+      SelectUnverifiedTextNode     'Clicks a Node (full path specified) at Text Label -- does not verify the Nodes.count property
+      RightClickUnverifiedTextNode 'RightClicks a Node (full path specified) at Text Label -- does not verify the Nodes.count property
+      ActivateUnverifiedTextNode   'DoubleClicks a Node (full path specified) at Text Label -- does not verify the Nodes.count property
+
+      CaptureTreeDataToFile        'Captures Tree node information to a file
+      PartialMatchTreeDataToFile   'Captures Tree node information to a file
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="collapsetextnode"></a>
+   Sub CollapseTextNode () Integrated into ExpandTextNode
+
+
+ DESCRIPTION:
+
+      Routine to collapse a node according to its text value.
+      The routine now supports specifying a matchIndex for matching
+      duplicate nodes in the tree (the same full path).
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 20, 2005
+ History:
+
+      AUG 09, 1999    Original Release
+      MAY 24, 2000    Convert for Robot2000.
+      JAN 23, 2002    (YWANG)  Deprecated for Collapse
+      DEC 03, 2003    (Carl Nagle) Integrated into ExpandTextNode as mode=1
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyselectednode"></a>
+   Sub VerifySelectedNode (Optional mode)
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular text is selected.
+
+ PARAMETERS:
+
+    mode  0 = VerifySelectedNode command
+          1 = VerifyNodeUnselected command
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2000
+ History:
+
+      APR 03, 2000    Original Release
+      DEC 03, 2003    (Carl Nagle) Integrate VerifyNodeUnselected code.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifystateicon"></a>
+   Sub VerifyStateIcon (Optional mode)
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular state icon is selected (Checked).
+      The routine now supports specifying a matchIndex for matching
+      duplicate nodes in the tree (the same full path).
+
+
+ PARAMETERS:
+
+    mode  0 = VerifySelectedNode command
+          1 = VerifyNodeUnselected command
+
+ ERRORS:
+
+      none
+
+ Orig Author:
+ Orig   Date: JUNE 13, 2002
+ History:
+
+      JUN 13, 2002    (Monica Vong) Original Release
+      DEC 03, 2003    (Carl Nagle) Added Nth duplicate match capability and mode
+                      to integrate VerifyStateIconUnselected code.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifystateiconunselected"></a>
+   Sub VerifyStateIconUnselected () Integrated into VerifyStateIconSelected
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular state icon is NOT SELECTED.
+      The routine now supports specifying a matchIndex for matching
+      duplicate nodes in the tree (the same full path).
+
+ ERRORS:
+
+      none
+
+ Orig Author:
+ Orig   Date: JUNE 13, 2002
+ History:
+
+      JUNE 13, 2002   (Monica Vong) Original Release
+      DEC 03, 2003    (Carl Nagle) Integrated into VerifyStateIconSelected as mode=1
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifynodeunselected"></a>
+   Sub VerifyNodeUnselected () Integrated into VerifySelectedNode
+
+ DESCRIPTION:
+
+      Routine to verify a particular text node is NOT SELECTED.
+      The routine now supports specifying a matchIndex for matching
+      duplicate nodes in the tree (the same full path).
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2000
+ History:
+
+      APR 03, 2000    Original Release
+      DEC 03, 2003    (Carl Nagle) Integrated into VerifySelectedNode as mode=1
+
+</pre>
+<hr>
+<pre>
+
+<a name="rightclickunverifiedtextnode"></a>
+   Sub RightClickUnverifiedTextNode () Integrated into SelectUnverifiedText
+
+
+ DESCRIPTION:
+
+      Routine to right click a node according to its text value.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Meera Venkataramani
+ Orig   Date: JAN 06, 2003
+ History:
+
+      JAN 06, 2003    Original Release
+      JAN 23, 2003    (YWANG)  Deprecated for RightClick
+      DEC 03, 2003    (Carl Nagle) Integrated into SelectUnverifiedText code.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectunverifiedtextnode"></a>
+   Sub SelectUnverifiedTextNode (Optional action)
+
+
+ DESCRIPTION:
+
+      Routine to click a node according to its text value.  Supports:
+
+         SelectUnverified (MakeSelection)
+         RightClickUnverified (Right_Click)
+         ActivateUnverified (DblClick)
+
+      The routine now supports specifying a matchIndex for matching
+      duplicate nodes in the tree (the same full path).
+
+      Note the command needs the full hierarchical path to the node with parent
+      child relationships separated by "->", as in "Parent->Branch->Leaf".
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Meera Venkataramani
+ Orig   Date: April 04, 2003
+ History:
+
+    APR 04, 2003  Original Release
+    DEC 03, 2003    (Carl Nagle) Added Nth duplicate match capability and mode
+                             to integrate RightClick support.
+                             Added ActivateUnverified, too.
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (EXPAND_ACTION, Optional mode, Optional location)
+
+
+ DESCRIPTION:
+
+      Routine to expand a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode        Optional parameter indicating node text match method.
+                  0 for exact match. 1 for partial match. Default is 0.
+
+      location    Location for the mouse click. Ignored for EXPAND_ACTION.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to expand.
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial" commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node to expand.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JAN 22, 2003
+ History:
+
+      JAN 22, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (COLLAPSE_ACTION, Optional mode, Optional location)
+
+
+ DESCRIPTION:
+
+      Routine to collapse a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode        Optional parameter indicating node text match method.
+                  0 for exact match. 1 for partial match. Default is 0.
+
+      location    Location for the mouse click. Ignored for COLLAPSE_ACTION.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to collapse
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial" commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JAN 22, 2003
+ History:
+
+      JAN 22, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (SELECT_ACTION, Optional mode, Optional location)
+
+
+ DESCRIPTION:
+
+      Routine to select a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode        Optional parameter indicating node text match method.
+                  0 for exact match. 1 for partial match. Default is 0.
+
+      location    Optional. Location for the mouse click. One of the valid
+                  values for SQA TreeView user action command's "Location"
+                  parameter. Default is "Location=Text", which is the
+                  default for the SQA TreeView user action command.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial" commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JAN 22, 2003
+ History:
+
+      JAN 22, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (CLICK_ACTION, Optional mode, Optional location)
+
+
+ DESCRIPTION:
+
+      Routine to click a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode        Optional parameter indicating node text match method.
+                  0 for exact match. 1 for partial match. Default is 0.
+
+      location    Optional. Location for the mouse click. One of the valid
+                  values for SQA TreeView user action command's "Location"
+                  parameter. Default is "Location=Text", which is the
+                  default for the SQA TreeView user action command.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to click
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial" commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JAN 23, 2003
+ History:
+
+      JAN 23, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (RIGHT_CLICK_ACTION, Optional mode, Optional location)
+
+
+ DESCRIPTION:
+
+      Routine to right click a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+
+ PARAMETERS:
+
+      mode        Optional parameter indicating node text match method.
+                  0 for exact match. 1 for partial match. Default is 0.
+
+      location    Optional. Location for the mouse click. One of the valid
+                  values for SQA TreeView user action command's "Location"
+                  parameter. Default is "Location=Text", which is the
+                  default for the SQA TreeView user action command.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to right click
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial" commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JAN 23, 2003
+ History:
+
+      JAN 23, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="performaction"></a>
+   Sub PerformAction (DOUBLE_CLICK_ACTION, Optional mode, Optional location)
+
+
+ DESCRIPTION:
+
+      Routine to double click a node according to its text value.
+      Parent-child relationships are separated with "->"
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ PARAMETERS:
+
+      mode        Optional parameter indicating node text match method.
+                  0 for exact match. 1 for partial match. Default is 0.
+
+      location    Optional. Location for the mouse click. One of the valid
+                  values for SQA TreeView user action command's "Location"
+                  parameter. Default is "Location=Text", which is the
+                  default for the SQA TreeView user action command.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to double click
+              Parent-child relationships are separated with "->"
+              Example: "My New Parent->My Stepchild"
+
+              For "...Partial" commands:
+              ------------------------------
+              TextValue is the case-insensitive text of the node.
+              For each level, a text comparison is performed. If the node
+              contains the requested substring anywhere in its text, then
+              that node is considered a match.
+              Example: "parent->child"  will successfully identify the node
+                       "My New Parent->My Stepchild"
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JAN 23, 2003
+ History:
+
+      JAN 23, 2003    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a TREEVIEW.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 20, 2005
+ History:
+
+      JUL 20, 2005    Original Release
+      FEB 02, 2006    (Carl Nagle) Corrected keyword constant problem.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

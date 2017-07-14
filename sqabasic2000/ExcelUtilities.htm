@@ -1,0 +1,580 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ExcelUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ExcelUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Routines to work with Excel files generally through the COM API.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "ExcelUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#exportxlstofiles">ExportXLSToFiles</a>        BasicLib ExcelUtilities                
+Function <a href="#exportxlstoonefile">ExportXLSToOneFile</a>      BasicLib ExcelUtilities                
+Function <a href="#exportxls2inifile">ExportXLS2INIFile</a>       BasicLib ExcelUtilities                
+Function <a href="#exportxls2testcomposer">ExportXLS2TestComposer</a>  BasicLib ExcelUtilities                
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="exportxlstofiles"></a>
+ Function ExportXLSToFiles (fileXLS As String,
+                            Optional dirXLS  As Variant,
+                            Optional password As Variant,
+                            Optional updateLinks As Variant,
+                            Optional dirOUT As Variant,
+                            Optional delimiter As Variant,
+                            Optional colmax As Variant) As Integer
+
+ DESCRIPTION:
+
+      Routine outputs each worksheet within an Excel workbook to a delimited
+      file.  In general, this is used to export the data in Excel Spreadsheets
+      for processing by other programs (like the Data Driven Engine).
+
+      The XLS file will be open with the updateLinks provided or it will use
+      the value of 0 or FALSE to forego any link updates.  In the latter event,
+      any linked data that needs to be updated in the Excel workbook should be
+      done prior to the call of this routine.
+
+      The XLS file will be opened in READ-ONLY mode.  However, if updateLinks
+      is provided and causes an update to occur we will continue but WILL NOT
+      save these changes to file.  The updates will be reflected in our
+      output files but will not be retained in the Excel file.  Thus, if the
+      update is to be retained in the Excel file that will need to be done
+      separately.
+
+      If the workbook requires a password then it should be provided as well.
+
+      The routine exports only the range of cells identified by the UsedRange
+      Object retrieved from each worksheet.  Each field is extracted by the
+      Value returned from the UsedRange.Rows(r).Columns(c).Value function.
+      Fields are delimited by the first character in the provided delimiter
+      string or by a TAB character if delimiter is not provided.
+      Each row is output on a separate line in the output file.
+
+      Each worksheet is output to a separate file.  The name of the file is
+      the value returned from the Worksheet.Name property of the worksheet. Thus,
+      the worksheet should have a name.ext syntax.  Otherwise you may get a
+      file with no extension.  The file will be written to the directory
+      specified by the dirOUT parameter or to the dirXLS directory if dirOUT is
+      not provided.
+
+      SPECIAL CASE PROCESSING:
+      Any worksheet name ending in ".MAP" (case-insensitive) will be processed
+      as if it contains Application Map information for the Data Driven Engine.
+      This essentially limits the UsedRange processing and output to Column 1
+      only.  This is provided for workbooks which include one or more worksheets
+      of Application Map data.  These worksheets are still output as separate
+      files just like the rest of the worksheets in the workbook.
+
+
+ PARAMETERS:
+
+      fileXLS     The Excel XLS workbook file to open in dirXLS.  If the .XLS
+                  extension is not provided then we will add it. File is open in
+                  READ-ONLY mode.
+
+      dirXLS      OPTIONAL directory in which to find the XLS file.
+                  If this parameter is not provided then we will attempt to
+                  locate the file via <A HREF="FileUtilities.htm#FindSQAFile">FindSQAFile</A> in FileUtilities.
+
+      password    OPTIONAL string password.  If the workbook requires a password
+                  then this parameter is NOT optional because Excel will
+                  prompt for a password (and we don't like that).
+
+      updateLinks OPTIONAL value to provide when opening the Excel workbook.
+                  Normally, Excel prompts the user for Yes or No to update
+                  object links if the workbook contains linked objects.  We
+                  bypass the prompt by providing this parameter.
+                  Valid values you can provide this routine:
+
+                      Numeric 0  to bypass link updates.
+                      Numeric 1  to update remote but not external references.
+                      Numeric 2  to update external but not remote references.
+                      Numeric 3  to update all references.
+
+                  NOTE: Updated data will be used, but not saved.
+
+
+      dirOUT      OPTIONAL directory in which to write the output files.  If
+                  this is not provided then we will output to the same directory
+                  found via the dirXLS parameter.
+
+      delimiter   OPTIONAL string containing the field separator character used
+                  between fields in a row.  Only the first character is used.
+                  If this is not provided then the delimiter will be a TAB
+                  character.
+
+      colmax      OPTIONAL Integer containing the maximum number of column has to export.
+                  This to prevent that if the Excel file were generated by TESTGENERATOR
+                  then the number of column is infinite and the export of the Excel file
+                  in textual file is very long. (ADDED By Catherine verbeeck 28/02/2005)
+
+ RETURNS:
+
+       0  Success
+
+      -1  Missing fileXLS Input Parameter
+      -2  Invalid dirXLS, fileXLS, or dirOUT Input Parameters
+      -3  Invalid updateLinks value provided
+      -4  Unable to Get or Create Excel.Application (but no error was trapped)
+       N  Trapped Error returned from Excel Object Scripting or File Handling routines.
+
+ ERRORS:
+
+      none
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 15, 2000
+ History:
+
+      AUG 15, 2000    Original Release
+      MAY 02, 2005    COLMAX by Catherine Verbeeck
+
+</pre>
+<hr>
+<pre>
+
+<a name="exportxlstoonefile"></a>
+ Function ExportXLSToOneFile (fileXLS As String,
+                              fileOUT  As String,
+                              Optional dirXLS  As Variant,
+                              Optional password As Variant,
+                              Optional updateLinks As Variant,
+                              Optional dirOUT As Variant,
+                              Optional delimiter As Variant,
+                              Optional colmax As Variant) As Integer
+
+
+ DESCRIPTION:
+
+      Routine outputs the worksheets within an Excel workbook to one delimited
+      file.  In general, this is used to export the data in Excel Spreadsheets
+      for processing by other programs (like the Data Driven Engine).  In this
+      case, this function is ideal for processing an Excel workbook which
+      contains a separate worksheet for separate Sections of an Application Map.
+      However, there may be other uses for this functionality.
+
+      The XLS file will be open with the UpdateLinks provided or it will use
+      the value of 0 or FALSE to forego any link updates.  In the latter event,
+      any linked data that needs to be updated in the Excel workbook should be
+      done prior to the call of this routine.
+
+      The XLS file will be opened in READ-ONLY mode.  However, if updateLinks
+      is provided and causes an update to occur we will continue but WILL NOT
+      save these changes in Excel.  The updates will be reflected in our
+      output files but will not be retained in the Excel file.  Thus, if the
+      update is to be retained in the Excel file that will need to be done
+      separately.
+
+      If the workbook requires a password then it should be provided as well.
+
+      The routine exports only the range of cells identified by the UsedRange
+      Object retrieved from each worksheet.  Each field is extracted by the
+      Value returned from the UsedRange.Rows(r).Columns(c).Value function.
+      Fields are delimited by the first character in the provided delimiter
+      string or by a TAB character if delimiter is not provided.
+      Each row is output on a separate line in the output file.
+
+      fileOUT will be written to the directory specified by the dirOUT parameter
+      or to the dirXLS directory if dirOUT is not provided.
+
+      SPECIAL CASE PROCESSING:
+      Any worksheet name ending in ".MAP" (case-insensitive) will be processed
+      as if it contains Application Map information for the Data Driven Engine.
+      This essentially limits the UsedRange processing and output to Column 1 only.
+      This is provided for workbooks which include one or more worksheets of
+      Application Map data (which was the original intent of this routine anyway).
+
+
+ PARAMETERS:
+
+      fileXLS     The Excel XLS workbook file to open in dirXLS.  If the .XLS
+                  extension is not provided then we will add it. File is open in
+                  READ-ONLY mode.
+
+      fileOUT     The exported file to create in the dirOUT (or dirXLS) directory.
+
+      dirXLS      OPTIONAL directory in which to find the XLS file.
+                  If this parameter is not provided then we will attempt to
+                  locate the file via <A HREF="FileUtilities.htm#FindSQAFile">FindSQAFile</A> in FileUtilities.
+
+      password    OPTIONAL string password.  If the workbook requires a password
+                  then this parameter is NOT optional because Excel will
+                  prompt for a password (and we don't like that).
+
+      updateLinks OPTIONAL value to provide when opening the Excel workbook.
+                  Normally, Excel prompts the user for Yes or No to update
+                  object links if the workbook contains linked objects.  We
+                  bypass the prompt by providing this parameter.
+                  Valid values you can provide this routine:
+
+                      Numeric 0  to bypass link updates.
+                      Numeric 1  to update remote but not external references.
+                      Numeric 2  to update external but not remote references.
+                      Numeric 3  to update all references.
+
+                  NOTE: Updated data will be used, but not saved.
+
+
+      dirOUT      OPTIONAL directory in which to write the output files.  If
+                  this is not provided then we will output to the same directory
+                  found via the dirXLS parameter.
+
+      delimiter   OPTIONAL string containing the field separator character used
+                  between fields in a row.  Only the first character is used.
+                  If this is not provided then the delimiter will be a TAB
+                  character.
+
+      colmax      OPTIONAL Integer containing the maximum number of column has to export.
+                  This to prevent that if the Excel file were generated by TESTGENERATOR
+                  then the number of column is infinite and the export of the Excel file
+                  in textual file is very long
+
+
+ RETURNS:
+
+       0  Success
+
+      -1  Missing fileXLS or fileOUT Input Parameters
+      -2  Invalid dirXLS, fileXLS, or dirOUT Input Parameters
+      -3  Invalid updateLinks value provided
+      -4  Unable to Get or Create Excel.Application (but no error was trapped)
+       N  Trapped Error returned from Excel Object Scripting or File Handling routines.
+
+ ERRORS:
+
+      none
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 15, 2000
+ History:
+
+      AUG 15, 2000    Original Release
+      MAY 05, 2005    COLMAX by Catherine Verbeeck
+      JAN 25, 2006    (Carl Nagle for JRUXLOW) Add blank lines between App Map sections.
+
+</pre>
+<hr>
+<pre>
+
+<a name="exportxls2inifile"></a>
+ Function ExportXLS2INIFile  (fileXLS As String,
+                              fileOUT  As String,
+                              Optional dirXLS  As Variant,
+                              Optional password As Variant,
+                              Optional updateLinks As Variant,
+                              Optional dirOUT As Variant) As Integer
+
+
+ DESCRIPTION:
+
+      Routine outputs all the worksheet(s) within an Excel workbook to one
+      "=" delimited file--but with some special handling.
+
+      This is used to export the data in Excel Spreadsheets to a text file
+      that is in an INI file format.  In this case, this function is ideal
+      for processing an Excel workbook which potentially contains a separate
+      worksheet for separate Sections of an INI file or Application Map.
+      However, there may be other uses for this functionality.
+
+      The expected format for data in the Worksheet is as follows:
+
+      COLUMN1             COLUMN2
+      ==================  ==================
+
+      [SectionName]
+
+      ItemName            ItemValue
+      ItemName            ItemValue
+      ItemName            ItemValue
+
+
+      The output file will then look like:
+
+      [SectionName]
+
+      ItemName=ItemValue
+      ItemName=ItemValue
+      ItemName=ItemValue
+
+
+      The XLS file will be open with the UpdateLinks provided or it will use
+      the value of 0 or FALSE to forego any link updates.  In the latter event,
+      any linked data that needs to be updated in the Excel workbook should be
+      done prior to the call of this routine.
+
+      The XLS file will be opened in READ-ONLY mode.  However, if updateLinks
+      is provided and causes an update to occur we will continue but WILL NOT
+      save these changes in Excel.  The updates will be reflected in our
+      output files but will not be retained in the Excel file.  Thus, if the
+      update is to be retained in the Excel file that will need to be done
+      separately.
+
+      If the workbook requires a password then it should be provided as well.
+
+      The routine exports only cols 1 and 2 of cells identified by the UsedRange
+      Object retrieved from each worksheet.  Each field is extracted by the
+      Value returned from the UsedRange.Rows(r).Columns(c).Value function.
+      Cols 1 and 2 are delimited by an "=" character.  However, no delimiter
+      is output for blank cols or between col1 and col2 if col2 is empty.
+      Additionally, if col1 is empty but col2 contains a value, then the value
+      is prepended with a ";" comment delimiter to insure the comment is
+      ignored by INI file processing routines.
+      Cols 3-N of UsedRange are not processed.
+      Each row is output on a separate line in the output file.
+
+      fileOUT will be written to the directory specified by the dirOUT parameter
+      or to the dirXLS directory if dirOUT is not provided.
+
+
+ PARAMETERS:
+
+      fileXLS     The Excel XLS workbook file to open in dirXLS.  If the .XLS
+                  extension is not provided then we will add it. File is open in
+                  READ-ONLY mode.
+
+      fileOUT     The exported file to create in the dirOUT (or dirXLS) directory.
+
+      dirXLS      OPTIONAL directory in which to find the XLS file.
+                  If this parameter is not provided then we will attempt to
+                  locate the file via <A HREF="FileUtilities.htm#FindSQAFile">FindSQAFile</A> in FileUtilities.
+
+      password    OPTIONAL string password.  If the workbook requires a password
+                  then this parameter is NOT optional because Excel will
+                  prompt for a password (and we don't like that).
+
+      updateLinks OPTIONAL value to provide when opening the Excel workbook.
+                  Normally, Excel prompts the user for Yes or No to update
+                  object links if the workbook contains linked objects.  We
+                  bypass the prompt by providing this parameter.
+                  Valid values you can provide this routine:
+
+                      Numeric 0  to bypass link updates.
+                      Numeric 1  to update remote but not external references.
+                      Numeric 2  to update external but not remote references.
+                      Numeric 3  to update all references.
+
+                  NOTE: Updated data will be used, but not saved.
+
+
+      dirOUT      OPTIONAL directory in which to write the output files.  If
+                  this is not provided then we will output to the same directory
+                  found via the dirXLS parameter.
+
+
+ RETURNS:
+
+       0  Success
+
+      -1  Missing fileXLS or fileOUT Input Parameters
+      -2  Invalid dirXLS, fileXLS, or dirOUT Input Parameters
+      -3  Invalid updateLinks value provided
+      -4  Unable to Get or Create Excel.Application (but no error was trapped)
+       N  Trapped Error returned from Excel Object Scripting or File Handling routines.
+
+ ERRORS:
+
+      none
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: Feb 22, 2001
+ History:
+
+      FEB 22, 2001    Original Release
+      JAN 25, 2006    (Carl Nagle for JRUXLOW) Add blank lines between App Map sections.
+
+</pre>
+<hr>
+<pre>
+
+<a name="exportxls2testcomposer"></a>
+ Function ExportXLS2TestComposer (fileXLS As String,
+                                  fileOUT  As String,
+                                  Optional dirXLS  As Variant,
+                                  Optional password As Variant,
+                                  Optional updateLinks As Variant,
+                                  Optional dirOUT As Variant) As Integer
+
+
+ DESCRIPTION:
+
+      Routine outputs all the worksheet(s) within an Excel workbook to the file
+      format suitable for SAS TestComposer.
+
+      This is used to export the data in Excel Spreadsheets to a text file
+      that is in a modified INI file format.  In this case, this function is ideal
+      for processing an Excel workbook which potentially contains a separate
+      worksheet for separate Sections/Windows of an Application Map.
+      However, there may be other uses for this functionality.
+
+      The expected format for data in the Worksheet is as follows:
+
+      COLUMN1             COLUMN2             COLUMN3
+      ==================  ==================  ===================
+
+      [SectionName]
+
+      ItemName            ItemValue           ComponentType
+      ItemName            ItemValue           ComponentType
+      ItemName            ItemValue           ComponentType
+
+
+      The output file will then look like:
+
+      [SectionName]
+
+      ItemName=ItemValue|%|ComponentType
+      ItemName=ItemValue|%|ComponentType
+      ItemName=ItemValue|%|ComponentType
+
+
+      The XLS file will be open with the UpdateLinks provided or it will use
+      the value of 0 or FALSE to forego any link updates.  In the latter event,
+      any linked data that needs to be updated in the Excel workbook should be
+      done prior to the call of this routine.
+
+      The XLS file will be opened in READ-ONLY mode.  However, if updateLinks
+      is provided and causes an update to occur we will continue but WILL NOT
+      save these changes in Excel.  The updates will be reflected in our
+      output files but will not be retained in the Excel file.  Thus, if the
+      update is to be retained in the Excel file that will need to be done
+      separately.
+
+      If the workbook requires a password then it should be provided as well.
+
+      The routine exports only cols 1, 2 and 3 of cells identified by the UsedRange
+      Object retrieved from each worksheet.  Each field is extracted by the
+      Value returned from the UsedRange.Rows(r).Columns(c).Value function.
+      Cols 1 and 2 are delimited by an "=" character.  Columns 2 and 3 are
+      delimited by the 3 character string, "|%|".  However, no delimiter
+      is output for blank cols or between col1 and col2 if col2 is empty or
+      between columns 2 and 3 if column 3 is empty.
+
+      Additionally, if col1 is empty then only a column delimiter is output.
+      Cols 4-N of UsedRange are not processed.
+      Each row is output on a separate line in the output file.
+
+      fileOUT will be written to the directory specified by the dirOUT parameter
+      or to the dirXLS directory if dirOUT is not provided.
+
+
+ PARAMETERS:
+
+      fileXLS     The Excel XLS workbook file to open in dirXLS.  If the .XLS
+                  extension is not provided then we will add it. File is open in
+                  READ-ONLY mode.
+
+      fileOUT     The exported file to create in the dirOUT (or dirXLS) directory.
+
+      dirXLS      OPTIONAL directory in which to find the XLS file.
+                  If this parameter is not provided then we will attempt to
+                  locate the file via <A HREF="FileUtilities.htm#FindSQAFile">FindSQAFile</A> in FileUtilities.
+
+      password    OPTIONAL string password.  If the workbook requires a password
+                  then this parameter is NOT optional because Excel will
+                  prompt for a password (and we don't like that).
+
+      updateLinks OPTIONAL value to provide when opening the Excel workbook.
+                  Normally, Excel prompts the user for Yes or No to update
+                  object links if the workbook contains linked objects.  We
+                  bypass the prompt by providing this parameter.
+                  Valid values you can provide this routine:
+
+                      Numeric 0  to bypass link updates.
+                      Numeric 1  to update remote but not external references.
+                      Numeric 2  to update external but not remote references.
+                      Numeric 3  to update all references.
+
+                  NOTE: Updated data will be used, but not saved.
+
+
+      dirOUT      OPTIONAL directory in which to write the output files.  If
+                  this is not provided then we will output to the same directory
+                  found via the dirXLS parameter.
+
+
+ RETURNS:
+
+       0  Success
+
+      -1  Missing fileXLS or fileOUT Input Parameters
+      -2  Invalid dirXLS, fileXLS, or dirOUT Input Parameters
+      -3  Invalid updateLinks value provided
+      -4  Unable to Get or Create Excel.Application (but no error was trapped)
+       N  Trapped Error returned from Excel Object Scripting or File Handling routines.
+
+ ERRORS:
+
+      none
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 07, 2002
+ History:
+
+      MAY 07, 2002    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

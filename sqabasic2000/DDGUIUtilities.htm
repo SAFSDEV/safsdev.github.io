@@ -1,0 +1,1796 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDGUIUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDGUIUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Utility routines for working with actual GUI objects and object properties.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "DDGUIUtilities_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\DDGUIUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIn32.htm">WIn32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#ddggetguipropertystring">DDGGetGUIPropertyString</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguipropertyvariant">DDGGetGUIPropertyVariant</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguiarraypropertysize">DDGGetGUIArrayPropertySize</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguiarraypropertystrings">DDGGetGUIArrayPropertyStrings</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguiarraypropertyvariants">DDGGetGUIArrayPropertyVariants</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>     BasicLib DDGUIUtilities                
+Function <a href="#ddggetrootnodeinfo">DDGGetRootNodeInfo</a>      BasicLib DDGUIUtilities                
+Function <a href="#ddggetobjectdatanodeinfo">DDGGetObjectDataNodeInfo</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetfullnodepath">DDGGetFullNodePath</a>      BasicLib DDGUIUtilities                
+Function <a href="#ddggetnodenonblankcolvaluecount">DDGGetNodeNonBlankColValueCount</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguichildrenids">DDGGetGUIChildrenIDs</a>    BasicLib DDGUIUtilities                
+Function <a href="#ddggetguipropertynames">DDGGetGUIPropertyNames</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgoutputguichildrenids">DDGOutputGUIChildrenIDs</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgoutputguipropertynames">DDGOutputGUIPropertyNames</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgperformsafsmapscheck">DDGPerformSAFSMAPSCheck</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetdefaultappmapsection">DDGGetDefaultAppMapSection</a>  BasicLib DDGUIUtilities                
+   Sub   <a href="#ddgsetdefaultappmapsection">DDGSetDefaultAppMapSection</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddggetguiid">DDGGetGUIID</a>             BasicLib DDGUIUtilities                
+Function <a href="#ddgclearappmapcache">DDGClearAppMapCache</a>     BasicLib DDGUIUtilities                
+Function <a href="#ddggetcomptypefromguiid">DDGGetCompTypeFromGUIID</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforsqaobject">DDGWaitForSQAObject</a>     BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforpropertyvalue">DDGWaitForPropertyValue</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforpropertyvaluegone">DDGWaitForPropertyValueGone</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforgui">DDGWaitForGUI</a>           BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforguipropertyvalue">DDGWaitForGUIPropertyValue</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforsqaobjectgone">DDGWaitForSQAObjectGone</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforguigone">DDGWaitForGUIGone</a>       BasicLib DDGUIUtilities                
+Function <a href="#ddgwaitforguipropertyvaluegone">DDGWaitForGUIPropertyValueGone</a>  BasicLib DDGUIUtilities                
+Function <a href="#ddgsetguiproperty">DDGSetGUIProperty</a>       BasicLib DDGUIUtilities                
+Function <a href="#ddggetguienvironment">DDGGetGUIEnvironment</a>    BasicLib DDGUIUtilities                
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+'where to look in AppMap if not found in specified section
+Const DDG_DEFAULT_FALLBACK_LOOKUP_SECTION = "APPLICATIONCONSTANTS"
+Const DDG_APPMAP_DDVARIABLE_LOOKUP_PREFIX = "_DDV:"
+Const DDG_APPMAP_DDVARIABLE_LOOKUP_PREFIX_LEN = 5
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+'these are transient values filled by various routines
+'not all values are modified by all ObjectData routines
+Global DDGObjDataRows as Integer   'max rows in array
+Global DDGObjDataCols as Integer   'max cols in array
+Global DDGobjDataRowMin as Integer 'lbound of row array dimension
+Global DDGObjDataColMin as Integer 'lbound of col array dimension
+Global DDGObjDataRootRow as Integer 'first row with data 
+Global DDGObjDataRootCol as Integer 'first col with data
+Global DDGObjDataCol as Integer    'last col accessed
+Global DDGObjDataRow as Integer    'last row accessed
+Global DDGObjDataNode as String    'value of last node accessed
+Global DDGObjDataFullNodePath as String    'fullpath of last fullpath accessed
+
+
+'DEPRECATED:
+'Use DDG_FALLBACK_LOOKUP_SECTION to identify a particular section in an 
+'Application map to use as the default lookup for values NOT found when 
+'searching for Application Map GUI IDs or DDVariable values.
+'This Global is deprecated. Use the following routines to Get/Set this value:
+'
+'       DDGGetDefaultAppMapSection
+'       DDGSetDefaultAppMapSection
+
+'Global DDG_FALLBACK_LOOKUP_SECTION As String 
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+Type ObjectDataNodeInfo
+    FullPath As String
+    Delimiter As String
+    Row As Integer
+    Column As Integer
+    ChildCount As Integer
+    FirstChildRow As Integer
+    LastChildRow As Integer
+    FullFoundPath As String
+End Type
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddgperformsafsmapscheck"></a>
+  Function DDGPerformSAFSMAPSCheck() as Long
+
+ DESCRIPTION:
+
+      Check to see if the SAFSMAPS service is already running.
+      If not, see if AUTOLAUNCH is enabled and commence if it is.
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+       TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguipropertyvariant"></a>
+  Function DDGGetGUIPropertyVariant (guiID As String, property As String,
+                                     value As Variant) As Integer
+
+ DESCRIPTION:
+
+      Retrieves a GUI object property value as a Variant along with status
+      information just like SQAGetProperty.  However, the routine
+      checks for unmodified, local (.\;), and desktop (\;) contexts for the
+      object before returning a sqaObjectNotFound status (which SQA does not).
+
+      This routine is only for single value properties.  If a property
+      value is actually a list or array then you need to use
+      <a href="#ddggetguiarraypropertyvariants">DDGGetGUIArrayPropertyVariants</a>.
+
+      To get a single property value from within an array you must include
+      the property name with an array syntax which includes the index into
+      the array.  For example, to retrieve the 3rd value from the property
+      List the property string would be "List(3)".
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-sensitive name of the property
+                  to get the value from.
+
+      value       Variant to receive the retrieved value
+
+ RETURNS:
+
+      0       Success.
+
+      N       Failure status codes as describes by SQA's Object scripting
+              routines.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      APR 28, 2005    (Carl Nagle) Additional performance enhancements
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguipropertystring"></a>
+  Function DDGGetGUIPropertyString (guiID As String, property As String,
+                                    value As String) As Integer
+
+ DESCRIPTION:
+
+      Retrieves a GUI object property value as a String along with status
+      information just like SQAGetPropertyAsString.  However, the routine
+      checks for unmodified, local (.\;), and desktop (\;) contexts for the
+      object before returning a sqaObjectNotFound status (which SQA does not).
+
+      This routine is only for single value properties.  If a property
+      value is actually a list or array then you need to use
+      <a href="#ddggetguiarraypropertystrings">DDGGetGUIArrayPropertyStrings</a>.
+
+      To get a single property value from within an array you must include
+      the property name with an array syntax which includes the index into
+      the array.  For example, to retrieve the 3rd value from the property
+      List the property string would be "List(3)".
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-sensitive name of the property
+                  to get the value from.
+
+      value       String to receive the retrieved value
+
+ RETURNS:
+
+      0       Success.
+
+      N       Failure status codes as describes by SQA's Object scripting
+              routines.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      APR 28, 2005    (Carl Nagle) Additional performance enhancements
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguiarraypropertysize"></a>
+  Function DDGGetGUIArrayPropertySize (guiID As String, property As String,
+                                       size As integer) As Integer
+
+ DESCRIPTION:
+
+      Returns the size of the property array for the given property.
+      This can only be done on properties whose values are lists or arrays.
+      If the property is not an array then an error will be returned.
+
+      This routine attempts to locate the desired component by cycling
+      through variations of the guiID provided to better facilitate a match.
+
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-sensitive name of the property
+                  to get the size of (and verify it is an array).
+
+      size        will receive the number of elements in the array if successful.
+
+ RETURNS:
+
+       0  Success. "size" will exit with the number of elements in the array.
+
+       N  Failure status codes as describes by SQA's Object scripting
+          routines.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 26, 2000
+ History:
+
+      MAY 26, 2000    Original Release
+      APR 28, 2005    (Carl Nagle) Additional performance enhancements
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguiarraypropertystrings"></a>
+  Function DDGGetGUIArrayPropertyStrings (guiID As String, property As String,
+                                          values() As String) As Integer
+
+ DESCRIPTION:
+
+      Returns a GUI object property value as an array of Strings.
+      This can only be done on properties whose values are lists or arrays.
+      If a propety value is actually a single value then you need to use
+      <a href="#ddggetguipropertystring">DDGGetGUIPropertyString</a>.
+
+      We first call <a href="#ddggetguiarraypropertysize">DDGGetGUIArrayPropertySize</a> to
+      ensure the property is actually an array with a size greater than 0.
+
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-sensitive name of the property
+                  to get the value from.
+
+      values      a zero-based array of type String that has been declared
+                  as follows:   Dim values() As String
+                  This routine will handle the redimensioning of the array
+                  to suit.
+
+
+ RETURNS:
+
+       0  Success.
+
+       N  Failure status codes as describes by SQA's Object scripting
+          routines.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      APR 28, 2005    (Carl Nagle) Additional performance enhancements
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguiarraypropertyvariants"></a>
+  Function DDGGetGUIArrayPropertyVariants (guiID As String, property As String,
+                                           values() As Variant) As Integer
+
+ DESCRIPTION:
+
+      Returns a GUI object property value as an array of Variants.
+      This can only be done on properties whose values are lists or arrays.
+      If a propety value is actually a single value then you need to use
+      <a href="#ddggetguipropertyvariant">DDGGetGUIPropertyVariant</a>.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-sensitive name of the property
+                  to get the value from.
+
+      values      a zero-based array of type Variant that has been declared
+                  as follows:   Dim values() As Variant
+                  This routine will handle the redimensioning of the array
+                  to suit.
+
+ RETURNS:
+
+       0  Success.
+
+       N  Failure status codes as describes by SQA's Object scripting
+          routines.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      APR 28, 2005    (Carl Nagle) Additional performance enhancements
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguiobjectdata"></a>
+  Function DDGGetGUIObjectData (guiID As String, values() As Variant, Optional dataTest As Variant) As Integer
+
+ DESCRIPTION:
+
+      Returns GUI object data as an array of Variants.
+      This can only be done for objects that Robot can successfully execute
+      an Object Data VP (CompareData or CompareMenu) on.  We use our own dummy VP data to get
+      at this data.  The user does not have to have an existing VP to use this
+      function.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      values      array of type Variant that has been declared as follows:
+
+                       Dim values() As Variant
+
+                  This routine will handle the redimensioning of the array
+                  to suit.  The returned values array will be a 2D 1-based array.
+                  That is, the first element is at row/col index 1,1.
+                  Note, you will need to evaluate the actual contents of the
+                  returned array for your needs.  It is possible that hidden
+                  rows and columns will be surfaced in the array.  So data that
+                  appears like it should be in cell 1,1 may actually be in
+                  cell 2,2 (or elsewhere depending on "hidden" rows and columns).
+
+      dataTest    optional string value that specifies the data to capture.
+                  Depending on the GUI object, the user might be able to
+                  capture different data, in addition to "Contents" which is
+                  usually available to all objects. For example, "Visible Nodes"
+                  and "Java Active State" are also available for JavaTrees.
+
+                  The default is "Contents".
+                  If "Menu" is provided then a dynamic Menu extraction will occur
+                  where supported.
+
+                  Values specified for datatest are currently case-sensitive.
+
+ RETURNS:
+
+       N  On Success, returns the number of ROWS returned in the values array.
+          This will include any header row(s) and/or leftmost "hidden" column(s).
+
+      -1  Fatal VP execution Error
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: NOV 20, 2002
+ History:
+
+      NOV 20, 2002    Original Release
+      DEC 03, 2003    (YWANG)  Changed DDGGetGUIObjectData to allow different data test
+      MAY 14, 2004    (Carl Nagle) Seeking performance improvements on data extraction.
+      JUN 15, 2005    (Carl Nagle) Added datatest="Menu" support to DDGGetGUIObjectData
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetrootnodeinfo"></a>
+  Function DDGGetRootNodeInfo (nodes() As Variant,
+                               rootRow as Integer, rootCol as Integer) As String
+
+ DESCRIPTION:
+
+      Find the first non-blank cell in the provided 2D array.
+      Returns the string of that root node and fills in the variables rootRow
+      and rootCol with the row and column where the root was found in the
+      values array.
+
+      This is generally useful for evaluating the ObjectData arrays returned
+      from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+
+
+ PARAMETERS:
+
+      nodes()     Generally, a 2D array of Variant values like those returned
+                  from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+                  The array must be 0-based or higher.  Usually it is 1-based.
+
+      rootRow     pass in a variable that will receive the row from which the
+                  first non-blank cell was found.
+
+      rootCol     pass in a variable that will receive the row from which the
+                  first non-blank cell was found.
+
+ RETURNS:
+
+      String      The string value of that first non-blank cell,
+                  or an emptry string.
+
+ ERRORS:
+
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 17, 2003
+ History:
+
+      JAN 16, 2003    Original Release
+      JUL 20, 2005    (Carl Nagle) Added Global var support for performance.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetfullnodepath"></a>
+  Function DDGGetFullNodePath (nodepath as String, delimiter as String,
+                               nodes() as Variant, Optional fuzzy, Optional matchIndex) as String
+
+ DESCRIPTION:
+
+      Find the fullNodePath string that proves our nodepath exists in the
+      provided nodes array.  Normally, this requires an exact match, but we
+      can allow for partial matches and case-insensitive comparisons and
+      matching with the Optional "fuzzy" parameter.  The nodes
+      array is expected to be configured as a 2D array representation of
+      hierarchical data like that provided from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+
+      Our nodes array looks like this:
+
+          root
+              level1
+              level1a
+                     level2
+                     level2a
+              level1b
+                     level2b
+                     level2c
+                            level3
+              level1c
+
+      So, you can see that "level1b" indicates the end of child nodes for
+      "level1a".   "level1c" indicates the end of child nodes for "level2c"
+      AND "level1b".
+
+      nodepaths are hierarchical paths to individual leaf nodes using the specified
+      delimiter between parent and child nodes.
+
+      Example nodepaths with "->" delimiter:
+
+          root->level1b->level2c->level3
+          root->level1c
+
+      Example fuzzy nodepaths with "->" delimiter:
+
+          r->1b->2c->3
+          oo->c
+          t->level1b->2c->level
+
+ PARAMETERS:
+
+      nodePath    A string showing parent/child hierarchical information
+                  separated by delimiters.
+
+      delimiter   A String specifying the delimiter used to separate parent/child
+                  relationsips.
+
+      nodes()     Generally, a 2D array of Variant values like those returned
+                  from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+                  The array must be 0-based or higher.  Usually it is 1-based.
+                  The nodes array is expected to be configured as a 2D array representation of
+                  hierarchical data like that provided from DDGGetGUIObjectData.
+
+      fuzzy       Optional parameter to allow for partial text matches when
+                  identifying nodes.
+                  0=(default) exact match required.
+                  1=case-insensitive partial matches allowed.
+
+      matchIndex  Optional parameter to allow for the Nth match, not just the first.
+                  This matchIndex only applies to the leaf nodes in the full path.
+                  If provided the numeric integer value must be > 0.
+
+      embedIndex  Optional parameter if true (non-zero) tells the routine to return ;Index=
+                  information in the returned full path where discernable.
+                  This can usually only be accomplished when fuzzy=0 (exact match required).
+                  Returns paths like:
+                  DupedNode;Index=2->BranchNode->LeafNode
+                  RootNode->DupedNode;Index=2->LeafNode
+
+  embedIndexBase  specify the base index when embedIndex is true.  By default this IndexBase
+                  is 1.  However, things like .NET have made the Index= indexbase 0.  Thus,
+                  for .NET embedIndexBase would need to be specified as 0.
+
+ RETURNS:
+
+      String      Upon success, we return the full exact match of the full
+                  hierarchy path to the requested node.  Thus, if you provide
+                  a fuzzy path, this routine will return the full complete
+                  path string to the node--all fuzziness removed.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 17, 2003
+ History:
+
+      JAN 16, 2003    Original Release
+      JAN 24, 2003    (YWANG)  Fixed bug that incorrectly processes optional parameter fuzzy.
+      DEC 03, 2003    (Carl Nagle) Added finding Nth match, not just the first.
+      JUL 20, 2005    (Carl Nagle) Added Global var support for performance.  Also added support
+                               for embedIndex and embedIndexBase and Nth item matching on
+                               root or branch nodes.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetnodenonblankcolvaluecount"></a>
+  Function DDGGetNodeNonBlankColValueCount (nodes() As Variant,
+                                            column as Integer) As Integer
+
+ DESCRIPTION:
+
+      Return the number of non-blank cells in the provided column of the 2D array.
+
+      This is generally useful for evaluating the ObjectData arrays returned
+      from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+
+
+ PARAMETERS:
+
+      nodes()     Generally, a 2D array of Variant values like those returned
+                  from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+                  The array must be 0-based or higher.  Usually it is 1-based.
+
+      column      The column within the 2D array to evaluate.
+
+
+ RETURNS:
+
+      Integer     The number of non-blank values in the provided column.
+                  -1 on error.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2003
+ History:
+
+      APR 03, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetobjectdatanodeinfo"></a>
+  Function DDGGetObjectDataNodeInfo(data() As Variant, info As ObjectDataNodeInfo, children() As String, Optional match) As Integer
+
+ DESCRIPTION:
+
+      Retrieves information about a node of a tree captured in a 2D array.
+
+      This is generally useful for evaluating the ObjectData arrays returned
+      from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+
+
+ PARAMETERS:
+
+      data    1-based 2D array of Variant values like those returned
+              from <a href="#ddggetguiobjectdata">DDGGetGUIObjectData</a>.
+
+      info    input/output parameter to store information about the node of
+              interest. The FullPath and Delimiter fields of this user type
+              are the input parameters, thus should be populated before
+              passing to this function. The rest of the fields are output
+              parameters populated by this function.
+
+      children    output parameter. 1-based array storing all child nodes of
+                  the target node. You should make sure info.ChildCount is not
+                  0 before accessing elements in this array.
+
+      match       Optional. 0 to match given path and object data exactly; 1
+                  to partially match given path to object data. E.g.
+                  "root->subfolder" is a partial match for object data node
+                  "myroot->mysubfolder". Partial match is also case-
+                  insensitive. Default is 0 (exact match).
+
+ RETURNS:
+
+      0   on success.
+      1   on failure.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: DEC 03, 2003
+ History:
+
+      DEC 03, 2003    Original Release
+      MAY 10, 2004    (YWANG) Added optional match parameter
+      JUL 20, 2005    (Carl Nagle) Added Global var support for performance
+      SEP 08, 2005    (Bob Lawler) Updated to build the full path of the located node (since info.FullPath can be a partial
+                               (fuzzy) path) and include it as info.FullFoundPath. RJL
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguichildrenids"></a>
+  Function DDGGetGUIChildrenIDs (guiID As String, values() As String) As Integer
+
+ DESCRIPTION:
+
+      Fills the provided array of Strings with the full recognition strings
+      of all the children (if any) of the provided guiID.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      values      a zero-based array of Strings that has been declared
+                  as follows:   Dim values() As String
+                  This routine will handle the redimensioning of the array
+                  to suit.
+
+ RETURNS:
+
+       0  Success.
+
+       N  Failure status codes as describes by SQA's Object scripting
+          routines.
+
+     1015 Generally indicates the object has no children or that
+          an error occurred while filling up the array of child IDs.
+
+      NOTE that the returned array may have valid entries even if an error occurs.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 24, 2000
+ History:
+
+      FEB 24, 2000    Original Release
+      MAR 01, 2000    (Carl Nagle) Updated doc
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguipropertynames"></a>
+  Function DDGGetGUIPropertyNames (guiID As String, values() As String) As Integer
+
+ DESCRIPTION:
+
+      Fills the provided array of Strings with all the available property
+      names (if any) of the provided guiID.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      values      a zero-based array of Strings that has been declared
+                  as follows:   Dim values() As String
+                  This routine will handle the redimensioning of the array
+                  to suit.
+
+ RETURNS:
+
+       0  Success.
+
+       N  Failure status codes as describes by SQA's Object scripting
+          routines.
+
+     1015 Generally indicates the object has no properties (never seen it) or that
+          an error occurred while filling up the array of property names.
+
+      NOTE that the returned array may have valid entries even if an error occurs.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 25, 2000
+ History:
+
+      FEB 25, 2000    Original Release
+      MAR 01, 2000    (Carl Nagle) Updated doc
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgoutputguichildrenids"></a>
+  Function DDGOutputGUIChildrenIDs (guiID As String, filename As String) As Integer
+
+ DESCRIPTION:
+
+      Writes a file containing the full recognition strings
+      of all the children (if any) of the provided guiID.
+      The file will be automatically overwritten if it already exists.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      filename    filename to output the retrieved children recognition methods.
+                  One child recognition per line in the file.
+                  The file will be automatically overwritten if it already exists.
+
+ RETURNS:
+
+       0  Success.
+      -1  Invalid or missing filename
+
+      +N  Failure status codes as describes by SQA's Object scripting
+          routines or file handling routines.
+
+     1015 Generally indicates the object has no children or
+          that an error occurred while filling up the array of child IDs.
+
+      NOTE that the file or a partial file may be written even if an error occurs.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 24, 2000
+ History:
+
+      FEB 24, 2000    Original Release
+      MAR 01, 2000    (Carl Nagle) Allowed file output even on certain errors.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgoutputguipropertynames"></a>
+  Function DDGOutputGUIPropertyNames (guiID As String, filename As String) As Integer
+
+ DESCRIPTION:
+
+      Writes a file containing all the available property names (if any)
+      of the provided guiID.
+      The file will be automatically overwritten if it already exists.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      filename    filename to output the retrieved property names.
+                  One property name per line in the file.
+                  The file will be automatically overwritten if it already exists.
+
+ RETURNS:
+
+       0  Success.
+      -1  Invalid or missing filename
+
+       N  Failure status codes as describes by SQA's Object scripting
+          routines or file handling routines.
+
+     1015 Generally indicates the object has no properties (never seen it) or
+          that an error occurred while filling up the array of property names.
+
+      NOTE that the file or a partial file may be written even if an error occurs.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 25, 2000
+ History:
+
+      FEB 25, 2000    Original Release
+      MAR 01, 2000    (Carl Nagle) Allowed file output even on certain errors.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetdefaultappmapsection"></a>
+  Function DDGGetDefaultAppMapSection () As String
+
+ DESCRIPTION:
+
+      Returns a fallback lookup section for searching an Application
+      Map.  If the fallback lookup section value has not been set, we will
+      return the value of the DDG_DEFAULT_FALLBACK_LOOKUP_SECTION.
+      In this way, the user does not have to perform the test and setting of
+      the fallback lookup section to use.
+
+      The FALLBACK LOOKUP SECTION is that section of the Application Map
+      that will be searched for a matching componentID in the event that
+      the specified windowsID section does not exist or does not contain that
+      componentID.
+
+      By default, this FALLBACK LOOKUP SECTION will be the ApplicationConstants
+      section of the application map.  The user can change this setting by
+      providing a new value to the DDGSetDefaultAppMapSection routine.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      The Application Map section currently set as the FALLBACK LOOKUP SECTION
+      to search when items are otherwise not found.  If no section was
+      previously set, then we return the DEFAULT FALLBACK LOOKUP SECTION as
+      defined in the Constants.
+
+ ERRORS:
+
+      (none)
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 15, 2001
+ History:
+
+      MAR 15, 2001    Original Release
+      AUG 07, 2001    (Carl Nagle) Removed the Global and added DDGDefaultAppMapSection
+                               module variable.
+      DEC 07, 2006    (Carl Nagle) Added direct STAF support to bypass DDVariableStore.DLL
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgsetdefaultappmapsection"></a>
+  Sub DDGSetDefaultAppMapSection (section as String)
+
+ DESCRIPTION:
+
+      Sets the FALLBACK LOOKUP SECTION for searching an Application
+      Map.
+
+      The FALLBACK LOOKUP SECTION is that section of the Application Map
+      that will be searched for a matching componentID in the event that
+      the specified windowsID section does not exist or does not contain that
+      componentID.
+
+      By default, this FALLBACK LOOKUP SECTION will be the ApplicationConstants
+      section of the application map.  The user can change this setting by
+      providing a new value to this routine.
+
+
+ PARAMETERS:
+
+      section     The string name of the section in an AppMap to use.
+
+
+ ERRORS:
+
+      (none)
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2001
+ History:
+
+      AUG 07, 2001    Original Release
+      DEC 07, 2006    (Carl Nagle) Added direct STAF support to bypass DDVariableStore.DLL
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguiid"></a>
+  Function DDGGetGUIID (windowID As String,
+                       componentID As String,
+                       Optional appMapPath) As String
+
+ DESCRIPTION:
+
+      Retrieves the SQA recognition method for a given component in a given
+      window.  It will find this value in the Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a>
+      MAP file that should be valid prior to this call.  Optionally, a different
+      app map file path can be provided.
+
+      The routine stores all retrieved values into a static storage array so that
+      it only has to resort to the file the first time a particular component is
+      referenced.
+
+      The retrieved value can, instead, be coded as an instruction to get
+      the actual recognition string via a DDVariable lookup.  If the retrieved
+      AppMap lookup value is prefixed with "_DDV:" then this routine will
+      perform the DDVariable lookup to retrieve the final recognition string
+      value.  The following rules will apply for identifying the name of the
+      variable that will be sought:
+
+      [WindowID]
+      WindowID=ARecognitionString    (use AppMap recognition string)
+      Component1=_DDV:               (use value from variable "Component1")
+      Component2=_DDV:AVariableName  (use value from variable "AVariableName")
+
+      Note: There may be the possibility of putting yourself into an infinite
+      lookup loop if you use the _DDV: lookup mechanism that points to a variable
+      that has not been defined (given a value) but points to an ApplicationConstants
+      lookup value that also uses the _DDV: lookup mechanism that points to a
+      variable of the same name that also has not been defined.  It sounds
+      quite unlikely, but it is possible.
+
+
+
+ PARAMETERS:
+
+      windowID        String identifying the name of the window in which we
+                      will find the componentID.
+                      This is identical to a "Section" of an INI file which
+                      our map files mimic.
+
+                      If no value is provided("") then we will attempt to check the
+                      section identified by the DDGGetDefaultAppMapSection routine.
+                      Similarly, if a search using a WindowID finds no match, we will
+                      check the DDGGetDefaultAppMapSection location.
+
+
+      componentID     String identifying the name of the component for which
+                      we are seeking the recognition method (GUIID).
+                      This is identical to a "Key" of an INI file which our map
+                      files mimic.
+
+
+      appMapPath      Optional String specifying the path and name to an
+                      alternate appmap to use.  If this is not provided then the
+                      value found in Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a> is used
+                      instead.
+                      The file path and name can be relative to the current SQA
+                      Repository, project, or datapool.
+                      We use <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> to validate
+                      the appMapPath provided.
+
+ RETURNS:
+
+      If successful, the GUIID string (recognition method) of the specified component.
+
+      An empty string on failure ("").  This can be due to invalid values of any
+      provided parameters, an unset or invalid AUCurrentAppMap, or other errors.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 26, 1999
+ History:
+
+      JUL 26, 1999    Original Release
+      AUG 04, 1999    (Carl Nagle) Complete redo of array storage and retrieval.
+      AUG 25, 1999    (Carl Nagle) Modified for use with ApplicationUtilities
+      JUL 20, 2000    (Carl Nagle) Optimized for performance.
+      MAR 15, 2001    (Carl Nagle) Added checks in AppMap ApplicationConstants.
+      AUG 03, 2001    (Carl Nagle) Converted to DDVariableStore.DLL
+      JUN 18, 2002    (Carl Nagle) Added _DDV: variable lookup capability.
+      DEC 07, 2006    (Carl Nagle) Added direct STAF support to bypass DDVariableStore.DLL
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgclearappmapcache"></a>
+  Function DDGClearAppMapCache() As Long
+
+ DESCRIPTION:
+
+      Resets and clears any cached AppMap information.  This is sometimes
+      necessary if the AppMap has been edited.  Calling this routine will
+      force a reload of the AppMap file when it is next accessed.
+
+      This Function requires DDVariableStore.DLL V2.02 (Dec 11, 2003) or
+      later.
+
+      If STAF is in use then it also requires the SAFSMAPS service
+      released Dec 11, 2003 or later.
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+      0   normal return
+     -1   error occurred. DLL or STAF may not be a version supporting this.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 11, 2003
+ History:
+
+      DEC 11, 2003    Original Release
+      Aug 13, 2004    (Carl Nagle) Fixed an early loading clear problem
+      DEC 07, 2006    (Carl Nagle) Added direct STAF support to bypass DDVariableStore.DLL
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetcomptypefromguiid"></a>
+  Function DDGGetCompTypeFromGUIID (guiID As String) As String
+
+ DESCRIPTION:
+
+      Retrieves the last component type specifier in the provided string.
+
+      For example:
+
+          guiID = "Type=HTMLDocument;Index=1;\;Type=Combobox;Name=MyCombo"
+
+      would return "Combobox"
+
+
+ PARAMETERS:
+
+      guiID   String to locate the last component type specifier in.
+              This is usually the recognition method of a component.
+
+ RETURNS:
+
+      If successful, the component type string of the component.
+
+      An empty string on failure ("").
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 26, 2001
+ History:
+
+      FEB 26, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforsqaobject"></a>
+  Function DDGWaitForSQAObject (guiID As String,
+                                Optional timeout) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given SQAObject.  That is, attempt to
+      locate the object within the timeout period and return success only
+      if the object is found within that period.  A given object can be
+      created even if it is not yet visible.  In some cases, Windows
+      will be located successfully but a WindowsVP Exists will fail because
+      of a lag time between when the object is created and when it is displayed.
+      For this reason, once the object has been found to exist we will also
+      test for the Property "Visible" to be "True".  We will not exit with
+      error, however, if this latter property test cannot be satisfied.  It is
+      merely an attempt to more accurately wait for the given object.
+
+      The routine spends approx. .025 seconds on each of 3 different recognition
+      methods trying to locate the object.  Thus consider a single search
+      for the object to take up to around .08 seconds and then the search will
+      continue again until the full timeout value has been reached.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+
+      timeout     Optional Integer value in seconds to set as the timeout for
+                  the operation.  15 seconds is the default timeout value.
+                  If the timeout value provided is < 1 or is otherwise
+                  an invalid number then we exit with error.
+
+ RETURNS:
+
+      -1 if input parameters are invalid
+       0 on successfully finding the object within the timeout period.
+       N error code returned from the SQAWaitForObject routine.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 20, 2000
+ History:
+
+      MAR 20, 2000    Original Release
+      MAR 21, 2000    (Carl Nagle) Enhanced WaitFor routines for more accuracy.
+      APR 23, 2001    (Carl Nagle) Removed looping delay.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforpropertyvalue"></a>
+  Function DDGWaitForPropertyValue (guiID As String, property As String, _
+                                    value As String, Optional timeout) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given SQAObject and continues looking for a
+      particular property value in that object.
+      That is, watch an object's property until the value matches that provided
+      or until the timeout period is reached.
+
+      The routine uses Robot's SQAWaitForPropertyValue.
+
+      It spends .025 second on each of 3 different recognition
+      methods trying to locate the object.  Thus consider a single search
+      for the object to take up to around .08 seconds and then the search will
+      continue again until the full timeout value has been reached.
+
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-senstive name of the property to check.
+
+      value       The case-sensitive String value we are looking for.
+
+
+      timeout     Optional Integer value in seconds to set as the timeout for
+                  the operation.  15 seconds is the default timeout value.
+                  If the timeout value provided is < 1 or is otherwise
+                  an invalid number then we exit with error.
+
+ RETURNS:
+
+      -1 if input parameters are invalid
+       0 on successfully matching the property value.
+       N error code returned from the SQAWaitForPropertyValue routine.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 01, 2001
+ History:
+
+      MAR 01, 2001    Original Release
+      APR 23, 2001    (Carl Nagle) Removed looping delays.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforsqaobjectgone"></a>
+  Function DDGWaitForSQAObjectGone (guiID As String,
+                                    Optional timeout) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given SQAObject to go away.  That is,
+      attempt to locate the object and return success if the object
+      disappears within the timeout period.
+
+      The routine attempts 3 variations of the recognition method trying to
+      locate the object.  It then waits up to the timeout period for the
+      object to disappear checking at approx. .025 second intervals.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+
+      timeout     Optional Integer value in seconds to set as the timeout for
+                  the operation.  15 seconds is the default timeout value.
+                  If the timeout value provided is < 1 or is otherwise
+                  an invalid number then we exit with error.
+
+ RETURNS:
+
+      -2 if input parameters are invalid.
+
+      -1 the object remains and did not disappear within the timeout period.
+
+       0 on successfully finding the object and then seeing it disappear within
+         the timeout period.
+
+       1 if the object could not be initially found. This could be caused by a
+         bad recognition method OR the object already disappeared prior to the
+         call.
+
+       N error code returned from the SQAFindObject routine if other than
+         SQAObjectNotFound.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2000
+ History:
+
+      APR 13, 2000    Original Release
+      APR 23, 2001    (Carl Nagle) Removed looping delays.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforpropertyvaluegone"></a>
+  Function DDGWaitForPropertyValueGone (guiID As String, property As String, _
+                                        value As String, Optional timeout) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given SQAObject's Property Value to go away.
+      That is, attempts to locate the object and return success if the specified
+      property value changes (or the object goes away) within the timeout period.
+      An intial test IS performed to see if the property value matched in
+      the first place.
+
+      The routine attempts 3 variations of the recognition method trying to
+      locate the object.  It then waits up to the timeout period for the
+      object or the property to disappear, checking at approx. .025 second intervals.
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-senstive name of the property to check.
+
+      value       The case-sensitive String value we are watching to go away.
+
+      timeout     Optional Integer value in seconds to set as the timeout for
+                  the operation.  15 seconds is the default timeout value.
+                  If the timeout value provided is < 1 or is otherwise
+                  an invalid number then we exit with error.
+
+ RETURNS:
+
+      -2 if input parameters are invalid.
+
+      -1 the property value was found but did not change within the timeout period.
+
+       0 on successfully finding the object and the property value and then
+         seeing it disappear/or change within the timeout period.
+
+       1 if the object or specified property value was never initially found.
+         This could be caused by a bad recognition method * OR * the object or
+         property value had already disappeared/changed prior to the call.
+
+       N error code returned from the SQAFindObject routine if other than
+         SQAObjectNotFound.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 01, 2001
+ History:
+
+      MAR 01, 2001    Original Release
+      APR 23, 2001    (Carl Nagle) Removed looping delays.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforgui"></a>
+  Function DDGWaitForGUI (windowID As String,
+                          componentID As String,
+                          Optional timeout,
+                          Optional appMapPath) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given component in a given
+      window.  It will find this value in the Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a>
+      APPLICATION MAP file that should be valid prior to this call.
+      Optionally, a different application map file path can be provided.
+      The routine waits for the given object to become valid within
+      the timeout period.
+
+ PARAMETERS:
+
+      windowID        String identifying the name of the window in which we
+                      will find the componentID.
+                      This is identical to a "Section" of an INI file which
+                      our application map files mimic.  This value must satisfy
+                      the DDGGetGUIID windowID parameter.
+
+      componentID     String identifying the name of the component for which
+                      we are seeking the recognition method (GUIID).
+                      This is identical to a "Key" of an INI file which our
+                      application map files mimic.
+
+      timeout         Optional Integer value In seconds to set as the timeout for the
+                      operation.  15 seconds is the default timeout value.
+
+      appMapPath      Optional String specifying the path and name to an
+                      alternate appmap to use.  If this is not provided then the
+                      value found in Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a> is used
+                      instead.
+                      The file path and name can be relative to the current SQA
+                      Repository, project, or datapool.
+                      We use <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> to validate
+                      the appMapPath provided.
+
+ RETURNS:
+
+      -1 if input parameters are invalid
+       0 on successfully finding the object within the timeout period.
+       N error code returned from the SQAWaitForObject routine.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 20, 2000
+ History:
+
+      MAR 20, 2000    Original Release
+      MAR 16, 2001    (Carl Nagle) Allow Application Map lookthru
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforguipropertyvalue"></a>
+  Function DDGWaitForGUIPropertyValue (windowID As String,
+                          componentID As String,
+                          property As String,
+                          value As String,
+                          Optional timeout,
+                          Optional appMapPath) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a particular GUI object's property value.
+      It will find this object in the Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a>
+      APPLICATION MAP file that should be valid prior to this call.
+      Optionally, a different application map file path can be provided.
+      The routine will wait for the given object to become valid within
+      the timeout period before checking the property value.
+
+ PARAMETERS:
+
+      windowID        String identifying the name of the window in which we
+                      will find the componentID.
+                      This is identical to a "Section" of an INI file which
+                      our application map files mimic.  This must satisfy the
+                      DDGGetGUIID windowID parameter.
+
+      componentID     String identifying the name of the component for which
+                      we are seeking the recognition method (GUIID).
+                      This is identical to a "Key" of an INI file which our
+                      application map files mimic.
+
+      property        String which is the case-senstive name of the property to check.
+
+      value           The case-sensitive String value we are watching for.
+
+      timeout         Optional Integer value In seconds to set as the timeout for the
+                      operation.  15 seconds is the default timeout value.
+
+      appMapPath      Optional String specifying the path and name to an
+                      alternate appmap to use.  If this is not provided then the
+                      value found in Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a> is used
+                      instead.
+                      The file path and name can be relative to the current SQA
+                      Repository, project, or datapool.
+                      We use <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> to validate
+                      the appMapPath provided.
+
+ RETURNS:
+
+      -1 if input parameters are invalid
+       0 on successfully finding the object and property value within the timeout period.
+       N error code returned from the WaitForPropertyValue routine.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 01, 2001
+ History:
+
+      MAR 01, 2001    Original Release
+      MAR 16, 2001    (Carl Nagle) Allow Application Map lookthru
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforguigone"></a>
+  Function DDGWaitForGUIGone (windowID As String,
+                              componentID As String,
+                              Optional timeout,
+                              Optional appMapPath) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given component in a given
+      window to disappear.
+      It will find this component in the Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a>
+      APPLICATION MAP file that should be valid prior to this call.
+      Optionally, a different application map file path can be provided.
+      The routine waits for the given object to disappear within
+      the timeout period.
+
+ PARAMETERS:
+
+      windowID        String identifying the name of the window in which we
+                      will find the componentID.
+                      This is identical to a "Section" of an INI file which
+                      our application map files mimic.
+
+      componentID     String identifying the name of the component for which
+                      we are seeking the recognition method (GUIID).
+                      This is identical to a "Key" of an INI file which our
+                      application map files mimic.
+
+      timeout         Optional Integer value In seconds to set as the timeout for the
+                      operation.  15 seconds is the default timeout value.
+
+      appMapPath      Optional String specifying the path and name to an
+                      alternate appmap to use.  If this is not provided then the
+                      value found in Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a> is used
+                      instead.
+                      The file path and name can be relative to the current SQA
+                      Repository, project, or datapool.
+                      We use <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> to validate
+                      the appMapPath provided.
+
+ RETURNS:
+
+      -2 if input parameters are invalid.
+
+      -1 the object remains and did not disappear within the timeout period.
+
+       0 on successfully finding the object and then seeing it disappear within
+         the timeout period.
+
+       1 if the object could not be initially found. This could be caused by a
+         bad recognition method OR the object already disappeared prior to the
+         call.
+
+       N error code returned from the SQAFindObject routine if other than
+         SQAObjectNotFound.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2000
+ History:
+
+      APR 13, 2000    Original Release
+      MAR 16, 2001    (Carl Nagle) Allow Application Map lookthru
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgwaitforguipropertyvaluegone"></a>
+  Function DDGWaitForGUIPropertyValueGone (windowID As String,
+                              componentID As String,
+                              property As String,
+                              value As String,
+                              Optional timeout,
+                              Optional appMapPath) As Integer
+
+ DESCRIPTION:
+
+      Generates a wait state for a given SQAObject's Property Value to go away.
+      That is, attempts to locate the object and return success if the specified
+      property value changes (or the object goes away) within the timeout period.
+      An intial test IS performed to see if the property value matched in
+      the first place.
+
+      It will find this component in the Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a>
+      APPLICATION MAP file that should be valid prior to this call.
+      Optionally, a different application map file path can be provided.
+
+ PARAMETERS:
+
+      windowID        String identifying the name of the window in which we
+                      will find the componentID.
+                      This is identical to a "Section" of an INI file which
+                      our application map files mimic.  The provided value
+                      must satisfy the DDGGetGUIID windowID parameter.
+
+      componentID     String identifying the name of the component for which
+                      we are seeking the recognition method (GUIID).
+                      This is identical to a "Key" of an INI file which our
+                      application map files mimic.
+
+      property        String which is the case-senstive name of the property to check.
+
+      value           The case-sensitive String value we are watching to go away.
+
+      timeout         Optional Integer value In seconds to set as the timeout for the
+                      operation.  15 seconds is the default timeout value.
+
+      appMapPath      Optional String specifying the path and name to an
+                      alternate appmap to use.  If this is not provided then the
+                      value found in Global <a href="ApplicationUtilities.htm#globals">AUCurrentAppMap</a> is used
+                      instead.
+                      The file path and name can be relative to the current SQA
+                      Repository, project, or datapool.
+                      We use <a href="FileUtilities.htm#findsqafile">FindSQAFile</a> to validate
+                      the appMapPath provided.
+
+ RETURNS:
+
+      -2 if input parameters are invalid.
+
+      -1 the property value remains and did not change within the timeout period.
+
+       0 on successfully finding the object's property value and then seeing it
+         change or the object disappear within the timeout period.
+
+       1 if the property value was not initially as expected or the object was not
+         found. This could be caused by a bad recognition method OR the object
+         disappeared or property value already changed prior to the call.
+
+       N error code returned from the WaitForPropertyValueGone routine if other than
+         SQAObjectNotFound.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 01, 2001
+ History:
+
+      MAR 01, 2001    Original Release
+      MAR 16, 2001    (Carl Nagle) Allow Application Map lookthru
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddgsetguiproperty"></a>
+  Function DDGSetGUIProperty (guiID As String, property As String,
+                                    value As String) As Integer
+
+ DESCRIPTION:
+
+      Sets an object property value for a GUI object.  However, the routine
+      checks for unmodified, local (.\;), and desktop (\;) contexts for the
+      object before returning a sqaObjectNotFound status (which SQA does not).
+
+      This routine is only for single value properties.  If a property
+      value is actually a list or array this function will not support it.
+
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+      property    String which is the case-sensitive name of the property
+                  to set the value to.
+
+      value       String to set the property value
+
+ RETURNS:
+
+      0       Success.
+
+      N       Failure status codes as describes by SQA's Object scripting
+              routines.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Dawn Coen
+ Orig   Date: NOV 3, 2004
+ History:
+
+      NOV 3, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddggetguienvironment"></a>
+  Function DDGGetGUIEnvironment (guiID As String) As String
+
+ DESCRIPTION:
+
+      Attempts to retrieve or deduce the object's Environment.
+      Normally this is provided from the object's Environment property,
+      however some configurations do not properly return a value for that
+      property.  In that case, we must attempt to deduce it through other
+      avenues.
+
+      Typical Environment values are:
+
+          Java, .NET, Visual Basic, Html, Win
+
+      (The 'Win' environment is defined by us from SHELL32.DLL and other MS DLLs.)
+
+
+ PARAMETERS:
+
+      guiID       String which is the recognition method of the GUI object.
+                  Normally this is retrieved through lookup or use from
+                  the Application Map prior to this call.
+
+
+ RETURNS:
+
+      The String environment value or an empty string.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 28, 2006
+ History:
+
+      FEB 28, 2006    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

@@ -1,0 +1,262 @@
+<html>
+
+<head>
+<title>Data-Driven Decisions</title>
+</head>
+
+<body>
+
+<p align="center"><strong><big><big>Thinking of Data-Driven Automation?</big></big></strong><font
+SIZE="2"></p>
+
+<p>Comments by<a href="mailto:safsdev@sas.com"> Carl Nagle</a>&nbsp; last updated March
+24, 2000.</p>
+
+<p>(Prepare yourself...this is long winded! :)</p>
+
+<p>I have developed a data-driven engine based on Rational Robot TeamTest V7.1 (and now
+7.5)&nbsp; I have to say that it is very exciting seeing a data-driven engine at work and
+seeing how easy it is to add and modify tests.&nbsp; This engine was based mostly on the
+information developed in earlier discussions on <a href="DataDrivenTestAutomationFrameworks.htm#KeywordDrivenAutomationFrameworkModel" target="_blank">Keyword Driven
+Automation</a>.</p>
+
+<p>The amount of effort required to make a data-driven engine work can *seem* fairly high.
+You really do need to carefully sit down, plan, and design the thing before you code it.
+But I don't necessarily think the amount of time necessary to do this exceeds the planning
+and preparation that *SHOULD* occur using conventional automation techniques
+(record/edit/playback) for an average complexity application. Of course, it's easy for me
+to say this because I have the experience of having done both already.</p>
+
+<p>The engine I created took from mid-May to mid-August for one person working about 85%
+of a 35 hour work-week to complete. And this was for minimal functionality--enough to
+demonstrate the concepts and the engine using a small subset of GUI components to test and
+verify. </p>
+
+<p>It took three additional 35-hour weeks to get a more rounded overall engine running
+that could run suites of data-driven tests for the different types or cycle
+tests(regression, integration, acceptance).</p>
+
+<p>In March 2000 additional work (about 40 hours) was done which allows the engine to call
+any Robot script, as well as perform Window CompareImage VPs.&nbsp; The lack of the latter
+was previously a large obstacle in using the engine for production purposes. </p>
+
+<p align="center"></font><strong><font size="3">However, the engine itself is only half of
+the story</font></strong><font SIZE="2">!</p>
+
+<p>The applications you intend to test greatly impact your ability to successfully
+implement a data-driven engine.&nbsp; More specifically, the applications you intend to
+test greatly impact how much work will go into making those applications testable using
+the engine.&nbsp; However, a similar amount of work will be necessary regardless of
+whether the testing is data-driven or not when trying to automate &quot;difficult&quot;
+applications..</p>
+
+<p>Let me respond to some typical questions/concepts/ideas (I've actually received) below:</p>
+
+<p><a href="#should_I_switch">Should I switch to a data-driven approach of some kind?</a><br>
+<a href="#reduced_scripts">Will it reduce the number of scripts we have to generate and
+maintain?&nbsp; How?</a><br>
+<a href="#easier_maintenance">Is it really easier to maintain a data-driven framework?</a><br>
+<a href="#worthy_effort">Is it really worth the effort?</a><br>
+</p>
+
+<p></font><a name="should_I_switch"></a><font size="3"><strong>1)&quot;We are thinking of
+switching our existing procedurally developed scripts to a more data driven approach and
+then continuing with development of tests that are data driven.&quot;</strong></p>
+
+<p></font><font SIZE="2">This is a great idea provided you have adequate resources to
+develop the engine to the full extent necessary (like any other automation effort) AND you
+are dealing with an Application(s)(AUT) that is readily automated by Robot or an API.
+&nbsp; If the AUT components are not recognizable to Robot, then this is a very formidable
+challenge because the easiest implementation of a data-driven engine will take advantage
+of Robot's recognition and component manipulation functions. If that recognition is not
+there, then you are forced to code your own recognition and verification methods for each
+unrecognized component. Worst case, is that unrecognized components will only be validated
+via Window CompareImage VPs.</p>
+
+<p>In the absence of recognition, a public API with adequate functionality on a component
+can give you good data-driven automation and validation at the cost of more engine
+(component function) coding.</p>
+
+<p>My direct experience is this: </p>
+
+<p>I created a data-driven engine that can successfully test an application whose
+components Robot fully recognizes. (I used the ClassicsC sample VB program that came with
+Robot as the AUT for debugging purposes.)&nbsp; However, none of the applications that we
+actually want to test contain ANY components that Robot can recognize. I have worked so
+far on three separate projects here trying to evaluate the ability for Robot to automate
+the applications in question. And I don't mean automate via the data-driven engine...I
+mean automate AT ALL via simple record and playback with anything other than CompareImage
+VPs. </p>
+
+<p>Project 1: Visual Basic 6.0 app using 3rd party ActiveX controls not recognized by
+Robot. Even with the VB Test Enabler embedded in the app I get inadequate validation
+capabilities on these controls. I can click and manipulate them, but I cannot validate
+critical information because neither the objects, properties, nor any API are made public.</p>
+
+<p>Project 2: Fully user-painted custom controls. Absolutely no object recognition
+whatsoever. Coordinate based click and window/region image capture and compare.&nbsp; It
+is a terrible way to have to make a living...but better than manually testing the app ;)
+This application was my primary reason for wanting to implement Image VP capabilities in
+the data-driven engine.&nbsp; </p>
+
+<p>Project 3: Visual C++ MFC with a twist. The application is not developed in the VC++
+IDE but instead is coded in a simple text editor then compiled using the VC++ compiler.
+Thus nothing that the IDE can give you for free is used. Everything is manually done by
+the developers. In addition GUI components like TreeViews, Toolbars, Tables, Grids,
+ANYTHING are not derived from their MFC or Windows counterparts. Instead, everything has
+been reinvented and derived from the highest level MFC Window type. Consequently, Robot
+recognizes absolutely nothing in this application either. Again, without recognition we
+are forced to use window&nbsp; image capture and compare.</p>
+
+<p>The bottom line here--the amount of custom engine coding you will have to implement is
+very much a function of your applications' use of recognizable components. The more
+unrecognizable components in your applications then the more code you will have to write
+to try and validate those components. And some of that validation might not be achievable
+at all.&nbsp; In these scenarios, a data-driven engine is an unlikely candidate for
+success unless image capture and compare is reliably implemented. </p>
+
+<p>Fortunately, I have been able to implement this in the latest version of the engine so
+that stored CompareImage VPs can be executed.&nbsp; This makes the use of the engine much
+more useful in our particular testing environment.</p>
+
+<p></font><a name="reduced_scripts"></a><font size="3"><strong>2)&quot;We're hoping that
+this will give us some flexibility and allow us to significantly cut back on the 1000's of
+scripts we would need for our applications here if we proceeded with procedural-based test
+scripts.&quot;</strong></p>
+</font><font SIZE="2">
+
+<p>A data-driven engine will significantly decrease the number of Robot scripts you have
+and maintain. It will probably increase the number of Robot library functions/files you
+have and maintain but those generally stay unmodified over time regardless of the
+application you are testing. It will also require that your automation specialists be more
+like programmers/developers instead of test recorders and playback launchers.</p>
+
+<p>Additionally, you will now generally be replacing most Robot test scripts with a data
+file(or files) of some type. Some people implement engine data files in Excel tables. I
+did mine with simple delimitted text files. Something I have done in the past and am
+considering for Robot is a natural speech parser (textual sentence parser) which gets rid
+of some of the problems that delimitted files can provide (while sometimes giving you new
+problems).</p>
+
+<p>You may still end up with 100s or 1000s of files to maintain. The benefit is that they
+are not cryptic Robot SQABasic syntax and generally anyone with any knowledge of the
+application should be able to help maintain these files. You no longer need a programmer
+or Robot specialist to develop and maintain the tests since the tests are data files in a
+format most people (even undergrads) should be able to understand with little trouble. </p>
+
+<p>In addition, depending on the granularity of these data files, it is often very easy to
+use them repeatedly throughout a suite of tests. And these data files are generally MUCH
+smaller than their Robot test script counterparts because all of the often duplicated work
+of finding an object and setting it as the context (and keeping it as the context) are
+done for you automatically by the engine and are not part of the data file. This is a BIG
+deal, really!</p>
+
+<p></font><a name="easier_maintenance"></a><font size="3"><strong>3)&quot;To me,
+data-driven appears to be less straight-forward and more time consuming up front, but
+maintenance would be much easier.&quot;</strong></p>
+</font><font SIZE="2">
+
+<p>Of course, I have no idea why data-driven would appear to be less straight-forward to
+*you*, specifically. To me it appears very logical and simple and sometimes even elegant.
+That is the theory, anyway. *Robot* makes it harder, but it is achievable.</p>
+
+<p>You could say that the engine development is more time consuming up front. I would like
+to agree AND argue about that point a little.</p>
+
+<p>I agree because there will be a significant amount of time planning, designing, and
+coding a data-driven engine that does not generally contribute to the valued testing of an
+application during this time period. However, I would argue that a comparable amount of
+time SHOULD be spent in planning, designing, and recording/scripting an automation suite
+of tests the &quot;old way&quot;. Since that generally is NOT the course taken, it leads
+to the possibly false perception that developing a data-driven engine is more time
+consuming up front than &quot;conventional&quot; automation techniques. And remember, this
+planning for conventional automation needs to happen for every different application that
+comes along to be tested. </p>
+
+<p>In contrast, the impact of developing the data-driven engine is largely a one time
+thing and should be considered comparable to the effort necessary to correctly automate
+one application. Thus, a seriously real payback is achieved for each new application that
+you automate with the data-driven engine, and for every new release of each application.</p>
+
+<p>Once the framework, data file structure, and application mapping structure have been
+decided upon, tests(data files) can be developed in parallel with the engine development.
+While one &quot;team&quot; is working putting the engine together, another
+&quot;team&quot; can be writing the data files and the application map the engine will use
+for a particular application. These data files should also be sufficient information for a
+tester to perform the tests manually as well. If they are not, then you probably need to
+tweak the structure, syntax, or vocabulary of the data files (and thus the engine) so that
+they can be used adequately for manual AND automated testing. You don't want to have to
+try to maintain automation data files AND manual test scripts for a particular
+application. Let one serve for both.</p>
+
+<p>Maintenance on a data-driven engine is absolutely minimal. Once the engine is in place
+and functioning to your satisfaction it is rare that anything needs to be done to it
+except continuous improvement. </p>
+
+<p>Another benefit, is that a data-driven engine is less susceptible to the changes that
+occur in Robot itself across both major and minor versions or upgrades. That is something
+not to gloss over lightly. As you may have seen in list archives, there were some very
+significant impacts to Robot users when they attempted conversions from 6.x to 7.x My
+approach with the data-driven engine experienced absolutely zero of these problems.
+Although that might not always be the case, well designed data-driven engine and component
+functions will very likely minimize or eliminate most upgrade headaches from one version
+of Robot to the next. If you went through the list archives thoroughly you will see that I
+brought this point to light on many occassions. Additionally, any changes that are
+required are generally limited to a *VERY* small number of scripts and libraries.</p>
+
+<p>In my case, the primary engine is a single script. It currently has about 8 supporting
+library files that are fairly generic and not tied necessarily to the engine. In other
+words, these libraries provide functionality I can use independent of the engine in any
+type of automation effort I choose(via Robot). These include definitions and declarations
+for the Win32 API, custom log file capabilities and general test capabilities for files,
+menus and other stuff.</p>
+
+<p>There are then Component Function Libraries for each type of GUI component the engine
+is designed to handle. There is one library for each type of GUI component. There is also
+a master Generic Function Library for GUI work and validation that is common among many
+GUI components (like checking the value of a retrievable property).</p>
+
+<p>There is another driver script that reads suite-level data files (groups of data-driven
+tests) and provides them to the primary engine. Then there is the highest level driver
+script which reads cycle-level data files (groups of suites) and provides them to the
+suite driver which in-turn drives the primary driver.</p>
+
+<p>This may look or sound a bit complicated, but when <a href="AutoEngine.html"
+target="_blank">viewed graphically</a> or in context it makes very good sense and
+demonstrates a very high level of data file reuse that is difficult to achieve in normal
+record and playback scenarios. You have smaller, tighter, reusable, and easier to maintain
+data files when compared against the number and complexity of Robot Scripts that you would
+need to complete all the tests normally done to a particular application.</p>
+
+<p></font><a name="worthy_effort"></a><font size="3"><strong>4)&quot;Did you feel it was
+worth the effort?&quot;</strong></p>
+</font><font SIZE="2">
+
+<p>For me, yes. Definitely. However, I had and generally have the benefit of zero deadline
+pressures and initially no target application with a deadline either. I was hired for the
+specific task of developing and demonstrating this engine and then to further provide
+whatever automation support was needed by any of our division's application testers. I am
+not directly responsible for testing any specific application. </p>
+
+<p>We now have the core of an engine that can be shown throughout the company. I have
+shown it to managers, developers, testers, and QA personnel. The common theme for these
+demonstrations is that this is something we need to shoot for. Application development
+that must eventually adopt automation as a core design criteria.</p>
+
+<p>The engine also demonstrates the value of developing reusable code and publishing
+documentation for it. In this case, the reusable code is Robot code. The data-driven
+engine and all of the libraries and support scripts and functions are completely
+application independent. They can be used by anyone here at the Institute for whatever it
+is they are trying to automate with Robot. In a Record/Playback environment very little of
+the developed code is sharable and reusable even by the same person when testing a
+different application.</p>
+
+<p>Obviously, this type of justification may not apply to you and your situation.</p>
+</font>
+
+<p><font SIZE="2">With the additional work done on the engine in March 2000, I now have
+actually begun developing tests against a production application starting a new
+development cycle.&nbsp; Thus, the engine is moving forward as a production tool and no
+longer a demonstration prototype.</font></p>
+</body>
+</html>

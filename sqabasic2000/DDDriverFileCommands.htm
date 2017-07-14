@@ -1,0 +1,390 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDDriverFileCommands Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDDriverFileCommands" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ The documentation for each function is provided as reference for DDE users
+ when developing DDE test tables.  This DDE format and syntax information IS
+ intended for public use and does not normally change with the underlying code.
+
+ The routines themselves are not intended for public use.
+ Their internal functionality and their declaration prototypes
+ are subject to change as deemed necessary to support the drivers
+ mentioned above.
+
+
+ This library is defined by:
+
+ DDDriverFileCommands.SBL      Sourcecode and Detailed Documentation
+ DDDriverFileCommands.SBX      Compiled executable library
+
+ Orig Author: Robert D'Antoni
+ Orig   Date: Apr 4, 2003
+ History:
+
+      Apr 04, 2003    Original Release
+      Jun 02, 2003
+      Dec 16, 2004    (BLAWLER) Added\Updated log messages (RJL).
+      Jan 24, 2005    (BLAWLER) Updated log messages from PASSED to GENERIC (RJL).
+      APR 21, 2005    (Carl Nagle) Updated/added error trapping.
+      JUN 07, 2005    (Carl Nagle) Track open files and issue errors accordingly.
+      OCT 14, 2005    (Carl Nagle) Diverted library to use DDELocateBlockID in Flow commands
+                               to properly handle file caching.
+      OCT 28, 2005    (DCOEN) Added field name in message for PrintToFile
+      DEC 19, 2005    (Carl Nagle for RDANTONI) Updated GetFiles command to add optional file attributes parameter
+      JAN 20, 2006    (Carl Nagle) Fixed bug in ReadFileString implementation.
+      MAR 15, 2006    (DCOEN)  Fixed bug in ReadFileLine implementation.
+      OCT 25, 2006    (Bob Lawler) Updated DDU_Copy_File to log provided filename and error since Error(53)
+                               is limited to 40 chars.  Might not see whole filename. (RJL)
+
+ Copyright (C) MSA
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>(none)
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+   *** NO SUPPORTED ACTION COMMANDS SECTION FOUND ***
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddeopenfile"></a>
+  Function DDEOpenFile (guiInfo As AUGUIInfo, statusInfo As AUStatusInfo,file_name as String, _
+           file_mode as String, file_access as String, file_number as long ) As Integer
+
+ DESCRIPTION:
+
+      Using the FileName, Mode, Access and FileNumber provided this routine
+      opens a file.  The paramater combination of Mode and Access are
+      verified for compatability prior to opening the file.  If provided
+      parameters are incompatable a DDU_SCRIPT_WARNING is provided and
+      the file is not opened.  The FileName provided must provide the
+      complete file path information for the file.  This routine does
+      not use relative path information.
+
+      This routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+      file_name       full path name of the file to be opened
+      file_mode       Mode Input, Output or Append to be used when file opened
+      file_access     File Access Read, Write or Read Write to be used when file opened
+      file_number     File Number to be used when opening the file
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+      Returns DDU__SCRIPT_WARNING if parameters are missing or parameters
+      contain an invalid combination to be used to open the file
+
+ ERRORS:
+
+       none
+
+ Orig Author: Robert D'Antoni
+ Orig   Date: APR 7, 2003
+ History:
+
+      APR 7, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddedriverfilecommand"></a>
+  Function DDEDriverFileCommand(DriverCMD As String, guiInfo As AUGUIInfo,
+                statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Processes a DDE DRIVER FILE COMMAND from the AUGUIInfo.InputRecord provided.
+      Driver commands are not treated as test commands but instructions to
+      the Drivers for setting parameters of the test environment, running
+      other scripts, or other stuff (whatever gets in here).
+
+      Different driver commands have different parameters as described below.
+      For reference, the first fields are defined below:
+
+      Field #1:   The "C" = DRIVER COMMAND.
+      Field #2:   The Driver Command to execute. (see definitions below).
+
+      Example:
+
+          c , SetApplicationMap , "AppMap.map"
+
+
+      Parameters must be placed in the order specified.
+      Parameters numbered in brackets are optional.
+      However, to use an optional parameter which follows other optional
+      parameters all the preceding parameters must exist or at least have
+      field delimited space reserved for them.
+
+          <p>
+          Note that the full availablility of all Driver Commands is now
+          spread across several files.  Together, all of these files provide
+          all the Driver Commands available to the core framework.</p>
+          <dl>
+             <dd><a href="DDDriverCommands.htm" target="_blank">DDDriverCommands</a></dd>
+             <dt>Miscellaneous and often used Commands.</dt>
+
+             <dd><a href="DDDriverLogCommands.htm" target="_blank">DDDriverLogCommands</a></dd>
+             <dt>Commands focused on logging test execution.</dt>
+
+             <dd><a href="DDDriverFlowCommands.htm" target="_blank">DDDriverFlowCommands</a></dd>
+             <dt>Commands focused on Error Recovery and Flow Control.</dt>
+
+             <dd><a href="DDDriverCounterCommands.htm" target="_blank">DDDriverCounterCommands</a></dd>
+             <dt>Commands focused on status tracking.</dt>
+
+             <dd><a href="DDDriverDeprecatedCommands.htm" target="_blank">DDDriverDeprecatedCommands</a></dd>
+             <dt>Commands that are still provided for backward compatibility, but are no longer supported.</dt>
+
+             <dd><a href="DDDriverDebugCommands.htm" target="_blank">DDDriverDebugCommands</a></dd>
+             <dt>Commands focused on debugging test execution.</dt>
+
+             <dd><a href="DDDriverFileCommands.htm" target="_blank">DDDriverFileCommands</a></dd>
+             <dt>Commands focused on file operations and manipulation.</dt>
+          </dl>
+
+         COMMAND         Fld# PARAMETER
+      ==============      ====================================================
+   OnFileEOFGotoBlockID
+                          3 - The BlockID within the current table to find and
+                              transfer control to IF the file in field 4
+                              does not exist.
+                          4 - filenumber of the file to be checked for end of file (EOF)
+
+
+   OpenFile
+                          3 - The complete file path and file name of the existing file to be opened
+                          4 - Mode to be used to open the file - Input, Output and Append
+                              Random and Binary are not supported
+                          5 - File Access to be used to open the file - Read, Write or Read Write
+                          6 - DDE Variable Name to be used to store file number for opened file
+                          7 - Optional File NUmber to be used to open the file
+
+
+
+   CreateFile
+                          3 - The complete file path and file name of the new file to be opened
+                          4 - Mode to be used to open the file - Input, Output and Append
+                              Random and Binary are not supported
+                          5 - File Access to be used to open the file - Read, Write or Read Write
+                          6 - DDE Variable Name to be used to store file number for opened file
+                          7 - Optional File Number to be used to open the file
+
+
+
+   CloseFile
+                          3 - File Number to be used to close the file
+
+
+
+   DeleteFile
+                          3 - Name of the file to be deleted
+                              The file is assumed to be in Datapool\Test unless
+                              the user specifies a full or relative path to some
+                              other location. If a relative path is specified, it is
+                              relative to the project directory.
+                          4 - No Verification Parameter
+
+
+
+   CopyFile
+                          3 - Full file path and Name of the file to be copied from
+                          4 - Full file path and Name of the file to be copied to
+
+
+
+   RenameFile
+                          3 - Full file path and old file name of the file
+                          4 - Full file path and new file name for the file
+                          5 - Optioinal No Verify Paramater
+
+
+
+   FindSQAFile
+                          3 - SQA Relative path and file name of the file to be found
+                              If a full file path is provided the file will be found using
+                              the full file path
+                          4 - DDV Variable name of the variable to be used to store the full
+                              file path of the file found.  If the file is not found an empty
+                              string is assigned to this variable
+
+
+
+   GetFileSize
+                          3 - File path and file name of the file for which file size is requested
+                          4 - DDV Variable name of the variable to be used to store the file size
+
+
+
+   GetFileDateTime
+                          3 - File path and file name of the file for which date time is requested
+                          4 - DDV Variable name of the variable to be used to store the file date/time
+
+
+
+   SetFileProtections
+                          3 - File path and file name of the file to change file protections
+                          4 - Value of new file protection for the file
+                              0 - Normal File, 1 - Read-Only file, 2 - Hidden file, 4 - System file
+                              32 - Archive file has changed since last backup
+
+
+
+   ReadFileChars
+                          3 - File number for the open sequential file to be read
+                          4 - Number of characters to be read from the file
+                          5 - Name of DDV variable to be used to store the characters read
+
+
+
+   ReadFileLine
+                          3 - File number for the open sequential file to be read
+                          4 - Name of DDV variable to be used to store the characters read
+
+
+
+   ReadFileString
+                          3 - File number for the open sequential file to be read
+                          4 - Name of DDV variable to be used to store the characters read
+
+
+
+   PrinttoFile
+                          3 - File number of the file to be written to using the print command
+                          4 - DDV varible name of the variable that contains the "Expression List"
+                              to be used for the print command
+                          5 - (Optional) Print Output Placement Parameter determines where the next
+                              output to the same file should begin
+                              ; will place the output immediately following this print output
+                              , will start output at the next print zone on the same line
+                              Absence of this parameter (Default) will place the next output at the
+                              beginning of a new line following a carriage return line feed
+
+
+
+   GetFiles
+                          3 - Directory name to search for files
+                          4 - File Path and name of file in which to put the names of the
+                              files found in the directory
+                          5 - (Optional) File Attributes parameter to define file attributes to select
+                              by Dir command.  Defaults to 0.
+
+                              0 - return normal files
+                              2 - add hidden files
+                              4 - add system files
+                              8 - return volume label
+                              16 - add directories
+
+                              Note: Values can be added together to select multiple attributes.
+                                    For example, to list hidden and system files in addition to
+                                    normal files set File Attributes to 6 (6=2+4).
+                                    If file attribute is set to 8 the volume label is returned.
+                                    If volume label attribute is set, all other attributes are ignored.
+
+
+
+   CreateDirectory
+                          3 - Full directory name and path of the sub directory to be made
+
+
+   DeleteDirectory
+                          3 - Full directory name and path of the sub directory to be deleted
+
+
+
+      This DDEDriver File Command routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      DriverCMD       from the calling DDDriverCommands library.
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+      Returns DDU_SCRIPT_NOT_EXECUTED if no matching driver command was found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Robert D'Antoni
+ Orig   Date: Mar 20, 2003
+ History:
+
+      Mar 20, 2003    Original Release
+      Jun 02, 2003    (Rdant) Added No Verify (Optional) Parameter to Delete and Rename File Commands
+      Jun 02, 2003    (Rdant) Added DDU_Create_Directory and DDU_Delete_Directory commands
+      Dec 15, 2004    (Bob Lawler) Added success msgs to the log for Open/CreateFile, DeleteFile, PrintToFile,
+                               CloseFile, Copy, Rename, SetFileProtections, GetFiles, CreateDirectory, and
+                               DeleteDirectory (RJL).
+                      (Bob Lawler) Added driver command success msgs to the log for FindSQAFiles, GetFileSize,
+                               GetFileDateTime, ReadFileChars, and ReadFileLine/String (RJL).
+                      (Bob Lawler) Updated success and failure msgs to not include .testcommand and .compname as
+                               these are empty variables.  Use DriverCMD instead (RJL).
+      Jan 24, 2005    (Bob Lawler) Updated log messages from PASSED to GENERIC (RJL).
+      JUN 07, 2005    (Carl Nagle) Track open files and issue errors accordingly.
+      OCT 14, 2005    (Carl Nagle) Diverted library to use DDELocateBlockID in Flow commands
+                               to properly handle file caching.
+      OCT 28, 2005    (DCOEN)  Added field name in message for PrintToFile
+      DEC 19, 2005    (Carl Nagle for RDANTONI) Updated GetFiles command to add optional file attributes parameter
+      JAN 20, 2006    (Carl Nagle) Fixed bug in ReadFileString implementation.
+      MAR 15, 2006    (DCOEN)  Fixed bug in ReadFileLine implementation.
+      OCT 25, 2006    (Bob Lawler) Updated DDU_Copy_File to log provided filename and error since Error(53)
+                               is limited to 40 chars.  Might not see whole filename. (RJL)
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

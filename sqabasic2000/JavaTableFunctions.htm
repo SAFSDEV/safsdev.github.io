@@ -1,0 +1,588 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic JavaTableFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "JavaTableFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=JavaTable objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DatabaseUtilities.htm">DatabaseUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+<li>'$INCLUDE: "<a href="DatabaseUtilities.htm">DatabaseUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      ClickCell               'Click on a specified x,y cell
+      DoubleClickCell         'DoubleClick on a specified x,y cell
+      RightClickCell          'RightClick on a specified x,y cell
+
+      SelectCell              'Same as ClickCell
+      ActivateCell            'Same as DoubleClickCell
+
+      AssignCellTextRow            'Extract row # based on multiple exact column matches
+      AssignCellContainsTextRow    'Extract row # based on multiple fuzzy column matches
+
+      AssignVariableCellText       'Extract cell text based on exact parameters
+      AssignVariableFuzzyCellText  'Extract cell text based on fuzzy parameters
+
+      VerifyCellText               'Verify cell text based on exact parameters
+      VerifyFuzzyCellText          'Verify cell text based on fuzzy parameters
+      VerifyCellTextContains       'Verify cell text based on exact parameters
+      VerifyFuzzyCellTextContains  'Verify cell text based on fuzzy parameters
+
+      SelectCellText               'Select a cell based on exact parameters
+      SelectCellTextFind           'Select a cell based on multiple column matches
+      SelectFuzzyCellTextFind      'Select a cell based on multiple column matches
+      SelectCellContainsTextFind   'Select a cell based on multiple column matches
+
+      CaptureRangeToFile           'Output a range of cells to a file.
+      CaptureFuzzyRangeToFile      'Output a range of cells to a file based on fuzzy parameters
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="javatableclick"></a>
+   Sub JavaTableClick (Optional action)
+
+
+ DESCRIPTION:
+
+      Tries to perform a standard Click on a cell in a JavaTable.
+      The command uses the same format for:
+
+          ClickCell         Single Click (same as "SelectCell")
+          DoubleClickCell   Double Click (same as "ActivateCell")
+          RightClickCell    Right Click
+
+          SelectCell      Single Click (same as "ClickCell")
+          ActivateCell    Double Click (same as "DoubleClickCell")
+
+      Typical Data Table records:
+
+      (1) t, JavaWin, JTable, Click
+      (2) t, JavaWin, JTable, Click, 3, 4
+
+      #1 above should merely click in the table at cell 1,1.
+
+      #2 above will click at cell defined by row/col 3,4 in the table.
+
+
+ PARAMETERS:
+
+      action   The SQABasic CONSTANT to use (Click, DblClick, RightClick, etc.)
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      (OPTIONAL) The row of the cell in the row/col specification.
+              Defaults to 1.  Rows are 1-based.
+
+       6      (OPTIONAL) The column of the cell in the row/col specification.
+              Defaults to 1.  Columns are 1-based.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Bernd Weber
+ Orig   Date: JUN 05, 2002
+ History:
+
+      JUN 05, 2002    Original Release
+      FEB 10, 2003    (Carl Nagle) Added post-click verification.
+      JUL 11, 2004    (Carl Nagle) mod to use selectCellRowColumn.
+      OCT 19, 2004    (Bob Lawler) Mod to build ColumnNames() and send it to
+                               selectCellRowColumn()
+      APR 19, 2004    (Carl Nagle) If specified Row is not numeric attempt Generic Click command.
+      OCT 17, 2005    (Carl Nagle) Added support for RightClick
+
+</pre>
+<hr>
+<pre>
+
+<a name="performfindcellcommands"></a>
+   Sub PerformFindCellCommands (mode As Integer)
+
+
+ DESCRIPTION:
+
+     Attempts to select a cell and/or assign variable values in the
+     identified column based on matching the values in N number of other
+     columns.  In addition, the provided variable will receive the row #
+     that satisfied the search.  "Assign" commands will also capture the
+     value of the cell in the target column into a second variable.
+
+     Note, if you supply the name of the variable and include the leading
+     caret (^) symbol then the variable must be enclosed in quotes.
+     Otherwise, that variable will be used like any other variable and the
+     substituted value of that variable will be interpretted as the name
+     of the variable you wish to use.
+
+     "Contains" or "Fuzzy" versions of commands allow for case-insensitive
+     comparisons matching substrings of actual table values.
+
+     MODE = 1 signifies to use "fuzzy", substring matching logic.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The name of the Variable to receive the row#.  GetTrimmedQuotedField
+              will be used to extract the name of the variable.  This also
+              is the 'root' variable name for any "Assign" commands that extract
+              the value of a cell into a variable 'root'.Value
+
+              Note, if you supply the name of the variable and include the leading
+              caret (^) symbol then the variable must be enclosed in quotes.
+              Otherwise, that variable will be used like any other variable and the
+              substituted value of that variable will be interpretted as the name
+              of the variable you wish to use.
+
+       6      The target column for the cell selection/value assignment on the
+              deduced row.  Defaults to 1.  Columns are 1-based.
+              Alternatively, this can be a unique field header text value.
+              "Select/Find" commands will select the target cell.
+              "Assign/Row" commands will store the cell value into a variable
+              with the root name defined in field #5 and a ".Value" suffix.
+              Thus, if field #5 contains "TableRow", the value variable will
+              be "TableRow.Value".
+
+       7n     The column to search for the provided 8n value.
+              Defaults to 1.  Columns are 1-based.
+              Alternatively, this can be a unique field header text value.
+
+       8n     The value to locate in the provided 7n column.
+
+       9n+    (Optional) Additional col/value pairs like 7n/8n.  As many of these
+      10n+    field pairs can be supplied as necessary to uniquely match the desired
+              row based on cell contents.  If a col/value pair search fails we
+              will attempt to use those that have succeeded to find a unique row.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 09, 2004
+
+ History:
+
+      JUL 11, 2004    Original Release
+      Oct 19, 2004    (Bob Lawler) Mod to include table2DData() and ColumnNames() in calls to
+                               getColumnIndices() and selectCellRowColumn().
+
+</pre>
+<hr>
+<pre>
+
+<a name="assignvariable"></a>
+   Sub AssignVariable (mode As Integer)
+
+
+ DESCRIPTION:
+
+                Attempts to extract a particular cell value and assign
+                it to the provided variable name.
+
+                Note, if you supply the name of the variable and include the leading
+                caret (^) symbol then the variable must be enclosed in quotes.
+                Otherwise, that variable will be used like any other variable and the
+                substituted value of that variable will be interpretted as the name
+                of the variable you wish to use.
+
+                Typical Data Table records:
+
+                  T, JavaWin, JTable, AssignVariableCellText, AVariableName
+
+                Assign the value of cell 1,1 in JTable to DDVariable ^AVariableName.
+
+                  T, JavaWin, JTable, AssignVariableCellText, "AVariableName", 1 , 1
+
+                Assign the value of cell 1,1 in JTable to DDVariable ^AVariableName.
+
+                  T, JavaWin, JTable, AssignVariableCellText, "^AVariableName", 4, "Field5"
+
+                Assign the value of cell 4, Field5 in JTable to DDVariable ^AVariableName.
+                The column is determined by matching the text "Field5" to the field headers
+                in the JTable.
+
+                  C, SetVariableValues, ^AVariableName="NextVariableName"
+                  T, JavaWin, JTable, AssignVariableCellText, ^AVariableName, "ADatum", 5
+
+                Assign the value of cell ADatum,5 in JTable to DDVariable ^NextVariableName.
+                The row is determined by matching the text "ADatum" to the first cell in
+                column 1 in the JTable that contains "ADatum".
+
+      The "Assign...Fuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The name of the Variable to receive the value.  GetTrimmedQuotedField
+              will be used to extract the name of the variable.
+
+              Note, if you supply the name of the variable and include the leading
+              caret (^) symbol then the variable must be enclosed in quotes.
+              Otherwise, that variable will be used like any other variable and the
+              substituted value of that variable will be interpretted as the name
+              of the variable you wish to use.
+
+       6      (OPTIONAL) The row of the cell in the row/col specification.
+              Defaults to 1.  Rows are 1-based.
+              Alternatively, this can be a unique cell value in column 1.
+
+       7      (OPTIONAL) The column of the cell in the row/col specification.
+              Defaults to 1.  Columns are 1-based.
+              Alternatively, this can be a unique field header text value.
+
+      The "Assign...Fuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 05, 2003
+ History:
+
+      FEB 05, 2003    Original Release
+      FEB 08, 2003    (Carl Nagle) Modified the "Contains" keyword to use "Fuzzy" instead.
+      OCT 19, 2004    (Bob Lawler) Mod to include output param ColumnNames() in call to
+                               getRowColCellIndices().
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifycelltext"></a>
+   Sub VerifyCellText (cellmode as Integer, matchmode as Integer)
+
+
+ DESCRIPTION:
+
+                Attempts to verify a particular cell value.
+
+                Typical Data Table records:
+
+                  T, JavaWin, JTable, VerifyCellText, AValue
+
+                Compares the value of cell 1,1 in JTable to "AValue".
+
+                  T, JavaWin, JTable, VerifyCellText, "AValue", 1 , 1
+
+                Compares the value of cell 1,1 in JTable to "AValue".
+
+                  T, JavaWin, JTable, VerifyCellText, ^AVariableName, 4, "Field5"
+
+                Compares the value of cell 4, Field5 in JTable to the value stored in ^AVariableName.
+                The column is determined by matching the text "Field5" to the field headers
+                in the JTable.
+
+                  T, JavaWin, JTable, VerifyCellText, ^AVariableName, "ADatum", 5
+
+                Compares the value of cell ADatum,5 in JTable to the value stored in ^AVariableName.
+                The row is determined by matching the text "ADatum" to the first cell in
+                column 1 in the JTable that contains "ADatum".
+
+      The "VerifyFuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+      The "Verify...Contains" version of this function will allow case-insensitive
+      substring matches during the comparison of the cell value and the benchmark text.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The benchmark value for the comparison.
+
+       6      (OPTIONAL) The row of the cell in the row/col specification.
+              Defaults to 1.  Rows are 1-based.
+              Alternatively, this can be a unique cell value in column 1.
+
+       7      (OPTIONAL) The column of the cell in the row/col specification.
+              Defaults to 1.  Columns are 1-based.
+              Alternatively, this can be a unique field header text value.
+
+
+      The "VerifyFuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+      The "Verify...Contains" version of this function will allow case-insensitive
+      substring matches during the comparison of the cell value and the benchmark text.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 07, 2003
+ History:
+
+      FEB 07, 2003    Original Release
+      OCT 19, 2004    (Bob Lawler) Mod to include output param ColumnNames() in call to
+                               getRowColCellIndices().
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectcelltext"></a>
+   Sub SelectCellText (mode as Integer)
+
+
+ DESCRIPTION:
+
+                Attempts to select a particular cell.
+
+                Typical Data Table records:
+
+                  T, JavaWin, JTable, SelectCellText
+
+                Selects cell 1,1 in JTable.
+
+                  T, JavaWin, JTable, SelectCellText, 1 , 1
+
+                Selects cell 1,1 in JTable.
+
+                  T, JavaWin, JTable, SelectCellText, 4, "Field5"
+
+                Selects 4, Field5 in JTable.
+                The column is determined by matching the text "Field5" to the field headers
+                in the JTable.
+
+                  T, JavaWin, JTable, SelectCellText, "ADatum", 5
+
+                Selects cell ADatum,5 in JTable.
+                The row is determined by matching the text "ADatum" to the first cell in
+                column 1 in the JTable that contains "ADatum".
+
+      The "SelectFuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      (OPTIONAL) The row of the cell in the row/col specification.
+              Defaults to 1.  Rows are 1-based.
+              Alternatively, this can be a unique cell value in column 1.
+
+       6      (OPTIONAL) The column of the cell in the row/col specification.
+              Defaults to 1.  Columns are 1-based.
+              Alternatively, this can be a unique field header text value.
+
+
+      The "SelectFuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 10, 2003
+ History:
+
+      FEB 10, 2003    Original Release
+      JUL 11, 2004    (Carl Nagle) mod to use selectCellRowColumn.
+      Oct 19, 2004    (Bob Lawler) Mod to include table2DData() and ColumnNames() in calls to getRowColCellIndices()
+                               and selectCellRowColumn()
+
+</pre>
+<hr>
+<pre>
+
+<a name="rangetofile"></a>
+   Sub RangeToFile (mode As Integer)
+
+
+ DESCRIPTION:
+
+                Captures a range of cell values into the specified file.
+
+
+                Typical Data Table records:
+
+                  T, JavaWin, JTable, CaptureRangeToFile, AFileName.txt
+
+                Save the values of the entire table to &lt;project>\Datapool\Test\AFileName.txt
+                This is because no range beginning or end parameters were provided.
+
+                  T, JavaWin, JTable, CaptureRangeToFile, AFileName.txt, 1 , 1
+
+                Save the values of the entire table to &lt;project>\Datapool\Test\AFileName.txt
+                This is because we were told to start at the first cell and no parameters
+                were provided specifying how many rows or columns to capture.
+
+                  T, JavaWin, JTable, CaptureRangeToFile, AFileName.txt, 4, "Field5", 2, 5
+
+                Save the values starting from cell 4, Field5 in JTable to
+                &lt;project>\Datapool\Test\AFileName.txt
+                The column is determined by matching the text "Field5" to the field headers
+                in the JTable.  2 rows and 5 columns will be copied starting from the
+                specified cell.
+
+                  T, JavaWin, JTable, CaptureRangeToFile, AFileName.txt, "ADatum", 5, , 2
+
+                Save the values starting from cell ADatum,5 in JTable to
+                &lt;project>\Datapool\Test\AFileName.txt
+                The row is determined by matching the text "ADatum" to the first cell in
+                column 1 in the JTable that contains "ADatum".  All subsequent rows for the
+                specified 2 columns will be captured.
+
+      The "CaptureFuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      The filename to receive the values.
+
+       6      (OPTIONAL) The row of the cell in the row/col specification.
+              Defaults to 1.  Rows are 1-based.
+              Alternatively, this can be a unique cell value in column 1.
+
+       7      (OPTIONAL) The column of the cell in the row/col specification.
+              Defaults to 1.  Columns are 1-based.
+              Alternatively, this can be a unique field header text value.
+
+       8      (OPTIONAL) The number of rows to capture.  If not provided,
+              capture up to the last row.
+
+       9      (OPTIONAL) The number of columns to capture.  If not provided,
+              capture up to the last column.
+
+      10      (* FUTURE *) Optional File Filter to use during processing.
+
+      11      (* FUTURE *) Optional Filter options for the File Filter.
+
+
+      The "CaptureFuzzy..." version of this function will allow case-insensitive
+      substring matches during the evaluation of column 1 row text and header fields.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 12, 2003
+ History:
+
+      FEB 12, 2003    Original Release
+      OCT 19, 2004    (Bob Lawler) Mod to include output param ColumnNames() in call to
+                               getRowColCellIndices().
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a JavaTable.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will be processed by the
+      GenericMasterFunctions.GenericUnimplementedCommand routine.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Bernd Weber
+ Orig   Date: Jun 05, 2002
+ History:
+
+      JUN 05, 2002    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      FEB 04, 2003    (Carl Nagle) Removed remnants of moved VP support.
+      FEB 05, 2003    (Carl Nagle) Added AssignVariable commands.
+      FEB 07, 2003    (Carl Nagle) Added Verify... ande SelectCellText... commands.
+      FEB 10, 2003    (Carl Nagle) Added SelectCellText and SelectFuzzyCellText commands.
+      FEB 12, 2003    (Carl Nagle) Added CaptureRangeToFile commands.
+      JUL 11, 2004    (Carl Nagle) Added Assign/Row and Select/Find commands.
+      OCT 17, 2005    (Carl Nagle) Added RightClickCell support.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (2001,2002,2003) Bernd Weber
+This program is free software; you can redistribute it and/or modify it under 
+the terms of the GNU General Public License Version 2 as published by the Free 
+Software Foundation. This license version can be viewed in its entirety at:
+http://www.opensource.org/licenses/gpl-license.php
+
+THIS CODE IS PROVIDED "AS IS".  THERE ARE NO REPRESENTATIONS OR WARRANTIES, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR ANY PARTICULAR PURPOSE, AND NONINFRINGEMENT.  IN NO EVENT SHALL 
+ANYONE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING IN CONNECTION 
+WITH THE CODE OR ITS USE.  
+
+You should have received a copy of the GNU General Public License along with 
+this program; if not, write to:
+the Free Software Foundation, Inc., 
+59 Temple Place, Suite 330
+Boston, MA 02111-1307 USA
+===============================================================================
+</pre>
+</BODY>
+</HTML>

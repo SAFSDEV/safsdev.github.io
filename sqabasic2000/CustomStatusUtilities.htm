@@ -1,0 +1,146 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic CustomStatusUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "CustomStatusUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      This module is used to implement project specific, or site specific,
+      status counting that is intended to either enhance or replace the use of
+      built-in status counters provided by the Core framework.
+
+      A custom solution can be based on the functionality provided by the existing
+      libraries or fully custom implementations:
+
+      * <a href="ApplicationUtilities.htm#declarations" target="_blank">ApplicationUtilities</a>
+      * <a href="LogUtilities.htm#declarations" target="_blank">LogUtilities</a>
+      * <a href="CustomLogUtilities.htm#declarations" target="_blank">CustomLogUtilities</a>
+      * <a href="CustomUtilities.htm#declarations" target="_blank">CustomUtilities</a>
+
+      Note that the static Core framework has no way of dynamically accessing or
+      even recognizing custom status utilities implemented by the developer except
+      by calling the predefined hook function(s) in this library. An added
+      benefit to the developer is that they can populate the SBH header
+      files with their own variables, constants, user-defined types, and
+      function declarations for their custom status functions.  These would
+      then automatically get included by any library that includes the main
+      DDE header--DDEngine.SBH. It prevents developers from having to add
+      their own custom include(s) for information they stick in these headers.
+
+      The developer can implement their routines in this file, or they can call
+      into any number of other files.
+
+      Note, however, that the namespace for public routines and
+      other public items is shared with the Core framework.  So you cannot
+      duplicate the name of any public item or routine in your custom libraries.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "CustomStatusUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "CustomStatusUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>(none)
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#customddestatuscounter">CustomDDEStatusCounter</a>  BasicLib CustomStatusUtilities 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="customddestatuscounter"></a>
+  Sub CustomDDEStatusCounter (statusInfo as AUStatusInfo, status As integer)
+
+ DESCRIPTION:
+
+  The hook will not bypass Core framework status tracking.  It will
+  allow the end-user to implement their own additional means of status tracking.
+  A custom solution can be based on the functionality provided by the existing
+  libraries:
+
+      * <a href="ApplicationUtilities.htm#declarations" target="_blank">ApplicationUtilities</a>
+      * <a href="LogUtilities.htm#declarations" target="_blank">LogUtilities</a>
+      * <a href="CustomLogUtilities.htm#declarations" target="_blank">CustomLogUtilities</a>
+      * <a href="CustomUtilities.htm#declarations" target="_blank">CustomUtilities</a>
+
+ PARAMETERS:
+
+      source  <a href="ApplicationUtilities.htm#user_defined" target="_blank">AUStatusInfo</a> provided from other AUIncrement routines.
+              You do not increment this AUStatusInfo.  It will have
+              already been incremented by the calling AUIncrement routines.
+
+              Instead, we may reference fields such as .filename, .mode, or .level
+              Otherwise, this parameter is not used.
+
+      status  The status encountered.  Valid values are defined in the
+              <a href="ApplicationUtilities.htm#constants">ApplicationUtilities CONSTANTS</a> section.
+              For example: AU_TEST_FAILURE, AU_TEST_PASS, etc..
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 01, 2002
+ History:
+
+      JUL 01, 2002    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

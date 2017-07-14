@@ -1,0 +1,39 @@
+<html>
+<head><title>WinCVS Setup Info</title></head>
+<body>
+<center><h2>WinCVS Setup Info</h2>
+<small>By: Junwu Ma<br>
+SAS Institute, Beijing
+</small></center>
+<p>
+My experience setting up the environment to access the SAFSDEV CVS repository using WinCVS 2.0.2 with Putty 2.5.1:
+<p>
+<ol>
+<li>Created a Sourceforge user account.
+<p>
+<li>Downloaded PuttyGen and PageAnt from www.putty.org.
+<p>
+<li>Ran PuttyGen to generate a public/private key pair with ‘SSH2 DSA’ checked. The public key is for passing to the OpenSSH authorized_keys file on sourceforge CVS server (See Step 5). The private key should be saved as a single file for using by PageAnt.
+<p>
+<img src="PuttyGen.JPG" alt="PuttyGen SSH Key Generator Dialog"/>
+<p>
+<li>Logged in to SourceForge.net with my account created in Step 1 via https://sourceforge.net/account/login.php?return_to=%2Faccount%2F, and entered into my Account Maintenance page.
+<p>
+<li>I found a link to ‘Edit SSH Keys for Shell/CVS’ on my Account Maintenance page after my account had been added to the SAFSDEV project. Clicked the link and entered into page ‘Change Authorized Keys’, where I pasted the public SSH key (created in Step 3) here and updated the public key.
+<p>
+<li>Ran PageAnt adding the private key created in Step 3.  Kept PageAnt running when I was using WinCvs to access CVS repository on sourceforge.
+<p>
+<li>Downloaded WinCVS 2.0.2 and installed it. Also, Python or ActiveTCL should be installed on the same computer since WinCVS requires one of these to properly function.  In this case, I installed Python2.5.1.
+<p>
+<li>When starting WinCVS, I got error messages 1) ‘can not find tcl84.dll’ and 2) ‘can not find Python’.  This problem was solved by changing the settings on dialog ‘WinCvs Preferences’.
+In the figure below, ‘python25.dll’ and ‘c:\Python25\DLLs\tcl84.dll’ were added manually.  (This step may or may not be required if you choose to install ActiveTCL instead.)
+<p>
+<img src="WinCVSPython.JPG" alt="WinCVS Preferences Dialog"/>
+<p>
+<li>A small setting plagued me for two days when I was trying to check out modules from the SAFSDEV CVS repository.   I missed the ‘tag\branch "MAIN"’ requirement written in doc ‘SAFSDEV Java Developer Environment’.  After changing the setting with Carl’s help, modules could be checked out or exported correctly.  Please see below for this setting.
+<p>
+<img src="WinCVSCheckout.JPG" alt="WinCVS Checkout Dialog"/>
+</ol><p>
+When 9 steps finished, it is no problem to use WinCVS to communicate with SAFSDEV CVS repository!
+</body>
+</html>

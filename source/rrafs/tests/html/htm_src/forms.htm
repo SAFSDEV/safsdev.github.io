@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <script language="JavaScript">
+      function wasClicked()
+    	{
+      	alert("Form Submitted");
+      	document.form1.T1.value="";
+      	document.form1.S1.value="";
+    	}
+    </script>
+    <title>forms.htm</title>
+  </head>
+  <body>
+    <h1>forms test page</h1>
+    <h3>table within a form</h3>
+			<form name ="form1">
+
+			<table frame="1" border="sides"
+                cellpadding="0" cellspacing="3">
+                    <tr>
+                        <td valign="bottom">Single Line Text
+                        Area:</td>
+                        <td valign="bottom">Scrolling Text Area:</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"><input type="text"
+                        size="20" name="T1"></td>
+                        <td valign="top" colspan="2"><textarea
+                        name="S1" rows="2" cols="20"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td valign="bottom">
+                            <p><input type="checkbox" name="C1">Check
+                            Box 1<br>
+                            <input type="checkbox" name="C2">Check
+                            Box 2<br>
+                            <input type="checkbox" name="C3">Check
+                            Box 2</p>
+
+                        </td>
+                        <td valign="bottom" colspan="2">
+                            <p><input type="radio" checked
+                            name="R1" value="V1">Radio Button 1<br>
+                            <input type="radio" name="R1"
+                            value="V2">Radio Button 2<br>
+                            <input type="radio" name="R1"
+                            value="V3">Radio Button 3</p>
+
+                        </td>
+                    </tr>
+                    <tr><td>combo box</td><td>multi select listbox</td></tr>
+                    <tr>
+                        <td valign="top">
+                            <p><select name="D1" size="1">
+                                <option selected>Choice Box</option>
+                                <option>Item 1</option>
+                                <option>Item 2</option>
+                                <option>Item 3</option>
+                                <option>Item 4</option>
+                            </select></p>
+
+                        </td>
+                        <td>
+                          <select name="list_name" size="7" multiple>
+                            <option  value="DEPT">DEPT</option>
+                            <option  value="PRODUCT">PRODUCT</option>
+                            <option  value="twospaces">two &nbsp;spaces</option>
+                            <option  value="tab">a&#009;tab</option>
+                            <option  value="SYSTEM">SYSTEM</option>
+                            <option  value="DVD">DVD</option>
+                            <option  value="TABLE">TABLE</option>
+                            <option  value="SUBTABLE">SUBTABLE</option>
+                            <option  value="TESTNAME">TESTNAME</option>
+                            <option  value="LONGITEM">This guy is 101-character long. This guy is 101-character long. This guy is 101-character long. Haha!</option>
+                          </select>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td valign="bottom" colspan="2">
+                            <p><input type="submit" name="B1"
+                            value="Submit" onclick="wasClicked()"></p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="bottom">&nbsp;</td>
+                    </tr>
+                </table>
+			</form>
+      <h3>table containing multiple forms</h3>
+      <table frame="1" border="box">
+        <tr>
+          <td>the next cell has a form</td>
+          <td>
+            <form name="files">
+                includes<input type="checkbox" name="files" value="I" checked />
+                deletes<input type="checkbox" name="files" value="D" checked />
+                sio<input type="checkbox" name="files" value="S" checked />
+                nonsio<input type="checkbox" name="files" value="N" checked />
+                prevsio<input type="checkbox" name="files" value="P" checked />
+                other<input type="checkbox" name="files" value="O" checked />
+                <input type="submit" value="get file details" onclick="wasClicked()"/>
+                <input type="hidden" value="port_901_20021016" name="p_base" />
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <form name="last_form">
+                            <p><input type="radio" checked
+                            name="R2" value="V1">Radio Button 1<br>
+                            <input type="radio" name="R2"
+                            value="V2">Radio Button 2<br>
+                            <input type="radio" name="R2"
+                            value="V3" checked>Radio Button 3</p>
+                            <p><input type="checkbox" name="C4" checked>Check
+                            Box 1<br>
+                            <input type="checkbox" name="C5">Check
+                            Box 2<br>
+                            <input type="checkbox" name="C6" checked>Check
+                            Box 2</p>
+                            <p><input type="submit" name="B1"
+                            value="Submit" onclick="wasClicked()"></p>
+            </form>
+          </td>
+          <td>the cell to the left has a form</td>
+        </tr>
+      </table>
+  </body>
+</html>

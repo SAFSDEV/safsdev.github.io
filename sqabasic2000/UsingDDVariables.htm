@@ -1,0 +1,191 @@
+<html>
+
+<head>
+<title>Using DDVariables</title>
+</head>
+<body>
+<a name="top"></a><h1><center>Using DDVariables</h1>
+Last updated: 06\24\2009</center>
+<p>
+Reference <a href="DDVariableStore.htm">DDVariableStore</a> for API information
+on using DDVariables in Rational Robot Scripts.<br>
+Reference <a href="http://safsdev.sourceforge.net/doc/org/safs/rational/Script.html">Script Javadoc</a> for API information
+on using DDVariables in Rational Functional Tester Scripts.
+</p><hr>
+The data driven engine now supports the referencing and use of named variables
+within test tables and for use by scripts.  This gives us some excellent
+benefits like:
+<ul>
+  <li>Pass parameters or data between test tables.</li>
+  <li>Pass parameters or data from test tables to scripts.</li>
+  <li>Pass parameters or data between scripts.</li>
+  <li>Retrieve results, status, or data from scripts.</li>
+  <li>Provide aliases for objects and commands in test tables.</li>
+  <li>Enable dynamic component recognition inside Application Maps.</li>
+</ul>
+<p>
+<a name="in_tables"></a><big><strong>Using DDVariables in Test Tables</strong></big><br>
+<small>(goto <a href="#in_scripts"> Using DDVariables in Robot Scripts</a>)</small>,
+<small>(goto <a href="#in_rft_scripts"> Using DDVariables in RFT Scripts</a>)</small>
+<p><b>Setting Values:</b><br>
+Test tables can set variable values by providing a variable name reference with
+an assignment operator.  Variable names are referenced by preceding the variable
+name
+with a caret (^) symbol.  This symbol must be the first non-whitespace character
+in the field.&nbsp; The assignment operator is the equal (=) sign.
+<p>Example (<a href="SuiteDriver.htm" target="_blank">SuiteDriver</a> test table
+calling <a href="StepDriver.htm" target="_blank">StepDriver</a> and providing
+values for variables):</p>
+<pre>
+    t, EnterUser,, ^user.name= &quot;John Smith&quot;, ^user.id=&quot;jsmith&quot;, ^user.password = &quot;silly&quot;
+</pre>
+The above example is a call to execute the &quot;EnterUser&quot; test
+table.&nbsp; It also sets the values of variables that will be used by the
+table; namely, user.name, user.id, and user.password .&nbsp; Note that the caret
+is not actually part of the variables' names.&nbsp; It is merely used in the
+fields to identify variables from literal strings.
+<p>The above example will be preprocessed by the data driven engine prior to
+execution.&nbsp; The engine will extract and set the values of the variables
+using <a href="DDVariableStore.htm#DDVExtractVariables" target="_blank">DDVariableStore.DDVExtractVariables</a>.</p>
+<p><b>Getting Values:</b><br>
+Test tables can retrieve variable values by providing a variable name
+reference.&nbsp; Variable names are referenced by preceding the variable name
+with a caret (^) symbol.&nbsp; This symbol must be the first non-whitespace
+character in the field.</p>
+<p>Example (<a href="StepDriver.htm" target="_blank">StepDriver</a> test table
+using the stored variables set by <a href="SuiteDriver.htm" target="_blank">SuiteDriver</a>):</p>
+<pre>
+    t, NewUserWindow,     UserNameField     , SetTextValue,   ^user.name
+    t, NewUserWindow,      UserIDField      , SetTextValue,   ^user.id
+    t, NewUserWindow,   UserPasswordField   , SetTextValue,   ^user.password
+    t, NewUserWindow,     AddUserButton     , Click
+</pre>
+This example shows that we can use the same test table to add any number of
+users to this application simply by changing the variable values prior to the
+call.
+<p><b>Additional Features:<br>
+</b>The variable extraction is done on ALL fields that contain a valid variable
+reference.&nbsp; This extraction is performed and immediately substituted back
+into the test record prior to execution.&nbsp;&nbsp; This means that the object
+references and action commands can be given aliases if that is desired.&nbsp; </p>
+<p>Example (Aliases provided for &quot;Click&quot; command above):</p>
+<pre>
+    t, NewUserWindow, AddUserButton, ^Press = Click
+</pre>
+Extraction with immediate Substitution creates the proper executable for this
+record:<pre>
+    t, NewUserWindow, AddUserButton,&quot;Click&quot;
+</pre>
+Subsequent records can then reference ANY &quot;Click&quot; command by this
+alias:<pre>
+    t, AnyWindow, AnyButton, ^Press
+</pre>
+
+<p>For more information on this and using DDVariable references inside the
+Application Map for dynamic component recognition see
+<a href="CreateAppMap.htm#ddv_lookup" target="_blank">DDVariables for Dynamic Recognition</a>.</p>
+
+<hr>
+<p>
+<a name="in_rft_scripts"></a><big><strong>Using SAFSVARS in RFT Scripts</big></strong><br>
+<small>(or goto <a href="#in_tables"> Using DDVariables in Test Tables</a>)</small>
+<p>The <a href="http://safsdev.sourceforge.net/doc/org/safs/staf/service/var/AbstractSAFSVariableService.html" target="javadoc">SAFSVARS Service</a> is
+available not only to SAFS test tables, but also to any custom RFT script called via the
+<a href="DDDriverFlowCommandsReference.htm#detail_CallScript" target="_blank">CallScript Driver Command</a>.
+This is done through STAF and the <a href="http://safsdev.sourceforge.net/doc/org/safs/STAFHelper.html" target="javadoc">STAFHelper</a> available to
+custom script as documented in the <a href="http://safsdev.sourceforge.net/doc/org/safs/rational/Script.html" target="javadoc">Script JavaDoc</a>.
+<p>
+Generally, you must minimally include the following imports in your custom RFT script:
+<pre>
+	import org.safs.*;
+	import org.safs.rational.*;
+</pre><p>
+Then in your script you need to minimally do the following:
+<pre>
+	Script safs = (Script) getScriptCaller();
+	RRobotJHook hook = safs.getRobotJHook();
+	STAFHelper staf = hook.getHelper();
+
+	//retrieve SAFSVARS variable values
+	String value = staf.getVariable("varname");
+
+	//set SAFSVARS variable values
+	staf.setVariable("varname", "somevalue");
+</pre><p>
+<hr>
+<p>
+<a name="in_scripts"></a><big><strong>Using DDVariables in Robot Scripts</big></strong><br>
+<small>(or goto <a href="#in_tables"> Using DDVariables in Test Tables</a>)</small>
+<p>The <a href="DDVariableStore.htm" target="_blank">DDVariableStore</a> is
+available not only to the RRAFS engine, but any Robot script or framework that
+chooses to INCLUDE it.&nbsp; This is especially useful for Robot scripts called by the
+engine.&nbsp; The engine can pass parameters or data to the script via these
+variables.&nbsp; Additionally, outside of the RRAFS engine, Robot scripts can
+call scripts and pass parameters, data, and results back and forth between them.<br>
+<b><br>
+INCLUDEing the RRAFS Library:</b><br>
+
+You can $INCLUDE this library in two ways:
+<ol>
+  <li>INCLUDE everything for the data driven framework with a single
+    call:
+    <pre>'$INCLUDE: &quot;DDEngine.SBH&quot;</pre>
+  </li>
+  <li>INCLUDE only the DDVariableStore:
+    <pre>'$INCLUDE: &quot;DDVariableStore.SBH&quot;</pre></li>
+</ol>
+
+<p><b>Setting Values:</b><br>
+
+Scripts can set individual variables via the <a href="DDVariableStore.htm#DDVSetVariableValue" target="_blank">DDVariableStore.DDVSetVariableValue</a>
+function.&nbsp; An example setting variable "user.name" to value "John Smith" would be:
+<pre>
+	Dim Result As Integer
+
+	Result = DDVSetVariableValue(&quot;user.name&quot;, &quot;John Smith&quot;)
+</pre>
+Of course, you can use SQABasic variables in place of the string literals we have here.<p><b>Setting Multiple Values:</b><br>
+
+Scripts can also use the record extraction techniques used by the data driven
+engine to set multiple variables in a single call.&nbsp; You would do this by
+sending a String of delimited fields to the <a href="DDVariableStore.htm#DDVExtractVariables" target="_blank">DDVariableStore.DDVExtractVariables</a>
+function.&nbsp; An example of this would be:
+<pre>
+	Dim strResult    As String
+	Dim strVariables As String
+
+	strVariables = &quot; ^user.name = John Smith, ^user.id = jsmith, ^user.password = silly&quot;
+	strResult    = DDVExtractVariables(strVariables, 1, &quot;,&quot;)
+</pre>
+<p><b>Getting Values:</b><br>
+
+Scripts can retrieve variables via the <a href="DDVariableStore.htm#DDVGetVariableValue" target="_blank"> DDVariableStore.DDVGetVariableValue</a>
+function.&nbsp; An example of getting the variable &quot;user.name&quot; would
+be:<pre>
+	Dim Result As Integer
+	Dim varUserName As Variant
+
+	Result = DDVGetVariableValue( &quot;user.name&quot;, varUserName)
+</pre>
+
+<p>Another feature of this function is that a default value can be provided just
+in case the variable has never been set prior to the call.&nbsp; We do this by
+giving the input Variant a value that it will retain IF the variable does not
+already exist.&nbsp; This default value will also be used to initialize and
+store the new value of the variable for subsequent calls until it is given a new
+value with the <a href="DDVariableStore.htm#DDVSetVariableValue" target="_blank">DDVariableStore.DDVSetVariableValue</a>
+function.&nbsp; An example of this would be:
+<pre>
+	Dim Result As Integer
+	Dim varUserName As Variant
+
+	varUserName = &quot;John Doe&quot;
+	Result = DDVGetVariableValue( &quot;user.name&quot;, varUserName )
+
+</pre>
+<small><a href="#top">(back to the top)</a></small>
+<hr>
+Questions or comments? Contact <a href="https://lists.sourceforge.net/lists/listinfo/safsdev-rrafs">SAFSDEV-RRAFS Support</a>
+at <a href="http://safsdev.sourceforge.net" target="_blank">SAFSDEV on SourceForge</a>.
+</body>
+</html>

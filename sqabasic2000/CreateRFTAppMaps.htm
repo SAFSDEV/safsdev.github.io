@@ -1,0 +1,107 @@
+<HTML><HEAD>
+<TITLE>RFT Application Maps</TITLE>
+</HEAD>
+<BODY><A name="top"/>
+<H1><B>
+<CENTER>Application Maps<BR>and<BR>Rational Functional Tester</CENTER></B></H1>
+<center><small><i>Last updated: June 23, 2009</i></small></center>
+<p>
+<small><a href="#rrafsprocesscontainer">RRAFS ProcessContainer</a>, <a href="#runprocesscontainer">RunProcessContainer Script</a>, <a href="#stafprocesscontainer">STAF ProcessContainer</a>, <a href="#supportedenhancements">Supported Enhancements</a>, <a href="#objectmapalternative">Object Map Alternative</a></small><p>
+<i>This document is an RFT-specific supplement to the primary and critical <A href="CreateAppMap.htm">CreateAppMaps</a> document.<br>
+Please make yourself familiar with the concepts in that document before proceeding here.</i>
+<p><a name="rrafsprocesscontainer"/>
+<h3>RRAFS Process Container</h3>
+<ul>
+Some might be familiar with the <A href="ProcessContainer.htm">RRAFS Process Container</a>.  This tool is specific to Rational Robot and cannot be used directly by RFT.  However, as mentioned in the <a href="http://safsdev.sourceforge.net/doc/SAFSComponentRecognition.htm">SAFS Component Recognition</a> document for standardized recognition strings, the recognition strings created by RRAFS "should" be usable by RFT. See the <A href="#stafprocesscontainer">section on STAF Process Container</a> for information on a similar tool usable by RFT.
+<p>
+<B>However, it is important to note that we can use named components stored in RFT's Object Maps instead of using recognition strings.  Consult the <A href="#objectmapalternative">section on RFT Object Map Alternative</A> for more info.</B>
+</ul><p><a name="runprocesscontainer"/>
+<small><a href="#top">Top</a>, <a href="#rrafsprocesscontainer">RRAFS ProcessContainer</a>, <a href="#stafprocesscontainer">STAF ProcessContainer</a>, <a href="#supportedenhancements">Supported Enhancements</a>, <a href="#objectmapalternative">Object Map Alternative</a></small>
+<h3>RunProcessContainer Script</h3>
+<ul>
+This is a Functional Tester Script that provides some of the features of a Process Container tool without any UI.  It generally provides all the information it can on all the Windows it finds within the RFT Domains you have enabled in the script.
+<p>
+The tester enables or disables a Domain in the short script by commenting or uncommenting out the domain names to be processed.  Other Process Container features are enabled or disabled by setting their values to 'true' or 'false'.
+When the tester runs this script it will process all found windows and output component hierarchies, properties, and recognition information based on the features enabled or disabled by the tester.
+</ul>
+<p><A name="stafprocesscontainer"/>
+<small><a href="#top">Top</a>, <a href="#rrafsprocesscontainer">RRAFS ProcessContainer</a>, <a href="#runprocesscontainer">RunProcessContainer Script</a>, <a href="#supportedenhancements">Supported Enhancements</a>, <a href="#objectmapalternative">Object Map Alternative</a></small>
+<h3>STAF Process Container Driver</h3>
+<ul>
+This is the tool to use *if* you successfully get the information you need.  Otherwise, you might need to resort to the 'RunProcessContainer' script previously mentioned.
+<P>
+There is a full-featured <A href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/STAFProcessContainer.html">STAF Process Container</a> including a RRAFS-like UI written with Java.  This new "Driver" actually takes advantage of the new <A href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=E&lib=EngineComponentCommands">Engine Component Commands</A>, and we have written an implementation for these Engine commands in RFT.
+<P>
+This is launched in the same way the <a href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/SAFSDRIVER.html">SAFS TID or SAFSDRIVER</a> is launched--generally through a BAT file.  It reads the runtime configuration from one or more INI files (SAFSTID.INI files) the same as SAFSDRIVER.  In reality, it is a test development-time driver instead of a test runtime driver like SAFSDRIVER.  There should be working TIDTest samples of these BAT and INI files installed at C:\SAFS\Project or wherever SAFS was installed.
+<P>
+Consult the <A href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/STAFProcessContainer.html">STAF Process Container documentation</a> and the <A href="http://safsdev.sourceforge.net/sqabasic2000/JSAFSFrameworkContent.htm#configfile">Configuration File documentation</a> for more info on config file settings.  Below is a sample subset of the INI settings for running STAF Process Container with RFT:
+<pre>
+[SAFS_DRIVER]
+DriverRoot="C:\safs"
+
+[SAFS_PROJECT]
+ProjectRoot="C:\safsproject"
+
+[SAFS_ENGINES]
+First=org.safs.tools.engines.SAFSROBOTJ
+
+[SAFS_ROBOTJ]
+AUTOLAUNCH=TRUE
+DATASTORE="C:\SAFS\DatastoreJ"
+</pre>
+</ul>
+<p><a name="supportedenhancements"/>
+<small><a href="#top">Top</a>, <a href="#rrafsprocesscontainer">RRAFS ProcessContainer</a>, <a href="#runprocesscontainer">RunProcessContainer Script</a>, <a href="#stafprocesscontainer">STAF ProcessContainer</a>, <a href="#objectmapalternative">Object Map Alternative</a></small>
+<h3>RFT Supported Enhancements to Object Recognition</h3>
+<ul>
+Rational Robot uses an internal algorithm to locate components using recognition strings and this we cannot change.  However, for RFT and other engines we typically have control over the search algorithm used to locate components.  Because of this, we can enhance our recognition strings to provide more functionality.
+<p>
+RFT and other engines generally add two new qualifiers we can use in recognition strings:
+<p>
+<ul>
+Property=name:value<br>
+PropertyContains=name:substring
+</ul><p>
+Examples:
+<p>
+<ul>
+Type=RadioButton;Property=selected:false<br>
+Type=RadioButton;PropertyContains=id:someText
+</ul><p>
+For more information on recognition strings in RFT consult the <a href="http://safsdev.sourceforge.net/doc/org/safs/GuiObjectRecognition.html">reference on Gui Object Recognition</a>.
+</ul><p><a name="objectmapalternative"/>
+<small><a href="#top">Top</a>, <a href="#rrafsprocesscontainer">RRAFS ProcessContainer</a>, <a href="#runprocesscontainer">RunProcessContainer Script</a>, <a href="#stafprocesscontainer">STAF ProcessContainer</a>, <a href="#supportedenhancements">Supported Enhancements</a></small>
+<h3>The RFT Object Map Alternative</h3>
+<ul>
+Using "standard" recognition strings as discussed so far is great if you have the need to define App Map objects that can be used by multiple engines.  However, there is a performance trade-off when using recognition strings.  Our algorithm has to find the component in the object hierarchy of all possible windows--and this can take time (relatively speaking).
+<p>
+Our RFT search algorithm does allow us to reference objects stored in any RFT Object Map to which TestScript has access.  This is especially useful if you have or intend to use custom RFT scripts which will require these Object Map references anyway.
+<p>
+Object references are sought in RFT Object Maps before we start the search algorithm.  So using an RFT Object Map object will almost always be quicker than using recognition strings and the search algorithm.
+<p>
+We can use RFT Object Map object names directly in Test records:
+<p><pre>
+   T    MyMainWin   OKButton   Click
+</pre>
+<p>
+In the above case one or both of 'MyMainWin' and 'OKButton' are the names of objects stored in RFT's Object Maps available to TestScript.  Using the names directly like this is possible, but not really recommended.  If the names of Object Map items are changed for any reason then all the test records in all test tables using those names must be edited to use the new names.
+<p>
+Instead, we can provide a level of abstraction or decoupling by using SAFS App Map object names to reference RFT Object Map objects.  Below is a sample App Map referencing the same RFT Object Map objects:
+<p><pre>
+    [MainWin]
+    MainWin="MyMainWin"
+    OK="OKButton"
+</pre>
+<p>
+Then we use the App Map names in our Test records as usual:
+<p><pre>
+    T    MainWin    OK    Click
+</pre>
+<p>
+In the above case SAFS will lookup the value of 'MainWin' and 'OK' in the App Map and then use the retrieved values of 'MyMainWin' and 'OKButton' to retrieve references to the RFT Object Map objects with those names.  This decoupling protects the test tables and records from changes to Object Map object names.  If the name of an object in the RFT Object Map changes there is only one place to fix it--in the SAFS App Map.  The test records and tables remain unaffected.
+<p>
+It is important to note that referencing RFT Object Map objects by either of these mechanisms means the object MUST exist in the Object Map.  If it does not exist then we cannot successfully use the search mechanism because we have no recognition string information to use in the search.
+<p>
+Details and instructions for creating an RFT Object Map for the RFT TestScript Hook can be found in <a href="UsingRFTObjectMaps.htm">Using&nbsp;RFT&nbsp;Object&nbsp;Maps</a>
+</ul><p>
+</BODY></HTML>

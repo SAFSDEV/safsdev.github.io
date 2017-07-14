@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>tables.htm</title>
+  </head>
+  <body>
+    <h3>table text only</h3>
+    <table width="100%" border="all">
+      <tr><th>one</th><th>two</th><th>three</th></tr>
+      <tr><td>one</td><td>two</td><td>three</td></tr>
+      <tr><td>first</td><td>second</td><td>third</td></tr>
+      <tr><td colspan="2">spaning two cols</td><td>last col</td></tr>
+      <tr><td>xxx1</td><td>yyy1</td><td rowspan="2">spans two rows</td></tr>
+      <tr><td>xxx2</td><td>yyy2</td></tr>
+      <tr><td>back to</td><td>standard</td><td>format</td></tr>
+    </table>
+    <h3>table within table text only</h3>
+    <table width="100%" border="all">
+      <tr><td>block 1</td><td>block 2</td></tr>
+      <tr><td align="center"><b>embedded table</b>
+        <table width="100%" border="all">
+          <tr><th>one</th><th>two</th><th>three</th></tr>
+          <tr><td>one</td><td>two</td><td>three</td></tr>
+          <tr><td>first</td><td>second</td><td>third</td></tr>
+          <tr><td colspan="2">spaning two cols</td><td>last col</td></tr>
+          <tr><td>xxx1</td><td>yyy1</td><td rowspan="2">spans two rows</td></tr>
+          <tr><td>xxx2</td><td>yyy2</td></tr>
+          <tr><td>back to</td><td>standard</td><td>format</td></tr>
+        </table>
+      </td><td>block 3</td></tr>
+    </table>
+    <h3>table with links</h3>
+    <table width="100%" border="all">
+      <tr><td>one</td><td>two</td><a href="link_text.htm"><td>three</td></a></tr>
+      <tr><td>first</td><td>se<a href="link_text.htm">con</a>d</td><td>third</td></tr>
+      <tr><td colspan="2">spaning two cols</td><td>last col</td></tr>
+      <tr><td>xxx1</td><td>yyy1</td><td rowspan="2">spans two rows</td></tr>
+      <tr><td>xxx2</td><td><a href="link_text.htm">click me too</a>yyy2</td></tr>
+      <tr><td>back to</td><td>standard</td><td>format</td></tr>
+    </table>
+  </body>
+</html>

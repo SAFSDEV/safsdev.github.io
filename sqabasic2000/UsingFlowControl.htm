@@ -1,0 +1,202 @@
+<HTML>
+<HEAD>
+<TITLE>Using SAFS FlowControl Commands</TITLE>
+</HEAD>
+<BODY><a name="top"/>
+<H1><CENTER>Using SAFS Flow Control Commands</CENTER></H1>
+<CENTER><small>Doc Release: 10.14.2010</small></CENTER>
+<p>Goto:<a href="#exitcommands">Exit Commands</a>, <a href="#branchingcommands">Branching Commands</a>, <a href="#controlcommands">Error Recovery and Control</a></p>
+<p>Note that a BlockID is the name given a particular record that is a BlockID record in a test table.&nbsp; It identifies a location in a test table and NOT truly a block of associated code.&nbsp; These BlockID records have the Record Type "B" in their first field.  The second field is the name or BlockID for that record and is used as the target for these Flow Control Commands.
+<p>
+It is important to note the way in which SAFS drivers seek a named Block Id.
+<p>
+When a Driver is instructed to branch to a specific BlockID--whether it be a custom Driver, or the SAFSINPUT service--it searches first from the current record and towards the <b>END</b> of the file.&nbsp; It does NOT search forward from the current record towards the start of the file.
+<p>
+If the target BlockID is not found when the End Of File is reached, the search will then continue from the first line of the file and thru subsequent lines until the BlockID is found, or until the test record that initiated the request to branch is reached.
+<p>
+<center>
+<b>Below is an example, for clarity:</b>
+    <table border=1 hspace=2 cellpadding=2 >
+      <thead bgcolor="#e0E0E0">
+            <th># <th>RT<th>COMMAND               <th>PARAM    <th>PARAM   <th>PARAM
+      </thead>
+	    <tr bgcolor=yellow><td>1 <td>B <td>Continue <td>&nbsp; <td>&nbsp;  <td>&nbsp;
+	    <tr><td>2 <td>T <td>Do Something          <td>&nbsp;   <td>&nbsp;  <td>&nbsp;
+	    <tr><td>3 <td>C <td>OnLessThanGotoBlockID <td bgcolor=yellow>Continue <td>^Value1 <td>^Value2
+	    <tr><td>4 <td>C <td>GotoBlockID           <td bgcolor="#B0E0B0">Finished <td>&nbsp;  <td>&nbsp;
+	    <tr bgcolor=yellow><td>5 <td>B <td>Continue <td>&nbsp; <td>&nbsp;  <td>&nbsp;
+	    <tr><td>6 <td>T <td>Do Something          <td>&nbsp;   <td>&nbsp;  <td>&nbsp;
+	    <tr><td>7 <td>C <td>OnLessThanGotoBlockID <td bgcolor=yellow>Continue <td>^Value1 <td>^Value2
+	    <tr><td>8 <td>&nbsp; <td>&nbsp;            <td>&nbsp; <td>&nbsp;  <td>&nbsp;
+	    <tr bgcolor="#E0B0B0"><td>9 <td>B <td>Loop <td>&nbsp; <td>&nbsp;  <td>&nbsp;
+	    <tr><td>10 <td>T <td>Do Something          <td>&nbsp;   <td>&nbsp;  <td>&nbsp;
+	    <tr><td>11 <td>C <td>OnLessThanGotoBlockID <td bgcolor="#E0B0B0">Loop <td>^Value1 <td>^Value2
+	    <tr><td>12 <td>C <td>GotoBlockID           <td bgcolor=yellow>Continue <td>&nbsp;  <td>&nbsp;
+	    <tr bgcolor="#B0E0B0"><td>13 <td>B <td>Finished <td>&nbsp;<td>&nbsp;  <td>&nbsp;
+    </table>
+</center>
+<p><ul>
+<li>We start the code snippet above on Line 1, which has a BlockID of "Continue".
+<li>We note that Line 5 also has a BlockID of "Continue".
+<li>On Line 3 we have a conditional branch:<br>
+When Value1 &lt; Value2 then Line 3 will transfer execution to Line 5--the first line with BlockID="Continue" AFTER the current line being executed.
+<li>On Line 7 we have a similar conditional branch:<br>
+However, when Value1 &lt; Value2 here then execution will transfer to Line 1 because there is no "Continue" BlockID on the lines AFTER Line 7 and the Block search algorithm will wrap around to the start of the file to continue the search.
+<li>Finally, once Value1 is not &lt; Value2 then Line 4 would transfer execution to the "Finished" Block at Line 13.
+<li>Note the BlockID "Loop" at Line 9.
+<li>When the evaluation at Line 11 determines that Value1 &lt; Value2 the branch will go to Line 9 only because that is the only line in the test with that BlockID.&nbsp; The search will have looped around to the start of the file and continued until it found the matching BlockID at Line 9.
+<li>If Line 11 finds that Value1 is not &lt; Value2 then Line 12 will transfer execution up to Line 1, as previously explained.
+</ul>
+<a name="exitcommands"></a>
+Goto:<a href="#branchingcommands">Branching Commands</a>, <a href="#controlcommands">Error Recovery and Control</a>, <a href="#top">Back to Top</a></p>
+<TABLE align="center" width="80%" border="2" cellpadding="5" >
+	<CAPTION align="top"><strong>Exit/Abort Commands</strong></CAPTION>
+	<TR valign="middle">
+		<TD NOWRAP align="center">ExitTable</TD>
+		<TD>Exit the current Step, Suite, or Cycle table.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">ExitSuite</TD>
+		<TD>Exit the current Step table AND the current Suite.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">ExitCycle</TD>
+		<TD>Exit the current Step table AND the Suite AND Cycle.</TD>
+	</TR>
+</TABLE>
+<BR/>
+<TABLE align="center" width="80%" border="1" cellpadding="5" >
+	<CAPTION align="bottom"><strong>Examples</strong></CAPTION>
+	<TR valign="middle">
+		<TD NOWRAP align="center">C, ExitTable</TD>
+		<TD>Exit the current Step, Suite, or Cycle table.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">C, ExitSuite</TD>
+		<TD>Exit the current Step AND abort the Suite.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">C, ExitCycle</TD>
+		<TD>Exit the current Step and/or Suite AND abort the Cycle.</TD>
+	</TR>
+</TABLE>
+<p>The Exit commands are used to force an exit of the current table.  They help bypass records or tests that we do not wish to execute.  Such is the case when we separate the table into separate blocks with BlockID references.  In some of these situations, we do not want the drivers to continue into the next block.  Instead, we can use these commands to exit the test table.  They have no parameters.</p>
+
+<p>ExitTable will cause the table containing the command to immediately exit.  This is valid for any Step, Suite, or Cycle table.  If a BlockID was set with SetExitTableBlock for the current test level, then execution will transfer to that block prior to the actual exit.  This allows us to perform any required cleanup we wish to do upon exiting the test table.</p>
+
+<p>ExitSuite will cause the Step or Suite table containing the command to immediately exit.  This
+command is not really valid inside a Cycle level test table.  In a Suite table this is no different than issuing an ExitTable command.  However, in a Step table this command allows us to not only exit the current Step table, but also to exit/abort the Suite that called the Step table.  With this we can abort a larger test or process that we know just isn't going to work.</p>
+
+<p>As with the ExitTable command, any BlockID set with SetExitTableBlock will be executed at both the Step and Suite levels.</p>
+
+<p>ExitCycle will cause the Step, Suite, or Cycle table containing the command to immediately exit. In a Cycle table this is no different than issuing an ExitTable command.  However, in a Step table this command allows us to not only exit the current Step table, but also to exit/abort the current Suite and Cycle.  With this we can abort the entire test or Cycle process if necessary.
+</p>
+<p>As with the ExitTable command, any BlockID set with SetExitTableBlock will be executed at the Step, Suite, and Cycle levels.</p>
+<br/>
+<a name="branchingcommands"></a>
+<p>Goto:<a href="#exitcommands">Exit Commands</a>, <a href="#controlcommands">Error Recovery and Control</a>, <a href="#top">Back to Top</a></p>
+<TABLE align="center" width="80%" border="2" cellpadding="5" >
+	<CAPTION align="top"><strong>Branching Commands</strong></CAPTION>
+	<TR valign="middle">
+		<TD NOWRAP align="center">GotoBlockID</TD>
+		<TD>Jump to a specific BlockID record.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">OnEqualGotoBlockID</TD>
+		<TD>Jump to a specific BlockID record if two values are equal.</TD>
+	</TR>
+</TABLE>
+<BR/>
+<TABLE align="center" width="80%" border="1" cellpadding="5" >
+	<CAPTION align="bottom"><strong>Examples</strong></CAPTION>
+	<TR valign="middle">
+		<TD NOWRAP align="center">C, GotoBlockID, ABlockID</TD>
+		<TD>Jump to the BlockID record named "ABlockID".</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">C, OnEqualGotoBlockID, ABlockID, Value1, Value2</TD>
+		<TD>Jump to a specific BlockID record if two text values are equal.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">C, OnEqualGotoBlockID, ABlockID, ^AVariable, Value2</TD>
+		<TD>Jump to a specific BlockID record if a variable value matches a text value.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">C, OnEqualGotoBlockID, ABlockID, ^AVariable, ^AnotherOne</TD>
+		<TD>Jump to a specific BlockID record if two variable values match.</TD>
+	</TR>
+</TABLE>
+
+<p>GotoBlockID forces a jump to the blockID specified.  A blockID is a record in the table with
+a RecordType of "B"--a BlockID record.  The second field in that BlockID record contains the name
+assigned to that record in the table and acts as a target blockID for these flow control commands.</p>
+
+<P>OnEqualGotoBlockID allows a simple comparison to cause a jump to occur if two
+values match.  These can be two literal text values, or literal text compared against the value of a
+DDVariable, or a comparison of two DDVariable values.  Like most all other fields in our test tables,
+the fields used for the comparison are extracted as Trimmed Quoted strings.  That means that leading
+and trailing whitespace is removed unless enclosed by double-quote marks.  Outermost double-quote
+marks are also removed.  Thus, if leading or trailing whitespace is not significant, the double-quote
+marks are optional.  Of course, DDVariables will not be found inside double-quote marks.  Inside the
+quotes they would be treated as literal text.</p>
+
+<p>When used in conjunction with an
+<a href="GenericMasterFunctions.htm#genericassignpropertyvariable">AssignPropertyVariable</a>
+test record in GenericMasterFunctions we can extract an object's property value into a DDVariable and
+then perform a branch based on the success or failure of the comparison.  Note, however, this comparison
+is NOT a test comparison and will not generate a test failure.  Use a
+<a href="GenericMasterFunctions.htm#genericverifyproperty">VerifyProperty</a>
+test record to perform a comparison that records a test result.<p>
+
+<p>Other possibilities include branching based on DDVariable values that were assigned by prior tests,
+or by variable value changes caused by scripts.  For example, a Cycle could call a Suite which performs
+different processing based on DDVariable values set by the Cycle.</p>
+
+<br/>
+<a name="controlcommands"></a>
+<p>Goto:<a href="#exitcommands">Exit Commands</a>, <a href="#branchingcommands">Branching Commands</a>, <a href="#top">Back to Top</a></p>
+<TABLE align="center" width="80%" border="2" cellpadding="5" >
+	<CAPTION align="top"><strong>Error Recovery and Control Commands</strong></CAPTION>
+	<TR valign="middle">
+		<TD NOWRAP align="center">SetExitTableBlock</TD>
+		<TD>Set or Clear the BlockID to execute when ExitTable is executed.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">SetGeneralScriptFailureBlock</TD>
+		<TD>Set or Clear the BlockID to execute when a General Failure occurs.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">SetScriptWarningBlock</TD>
+		<TD>Set or Clear the BlockID to execute when a Warning occurs.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">SetInvalidFileIOBlock</TD>
+		<TD>Set or Clear the BlockID to execute when an File IO error occurs.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">SetScriptNotExecutedBlock</TD>
+		<TD>Set or Clear the BlockID to execute when a "ScriptNotExecuted" error occurs.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">SetNoScriptFailureBlock</TD>
+		<TD>Set or Clear the BlockID to execute if no error is encountered.</TD>
+	</TR>
+</TABLE>
+<p>
+Note, these error conditions are the status conditions defined in SAFS sourcecode.  While many of these contain the substring "Script" in them, these conditions are generally not strictly associated with the execution of a tool script, per se.  "Script" and "test record" or "test table" are interchangeable in this regard.
+</p>
+<TABLE align="center" width="80%" border="1" cellpadding="5" >
+	<CAPTION align="bottom"><strong>Examples</strong></CAPTION>
+	<TR valign="middle">
+		<TD NOWRAP align="center">C, SetExitTableBlock, AExitHandler</TD>
+		<TD>Set the block named AExitHandler to execute if/when ExitTable is executed.</TD>
+	</TR><TR valign="middle">
+		<TD NOWRAP align="center">C, SetExitTableBlock, ""</TD>
+		<TD>Reset so no special handler is invoked if/when ExitTable is executed.</TD>
+	</TR>
+</TABLE>
+
+<p>These commands are used to identify error handler blocks within the test tables.  When a command has set an error handler block, that block is executed if/when that status condition is satisfied. The check for that status condition is performed at the end of processing for each record.  Not just test records, but ALL valid record types.  Comments and blank lines are not considered valid records. The syntax for setting and resetting for each command is the same as the example shown.
+</p>
+<p>Each test level maintains its own settings.  So a Set command performed at the Suite level does not affect any settings done for the Cycle or Step levels.</p>
+
+<p>With the exception of SetNoScriptFailureBlock, these settings are NOT automatically reset on exiting any given table.  This allows the test developer to implement a standard set of test table templates that share common error recovery handlers.  If this is not the case, you can implement an exit handler block that performs cleanup when exiting the table.  Use SetExitTableBlock to set the exit handler blockID to enable that processing.  If necessary, remember to clear or reset that blockID to nothing within the exit handler itself so that subsequent tables don't attempt to invoke a handler they might not contain.  This may apply to all of the error recovery settings you might make within any given table.</p>
+
+<p>The SetNoScriptFailureBlock setting is reset immediately upon its first invocation.  After all, we expect most of our records to execute with no failure.  So, the command is best used immediately before the record you expect to have an issue with.</p>
+
+<p>The SetInvalidFileIOBlock setting is used to handle File IO errors that may have occurred somewhere in the processing of a record, or test, or script.  It does not generally respond to File IO errors with the table itself because that means the table is not getting processed and the block could never get executed.  Instead, it reacts to File IO errors that occur external to the test table that is being processed.</p>
+
+<p>ScriptNotExecuted is generally encountered when an error occurs that prevents the normal execution of a record.  For example, a Script Command Failure that prevents a Driver Command or Component Function from executing.  Or, the failed invocation of SuiteDriver or StepDriver from a higher test level.  It is not intended to be an indication of a failure of a tool script invoked from a CallScript command.</p>
+
+<p>For the average low-level test developer, the most commonly used error recovery and control commands would be handling GeneralScriptFailure and ExitTable processing.</p>
+
+<p>Goto:<a href="#exitcommands">Exit Commands</a>, <a href="#branchingcommands">Branching Commands</a>, <a href="#controlcommands">Error Recovery and Control</a>, <a href="#top">Back to Top</a>
+</p>
+</BODY></HTML> 

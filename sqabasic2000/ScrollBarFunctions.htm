@@ -1,0 +1,356 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ScrollBarFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ScrollBarFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=SCROLLBAR objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      PageRight               '(horizontal scrollbars) scroll page right
+      PageLeft                '(horizontal scrollbars) scroll page left
+      OneRight                '(horizontal scrollbars) scroll right
+      OneLeft                 '(horizontal scrollbars) scroll left
+      PageUp                  ' (vertical scrollbars)  scroll page up
+      PageDown                ' (vertical scrollbars)  scroll page down
+      OneUp                   ' (vertical scrollbars)  scroll up
+      OneDown                 ' (vertical scrollbars)  scroll down
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="scrollbarpageright"></a>
+   Sub ScrollBarPageRight ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollPageRight on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbarpageleft"></a>
+   Sub ScrollBarPageLeft ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollPageLeft on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbarpageup"></a>
+   Sub ScrollBarPageUp ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollPageUp on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbarpagedown"></a>
+   Sub ScrollBarPageDown ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollPageDown on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbaroneright"></a>
+   Sub ScrollBarOneRight ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollRight on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbaroneleft"></a>
+   Sub ScrollBarOneLeft ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollLeft on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbaroneup"></a>
+   Sub ScrollBarOneUp ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollLineUp on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="scrollbaronedown"></a>
+   Sub ScrollBarOneDown ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a ScrollLineDown on a scrollbar.  The input record
+      can optionally specify the number of iterations to perform the action.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      (5) Optional integer to specify how many times to perform the action.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a SCROLLBAR.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 12, 2000
+ History:
+
+      APR 12, 2000    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      DEC 08, 2003    (YWANG)  Added HScrollTo and VScrollTo
+      DEC 09, 2003    (YWANG)  Moved HScrollTo and VScrollTo to GenericObjectFunctions.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

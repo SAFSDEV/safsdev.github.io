@@ -1,0 +1,2176 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Contains general purpose utility routines for the Data-driven automation
+      engine.  This includes things like logging certain types of Data-driven
+      test information and setting default values.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>_X.SBH"
+<li>'$INCLUDE: "DDUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="Win32.htm">Win32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="Cache.htm">Cache</a>.SBH"
+<li>'$INCLUDE: "<a href="Cache.htm">Cache</a>_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\DDUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="Win32Utilities.htm">Win32Utilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WinRegistryUtilities.htm">WinRegistryUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="Win32Utilities.htm">Win32Utilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SAFSUtilities.htm">SAFSUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAUtil.htm">SQAUtil</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#ddtestcasebegin">DDTestCaseBegin</a>         BasicLib DDUtilities                   
+   Sub   <a href="#ddtestcaseend">DDTestCaseEnd</a>           BasicLib DDUtilities                   
+   Sub   <a href="#ddrequirementtestbegin">DDRequirementTestBegin</a>  BasicLib DDUtilities                   
+   Sub   <a href="#ddrequirementtestend">DDRequirementTestEnd</a>    BasicLib DDUtilities                   
+   Sub   <a href="#ddprocedurebegin">DDProcedureBegin</a>        BasicLib DDUtilities                   
+   Sub   <a href="#ddprocedureend">DDProcedureEnd</a>          BasicLib DDUtilities                   
+   Sub   <a href="#ddsuitebegin">DDSuiteBegin</a>            BasicLib DDUtilities                   
+   Sub   <a href="#ddsuiteend">DDSuiteEnd</a>              BasicLib DDUtilities                   
+   Sub   <a href="#ddcyclebegin">DDCycleBegin</a>            BasicLib DDUtilities                   
+   Sub   <a href="#ddcycleend">DDCycleEnd</a>              BasicLib DDUtilities                   
+Function <a href="#getddtableversion">GetDDTableVersion</a>       BasicLib DDUtilities                   
+Function <a href="#getsqaversion">GetSQAVersion</a>           BasicLib DDUtilities                   
+Function <a href="#getsqabuildcode">GetSQABuildCode</a>         BasicLib DDUtilities                   
+Function <a href="#getrunningsqascript">GetRunningSQAScript</a>     BasicLib DDUtilities                   
+Function <a href="#getddeprojectdirectory">GetDDEProjectDirectory</a>  BasicLib DDUtilities                   
+Function <a href="#getddeprojectruntimedirectory">GetDDEProjectRuntimeDirectory</a>  BasicLib DDUtilities                   
+Function <a href="#getddedatapooldirectory">GetDDEDatapoolDirectory</a>  BasicLib DDUtilities                   
+Function <a href="#setddedatapooldirectory">SetDDEDatapoolDirectory</a>  BasicLib DDUtilities                   
+Function <a href="#getddebenchdirectory">GetDDEBenchDirectory</a>    BasicLib DDUtilities                   
+Function <a href="#setddebenchdirectory">SetDDEBenchDirectory</a>    BasicLib DDUtilities                   
+Function <a href="#getddetestdirectory">GetDDETestDirectory</a>     BasicLib DDUtilities                   
+Function <a href="#setddetestdirectory">SetDDETestDirectory</a>     BasicLib DDUtilities                   
+Function <a href="#getddedifdirectory">GetDDEDifDirectory</a>      BasicLib DDUtilities                   
+Function <a href="#setddedifdirectory">SetDDEDifDirectory</a>      BasicLib DDUtilities                   
+Function <a href="#getddelogsdirectory">GetDDELogsDirectory</a>     BasicLib DDUtilities                   
+Function <a href="#setddelogsdirectory">SetDDELogsDirectory</a>     BasicLib DDUtilities                   
+Function <a href="#getdderuntimerepo">GetDDERuntimeRepo</a>       BasicLib DDUtilities                   
+Function <a href="#getsafsinstalldirectory">GetSAFSInstallDirectory</a>  BasicLib DDUtilities                   
+Function <a href="#getstafinstalldirectory">GetSTAFInstallDirectory</a>  BasicLib DDUtilities                   
+   Sub   <a href="#setdefaultddtestcaseid">SetDefaultDDTestCaseID</a>  BasicLib DDUtilities                   
+Function <a href="#getdefaultddtestcaseid">GetDefaultDDTestCaseID</a>  BasicLib DDUtilities                   
+   Sub   <a href="#setdefaultddrequirementid">SetDefaultDDRequirementID</a>  BasicLib DDUtilities                   
+Function <a href="#getdefaultddrequirementid">GetDefaultDDRequirementID</a>  BasicLib DDUtilities                   
+Function <a href="#getddrequirementid">GetDDRequirementID</a>      BasicLib DDUtilities                   
+Function <a href="#getddtestcaseid">GetDDTestCaseID</a>         BasicLib DDUtilities                   
+   Sub   <a href="#ddtestcasestart">DDTestCaseStart</a>         BasicLib DDUtilities                   
+   Sub   <a href="#ddtestcasecompleted">DDTestCaseCompleted</a>     BasicLib DDUtilities                   
+   Sub   <a href="#ddrequirementteststart">DDRequirementTestStart</a>  BasicLib DDUtilities                   
+   Sub   <a href="#ddrequirementtestcompleted">DDRequirementTestCompleted</a>  BasicLib DDUtilities                   
+Function <a href="#getfileconfigurationsetting">GetFileConfigurationSetting</a>  BasicLib DDUtilities                   
+Function <a href="#getconfigurationsetting">GetConfigurationSetting</a>  BasicLib DDUtilities                   
+Function <a href="#ddgetutf8leader">DDGetUTF8Leader</a>         BasicLib DDUtilities                   
+Function <a href="#getdifftoolfilename">GetDiffToolFilename</a>     BasicLib DDUtilities                   
+Function <a href="#getdifftooloptions">GetDiffToolOptions</a>      BasicLib DDUtilities                   
+Function <a href="#getdifftoolbinaryoptions">GetDiffToolBinaryOptions</a>  BasicLib DDUtilities                   
+Function <a href="#getdiffviewerfilename">GetDiffViewerFilename</a>   BasicLib DDUtilities                   
+Function <a href="#getdiffvieweroptions">GetDiffViewerOptions</a>    BasicLib DDUtilities                   
+Function <a href="#setddecachemode">SetDDECacheMode</a>         BasicLib DDUtilities                   
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+'<a name="#modes"></a>  DRIVER MODES
+Const DDU_STAND_ALONE_MODE      = 0          'called from Script (enhanced logging)
+Const DDU_DRIVEN_MODE           = 1          'called from Driver (reduced logging)
+
+Const DDU_CALLSCRIPT_IMPLIED    = 0          'invoked WITHOUT a CallScript command
+Const DDU_CALLSCRIPT_EXPLICIT   = 1          'invoked  WITH   a CallScript command
+                                             'EXAMPLES:
+                                             '
+                                             ' RunIMLProgram, arg1, arg2, arg3...
+                                             ' t, CallScript, RunIMLProgram, arg1, arg2, arg3
+
+'Configuration File constants
+Const RRAFS_CONFIG_FILE          = "RRAFS.INI"
+Const DDU_DIFF_SECT              = "DIFFER"                 '[DIFFER]
+Const DDU_DIFF_ITEM              = "TOOL_EXE"               'TOOL_EXE=
+Const DDU_DIFF_OPTIONS           = "TOOL_OPTIONS"           'TOOL_OPTIONS=
+Const DDU_DIFF_BINARY_OPTIONS    = "TOOL_BINARY_OPTIONS"    'TOOL_BINARY_OPTIONS=
+
+Const DDU_DIFFVIEW_SECT          = "DIFFVIEWER"             '[DIFFVIEWER]
+Const DDU_DIFFVIEW_ITEM          = "TOOL_EXE"               'TOOL_EXE=
+Const DDU_DIFFVIEW_OPTIONS       = "TOOL_OPTIONS"           'TOOL_OPTIONS=
+
+Const DDU_DIRECTORIES_SECT       = "DIRECTORIES"            '[DIRECTORIES]
+'Const DDU_DATADIR_ITEM           = "DATADIR"                'DataDir= (datapool) CANNOT AT THIS TIME
+Const DDU_BENCHDIR_ITEM          = "BENCHDIR"               'BenchDir=
+Const DDU_DIFFDIR_ITEM           = "DIFFDIR"                'DiffDir=
+Const DDU_LOGDIR_ITEM            = "LOGDIR"                 'LogDir=  (set one time only)
+Const DDU_TESTDIR_ITEM           = "TESTDIR"                'TestDir=
+
+'Backup Configuration Environment Settings
+Const DDU_DIFF_VIEWER_ENV_KEY = "DDE_DIFF_VIEW_EXE"
+Const DDU_DIFF_VIEWER_OPT_KEY = "DDE_DIFF_VIEW_OPTIONS"
+Const DDU_DIFF_VIEWER_DEFAULT = "EXAMDIFF.EXE"
+Const DDU_DIFF_VIEWER_DEFAULT_OPTIONS = "/t"
+
+Const DDU_DIFF_TOOL_ENV_KEY = "DDE_DIFF_TOOL_EXE"
+Const DDU_DIFF_TOOL_OPT_KEY = "DDE_DIFF_TOOL_OPTIONS"
+Const DDU_DIFF_TOOL_BINARY_OPT_KEY = "DDE_DIFF_TOOL_BINARY_OPTIONS"
+
+Const DDU_DIFF_TOOL_UNKNOWN_ID             = 0
+Const DDU_DIFF_TOOL_FC_ID                  = 1
+Const DDU_DIFF_TOOL_GNU_ID                 = 2
+
+Const DDU_DIFF_TOOL_FC                     = "FC.EXE"
+Const DDU_DIFF_TOOL_FC_OPTIONS             = "/L /T"
+Const DDU_DIFF_TOOL_FC_BINARY_OPTIONS      = "/B"
+
+Const DDU_DIFF_TOOL_GNU                    = "DIFF.EXE"
+Const DDU_DIFF_TOOL_GNU_OPTIONS            = "--text -s -y"
+Const DDU_DIFF_TOOL_GNU_BINARY_OPTIONS     = "--binary -s"
+
+Const DDU_DIFF_TOOL_DEFAULT                = DDU_DIFF_TOOL_FC
+Const DDU_DIFF_TOOL_DEFAULT_ID             = DDU_DIFF_TOOL_FC_ID
+Const DDU_DIFF_TOOL_DEFAULT_OPTIONS        = DDU_DIFF_TOOL_FC_OPTIONS
+Const DDU_DIFF_TOOL_DEFAULT_BINARY_OPTIONS = DDU_DIFF_TOOL_FC_BINARY_OPTIONS
+
+'<a name="#returncodes"></a>  DRIVER RETURN CODES
+Const DDU_NO_SCRIPT_FAILURE       = -1      'for scripts AND test tables
+Const DDU_SCRIPT_WARNING          = -2      'for scripts AND test tables
+Const DDU_GENERAL_SCRIPT_FAILURE  = 0       'for scripts AND test tables
+Const DDU_INVALID_FILE_IO         = 2
+Const DDU_SCRIPT_NOT_EXECUTED     = 4       'for scripts AND test tables
+Const DDU_EXIT_TABLE_COMMAND      = 8
+Const DDU_IGNORE_RETURN_CODE      = 16      'drivers ignore this one
+Const DDU_NO_RECORD_TYPE_FIELD    = 32
+Const DDU_UNRECOGNIZED_RECORD_TYPE = 64
+Const DDU_WRONG_NUM_FIELDS        = 128
+Const DDU_BRANCH_TO_BLOCKID       = 256
+
+
+'<a name="#recordtypes"></a>  DRIVER RECORD TYPES
+Const DDU_COMMENT_BLOCK_DELIMITER = "'##"   'Used to mark the start/end of comment block
+Const DDU_COMMENT_DELIMITER       = "'#"    'Used to mark a comment line within a block
+                                          '(A single quote by itself will also work)
+Const DDU_BLOCKID               = "B"
+Const DDU_DRIVER_COMMAND        = "C"
+Const DDU_DRIVER_COMMAND_FAILOK = "CF"
+Const DDU_DRIVER_COMMAND_WARNOK = "CW"
+Const DDU_SKIP_TEST_STEP        = "S"
+Const DDU_TEST_STEP             = "T"
+Const DDU_TEST_STEP_FAILOK      = "TF"
+Const DDU_TEST_STEP_WARNOK      = "TW"
+Const DDU_BREAKPOINT            = "BP"
+
+Const DDU_STEP_TEST_LEVEL       = "STEP"
+Const DDU_SUITE_TEST_LEVEL      = "SUITE"
+Const DDU_CYCLE_TEST_LEVEL      = "CYCLE"
+
+'<a name="#drivercommands"></a> DRIVER COMMANDS
+
+'DEBUGGING COMMANDS
+Const DDU_BREAKPOINTS           = "BREAKPOINTS"     'ON/OFF  STOP at (BP) BREAKPOINT records
+Const DDU_COMMAND_DEBUG         = "COMMANDDEBUG"    'ON/OFF  STOP at (C) DRIVER COMMAND records
+Const DDU_TEST_DEBUG            = "TESTDEBUG"       'ON/OFF  STOP at (T) TEST records
+Const DDU_RECORDS_DEBUG         = "RECORDSDEBUG"    'ON/OFF  STOP at ALL non-blank/non-comment records
+
+'LOG COMMANDS
+Const DDU_SUSPEND_LOGGING       = "SUSPENDLOGGING"
+Const DDU_RESUME_LOGGING        = "RESUMELOGGING"
+Const DDU_LOG_GENERIC_MESSAGE   = "LOGMESSAGE"
+Const DDU_LOG_TEST_FAILURE      = "LOGTESTFAILURE"
+Const DDU_LOG_FAILURE_OK        = "LOGFAILUREOK"
+Const DDU_LOG_TEST_WARNING      = "LOGTESTWARNING"
+Const DDU_LOG_WARNING_OK        = "LOGWARNINGOK"
+Const DDU_LOG_TEST_SUCCESS      = "LOGTESTSUCCESS"
+Const DDU_LOG_COUNTER_INFO      = "LOGCOUNTERINFO"
+
+'COUNTER COMMANDS
+Const DDU_START_COUNTER         = "STARTCOUNTER"
+Const DDU_STOP_COUNTER          = "STOPCOUNTER"
+Const DDU_RESET_COUNTER         = "RESETCOUNTER"
+Const DDU_DELETE_COUNTER        = "DELETECOUNTER"
+Const DDU_SET_COUNTER_MODE      = "SETCOUNTERMODE"
+Const DDU_STORE_COUNTER_INFO    = "STORECOUNTERINFO"
+Const DDU_SUSPEND_STATUS_COUNTS = "SUSPENDSTATUSCOUNTS"
+Const DDU_RESUME_STATUS_COUNTS  = "RESUMESTATUSCOUNTS"
+
+'DEPRECATED status commands (replaced by TRACKING COMMANDS)
+Const DDU_SET_TESTCASE          = "SETTESTCASE" 
+Const DDU_END_TESTCASE          = "ENDTESTCASE" 
+Const DDU_SET_REQUIREMENT       = "SETREQUIREMENT" 
+Const DDU_END_REQUIREMENT       = "ENDREQUIREMENT" 
+
+'TRACKING COMMANDS includes counters
+Const DDU_START_TESTCASE        = "STARTTESTCASE" 
+Const DDU_STOP_TESTCASE         = "STOPTESTCASE" 
+Const DDU_START_REQUIREMENT     = "STARTREQUIREMENT" 
+Const DDU_STOP_REQUIREMENT      = "STOPREQUIREMENT" 
+Const DDU_START_PROCEDURE       = "STARTPROCEDURE"
+Const DDU_STOP_PROCEDURE        = "STOPPROCEDURE"
+Const DDU_START_SUITE           = "STARTSUITE"        'App Suite, not DDE Suite
+Const DDU_STOP_SUITE            = "STOPSUITE"         'App Suite, not DDE Suite
+Const DDU_START_CYCLE           = "STARTCYCLE"        'App Cycle, not DDE Cycle
+Const DDU_STOP_CYCLE            = "STOPCYCLE"         'App Cycle, not DDE Cycle
+
+'MISC COMMANDS
+Const DDU_DATA_VERSION          = "VERSION"    
+Const DDU_EXPRESSIONS           = "EXPRESSIONS"          'ON/OFF
+Const DDU_USE_ROBOTJ_FUNCTIONS  = "USEROBOTJFUNCTIONS"   'ON/OFF
+Const DDU_USE_SAFS_FUNCTIONS    = "USESAFSFUNCTIONS"     'ON/OFF
+Const DDU_USE_SELENIUM_FUNCTIONS= "USESELENIUMFUNCTIONS" 'ON/OFF
+Const DDU_LAUNCH_APPLICATION    = "LAUNCHAPPLICATION"
+Const DDU_CLOSE_APPLICATION     = "CLOSEAPPLICATION"
+Const DDU_SET_APPLICATION_MAP   = "SETAPPLICATIONMAP"
+Const DDU_CALL_SCRIPT           = "CALLSCRIPT"
+Const DDU_CALL_CYCLE            = "CALLCYCLE"
+Const DDU_CALL_SUITE            = "CALLSUITE"
+Const DDU_CALL_STEP             = "CALLSTEP"
+
+'Added by Carl Nagle
+Const DDU_GET_SYSTEM_TIME       = "GETSYSTEMTIME"
+Const DDU_GET_SYSTEM_DATETIME   = "GETSYSTEMDATETIME"
+
+'Added by Dawn Coen
+Const DDU_GET_SYSTEM_DATE       = "GETSYSTEMDATE"
+Const DDU_GET_SYSTEM_ENVIRON    = "GETSYSTEMENVIRON"
+Const DDU_GET_FIELD             = "GETFIELD"
+
+Const DDU_START_WEB_BROWSER     = "STARTWEBBROWSER"
+Const DDU_WAIT_FOR_WEB_PAGE     = "WAITFORWEBPAGE"
+
+Const DDU_WAIT_FOR_GUI                 = "WAITFORGUI"
+Const DDU_WAIT_FOR_GUI_GONE            = "WAITFORGUIGONE"
+Const DDU_WAIT_FOR_PROPERTY_VALUE      = "WAITFORPROPERTYVALUE"
+Const DDU_WAIT_FOR_PROPERTY_VALUE_GONE = "WAITFORPROPERTYVALUEGONE"
+
+Const DDU_PAUSE                         = "PAUSE"
+
+Const DDU_SET_VARIABLE_VALUES           = "SETVARIABLEVALUES"
+Const DDU_SET_VARIABLE_VALUE_EXPLICIT   = "SETVARIABLEVALUEEX"
+Const DDU_GET_VARIABLE_VALUE_EXPLICIT   = "GETVARIABLEVALUEEX"
+Const DDU_COPY_VARIABLE_VALUE_EXPLICIT  = "COPYVARIABLEVALUEEX"
+
+Const DDU_EXIT_TABLE                    = "EXITTABLE"   
+Const DDU_EXIT_SUITE                    = "EXITSUITE"
+Const DDU_EXIT_CYCLE                    = "EXITCYCLE"
+Const DDU_GOTO_BLOCKID                  = "GOTOBLOCKID"
+Const DDU_ON_EQUAL_GOTO_BLOCKID         = "ONEQUALGOTOBLOCKID"
+
+'Added by Bob D'Antoni 
+Const DDU_ON_LESS_THAN_GOTO_BLOCKID     = "ONLESSTHANGOTOBLOCKID"
+Const DDU_ON_GREATER_THAN_GOTO_BLOCKID  = "ONGREATERTHANGOTOBLOCKID"
+CONST DDU_ON_IN_RANGE_GOTO_BLOCKID      = "ONINRANGEGOTOBLOCKID"
+CONST DDU_ON_NOT_IN_RANGE_GOTO_BLOCKID  = "ONNOTINRANGEGOTOBLOCKID"
+
+Const DDU_ON_CONTAINS_GOTO_BLOCKID      = "ONCONTAINSGOTOBLOCKID"
+Const DDU_ON_NOT_CONTAINS_GOTO_BLOCKID  = "ONNOTCONTAINSGOTOBLOCKID"
+Const DDU_ON_NOT_EQUAL_GOTO_BLOCKID     = "ONNOTEQUALGOTOBLOCKID"
+Const DDU_ON_GUI_EXISTS_GOTO_BLOCKID    = "ONGUIEXISTSGOTOBLOCKID"
+Const DDU_ON_GUI_NOT_EXIST_GOTO_BLOCKID = "ONGUINOTEXISTGOTOBLOCKID"
+Const DDU_ON_FILE_EXIST_GOTO_BLOCKID = "ONFILEEXISTGOTOBLOCKID"
+Const DDU_ON_FILE_NOT_EXIST_GOTO_BLOCKID = "ONFILENOTEXISTGOTOBLOCKID"
+Const DDU_ON_DIRECTORY_EXIST_GOTO_BLOCKID = "ONDIRECTORYEXISTGOTOBLOCKID"
+Const DDU_ON_DIRECTORY_NOT_EXIST_GOTO_BLOCKID = "ONDIRECTORYNOTEXISTGOTOBLOCKID"
+
+Const DDU_ON_MENUITEM_CONTAINS_STATE_GOTO_BLOCKID = "ONMENUITEMCONTAINSSTATEGOTOBLOCKID"
+Const DDU_ON_PARTIAL_MENUITEM_CONTAINS_STATE_GOTO_BLOCKID = "ONPARTIALMENUITEMCONTAINSSTATEGOTOBLOCKID"
+
+'Added by Bob D'Antoni for File Library
+Const DDU_ON_FILE_EOF_GO_TO_BLOCKID ="ONFILEEOFGOTOBLOCKID"
+Const DDU_Create_File = "CREATEFILE"
+Const DDU_Open_File = "OPENFILE"
+Const DDU_Close_File = "CLOSEFILE"
+Const DDU_Delete_File = "DELETEFILE"
+Const DDU_Copy_File = "COPYFILE"
+Const DDU_Rename_File = "RENAMEFILE"
+Const DDU_Find_SQA_File = "FINDSQAFILE"
+Const DDU_Get_File_Size = "GETFILESIZE"
+Const DDU_Get_File_Date_Time = "GETFILEDATETIME"
+Const DDU_Set_File_Protections = "SETFILEPROTECTIONS"
+Const DDU_Read_File_String = "READFILESTRING"
+Const DDU_Read_File_Char = "READFILECHARS"
+Const DDU_Read_File_Line = "READFILELINE"
+Const DDU_Eof = "GETEOF"
+Const DDU_Get_Files = "GETFILES"
+Const DDU_Print_To_File = "PRINTTOFILE" 
+Const DDU_Create_Directory = "CREATEDIRECTORY"  'added by Bob D'Antoni 6/6/2003
+Const DDU_Delete_Directory = "DELETEDIRECTORY"  'added by Bob D'Antoni 6/6/2003   
+
+'End of Added by Bob D'Antoni
+
+Const DDU_SET_NoScriptFailureBlock      = "SETNOSCRIPTFAILUREBLOCK"
+Const DDU_SET_GeneralScriptFailureBlock = "SETGENERALSCRIPTFAILUREBLOCK"
+Const DDU_SET_ScriptWarningBlock        = "SETSCRIPTWARNINGBLOCK"
+Const DDU_SET_InvalidFileIOBlock        = "SETINVALIDFILEIOBLOCK"
+Const DDU_SET_ExitTableBlock            = "SETEXITTABLEBLOCK"
+Const DDU_SET_ScriptNotExecutedBlock    = "SETSCRIPTNOTEXECUTEDBLOCK"
+
+'Const DDU_SET_DATAPOOL_DIR              = "SetDatapoolDir"
+Const DDU_SET_BENCH_DIR                 = "SETBENCHDIRECTORY"
+Const DDU_SET_TEST_DIR                  = "SETTESTDIRECTORY"
+Const DDU_SET_DIF_DIR                   = "SETDIFDIRECTORY"
+Const DDU_SET_ROOT_VERIFY_DIR           = "SETROOTVERIFYDIRECTORY"
+
+Const DDU_SET_FOCUS                     = "SETFOCUS"
+Const DDU_SET_CONTEXT                   = "SETCONTEXT"
+Const DDU_CLEAR_CLIPBOARD               = "CLEARCLIPBOARD"
+Const DDU_CLEAR_VARIABLES               = "CLEARALLVARIABLES"
+
+Const DDU_SAVE_CLIPBOARD_TO_FILE        = "SAVECLIPBOARDTOFILE"
+Const DDU_FILTER_TEXT_FILE              = "FILTERTEXTFILE"
+
+'<a name="#popupmenuactions"></a>POPUP MENU CONSTANTS for <a href="PopupMenuFunctions.htm">PopupMenuFunctions</a>.
+Const DDU_POPUP_MENU_COMPONENT_TYPE     = "POPUPMENU"
+Const DDU_SELECT_POPUP_MENUITEM_COMMAND = "SelectPopupMenuItem"
+Const DDU_SELECT_UNVERIFIED_POPUP_MENUITEM_COMMAND = "SelectUnverifiedPopupMenuItem"
+Const DDU_SELECT_POPUP_MENUID_COMMAND   = "SelectPopupMenuID"
+Const DDU_VERIFY_POPUP_MENUITEM_COMMAND = "VerifyPopupMenuItem"
+Const DDU_VERIFY_POPUP_MENUID_COMMAND   = "VerifyPopupMenuID"
+Const DDU_VERIFY_POPUP_MENU_COMMAND     = "VerifyPopupMenu"
+
+Const DDU_DATABASE_COMPONENT_TYPE       = "DATABASE"
+Const DDU_VERIFY_DB_VALUE               = "VerifyDBValue"
+Const DDU_VERIFY_DATABASE_VALUE         = "VerifyDatabaseValue"
+Const DDU_VERIFY_DB_NULL_VALUE          = "VerifyDBNULLValue"
+Const DDU_VERIFY_DATABASE_NULL_VALUE    = "VerifyDatabaseNULLValue"
+Const DDU_DELETE_DB_TABLE               = "DeleteDBTable"
+Const DDU_DELETE_DATABASE_TABLE         = "DeleteDatabaseTable"
+Const DDU_DELETE_DB_TABLE_RECORDS       = "DeleteDBTableRecords"
+Const DDU_EXEC_SQL_QUERY                = "ExecSQLQuery"            'Added by Nat.
+Const DDU_GET_DB_TABLE_COLUMN_COUNT     = "GetDBTableColumnCount"   '   ""
+Const DDU_GET_DB_TABLE_ROW_COUNT        = "GetDBTableRowCount"      '   ""
+Const DDU_GET_DB_VALUE                  = "GetDBValue"              '   ""
+Const DDU_COPY_DB_TABLE_TO_FILE         = "CopyDBTableToFile"       '   ""
+Const DDU_COPY_DB_TABLE_COLUMN_TO_FILE  = "CopyDBTableColumnToFile" '   ""
+
+
+Const DDDefaultTestCaseID           = "UNKNOWN"
+Const DDDefaultRequirementID        = "UNKNOWN"
+Const DDDefaultTableVersion         = "UNKNOWN"
+
+Const DDE_RUNTIME_VARIABLE          = "DDE_RUNTIME"
+Const RATIONAL_BUILD_KEYS           = "SQABuild.keys"   'in DDE_RUNTIME directory
+Const RATIONAL_BUILD_UNRECOGNIZED   = "UNKNOWN"
+
+Const DDU_JAVA_ENVIRONMENT          = "Java"
+
+'Values returned by GetSQABuildCode
+Const RATIONAL_BUILD_UNKNOWN        = 0
+Const RATIONAL_BUILD_V7             = 1
+Const RATIONAL_BUILD_V2000          = 2
+Const RATIONAL_BUILD_V2001          = 3
+Const RATIONAL_BUILD_V2002          = 4
+
+
+Const  RRAFS_CACHE_SECTION   = "CACHEMODE"
+Const  RRAFS_CONFIG_CACHE    = "CACHE"                  ' set to ENABLED or DISABLED
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+'DEBUG MODE
+Global DDU_BREAKPOINTS_ENABLED      As Integer  '0 = DISABLED 1=ENABLED
+Global DDU_BREAKPOINTS_MODE         As Integer  '0 = DISABLED 1=ENABLED
+Global DDU_COMMAND_DEBUG_MODE       As Integer  '0 = DISABLED 1=ENABLED
+Global DDU_TEST_DEBUG_MODE          As Integer  '0 = DISABLED 1=ENABLED
+Global DDU_RECORDS_DEBUG_MODE       As Integer  '0 = DISABLED 1=ENABLED
+
+'EXPRESSIONS
+Global DDU_EXPRESSIONS_MODE          As Integer  '0 = DISABLED 1=ENABLED
+
+'SAFS Hook USE
+Global DDU_USE_ROBOTJ_FUNCTIONS_MODE   As Integer  '0 = DISABLED 1=ENABLED
+Global DDU_USE_SAFS_FUNCTIONS_MODE     As Integer  '0 = DISABLED 1=ENABLED
+Global DDU_USE_SELENIUM_FUNCTIONS_MODE As Integer  '0 = DISABLED 1=ENABLED
+
+
+'id of executing testcase
+Global DDTestCaseID           As String   
+Global DefaultDDTestCaseID    As String
+
+'id of requirement covered by testcase
+Global DDRequirementID        As String
+Global DefaultDDRequirementID As String
+
+'version from data table file being read
+Global DDTableVersion         As String
+
+Global DDU_ABORT_SUITE        As Integer    '1=exit suite
+Global DDU_ABORT_CYCLE        As Integer    '1=exit cycle
+
+'StepDriver blockids for error recovery/flow control
+Global DDUNoScriptFailureBlock      As String
+Global DDUGeneralScriptFailureBlock As String
+Global DDUScriptWarningBlock        As String
+Global DDUInvalidFileIOBlock        As String
+Global DDUExitTableBlock            As String
+Global DDUScriptNotExecutedBlock    As String
+
+'SuiteDriver blockids for error recovery/flow control
+Global DDUSTNoScriptFailureBlock      As String
+Global DDUSTGeneralScriptFailureBlock As String
+Global DDUSTScriptWarningBlock        As String
+Global DDUSTInvalidFileIOBlock        As String
+Global DDUSTExitTableBlock            As String
+Global DDUSTScriptNotExecutedBlock    As String
+
+'CycleDriver blockids for error recovery/flow control
+Global DDUCDNoScriptFailureBlock      As String
+Global DDUCDGeneralScriptFailureBlock As String
+Global DDUCDScriptWarningBlock        As String
+Global DDUCDInvalidFileIOBlock        As String
+Global DDUCDExitTableBlock            As String
+Global DDUCDScriptNotExecutedBlock    As String
+
+'Cache Control Parameter - established by calls to function or in RRAFS.INI
+Global DDU_CACHE_ENABLED              As Integer        ' 0 - disabled (default), 1 - enabled
+Global DDU_CACHE_SET                  As Integer        ' indicates if RRAFS.INI was overridden [0-no (default), 1-yes] 
+Const  RRAFS_CACHE_SECTION   = "CACHEMODE"
+Const  RRAFS_CONFIG_CACHE    = "CACHE"                  ' set to ENABLED or DISABLED
+
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddgetutf8leader"></a>
+  Function DDGetUTF8Leader () As String
+
+ DESCRIPTION:
+
+    Returns the standard 3 byte leader string (EF BB BF) of a UTF-8 file.
+    However, this may not be properly interpretted by certain DBCS codepages.
+
+ PARAMETERS:
+
+      none
+
+ RETURNS:
+
+      String value of equivalent of Chr$ 'EF BB BF'
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: Mar 20, 2007
+ History:
+
+      Mar 20, 2007    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setdefaultddtestcaseid"></a>
+  Sub SetDefaultDDTestCaseID (Optional NewID)
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdefaultddtestcaseid"></a>
+  Function GetDefaultDDTestCaseID () As String
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="setdefaultddrequirementid"></a>
+  Sub SetDefaultDDRequirementID (Optional NewID)
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdefaultddrequirementid"></a>
+  Function GetDefaultDDRequirementID () As String
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddrequirementid"></a>
+  Function GetDDRequirementID () As String
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code.
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddtestcaseid"></a>
+  Function GetDDTestCaseID () As String
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddtableversion"></a>
+  Function GetDDTableVersion () As String
+
+ DESCRIPTION:
+
+      Gets the DDTableVersion.
+      If no value is set than DDDefaultTableVersion becomes the
+      value and is returned.
+
+ PARAMETERS:
+
+      none
+
+ RETURNS:
+
+      String value of the DDTableVersion.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 1999
+ History:
+
+      JUL 16, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddtestcasebegin"></a>
+  Sub DDTestCaseBegin (logfac As LogFacility,
+                       testcase As String,
+                       Optional description)
+
+ DESCRIPTION:
+
+      New functionality allows any number of TestCases to be active and
+      each uniquely identified TestCase will have a private status counter
+      associated with it.
+
+      <b>The associated private counter will be given the same name (counterID)
+      as the TestCase.</b>  This name must be unique to all items that will be
+      tracked with private counters (Procedures, Suites, Cycles, Requirements,
+      Custom Counters, etc.).
+
+      The user can reference, log, and store associated counter values
+      using the functions available from:
+
+          <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+          <a href="LogUtilities.htm" target="_blank">LogUtilities</a>
+
+      and
+
+          <a href="DDDrivercommands.htm" target="_blank">Driver Commands</a>
+
+
+ PARAMETERS:
+
+      logfac          LogFacility to receive START message.
+
+      testcase        string name to assign the private status counter.
+
+      description     optional string description to add to log. If none is
+                      supplied then an appropriate default statement is used.
+                      A zero length string will effectively provide no description.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 03, 2008    (PMiess) Fixed unused description
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddtestcaseend"></a>
+  Sub DDTestCaseEnd (LogFacility logfac, testcase as String, Optional description)
+
+ DESCRIPTION:
+
+      Reports to enabled logs that the named TestCase testing is complete.
+      The private status counter associated with the TestCase is also stopped.
+
+
+ PARAMETERS:
+
+      logfac          reference to a log facility to receive the message.
+
+      testcase        the name of the testcase to finalize.
+                      This must match a name provided to DDTestCaseBegin.
+
+      description     optional additional descriptive string to send.
+                      A zero length string will effectively provide no description.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddtestcasestart"></a>
+  Sub DDTestCaseStart (logfac As LogFacility,
+                       NewTestCase As String,
+                       Optional description)
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+
+<a name="ddtestcasecompleted"></a>
+  Sub DDTestCaseCompleted (LogFacility logfac, Optional description)
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddrequirementtestbegin"></a>
+  Sub DDRequirementTestBegin (logfac As LogFacility,
+                              requirement As String,
+                              Optional description)
+
+ DESCRIPTION:
+
+      New functionality allows any number of Requirements to be active and
+      each uniquely identified Requirement will have a private status counter
+      associated with it.
+
+      <b>The associated private counter will be given the same name (counterID)
+      as the Requirement.</b>  This name must be unique to all items that will be
+      tracked with private counters (Procedures, Suites, Cycles, Requirements,
+      Custom Counters, etc.).
+
+      The user can reference, log, and store associated counter values
+      using the functions available from:
+
+          <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+          <a href="LogUtilities.htm" target="_blank">LogUtilities</a>
+
+      and
+
+          <a href="DDDrivercommands.htm" target="_blank">Driver Commands</a>
+
+
+ PARAMETERS:
+
+      logfac          LogFacility to receive START message.
+
+      requirement     string name to assign the private status counter.
+
+      description     optional string description to add to log. If none is
+                      supplied then an appropriate default statement is used.
+                      A zero length string will effectively provide no description.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddrequirementtestend"></a>
+  Sub DDRequirementTestEnd (LogFacility logfac, requirement as String, Optional description)
+
+ DESCRIPTION:
+
+      Reports to enabled logs that the named Requirement testing is complete.
+      The private status counter associated with the Requirement is also stopped.
+
+
+ PARAMETERS:
+
+      logfac          reference to a log facility to receive the message.
+
+      requirement     the name of the item to finalize.
+                      This must match a name provided to DDRequirementTestBegin.
+
+      description     optional additional descriptive string to send.
+                      A zero length string will effectively provide no description.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddrequirementteststart"></a>
+  Sub DDRequirementTestStart (logfac As LogFacility,
+                              NewRequirement As String,
+                              Optional description)
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddrequirementtestcompleted"></a>
+  Sub DDRequirementTestCompleted (LogFacility logfac, Optional description)
+
+ DESCRIPTION:
+
+  DEPRECATED - Do not use in new code
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddprocedurebegin"></a>
+  Sub DDProcedureBegin (logfac As LogFacility,
+                       procedure As String,
+                       Optional description)
+
+ DESCRIPTION:
+
+      New functionality allows any number of Procedures to be active and
+      each uniquely identified Procedure will have a private status counter
+      associated with it.
+
+      <b>The associated private counter will be given the same name (counterID)
+      as the Procedure.</b>  This name must be unique to all items that will be
+      tracked with private counters (Testcases, Suites, Cycles, Requirements,
+      Custom Counters, etc.).
+
+      The user can reference, log, and store associated counter values
+      using the functions available from:
+
+          <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+          <a href="LogUtilities.htm" target="_blank">LogUtilities</a>
+
+      and
+
+          <a href="DDDrivercommands.htm" target="_blank">Driver Commands</a>
+
+
+ PARAMETERS:
+
+      logfac          LogFacility to receive START message.
+
+      procedure       string name to assign the private status counter.
+
+      description     optional string description to add to log. If none is
+                      supplied then an appropriate default statement is used.
+                      A zero length string will effectively provide no description.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddprocedureend"></a>
+  Sub DDProcedureEnd (LogFacility logfac, procedure as String, Optional description)
+
+ DESCRIPTION:
+
+      Reports to enabled logs that the named Procedure testing is complete.
+      The private status counter associated with the Procedure is also stopped.
+
+
+ PARAMETERS:
+
+      logfac          reference to a log facility to receive the message.
+
+      procedure       the name of the Procedure to finalize.
+                      This must match a name provided to DDProcedureBegin.
+
+      description     optional additional descriptive string to send.
+                      A zero length string will effectively provide no description.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddsuitebegin"></a>
+  Sub DDSuiteBegin (logfac As LogFacility,
+                       suite As String,
+                       Optional description)
+
+ DESCRIPTION:
+
+      New functionality allows any number of Suites to be active and
+      each uniquely identified Suite will have a private status counter
+      associated with it.
+
+      We are not referring to the Suite level test tables for the framework.
+      Instead, we are referring to formal, logical test Suites as may be defined
+      as part of the overall test plan for an application or product.  It
+      is likely that many framework Suite tables will be used to complete
+      the logical Suite of tests defined for the application.
+
+      <b>The associated private counter will be given the same name (counterID)
+      as the Suite.</b>  This name must be unique to all items that will be
+      tracked with private counters (Testcases, Procedures, Cycles, Requirements,
+      Custom Counters, etc.).
+
+      The user can reference, log, and store associated counter values
+      using the functions available from:
+
+          <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+          <a href="LogUtilities.htm" target="_blank">LogUtilities</a>
+
+      and
+
+          <a href="DDDrivercommands.htm" target="_blank">Driver Commands</a>
+
+
+ PARAMETERS:
+
+      logfac          LogFacility to receive START message.
+
+      suite           string name to assign the private status counter.
+
+      description     optional string description to add to log. If none is
+                      supplied then an appropriate default statement is used.
+                      A zero length string will effectively provide no description.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddsuiteend"></a>
+  Sub DDSuiteEnd (LogFacility logfac, suite as String, Optional description)
+
+ DESCRIPTION:
+
+      Reports to enabled logs that the named Suite testing is complete.
+      The private status counter associated with the Suite is also stopped.
+
+
+ PARAMETERS:
+
+      logfac          reference to a log facility to receive the message.
+
+      suite           the name of the Suite to finalize.
+                      This must match a name provided to DDSuiteBegin.
+
+      description     optional additional descriptive string to send.
+                      A zero length string will effectively provide no description.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddcyclebegin"></a>
+  Sub DDCycleBegin (logfac As LogFacility,
+                       cycle As String,
+                       Optional description)
+
+ DESCRIPTION:
+
+      New functionality allows any number of Cycles to be active and
+      each uniquely identified Cycle will have a private status counter
+      associated with it.
+
+      We are not referring to the Cycle level test tables for the framework.
+      Instead, we are referring to formal, logical test Cycles as may be defined
+      as part of the overall test plan for an application or product.  It
+      is possible that more than one framework Cycle table will be used to
+      complete the logical Cycle of tests defined for the application.
+
+      <b>The associated private counter will be given the same name (counterID)
+      as the Cycle.</b>  This name must be unique to all items that will be
+      tracked with private counters (Testcases, Procedures, Suites, Requirements,
+      Custom Counters, etc.).
+
+      The user can reference, log, and store associated counter values
+      using the functions available from:
+
+          <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+          <a href="LogUtilities.htm" target="_blank">LogUtilities</a>
+
+      and
+
+          <a href="DDDrivercommands.htm" target="_blank">Driver Commands</a>
+
+
+ PARAMETERS:
+
+      logfac          LogFacility to receive START message.
+
+      cycle           string name to assign the private status counter.
+
+      description     optional string description to add to log. If none is
+                      supplied then an appropriate default statement is used.
+                      A zero length string will effectively provide no description.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ddcycleend"></a>
+  Sub DDCycleEnd (LogFacility logfac, cycle as String, Optional description)
+
+ DESCRIPTION:
+
+      Reports to enabled logs that the named Cycle testing is complete.
+      The private status counter associated with the Cycle is also stopped.
+
+
+ PARAMETERS:
+
+      logfac          reference to a log facility to receive the message.
+
+      cycle           the name of the Cycle to finalize.
+                      This must match a name provided to DDCycleBegin.
+
+      description     optional additional descriptive string to send.
+                      A zero length string will effectively provide no description.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 08, 2002
+ History:
+
+      JUL 08, 2002    Original Release
+      DEC 04, 2008    (PMiess) Fixed unused optional description.
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsqaversion"></a>
+  Function GetSQAVersion () As String
+
+ DESCRIPTION:
+
+      Gets the Build version of SQA Running.
+
+      Keys searched are those listed in the RATIONAL_BUILD_KEYS file in the
+      DDE_RUNTIME directory.
+
+      The directory must be specified in the Environment variable "DDE_RUNTIME".
+      The file should be "SQABuild.keys"
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      The version in the "Build" item of the software registry
+          7.X  = "solutions.*"   That is, it starts with "solutions."
+          2000 = "2000.*"        That is, it starts with "2000."
+          2001 = "2001.*"        That is, it starts with "2001."
+          2002 = "2002.*"        That is, it starts with "2002."
+
+      Or the Constant RATIONAL_BUILD_UNRECOGNIZED if it is unsuccessful.
+      This could be caused by the DDE_RUNTIME environment variable not being
+      set, the SQABuild.keys file not being found, or no matching key or
+      "Build" item found in the registry.  OR, something completely different.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 22, 2000
+ History:
+
+      DEC 22, 2000    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsqabuildcode"></a>
+  Function GetSQABuildCode () As Integer
+
+ DESCRIPTION:
+
+      Gets the Build version of SQA Running as an Integer Constant.
+
+      Uses GetSQAVersion above to first determine the version.  Then it
+      returns the appropriate Integer based on the version.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      The version in the "Build" as our own Integer constant:
+
+          RATIONAL_BUILD_UNKNOWN  for an unrecognized version
+          RATIONAL_BUILD_V7       for 7
+          RATIONAL_BUILD_V2000    for V2000
+          RATIONAL_BUILD_V2001    for V2001
+          RATIONAL_BUILD_V2002    for V2002
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 02, 2001
+ History:
+
+      JAN 02, 2001    Original Release
+      FEB 10, 2003    (Carl Nagle) Added 2002 info
+
+</pre>
+<hr>
+<pre>
+
+<a name="getrunningsqascript"></a>
+  Function GetRunningSQAScript () As String
+
+ DESCRIPTION:
+
+      Gets the name of the currently running Robot Script.
+
+      Parses the result of SQAVpGetBaselineFileName to determine the current
+      script.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      String name of the currently running script.  (Does not include the extension.)
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 23, 2001
+ History:
+
+      MAY 23, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddeprojectdirectory"></a>
+  Function GetDDEProjectDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the DDE's Project directory
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE project directory including the trainling '\'
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 06, 2002
+ History:
+
+      NOV 06, 2002    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddedatapooldirectory"></a>
+  Function GetDDEDatapoolDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the current location for Datapool storage.  Normally this is:
+
+          Project\Datapool\ directory
+
+      Note, this must be changed very carefully.  The test tables being
+      executed normally reside in the Datapool directory.  If you switch to a
+      different datapool directory and don't switch back, then the engine may
+      be unable to locate needed test tables.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE Datapool directory including the trailing '\'
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 06, 2002
+ History:
+
+      NOV 06, 2002    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+      AUG 12, 2003    (Carl Nagle) Modified to allow different Datapool directories (future).
+
+</pre>
+<hr>
+<pre>
+
+<a name="setddedatapooldirectory"></a>
+  Function SetDDEDatapoolDirectory (newdir as String) As String
+
+ DESCRIPTION:
+
+      Sets the DDE's Datapool directory.  By default this is:
+
+           <Project>\Datapool\
+
+      Note, this may provide an alternate default location for ALL Datapool
+      subdirectories if those subdirectory directories have not already been
+      deduced or set.
+
+      If the subdirectories have already been deduced or set, then the change
+      to the Datapool directory will NOT alter those settings.
+
+      Note, this must be changed very carefully.  The test tables being
+      executed normally reside in the Datapool directory.  If you switch to a
+      different datapool directory and don't switch back, then the engine may
+      be unable to locate needed test tables.
+
+      Examples of changing the Datapool directory to <project>\AltDatapool:
+
+      datapool = SetDDEDatapoolDirectory("C:\MyRepo\MyProject\AltDatapool")
+
+          or
+
+      datapool = SetDDEDatapoolDirectory("AltDatapool")
+
+
+ PARAMETERS:
+
+      newdir  path to new datapool directory.  Paths relative to the Project
+              directory are allowed.
+
+ RETURNS:
+
+      Path to the DDE Datapool directory including the trailing '\'
+      This normally should be PROJECT\Datapool\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+      AUG 21, 2003    (Carl Nagle) Added acceptance of Project relative paths
+      JUN 15, 2004    (Audrey Shull) Fixed Project relative paths
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddeprojectruntimedirectory"></a>
+  Function GetDDEProjectRuntimeDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the DDE Project's Runtime directory
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE project's runtime directory including the trailing '\'.
+      This should normally be PROJECT\Datapool\Runtime\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 16, 2002
+ History:
+
+      DEC 16, 2002    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddebenchdirectory"></a>
+  Function GetDDEBenchDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the current location for Bench storage.  Normally this is:
+
+          Project\Datapool\Bench\ directory
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE Bench directory including the trailing '\'
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 23, 2001
+ History:
+
+      MAY 23, 2001    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+      AUG 12, 2003    (Carl Nagle) Modified to allow different Bench directories.
+
+</pre>
+<hr>
+<pre>
+
+<a name="setddebenchdirectory"></a>
+  Function SetDDEBenchDirectory (newdir as String) As String
+
+ DESCRIPTION:
+
+      Sets the DDE's Bench directory.  By default this is:
+
+           Project\Datapool\Bench\
+
+      Examples of changing the Bench directory to <project>\AltDatapool\Bench:
+
+      datapool = SetDDEBenchDirectory("C:\MyRepo\MyProject\AltDatapool\Bench")
+
+          or
+
+      datapool = SetDDEBenchDirectory("AltDatapool\Bench")
+
+
+ PARAMETERS:
+
+      newdir  path to new directory.  Paths relative to the Project
+              directory are allowed.
+
+ RETURNS:
+
+      Path to the DDE Bench directory including the trailing '\'
+      This normally should be PROJECT\Datapool\Bench\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+      AUG 21, 2003    (Carl Nagle) Added acceptance of Project relative paths
+      JUN 15, 2004    (Audrey Shull) Fixed Project relative paths
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddetestdirectory"></a>
+  Function GetDDETestDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the current location for Test (actuals) storage.  Normally this is:
+
+          Project\Datapool\Test\ directory
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE Test directory including the trailing '\'
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 23, 2001
+ History:
+
+      MAY 23, 2001    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+
+</pre>
+<hr>
+<pre>
+
+<a name="setddetestdirectory"></a>
+  Function SetDDETestDirectory (newdir as String) As String
+
+ DESCRIPTION:
+
+      Sets the DDE's Test directory.  By default this is:
+
+           Project\Datapool\Test\
+
+      Examples of changing the Test directory to <project>\AltDatapool\Test:
+
+      datapool = SetDDETestDirectory("C:\MyRepo\MyProject\AltDatapool\Test")
+
+          or
+
+      datapool = SetDDETestDirectory("AltDatapool\Test")
+
+
+ PARAMETERS:
+
+      newdir  path to new directory.  Paths relative to the Project
+              directory are allowed.
+
+ RETURNS:
+
+      Path to the DDE Test directory including the trailing '\'
+      This normally should be PROJECT\Datapool\Test\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+      AUG 21, 2003    (Carl Nagle) Added acceptance of Project relative paths
+      JUN 15, 2004    (Audrey Shull) Fixed Project relative paths
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddelogsdirectory"></a>
+  Function GetDDELogsDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the current location for Log storage.  Normally this is:
+
+          Project\Datapool\Logs\ directory
+
+      This location cannot be changed once set.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE Logs directory including the trailing '\'
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 23, 2001
+ History:
+
+      MAY 23, 2001    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+      AUG 12, 2003    (Carl Nagle) Modified to allow different log directory.
+
+</pre>
+<hr>
+<pre>
+
+<a name="setddelogsdirectory"></a>
+  Function SetDDELogsDirectory (newdir as String) As String
+
+ DESCRIPTION:
+
+      Sets the DDE's Log directory.  By default this is:
+
+           Project\Datapool\Logs\
+
+      This location cannot be changed once set.
+
+      Examples of changing the Logs directory to <project>\AltDatapool\Logs:
+
+      datapool = SetDDELogsDirectory("C:\MyRepo\MyProject\AltDatapool\Logs")
+
+          or
+
+      datapool = SetDDELogsDirectory("AltDatapool\Logs")
+
+
+ PARAMETERS:
+
+      newdir  path to new directory.  Paths relative to the Project
+              directory are allowed.
+
+ RETURNS:
+
+      Path to the DDE Logs directory including the trailing '\'
+      This should be PROJECT\Datapool\Logs\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+      AUG 21, 2003    (Carl Nagle) Added acceptance of Project relative paths
+      JUN 15, 2004    (Audrey Shull) Fixed Project relative paths
+
+</pre>
+<hr>
+<pre>
+
+<a name="getddedifdirectory"></a>
+  Function GetDDEDifDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the current location for DIFF storage.  Normally this is:
+
+          Project\Datapool\Dif\ directory
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the DDE Dif directory including the trailing '\'
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 23, 2001
+ History:
+
+      MAY 23, 2001    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+      AUG 12, 2003    (Carl Nagle) Modified to allow different diff directories.
+
+</pre>
+<hr>
+<pre>
+
+<a name="setddedifdirectory"></a>
+  Function SetDDEDifDirectory (newdir as String) As String
+
+ DESCRIPTION:
+
+      Sets the DDE's Diff directory.  By default this is:
+
+           Project\Datapool\Dif\
+
+      Examples of changing the Dif directory to <project>\AltDatapool\Dif:
+
+      datapool = SetDDEDifDirectory("C:\MyRepo\MyProject\AltDatapool\Dif")
+
+          or
+
+      datapool = SetDDEDifDirectory("AltDatapool\Dif")
+
+
+ PARAMETERS:
+
+      newdir  path to new directory.  Paths relative to the Project
+              directory are allowed.
+
+ RETURNS:
+
+      Path to the DDE Dif directory including the trailing '\'
+      This should be PROJECT\Datapool\Dif\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+      AUG 21, 2003    (Carl Nagle) Added acceptance of Project relative paths
+      JUN 15, 2004    (Audrey Shull) Fixed Project relative paths
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdderuntimerepo"></a>
+  Function GetDDERuntimeRepo () As String
+
+ DESCRIPTION:
+
+      Gets the location of DDE runtime files.  This is the location where
+      the headers (SBH) and compiled executables (SBX) files are stored.
+      This is usually on the network accessible to anyone using the DDE and
+      not necessarily part of any one project or repository.
+
+      The value is retrieved via the System ENVIRONMENT variable DDE_RUNTIME
+      which must be set as part of the Robot setup for using the DDE.  This
+      routine merely controls access to that variable as well as ensures that
+      the trailing path separator "\" exists on the value.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      The stored runtime path with the trailing "\"   OR
+      An empty string ("") if the environment variable could not be read.
+      This is normally C:\Program Files\Rational\Rational Test\sqabas32\
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 02, 2001
+ History:
+
+      JAN 02, 2001    Original Release
+      FEB 10, 2003    (Carl Nagle) Minor performance enhancement
+      MAR 25, 2003    (Carl Nagle) Fixed for handling quotes in value per John Crunk.
+      AUG 12, 2003    (Carl Nagle) Added more robust deduction of DDE_RUNTIME
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsafsinstalldirectory"></a>
+  Function GetSAFSInstallDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the SAFS Install directory or an empty string if not installed.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the SAFS Install directory, including the trailing '\'.
+      An empty string if it cannot be determined that SAFS is installed.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: May 24, 2004
+ History:
+
+      MAY 24, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getstafinstalldirectory"></a>
+  Function GetSTAFInstallDirectory () As String
+
+ DESCRIPTION:
+
+      Returns the STAF Install directory or an empty string if not installed.
+
+
+ PARAMETERS:
+
+      (none)
+
+ RETURNS:
+
+      Path to the STAF Install directory, including the trailing '\'.
+      An empty string if it cannot be determined that STAF is installed.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: May 24, 2004
+ History:
+
+      MAY 24, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfileconfigurationsetting"></a>
+  Function GetFileConfigurationSetting (section as String, item as String,
+                                        filename as String) As String
+
+ DESCRIPTION:
+
+      This routine is called from the GetConfigurationSetting routine and is
+      not normally called directly by the user.
+
+      Returns the value of a particular configuration file setting.
+      The configuration filename is typically "RRAFS.INI", but can be
+      some other relative or complete path filename.
+
+      The routine first checks to Projects Runtime directory for the
+      file.  If not found there, it reverts to the DDE_RUNTIME directory.
+      If still not found, we will attempt the final check for the filename
+      as an explicit, non-relative full path filename.
+
+      If the file or the individual setting cannot be found we return an
+      empty string.
+
+
+ PARAMETERS:
+
+      section -- the name of the section in the INI file for the setting.
+                 As is normal INI format, a section name in the file is
+                 delimited by brackets.  The brackets are not to be included
+                 when providing this parameter.
+
+      item    -- the name of the item in the INI file for the setting.
+
+      filename -- specifies which config file to read from
+
+
+ RETURNS:
+
+      The value of the setting, or an empty string if the item or the config
+      files were not found.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+      DEC 07, 2006    (Carl Nagle) Bypass SAFSMAPS use if not running.
+
+</pre>
+<hr>
+<pre>
+
+<a name="getconfigurationsetting"></a>
+  Function GetConfigurationSetting (section as String, item as String,
+                                    Optional filename) As String
+
+ DESCRIPTION:
+
+      This is the primary routine to use to retrieve configuration settings.
+
+      Returns the value of a particular configuration file setting.
+      The configuration filename is typically "RRAFS.INI", but can be
+      some other relative or complete path filename.  If a custom filename
+      is provided, we will attempt to locate a setting within that filename
+      in all the search paths listed.  If a value is not found using
+      that filename, we will then attempt the search again using the default
+      "RRAFS.INI" configuration file in all the search paths listed.
+
+      The routine first checks to Projects Runtime directory for the
+      file.  If not found there, it reverts to the DDE_RUNTIME directory.
+      If still not found, we will attempt the final check for the filename
+      as an explicit, non-relative full path filename.
+
+      If the file or the individual setting cannot be found we return an
+      empty string.
+
+
+ PARAMETERS:
+
+      section -- the name of the section in the INI file for the setting.
+                 As is normal INI format, a section name in the file is
+                 delimited by brackets.  The brackets are not to be included
+                 when providing this parameter.
+
+      item    -- the name of the item in the INI file for the setting.
+
+      filename -- if provided, specifies which custom config file to try
+                  before possibly resorting to the default INI file.
+
+
+ RETURNS:
+
+      The value of the setting, or an empty string if the item or the config
+      files were not found.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdifftoolfilename"></a>
+  Function GetDiffToolFilename () As String
+
+ DESCRIPTION:
+
+      Returns the EXE name of the tool to use for generic file comparisons.
+      Will look in the default RRAFS.INI configuration file(s) for:
+
+      [DIFFER]
+      TOOL_EXE=<file.exe>
+
+      If not found there, the routine will look in Environment Variables
+      for the value of variable "DDE_DIFF_TOOL_EXE".
+
+      If still not found, the routine will use the default diff tool, which
+      is currently FC.EXE
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+      The name of the EXE to use for file comparisons.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdifftooloptions"></a>
+  Function GetDiffToolOptions () As String
+
+ DESCRIPTION:
+
+      Returns the options to use for generic file comparison tool in use.
+      Will look in the default RRAFS.INI configuration file(s) for:
+
+      [DIFFER]
+      TOOL_OPTIONS=<option(s)>
+
+      If not found there, the routine will look in Environment Variables
+      for the value of variable "DDE_DIFF_TOOL_OPTIONS".
+
+      If still not found, the routine will use the default diff tool options
+      for FC.EXE (/L /T).
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+      The options to use for the file comparison tool.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdifftoolbinaryoptions"></a>
+  Function GetDiffToolBinaryOptions () As String
+
+ DESCRIPTION:
+
+      Returns the binary options to use for the file comparison tool in use.
+      Will look in the default RRAFS.INI configuration file(s) for:
+
+      [DIFFER]
+      TOOL_BINARY_OPTIONS=<option(s)>
+
+      If not found there, the routine will look in Environment Variables
+      for the value of variable "DDE_DIFF_TOOL_BINARY_OPTIONS".
+
+      If still not found, the routine will use the default diff tool
+      binary options for FC.EXE (/B)
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+      The options to use for the binary file comparison tool.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdifftoolfilename"></a>
+  Function GetDiffToolFilename () As String
+
+ DESCRIPTION:
+
+      Returns the EXE name of the tool to use for generic diff viewing.
+      Will look in the default RRAFS.INI configuration file(s) for:
+
+      [DIFFVIEWER]
+      TOOL_EXE=<file.exe>
+
+      If not found there, the routine will look in Environment Variables
+      for the value of variable "DDE_DIFF_VIEW_EXE".
+
+      If still not found, the routine will use the default diff tool, which
+      is currently EXAMDIFF.EXE (must be downloaded and installed separately).
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+      The name of the EXE to use for generic diff viewing.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdiffvieweroptions"></a>
+  Function GetDiffViewerOptions () As String
+
+ DESCRIPTION:
+
+      Returns the options to use for generic diff viewer tool in use.
+      Will look in the default RRAFS.INI configuration file(s) for:
+
+      [DIFFVIEWER]
+      TOOL_OPTIONS=<option(s)>
+
+      If not found there, the routine will look in Environment Variables
+      for the value of variable "DDE_DIFF_VIEW_OPTIONS".
+
+      If still not found, the routine will use the default diff viewer
+      options for EXAMDIFF.EXE (/t).
+
+
+ PARAMETERS:
+
+      (none)
+
+
+ RETURNS:
+
+      The options to use for the diff viewer tool.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 12, 2003
+ History:
+
+      AUG 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setddecachemode"></a>
+  Function SetDDECacheMode (Optional Mode) As Integer
+
+ DESCRIPTION:
+
+      Configures the Cache Mode for the tables.
+      If Mode is "TRUE" or "ENABLE", it will enable the Caching flag.
+      If Mode is not specified, or is anything other than "TRUE" or "ENABLE" then
+      caching is disabled.
+
+      The DDU_CACHE_SET flag is set to reduce multiple unintended processing
+      attempts from the drivers.  This also avoids overriding the value set by
+      a script with any value defined in RRAFS.INI.
+
+
+ PARAMETERS:
+
+      Optional Mode:  "TRUE" or "ENABLE" - Turn on Caching
+                      Anything else (or nothing) turns caching off.
+
+ RETURNS:
+
+      0 - caching disabled
+      1 - caching enabled
+
+ ERRORS:
+
+       none
+
+ Orig Author: Robert Ducharme
+ Orig   Date: Mar 29, 2005
+ History:
+
+      Mar 29, 2005    Original Release
+      Apr 22, 2005    (Carl Nagle) Update for use by all Drivers.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

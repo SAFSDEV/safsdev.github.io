@@ -1,0 +1,999 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic WIN32 Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "WIN32" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Header to declare available WIN32 API calls.
+
+ To actually make use of the library in another module the developer needs
+ to $Include these files:
+
+      WIN32_X.SBH      Constants, Globals, Types etc.
+      WIN32.SBH        Export Header File
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#getusername">GetUserName</a>                Lib   advapi32.dll                  Alias "GetUserNameA"
+Function <a href="#getmodulefilename">GetModuleFileName</a>          Lib   kernel32                      Alias "GetModuleFileNameA"
+Function <a href="#getcurrentprocess">GetCurrentProcess</a>          Lib   kernel32                      Alias "GetCurrentProcess"
+Function <a href="#getcurrentprocessid">GetCurrentProcessId</a>        Lib   kernel32                      Alias "GetCurrentProcessId"
+Function <a href="#getcomputername">GetComputerName</a>            Lib   kernel32                      Alias "GetComputerNameA"
+Function <a href="#getprivateprofilestring">GetPrivateProfileString</a>     Lib   kernel32                      Alias "GetPrivateProfileStringA"
+Function <a href="#getprivateprofilestringa">GetPrivateProfileStringA</a>     Lib   kernel32                      Alias "GetPrivateProfileStringA"
+Function <a href="#writeprivateprofilestring">WritePrivateProfileString</a>     Lib   kernel32                      Alias "WritePrivateProfileStringA"
+Function <a href="#getprivateprofilesection">GetPrivateProfileSection</a>     Lib   kernel32                      Alias "GetPrivateProfileSectionA"
+Function <a href="#getwindowsdirectory">GetWindowsDirectory</a>        Lib   kernel32                      Alias "GetWindowsDirectoryA"
+Function <a href="#gettemppath">GetTempPath</a>                Lib   kernel32                      Alias "GetTempPathA"
+Function <a href="#getenvironmentstrings">GetEnvironmentStrings</a>      Lib   kernel32                      Alias "GetEnvironmentStringsA"
+Function <a href="#getenvironmentvariable">GetEnvironmentVariable</a>     Lib   kernel32                      Alias "GetEnvironmentVariableA"
+Function <a href="#setenvironmentvariable">SetEnvironmentVariable</a>     Lib   kernel32                      Alias "SetEnvironmentVariableA"
+Function <a href="#getlogicaldrivestrings">GetLogicalDriveStrings</a>     Lib   kernel32                      Alias "GetLogicalDriveStringsA"
+   Sub   <a href="#globalmemorystatus">GlobalMemoryStatus</a>         Lib   kernel32                      
+Function <a href="#findwindow">FindWindow</a>                 Lib   user32                        Alias "FindWindowA"
+Function <a href="#getactivewindow">GetActiveWindow</a>            Lib   user32                        Alias "GetActiveWindow"
+Function <a href="#gettopwindow">GetTopWindow</a>               Lib   user32                        Alias "GetTopWindow"
+Function <a href="#getdesktopwindow">GetDesktopWindow</a>           Lib   user32                        Alias "GetDesktopWindow"
+Function <a href="#getwindow">GetWindow</a>                  Lib   user32                        Alias "GetWindow"
+Function <a href="#enumchildwindows">EnumChildWindows</a>           Lib   user32                        Alias "EnumChildWindows"
+Function <a href="#closewindow">CloseWindow</a>                Lib   user32                        Alias "CloseWindow"
+Function <a href="#getclassname">GetClassName</a>               Lib   user32                        Alias "GetClassNameA"
+Function <a href="#getwindowtext">GetWindowText</a>              Lib   user32                        Alias "GetWindowTextA"
+Function <a href="#getwindowlong">GetWindowLong</a>              Lib   user32                        Alias "GetWindowLongA"
+Function <a href="#sendmessage">SendMessage</a>                Lib   user32                        Alias "SendMessageA"
+Function <a href="#destroywindow">DestroyWindow</a>              Lib   user32                        Alias "DestroyWindow"
+Function <a href="#terminateprocess">TerminateProcess</a>           Lib   kernel32                      Alias "TerminateProcess"
+   Sub   <a href="#exitprocess">ExitProcess</a>                Lib   kernel32                      Alias "ExitProcess"
+Function <a href="#lstrcpy">lstrcpy</a>                    Lib   kernel32                      Alias "lstrcpyA"
+Function <a href="#getopenfilename">GetOpenFileName</a>            Lib   comdlg32.dll                  Alias "GetOpenFileNameA"
+Function <a href="#commdlgextendederror">CommDlgExtendedError</a>       Lib   comdlg32.dll                  
+Function <a href="#getforegroundwindow">GetForegroundWindow</a>        Lib   user32                        Alias "GetForegroundWindow"
+Function <a href="#setforegroundwindow">SetForegroundWindow</a>        Lib   user32                        Alias "SetForegroundWindow"
+Function <a href="#ismenu">IsMenu</a>                     Lib   user32                        
+Function <a href="#iswindow">IsWindow</a>                   Lib   user32                        Alias "IsWindow"
+   Sub   <a href="#keybd_event">keybd_event</a>                Lib   user32                        
+Function <a href="#shellexecuteany">ShellExecuteAny</a>            Lib   shell32.dll                   Alias "ShellExecuteA"
+Function <a href="#regconnectregistry">RegConnectRegistry</a>         Lib   advapi32.dll                  Alias "RegConnectRegistryA"
+Function <a href="#regclosekey">RegCloseKey</a>                Lib   advapi32.dll                  Alias "RegCloseKey"
+Function <a href="#regcreatekey">RegCreateKey</a>               Lib   advapi32.dll                  Alias "RegCreateKeyA"
+Function <a href="#regdeletekey">RegDeleteKey</a>               Lib   advapi32.dll                  Alias "RegDeleteKeyA"
+Function <a href="#regdeletevalue">RegDeleteValue</a>             Lib   advapi32.dll                  Alias "RegDeleteValueA"
+Function <a href="#regenumkey">RegEnumKey</a>                 Lib   advapi32.dll                  Alias "RegEnumKeyA"
+Function <a href="#regenumvalue">RegEnumValue</a>               Lib   advapi32.dll                  Alias "RegEnumValueA"
+Function <a href="#regflushkey">RegFlushKey</a>                Lib   advapi32.dll                  Alias "RegFlushKey"
+Function <a href="#regloadkey">RegLoadKey</a>                 Lib   advapi32.dll                  Alias "RegLoadKeyA"
+Function <a href="#regnotifychangekeyvalue">RegNotifyChangeKeyValue</a>     Lib   advapi32.dll                  Alias "RegNotifyChangeKeyValue"
+Function <a href="#regopenkey">RegOpenKey</a>                 Lib   advapi32.dll                  Alias "RegOpenKeyA"
+Function <a href="#regqueryinfokey">RegQueryInfoKey</a>            Lib   advapi32.dll                  Alias "RegQueryInfoKeyA"
+Function <a href="#regqueryvalue">RegQueryValue</a>              Lib   advapi32.dll                  Alias "RegQueryValueA"
+Function <a href="#regreplacekey">RegReplaceKey</a>              Lib   advapi32.dll                  Alias "RegReplaceKeyA"
+Function <a href="#regrestorekey">RegRestoreKey</a>              Lib   advapi32.dll                  Alias "RegRestoreKeyA"
+Function <a href="#regsavekey">RegSaveKey</a>                 Lib   advapi32.dll                  Alias "RegSaveKeyA"
+Function <a href="#regsetvalue">RegSetValue</a>                Lib   advapi32.dll                  Alias "RegSetValueA"
+Function <a href="#regunloadkey">RegUnLoadKey</a>               Lib   advapi32.dll                  Alias "RegUnLoadKeyA"
+Function <a href="#wnetgetusera">WNetGetUserA</a>               Lib   mpr                           
+Function <a href="#sndplaysound">sndPlaySound</a>               Lib   winmm.dll                     Alias "sndPlaySoundA"
+Function <a href="#sndstopsound">sndStopSound</a>               Lib   winmm.dll                     Alias "sndPlaySoundA"
+Function <a href="#waveoutgetnumdevs">waveOutGetNumDevs</a>          Lib   winmm.dll                     
+Function <a href="#mcisendstring">mciSendString</a>              Lib   winmm.dll                     Alias "mciSendStrinA"
+Function <a href="#getversionex">GetVersionEx</a>               Lib   kernel32                      Alias "GetVersionExA"
+Function <a href="#createprocess">CreateProcess</a>              Lib   kernel32                      Alias "CreateProcessA"
+Function <a href="#openprocess">OpenProcess</a>                Lib   kernel32                      
+Function <a href="#closehandle">CloseHandle</a>                Lib   kernel32                      
+Function <a href="#getdevicecaps">GetDeviceCaps</a>              Lib   gdi32                         
+Function <a href="#getdc">GetDC</a>                      Lib   user32                        Alias "GetDC"
+Function <a href="#releasedc">ReleaseDC</a>                  Lib   user32                        Alias "ReleaseDC"
+Function <a href="#enumdisplaysettings">EnumDisplaySettings</a>        Lib   user32                        Alias "EnumDisplaySettingsA"
+Function <a href="#changedisplaysettings">ChangeDisplaySettings</a>      Lib   user32                        Alias "ChangeDisplaySettingsA"
+Function <a href="#getsystemmetrics">GetSystemMetrics</a>           Lib   user32                        
+Function <a href="#getmenu">GetMenu</a>                    Lib   user32                        
+Function <a href="#getmenustring">GetMenuString</a>              Lib   user32                        Alias "GetMenuStringA"
+Function <a href="#getmenustate">GetMenuState</a>               Lib   user32                        
+Function <a href="#getsystemmenu">GetSystemMenu</a>              Lib   user32                        
+Function <a href="#getsubmenu">GetSubMenu</a>                 Lib   user32                        
+Function <a href="#getmenuitemid">GetMenuItemID</a>              Lib   user32                        
+Function <a href="#getmenuitemcount">GetMenuItemCount</a>           Lib   user32                        
+Function <a href="#getmenucontexthelpid">GetMenuContextHelpId</a>       Lib   user32                        
+Function <a href="#getmenudefaultitem">GetMenuDefaultItem</a>         Lib   user32                        
+Function <a href="#regcreatekeyex">RegCreateKeyEx</a>             Lib   advapi32.dll                  Alias "RegCreateKeyExA"
+Function <a href="#regenumkeyex">RegEnumKeyEx</a>               Lib   advapi32.dll                  Alias "RegEnumKeyExA"
+Function <a href="#regopenkeyex">RegOpenKeyEx</a>               Lib   advapi32.dll                  Alias "RegOpenKeyExA"
+Function <a href="#regqueryvalueex">RegQueryValueEx</a>            Lib   advapi32.dll                  Alias "RegQueryValueExA"
+Function <a href="#regsetkeysecurity">RegSetKeySecurity</a>          Lib   advapi32.dll                  
+Function <a href="#regsetvalueex">RegSetValueEx</a>              Lib   advapi32.dll                  Alias "RegSetValueExA"
+Function <a href="#shdeletekey">SHDeleteKey</a>                Lib   Shlwapi.dll                   Alias "SHDeleteKeyA"
+Function <a href="#removecontrolbyname">RemoveControlByName</a>        Lib   occache                       
+Function <a href="#setcursorpos">SetCursorPos</a>               Lib   user32.dll                    
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+'GetWindow() constants
+Const GW_HWNDFIRST  = 0
+Const GW_HWNDNEXT   = 2
+Const GW_HWNDPREV   = 3
+Const GW_OWNER      = 4
+Const GW_MAX        = 5
+Const GW_CHILD      = 5
+Const GWL_STYLE     = (-16) ' Get Window's style bits
+
+'John Crunk Constants for Converting Twips To Pixels
+Const WU_LOGPIXELSX = 88
+Const WU_LOGPIXELSY = 90
+
+'-----------------------------------------------------------------------------
+'Window messages (used by SendMessage function)
+Const WM_NCLBUTTONDOWN  = &HA1
+Const WM_NCLBUTTONUP    = &HA2
+Const WM_NCLBUTTONDBLCLK= &HA3
+Const WM_NCRBUTTONDOWN  = &HA4
+Const WM_NCRBUTTONUP    = &HA5
+Const WM_COMMAND        = &H111
+Const WM_DESTROY        = &H2
+Const WM_NCDESTROY      = &H82
+Const WM_ENABLE         = &HA
+Const WM_HSCROLL        = &H114
+Const WM_LBUTTONDBLCLK  = &H203
+Const WM_LBUTTONDOWN    = &H201
+Const WM_LBUTTONUP      = &H202
+Const WM_MBUTTONDBLCLK  = &H209
+Const WM_MBUTTONDOWN    = &H207
+Const WM_MBUTTONUP      = &H208
+Const WM_PASTE          = &H302
+Const WM_QUIT           = &H12
+Const WM_RBUTTONDBLCLK  = &H206
+Const WM_RBUTTONDOWN    = &H204
+Const WM_RBUTTONUP      = &H205
+Const WM_SETFOCUS       = &H7
+Const WM_VSCROLL        = &H115
+Const WM_CLOSE          = &H10
+Const WM_COPY           = &H301
+Const WM_GETTEXT        = &HD
+Const WM_GETTEXTLENGTH  = &HE
+Const WM_SETTEXT        = &HC
+Const WM_CLEAR          = &H303
+Const WM_CUT            = &H300
+Const WM_FONTCHANGE     = &H1D
+Const WM_GETFONT        = &H31
+Const WM_GETMINMAXINFO  = &H24
+Const WM_KEYDOWN        = &H100
+Const WM_KEYUP          = &H101
+Const WM_SETFONT        = &H30
+Const WM_UNDO           = &H304
+
+'-----------------------------------------------------------------------------
+'Combobox messages (used by SendMessage function)
+Const CB_FINDSTRING      = &H14C
+Const CB_FINDSTRINGEXACT = &H158
+Const CB_SHOWDROPDOWN    = &H14F
+Const CB_SELECTSTRING    = &H14D
+
+'-----------------------------------------------------------------------------
+'Following bits will be combined to define properties of a 'normal' task top-level window. 
+'Any window with these set will be included in the list:
+Const WS_VISIBLE        = &H10000000        ' Window is not hidden
+Const WS_BORDER         = &H800000          ' Window has a border
+'Other bits that are normally set include:
+Const WS_CAPTION        = &HC00000          ' WS_BORDER Or WS_DLGFRAME
+Const WS_CHILD          = &H40000000
+Const WS_CHILDWINDOW    = (WS_CHILD)
+Const WS_CLIPSIBLINGS   = &H4000000         ' can clip windows
+Const WS_DLGFRAME       = &H400000
+Const WS_GROUP          = &H20000           ' Window is top of group
+Const WS_SYSMENU        = &H80000           ' Window has system menu
+Const WS_THICKFRAME     = &H40000           ' Window has thick border
+
+'-----------------------------------------------------------------------------
+'used by GetOpenFileName
+Const OFN_READONLY            = &H1
+Const OFN_OVERWRITEPROMPT     = &H2
+Const OFN_HIDEREADONLY        = &H4
+Const OFN_NOCHANGEDIR         = &H8
+Const OFN_SHOWHELP            = &H10
+Const OFN_ENABLEHOOK          = &H20
+Const OFN_ENABLETEMPLATE      = &H40
+Const OFN_ENABLETEMPLATEHANDLE= &H80
+Const OFN_NOVALIDATE          = &H100
+Const OFN_ALLOWMULTISELECT    = &H200
+Const OFN_EXTENSIONDIFFERENT  = &H400
+Const OFN_PATHMUSTEXIST       = &H800
+Const OFN_FILEMUSTEXIST       = &H1000
+Const OFN_CREATEPROMPT        = &H2000
+Const OFN_SHAREAWARE          = &H4000
+Const OFN_NOREADONLYRETURN    = &H8000
+Const OFN_NOTESTFILECREATE    = &H10000
+Const OFN_SHAREFALLTHROUGH    = 2
+Const OFN_SHARENOWARN         = 1
+Const OFN_SHAREWARN           = 0
+
+'-----------------------------------------------------------------------------
+'* Function prototypes, constants, and type definitions for Win32 Registry API
+'<a name=registry></a>Registry hKey HIVE values 
+Const HKEY_CLASSES_ROOT     = &H80000000
+Const HKEY_CURRENT_USER     = &H80000001
+Const HKCU                  = &H80000001
+Const HKEY_LOCAL_MACHINE    = &H80000002
+Const HKLM                  = &H80000002
+Const HKEY_USERS            = &H80000003
+Const HKU                   = &H80000003
+Const HKEY_PERFORMANCE_DATA = &H80000004    'NT only
+Const HKEY_CURRENT_CONFIG   = &H80000005
+Const HKCC                  = &H80000005
+Const HKEY_DYN_DATA         = &H80000006    '95/98 only
+Const HKDD                  = &H80000006
+
+Const REG_NONE                  = 0 ' No value Type
+Const REG_SZ                    = 1 ' Unicode nul terminated String
+Const REG_EXPAND_SZ             = 2 ' Unicode nul terminated String
+Const REG_BINARY                = 3 ' Free form binary
+Const REG_DWORD                 = 4 ' 32-bit number
+Const REG_DWORD_LITTLE_ENDIAN   = 4 ' 32-bit number (same as REG_DWORD)
+Const REG_DWORD_BIG_ENDIAN      = 5 ' 32-bit number
+Const REG_LINK                  = 6 ' Symbolic Link (unicode)
+Const REG_MULTI_SZ              = 7 ' Multiple Unicode strings
+Const REG_RESOURCE_LIST         = 8 ' Resource list in the resource map
+Const REG_FULL_RESOURCE_DESCRIPTOR   = 9 ' Resource list in the hardware description
+Const REG_RESOURCE_REQUIREMENTS_LIST = 10
+Const REG_CREATED_NEW_KEY       = &H1 ' New Registry Key created
+Const REG_OPENED_EXISTING_KEY   = &H2 ' Existing Key opened
+Const REG_WHOLE_HIVE_VOLATILE   = &H1 ' Restore whole hive volatile
+Const REG_REFRESH_HIVE          = &H2 ' Unwind changes to last flush
+Const REG_NOTIFY_CHANGE_NAME    = &H1 ' Create or delete (child)
+Const REG_NOTIFY_CHANGE_ATTRIBUTES   = &H2
+Const REG_NOTIFY_CHANGE_LAST_SET     = &H4 ' Time stamp
+Const REG_NOTIFY_CHANGE_SECURITY     = &H8
+
+'* Reg Create Type Values...
+Const REG_OPTION_RESERVED       = 0 ' Parameter is reserved
+Const REG_OPTION_NON_VOLATILE   = 0 ' Key is preserved when system is rebooted
+Const REG_OPTION_VOLATILE       = 1 ' Key is not preserved when system is rebooted
+Const REG_OPTION_CREATE_LINK    = 2 ' Created key is a symbolic link
+Const REG_OPTION_BACKUP_RESTORE = 4 ' open For backup or restore
+
+Const REG_LEGAL_CHANGE_FILTER   = (REG_NOTIFY_CHANGE_NAME Or REG_NOTIFY_CHANGE_ATTRIBUTES Or REG_NOTIFY_CHANGE_LAST_SET Or REG_NOTIFY_CHANGE_SECURITY)
+Const REG_LEGAL_OPTION          = (REG_OPTION_RESERVED Or REG_OPTION_NON_VOLATILE Or REG_OPTION_VOLATILE Or REG_OPTION_CREATE_LINK Or REG_OPTION_BACKUP_RESTORE)
+
+Const STANDARD_RIGHTS_READ      = &H20000
+Const STANDARD_RIGHTS_WRITE     = &H20000
+Const STANDARD_RIGHTS_EXECUTE   = &H20000
+Const STANDARD_RIGHTS_REQUIRED  = &HF0000
+Const STANDARD_RIGHTS_ALL       = &H1F0000
+Const DELETE                    = &H10000
+Const READ_CONTROL              = &H20000
+Const WRITE_DAC                 = &H40000
+Const WRITE_OWNER               = &H80000
+
+'-----------------------------------------------------------------------------
+' flag values for uFlags parameter; used by sndPlaySound 
+Const SND_SYNC          = &H0000     '  play synchronously (default)
+Const SND_ASYNC         = &H0001     '  play asynchronously
+Const SND_NODEFAULT     = &H0002     '  silence not default, if sound not found
+Const SND_MEMORY        = &H0004     '  lpszSoundName points to a memory file
+Const SND_LOOP          = &H0008     '  loop the sound until next sndPlaySound
+Const SND_NOSTOP        = &H0010     '  don't stop any currently playing sound
+Const SND_ALIAS         = &H10000    '  name is a WIN.INI [sounds] entry
+Const SND_FILENAME      = &H20000    '  name is a file name
+Const SND_RESOURCE      = &H40004    '  name is a resource name or atom
+Const SND_ALIAS_ID      = &H110000   '  name is a WIN.INI [sounds] entry identifier
+Const SND_ALIAS_START   = 0          '  must be > 4096 to keep strings in same section of resource file
+Const SND_VALID         = &H1F       '  valid flags 
+Const SND_NOWAIT        = &H2000     '  don't wait if the driver is busy
+Const SND_VALIDFLAGS    = &H17201F   '  set of valid flag bits; anything outside this range will raise an error
+Const SND_RESERVED      = &HFF000000 '  these flags are reserved
+Const SND_TYPE_MASK     = &H170007
+
+'-----------------------------------------------------------------------------
+'For Process APIs
+Const NILL                   = 0&
+Const WM_SYSCOMMAND          = &H112
+Const SYNCHRONIZE            = &H100000
+Const NORMAL_PRIORITY_CLASS  = &H20&
+Const PROCESS_TERMINATE      = &H1&
+
+'* Reg Key Security Options
+Const KEY_QUERY_VALUE           = &H1
+Const KEY_SET_VALUE             = &H2
+Const KEY_CREATE_SUB_KEY        = &H4
+Const KEY_ENUMERATE_SUB_KEYS    = &H8
+Const KEY_NOTIFY                = &H10
+Const KEY_CREATE_LINK           = &H20
+'*
+Const KEY_READ       = ((STANDARD_RIGHTS_READ Or KEY_QUERY_VALUE Or KEY_ENUMERATE_SUB_KEYS Or KEY_NOTIFY) And (Not SYNCHRONIZE))
+Const KEY_WRITE      = ((STANDARD_RIGHTS_WRITE Or KEY_SET_VALUE Or KEY_CREATE_SUB_KEY) And (Not SYNCHRONIZE))
+Const KEY_EXECUTE    = (KEY_READ)
+Const KEY_ALL_ACCESS = ((STANDARD_RIGHTS_ALL Or KEY_QUERY_VALUE Or KEY_SET_VALUE Or KEY_CREATE_SUB_KEY Or KEY_ENUMERATE_SUB_KEYS Or KEY_NOTIFY Or KEY_CREATE_LINK) And (Not SYNCHRONIZE))
+
+
+'For GetVersionEx
+Const PLATFORM_WIN32s        = 0    'Win 3.1
+Const PLATFORM_WIN32_WINDOWS = 1    'Win95/98
+Const PLATFORM_WIN32_NT      = 2    'Win NT
+
+'For EnumDisplaySettings
+Const DM_PELSWIDTH              = &H80000&
+Const DM_PELSHEIGHT             = &H100000&
+Const DM_DISPLAYFLAGS           = &H200000&
+Const DM_BITSPERPEL             = &H40000&
+Const DM_DISPLAYFREQUENCY       = &H400000&
+
+'For DEVMODE dmDisplayFlags
+Const DM_GRAYSCALE              = &H1&
+Const DM_INTERLACED             = &H2&
+
+Const ENUM_CURRENT_SETTINGS     =-1&
+Const ENUM_REGISTRY_SETTINGS    =-2&
+
+'For DEVMODE
+Const CCDEVICENAME  = 32
+Const CCFORMNAME    = 32
+
+'For ChangeDisplaySettings 
+Const CDS_UPDATEREGISTRY  =&H1&
+Const CDS_TEST            =&H2&
+Const CDS_FULLSCREEN      =&H4&
+Const CDS_GLOBAL          =&H8&
+Const CDS_SET_PRIMARY     =&H10&
+Const CDS_RESET           =&H40000000&
+Const CDS_SETRECT         =&H20000000&
+Const CDS_NORESET         =&H10000000&
+
+'For ChangeDisplaySettings 
+Const DISP_CHANGE_SUCCESSFUL      = 0&
+Const DISP_CHANGE_RESTART         = 1&
+Const DISP_CHANGE_FAILED          =-1&
+Const DISP_CHANGE_BADMODE         =-2&
+Const DISP_CHANGE_NOTUPDATED      =-3&
+Const DISP_CHANGE_BADFLAGS        =-4&
+Const DISP_CHANGE_BADPARAM        =-5&
+
+'For GetDeviceCaps
+Const PLANES    = 14
+Const BITSPIXEL = 12
+
+'For GetSystemMetrics
+Const SM_CXSCREEN = 0
+Const SM_CYSCREEN = 1
+
+' Menu flags for Add/Check/EnableMenuItem()
+Const MF_INSERT = &H0&
+Const MF_CHANGE = &H80&
+Const MF_APPEND = &H100&
+Const MF_DELETE = &H200&
+Const MF_REMOVE = &H1000&
+
+Const MF_BYCOMMAND = &H0&
+Const MF_BYPOSITION = &H400&
+
+Const MF_ENABLED      = &H00&
+Const MF_STRING       = &H00&
+Const MF_UNCHECKED    = &H00&
+Const MF_UNHILITE     = &H00&
+
+Const MF_GRAYED       = &H01&
+Const MF_DISABLED     = &H02&
+Const MF_BITMAP       = &H04&
+Const MF_CHECKED      = &H08&
+Const MF_POPUP        = &H10&
+Const MF_MENUBARBREAK = &H20&
+Const MF_MENUBREAK    = &H40&
+Const MF_HILITE       = &H80&
+
+Const MF_OWNERDRAW       = &H100&
+Const MF_USECHECKBITMAPS = &H200&
+Const MF_SEPARATOR       = &H800&
+
+Const MF_SYSMENU     = &H2000&
+Const MF_HELP        = &H4000&
+Const MF_MOUSESELECT = &H8000&
+
+Const MF_END        = &H80
+Const MF_DEFAULT    = &H1000&
+
+Const MF_RIGHTJUSTIFY = &H4000&
+
+Const MFS_CHECKED   = MF_CHECKED
+Const MFS_DEFAULT   = MF_DEFAULT
+Const MFS_ENABLED   = MF_ENABLED
+Const MFS_GRAYED    = &H3&
+Const MFS_DISABLED  = MFS_GRAYED
+Const MFS_HILITE    = MF_HILITE
+Const MFS_UNCHECKED = MF_UNCHECKED
+Const MFS_UNHILITE  = MF_UNHILITE
+
+Const MFT_BITMAP        = MF_BITMAP
+Const MFT_MENUBARBREAK  = MF_MENUBARBREAK
+Const MFT_MENUBREAK     = MF_MENUBREAK
+Const MFT_OWNERDRAW     = MF_OWNERDRAW
+Const MFT_RADIOCHECK    = &H200&
+Const MFT_RIGHTJUSTIFY  = MF_RIGHTJUSTIFY
+Const MFT_RIGHTORDER    = &H2000&
+Const MFT_SEPARATOR     = MF_SEPARATOR
+Const MFT_STRING        = MF_STRING
+
+Const MIIM_STATE      = &H01
+Const MIIM_ID         = &H02
+Const MIIM_SUBMENU    = &H04
+Const MIIM_CHECKMARKS = &H08
+Const MIIM_TYPE       = &H10
+Const MIIM_DATA       = &H20
+Const MIIM_EVERYTHING = &H3F
+
+' System Menu Command Values
+Const SC_SIZE       = &HF000&
+Const SC_MOVE       = &HF010&
+Const SC_MINIMIZE   = &HF020&
+Const SC_MAXIMIZE   = &HF030&
+Const SC_NEXTWINDOW = &HF040&
+Const SC_PREVWINDOW = &HF050&
+Const SC_CLOSE      = &HF060&
+Const SC_VSCROLL    = &HF070&
+Const SC_HSCROLL    = &HF080&
+Const SC_MOUSEMENU  = &HF090&
+Const SC_KEYMENU    = &HF100&
+Const SC_ARRANGE    = &HF110&
+Const SC_RESTORE    = &HF120&
+Const SC_TASKLIST   = &HF130&
+Const SC_SCREENSAVE = &HF140&
+Const SC_HOTKEY     = &HF150&
+
+' Obsolete names
+Const SC_ICON = SC_MINIMIZE
+Const SC_ZOOM = SC_MAXIMIZE
+
+' Standard Cursor IDs
+Const IDC_ARROW     = 32512&
+Const IDC_IBEAM     = 32513&
+Const IDC_WAIT      = 32514&
+Const IDC_CROSS     = 32515&
+Const IDC_UPARROW   = 32516&
+Const IDC_SIZE      = 32640&
+Const IDC_ICON      = 32641&
+Const IDC_SIZENWSE  = 32642&
+Const IDC_SIZENESW  = 32643&
+Const IDC_SIZEWE    = 32644&
+Const IDC_SIZENS    = 32645&
+Const IDC_SIZEALL   = 32646&
+Const IDC_NO        = 32648&
+Const IDC_APPSTARTING = 32650&
+
+'-----------------------------------------------------------------------------
+' keyboard events; used by keybd_event
+Const KEY_EVENT         = &H1        ' Event contains key event record
+Const KEYEVENTF_KEYUP   = &H2
+Const VK_LWIN           = &H5B
+REM Const KEY_QUERY_VALUE        = &H1
+REM Const KEY_SET_VALUE          = &H2
+REM Const KEY_CREATE_SUB_KEY     = &H4
+REM Const KEY_ENUMERATE_SUB_KEYS = &H8
+REM Const KEY_NOTIFY             = &H10
+REM Const KEY_CREATE_LINK        = &H20
+
+'<a name=errorcodes></a>SOME Win error codes
+Const APPLICATION_ERROR_MASK        = &H20000000
+Const ERROR_SEVERITY_SUCCESS        = &H0
+Const ERROR_SEVERITY_INFORMATIONAL  = &H40000000
+Const ERROR_SEVERITY_WARNING        = &H80000000
+Const ERROR_SEVERITY_ERROR          = &HC0000000
+
+'* Win32 API return codes
+Const NO_ERROR                  = 0 
+Const ERROR_SUCCESS             = 0
+Const ERROR_INVALID_FUNCTION    = 1
+Const ERROR_FILE_NOT_FOUND      = 2&
+Const ERROR_PATH_NOT_FOUND      = 3&
+Const ERROR_TOO_MANY_OPEN_FILES = 4&
+Const ERROR_ACCESS_DENIED       = 5&
+Const ERROR_INVALID_HANDLE      = 6&
+Const ERROR_ARENA_TRASHED       = 7&
+Const ERROR_NOT_ENOUGH_MEMORY   = 8
+Const ERROR_INVALID_BLOCK       = 9&
+Const ERROR_BAD_ENVIRONMENT     = 10&
+Const ERROR_BAD_FORMAT          = 11&
+Const ERROR_INVALID_ACCESS      = 12&
+Const ERROR_INVALID_DATA        = 13&
+Const ERROR_OUTOFMEMORY         = 14&
+Const ERROR_INVALID_DRIVE       = 15&
+Const ERROR_CURRENT_DIRECTORY   = 16&
+Const ERROR_NOT_SAME_DEVICE     = 17&
+Const ERROR_NO_MORE_FILES       = 18&
+Const ERROR_WRITE_PROTECT       = 19&
+Const ERROR_BAD_UNIT            = 20&
+Const ERROR_NOT_READY           = 21&
+Const ERROR_BAD_COMMAND         = 22&
+Const ERROR_CRC                 = 23&
+Const ERROR_BAD_LENGTH          = 24&
+Const ERROR_SEEK                = 25&
+Const ERROR_NOT_DOS_DISK        = 26&
+Const ERROR_SECTOR_NOT_FOUND    = 27&
+Const ERROR_OUT_OF_PAPER        = 28&
+Const ERROR_WRITE_FAULT         = 29&
+Const ERROR_READ_FAULT          = 30&
+Const ERROR_GEN_FAILURE         = 31&
+Const ERROR_SHARING_VIOLATION   = 32&
+Const ERROR_LOCK_VIOLATION      = 33&
+Const ERROR_WRONG_DISK          = 34&
+Const ERROR_SHARING_BUFFER_EXCEEDED = 36&
+Const ERROR_HANDLE_EOF          = 38&
+Const ERROR_HANDLE_DISK_FULL    = 39&
+Const ERROR_NOT_SUPPORTED       = 50&
+Const ERROR_REM_NOT_LIST        = 51&   'network
+Const ERROR_DUP_NAME            = 52&   'network
+Const ERROR_BAD_NETPATH         = 53&   'network
+Const ERROR_NETWORK_BUSY        = 54&   'network
+Const ERROR_DEV_NOT_EXIST       = 55    'network
+Const ERROR_TOO_MANY_CMDS       = 56&   'network
+Const ERROR_ADAP_HDW_ERR        = 57&   'network
+Const ERROR_BAD_NET_RESP        = 58&   'network
+Const ERROR_UNEXP_NET_ERR       = 59&   'network
+Const ERROR_BAD_REM_ADAP        = 60&   'network
+Const ERROR_PRINTQ_FULL         = 61&
+Const ERROR_NO_SPOOL_SPACE      = 62&
+Const ERROR_PRINT_CANCELLED     = 63&
+Const ERROR_NETNAME_DELETED     = 64&   'network
+Const ERROR_NETWORK_ACCESS_DENIED = 65& 'network
+Const ERROR_BAD_DEV_TYPE        = 66&   'network
+Const ERROR_BAD_NET_NAME        = 67&   'network
+Const ERROR_TOO_MANY_NAMES      = 68&   'network
+Const ERROR_TOO_MANY_SESS       = 69&   'network
+Const ERROR_SHARING_PAUSED      = 70&   'network
+Const ERROR_REQ_NOT_ACCEP       = 71&   'network
+Const ERROR_REDIR_PAUSED        = 72&   'print
+Const ERROR_FILE_EXISTS         = 80&
+Const ERROR_CANNOT_MAKE         = 82&
+Const ERROR_FAIL_I24            = 83&   'interrupt 24
+Const ERROR_OUT_OF_STRUCTURES   = 84&
+Const ERROR_ALREADY_ASSIGNED    = 85&   'device mapping
+Const ERROR_INVALID_PASSWORD    = 86&   'network
+Const ERROR_INVALID_PARAMETER   = 87
+Const ERROR_NET_WRITE_FAULT     = 88&
+Const ERROR_NO_PROC_SLOTS       = 89&   'process
+Const ERROR_TOO_MANY_SEMAPHORES = 100&
+Const ERROR_EXCL_SEM_ALREADY_OWNED = 101&
+Const ERROR_SEM_IS_SET          = 102&
+Const ERROR_TOO_MANY_SEM_REQUESTS = 103&
+Const ERROR_INVALID_AT_INTERRUPT_TIME = 104&  'semaphore set
+Const ERROR_SEM_OWNER_DIED      = 105&
+Const ERROR_SEM_USER_LIMIT      = 106&        'change diskette?
+Const ERROR_DISK_CHANGE         = 107&        'did not change diskette
+Const ERROR_DRIVE_LOCKED        = 108&
+Const ERROR_BROKEN_PIPE         = 109&
+Const ERROR_OPEN_FAILED         = 110&
+Const ERROR_BUFFER_OVERFLOW     = 111&        'file too long
+Const ERROR_DISK_FULL           = 112&
+Const ERROR_NO_MORE_SEARCH_HANDLES  = 113&    'file ids
+Const ERROR_INVALID_TARGET_HANDLE   = 114&    'file id
+Const ERROR_INVALID_CATEGORY        = 117&    'invalid IOCTL
+Const ERROR_INVALID_VERIFY_SWITCH   = 118&
+Const ERROR_BAD_DRIVER_LEVEL        = 119&    'unsupported command
+Const ERROR_CALL_NOT_IMPLEMENTED    = 120&    'call only NT valid
+Const ERROR_SEM_TIMEOUT         = 121&
+Const ERROR_INSUFFICIENT_BUFFER = 122     
+Const ERROR_INVALID_NAME        = 123&           
+Const ERROR_INVALID_LEVEL       = 124&
+Const ERROR_NO_VOLUME_LABEL     = 125&
+Const ERROR_MOD_NOT_FOUND       = 126&        'module (DLL?)
+Const ERROR_PROC_NOT_FOUND      = 127&
+Const ERROR_WAIT_NO_CHILDREN    = 128&
+Const ERROR_CHILD_NOT_COMPLETE  = 129&        'cannot run in NT mode
+Const ERROR_DIRECT_ACCESS_HANDLE    = 130&
+Const ERROR_NEGATIVE_SEEK       = 131&
+Const ERROR_SEEK_ON_DEVICE      = 132&
+Const ERROR_IS_JOIN_TARGET      = 133&        'cannot JOIN already JOINed
+Const ERROR_IS_JOINED           = 134&
+Const ERROR_IS_SUBSTED          = 135&
+Const ERROR_NOT_JOINED          = 136&
+Const ERROR_NOT_SUBSTED         = 137&
+Const ERROR_JOIN_TO_JOIN        = 138&
+Const ERROR_SUBST_TO_SUBST      = 139&
+Const ERROR_JOIN_TO_SUBST       = 140&
+Const ERROR_SUBST_TO_JOIN       = 141&
+Const ERROR_BUSY_DRIVE          = 142&
+Const ERROR_SAME_DRIVE          = 143&
+Const ERROR_DIR_NOT_ROOT        = 144&
+Const ERROR_DIR_NOT_EMPTY       = 145&
+Const ERROR_IS_SUBST_PATH       = 146&
+Const ERROR_IS_JOIN_PATH        = 147&
+Const ERROR_PATH_BUSY           = 148&
+Const ERROR_IS_SUBST_TARGET     = 149&
+Const ERROR_SYSTEM_TRACE        = 150&
+Const ERROR_INVALID_EVENT_COUNT = 151&
+Const ERROR_TOO_MANY_MUXWAITERS = 152&
+Const ERROR_INVALID_LIST_FORMAT = 153&
+Const ERROR_LABEL_TOO_LONG      = 154&
+Const ERROR_TOO_MANY_TCBS       = 155&
+Const ERROR_SIGNAL_REFUSED      = 156&
+Const ERROR_DISCARDED           = 157&
+Const ERROR_NOT_LOCKED          = 158&
+Const ERROR_BAD_THREADID_ADDR   = 159&
+Const ERROR_BAD_ARGUMENTS       = 160&
+Const ERROR_BAD_PATHNAME        = 161&
+Const ERROR_SIGNAL_PENDING      = 162&
+Const ERROR_MAX_THRDS_REACHED   = 164&
+Const ERROR_LOCK_FAILED         = 167&
+Const ERROR_BUSY                = 170&
+Const ERROR_CANCEL_VIOLATION    = 173&
+Const ERROR_ATOMIC_LOCKS_NOT_SUPPORTED = 174&
+Const ERROR_INVALID_SEGMENT_NUMBER     = 180&
+Const ERROR_INVALID_ORDINAL     = 182&
+Const ERROR_ALREADY_EXISTS      = 183&
+Const ERROR_INVALID_FLAG_NUMBER = 186&
+Const ERROR_SEM_NOT_FOUND       = 187&
+Const ERROR_INVALID_STARTING_CODESEG    = 188&
+Const ERROR_INVALID_STACKSEG            = 189&
+Const ERROR_INVALID_MODULETYPE          = 190&
+Const ERROR_INVALID_EXE_SIGNATURE       = 191&
+Const ERROR_EXE_MARKED_INVALID          = 192&
+Const ERROR_BAD_EXE_FORMAT              = 193&
+Const ERROR_ITERATED_DATA_EXCEEDS_64k   = 194&
+Const ERROR_INVALID_MINALLOCSIZE        = 195&
+Const ERROR_DYNLINK_FROM_INVALID_RING   = 196&
+Const ERROR_IOPL_NOT_ENABLED            = 197&
+Const ERROR_INVALID_SEGDPL              = 198&
+Const ERROR_AUTODATASEG_EXCEEDS_64k     = 199&
+Const ERROR_RING2SEG_MUST_BE_MOVABLE    = 200&
+Const ERROR_RELOC_CHAIN_XEEDS_SEGLIM    = 201&
+Const ERROR_INFLOOP_IN_RELOC_CHAIN      = 202&
+Const ERROR_ENVVAR_NOT_FOUND            = 203&
+Const ERROR_NO_SIGNAL_SENT              = 205&
+Const ERROR_FILENAME_EXCED_RANGE        = 206&
+Const ERROR_RING2_STACK_IN_USE          = 207&
+Const ERROR_META_EXPANSION_TOO_LONG     = 208&
+Const ERROR_INVALID_SIGNAL_NUMBER       = 209&
+Const ERROR_THREAD_1_INACTIVE   = 210&
+Const ERROR_LOCKED              = 212&
+Const ERROR_TOO_MANY_MODULES    = 214&
+Const ERROR_NESTING_NOT_ALLOWED = 215&
+Const ERROR_BAD_PIPE            = 230&
+Const ERROR_PIPE_BUSY           = 231&
+Const ERROR_NO_DATA             = 232&
+Const ERROR_PIPE_NOT_CONNECTED  = 233&
+Const ERROR_MORE_DATA           = 234           ' dderror
+Const ERROR_VC_DISCONNECTED     = 240&
+Const ERROR_INVALID_EA_NAME     = 254&
+Const ERROR_EA_LIST_INCONSISTENT = 255&
+Const ERROR_NO_MORE_ITEMS       = 259&
+Const ERROR_CANNOT_COPY         = 266&
+Const ERROR_DIRECTORY           = 267&
+Const ERROR_EAS_DIDNT_FIT       = 275&
+Const ERROR_EA_FILE_CORRUPT     = 276&
+Const ERROR_EA_TABLE_FULL       = 277&
+Const ERROR_INVALID_EA_HANDLE   = 278&
+Const ERROR_EAS_NOT_SUPPORTED   = 282&
+Const ERROR_NOT_OWNER           = 288&
+Const ERROR_TOO_MANY_POSTS      = 298&
+Const ERROR_MR_MID_NOT_FOUND    = 317&
+Const ERROR_INVALID_ADDRESS     = 487&
+Const ERROR_ARITHMETIC_OVERFLOW = 534&
+Const ERROR_PIPE_CONNECTED      = 535&
+Const ERROR_PIPE_LISTENING      = 536&
+Const ERROR_EA_ACCESS_DENIED    = 994&
+Const ERROR_OPERATION_ABORTED   = 995&
+Const ERROR_IO_INCOMPLETE       = 996&
+Const ERROR_IO_PENDING          = 997           ' dderror
+Const ERROR_NOACCESS            = 998&
+Const ERROR_SWAPERROR           = 999&
+Const ERROR_STACK_OVERFLOW      = 1001&
+Const ERROR_INVALID_MESSAGE     = 1002&
+Const ERROR_CAN_NOT_COMPLETE    = 1003&
+Const ERROR_INVALID_FLAGS       = 1004&
+Const ERROR_UNRECOGNIZED_VOLUME = 1005&
+Const ERROR_FILE_INVALID        = 1006&
+Const ERROR_FULLSCREEN_MODE     = 1007&
+Const ERROR_NO_TOKEN            = 1008&
+Const ERROR_BADDB               = 1009&
+Const ERROR_BADKEY              = 1010&
+Const ERROR_CANTOPEN            = 1011&
+Const ERROR_CANTREAD            = 1012&
+Const ERROR_CANTWRITE           = 1013&
+Const ERROR_REGISTRY_RECOVERED  = 1014&
+Const ERROR_REGISTRY_CORRUPT    = 1015&
+Const ERROR_REGISTRY_IO_FAILED  = 1016&
+Const ERROR_NOT_REGISTRY_FILE   = 1017&
+Const ERROR_KEY_DELETED         = 1018&
+Const ERROR_NO_LOG_SPACE        = 1019&
+Const ERROR_KEY_HAS_CHILDREN    = 1020&
+Const ERROR_CHILD_MUST_BE_VOLATILE = 1021&
+Const ERROR_NOTIFY_ENUM_DIR = 1022&
+Const ERROR_DEPENDENT_SERVICES_RUNNING = 1051&
+Const ERROR_INVALID_SERVICE_CONTROL = 1052&
+Const ERROR_SERVICE_REQUEST_TIMEOUT = 1053&
+Const ERROR_SERVICE_NO_THREAD = 1054&
+Const ERROR_SERVICE_DATABASE_LOCKED = 1055&
+Const ERROR_SERVICE_ALREADY_RUNNING = 1056&
+Const ERROR_INVALID_SERVICE_ACCOUNT = 1057&
+Const ERROR_SERVICE_DISABLED = 1058&
+Const ERROR_CIRCULAR_DEPENDENCY = 1059&
+Const ERROR_SERVICE_DOES_NOT_EXIST = 1060&
+Const ERROR_SERVICE_CANNOT_ACCEPT_CTRL = 1061&
+Const ERROR_SERVICE_NOT_ACTIVE = 1062&
+Const ERROR_FAILED_SERVICE_CONTROLLER_CONNECT = 1063&
+Const ERROR_EXCEPTION_IN_SERVICE = 1064&
+Const ERROR_DATABASE_DOES_NOT_EXIST = 1065&
+Const ERROR_SERVICE_SPECIFIC_ERROR = 1066&
+Const ERROR_PROCESS_ABORTED = 1067&
+Const ERROR_SERVICE_DEPENDENCY_FAIL = 1068&
+Const ERROR_SERVICE_LOGON_FAILED = 1069&
+Const ERROR_SERVICE_START_HANG = 1070&
+Const ERROR_INVALID_SERVICE_LOCK = 1071&
+Const ERROR_SERVICE_MARKED_FOR_DELETE = 1072&
+Const ERROR_SERVICE_EXISTS = 1073&
+Const ERROR_ALREADY_RUNNING_LKG = 1074&
+Const ERROR_SERVICE_DEPENDENCY_DELETED = 1075&
+Const ERROR_BOOT_ALREADY_ACCEPTED = 1076&
+Const ERROR_SERVICE_NEVER_STARTED = 1077&
+Const ERROR_DUPLICATE_SERVICE_NAME = 1078&
+Const ERROR_END_OF_MEDIA = 1100&
+Const ERROR_FILEMARK_DETECTED = 1101&
+Const ERROR_BEGINNING_OF_MEDIA = 1102&
+Const ERROR_SETMARK_DETECTED = 1103&
+Const ERROR_NO_DATA_DETECTED = 1104&
+Const ERROR_PARTITION_FAILURE = 1105&
+Const ERROR_INVALID_BLOCK_LENGTH = 1106&
+Const ERROR_DEVICE_NOT_PARTITIONED = 1107&
+Const ERROR_UNABLE_TO_LOCK_MEDIA = 1108&
+Const ERROR_UNABLE_TO_UNLOAD_MEDIA = 1109&
+Const ERROR_MEDIA_CHANGED = 1110&
+Const ERROR_BUS_RESET = 1111&
+Const ERROR_NO_MEDIA_IN_DRIVE = 1112&
+Const ERROR_NO_UNICODE_TRANSLATION = 1113&
+Const ERROR_DLL_INIT_FAILED = 1114&
+Const ERROR_SHUTDOWN_IN_PROGRESS = 1115&
+Const ERROR_NO_SHUTDOWN_IN_PROGRESS = 1116&
+Const ERROR_IO_DEVICE = 1117&
+Const ERROR_SERIAL_NO_DEVICE = 1118&
+Const ERROR_IRQ_BUSY = 1119&
+Const ERROR_MORE_WRITES = 1120&
+Const ERROR_COUNTER_TIMEOUT = 1121&
+Const ERROR_FLOPPY_ID_MARK_NOT_FOUND = 1122&
+Const ERROR_FLOPPY_WRONG_CYLINDER = 1123&
+Const ERROR_FLOPPY_UNKNOWN_ERROR = 1124&
+Const ERROR_FLOPPY_BAD_REGISTERS = 1125&
+Const ERROR_DISK_RECALIBRATE_FAILED = 1126&
+Const ERROR_DISK_OPERATION_FAILED = 1127&
+Const ERROR_DISK_RESET_FAILED = 1128&
+Const ERROR_EOM_OVERFLOW = 1129&
+Const ERROR_NOT_ENOUGH_SERVER_MEMORY = 1130&
+Const ERROR_POSSIBLE_DEADLOCK = 1131&
+Const ERROR_MAPPED_ALIGNMENT = 1132&
+Const ERROR_INVALID_PIXEL_FORMAT = 2000
+Const ERROR_BAD_DRIVER = 2001
+Const ERROR_INVALID_WINDOW_STYLE = 2002
+Const ERROR_METAFILE_NOT_SUPPORTED = 2003
+Const ERROR_TRANSFORM_NOT_SUPPORTED = 2004
+Const ERROR_CLIPPING_NOT_SUPPORTED = 2005
+Const ERROR_UNKNOWN_PRINT_MONITOR = 3000
+Const ERROR_PRINTER_DRIVER_IN_USE = 3001
+Const ERROR_SPOOL_FILE_NOT_FOUND = 3002
+Const ERROR_SPL_NO_STARTDOC = 3003
+Const ERROR_SPL_NO_ADDJOB = 3004
+Const ERROR_PRINT_PROCESSOR_ALREADY_INSTALLED = 3005
+Const ERROR_PRINT_MONITOR_ALREADY_INSTALLED = 3006
+Const ERROR_WINS_INTERNAL = 4000
+Const ERROR_CAN_NOT_DEL_LOCAL_WINS = 4001
+Const ERROR_STATIC_INIT = 4002
+Const ERROR_INC_BACKUP = 4003
+Const ERROR_FULL_BACKUP = 4004
+Const ERROR_REC_NON_EXISTENT = 4005
+Const ERROR_RPL_NOT_ALLOWED = 4006
+Const SEVERITY_SUCCESS = 0
+Const SEVERITY_ERROR = 1
+Const FACILITY_NT_BIT = &H10000000
+Const NOERROR = 0
+Const E_UNEXPECTED = &H8000FFFF
+Const E_NOTIMPL = &H80004001
+Const E_OUTOFMEMORY = &H8007000E
+Const E_INVALIDARG = &H80070057
+Const E_NOINTERFACE = &H80004002
+Const E_POINTER = &H80004003
+Const E_HANDLE = &H80070006
+Const E_ABORT = &H80004004
+Const E_FAIL = &H80004005
+Const E_ACCESSDENIED = &H80070005
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+'used by GlobalMemoryStatus 
+Type MEMORYSTATUS
+    dwLength        As Long
+    dwMemoryLoad    As Long
+    dwTotalPhys     As Long
+    dwAvailPhys     As Long
+    dwTotalPageFile As Long
+    dwAvailPageFile As Long
+    dwTotalVirtual  As Long
+    dwAvailVirtual  As Long
+End Type
+
+'used by GetOpenFileName
+Type OPENFILENAME
+        lStructSize     As Long
+        hwndOwner       As Long
+        hInstance       As Long
+        lpstrFilter     As Long
+        lpstrCustomFilter As Long
+        nMaxCustFilter  As Long
+        nFilterIndex    As Long
+        lpstrFile       As Long
+        nMaxFile        As Long
+        lpstrFileTitle  As Long
+        nMaxFileTitle   As Long
+        lpstrInitialDir As Long
+        lpstrTitle      As Long
+        Flags           As Long
+        nFileOffset     As Integer
+        nFileExtension  As Integer
+        lpstrDefExt     As Long
+        lCustData       As Long
+        LpfnHook        As Long
+        lpTemplateName  As Long
+End Type
+
+'used by GetVersionEx
+Type OSVERSIONINFO
+        dwOSVersionInfoSize As Long
+        '   Specifies the size, in bytes, of this data structure.
+        '   Set this member to sizeof(OSVERSIONINFO) before calling the GetVersionEx function.
+        dwMajorVersion As Long
+        '    Identifies the major version number of the operating system.
+        '    Examples:
+        '    3 = the major version number for Windows NT version 3.51
+        '    4 = the major version number for Windows NT version 4.0
+        dwMinorVersion As Long
+        '    Identifies the minor version number of the operating system.
+        '    Examples:
+        '    51 = the minor version number for Windows NT version 3.51 
+        '     0 = the minor version number for Windows NT version 4.0 
+        '    For Windows 95, dwMinorVersion is zero.
+        '    For Windows 98, dwMinorVersion is greater than zero.
+        dwBuildNumber As Long
+        '    Windows NT: Identifies the build number of the operating system.
+        '    Windows 95: Identifies the build number of the operating system 
+        '                in the low-order word.  The high-order word contains 
+        '                the major and minor version numbers.
+        dwPlatformId As Long
+        '    Identifies the operating system platform.
+        '    This member can be one of the following values: Value Platform
+        '    PLATFORM_WIN32s Win32s on Windows 3.1.
+        '    PLATFORM_WIN32_WINDOWS Win32 on Windows 95 or Windows 98.
+        '    PLATFORM_WIN32_NT Win32 on Windows NT.
+        szCSDVersion As String * 128      '  Maintenance string for PSS usage
+        '    Windows NT: Contains a null-terminated string, such as "Service Pack 3",
+        '            that indicates the latest Service Pack installed on the system.
+        '            If no Service Pack has been installed, the string is empty.
+        '    Windows 95: Contains a null-terminated string
+        '            that provides arbitrary additional information about the operating system.
+End Type
+
+'used by CreateProcess
+Type PROCESS_INFORMATION 
+      hProcess      As Long
+      hThread       As Long
+      dwProcessId   As Long
+      dwThreadId    As Long
+End Type 
+
+''used by CreateProcess
+Type STARTUPINFO 
+      cb            As Long
+      lpReserved    As String
+      lpDesktop     As String
+      lpTitle       As String
+      dwX           As Long
+      dwY           As Long
+      dwXSize       As Long
+      dwYSize       As Long
+      dwXCountChars As Long
+      dwYCountChars As Long
+      dwFillAttribute As Long
+      dwFlags       As Long
+      wShowWindow   As Integer
+      cbReserved2   As Integer
+      lpReserved2   As Long
+      hStdInput     As Long
+      hStdOutput    As Long
+      hStdError     As Long
+End Type 
+
+Type DEVMODE
+    dmDeviceName    As String * CCDEVICENAME
+    dmSpecVersion   As Integer
+    dmDriverVersion As Integer
+    dmSize          As Integer
+    dmDriverExtra   As Integer
+    dmFields        As Long
+    dmOrientation   As Integer
+    dmPaperSize     As Integer
+    dmPaperLength   As Integer
+    dmPaperWidth    As Integer
+    dmScale         As Integer
+    dmCopies        As Integer
+    dmDefaultSource As Integer
+    dmPrintQuality  As Integer
+    dmColor         As Integer
+    dmDuplex        As Integer
+    dmYResolution   As Integer
+    dmTTOption      As Integer
+    dmCollate       As Integer
+    dmFormName      As String * CCFORMNAME
+    dmUnusedPadding As Integer
+    dmBitsPerPel    As Long
+    dmPelsWidth     As Long
+    dmPelsHeight    As Long
+    dmDisplayFlags  As Long
+    dmDisplayFrequency As Long
+End Type
+
+Type MENUITEMINFO
+    cbSize          As Long
+    fMask           As Long
+    fType           As Long
+    fState          As Long
+    wID             As Long
+    hSubMenu        As Long
+    hbmpChecked     As Long
+    hbmpUnchecked   As Long
+    dwItemData      As Long
+    dwTypeData      As Long
+    cch             As Long
+End Type
+
+' Stuff for Registry Functions
+Type ACL
+        AclRevision As String       'was VB Byte
+        Sbz1        As String              'was VB Byte
+        AclSize     As Integer
+        AceCount    As Integer
+        Sbz2        As Integer
+End Type
+
+Type SECURITY_ATTRIBUTES
+        nLength              As Long
+        lpSecurityDescriptor As Long
+        bInheritHandle       As Long
+End Type
+
+Type fileTime
+        dwLowDateTime   As Long
+        dwHighDateTime  As Long
+End Type
+
+Type SECURITY_DESCRIPTOR
+        Revision    As String  'was VB Byte
+        Sbz1        As String      'was VB Byte
+        Control     As Long
+        Owner       As Long
+        Group       As Long
+        Sacl        As ACL
+        Dacl        As ACL
+End Type
+
+</pre>
+<hr>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

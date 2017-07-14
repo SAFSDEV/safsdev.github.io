@@ -1,0 +1,990 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DatabaseUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DatabaseUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ This Library contains routines used for DataBase manipulation and verification.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "DatabaseUtilities_X.SBH"
+<li>'$INCLUDE: "DatabaseUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#copydbtabletofile">CopyDBTableToFile</a>       BasicLib DatabaseUtilities 
+Function <a href="#createdbinifilebyindex">CreateDBINIFileByIndex</a>  BasicLib DatabaseUtilities 
+Function <a href="#createinifilebyindex">CreateINIFileByIndex</a>    BasicLib DatabaseUtilities Alias "CreateDBINIFileByIndex"
+Function <a href="#getdprecord">GetDPRecord</a>             BasicLib DBFunctions                   
+Function <a href="#getdbtablerecordcount">GetDBTableRecordCount</a>   BasicLib DatabaseUtilities 
+Function <a href="#gettablerecordcount">GetTableRecordCount</a>     BasicLib DatabaseUtilities Alias "GetDBTableRecordCount"
+   Sub   <a href="#getsqlerrors">GetSQLErrors</a>            BasicLib DatabaseUtilities 
+Function <a href="#getdbtablecolumncount">GetDBTableColumnCount</a>   BasicLib DatabaseUtilities 
+Function <a href="#gettablecolumncount">GetTableColumnCount</a>     BasicLib DatabaseUtilities Alias "GetDBTableColumnCount"
+Function <a href="#copydbtabletoexcel">CopyDBTableToExcel</a>      BasicLib DatabaseUtilities 
+Function <a href="#setexcelindexcolumn">SetExcelIndexColumn</a>     BasicLib DatabaseUtilities 
+Function <a href="#getdbfieldnames">GetDBFieldNames</a>         BasicLib DatabaseUtilities 
+Function <a href="#executeodbcqueryretrieve">ExecuteODBCQueryRetrieve</a>  BasicLib DatabaseUtilities 
+Function <a href="#dbuget1dvtextindex">DBUGet1DVTextIndex</a>      BasicLib DatabaseUtilities 
+Function <a href="#dbuget2dvrowtextindex">DBUGet2DVRowTextIndex</a>   BasicLib DatabaseUtilities 
+Function <a href="#dbuget2dvrowtextindices">DBUGet2DVRowTextIndices</a>  BasicLib DatabaseUtilities 
+Function <a href="#dbuget1dlongintersection">DBUGet1DLongIntersection</a>  BasicLib DatabaseUtilities 
+Function <a href="#dbuget1darrayfrom2darray">DBUGet1DArrayFrom2DArray</a>  BasicLib DatabaseUtilities 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+'(Carl Nagle) MODE parameter on some array and 2D table handling functions
+
+CONST DBU_EXACT_MATCH_MODE = 0        'text matching full, complete, case-sensitive
+CONST DBU_FUZZY_MATCH_MODE = 1        'text matching case-insensitive substring matching
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+Global ExcelInfo As TableInfo
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+Type TableInfo                          'Global used for storing information about
+                                        'the current Table in use. 
+    FileName        As String           'Holds simple file name with no dir info
+    FilePath        As String           'Holds path with no filename
+    FullPath        As String           'Holds path with filename
+    IndexColumnName As String           'Holds column name used for indexing
+    IndexColumn     As Integer          'hold integer column index
+    Columns         As Integer          'number of columns in table
+    Rows            As Integer          'number of rows in table
+
+End Type    
+    
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="copydbtabletofile"></a>
+    Function CopyDBTableToFile(DSN As String, _
+                           fileout As String, _
+                           table As String, _
+                           Optional columns As Variant, _
+                           Optional rows As Variant, _
+                           Optional SQLQuery As Variant, _
+                           Optional delimiter As Variant, _
+                           Optional dirout As Variant, _
+                           Optional PWD As Variant, _
+                           Optional UID As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This routine will export the contents of a DBTable  to
+      a delimeted file. The output file will conatin alternating lines
+      of text, first the row number and then the data fetched from that row.
+      Not sure if this is a great idea, but that is how it works for now.
+
+ PARAMETERS:
+
+      DSN         REQUIRED parameter that specifies the ODBC source to connect to.
+                  The ODBC should be set up in the windows control panel prior to use.
+                  Set the path of the ODBC to the desired DB tables
+
+      fileout     REQUIRED parameter. Specifies the filename to use for the new file.
+                  If no extension is provided the file will be saved with a *.txt extension.
+
+      table       REQUIRED parameter. Specifies the table name to copy. If SQLQuery is included
+                  the table name provided in the query will be used.
+
+      columns     OPTIONAL parameter. If specified the output file will contain only the
+                  number of columns specified. This number will become the first dimension
+                  of the retreival array. If NOT specified the function will copy a maximum
+                  of 100 columns. (arbitrary limit for now)
+
+      rows        OPTIONAL parameter. If specified the output file will contain only the
+                  number of rows specified. This number will become the first dimension
+                  of the retreival array. If NOT specified the function will copy a maximum
+                  of 1000 rows. (arbitrary limit for now)
+
+      SQLQuery    OPTIONAL parameter. If specified, the file will contain the results of the
+                  executed Query. The query is NOT validated by this function.
+
+      delimiter   OPTIONAL parameter. If not specified the default ',' seperator will
+                  be used.
+
+      dirout      OPTIONAL parameter. If not specified the file will be stored in the
+                  default directory of the ODBC.
+
+      PWD         OPTIONAL parameter. If the DB requires a password this paramter MUST be
+                  supplied
+
+      UID         OPTIONAL parameter. If the DB requires a User ID this parameter MUST be
+                  supplied.
+
+  RETURNS:
+
+       0  Success
+
+      -1  Missing DSN, fileout or table Parameter
+      -2  SQLQuery Failed
+       N  Runtime error trapped by routine
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 1, 2001
+ History:
+
+      MAR 1, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="createdbinifilebyindex"></a>
+  Function CreateDBINIFileByIndex(DSN As String, _
+                               fileout As String, _
+                               table As String, _
+                               Index As String, _
+                               Optional columns As Variant, _
+                               Optional rows As Variant, _
+                               Optional dirout As Variant, _
+                               Optional PWD As Variant, _
+                               Optional UID As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This routine will export the contents of a DBTable  to
+      an INI file format with the desired INDEX value being the section header.
+      Each sunsequent column in the record will be found in the section in the
+      following format.
+
+      EX: A DB table contains the columns ID, NAME, ADDRESS and the caller specifies
+          the ID to be the INDEX. If the original record looked like:
+
+          ID          NAME        ADDRESS
+          T10001      John        123-45 Street
+
+          The resulting file will look like:
+
+          [T10001]
+          NAME=John
+          ADDRESS=123-45 Street
+
+      This function is limited to 100 column Headers
+
+ PARAMETERS:
+
+      DSN         REQUIRED parameter that specifies the ODBC source to connect to.
+                  The ODBC should be set up in the windows control panel prior to use.
+                  Set the path of the ODBC to the desired DB tables
+
+      fileout     REQUIRED parameter. Specifies the filename to use for the new file.
+                  If no extension is provided the file will be saved with a *.map extension.
+
+      table       REQUIRED parameter. Specifies the table name to copy. If SQLQuery is included
+                  the table name provided in the query will be used.
+
+      Index       REQUIRED parameter. Specifies which DB field is to be used as the section
+                  header.
+
+      columns     OPTIONAL parameter. If specified the output file will contain only the
+                  number of columns specified. This number will become the first dimension
+                  of the retreival array. If NOT specified the function will copy a maximum
+                  of 100 columns. (arbitrary limit for now)
+
+      rows        OPTIONAL parameter. If specified the output file will contain only the
+                  number of rows specified. This number will become the first dimension
+                  of the retreival array. If NOT specified the function will copy a maximum
+                  of 1000 rows. (arbitrary limit for now)
+
+      dirout      OPTIONAL parameter. If not specified the file will be stored in the
+                  default directory of the ODBC.
+
+      PWD         OPTIONAL parameter. If the DB requires a password this paramter MUST be
+                  supplied
+
+      UID         OPTIONAL parameter. If the DB requires a User ID this parameter MUST be
+                  supplied.
+
+
+  RETURNS:
+
+       0  Success
+
+      -1  Missing a required Parameter
+      -2  Could Not locate INDEX column
+      -3  DBTable Query Failed
+       N  Runtime error trapped by routine
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 2, 2001
+ History:
+
+      MAR 2, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdprecord"></a>
+  Function GetDPRecord(DPHandle As Long, DPColumn As String,
+                       Match As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This routine will set the cursor to a desired record in a datapool. The
+      function requires that the Datapool be opened prior to calling. The funciton
+      will search the Datapool until it finds the Match value in the specified column.
+      A user should only search for unique values in the datapool to avoid retreiving
+      the wrong record.
+
+      The desired Datapool should be opened in the following manner to ensure
+      a successful search:
+
+      DPHandle = SQADatapoolOpen("DataPoolName")
+
+      This will ensure the DP is opened with sequential access and wrap = False.
+
+ PARAMETERS:
+
+      DPHandle    A valid DataPool Handle returned from the SQADatapoolOpen command
+
+      DPColumn    The name of the Dp column to search for a match
+
+      Match       The value to find in the DP Column
+
+  RETURNS:
+
+       0  Success
+
+      -1  Invalid DPHandle
+      -2  DataPool Access Error
+      -3  No Match found
+       N  Runtime error trapped by routine
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 5, 2001
+ History:
+
+      MAR 5, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdbtablerecordcount"></a>
+  Function GetDBTableRecordCount(DSN As String, _
+                               Table As String, _
+                               Optional PWD As Variant, _
+                               Optional UID As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This function will determine the number of rows in a given table.
+      The function will open a valid ODBC connection execute a query
+      and then close the connection.
+
+ PARAMETERS:
+
+      DSN         REQUIRED parameter that specifies the ODBC source to connect
+                  to. The ODBC should be set up in the windows control panel
+                  prior to use. Set the path of the ODBC to the desired DB tables
+
+      Table       REQUIRED parameter. The name of the DB Table to perform the
+                  action on
+
+      PWD         OPTIONAL parameter. If the DB requires a password this paramter
+                  MUST be supplied
+
+      UID         OPTIONAL parameter. If the DB requires a User ID this parameter
+                  MUST be supplied.
+
+  RETURNS:
+
+       N  Number of rows in the table
+
+      -1  Missing required Parameter
+      -2  Unable to open DSN
+      -3  SQL Query Failed
+      -4  SQL Retrieve Failed
+      -5  Failed to Close ODBC
+      -6  Runtime error was trapped during execution
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 7, 2001
+ History:
+
+      MAR 7, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdbtablecolumncount"></a>
+  Function GetDBTableColumnCount(DSN As String, _
+                               Table As String, _
+                               Optional PWD As Variant, _
+                               Optional UID As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This function will determine the number of columns in a given table.
+      The function will open a valid ODBC connection execute a query
+      and then close the connection.
+
+ PARAMETERS:
+
+      DSN         REQUIRED parameter that specifies the ODBC source to connect
+                  to. The ODBC should be set up in the windows control panel
+                  prior to use. Set the path of the ODBC to the desired DB tables
+
+      Table       REQUIRED parameter. The name of the DB Table to perform the
+                  action on
+
+      PWD         OPTIONAL parameter. If the DB requires a password this paramter
+                  MUST be supplied
+
+      UID         OPTIONAL parameter. If the DB requires a User ID this parameter
+                  MUST be supplied.
+
+  RETURNS:
+
+       N  Number of columns in the table
+
+      -1  Missing required Parameter
+      -2  Unable to open DSN
+      -3  SQL Query Failed
+      -4  SQL Retrieve Failed
+      -5  Runtime error was trapped during execution
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 7, 2001
+ History:
+
+      MAR 7, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsqlerrors"></a>
+  Sub GetSQLErrors(connection as Long)
+
+ Function DESCRIPTION:
+
+      This will write the SQL errors to the log so that you can see what happened.
+
+ PARAMETERS:
+
+      Connection  A valid connectionID returned from SQLOpen command
+
+  RETURNS:
+
+       NONE
+
+
+ Orig Author: Tom Capehart
+ Orig   Date:
+ History:
+
+      MAR 7, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="copydbtabletoexcel"></a>
+   Function CopyDBTableToExcel(DSN As String, _
+                              fileXLS As String, _
+                              table As String, _
+                              Optional DoHeaders As Variant, _
+                              Optional rows As Variant, _
+                              Optional SQLQuery As Variant, _
+                              Optional dirout As Variant, _
+                              Optional PWD As Variant, _
+                              Optional UID As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This routine will export the contented of a DataBase table to an Excel
+      spreadsheet. The function also populates the global ExcelInfo so the the
+      spreadsheet can be easily located by other functions. (see <a href="#globals">GLOBALS</a> for more)
+
+ PARAMETERS:
+
+      DSN         REQUIRED parameter that specifies the ODBC source to connect to.
+                  The ODBC should be set up in the windows control panel prior to use.
+                  Set the path of the ODBC to the desired DB tables
+
+      fileXLS     REQUIRED parameter. Specifies the filename to use for the new file.
+                  If no extension is provided the file will be saved with a *.xls extension.
+
+      table       REQUIRED parameter. Specifies the table name to copy. If SQLQuery is included
+                  the table name provided in the query will be used.
+
+      DoHeaders   OPTIONAL parameter. If > 0 The first row in the *.xls worksheet
+                  will contain the column headers found in the DB Table. Default is 1.
+                  A negative number will cause the function to default to 1.
+
+      rows        OPTIONAL parameter. If specified the output file will contain only the
+                  number of rows specified. This number will become the first dimension
+                  of the retreival array. If NOT specified the function will copy a maximum
+                  of 1000 rows. (arbitrary limit for now)
+
+      SQLQuery    OPTIONAL parameter. If specified, the file will contain the results of the
+                  executed Query. The query is NOT validated by this function. If the specified
+                  Query contains a different Table name than the one passed in the TABLE
+                  argument, the name in the SQLQuery will be used.
+
+      dirout      OPTIONAL parameter. If not specified the file will be stored in the
+                  RationalProject\Datapool Directory.
+
+      PWD         OPTIONAL parameter. If the DB requires a password this paramter MUST be
+                  supplied
+
+      UID         OPTIONAL parameter. If the DB requires a User ID this parameter MUST be
+                  supplied.
+
+  RETURNS:
+
+       0  Success
+
+      -1  Missing Required Parameter
+      -2  Invalid Array Dimensions
+      -3  SQLOpen Failed
+      -4  SQLExecQuery Failed
+      -5  SQLRetreive Failed
+      -6  Failed to create Excel Objects
+      -7  Error in Copying Data
+      -8  Failed to save excel file
+       N  Runtime error trapped by function
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 7, 2001
+ History:
+
+      MAR 7, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setexcelindexcolumn"></a>
+  Function SetExcelIndexColumn (Optional IndexName As Variant, _
+                                Optional FileXLS As Variant, _
+                                Optional Password As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This function will get the global ExcelInfo.IndexColumn to the Integer value
+      found by this function(see <a href="#globals">GLOBALS</a> for more).
+      The function will search the row 1 of the given .XLS file for the
+      Index value. Once found it will set the IndexColumn to the appropriate
+      value. If no Index value is specified the function will attempt to use
+      the global ExcelInfo.IndexColumnName to locate the column index.
+
+      This function assumes that the Column Headers are in row 1 of the Table.
+      This function should normally be called to work on tables created with
+      the <a href="#CopyDBTableToExcel">CopyDBTableToExcel</a> function. This
+      will ensure all the information necesary is stored in ExcelInfo.
+
+ PARAMETERS:
+
+      IndexName   OPTIONAL paramteter. If the IndexName is NOT specified the
+                  function will attempt to use the global ExcelInfo.IndexColumnName
+                  If this if found to be "" then the function wille exit.
+
+      FileXLS     OPTIONAL parameter. If not specified the function will use the
+                  global ExcelInfo.FullPath. This parameter can be specified
+                  relative to:
+
+                      Project\Datapool\
+                      Project\
+                      Scripts\
+                      VPS\
+                      Repository\
+                      Project\Datapool\Bench\
+
+                  Or it can be a complete path.
+
+      Password    OPTIONAL parameter. If the excel table has an associated password
+                  it should be specified here.
+
+  RETURNS:
+
+       0  Success
+
+      -1  Failed to validate parameters
+      -2  Could not verify Table File existance
+      -3  Failed to create excel object
+      -4  Index Not found
+       N  Runtime error trapped by routine
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 7, 2001
+ History:
+
+      MAR 8, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdbfieldnames"></a>
+  Function GetDBFieldNames(DSN As String, _
+                         Table As String, _
+                         FieldArray() As Variant, _
+                         Optional PWD As Variant, _
+                         Optional UID As Variant) As Integer
+
+ Function DESCRIPTION:
+
+      This function will populate the FieldArray() with the field (column) names
+      of the given table. The function will dimension the array as necessary. The
+      Array should be declared as follows before calling this function:
+
+      Dim FieldArray() As Variant
+
+ PARAMETERS:
+
+      DSN         REQUIRED parameter that specifies the ODBC source to connect to.
+                  The ODBC should be set up in the windows control panel prior to use.
+                  Set the path of the ODBC to the desired DB tables
+
+      table       REQUIRED parameter. Specifies the table name to copy. If SQLQuery is included
+                  the table name provided in the query will be used.
+
+      FieldArray  REQUIRED parameter. Array to receive column header names.
+
+      PWD         OPTIONAL parameter. If the DB requires a password this paramter MUST be
+                  supplied
+
+      UID         OPTIONAL parameter. If the DB requires a User ID this parameter MUST be
+                  supplied.
+
+  RETURNS:
+
+      -1  Invalid input Parameters
+      -2  Failed to connect to ODBC
+      -3  Failed to execute quiery
+      -4  Failed to redimension Array
+      -5  Failed to retreive data
+      -6  Failed to Close connection
+       N  Runtime error trapped by function
+
+
+ Orig Author: Michael Hume
+ Orig   Date: MAR 8, 2001
+ History:
+
+      MAR 8, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="executeodbcqueryretrieve"></a>
+  Function ExecuteODBCQueryRetrieve(connection As Long, _
+                                    query As String, _
+                                    resultSet() As Variant, _
+                                    Optional fieldNames, _
+                                    Optional rowNumbers) As Long
+
+ Function DESCRIPTION:
+
+      This function will populate the ResultSet() with the data resulting from
+      the provided Query. The function will dimension the array as necessary.
+      This is for simpler queries that generally don't have to wait forever
+      for a resultset to become available and where the user expects
+      to retrieve the entire result (all resulting cols and rows, etc.) with
+      a single call.
+
+      The resultSet is returned in (row, column) dimensional format.
+      The connection must be valid and already exist via a previous SQLOpen.
+      The connection is not closed by this routine.
+
+
+ PARAMETERS:
+
+      connection    The connectionID returned from the original SQLOpen call.
+
+      query         The ODBC SQL query to execute on the connection.
+
+      resultSet     Array to receive SELECT query result data (if any).
+                    The array should be declared as follows
+                    before calling this function:
+
+                        Dim resultSet() As Variant
+
+                    If an SQL error occurs during the query or retrieve
+                    then an attempt will be made to fill the resultSet
+                    array with the ODBC error information from SQLError.
+                    In that event the array will be ReDimmed as prescribed
+                    by the SQLError command:
+
+                        ReDim resultSet(1 to 3, 1 to 10) As Variant
+
+                    Otherwise, if the query was a SELECT query, we will attempt to
+                    fill the resultSet with ALL of the rows returned from the query.
+                    The resultSet is returned in (row, column) dimensional format.
+
+      fieldNames    OPTIONAL.  Set to 1 to retrieve field names in the first record.
+                    Any other value or no value foregoes retrieving the field names.
+
+      rowNumbers    OPTIONAL.  Set to 1 to retrieve row numbers in the first column.
+                    Any other value or no value foregoes retrieving the row numbers.
+
+  RETURNS:
+
+      -1  Invalid input Parameters
+      -3  Failed to execute query
+      -5  Failed to retrieve data
+      -N  Runtime error trapped by function or ODBC error code
+     >= 0 The successful return code from the query. That could be the number of
+          columns, the number of rows, 0, or whatever your successful query results
+          might bring.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 2001
+ History:
+
+      JUL16, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="dbuget2dvrowtextindex"></a>
+   Function DBUGet2DVRowTextIndex (value as Variant,
+                                   table() As Variant,
+                                   column as Long,
+                                   Optional startindex,
+                                   Optional mode) As Long
+
+  DESCRIPTION:
+
+      Searches a specified 'column' in the provided 2D Variant table for a full
+      or partial match of the provided text value.  Returns the index of the
+      matching row if found.  By default, an exact match of the provided text
+      value is attempted.  By default, the search starts at the first row in
+      the specified column.
+
+      You can allow case-insensitive partial substring
+      matches by providing the optional 'mode' parameter set to DBU_FUZZY_MATCH_MODE(1).
+
+      You can start the search on a different row by providing the optional
+      'startIndex' parameter with a valid row number.
+
+      The 2D Variant table can be either 0-based, or 1-based.
+
+
+ PARAMETERS:
+
+      value       text to match in specific column of 2D array.
+
+      table()     input 2D table of values.  base must be > -1. That is, the 2D array
+                  can be 0-based or 1-based.
+
+      column      index of column in table to search.
+
+      startIndex  (Optional) the row to start the search on, bypassing previous rows.
+                  Default is first row.
+
+      mode        (Optional) mode=0=DBU_EXACT_MATCH_MODE=exact match(default).
+                  mode=1=DBU_FUZZY_MATCH_MODE=case-insensitive substring match
+                  allowed (but secondary).
+                  An exact match always takes precedence.
+
+  RETURNS:
+
+      -1      No match, error, or invalid input parameters.
+     >=0      Index of the row in the specified column containing the match.
+              The return value will be n-based the same as the input table.
+              If the table is 0-based, the returned row index is 0-based.
+              If the table is 1-based, the returned row index is 1-based.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 07, 2003
+ History:
+
+      FEB 07, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="dbuget2dvrowtextindices"></a>
+   Function DBUGet2DVRowTextIndices (value as Variant,
+                                   table() As Variant,
+                                   column as Long,
+                                   rows() as Long,
+                                   Optional startindex,
+                                   Optional mode) As Long
+
+  DESCRIPTION:
+
+      Searches a specified 'column' in the provided 2D Variant table for a full
+      or partial match of the provided text value in each row.
+      Returns the index of each matching row in the rows() array, if found.
+      Returns the number of rows matching the text in the return code.
+
+      By default, an exact match of the provided text value is attempted.
+      By default, the search starts at the first row in the specified column.
+
+      You can allow case-insensitive partial substring
+      matches by providing the optional 'mode' parameter set to DBU_FUZZY_MATCH_MODE(1).
+
+      You can start the search on a different row by providing the optional
+      'startIndex' parameter with a valid row number.
+
+      The 2D Variant table can be either 0-based, or 1-based.
+      This function completes the task via multiple calls to DBUGet2DVRowTextIndex.
+
+
+ PARAMETERS:
+
+      value       text to match in specific column of 2D array.
+
+      table()     input 2D table of values.  base must be > -1. That is, the 2D array
+                  can be 0-based or 1-based.
+
+      column      index of column in table to search.
+
+      rows()      output 1D table of indices. This will be ReDimmed internally to
+                  be a 1-based array (first item at index 1).
+
+      startIndex  (Optional) the row to start the search on, bypassing previous rows.
+                  Default is first row.
+
+      mode        (Optional) mode=0=DBU_EXACT_MATCH_MODE=exact match(default).
+                  mode=1=DBU_FUZZY_MATCH_MODE=case-insensitive substring match
+                  allowed (but secondary).
+                  An exact match always takes precedence.
+
+  RETURNS:
+
+      -1      Error, or invalid input parameters.
+      >=0     The number of rows in the specified column matching the value.
+              0 means no matches found and the rows() array is likely NOT initialized.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 09, 2004
+ History:
+
+      JUL 09, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="dbuget1dvtextindex"></a>
+   Function DBUGet1DVTextIndex (value as Variant,
+                                values() As Variant,
+                                Optional startindex,
+                                Optional mode) As Integer
+
+  DESCRIPTION:
+
+      Searches the provided 1D 'values' array for a full
+      or partial match of the provided text 'value'.  Returns the index of the
+      matching item if found.  By default, an exact match of the provided text
+      value is attempted.  By default, the search starts at the first item in
+      the array.
+
+      You can allow case-insensitive partial substring
+      matches by providing the optional 'mode' parameter set to DBU_FUZZY_MATCH_MODE(1).
+
+      You can start the search on a different index by providing the optional
+      'startIndex' parameter with a valid index.
+
+      The 1D Variant table can be either 0-based, or 1-based.
+
+
+ PARAMETERS:
+
+      value       text to match in the 1D array.
+
+      values      1D array of values.  base must be > -1. That is, the 1D array
+                  can be 0-based or 1-based.
+
+      startIndex  (Optional) the index to start the search on, bypassing
+                  previous items.  Default is first item.
+
+      mode        (Optional) mode=0=DBU_EXACT_MATCH_MODE=exact match(default).
+                  mode=1=DBU_FUZZY_MATCH_MODE=case-insensitive substring match
+                  allowed (but secondary).
+                  An exact match always takes precedence.
+
+  RETURNS:
+
+      -1      No match, error, or invalid input parameters.
+     >=0      Index of the item in the array containing the match.
+              The return value will be n-based the same as the input array.
+              If the array is 0-based, the returned index is 0-based.
+              If the array is 1-based, the returned index is 1-based.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 07, 2003
+ History:
+
+      FEB 07, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="dbuget1dlongintersection"></a>
+   Function DBUGet1DLongIntersection (minArray() as Long,
+                                      colArray() As Long,
+                                      Optional uniquevals) as Long
+
+  DESCRIPTION:
+
+    Locates the intersecting values in each array and returns them in a new
+    array.  The new array is copied into the minArray provided as input--which
+    is also ReDIMMED to appropriate size (1-based).
+
+ PARAMETERS:
+
+      minArray()  array of Long values to intersect with colArray.  Also
+                  receives the new intersection array on output.
+
+      colArray()  array of Long values to intersect with minArray.
+                  exits unchanged.
+
+      uniquevals  (optional) if 1, only puts unique values into
+                  the output intersection.  By default, we will do a
+                  straight index by index check of the colArray values
+                  to each minArray value and enter matches into the
+                  output minArray--even if that duplicates values.
+                  If the input arrays are known to already have
+                  unique values then you do not need to specify the
+                  use of uniquevals and performance will be improved.
+
+  RETURNS:
+
+      -1      Error, or invalid input parameters.
+     >=0      The number of intersecting elements, which is also the size
+              of the minArray on exit.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 09, 2004
+ History:
+
+      JUL 09, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="dbuget1darrayfrom2darray"></a>
+   Function DBUGet1DArrayFrom2DArray (source2DArray() As Variant,
+                                      sourceRow As Integer,
+                                      startCol As Integer,
+                                      endCol As Integer,
+                                      output1DArray() As Variant) As Long
+
+  DESCRIPTION:
+
+    Locates the cells of source2DArray() from (sourceRow, startCol) to
+    (sourceRow, endCol) and stores the cell contents in output1DArray().
+    outputArray() is REDIMMED to the appropriate size (0 based).
+
+ PARAMETERS:
+
+      source2DArray()     2-Dimensional source array to search through.
+
+      sourceRow           Row in source2DArray() to retrieve.
+
+      startCol            Starting column of row sourceRow of source2DArray().
+
+      endCol              Starting column of row sourceRow of source2DArray().
+
+      output1DArray()     1-Dimensional ouput array containing the contents of
+                          the columns startCol to endCol of row SourceRow of
+                          source2DArray().
+
+  RETURNS:
+
+      -1      Error, or invalid input parameters.
+      >0      The number of cell contents copied, which is also the size of
+              output1DArray() on exit.
+
+ Orig Author: Bob Lawler (Bob Lawler)
+ Orig   Date: OCT 19, 2004
+
+ History:
+
+      OCT 19, 2004    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (2001,2002,2003) Phasys Limited.
+This program is free software; you can redistribute it and/or modify it under 
+the terms of the GNU General Public License Version 2 as published by the Free 
+Software Foundation. This license version can be viewed in its entirety at:
+http://www.opensource.org/licenses/gpl-license.php
+
+THIS CODE IS PROVIDED "AS IS".  THERE ARE NO REPRESENTATIONS OR WARRANTIES, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR ANY PARTICULAR PURPOSE, AND NONINFRINGEMENT.  IN NO EVENT SHALL 
+ANYONE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING IN CONNECTION 
+WITH THE CODE OR ITS USE.  
+
+You should have received a copy of the GNU General Public License along with 
+this program; if not, write to:
+the Free Software Foundation, Inc., 
+59 Temple Place, Suite 330
+Boston, MA 02111-1307 USA
+===============================================================================
+</pre>
+</BODY>
+</HTML>

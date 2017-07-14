@@ -1,0 +1,574 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DatabaseFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DatabaseFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines to work with data bases via DDE ComponentFunctions.
+      These are not normally called directly.  These are called by the DDE
+      as it processes DDE test tables containing commands for database functions.
+
+      This functions connects to a data base through ODBC, so you have to have a data source
+      pointing to that data base defined, using the appropriate driver.
+
+      They uses SQABasic SQLRequest function to connect, using a basic connection string,
+      concatenating the values of 'datasource', 'user' and 'password' parameters. If you
+      need a more complex connection string, you have to specify it in the data source (this
+      will be implemented in future versions).
+
+      To use Database utilities outside of the DDE, use and consult the
+      documentation on <a href="DatabaseUtilities.htm">DatabaseUtilities.</a>
+
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="Sqautil.htm">Sqautil</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      CopyDBTableToFile       'copies DB table to file
+      CopyDBTableColumnToFile 'copies one or more DB table column(s) to file
+      ExecSQLQuery            'executes the SQL Query
+      GetDBTableColumnCount   'returns the column count on a given table
+      GetDBTableRowCount      'returns the row count on a given table
+      GetDBValue              'returns the value of a table attribute
+      VerifyDBValue           'verifies the value of a table attribute
+      VerifyDatabaseValue     'same as VerifyDBValue
+      VerifyDBNULLValue       'verifies if the value of a table attribute is NULL
+      VerifyDatabaseNULLValue 'same as VerifyDBNullValue
+      DeleteDBTableRecords    'deletes records from a table in a database
+
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifydbvalue"></a>
+   Sub VerifyDBValue ()
+
+ DESCRIPTION:
+
+      Verifies the case-sensitive value of a table field from a data base.
+
+      To return the value, it executes a SQL query sentence using an ODBC
+      data source to connect to the data base.
+
+      A table and field name are required. You also have to specify data source name,
+      and optionally user id and password (this is because some drivers
+      don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include
+      them in the connection string. This would allow the possibility
+      to specify them in the data source definition.
+
+      If the query returns more than one record, the returned value
+      is the corresponding to the first one, unless the field name
+      be something like COUNT(*) or SUM(InvoiceTot).
+
+      A query condition can be included, usually it is. It can be any
+      valid expression allowed by the WHERE clause of the SELECT sentence of the SQL driver
+      you are using. For example: "CliBal > 100000 and CliCat = 'C'"
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      table's field to verify
+       6      table name
+       7      OPTIONAL query condition
+       8      Data source name
+       9      OPTIONAL user id
+       10     OPTIONAL password
+       11     expected value
+       12     OPTIONAL prompt
+
+ ERRORS:
+
+      none
+
+ Orig Author: Alejandro Blengio
+ Orig   Date: OCT 17, 2000
+ History:
+
+      OCT 17, 2000    Original Release
+      JUN 16, 2003    (bnat)  Modified the routine to read the prompt value from step table.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifydbnullvalue"></a>
+   Sub VerifyDBNULLValue ()
+
+      Verifies if the value of a table field from a data base is NULL.
+
+      Sometimes you have to check if a field's value is NULL. This
+      NULL value is different from any other (even zero for numerics
+      and null string for characters), so if you try to check it
+      using VerifyDBValue() function, if will fail.
+
+      A table and field name are required. You also have to specify data source name,
+      and optionally user id and password (this is because some drivers
+      don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include
+      them in the connection string. This would allow the possibility
+      to specify them in the data source definition.
+
+
+      A query condition can be included, usually it is. It can be any
+      valid expression allowed by the WHERE clause of the SELECT sentence of the SQL driver
+      you are using. For example: "CliBal > 100000 and CliCat = 'C'"
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      table's field to verify
+       6      table name
+       7      OPTIONAL query condition
+       8      Data source name
+       9      OPTIONAL user id
+       10     OPTIONAL password
+       11     OPTIONAL prompt
+
+
+ Orig Author: Alejandro Blengio
+ Orig   Date: OCT 17, 2000
+ History:
+
+      OCT 17, 2000    Original Release
+      JUN 16, 2003    (bnat)  Modified the routine to read the prompt value from step table.
+
+</pre>
+<hr>
+<pre>
+
+<a name="deletedbtablerecords"></a>
+   Sub DeleteDBTableRecords ()
+
+ DESCRIPTION:
+
+      Deletes records in a table of a data base.
+
+      A table name is required. You also have to specify data source name,
+      and optionally user id and password (this is because some drivers
+      don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include
+      them in the connection string. This would allow the possibility
+      to specify them in the data source definition.
+
+      A query condition can be included, usually it is. It can be any
+      valid expression allowed by the WHERE clause of the SELECT sentence of the SQL driver
+      you are using. For example: "CliBal > 100000 and CliCat = 'C'"
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      table name
+       6      OPTIONAL query condition
+       7      data source name
+       8      OPTIONAL user
+       9      OPTIONAL password
+      10      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Alejandro Blengio
+ Orig   Date: OCT 17, 2000
+ History:
+
+      OCT 17, 2000    Original Release
+      JUN 16, 2003    (bnat)  Modified the routine to read the prompt value from step table.
+
+</pre>
+<hr>
+<pre>
+
+<a name="execsqlquery"></a>
+   Sub ExecSQLQuery ()
+
+ DESCRIPTION:
+
+      Executes the query provided in a ^queryStr against the database.
+
+      A data source name [DSN] and Query String are required. You also have to specify
+      a variable to get the status code.  And optionally you can specify user id, password
+      and prompt.  (this is because some drivers don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include
+      them in the connection string. This would allow the possibility
+      to specify them in the data source definition.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Required data source name
+       6      Required queryStr
+       7      Required sqlStatus
+       8      OPTIONAL UserID
+       9      OPTIONAL Pwd
+      10      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: MAY 21, 2003
+
+ History:
+
+      MAY 21, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdbtablecolumncount"></a>
+   Sub GetDBTableColumnCount ()
+
+ DESCRIPTION:
+
+      This command retuns the total column count in the Table specified.  It executes a
+      SQL query for a given table using an ODBC data source to connect to the data base.
+
+      A table and the two return variables to strore the total column count and SQL status
+      code are required. You also have to specify data source name, and optionally user id
+      and password (this is because some drivers don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include them in the connection
+      string. This would allow the possibility to specify them in the data source definition.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Required data source name
+       6      Required table name
+       7      Required columnCount
+       8      Required sqlStatus
+       9      OPTIONAL UserID
+      10      OPTIONAL Pwd
+      11      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: MAY 22, 2003
+
+ History:
+
+      MAY 22, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdbvalue"></a>
+   Sub GetDBValue ()
+
+ DESCRIPTION:
+
+      This command executes the query defined in the ^queryStr and retuns the single column value.
+      It executes a SQL query on the database table using an ODBC data source suppied by the user.
+
+      A ^queryStr and the two return variables to strore the result of the query and SQL status
+      code are required. You also have to specify data source name, and optionally user id
+      and password (this is because some drivers don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include them in the connection
+      string. This would allow the possibility to specify them in the data source definition.
+
+      If the query returns more than one record, the returned value is the corresponding to the
+      first one, unless the field name be something like COUNT(*) or SUM(InvoiceTot).
+
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Required Data source name
+       6      Required queryStr
+       7      Required dbValue
+       8      Required sqlStatus
+       9      OPTIONAL user id
+      10      OPTIONAL password
+      11      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: MAY 23, 2003
+
+
+ History:
+
+      MAY 23, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdbtablerowcount"></a>
+   Sub GetDBTableRowCount ()
+
+ DESCRIPTION:
+
+      This command retuns the total row count in the Table specified.  It executes a
+      SQL query for a given table using an ODBC data source to connect to the data base.
+
+      A table and the two return variables to strore the total row count and SQL status
+      code are required. You also have to specify data source name, and optionally user id
+      and password (this is because some drivers don't need a user/password).
+
+      To do: if user id and/or password are not specified, don't include them in the connection
+      string. This would allow the possibility to specify them in the data source definition.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Required data source name
+       6      Required table name
+       7      Required rowCount
+       8      Required sqlStatus
+       9      OPTIONAL UserID
+      10      OPTIONAL Pwd
+      11      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: MAY 22, 2003
+
+ History:
+
+      MAY 22, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="copydbtabletofile"></a>
+   Sub CopyDBTableToFile ()
+
+ DESCRIPTION:
+
+      This routine will export the contents of a DBTable to a delimeted file.
+
+      This routine will export the contents of a DBTable  to a delimeted file.
+      The output file will conatin alternating lines of text, first the row number
+      and then the data fetched from that row.  Not sure if this is a great idea,
+      but that is how it works for now.
+
+      To do: if user id and/or password are not specified, don't include
+      them in the connection string. This would allow the possibility
+      to specify them in the data source definition.  If no output directory is specified,
+      the result file get saved under "Datapool\Test\".
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Required data source name
+       6      Required filename (for output)
+       7      Required table name
+       8      Optional column
+       9      Optional row
+      10      Optional sQLQuery
+      11      Optional delimiter
+      12      Optional dirOut
+      13      Required sqlStatus
+      14      OPTIONAL UserID
+      15      OPTIONAL Pwd
+      16      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: JUN 09, 2003
+
+ History:
+
+      JUN 09, 2003    Original Release
+      Dec 09, 2003    Bugfix for optional dirOut parameter.
+
+</pre>
+<hr>
+<pre>
+
+<a name="copydbtablecolumntofile"></a>
+   Sub CopyDBTableColumnToFile ()
+
+ DESCRIPTION:
+
+      This routine will export the contents of one or more DBTable column(s) to a file.
+
+      This routine will export the contents of one or more DBTable column(s) to a
+      delimeted file.  The output file will conatin line(s) of text (the data fetched
+      from that table) based on the ^SQLQueryString.  If columnDelimiter is omitted,
+      a horizontal tab is used to delimit fields.
+
+      To do: if user id and/or password are not specified, don't include them in the
+      connection string. This would allow the possibility to specify them in the
+      data source definition.  If no output directory is specified, the result file get
+      saved under "Datapool\Test\".
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Required data source name
+       6      Required filename (for output)
+       7      Required SQLQuery
+       8      OPTIONAL dirOut
+       9      Required sqlStatus
+      10      OPTIONAL Delimiter
+      11      OPTIONAL UserID
+      12      OPTIONAL Pwd
+      13      OPTIONAL prompt
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: Sep 16, 2003
+
+ History:
+
+      Sep 16, 2003    Original Release
+      Dec 09, 2003    Bugfix for optional dirOut parameter.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process Database Commands.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will be processed by the
+      GenericMasterFunctions.GenericUnimplementedCommand routine.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Alejandro Blengio
+ Orig   Date: OCT 17, 2000
+ History:
+
+      OCT 17, 2000    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      SEP 12, 2003    (bnat)   Added more database action words.
+      SEP 16, 2003    (bnat)   Added new database action word CopyDBTableColumnToFile.
+      Dec 09, 2003    (bnat)   Bugfix for optional dirOut parameter.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (2001,2002,2003) ARTech Consultores S.R.L.
+This program is free software; you can redistribute it and/or modify it under 
+the terms of the GNU General Public License Version 2 as published by the Free 
+Software Foundation. This license version can be viewed in its entirety at:
+http://www.opensource.org/licenses/gpl-license.php
+
+THIS CODE IS PROVIDED "AS IS".  THERE ARE NO REPRESENTATIONS OR WARRANTIES, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR ANY PARTICULAR PURPOSE, AND NONINFRINGEMENT.  IN NO EVENT SHALL 
+ANYONE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING IN CONNECTION 
+WITH THE CODE OR ITS USE.  
+
+You should have received a copy of the GNU General Public License along with 
+this program; if not, write to:
+the Free Software Foundation, Inc., 
+59 Temple Place, Suite 330
+Boston, MA 02111-1307 USA
+================================================================================
+</pre>
+</BODY>
+</HTML>

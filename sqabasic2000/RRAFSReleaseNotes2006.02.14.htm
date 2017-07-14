@@ -1,0 +1,491 @@
+<html>
+<head><title>RRAFS Release Notes 2006.02.14</title></head>
+<body>
+<a name="top" />
+<h1><center>
+RRAFS Release Notes<br/>
+RRAFS and the Shared SAFS Framework<br/>
+2006.02.14</center></h1>
+
+<p>
+<a href="#definitions">Definitions</a>,&#032;<a href="#reminders">Critical Reminders</a>,&#032;
+<a href="#safstools">SAFS Tools</a>,&#032;<a href="#instructions">Install Instructions</a>,&#032;
+<a href="#setupnotes">Setup Notes</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+
+<hr/>
+<a name="definitions" />
+<p>
+<h3><b>Definitions:</b><br/></h3>
+<table border=0 cellspacing=7 >
+<tr><td><b>
+SAFS</b><td><b>
+Software Automation Framework Support</b>
+<tr><td><b>
+SAFS Engine</b><td>
+A keyword-driven (aka data-driven) automation framework using SAFS
+<tr><td><b>
+RRAFS<br/>RRAFS Engine</b><td>
+A SAFS Engine for Rational Robot
+<tr><td><b>
+RobotJ Engine<br/>SAFS/RobotJ</b><td>
+A SAFS Engine for Rational RobotJ/XDE Tester/Functional Tester
+<tr><td><b>
+SAFS/DriverCommands</b><td>
+A SAFS Engine for tool-independent Driver Commands
+<tr><td><b>
+Home Page</b><td><a href="http://safsdev.sourceforge.net"  >
+SAFSDEV on Sourceforge</a>
+</table>
+
+<hr/>
+<a name="reminders" />
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#safstools">SAFS Tools</a>,&#032;<a href="#instructions">Install Instructions</a>,&#032;
+<a href="#setupnotes">Setup Notes</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>CRITICAL REMINDERS</h3>
+
+<b>Robot Scripts *must* be recompiled.</b><br/>
+All existing RRAFS Robot <b><i>scripts</i></b> that reference or INCLUDE any part of
+this framework should be recompiled.
+<p>
+Normally, a quick <i>File->Batch Compile</i> of GUI Scripts within Robot will take
+care of this.  You must do this in each project that uses the framework.  If you had
+any custom libs that referenced the framework then they too may need to be recompiled
+with <i>File->Batch Compile</i> SQABasic Library sources.
+<p>
+<b>Backup selected <i>customized</i> files before installation!</b><br/>
+If you have never installed RRAFS or SAFS before, then this doesn't apply to you.<br/>
+If you installed but never modified any of the files, then this doesn't apply to you.&nbsp;
+But you may want to review these files "just in case".
+<p>
+Affected customizable files from previous releases:<br/>
+<ul>
+<li>RRAFS.INI
+<li>RRAFS Custom Extension Libraries
+<li>Any modifications in your SAFS install directories &lt; C:\SAFS\bin > batch files
+(*.bat, *.vbs, etc.) or any SAFSTID.INI in the root SAFS install directory &lt; C:\SAFS >.
+</ul>
+<p>
+If you have taken advantage of any of the customization capabilities of this framework,
+then you must take some simple precautions prior to installing this new release.
+Installing a new version of the framework will install new, default (empty) versions of
+these files.
+<p>
+<b>RRAFS.INI</b><br/>
+Essentially, you must make a backup of any RRAFS.INI in your Rational install directory
+(DDE_RUNTIME) if you have made customizations by modifying settings; then evaluate how
+and if you want to merge with the new file.
+<p>
+<b>Custom Extensions</b><br/>
+Backup any Custom Extension libraries in which you have implemented customizations.
+Users who have implemented customizations in older versions of those libraries can then
+overwrite the newly installed files with those older versions.  This effectively reinserts
+your customizations into the new version of the framework.
+<p>
+<b>SAFSTID.INI</b><br/>
+You should make a backup of any SAFSTID.INI in your SAFS install directory (C:\SAFS) if
+you have this file and modified settings.  Then evaluate how and if you want to merge
+with the new file.
+<p>
+<b>SAFS Batch Files</b><br/>
+If you have previously installed the SAFS Framework separately, then you may have manually
+modified batch files or VBS script(s) to handle custom project paths.  You will need to
+backup modified files and evaluate how and if you want to merge such changes with the new
+files.
+<p>
+Failure to perform any of these prescribed backups may erase your prior customizations.
+Hopefully, you have backed them up somewhere already as part of your normal ongoing
+activities.
+Right?!
+<p>
+Consult <a href="http://safsdev.sourceforge.net/sqabasic2000/UsingCustomExtensions.htm"  >
+Using Custom Extensions</a> for additional information on Custom Extensions with this
+framework. This HTML doc is also provided in your RRAFS install directory.
+
+<hr/>
+<a name="safstools"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#instructions">Install Instructions</a>,&#032;
+<a href="#setupnotes">Setup Notes</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>New tools this release.</h3><br>
+RRAFS now supports AUTOLAUNCHing Functional Tester.  Previously only XDE Tester was supported.
+<p>
+New COM classes supporting COM access to STAF for use in VBScript and other COM-related
+features exist in the latest version of DDVariableStore.DLL.  Consult the sourcecode in CVS
+or any VBA or COM object browser until more proper documentation is made available.  A very
+rudimentary DDVariableStoreTest.VBS script for this COM STAF interface can be found in the
+Rational Test\sqabas32 directory and in C:\SAFS\bin if installed.
+<p>
+SAFS/Abbot and the RMI bridge for SAFS Java Enablers used by Abbot are still largely
+undocumented.  However, Abbot icons for the few keywords supported are do now show up in the
+SAFS Keywords Reference.
+<p>
+<hr/>
+<a name="instructions"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#safstools">SAFS Tools</a>,&#032;
+<a href="#setupnotes">Setup Notes</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>Installation Instructions</h3>
+
+<dl><dt>
+<b>Review Backup Reminders in <a href="#reminders">Critical Reminders</a></b>
+<p><dd>
+If you have not done so, review the <a href="#reminders">Critical Reminders</a> concerning
+backups of locally modified or customized files from previous releases.  I'd hate to say,
+"I told ya so."
+<p></dd><dt>
+<b>Uninstall Pre-2003.08 RRAFS Releases:</b>
+<p><dd>
+Installations of RRAFS Release 2003.01.27 (Jan 2003) and earlier installed via the Windows
+Installer .MSI need to uninstall that release before installing this new one.  You must do
+this to avoid unexpected backward versioning that can occur if the Windows Installer update
+or repair feature is ever invoked.
+<p>
+RRAFS Release 2003.08.27 (Aug 2003) and later do not have this uninstall requirement as we
+implemented the ability to patch and install on top of releases using different technologies.
+<p>
+Uninstall <b>SAFS Engine for Rational Robot</b> from the Windows Control Panel "Add/Remove
+Programs" application if present.
+<p><dt>
+<b>Short-N-Sweet install instructions:</b><br/>
+Also reference: <a href="http://safsdev.sourceforge.net/sqabasic2000/DDEngineSetup.htm"  >
+Engine Setup</a>, a copy of which should be available in your install directory.
+<p>
+Per the Engine Setup doc, a Java JVM and Windows Scripting Host V5.6 or later are required.
+Refer to the
+<a href="http://safsdev.sourceforge.net/sqabasic2000/DDEngineSetup.htm#installtools"  >
+Engine Setup Tools</a> section for more details and install information for those tools.
+<p><dd>
+<ol>
+<li><b>Extract the Release .ZIP into the RRAFS DDE_RUNTIME directory.</b><br/>
+Extract all files of the ZIP file into your
+C:\Program&nbsp;Files\Rational\Rational&nbsp;Test\sqabas32 directory (or equivalent...a.k.a.
+DDE_RUNTIME).
+<p>
+<ul>
+<li><b>DO NOT Extract using foldernames.</b>  All files extracted into this one directory.
+<li><b>Overwrite Existing Files</b> if a previous release exists.
+</ul>
+<p>
+<li><b>Run the extracted <b>SetupRRAFS.wsf</b> script.</b><br/>
+In Windows Explorer, locate "SetupRRAFS.wsf" in that directory and double-click to execute it.<br/>
+<small>(Previously we used Setup.vbs, but this has been deprecated and will simply launch
+SetupRRAFS.wsf.)</small>
+<p>
+<li><b>Setup Rational Robot Playback per DDEngineSetup</b><br/>
+Verify/Complete any Robot Playback Options setup per the DDEngineSetup doc mentioned in the
+following section.
+<p>
+<li><b>If desired, setup SAFS and Rational RobotJ/XDE Tester/Functional Tester per
+<a href="http://safsdev.sourceforge.net/sqabasic2000/SetupSAFS.README.htm">SetupSAFS.README</a></b><br/>
+Verify/Complete any setup per doc.
+</ol>
+</dl>
+<p>
+<b>SetupRRAFS.wsf</b> should take care of all DLL registration and placement required by the
+RRAFS Engine.&nbsp; In fact, the Installer even provides compiled Robot code (SBX) into
+the DDE_RUNTIME directory so that most users can jump right in without having to compile
+the library source.  Users with incompatible versions of the Robot compiler (pre-V2001,
+I think) will need to recompile the source for their incompatible version of Robot.
+<p>
+<b>SetupRRAFS.wsf</b> will also install the MSXSL.EXE utility used for XML\XSL
+transformations.  However, the Installer does not install ExamDiff or any other
+Diff Viewer to take advantage of that new capability.
+(See the Setup doc for more information.)
+<p>
+(Note: the MSXSL.EXE installed is the pre-msxml4 version.  You may be able to download a
+later version from microsoft.com. The latest version from Microsoft purportedly will not
+work with pre-msxml4 versions of msxml. (I have not had any problems with it.-- Carl)
+<p>
+<b>SetupRRAFS.wsf</b> will prompt to confirm for the installation of the SAFS Framework
+and STAF.&nbsp; The user has the option to skip these installations by pressing "Cancel"
+when prompted.  We recommend you perform the SAFS installation even if you think you might
+not use the expanded features.  You can skip the STAF install if STAF is already installed
+on the machine from a previous release.
+<p>
+<b>SetupRRAFS.wsf</b> will not install any program that will appear in Control Panel's
+"Add/Remove Program" application.
+<p>
+
+<hr/>
+<a name="setupnotes"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#safstools">SAFS Tools</a>,&#032;
+<a href="#instructions">Install Instructions</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>Additional Setup Notes and Information</h3>
+
+Additional notes and instructions for this release can be found via the links below.
+These are generally reviewed in the listed order.  The files are contained in the
+downloaded installation ZIP file and available once all contents of the ZIP file are
+extracted into the install directory.
+(The links to these will work once unzipped locally.)
+<p>
+<table border=0 cellspacing=7 >
+<tr><td>
+<a href="SetupSAFS.README.htm"  >
+SetupSAFS.README</a><td>
+Install STAF and SAFS Services
+<tr><td>
+<a href="SetupRobotJ.README.htm"  >
+SetupRobotJ.README</a><td>
+Setup RobotJ/XDE Tester/Functional Tester to use STAF and SAFS Services
+<tr><td>
+<a href="SetupRuntime.README.htm"  >
+SetupRuntime.README</a><td>
+Runtime Setup for Testing
+</table><p>
+
+<hr/>
+<a name="robotjnotes"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#safstools">SAFS Tools</a>,&#032;
+<a href="#instructions">Install Instructions</a>,&#032;<a href="#setupnotes">Setup Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>SAFS/RobotJ Support Notes</h3>
+
+Currently, there is a large array of Component Function libraries and commands
+supporting the testing of Web and Java applications.
+<p>
+RobotJ can support all of the Driver Commands made available by the SAFS/DriverCommands
+engine.  If SAFS/DriverCommands is not running for some reason, those Driver Commands
+will be supported by RobotJ.
+<p>
+Keep in mind that the historic usage was for Robot Classic to be the Driver for RobotJ.&nbsp;
+In that scenario, ALL of the Component Functions and Driver Commands already available via Robot
+Classic were fully supported in addition to those of RobotJ.  RobotJ provides some overlap
+for these commands, but it also provides some new commands not available in Robot Classic.
+This actually means that development of new commands or features can be developed in either
+Robot Classic or RobotJ--whichever is more comfortable to the developer.
+<p>
+A separate Java-based SAFSDRIVER has been developed that can run tests and drive any SAFS
+Engine including RobotJ.  This driver can be used in place of Robot Classic but does not
+yet provide ALL the functionality and Driver Command support provided by Rational Robot.&nbsp;
+<p>
+<hr/>
+<a name="comments"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#safstools">SAFS Tools</a>,&#032;
+<a href="#instructions">Install Instructions</a>,&#032;<a href="#setupnotes">Setup Notes</a>,&#032;
+<a href="#robotjnotes">RobotJ Notes</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>Additional Comments</h3>
+
+Some comments about ongoing development...
+<p>
+Releasing the enhanced SAFS framework does not jeapardize your existing non-SAFS tests.
+Existing tests should still work as they always did.  You do not have to use any of the
+new features provided by the SAFS Framework.
+<p>
+
+<hr/>
+<a name="newstuff"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#safstools">SAFS Tools</a>,&#032;
+<a href="#instructions">Install Instructions</a>,&#032;<a href="#setupnotes">Setup Notes</a>,&#032;
+<a href="#robotjnotes">RobotJ Notes</a>,&#032;<a href="#comments">Comments</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<p>
+<h3>New, Fixed, or Enhanced Stuff</h3>
+
+Many thanks to those who have contributed in one way or another for this release:
+<ul>
+<li>Matthew Casebeer
+<li>Dawn Coen
+<li>John Crunk
+<li>Patrick Cuff
+<li>Robert D'Antonio
+<li>Robert Ducharme
+<li>Jack Imbriani
+<li>Bob Lawler
+<li>Ryan Norris
+<li>Ken Peressini
+<li>John Ruxlow
+<li>Steven Sampson
+<li>Peter Savitsky
+<li>Chris Schroter
+<li>Jeremy Smith
+<li>Belinda White
+<li>Chris Woolner
+<li>Anyone I may have missed -- please let me know!
+</ul>
+<p>
+Most notable items, but not all-inclusive are:
+<ul>
+<p>
+<li>Improved messaging in many Driver Commands for RobotJ, TID, and SDC.
+<p>
+<li>New <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=C&lib=DDDriverTimerCommands" target=_blank>DDDriverTimerCommands</a> for RJ, TID, and SDC.
+<p>
+<li>New <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=C&lib=DDDriverStringCommands" target=_blank>DDDriverStringCommands</a> for RC.
+<p>
+<li>More commands for RJ as we try to bring it up to RC standards.
+<p>
+<li>Explicit Functional Tester support in addition to XDE Tester support.
+<p>
+<li>.NET support in RJ through Functional Tester enabled (needs improvement).
+<p>
+<li>Large scale Keyword Cleanup initiative as proposed in <a href="http://sourceforge.net/mailarchive/message.php?msg_id=13137417"
+target=_blank>Keyword Cleanup</a> posting.&nbsp; More info, but not necessarily better info on
+these changes can be gleaned from the <a href="SAFSKeywordsReleaseNotes2006.02.14.htm" target=_blank>SAFS Keywords
+Release Notes</a>.
+</ul>
+<p>
+
+<hr/>
+<a name="oldstuff"/>
+<small>
+<a href="#top">Back2Top</a>,&#032;<a href="#definitions">Definitions</a>,&#032;
+<a href="#reminders">Critical Reminders</a>,&#032;<a href="#safstools">SAFS Tools</a>,&#032;
+<a href="#instructions">Install Instructions</a>,&#032;<a href="#setupnotes">Setup Notes</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;<a href="#comments">Comments</a>,&#032;
+<a href="#newstuff">New Stuff</a>,&#032;
+</small>
+<p>
+<h3>Old Stuff</h3>
+
+<b>Older Notes That Are Still Important and Applicable:</b>
+<p>
+<b>Clearing App Map Cache and Variable Values:</b>
+<p>
+We often get reports that "changes to my App Map are not getting picked-up".&nbsp;
+It is always a good idea to start your test with a known "clean" state for App Map
+entries and Variable values.&nbsp; At or near the top of your test script, is a good
+place to put the following 2 functions:
+<p><pre>
+   ...
+   <code>DDGClearAppMapCache
+   DDVClearAllVariables</code>
+   ...
+</pre>
+<b>Important XML Logging Information For Older Scripts:</b>
+<p>
+The addition of XML Logging in 2002 will impact older scripts whose LogFacility
+(usually MainLog) is initialized enabling all logs with <code>MAX_LOGMODE</code>.
+A script enabling individual logs with values like <code>TEXTLOG_ENABLED,
+SQALOG_ENABLED, CONSOLE_ENABLED</code>, or any combination of these should not
+be affected.
+<p>
+The issue is that <code>MAX_LOGMODE</code> will automatically enable the new XML Log.
+However, the older script will not have one or more other function calls to
+effectively handle that XML log once the test is complete.
+<p>
+For example, older scripts will likely close the logs enabled with <code>MAX_LOGMODE</code>
+via the <code><b>CloseTextLogs</b></code> function.&nbsp;  But
+<b><code>CloseTextLogs</code></b> does not close XML logs.&nbsp;  The new "close
+everything" function needs to be <b><code>CloseAllLogs</code>.</b>
+<p>
+To retain existing log behavior in older scripts with the smallest script modification
+would be to <b>replace</b> each instance of <code>MAX_LOGMODE</code> in these scripts
+<b>with</b> the binary equivalent that does NOT include the new XML logging:
+<p><pre>
+
+   <b><code>(TEXTLOG_ENABLED OR SQALOG_ENABLED OR CONSOLE_ENABLED)</code></b>
+
+</pre>
+No other script modification should be required.
+<p>
+<dl>
+<dt><b>Q: So, what happens if I don't make this change in my scripts and the XML logs
+are enabled by MAX_LOGMODE?</b>
+<p>
+<dd>Your script should function just fine as it always did.  However, the framework
+will enable a default XML log for each test run.  At the end of each test run, the log
+may remain open unless your script performs a "Reset" subroutine call.  The log will
+also likely close when Robot is shutdown or other times that Robot would try to
+shutdown its File IO.
+<p>
+However, the RRAFS framework logging has always been done in APPEND mode.  Each new
+RRAFS test run APPENDS to any log of the same name that was not renamed or deleted
+prior to initializing the Log Facility.  Since your older script does not know about
+the new XML log being created, it will not attempt to delete the XML log from previous
+runs.  Thus, you will be growing a nice, large XML log history of every test run by
+all scripts that launched a test using MAX_LOGMODE.
+<p>
+<dt><b>Q: How can I modify my older scripts to *properly* take advantage of this new
+XML logging?</b>
+<p>
+<dd>Folks do different things in their scripts to initialize the logs and run the tests.
+I can't possibly address all possibilities here.  However, some general guidelines for
+modifying existing scripts are below.
+<p>
+<ol>
+<li>Provide a unique XML log name just as with the Text log.
+<li>Delete the previous XML log just as you do the Text log.
+<li>CloseALLLogs instead of only CloseTextLogs
+<li>"Cap" the XML log with appropriate HEADERS and FOOTERS.
+</ol>
+</dl>
+<p>
+<b>Example modified Robot script code including all XML handling:</b>
+<code><pre>
+    ....
+    'clear cached maps and variables
+    DDGClearAppMapCache
+    DDVClearAllVariables
+
+    'setup lognames, delete previous logs, initialize new logs
+    MainLog.logid = "MyImportantTestLog"
+    logfile = GetDDELogsDirectory() & MainLog.logid
+    on error resume next
+    kill logfile &".txt"
+    kill logfile &".xml"
+    on error goto 0
+
+    'caution, resource intensive and new log formats automatically enabled
+    InitLogFacility MAX_LOGMODE, MainLog
+
+    &lt;... any other script code and running the test ...>
+
+    'close the logs
+    CloseAllLogs MainLog, 1
+    LUCapXMLLog Mainlog.xmllog
+    Reset
+
+    'view the text log at the end of the test
+    StartApplication "notepad.exe "& MainLog.textlog
+
+    ....
+</pre></code>
+<p><hr/>
+<small>
+<a href="#definitions">Definitions</a>,&#032;<a href="#reminders">Critical Reminders</a>,&#032;
+<a href="#safstools">SAFS Tools</a>,&#032;<a href="#instructions">Install Instructions</a>,&#032;
+<a href="#setupnotes">Setup Notes</a>,&#032;<a href="#robotjnotes">RobotJ Notes</a>,&#032;
+<a href="#comments">Comments</a>,&#032;<a href="#newstuff">New Stuff</a>,&#032;
+<a href="#oldstuff">Old Stuff</a>,&#032;
+</small>
+<pre>
+Carl Nagle, <a href="http://www.sas.com"  >SAS</a>
+Project Manager, <a href="http://safsdev.sourceforge.net"  >SAFSDEV</a>
+<a href="mailto:safsdev@sas.com"  >safsdev@sas.com</a>
+</pre></body></html>

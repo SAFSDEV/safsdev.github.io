@@ -1,0 +1,319 @@
+<html>
+<head>
+<title>SAFS Quick Start With RFT</title>
+</head>
+<body><a name="_top"/>
+<center><H1>SAFS Quick Start With RFT</H1>
+<small>Updated: 2009.08.13</small></center>
+<p>This tutorial intends to help you set up SAFS test project,
+create your first test script, then run the test to see how it works. It is
+assumed that you have installed SAFS 2009 by running its installer,
+SetupSAFS.wsf.&nbsp; Refer to SetupSAFS.wsf.README.txt.</p>
+
+<p class=MsoNormal>Note: We suggest that you have IBM Rational Function Test
+(RFT) V8 installed on your machine before starting to run SetupSAFS.wsf.</p>
+
+<p><b>Prerequisites:</b></p>
+
+<ul>
+<p>
+<li>IBM Rational Function Tester V8 or later
+<li>IE version 6 or 7
+<li>SAFS 2009
+</ul>
+<p>
+<b>Start from helloSAFSRFT</b>
+<p>
+The first test script, helloSAFSRFT, intends to input keyword
+"SAFS" on a Google search window that has been manually opened, and then press
+Enter to get the results.</p>
+<hr>
+<a name="step1"/>
+<h3>helloSAFSRFT -- Four Steps to run it.</h3>
+<p><b>1.&nbsp;&nbsp;&nbsp;Setting up helloSAFSRFT project</b><br>
+<small>Go to:
+<a href="#_top">Top</a>,
+<a href="#step2">Prepare helloSAFSRFT Files</a>,
+<a href="#step3">Use STAF Process Container</a>,
+<a href="#step4">Run helloSAFSRFT.bat</a>,
+<a href="#appendix">Appendix</a>
+</small>
+<ul>
+<p class=MsoNormal>Create a folder as the home of this project. For example:
+C:\MyProject.</p>
+
+<p>Ensure this folder owns the same directory structure as
+below.</p>
+<ul>
+<p>
+<li>C:\MyProject\Datapool\Bench
+<li>C:\MyProject \Datapool\Dif
+<li>C:\MyProject \Datapool\Logs
+<li>C:\MyProject \Datapool\Runtime
+<li>C:\MyProject \Datapool\Test</p>
+</ul>
+<p>One simple way to do so is to copy subfolder Datapool under &lt;C:\SAFS\Project&gt;
+to &lt;C:\MyProject&gt;.</p>
+</ul>
+<p>
+<a name="step2"/>
+<b>2.&nbsp;&nbsp;&nbsp;Getting Four files prepared</b><br>
+<small>Go to:
+<a href="#_top">Top</a>,
+<a href="#step1">Setup helloSAFSRFT Project</a>,
+<a href="#step3">Use STAF Process Container</a>,
+<a href="#step4">Run helloSAFSRFT.bat</a>,
+<a href="#appendix">Appendix</a>
+</small><br>
+<ul>
+<p>
+<table>
+<tr><td>C:\MyProject\helloSAFSRFT.bat          <td> <td>--- start to run
+<tr><td>C:\MyProject\helloSAFSRFT.ini          <td> <td>--- configuration file used by helloSAFSRFT.bat
+<tr><td>C:\MyProject\Datapool\helloSAFSRFT.sdd <td> <td>--- step-level test script (STEP)
+<tr><td>C:\MyProject\Datapool\helloSAFSRFT.map <td> <td>--- application map file
+</table>
+<p>They can be found in C:\SAFS\Samples\Html. You may simply copy them to C:\MyProject. Only one
+place needs to be changed, item ProjectRoot in helloSAFSRFT.ini should to be changed as follow:</p>
+<table>
+<tr><td>ProjectRoot=&quot;C:\safs\samples\Html&quot; <td> <td>--- before changing it
+<tr><td>ProjectRoot=&quot;C:\MyProject&quot;         <td> <td>--- after changing it
+</table>
+<p>
+<center><b>&nbsp;Figure 1:&nbsp; The relationships among those four files </b>
+<br>
+<img width=649 height=487 src="helloSAFSRFTRelationship.jpg" alt="SAFS File Relationships"></center>
+<br>
+<li><b>helloSAFSRFT.bat</b>
+<p>
+There is only one command line as below in this file. <a
+href="http://safsdev.sourceforge.net/sqabasic2000/JSAFSFrameworkContent.htm#driveroptions">SAFSDRIVE
+Command Line</a> takes helloSAFSRFT.ini as its project configuration file, launches
+<a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSEngineDetails.htm">SAFS/ROBOTJ
+engine</a> and runs each step defined in helloSAFSRFT.sdd.
+<p>
+<ul>java -Dsafs.project.config=&quot;helloSAFSRFT.ini&quot; org.safs.tools.drivers.SAFSDRIVER</ul>
+<p>
+<li><b>helloSAFSRFT.ini</b>
+<p>This is a <a
+href="http://safsdev.sourceforge.net/sqabasic2000/JSAFSFrameworkContent.htm#configfile">configuration
+file</a> that contains various information, which tells SAFS where and how to
+load user's test script like helloSAFSRFT.sdd.</p>
+<p>
+------------------------------------------------------------------
+<code><pre>
+[SAFS_DRIVER]
+;SAFS's home
+DriverRoot="C:\safs"
+
+[SAFS_PROJECT]
+;the root of your SAFS test project, CHANGE it accordingly!
+ProjectRoot="C:\MyProject"
+
+[SAFS_TEST]
+;start from this SAFS script: helloSAFSRFT.SDD
+TestLevel="STEP"
+TestName="helloSAFSRFT"
+;Step file name, will be suffixed with '.SDD' by default
+CycleSeparator=","
+CycleLogName="helloSAFSRFT"
+CycleLogMode="TEXTLOG"
+
+[SAFS_ENGINES]
+; SAFS/RobotJ engine defined to be used
+First=org.safs.tools.engines.SAFSROBOTJ
+
+[SAFS_ROBOTJ]
+AUTOLAUNCH=TRUE
+;for now, use the RFT Datastore provided in SAFS install
+DATASTORE="C:\SAFS\DatastoreJ"
+;domains to search
+TESTDOMAINS="Html"
+</code></pre>
+<p>
+------------------------------------------------------------------
+<p>
+Note: Item TESTDOMAINS should contain "Html" as Google Home page is an Html application. SAFS is able
+to support more than one domain like TESTDOMAINS=Html,Net,Java,Win,Flex,SWT.
+<p>
+<li><b>helloSAFSRFT.sdd</b>
+<p>
+This is a <a
+href="http://safsdev.sourceforge.net/DataDrivenTestAutomationFrameworks.htm#AutomationFrameworkWorkflow">step-level</a>
+test file suffixed with ".sdd".&nbsp; It contains various <a
+href="http://safsdev.sourceforge.net/DataDrivenTestAutomationFrameworks.htm#Section_1.2.2">Keyword-Driven</a>
+test records for doing various jobs.
+<p>
+------------------------------------------------------------------
+<p>
+<code><pre>
+<table>
+<tr><td>C , <td colspan="2"> SetApplicationMap , <td colspan="2"> helloSAFSRFT.MAP <td>;Re: <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=C&lib=DDDriverCommands&cmd=SetApplicationMap" target="gsreference">SetApplicationMap</a>
+<tr><td>C , <td> SetContext        , <td> Google , <td> Google   <td>              <td>;Re: <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=C&lib=DDDriverCommands&cmd=SetContext" target="gsreference">SetContext</a>
+<tr><td>C , <td> WaitForGUI        , <td> Google , <td> Google , <td> 150          <td>;Re: <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=C&lib=DDDriverCommands&cmd=WaitForGUI" target="gsreference">WaitForGUI</a>
+<tr><td>T , <td> Google , <td> keyEdit , <td> InputKeys , <td> "SAFS"              <td>;Re: <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=T&lib=GenericMasterFunctions&cmd=InputKeys" target="gsreference">InputKeys</a>
+<tr><td>T , <td> Google , <td> keyEdit , <td> InputKeys , <td> "{ENTER}"
+</table>
+</code></pre>
+<p>
+------------------------------------------------------------------
+<p>
+<li><b>helloSAFSRFT.map</b>
+<p>
+This is an <a
+href="http://safsdev.sourceforge.net/sqabasic2000/CreateAppMap.htm">application
+map</a> file.&nbsp; It contains the <a
+href="http://safsdev.sourceforge.net/sqabasic2000/SAFSComponentRecognition.htm">Recognition
+Strings</a> of the GUI components that helloSAFSRFT.sdd needs.
+<p>
+---------------------------------------------------------------------------
+<p><code><pre>
+[Google]
+Google="Type=Window;Caption={Google*}"
+keyEdit="Type=EditBox;Name=q"
+</pre></code>
+<p>
+----------------------------------------------------------------------------
+<p>
+<b>One question:&nbsp; I know the four files can be manually created.&nbsp; As for the
+application map file, how do I get the standard Recognition Strings for those GUI
+components performed actions on? </b>
+<p>
+Let's look at the next section on STAF Process Container.
+</ul>
+<p>
+<a name="step3"/>
+<b>3.&nbsp;&nbsp;&nbsp;Using STAFProcessContainer against the Software Under Test</b><br>
+<small>Go to:
+<a href="#_top">Top</a>,
+<a href="#step1">Setup helloSAFSRFT Project</a>,
+<a href="#step2">Prepare helloSAFSRFT Files</a>,
+<a href="#step4">Run helloSAFSRFT.bat</a>,
+<a href="#appendix">Appendix</a>
+</small><br>
+<p>
+<ul>
+<a
+href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/STAFProcessContainer.html">STAFProcessContainer</a>
+is a SAFS test tool used to define application map. It looks like <a
+href="http://safsdev.sourceforge.net/sqabasic2000/ProcessContainer.htm">ProcessContainer</a> used for
+Rational Robot and has the similar functionality. It can drill down a chosen window and
+generate the Recognition Strings for each GUI component on the window.
+<p>
+It is better to have STAF started up before running STAFProcessContainer.&nbsp; Also, make sure the Google Home window is ready.
+<p>
+Click Start Menu item "Programs->SAFS 2009->STAF ProcessContainer", <br>
+or double-click the "runSTAFProcessContainer.bat" file likely installed in your &lt;SAFSDir&gt;\Project directory.
+<p>
+<center><img border=0 width=436 height=541 src="../doc/org/safs/tools/drivers/STAFProcessContainer.GIF" alt="STAF Process Container Window"></center>
+<p>
+STAFProcessContainer starts to look up a HTML window with the caption starting with "Google" when you
+click button <b>"Click to Run"</b>.&nbsp; It takes a while to drill down the whole window.&nbsp;
+When finished, <b>GoogleAppMap.map</b> should be output to the "C:\MyProject\Datapool" directory you
+defined.&nbsp; The Recognition Strings of all components can be found in this AppMap file. Window <b>"Component
+Hierarchy Viewer"</b> should also pops up.
+<p>
+<center><img border=0 width=400 height=470 src="ComponentHierarchyViewer.jpg" alt="SPC Component Hierarchy Viewer"></center>
+<p>In the Viewer, you may input any <a
+href="http://safsdev.sourceforge.net/doc/org/safs/GuiClassData.html">class type</a>
+you want.&nbsp; You can also find a Recognition String for a class type and its corresponding
+GUI component.&nbsp; Once found, these will be highlighted as shown below.<br>
+<small>Refer to&nbsp; <i>&lt;SAFSDir&gt;\lib\JavaObjectsMap.dat</i>&nbsp;&nbsp; for extensive class type mappings.)</small>
+<p>
+<center><img border=0 width=461 height=386 src="GoogleTextboxHighlighted.jpg" alt="Google TextBox Highlighted"></center>
+</ul>
+<p><br><p>
+<a name="step4"/>
+<b>4.&nbsp;&nbsp;&nbsp;Running helloSAFSRFT.bat to get the result</b><br>
+<small>Go to:
+<a href="#_top">Top</a>,
+<a href="#step1">Setup helloSAFSRFT Project</a>,
+<a href="#step2">Prepare helloSAFSRFT Files</a>,
+<a href="#step3">Use STAF Process Container</a>,
+<a href="#appendix">Appendix</a>
+</small>
+<p>
+<ul>
+Before double-clicking <i>helloSAFSRFT.bat</i> you should open another IE window and navigate to <a
+href="http://www.google.com/">Google Home page</a>.
+<p>
+When running helloSAFSRFT.bat, the console below appears and SAFS with RFT should
+locate and activate the Google Home page, input keyword "SAFS", and press the Enter key
+automatically. The log file <b><i>helloSAFSRFT.txt</i></b> should be output into the
+<i>C:\MyProject\Datapool\Logs</i> directory.
+<p>
+<center><img border=0 width=582 height=376 src="helloSAFSRFTConsole.jpg" alt="helloSAFSRFT Console"></center>
+<p>
+</ul>
+<hr>
+<a name="appendix"/>
+<h3>Appendix</h3>
+<small>Back to:
+<a href="#_top">Top</a>,
+<a href="#step1">Setup helloSAFSRFT Project</a>,
+<a href="#step2">Prepare helloSAFSRFT Files</a>,
+<a href="#step3">Use STAF Process Container</a>,
+<a href="#step4">Run helloSAFSRFT.bat</a>
+</small>
+<ul>
+<p>
+SAFS/RFT supports .Net, Flex, Html, Java, SWT and Win applications. Four kinds of SAFS script samples are
+provided and shall be installed in directory &lt;SAFSDir&gt;\samples.
+<p>
+<table border=1 cellspacing=0 cellpadding=0 width=669
+ style='width:501.55pt;border-collapse:collapse'>
+ <tr align="center" bgcolor="#D0D0D0">
+ <td>Domain <td> <td>Sample directory <td>SUT<br>(Software Under Test) <td>Type of the top window
+ <tr align="center" style='font-size:10.0pt'>
+ <td>.Net <td>SafsDevTest.bat <td>&lt;SAFS&gt;\samples\DotNet <td>..\DotNetApp\WinDemo.exe <td>Window
+ <tr align="center" style='font-size:10.0pt'>
+ <td>Flex <td>SafsDevTest.bat <td>&lt;SAFS&gt;\samples\Flex <td>..\FlexApp\FlexWebDemo.swf <td>FlexWindow
+ <tr align="center" style='font-size:10.0pt'>
+ <td>Html <td>HelloSAFSRFT.bat <td>&lt;SAFS&gt;\samples\Html <td>www.google.com <td>Window
+ <tr align="center" style='font-size:10.0pt'>
+ <td>Java <td>?? <td>&lt;SAFS&gt;\samples\Java <td>Swingapp.jar <td>Window
+ <tr align="center" style='font-size:10.0pt'>
+ <td>SWT <td>Not provided <td>Not provided <td>Not provided <td>Window
+ <tr align="center" style='font-size:10.0pt'>
+ <td>Win <td>Not provided <td>Not provided <td>Not provided <td>Window
+</table>
+<p>
+Four steps used to work with Html Google Home page, can be applied to other SUT. Remember to
+select the corresponding client type when using STAFProcessContainer against an
+application.
+<p>
+<center><img border=0
+width=435 height=161 src="SPCClientTypeSelection.jpg"></center>
+<p>
+For every Html, Java, .Net, SWT or Win application the recognition string of its top window is most
+often formatted as shown below:
+<p>
+<ul>"Type=Window;Caption={Its caption}".</ul>
+<p>
+For .Net, SWT, and WIN applications it is best to prefix the recognition string with the name
+of the Process associated with the application, as shown below:
+<p>
+<ul>"Process=EXCEL.EXE;Type=Window;Caption={Its caption}".</ul>
+<p>
+Flex applications are not really associated with any caption when launched in an IE window.&nbsp;
+Thus, SAFS/RFT uses the Flex SWF file name as the Caption to indentify it.&nbsp;
+The recognition string for flex sample FlexWebDemo.swf is shown below:
+<p>
+<ul>"Type=FlexWindow;Caption={FlexWebDemo.*}"</ul>
+<p>
+In each sample directory, please refer to the README file which describes how to run each sample.
+</ul>
+<p>
+<small>Back to:
+<a href="#_top">Top</a>,
+<a href="#step1">Setup helloSAFSRFT Project</a>,
+<a href="#step2">Prepare helloSAFSRFT Files</a>,
+<a href="#step3">Use STAF Process Container</a>,
+<a href="#step4">Run helloSAFSRFT.bat</a>
+</small>
+<hr>
+SAFS Project Home Page: <a
+href="http://safsdev.sourceforge.net">http://safsdev.sourceforge.net</a><br>
+SAFS Keyword Reference: <a
+href="http://safsdev.sourceforge.net/sqabasic2000/RRAFSReference.htm">http://safsdev.sourceforge.net/sqabasic2000/RRAFSReference.htm</a>
+</body></html>

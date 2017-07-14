@@ -1,0 +1,307 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic TabControlFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "TabControlFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=TABCONTROL objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAUtil.htm">SQAUtil</a>.SBH"
+<li>Declare Sub HandleGenericCommand BasicLib "<a href="GenericObjectFunctions.htm">GenericObjectFunctions</a>" Alias "<a href="GenericObjectFunctions.htm#main">Main</a>"
+<li>Declare Function ConvertTwipsToPixels BasicLib "<a href="Win32Utilities.htm">Win32Utilities</a>"
+<li>Declare Function getWhereInfo BasicLib "<a href="GenericObjectFunctions.htm">GenericObjectFunctions</a>"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      ClickTab                'select a Tab on the Tab Control
+      MakeSelection           'select a Tab on the Tab Control (same as ClickTab)
+      SelectTab               'select a Tab on the Tab Control, derives coords from twips
+                              'and converts to pixels for the clicks on Coordinates.
+      SelectTabIndex          'select a Tab by Index.
+                              'and converts to pixels for the clicks on Coordinates.
+      UnverifiedClickTab      'select a Tab on the Tab Control, but do not verify click worked
+                              'log message tab selection performed
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="selecttabindex"></a>
+   Sub SelectTabIndex ( )
+
+
+ DESCRIPTION:
+
+      Tries to perform a standard Click on a particular Tab on the TabControl.
+      The Tab is selected by its index.  The user must know whether the TabControl
+      is 0-based or 1-based.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/warning/fail info using the StepDriverTestInfo.fac LogFacility.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     Content
+      ---     ------------------------------
+       5      Numeric index of the tab to select
+
+              T, WINDOW, TabControl, SelectTabIndex, 2
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 25, 2008
+ History:
+
+      MAR 25, 2008    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="tabcontrolclick"></a>
+   Sub TabControlClick ( optional process )
+
+
+ DESCRIPTION:
+
+      Tries to perform a standard Click on a particular Tab on the TabControl.
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/warning/fail info using the StepDriverTestInfo.fac LogFacility.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      This routine accepts one optional parameter, process, to accomodate unverified
+      clicks.  When process=1, this indicates you did not want to verify the click.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     Content
+      ---     ------------------------------
+       5      Case-sensitive text on the tab to identify which tab to click.
+              For Sheridan SSActiveTabs the item will be treated as a reference
+              to an item in the AppMap containing coordinates at which to Click.
+
+              T, WINDOW, TabControl, ClickTab, "StatsTab"
+
+              Special case Sheridan SSActiveTab example AppMap storage:
+
+              [TabControl]
+              StatsTab="100,12"
+
+      The SSActiveTab "where" lookup is done with the component name of the record AND
+      Field #5.  If no matching App Map reference is found the text of Field#5 will
+      be used "as is".  That is, we will assume it is the "where" information itself.
+      "Coords=" will be prefixed to any "where" info beginning with numeric data (x,y coords).
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 28, 1999
+ History:
+
+      JUL 28, 1999    Original Release
+      JUN 02, 2000    (Carl Nagle) Improved functionality and status reporting.
+      MAY 08, 2001    (BERND WEBER) Enabled MakeSelection and Click for Java Tabs
+      JUN 29, 2001    (Carl Nagle) Modified for Java fixes in Robot V2001A
+      JAN 25, 2002    (Carl Nagle) Updated documentation.  Changed to allow "Coords="
+                      to exist in the value stored in AppMap references for
+                      Sheridan SSActiveTabs.
+      OCT 02, 2002    (Audrey Shull) Added optional process parameter to accomodate
+                      unverified clicks
+      APR 18, 2005    (Carl Nagle) Modified Click/Drag params so that "Coords=" is not assumed.
+      OCT 24, 2006    (Bob Lawler) Updated for better Unverified command processing (RJL).
+      MAR 25, 2008    (Carl Nagle) Updated for .NET controls using Text=field5.
+
+</pre>
+<hr>
+<pre>
+
+<a name="unverifiedtabcontrolclick"></a>
+   Sub UnverifiedTabControlClick ()
+
+
+ DESCRIPTION:
+
+      Tries to perform an unverified Click on a particular Tab on the TabControl.
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/warning/fail info using the StepDriverTestInfo.fac LogFacility.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     Content
+      ---     ------------------------------
+       5      Case-sensitive text on the tab to identify which tab to click.
+              For Sheridan SSActiveTabs the item will be treated as a reference
+              to an item in the AppMap containing coordinates at which to Click.
+
+              T, WINDOW, TabControl, UnverifiedClick, "StatsTab"
+
+              Special case Sheridan SSActiveTab example AppMap storage:
+
+              [TabControl]
+              StatsTab="100,12"
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Audrey Ventura
+ Orig   Date: OCT 02, 2002
+ History:
+
+      OCT 02, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="selecttabtext"></a>
+   Function SelectTabText ()
+
+
+ DESCRIPTION:
+
+      Tries to perform a standard Click on a particular Tab on the TabControl.
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/warning/fail info using the StepDriverTestInfo.fac LogFacility.
+
+      If the provided text value contains ampersands (for hotkey characters) then
+      ampersands will be retained in the TabControl text for comparisons performed
+      to identify the correct tab to click.
+      Otherwise, ampersands are stripped out of the TabControl text to facilitate
+      these comparisons.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The command tries to identify the correct tab in a manner different than the other
+      commands.  Try this command when the normal CLICK command does not seem to work.
+      Note: This command will attempt to call the default CLICK command if it cannot
+      acquire all of the component properties it needs for success.  So it may
+      ALWAYS be the command that is the best first try.  However, it does not currently
+      perform selection validation AFTER the selection has occurred.  (This validation
+      will occur, though, if the default CLICK processing is invoked.)
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     Content
+      ---     ------------------------------
+       5      Case-sensitive text on the tab to identify which tab to click.
+
+ ERRORS:
+
+      none
+
+ Orig Author: John Crunk & Carl Nagle
+ Orig   Date: Jan 4, 2002
+ History:
+
+      Jan 4, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a TABCONTROL.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 28, 1999
+ History:
+
+      JUL 28, 1999    Original Release
+      MAY 08, 2001    (BERND WEBER) Enabled MakeSelection and Click for Java Tabs
+      Jan 10, 2002    (John Crunk) Added SelectTab Function
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      OCT 17, 2005    (Carl Nagle) Removed Click and changed UnverifiedClick to UnverifiedClickTab.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

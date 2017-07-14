@@ -1,0 +1,956 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic NTCommandUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "NTCommandUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Utility routines for executing and monitoring executable programs or
+      batch commandsfrom within SQA Robot.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "NTCommandUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ImageUtilities.htm">ImageUtilities</a>_X.SBH"
+<li>'$Include: "NTCommandUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="ImageUtilities.htm">ImageUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#waitforntcommandcompletion">WaitForNTCommandCompletion</a>  BasicLib NTCommandUtilities 
+Function <a href="#runwshshellprogram">RunWshShellProgram</a>      BasicLib NTCommandUtilities 
+Function <a href="#execwshshellprogram">ExecWshShellProgram</a>     BasicLib NTCommandUtilities 
+Function <a href="#run_ntcmptre_exe">Run_NTCMPTRE_EXE</a>        BasicLib NTCommandUtilities 
+Function <a href="#run_sed_exe">Run_SED_EXE</a>             BasicLib NTCommandUtilities 
+Function <a href="#run_grep_exe">Run_GREP_EXE</a>            BasicLib NTCommandUtilities 
+Function <a href="#run_ntfilecomp_exe">Run_NTFileComp_EXE</a>      BasicLib NTCommandUtilities 
+Function <a href="#run_gnudiff_exe">Run_GNUDiff_EXE</a>         BasicLib NTCommandUtilities 
+Function <a href="#ntfilecompresult">NTFileCompResult</a>        BasicLib NTCommandUtilities 
+Function <a href="#gnudiffcompresult">GNUDiffCompResult</a>       BasicLib NTCommandUtilities 
+Function <a href="#run_rrafstextdiff_exe">Run_RRAFSTextDiff_EXE</a>   BasicLib NTCommandUtilities 
+Function <a href="#run_rrafsbinarydiff_exe">Run_RRAFSBinaryDiff_EXE</a>  BasicLib NTCommandUtilities 
+Function <a href="#run_difftool_exe">Run_DiffTool_EXE</a>        BasicLib NTCommandUtilities 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+Const NTCU_DIFF_BAT_EXTENSION  = "DIFF.BAT"
+Const NTCU_DIFF_GIF_EXTENSION  = "DIFF.GIF"
+Const NTCU_DIFF_HTML_EXTENSION  = "DIFF.HTML"
+
+'these retained for backwards compatibility
+Const NTCU_DIFF_VIEWER_ENV_KEY = DDU_DIFF_VIEWER_ENV_KEY
+Const NTCU_DIFF_VIEWER_OPT_KEY = DDU_DIFF_VIEWER_OPT_KEY
+Const NTCU_DIFF_VIEWER_DEFAULT = DDU_DIFF_VIEWER_DEFAULT
+Const NTCU_DIFF_VIEWER_DEFAULT_OPTIONS = DDU_DIFF_VIEWER_DEFAULT_OPTIONS
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="waitforntcommandcompletion"></a>
+  Function WaitForNTCommandCompletion (timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Waits for the most recently launched and frontmost NT Console Window
+      to finish execution and go away.  This is how we pause Robot to allow
+      the NTCommand executed to complete before continuing.
+      The routine first looks for a topmost ConsoleWindowClass to be at
+      Level 1 (topmost).  It then waits for the Window to go away within
+      the provided timeout period.
+      The routine will return as soon as the window goes away, it does not
+      linger until the end of the timeout period.
+
+ PARAMETERS:
+
+      timeout     the maximum period in seconds the routine will wait before
+                  returning with failure.  If the provided timeout is <= 0
+                  then a default timeout of 30 seconds is used.
+
+ RETURNS:
+
+       0      the ConsoleWindow was found to exist and went away within the
+              timeout period.
+      -1      Either the ConsoleWindow was not found or it did not go away
+              within the timeout period.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="runwshshellprogram"></a>
+  Function RunWshShellProgram (cmdstr as String, Optional winmode, Optional synch) As Integer
+
+ DESCRIPTION:
+
+     Runs a Windows Scripting Host WshShell.Run command with the parameters
+     provided.  Returns the exit code from the call.
+
+ PARAMETERS:
+
+     cmdstr   the command to send to WshShell.Run
+
+     winmode  optional
+              defaults to winmode=1
+              window style to use when running the command.
+              Consult MSDN for all available Integer options.  Some interesting
+              ones are listed below:
+
+              0 - Hide the window, activate another (which one, I don't know :)
+              1 - Active and display the window in last know state
+              3 - Active the window and maximize the window
+              7 - Minimize the window, the active window remains active
+              8 - Display window in its "current" size, the active window
+                  remains active
+
+     synch    optional
+              defaults to synch=false
+              true - WshShell.Run should run synchronously and not return
+              until the command has completed.  The exitcode will reflect
+              that returned from the command executed.
+
+              false - WshShell.Run should launch the command asynchronously
+              and return immediately with exitcode=0
+
+ RETURNS:
+
+       Integer exit code provided by the WshShell.Run command.
+       -32767 if some error occurred; usually app not found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: Aug 15, 2003
+ History:
+
+      Aug 15, 2003    Original Release
+      DEC 12, 2003    (Carl Nagle) Catch program not found errors
+
+</pre>
+<hr>
+<pre>
+
+<a name="execwshshellprogram"></a>
+  Function ExecWshShellProgram (cmdstr as String, timeout as Integer) As Integer
+
+ DESCRIPTION:
+
+     Runs a Windows Scripting Host WshShell.Exec command with the cmdstr
+     provided.  Will wait up to the provided timeout in seconds for the
+     command to complete.
+
+
+ PARAMETERS:
+
+     cmdstr   the command to send to WshShell.Exec
+
+     timeout  the maximum period in seconds the routine will wait before
+              returning.  <=0 means no waiting.
+
+     cmdout   (Optional Variant) will receive any STDOUT and STDERR from the execution.
+
+
+ RETURNS:
+
+       Integer exit code provided by the WshShell.Exec command if the
+       command was called successfully.
+       The exitcode will be 0 if we exit and the command has not yet completed.
+
+       -1 if some error occurred.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: Aug 15, 2003
+ History:
+
+      Aug 15, 2003    Original Release
+      MAY 25, 2005    (Carl Nagle) Added optional cmdout parameter
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_ntcmptre_exe"></a>
+  Function Run_NTCMPTRE_EXE(source  As String, target As String, _
+                            outfile As String, parameters As String, _
+                            timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs the DOS PROGRAM "NTCMPTRE.EXE" through a CONSOLE WINDOW command.
+      This utility compares and reports on the differences between two
+      directory trees.  The output can be piped to a file instead of the
+      DOS window for use in other comparisons or reporting.
+
+      At the time of this writing, valid parameters to NTCMPTRE.EXE were:
+          <src>                   source directory to compare
+          <target>                target directory to compare
+          [-quick|-full]          -quick means no binary compare
+          [-infile FILES_LIST]    specific files to target only
+          [-verbose]              greater runtime and report detail
+          [-nodtm]                ignore file date/time during comparisons
+
+      This routine requires that NTCMPTRE.EXE be in the system path so that
+      Windows will find it.
+      It also expects an environment variable named TEMP to be on the machine.
+      The string value of TEMP should not end with a (\).
+      TEMP is where we temporarily create a batch file to launch the utility.
+      This is required since it seems the utility will not pipe to an output file
+      if it is not executed from a command prompt.
+      We WaitForNTCommandCompletion then we verify that our new output file
+      actually exists.
+
+ PARAMETERS:
+
+      source      full source path for directory tree compare
+      target      full target path for directory tree compare
+      outfile     full path and name to output result file.  If this file exists
+                  prior to running this routine it is deleted first.
+      parameters  additional parameters to provide to NTCMPTRE.EXE
+                  Do not include the (>) pipe character and filename because
+                  we handle all that here.
+      timeout     maximum allowed time for task to complete (in seconds).
+                  Default timeout value is 30 seconds which is used if the
+                  provided value is <= 0.
+
+ RETURNS:
+
+       0  on run successful. This does not mean a successful compare occurred.
+          The outfile needs to be evaluated to determine the success of the
+          actual compare.  You WILL get a 0 only if:
+          WaitForNTCommandCompletion returns success within timeout, AND
+          The expected output file does exist after the DOS WINDOW went away.
+
+      -1  on failure.  Failure can be caused by system file IO problems, the
+          ntcmptre command not being found, the TEMP directory not being
+          set in the system environment or its value is invalid.
+          The routine will also exit with failure if the provided source,
+          target, or outfile parameters are null strings or if
+          WaitForNTCommandCompletion does not complete successfully, or if the
+          output file upon completion does not exist.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+      OCT 10, 2000    (Carl Nagle) Quoted pathnames to fix paths containing spaces.
+      OCT 11, 2002    (Carl Nagle\YWANG) Fixed CMD Win closing problem on W98
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_sed_exe"></a>
+  Function Run_SED_EXE(source As String, outfile As String, _
+                       parameters As String, timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs an NT version of SED.EXE to filter a file.
+
+      This routine requires that SED.EXE be in the system path so that
+      Windows will find it.
+      It also expects an environment variable named TEMP to be on the machine.
+      The string value of TEMP should NOT end with a (\).
+      TEMP is where we temporarily create a batch file to launch the utility.
+      This is required since it seems the utility will not pipe to an output file
+      if it is not executed from a command prompt.
+
+ PARAMETERS:
+
+      source      full path/filename of file to filter with SED.
+      outfile     full path/filename of SED results file.
+      parameters  command parameters to pass to SED.
+      timeout     max timeout period before returning with error.
+
+ RETURNS:
+
+       0          outfile does not exist (as a result of SED) or it's size = 0.
+       1          outfile exists (as a result of SED) and it's size is > 0.
+      -1          some failure occurred or invalid parameters were provided.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 06, 1999
+ History:
+
+      JUL 06, 1999    Original Release
+      OCT 10, 2000    (Carl Nagle) Quoted pathnames to fix paths containing spaces.
+      OCT 11, 2002    (Carl Nagle\YWANG) Fixed CMD Win closing problem on W98
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_grep_exe"></a>
+  Function Run_GREP_EXE(source As String, outfile As String, _
+                       parameters As String, timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs an NT version of GREP.EXE to filter a file.
+
+      This routine requires that GREP.EXE be in the system path so that
+      Windows will find it.
+      It also expects an environment variable named TEMP to be on the machine.
+      The string value of TEMP should NOT end with a (\).
+      TEMP is where we temporarily create a batch file to launch the utility.
+      This is required since it seems the utility will not pipe to an output file
+      if it is not executed from a command prompt.
+
+ PARAMETERS:
+
+      source      full path/filename of file to filter with GREP.
+      outfile     full path/filename of GREP results file.
+      parameters  command parameters to pass to GREP.
+      timeout     max timeout period before returning with error.
+
+ RETURNS:
+
+       0          outfile does not exist (as a result of GREP) or it's size = 0.
+       1          outfile exists (as a result of GREP) and it's size is > 0.
+      -1          some failure occurred or invalid parameters were provided.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 06, 1999
+ History:
+
+      JUL 06, 1999    Original Release
+      OCT 10, 2000    (Carl Nagle) Quoted pathnames to fix paths containing spaces.
+      OCT 11, 2002    (Carl Nagle\YWANG) Fixed CMD Win closing problem on W98
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_difftool_exe"></a>
+  Function Run_DiffTool_EXE(difftool as String, parameters as String, _
+                            source   as String, target     as String, _
+                            outfile  as String, timeout    as Integer, ) As Integer
+
+ DESCRIPTION:
+
+      Called by internal routines.  Not normally called by users directly.
+
+      Runs the provided DIFFTOOL through a CONSOLE WINDOW command.
+      This utility compares and reports on the differences between two
+      files.  The output is piped to OUTFILE instead of to the console
+      for use in other comparisons or reporting.
+
+      The DIFFTOOL provided must support the following command line structure:
+
+           (difftool) file1 file2 (parameters) > outfile
+
+      This routine requires that the DIFFTOOL used be in the system path so that
+      Windows will be able to find and execute it.  Alternate diff tools can
+      be configured for use via the RRAFS.INI configuration file.  If no tool
+      is configured then we will use Windows FC.EXE by default.
+
+      The RRAFS.INI entries to specify alternate diff tools:
+
+      [DIFFER]
+      TOOL_EXE=
+      TOOL_OPTIONS=
+      TOOL_BINARY_OPTIONS=
+
+      The routine creates a BAT file in the active Dif folder so that if you have the
+      ExamDiff(or another diff viewer) tool installed you will be able to execute
+      the BAT file and get a visual comparison of the file differences (if any exist).
+      The BAT file will be of no use if no viewer is installed.
+
+      Alternate diff tools can be configured for use via the RRAFS.INI configuration
+      file.  If no tool is configured then we will assume EXAMDIFF.EXE by default.
+
+      The RRAFS.INI entries to specify alternate diffviewer tools:
+
+      [DIFFVIEWER]
+      TOOL_EXE=
+      TOOL_OPTIONS=
+
+      Environment Variables "DDE_DIFF_VIEW_EXE" and "DDE_DIFF_VIEW_OPTIONS" can
+      be used instead of the RRAFS.INI file.  RRAFS.INI settings will be favored
+      over Environment Variable settings.
+
+      The viewer must already be in the system PATH or the paths in RRAFS.INI or
+      the Environment variable listed above must have the full path to the viewer.
+      You may have to append the viewer's directory into the PATH environment
+      variable if the path to the viewer contains spaces.
+
+      The routine expects an environment variable named TEMP to be on the machine.
+      The string value of TEMP should NOT end with a (\).
+      TEMP is where we temporarily create a batch file to launch the utility.
+      This is required since it seems the utility will not pipe to an output file
+      if it is not executed from a command prompt.
+
+      NOTE: This function will attempt to recognize when common IMAGE types are
+      being compared and produce additional output files in the Dif directory for
+      viewing the images in a web browser (assuming the browser supports the image
+      formats).
+      In this case, the function will attempt to invoke <a href="ImageUtilities.htm#CreateImageDiff" target="_blank">CreateImageDiff</a>
+      to add to the browser view and make visual comparisons easier.  This will only
+      succeed if one of the tools supported by CreateImageDiff has been installed
+      on the machine.  The function will still work as always if no additional
+      tools have been installed.
+
+
+ PARAMETERS:
+
+      difftool    the diff EXE to use for the file comparison
+
+      parameters  parameters to provide to the DIFFTOOL EXE for the comparison.
+                  Do not include the (>) pipe character and dif name because
+                  we handle all that here.
+
+      source      full source path for file1 (usually a benchmark file)
+
+      target      full target path for file2 (file to compare with file1)
+
+      outfile     full path and name to output result file (dif file).
+                  If this file exists prior to running this routine it is
+                  deleted first.
+
+      timeout     maximum allowed time for task to complete (in seconds).
+                  Default timeout value is 30 seconds which is used if the
+                  provided value is <= 0.
+
+
+ RETURNS:
+
+       0  on run successful. This does not mean a successful compare occurred.
+          The outfile needs to be evaluated to determine the success of the
+          actual compare.  You WILL get a 0 only if:
+          The expected output file does exist after the DOS WINDOW went away.
+
+      -1  on failure.  Failure can be caused by system file IO problems, the
+          DIFFTOOL EXE not being found, the TEMP directory not being
+          set in the system environment or its value is invalid.
+          The routine will also exit with failure if the provided source,
+          target, or outfile parameters are null strings or don't exist or if the
+          output file upon completion does not exist.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 15, 2003
+ History:
+
+      AUG 15, 2003    Original Release
+      APR 25, 2005    (Carl Nagle) Output a DIFFHTML into DIF dir for IMG compares
+      MAY 24, 2005    (Carl Nagle) Output a DIFF.GIF into DIF dir for IMG compares
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_ntfilecomp_exe"></a>
+  Function Run_NTFileComp_EXE(source  As String, target As String, _
+                            outfile As String, parameters As String, _
+                            timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs the DOS PROGRAM "FC" via Run_DiffTool_EXE above.
+      This utility compares and reports on the differences between two
+      files.  The output will be piped to a file instead of the
+      DOS window.
+
+      At the time of this writing, valid parameters to FC were:
+
+      /A      Displays only first and last lines for each set of differences.
+      /B      Perform a Binary comparison.
+      /C      Disregard the case of letters.
+      /L      Compare files as ASCII text.
+      /LBn    Sets max consecutive mismatches to the specified number of lines.
+      /N      Displays the line numbers on an ASCII comparison
+      /T      Does not expand tabs to spaces.
+      /U      Compare files as UNICODE text files.
+      /W      Compress whitespace for comparison.
+      /nnnn   The number of consecutive lines that must match after a mismatch.
+
+      NOTE, a successful compare would normally have two lines of text:
+      (1) Comparing files FILE1 and FILE2
+      (2) FC: no differences encountered
+
+      Difference reporting sections usually begin and end with "*****"
+
+
+ PARAMETERS:
+
+      source      full source path for file1 (usually a benchmark file)
+
+      target      full target path for file2 (file to compare with file1)
+
+      outfile     full path and name to output result file (dif file).
+                  If this file exists prior to running this routine it is
+                  deleted first.
+
+      parameters  additional parameters to provide to FC
+                  Do not include the (>) pipe character and dif name because
+                  we handle all that here.
+
+      timeout     maximum allowed time for task to complete (in seconds).
+                  Default timeout value is 30 seconds which is used if the
+                  provided value is <= 0.
+
+ RETURNS:
+
+       0  on run successful. This does not mean a successful compare occurred.
+          The outfile needs to be evaluated to determine the success of the
+          actual compare.  You WILL get a 0 only if:
+          The expected output file does exist after the DOS WINDOW went away.
+
+      -1  on failure.  Failure can be caused by system file IO problems, the
+          FC command not being found, the TEMP directory not being
+          set in the system environment or its value is invalid.
+          The routine will also exit with failure if the provided source,
+          target, or outfile parameters are null strings or don't exist or if the
+          output file upon completion does not exist.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 02, 1999
+ History:
+
+      AUG 02, 1999    Original Release
+      AUG 09, 1999    (Carl Nagle) Removed failure if FC window not detected.
+                               Final failure occurs if Dif outfile is not
+                               created.
+      OCT 10, 2000    (Carl Nagle) Quoted pathnames to fix paths containing spaces.
+      OCT 12, 2000    (Carl Nagle) Quoted pathnames to fix paths containing spaces. REALLY!
+      SEP 24, 2002    (DCOEN\Carl Nagle) Added DIFF.BAT functionality.
+      OCT 11, 2002    (Carl Nagle\YWANG) Fixed CMD Win closing problem on W98
+      AUG 15, 2003    (Carl Nagle) Extract functionality into Run_DiffTool_EXE
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_gnudiff_exe"></a>
+  Function Run_GNUDiff_EXE (source  As String, target As String, _
+                            outfile As String, parameters As String, _
+                            timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs the PROGRAM "DIFF.EXE" via Run_DiffTool_EXE above.
+      This utility compares and reports on the differences between two
+      files.  The output will be piped to a file instead of the
+      DOS window.
+
+      There are too many options available for DIFF.EXE to list here.
+      Consult: <A href="http://www.fsf.org/software/diffutils/manual/diff.html">DiffUtils Docs</A>
+
+      Some interesting case-sensitive options:
+
+      --text    force a text compare
+      --binary  force binary compare AND binary diff output (for hex viewing?)
+      -s      force "identical" note if files are the same
+      -q      output a quick "differ" or "identical" notes.  No lines of differing text.
+      -y      output lines in side-by-side mode
+
+      If you intend to use the GNUDiffCompResult function to check the results,
+      this call must have as one of the parameters to DIFF.EXE the "-s" option.
+      The -s option tells DIFF.EXE to write out "[files] are identical"
+      text if no differences are found.  Otherwise, DIFF.EXE may NOT
+      write anything to the diff file if no differences are found.
+
+      Of course, the DIFF.EXE program must be installed and findable by Windows
+      in its search PATH.  To install the binaries appropriate for Windows. goto:
+      <A href="http://unxutils.sourceforge.net/">GNU Utils for Win32 on SourceForge</A>.
+
+
+ PARAMETERS:
+
+      source      full source path for file1 (usually a benchmark file)
+
+      target      full target path for file2 (file to compare with file1)
+
+      outfile     full path and name to output result file (dif file).
+                  If this file exists prior to running this routine it is
+                  deleted first.
+
+      parameters  parameters to provide DIFF.EXE
+                  Do not include the (>) pipe character and dif name because
+                  we handle all that here.
+
+      timeout     maximum allowed time for task to complete (in seconds).
+                  Default timeout value is 30 seconds which is used if the
+                  provided value is <= 0.
+
+ RETURNS:
+
+       0  on run successful. This does not mean a successful compare occurred.
+          The outfile needs to be evaluated to determine the success of the
+          actual compare.  You WILL get a 0 only if:
+          The expected output file does exist after the DOS WINDOW went away.
+
+      -1  on failure.  Failure can be caused by system file IO problems, the
+          DIFF command not being found, the TEMP directory not being
+          set in the system environment or its value is invalid.
+          The routine will also exit with failure if the provided source,
+          target, or outfile parameters are null strings or don't exist or if the
+          output file upon completion does not exist.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 18, 2003
+ History:
+
+      AUG 18, 2003    Original Release
+      APR 19, 2004    (Carl Nagle) Corrected some DIFF.EXE documentation only.
+
+</pre>
+<hr>
+<pre>
+
+<a name="ntfilecompresult"></a>
+  Function NTFileCompResult(source  As String) As Integer
+
+ DESCRIPTION:
+
+      This routine will evaluate the given source file and determine if
+      it contains the string indicating that a successful file compare
+      occurred and that the files matched.
+
+      This routine would normally only be called after a successful call
+      to Run_NTFileComp_EXE returned a status=0 (success).  It is specifically
+      looking for text string output by the FC.EXE file compare tool.
+
+      NOTE, a successful compare would normally have two lines of text:
+      (1) Comparing files FILE1 and FILE2
+      (2) FC: no differences encountered
+
+      Difference reporting sections usually begin and end with "*****"
+
+
+ PARAMETERS:
+
+      source      full source path for FC output file.
+                  This should be the outfile specification used in the call
+                  to Run_NTFileComp_EXE.
+
+ RETURNS:
+
+       0  on successful evaluation of the outfile and finding the
+          "FC: no differences found" string.
+
+       1  failure. Source file contained reported differences ("*****").
+
+      -1  command failure.  Failure can be caused by system file IO problems.
+          The routine will also exit with failure if the provided source file
+          was a null strings, doesn't exist, or does not have expected
+          FC status text.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 02, 1999
+ History:
+
+      AUG 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gnudiffcompresult"></a>
+  Function GNUDiffCompResult(source  As String) As Integer
+
+ DESCRIPTION:
+
+      This routine will evaluate the given source file and determine if
+      it contains the string indicating that a successful file compare
+      occurred and that the files matched.
+
+      This routine would normally only be called after a successful call
+      to Run_GNUDiff_EXE returned a status=0 (success).  That call must
+      have had as one of the parameters to DIFF.EXE the "-s" option.
+      The -s option tells DIFF.EXE to write out "[files] are identical"
+      text if no differences are found.  Otherwise, DIFF.EXE may NOT
+      write anything to the diff file if no differences are found.
+
+      Consult: <A href="http://www.fsf.org/software/diffutils/manual/diff.html">DiffUtils Docs</A>
+      for other options available to DIFF.EXE
+
+      NOTE, a successful compare would normally have one line of text:
+      (1) Files [filenames] are identical
+         OR
+      (1) Files [filenames] differ
+
+      Of course, the DIFF.EXE program must be installed and findable by Windows
+      in its search PATH.  To install the binaries appropriate for Windows. goto:
+      <A href="http://unxutils.sourceforge.net/">GNU Utils for Win32 on SourceForge</A>.
+
+ PARAMETERS:
+
+      source      full source path for GNU DIFF.EXE output file.
+                  This should be the outfile specification used in the call
+                  to Run_GNUDiff_EXE.
+
+ RETURNS:
+
+       0  on successful evaluation of the outfile and finding the
+          " are identical" string.
+
+       1  failure. Source file contained reported differences (" differ").
+          (if the -q option is used) Generally, the absence of " are identical"
+          is used to determine a difference exists.
+
+      -1  command failure.  Failure can be caused by system file IO problems.
+          The routine will also exit with failure if the provided source file
+          was a null strings, doesn't exist, or does not have status text.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 08, 2003
+ History:
+
+      AUG 08, 2003    Original Release
+      AUG 19, 2003    (Carl Nagle) Added support for testing binary comp results.
+      APR 19, 2004    (Carl Nagle) Corrected some DIFF.EXE documentation only.
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_rrafstextdiff_exe"></a>
+  Function Run_RRAFSTextDiff_EXE (source  As String, target As String, _
+                                  outfile As String, timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs the text diff tool specified in the RRAFS.INI configuration file.
+      If none is specified, the default FC.EXE file comparator is used.
+
+      The RRAFS.INI file supports user-configurable diff utilities with the
+      following entries:
+
+      [DIFFER]
+      TOOL_EXE=
+      TOOL_OPTIONS=
+      TOOL_BINARY_OPTIONS=
+
+      This routine combines the actual diff execution along with the
+      post-diff results evaluation to return the final result of whether
+      the files were different, or not.  We can only take that extra step
+      if the diff tool and method to evaluate the diff results are known
+      to us.
+
+      Consequently, as of this writing, only the FC.EXE and GNU DIFF.EXE
+      tools are supported with this complete cycle.
+
+
+ PARAMETERS:
+
+      source      full source path for file1 (usually a benchmark file)
+
+      target      full target path for file2 (file to compare with file1)
+
+      outfile     full path and name to output result file (dif file).
+                  If this file exists prior to running this routine it is
+                  deleted first.
+
+      timeout     maximum allowed time for task to complete (in seconds).
+                  Default timeout value is 30 seconds which is used if the
+                  provided value is <= 0.
+
+ RETURNS:
+
+       0  on successful evaluation of the resulting diff and finding that
+          the source and target are considered identical.
+
+       1  failure. The source and target were not considered identical.
+
+       2  uncertain.  The diff tool was not recognized.  The diff program
+          was successfully executed; however, we could not evaluate the
+          outfile to know whether the source and target were considered
+          to be identical.  This check will have to be done manually.
+
+      -1  on failure.  Failure can be caused by system file IO problems, the
+          diff utility not being found, the TEMP directory not being
+          set in the system environment or its value is invalid.
+          The routine will also exit with failure if the provided source,
+          target, or outfile parameters are null strings or don't exist or if the
+          output file upon completion does not exist.
+          Or, it could be something else :)
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 18, 2003
+ History:
+
+      AUG 18, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="run_rrafsbinarydiff_exe"></a>
+  Function Run_RRAFSBinaryDiff_EXE (source  As String, target As String, _
+                                    outfile As String, timeout As Integer) As Integer
+
+ DESCRIPTION:
+
+      Runs the binary moded diff tool specified in the RRAFS.INI configuration file.
+      If none is specified, the default FC.EXE file comparator is used.
+
+      The RRAFS.INI file supports user-configurable diff utilities with the
+      following entries:
+
+      [DIFFER]
+      TOOL_EXE=
+      TOOL_OPTIONS=
+      TOOL_BINARY_OPTIONS=
+
+      This routine combines the actual diff execution along with the
+      post-diff results evaluation to return the final result of whether
+      the files were different, or not.  We can only take that extra step
+      if the diff tool and method to evaluate the diff results are known
+      to us.  Consequently, as of this writing, only the FC.EXE and GNU
+      DIFF.EXE tools are supported with this complete cycle.
+
+
+ PARAMETERS:
+
+      source      full source path for file1 (usually a benchmark file)
+
+      target      full target path for file2 (file to compare with file1)
+
+      outfile     full path and name to output result file (dif file).
+                  If this file exists prior to running this routine it is
+                  deleted first.
+
+      timeout     maximum allowed time for task to complete (in seconds).
+                  Default timeout value is 30 seconds which is used if the
+                  provided value is <= 0.
+
+ RETURNS:
+
+       0  on successful evaluation of the resulting diff and finding that
+          the source and target are considered identical.
+
+       1  failure. The source and target were not considered identical.
+
+       2  uncertain.  The diff tool was not recognized.  The diff program
+          was successfully executed; however, we could not evaluate the
+          outfile to know whether the source and target were considered
+          to be identical.  This check will have to be done manually.
+
+      -1  on failure.  Failure can be caused by system file IO problems, the
+          diff utility not being found, the TEMP directory not being
+          set in the system environment or its value is invalid.
+          The routine will also exit with failure if the provided source,
+          target, or outfile parameters are null strings or don't exist or if the
+          output file upon completion does not exist.
+          Or, it could be something else :)
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 18, 2003
+ History:
+
+      AUG 18, 2003    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

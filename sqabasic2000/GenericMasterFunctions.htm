@@ -1,0 +1,1567 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic GenericMasterFunctions Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "GenericMasterFunctions" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on most objects in Data-Driven Automation.
+
+      Since POPUP menus for ALL component types are handled generically by the
+      operating system they are also handled here.
+
+      These routines are not normally called by a user or developer but instead
+      are called by the various Component Scripts performing tests based on a
+      data table being processed by the StepDriver.  When that script needs
+      no special processing of a particular ACTION COMMAND it can call these
+      generic routines to perform the job.
+
+ SUPPORTED ACTION COMMANDS:
+
+      VerifyProperty          'Verify a single property value
+      VerifyPropertyContains  'Verify property value contains a string
+      VerifyValueContains     'Verify variable value contains a string
+      VerifyValues            'Verify two values are identical
+      VerifyValuesIgnoreCase  'Verify two values are equivalent, ignoring case
+      VerifyPropertyToFile    'Verify a large string property value with a file benchmark
+      VerifyClipboardToFile   'Verify clipboard contents with a file benchmark
+      VerifyClipboardVP       'Perform a Robot ClipboardVP on clipboard contents
+      GUIDoesExist            'Test for the visual existence of a Window or Component
+      GUIDoesNotExist         'Test for the visual non-existence of a Window or Component
+      AssignPropertyVariable  'Assign a property value to a specific DDVariable
+      InputKeys               'Send text to the specified component
+      InputCharacters         'Send character(s) to the specified component
+      VerifyTabOrder          'Verifies the Tab Order of child components
+      VerifyFileToFile        'Performs an ASCII comparison of two files (identical to VerifyTextFileToFile)
+      VerifyTextFileToFile    'Performs an ASCII comparison of two files (identical to VerifyFileToFile)
+      VerifyBinaryFileToFile  'Performs a binary comparison of two files
+      GetGUIImage             'Save the screen shot of a component to a bmp or jpg file
+      VerifyGUIImageToFile    'Verify the screen shot of a component with a benchmark bmp or jpg file
+      VerifyObjectDataToFile  'Verify object data with a file benchmark
+      CaptureObjectDataToFile 'Capture object data into a specified file
+      SetPropertyValue        'Set an object's property value
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\GenericMasterFunctions.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+<li>'$INCLUDE: "GenericMasterFunctions_X.SBH"
+<li>Declare Function V2003Commands BasicLib "<a href="V2003Functions.htm">V2003Functions</a>"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#gmfisrecordsupported">GMFIsRecordSupported</a>    BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyproperty">GenericVerifyProperty</a>   BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifypropertycontains">GenericVerifyPropertyContains</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyarrayproperty">GenericVerifyArrayProperty</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyarraypropertytofile">GenericVerifyArrayPropertyToFile</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifymenustructure">GenericVerifyMenuStructure</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifymenuitem">GenericVerifyMenuItem</a>   BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifymenuid">GenericVerifyMenuID</a>     BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericunimplementedcommand">GenericUnimplementedCommand</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifypropertytofile">GenericVerifyPropertyToFile</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyclipboardtofile">GenericVerifyClipboardToFile</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericassignpropertyvariable">GenericAssignPropertyVariable</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericguidoesexist">GenericGUIDoesExist</a>     BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericguidoesnotexist">GenericGUIDoesNotExist</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericgetguiimage">GenericGetGUIImage</a>      BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyguiimagetofile">GenericVerifyGUIImageToFile</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyfiletofile">GenericVerifyFileToFile</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericverifyvaluecontains">GenericVerifyValueContains</a>  BasicLib GenericMasterFunctions 
+   Sub   <a href="#genericsetpropertyvalue">GenericSetPropertyValue</a>  BasicLib GenericMasterFunctions 
+Function <a href="#findtabfile">FindTabFile</a>             BasicLib GenericMasterFunctions 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+Const GENERIC_VERIFY_PROPERTY_COMMAND                 = "VerifyProperty"
+Const GENERIC_VERIFY_PROPERTY_CONTAINS_COMMAND        = "VerifyPropertyContains"
+Const GENERIC_VERIFY_PROPERTY_TO_FILE_COMMAND         = "VerifyPropertyToFile"
+Const GENERIC_VERIFY_ARRAY_PROPERTY_TO_FILE_COMMAND   = "VerifyArrayPropertyToFile"
+Const GENERIC_VERIFY_CLIPBOARD_TO_FILE_COMMAND        = "VerifyClipboardToFile"
+Const GENERIC_VERIFY_CLIPBOARD_VP_COMMAND             = "VerifyClipboardVP"
+Const GENERIC_GUI_DOES_EXIST                          = "GUIDoesExist"
+Const GENERIC_GUI_DOES_NOT_EXIST                      = "GUIDoesNotExist"
+Const GENERIC_ASSIGN_PROPERTY_VARIABLE                = "AssignPropertyVariable"
+Const GENERIC_INPUTKEYS_COMMAND                       = "InputKeys"
+Const GENERIC_INPUTCHARACTERS_COMMAND                 = "InputCharacters"
+Const GENERIC_VERIFY_TAB_ORDER_COMMAND                = "VerifyTabOrder"
+Const GENERIC_VERIFY_TAB_ORDER_SHORTCOMMAND           = "TabOrder"
+Const GENERIC_GET_GUI_IMAGE                           = "GetGUIImage"
+Const GENERIC_VERIFY_GUI_IMAGE_TO_FILE                = "VerifyGUIImageToFile"
+Const GENERIC_VERIFY_FILE_TO_FILE_COMMAND             = "VerifyFileToFile"
+Const GENERIC_VERIFY_TEXT_FILE_TO_FILE_COMMAND        = "VerifyTextFileToFile"
+Const GENERIC_VERIFY_BINARY_FILE_TO_FILE_COMMAND      = "VerifyBinaryFileToFile"
+Const GENERIC_VERIFY_VALUE_CONTAINS_COMMAND           = "VerifyValueContains"
+Const GENERIC_VERIFY_VALUES_COMMAND                   = "VerifyValues"
+Const GENERIC_VERIFY_VALUES_NOCASE_COMMAND            = "VerifyValuesIgnoreCase"
+Const GENERIC_VERIFY_OBJECTDATA_TO_FILE_COMMAND       = "VerifyObjectDataToFile"
+Const GENERIC_CAPTURE_OBJECTDATA_TO_FILE_COMMAND      = "CaptureObjectDataToFile"
+Const GENERIC_SET_PROPERTY_VALUE_COMMAND              = "SetPropertyValue"
+
+Const GENERIC_COMPONENT_ACTIONS_MAP_FILENAME      = "XSLComponentActions.MAP"
+Const GENERIC_COMPONENT_ACTIONS_MAP_SEPARATOR     = ":"
+Const GENERIC_COMPONENT_ACTION_UNSUPPORTED        = 0
+Const GENERIC_COMPONENT_ACTION_RECORD_UNSUPPORTED = -1
+Const GENERIC_COMPONENT_ACTION_RECORD_SUPPORTED   = 1
+
+Const CASE_INSENSITIVE = "CASE-INSENSITIVE"
+Const CASEINSENSITIVE = "CASEINSENSITIVE"
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="gmfisrecordsupported"></a>
+   Function GMFIsRecordSupported (library as String,
+                                  action as String,
+                                  recordType As String) as Integer
+
+ DESCRIPTION:
+
+  This routine is normally only called by the component function libraries
+  themselves.  The user does not normally ever need to call this function.
+
+  This routine will check the XSLComponentActions.MAP file located in the
+  DDE_RUNTIME location to check if the given library supports the specified
+  action.  If the action is supported, it will also check to see if the
+  action supports the specified record type.
+
+
+ PARAMETERS:
+
+  library     The name of the library to check for support.
+              For example: "CheckBoxFunctions" or "WindowFunctions".
+
+  action      The action command to check for support.  We are checking to
+              see if the provided library supports this action. Example
+              actions might be: "Click", "VerifyProperty", or "SetTextValue".
+
+  recordType  The recordType to check for support.  We are checking to see
+              if the action in the library supports the record type.
+              Example record types might be: "T", "TW", or "TF".
+
+
+ RETURNS an Integer:
+
+      GENERIC_COMPONENT_ACTION_UNSUPPORTED   The action is not supported by
+                                             the provided library.  This generally
+                                             means we will use the fall thru
+                                             mechanism to see if some other library
+                                             implements the action.
+
+      GENERIC_COMPONENT_ACTION_RECORD_UNSUPPORTED   The action is supported, but the
+                                                    record type is not.
+                                                    (This generally is an error condition.)
+
+      GENERIC_COMPONENT_ACTION_RECORD_SUPPORTED   This is a match. The record
+                                                  is fully supported by the library.
+
+ ERRORS:
+
+      none
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2002
+ History:
+
+      DEC 12, 2002    Original Release
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyproperty"></a>
+   Sub GenericVerifyProperty ()
+
+ DESCRIPTION:
+
+      Routine to verify the value of a property as a String.  The expected
+      value is processed via <a href="StringUtilities.htm#GetTrimmedQuotedString">GetTrimmedQuotedString</a>.
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive name of the object property to verify
+       6      the expected string value to get from the property
+      [7]     (optional) "CASE-INSENSITIVE", "CASEINSENSITIVE", and "FALSE" will
+                         cause the routine to ignore case on the comparison.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      APR 24, 2000    (Carl Nagle) Enhanced using GetQuotedField in StringUtilities
+      DEC 11, 2002    (Carl Nagle) Enable TF record type.
+      NOV 08, 2004    (Carl Nagle) Support case-insensitive compares.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifypropertycontains"></a>
+   Sub GenericVerifyPropertyContains ()
+
+ DESCRIPTION:
+
+      Routine to verify that the value of a property contains a specified string.
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive name of the object property to verify
+       6      the string value to verify the property contains
+      [7]     (optional) "CASE-INSENSITIVE", "CASEINSENSITIVE", and "FALSE" will
+                         cause the routine to ignore case on the value comparison.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Jack Imbriani
+ Orig   NOV 21, 2002
+ History:
+
+      NOV 21, 2002    Jack Imbriani Original Release
+      DEC 11, 2002    (Carl Nagle) Enable TF record type.
+      NOV 08, 2004    (Carl Nagle) Support case-insensitive compares.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyvaluecontains"></a>
+   Sub GenericVerifyValueContains ()
+
+ DESCRIPTION:
+
+      Routine to verify that a string value contains a specified substring.
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+      This same routine also supports VerifyValues and VerifyValuesIgnoreCase.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      a string value to check for a substring (or complete match).
+              If this value is blank, only a blank substring will match.
+
+       6      the substring (or complete string) to verify preceeding string contains
+              A blank substring will ONLY produce a match if field 5
+              is also blank.
+
+              VerifyValues requires a complete case-sensitive string in field 6
+              since it tests for an exact match.
+
+              VerifyValuesIgnoreCase requires a complete string in field 6 to
+              perform the same exact match, but ignores case.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Jack Imbriani
+ Orig   NOV 25, 2002
+ History:
+
+      NOV 25, 2002    Jack Imbriani Original Release
+      DEC 11, 2002    (Carl Nagle) Enable TF record type.
+      FEB 07, 2003    (Carl Nagle) Allow ValueContains to match empty strings.
+      AUG 21, 2003    (Carl Nagle) Added VerifyValues commands.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericassignpropertyvariable"></a>
+   Sub GenericAssignPropertyVariable ()
+
+ DESCRIPTION:
+
+      Routine to assign the string value of a property to a DDVariable.
+      Any property value successfully retrieved will be stored as a String
+      value.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive name of the object property to extract the String value from.
+       6      The name of the Variable to receive the value.  GetTrimmedQuotedField
+              will be used to extract the name of the variable.
+
+              Note, if you supply the name of the variable and include the leading
+              caret (^) symbol then the variable must be enclosed in quotes.
+              Otherwise, that variable will be used like any other variable and the
+              substituted value of that variable will be interpretted as the name
+              of the variable you wish to use.
+
+      Examples:
+
+          Assigns value of "Text" property to DDVariable ^TextProperty:
+              T, window, component, AssignPropertyVariable, Text, TextProperty
+
+          Assigns value of "Text" property to DDVariable ^TextProperty:
+              T, window, component, AssignPropertyVariable, Text, "TextProperty"
+
+          Assigns value of "Text" property to DDVariable ^TextProperty:
+              T, window, component, AssignPropertyVariable, Text, "^TextProperty"
+
+
+          Assigns value of "Text" property to DDVariable ^NewTextProperty:
+
+              C, SetVariableValues, ^TextProperty="NewTextProperty"
+              T, window, component, AssignPropertyVariable, Text, ^TextProperty
+
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 20, 2001
+ History:
+
+      JUN 20, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericguidoesexist"></a>
+   Sub GenericGUIDoesExist ()
+
+ DESCRIPTION:
+
+      Routine to verify the existence of a particular window and/or component.
+      If the window(Field 2) and component(Field 3) are the same then we only
+      check for the existence of the window.  However, if the component is
+      actually a child of the window then we first check for the window and
+      then check for the component.
+
+      If a Window or Component is HIDDEN, it will be treated as if it Does NOT Exist.
+      The item must be VISIBLE to pass.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      Examples:
+
+          T, AWindow, AWindow, GUIDoesExist
+
+          TF, AWindow, AChild, GUIDoesExist
+
+ DATA TABLE PARAMETERS:
+
+      none
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 20, 2001
+ History:
+
+      JUN 20, 2001    Original Release
+      DEC 11, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericguidoesnotexist"></a>
+   Sub GenericGUIDoesNotExist ()
+
+ DESCRIPTION:
+
+      Routine to verify the non-existence of a particular window or component.
+      If the window(Field 2) and component(Field 3) are the same then we only
+      check for the non-existence of the window.  However, if the component is
+      actually a child of the window then we first check for the existence
+      of the window and then check for the non-existence of the component.
+
+      An error will be reported if we are looking for the non-existence of
+      a child component, and the window is not found to exist.
+
+      If a Window or Component has simply become HIDDEN, it will be treated
+      as if it Does NOT Exist.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      Examples:
+
+          T, AWindow, AWindow, GUIDoesNotExist
+
+          TF, AWindow, AChild, GUIDoesNotExist
+
+ DATA TABLE PARAMETERS:
+
+      none
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 20, 2001
+ History:
+
+      JUN 20, 2001    Original Release
+      DEC 11, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyarraypropertytofile"></a>
+   Sub GenericVerifyArrayPropertyToFile ()
+
+ DESCRIPTION:
+
+      Routine to verify the values of an array property with values in a
+      benchmark file.
+
+      This command supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" record type for user configured file
+      comparators for which we have no means to automatically verify the
+      results.
+
+      Note, strings have an inherent length limit of 32K.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Case-sensitive name of the object array property to verify
+
+       6      Benchmark text filename.  Relative paths suitable for FindSQAFile
+              can be used.  Normally, the Benchmark file would reside in the
+              Project's Datapool\Bench directory.
+
+       7      (Optional) Filter MODE to be used on the retrieved property value.
+              This is for future implementations that will allow us to
+              filter out dynamic text that we don't want to include in
+              comparisons.  This is NOT currently implemented.
+
+       8      (Optional) Filter OPTIONS to be used in conjunction with any
+              supplied Filter MODE.  This is not currently implemented.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2002
+ History:
+
+      DEC 12, 2002    Original Release
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+      AUG 18, 2003    (Carl Nagle) Mods to allow alternate file comparator tools.
+      DEC 12, 2005    (JRUXLOW) Added the ability to handle an array with only one item
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifymenustructure"></a>
+   Sub GenericVerifyMenuStructure(hMenu As Long)
+
+ DESCRIPTION:
+
+      Given a menu handle the routine outputs the full structure
+      with status to a file.  It then compares that file with the specified
+      benchmark file and sets pass/fail conditions for the test.
+      This routine was primarily developed for testing Popup menus, but
+      standard menus can also be processed here.
+
+      This command supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" record type when the user has configured
+      a diff tool for which we have no means to automatically verify the results.
+      The command will produce a TEST WARNING when such a tool is used.
+
+      The routine expects that Global StepDriverTestInfo contains all the additional
+      information it needs to perform its function .
+
+ INPUT PARAMETERS (from the calling module):
+
+      hMenu   The handle to the menu to validate.  This will be provided
+              by other routines that retrieve this handle prior to this call.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name.ext of benchmark file findable by <a href="FileUtilities.htm#findsqafile">FindSQAFile</a>.
+      [6]     Optional expected descriptive text at start of file (first line of bench).
+              (If bench has this descriptive text this field is REQUIRED to pass.)
+      [7]     optional name.ext to give current structure in repository's
+              Datapool\Test directory for compare with benchmark.
+              If no name is given then the bench name is used.
+      [8]     optional name.ext to store difference information in repository's Datapool\Dif.
+              If no name is given then the bench name is used.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+      AUG 18, 2003    (Carl Nagle) Mods to allow alternate file comparator tools.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifymenuitem"></a>
+   Sub GenericVerifyMenuItem(hMenu As Long, Optional match)
+
+ DESCRIPTION:
+
+      Attempts to verify the state information of a particular text string
+      menuitem in the given menu.  The menuitem should be specified in the form
+      "Menu->Menu->MenuItem   CTRL+V" with the full text (ampersands optional),
+      spaces(if any), and keyboard shortcut text (if any).
+      (The ampersands precede any character in the menuitem that is underlined.)
+
+      If the optional "match" parameter is provided then partial text matches
+      are enabled at each level of the menu hierarchy.  This is only available from
+      external function calls (WindowFunctions).  You cannot specify the use
+      of partial text matches from within the text table record other than by
+      using the appropriate ACTION COMMAND.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that Global StepDriverTestInfo contains all the additional
+      information it needs to perform its function .
+
+ INPUT PARAMETERS (from the calling module):
+
+      hMenu   The handle to the menu to use.  This will be provided
+              by other routines that retrieve this handle prior to this call.
+
+      match   Optional: set to 1 to enable partial text matches of menuItem text.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Menu->MenuItem hierarchy string to identify which menuitem to test.
+              This menu hierarchy IS case-sensitive
+
+       6      Expected status string (or part thereof) to verify.
+              Ex: "Enabled Checked"         OR  "Disabled Grayed"    etc.
+              Each item separated by a space will be evaluated separately so
+              the order of the status items does not matter.
+              These status items ARE case-sensitive.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+      APR 30, 2002    (Carl Nagle) Enabled partial text matches.
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifymenuid"></a>
+   Sub GenericVerifyMenuID(hMenu As Long)
+
+ DESCRIPTION:
+
+      Attempts to verify the state information of a particular menuitem
+      identified by MenuID in the provided menu.  This is generally used when
+      the menuitem is a bitmap or other item that does not have text.
+      This value can be retrieved from the the menu by index or by manual
+      lookup from a menu structure output from MenuUtilities.
+
+      This command also supports the "TF"(expected failure) record type.
+      This command does not support the "TW" record type.
+
+      The routine expects that Global StepDriverTestInfo contains all the additional
+      information it needs to perform its function .
+
+ INPUT PARAMETERS (from the calling module):
+
+      hMenu   The handle to the menu to use.  This will be provided
+              by other routines that retrieve this handle prior to this call.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      MenuID to identify which menuitem to test.  This is generally used
+              when the menuitem is a bitmap or other item that does not have text.
+              This value can be retrieved from the the menu by index or by manual
+              lookup from a menu structure output from MenuUtilities.
+
+       6      Expected status string (or part thereof) to verify.
+              Ex: "Enabled Checked"         OR  "Disabled Grayed"    etc.
+              Each item separated by a space will be evaluated separately so
+              the order of the status items does not matter.
+              These status items ARE case-sensitive.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifypropertytofile"></a>
+   Sub GenericVerifyPropertyToFile ()
+
+ DESCRIPTION:
+
+      Routine to verify the string value of a property to a file benchmark.
+      Much like GenericVerifyProperty only the expected value is in a file,
+      not in a provided text string.
+
+      Note, strings have an inherent length limit of 32K.
+
+      This command also supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" record type when the user has configured
+      a diff tool for which we have no means to automatically verify the results.
+      The command will produce a TEST WARNING when such a tool is used.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Case-sensitive name of the object property to verify
+
+       6      Benchmark text filename.  Relative paths suitable for FindSQAFile
+              can be used.  Normally, the Benchmark file would reside in the
+              Project's Datapool\Bench directory.
+
+       7      (Optional) Filter MODE to be used on the retrieved property value.
+              This is for future implementations that will allow us to
+              filter out dynamic text that we don't want to include in
+              comparisons.  This is NOT currently implemented.
+
+       8      (Optional) Filter OPTIONS to be used in conjunction with any
+              supplied Filter MODE.  This is not currently implemented.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: FEB 26, 2001
+ History:
+
+      FEB 26, 2001    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+      AUG 18, 2003    (Carl Nagle) Mods to allow alternate file comparator tools.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyclipboardtofile"></a>
+   Sub GenericVerifyClipboardToFile ()
+
+ DESCRIPTION:
+
+      Routine to verify the string value of the clipboard to a file benchmark.
+      Much like GenericVerifyProperty only the expected value is in a file,
+      not in a provided text string.
+
+      The clipboard contents are stored to a file in Datapool\Test with the
+      same filename as the benchmark file (usually in Datapool\Bench) and then
+      a file compare is performed.
+
+      This command also supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" record type when the user has configured
+      a diff tool for which we have no means to automatically verify the results.
+      The command will produce a TEST WARNING when such a tool is used.
+
+      The routine expects that the clipboard already contains the contents to
+      compare with the benchmark file.  It also expects that Global
+      StepDriverTestInfo contains all the information it needs to perform its
+      function (like logging).
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Benchmark text filename.  Relative paths suitable for FindSQAFile
+              can be used.  Normally, the Benchmark file would reside in the
+              Project's Datapool\Bench directory.
+
+      [6]     (Optional) Filter MODE to be used on the retrieved property value.
+              This is for future implementations that will allow us to
+              filter out dynamic text that we don't want to include in
+              comparisons.  This is NOT currently implemented.
+
+      [7]     (Optional) Filter OPTIONS to be used in conjunction with any
+              supplied Filter MODE.  This is not currently implemented.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 16, 2001
+ History:
+
+      MAR 16, 2001    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+      AUG 18, 2003    (Carl Nagle) Mods to allow alternate file comparator tools.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyclipboardvp"></a>
+   Sub GenericVerifyClipboardVP()
+
+ DESCRIPTION:
+
+      Performs a ClipboardVP.
+      The benchmark VP must already exist and be an asset of the currently
+      running script.
+
+      Example:
+
+      #1    T MainWindow    MainWindow    VerifyClipboardVP  StoredVP
+      #2    T MainWindow SomeWindowObject VerifyClipboardVP  StoredVP
+
+      If StoredVP is NOT in the AppMap then a standard VP compare will occur
+      with the typical VP parameter value like VP=StoredVP.
+
+      However, if you wish to modify the ClipboardVP parameter values, such as
+      specifying that the expected result = FAIL, then you must make an entry
+      in the AppMap under the Window or Component name to provide these modified
+      parameters.
+
+      AppMap Example for Example #1 above:
+
+        [MainWindow]
+        MainWindow=Type=Window....
+        ...
+        StoredVP=ExpectedResult=FAIL;Wait=1,5
+
+
+      AppMap Example for Example #2 above:
+
+        [MainWindow]
+        MainWindow....
+        ...
+        SomeWindowObject=Type=HTMLTable....
+
+        [SomeWindowObject]
+        StoredVP=ExpectedResult=FAIL;Wait=1,5
+
+
+      It is important to note that the WindowID and the ComponentID used to execute
+      this command do not have to be valid GUI objects--but they cannot be blank.
+      No test for existence or the setting of Context to these IDs is actually
+      performed.  But, the Component (field 3) must exist as a section in the AppMap
+      if we wish to store modified VP parameter settings.
+
+      The routine expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      name of the pre-existing VP asset stored in the currently running script.
+              If the name also exists in the app map under the component then it is expected
+              to contain modified parameters for the ClipboardVP.
+
+      The benchmark VP must already exist and be an asset of the currently
+      running script.
+
+      Example:
+
+      #1    T MainWindow    MainWindow    VerifyClipboardVP  StoredVP
+      #2    T MainWindow SomeWindowObject VerifyClipboardVP  StoredVP
+
+      If StoredVP is NOT in the AppMap then a standard VP compare will occur
+      with the typical VP parameter value like VP=StoredVP.
+
+      However, if you wish to modify the ClipboardVP parameter values, such as
+      specifying that the expected result = FAIL, then you must make an entry
+      in the AppMap under the Window or Component name to provide these modified
+      parameters.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 27, 2001
+ History:
+
+      JUN 27, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericinputkeys"></a>
+   Sub GenericInputKeys()
+
+
+ DESCRIPTION:
+
+      Sends keystrokes to the specified component via SQA's InputKeys command.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      String of keystrokes to send.
+              Consult the documentation on the SQA InputKeys command for
+              syntax information for special characters and keys.  This
+              routine sends the provided string unmodified to the InputKeys
+              command.
+              Note: Only valid for components that accept windows keyboard input
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: Dec 12, 2001
+ History:
+
+      Dec 12, 2001    Original Release
+      DEC 07, 2005    (Carl Nagle) added standard Window style support.
+                      InputChars now shares this same function
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericinputcharacters"></a>
+   Sub GenericInputCharacters()
+
+
+ DESCRIPTION:
+
+      Sends literal text to the active component via SQA's InputChars command.
+      The InputChars command does not convert or interpret any special
+      characters like InputKeys (InputKeystrokes) does.
+
+      The routine expects that the Window already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      String of keystrokes to send.
+              Consult the documentation on the SQA InputChars command.  This
+              routine sends the provided string unmodified to the InputChars
+
+              command.
+              Note: Only valid for components that accept windows keyboard input
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2001
+ History:
+
+      DEC 12, 2001    Original Release
+      DEC 07, 2005    (CANGL) Use inputKeys codebase
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifytaborder"></a>
+   Sub GenericVerifyTabOrder ()
+
+
+
+ DESCRIPTION:
+
+      Attempts to verify the tab order of the current object--usually a Window.
+      A file is used to store the correct tab order of the interface.
+
+      The file is simply a list of component names in the order we expect to find
+      them as we tab through the interface.  Each line in the file will contain a
+      single component name.  That can be either the real valid Name given to the
+      component by development, or the name for the component from the AppMap.  The
+      AppMap name is highly recommended to reduce maintenance of the tab order file.
+      Blank lines or commented lines are ignored.  Comment lines begin with
+      apostrophe(') or semi-colon(;) characters.
+
+      Example file:
+
+              ;Tab Order Benchmark File
+              ;For ClassicC Login Window
+
+              UserIDComboBox
+              PasswordEditBox
+              RememberCheckBox
+
+              OKButton
+              CancelButton
+
+
+      This file would normally be placed in the Datapool\Bench directory.
+
+      The function will verify that the object order in the interface is the same
+      object order that is in the file. This is done by checking the FOCUS
+      Property of the current object and using the TAB key for navigation.
+      Thus, navigation by the TAB key must be supported by the application.
+
+      The routine will only check the tab order for the number of items found
+      in the tab order benchmark file.  Thus, the user can perform partial tests
+      on different portions of the interface at different times.  Just make sure
+      that the item that currently has the focus is the first item in the tab order
+      benchmark file when invoking this command.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Filename of the tab order benchmark file. (Ex: LoginWin.TAB)
+              This file must be in the normal search path for <a href="FileUtilities.htm#FindSQAFile" target="_blank">FindSQAFile</a>
+              or the full path must be provided.
+
+ ERRORS:
+
+      none
+
+ Orig Author: John Crunk & Carl Nagle
+ Orig   Date: Jan 28, 2002
+ History:
+
+      Jan 28, 2002    Original Release
+      DEC 09, 2005    (Carl Nagle for RUXLOW) Alt 'Focused' property for .NET
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyfiletofile"></a>
+   Sub GenericVerifyFileToFile ( Optional mode )
+
+ DESCRIPTION:
+
+      Routine to perform a comparison between an actual file and a file benchmark.
+
+      The file to test is stored in Datapool\Test or in a specified location.  The
+      benchmark file is stored in Datapool\Bench or a specified location.  Then
+      a file compare is performed.
+
+      If a file location is not specified, the routine expects that the Datapool\Test folder
+      contains the contents to compare with the benchmark file.  It also expects that Global
+      StepDriverTestInfo contains all the information it needs to perform its
+      function (like logging).
+
+      This command also supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" record type when the user has configured
+      a diff tool for which we have no means to automatically verify the results.
+      The command may produce a WARNING if such a tool is configured and used.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ PARAMETERS:
+
+      mode    Optional. Comparison mode. 0 for ASCII comparison. 1 for binary
+              comparison. If omitted, ASCII comparison is performed.
+
+ DATA TABLE PARAMETERS:
+
+      This sub routine is used by three test commands: VerifyFileToFile,
+      VerifyTextFileToFile and VerifyBinaryFileToFile (VerifyFileToFile and
+      VerifyTextFileToFile are identical). Their data table parameters are the
+      same.
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Benchmark file. This can be a full path, a relative path, or a
+              file name. If it is a filename, it is expected to be in the
+              project's Datapool\Bench directory. If it is a relative path,
+              FindSQAFile is used to located the file.
+
+       6      Test file. This can be a full path, a relative path, or a file
+              name. If it is a relative path or a file name, the command will
+              try to find the file in the project's Datapool\Test directory.
+
+      [7]     (Optional) Filter MODE to be used on the retrieved property value.
+              This is for future implementations that will allow us to
+              filter out dynamic text that we don't want to include in
+              comparisons.  This is NOT currently implemented.
+
+      [8]     (Optional) Filter OPTIONS to be used in conjunction with any
+              supplied Filter MODE.  This is not currently implemented.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Dawn Coen
+ Orig   Date: SEP 23, 2002
+ History:
+
+      SEP 23, 2002    Original Release (DCOEN)
+      NOV 05, 2002    (YWANG) Added optional parameter mode
+                              Changed how actual file is located
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+      AUG 18, 2003    (Carl Nagle) Mods to allow alternate file comparator tools.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericgetguiimage"></a>
+  Sub GenericGetGUIImage()
+
+ DESCRIPTION:
+
+      Routine to capture the screen shot of a GUI component and save it to a file.
+      The available formats for the output file are BITMAP (*.bmp) and JPEG
+      (*.jpg). The routine passes the screen coordinates of the GUI component
+      (or part of it) to function <a href="ImageUtilities.htm#CaptureScreenShotToVPImg">CaptureScreenShotToVPImg</a> in the
+      <a href="ImageUtilities.htm">ImageUtilities</a> library to capture the screen shot to a .img file. Then
+      it uses function <a href="ImageUtilities.htm#ExportVPImgToImageFile">ExportVPImgToImageFile</a> to export the .img file to the
+      specified BMP or JPG file. Optionally it can capture a specified part
+      of the component.
+
+      The specified GUI component/part must be in the viewing range of its
+      containing window. If portion of the component is displayed in the
+      window, only that portion will be captured; if the component falls
+      completely out of the viewing range of the window, the command will
+      fail. The routine makes no attemp to bring the component into view.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      NOTE: the command may fail to execute if the user has turned off logging
+      to TestManager via the Robot tools setting.  You may have to enable TestManager
+      logging for the command to successfully execute.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Path (with filename) to the output image file.
+              This can be a full path or a relative path. If relative, the
+              function will try to build the full path by appending it to the
+              project path. The extension of the file must be either .bmp or
+              .jpg. If not, .bmp is appended to this parameter to force a
+              BITMAP export.
+
+      [6]     Optional app map subkey indicating partial image of the component to capture.
+              Value of this app map reference must be in the format of a
+              top-left and bottom-right pair, and can be either absolute
+              coordinates or percentages ("x1,y1,x2,y2" or "x1%,y1%,x2%,y2%").
+              Coordinates are relative to the component, i.e. (0,0) and
+              (0%,0%) are the minimum, and (COMPONENT_WIDTH, COMPONENT_HEIGHT)
+              and (100%,100%) are the maximum. Values exceeding the minimun/
+              maximum are forced to the nearest limiting value. Absolute and
+              percent values can be mixed, so "0,0,50%,50%" is valid. If this
+              parameter is omitted, full image of the component is captured
+              (equivalent to "0,0,100%,100%").
+
+      Examples:
+
+          Save the full component image to BITMAP file "C:\comp.bmp"
+              T, WINDOW, COMPONENT, GetGUIImage, "C:\comp.bmp"
+
+          Save the full component image to JPEG file "<project>\Datapool\comp.jpg"
+              T, WINDOW, COMPONENT, GetGUIImage, "Datapool\comp.jpg"
+
+          Save specified part of the component image
+              T, WINDOW, COMPONENT, GetGUIImage, "Datapool\Logs\comp.bmp", SUBAREA
+
+              Depending on the definition of SUBAREA in the app map, the command captures:
+
+              UNDER [COMPONENT] IN APP MAP    PART OF COMPONENT
+              ----------------------------    ---------------------
+              SUBAREA="0,0,10,10"             top-left 10x10 square
+              SUBAREA="0,80%,100%,100%"       bottom fifth
+
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JUL 17, 2002
+ History:
+
+      JUL 17, 2002                -Original Release
+      OCT 21, 2005    (Bob Lawler)    -Updated displayed Rectangle.right and Rectangle.bottom coordinates in
+                                   our output due to a consistent Robot problem of miscalculating those
+                                   coordinates based on the proper width & height read from object (RJL).
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyguiimagetofile"></a>
+  Sub GenericVerifyGUIImageToFile()
+
+ DESCRIPTION:
+
+      Routine to verify the screen shot of a GUI component with a benchmark image file.
+      Much like GenericGetGUIImage (same window boundary check applies) only
+      the captured and exported image is compared to a benchmark BMP or JPG
+      file via DOS command FC. Note that if you have a full screen shot of the
+      component as the benchmark, and the actual screen shot is a partial
+      image of the component, the command would fail.
+
+      Also note that the type (extension) of the benchmark file determines what
+      format (BMP or JPG) the screen shot is exported to. If the extension of
+      the benchmark file is not BMP or JPG, it is considered a BMP file. The
+      dif file will have a .txt extension, because FC command outputs text.
+      For example, if bench file is "ImageVerification.bmp", dif file will be
+      "ImageVerification.bmp.txt".
+
+      This command also supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" record type when the user has configured
+      a diff tool for which we have no means to automatically verify the results.
+      The command will issue a WARNING if such a tool is configured and used.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      NOTE: the command may fail to execute if the user has turned off logging
+      to TestManager via the Robot tools setting.  This logging must be enabled
+      for the command to successfully execute.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Name of the benchmark image file.
+              Relative paths suitable for FindSQAFile can be used. Normally,
+              the Benchmark file would reside in the Project's Datapool\Bench
+              directory. A test file with the same name would be created in
+              the Datapool\Test folder. The resulting dif file with .txt
+              extension would be saved under the Datapool\Dif folder. The
+              extension of the benchmark file should be .bmp or .jpg. If not,
+              it is considered a BMP file, i.e. the test file would have a
+              .bmp extension.
+      [6]     Optional app map subkey indicating partial image of the component to verify.
+              Value of this app map reference must be in the format of a
+              top-left and bottom-right pair, and can be either absolute
+              coordinates or percentages ("x1,y1,x2,y2" or "x1%,y1%,x2%,y2%").
+              Coordinates are relative to the component, i.e. (0,0) and
+              (0%,0%) are the minimum, and (COMPONENT_WIDTH, COMPONENT_HEIGHT)
+              and (100%,100%) are the maximum. Values exceeding the minimun/
+              maximum are forced to the nearest limiting value. Absolute and
+              percent values can be mixed, so "0,0,50%,50%" is valid. If this
+              parameter is omitted, full image of the component is captured
+              (equivalent to "0,0,100%,100%").
+
+      Examples:
+
+          Verify the full component image with BITMAP file "<project>\Datapool\Bench\comp.bmp"
+              T, WINDOW, COMPONENT, VerifyGUIImageToFile, "comp.bmp"
+
+          Verify the full component image with JPEG file "<project>\Datapool\Bench\comp.jpg"
+              T, WINDOW, COMPONENT, VerifyGUIImageToFile, "comp.jpg"
+
+          Verify specified part of the component image with a bench file
+              T, WINDOW, COMPONENT, VerifyGUIImageToFile, "comp.bmp", SUBAREA
+
+              Depending on the definition of SUBAREA in the app map, the command verifies:
+
+              UNDER [COMPONENT] IN APP MAP    PART OF COMPONENT
+              ----------------------------    ---------------------
+              SUBAREA="0,0,10,10"             top-left 10x10 square
+              SUBAREA="0,80%,100%,100%"       bottom fifth
+
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JUL 18, 2002
+ History:
+
+      JUL 18, 2002    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+      AUG 18, 2003    (Carl Nagle) Mods to allow alternate file comparator tools.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericverifyobjectdatatofile"></a>
+   Sub GenericVerifyObjectDataToFile ()
+
+ DESCRIPTION:
+
+      Routine to capture and verify object data (CompareData) to a file benchmark.
+      Much like GenericVerifyProperty only the expected value is in a file,
+      not in a provided text string.
+
+      The object data contents are stored to a file in Datapool\Test with the
+      same filename as the benchmark file (usually in Datapool\Bench) and then
+      a file compare is performed.  This command will only work on GUI components
+      that Robot can successfully perform an ObjectData VP on.  The user does not
+      have to create an ObjectData VP for the script for this command to work.
+      This will be done automatically at runtime.
+
+
+      This command supports the "TF"(expected failure) record type.
+
+      This command supports the "TW" (expected warning) record type when deploying
+      comparator tools for which we have no means to automatically verify the
+      resulting diff file.
+
+      The routine expects that Global StepDriverTestInfo contains all the
+      information it needs to perform its function (like logging).
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Benchmark text filename.  Relative paths suitable for FindSQAFile
+              can be used.  Normally, the Benchmark file would reside in the
+              Project's Datapool\Bench directory.
+
+      [6]     (Optional) Filter MODE to be used on the retrieved property value.
+              This is for future implementations that will allow us to
+              filter out dynamic text that we don't want to include in
+              comparisons.  This is NOT currently implemented.
+
+      [7]     (Optional) Filter OPTIONS to be used in conjunction with any
+              supplied Filter MODE.  This is not currently implemented.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Chris Schroter
+ Orig   Date: DEC 03, 2002
+ History:
+
+      DEC 03, 2002    Original Release
+      DEC 17, 2002    (Carl Nagle) Enable TF record type.
+      AUG 18, 2003    (Carl Nagle) Mod to allow alternate diff tools.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericcaptureobjectdatatofile"></a>
+   Sub GenericCaptureObjectDataToFile ()
+
+ DESCRIPTION:
+
+      Routine to capture object data (CompareData) to a specified file.
+
+      The object data contents are stored to a file in the active "Test" directory
+      unless the user specifies a full or relative path to some other location.
+      If a relative path is specified, it is relative to the project
+      directory.  The directory for a full or relative path must already exist.
+      This command will only work on GUI components
+      that Robot can successfully perform an ObjectData VP on.  The user does not
+      have to create an ObjectData VP for the script for this command to work.
+      This will be done automatically at runtime.
+
+      The routine expects that Global StepDriverTestInfo contains all the
+      information it needs to perform its function (like logging).
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+
+       5      Output text filename.  Relative paths from the project directory
+              can be used.
+
+      [6]     (Optional) Filter MODE to be used on the retrieved property value.
+              This is for future implementations that will allow us to
+              filter out dynamic text that we don't want to include in
+              comparisons.  This is NOT currently implemented.
+
+      [7]     (Optional) Filter OPTIONS to be used in conjunction with any
+              supplied Filter MODE.  This is not currently implemented.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Chris Schroter
+ Orig   Date: DEC 16, 2002
+ History:
+
+      DEC 16, 2002    Original Release
+      AUG 14, 2003    (Carl Nagle) Added use of DDUtilities for directories.
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericsetpropertyvalue"></a>
+   Sub GenericSetPropertyValue ()
+
+ DESCRIPTION:
+
+      Routine to set a value to the property of an object.  The expected
+      value is processed via <a href="StringUtilities.htm#GetTrimmedQuotedString">GetTrimmedQuotedString</a>.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      The routine will set the StepDriverTestInfo.statuscode and
+      log any pass/fail info using the StepDriverTestInfo.fac LogFacility.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive name of the object property to set
+       6      the value to set to the property
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Dawn Coen
+ Orig   Date: NOV 3, 2004
+ History:
+
+      NOV  3, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="genericunimplementedcommand"></a>
+   Sub GenericUnimplementedCommand ()
+
+ DESCRIPTION:
+
+      Routine to warn that the current command has not been implemented.
+
+      The routine will first attempt to identify a supported Generic Command
+      like VerifyProperty or VerifyPropertyToFile.  If it detects a Generic
+      command then it will attempt to execute it.  This makes these commands
+      available to ComponentFunctions that have not explicitly coded their
+      availability as long as those ComponentFunctions defer to this
+      function when an unrecognized command is found.
+
+      The routine expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 28, 1999
+ History:
+
+      JUL 28, 1999    Original Release
+      FEB 26, 2001    (Carl Nagle) Added attempt to parse generic command.
+      DEC 12, 2001    (Patrick Cuthbertson) Added GenericInputKeys and GenericInputCharacters
+      JAN 28, 2002    (JCRUNK) Added GenericVerifyTabOrder command
+      FEB 04, 2002    (Carl Nagle) Added CustomDDETestCommand processing.
+      APR 30, 2002    (Carl Nagle) Enabled partial text matches in VerifyMenuItem.
+      JUL 17, 2002    (YWANG)  Added GenericGetGUIImage & GenericVerifyGUIImageToFile
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 03, 2002    (chschr) Added VerifyObjectDataToFile
+      DEC 11, 2002    (Carl Nagle) Enable TW and TF record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP and
+                               enabled VerifyArrayPropertyToFile
+      DEC 16, 2002    (chschr) Added CaptureObjectDataToFile
+      AUG 21, 2003    (Carl Nagle) Added VerifyValues commands.
+      DEC 07, 2005    (Carl Nagle) InputChars uses same function as InputKeys
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

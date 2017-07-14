@@ -1,0 +1,554 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ProcessContainer Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ProcessContainer" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+  ProcessContainer is a test development tool primarily used to define Application
+  Maps suitable for the Data-Driven Engine.  It can also capture all the currently
+  available properties on the chosen window and recursively perform the same
+  on all child components of the window.  All this information is output
+  to files specified by the developer.
+
+  You can use this tool merely by Including the header and calling the function.
+
+  A "RunProcessContainer" script file like below is the simplest method:
+  <code>
+  '$Include "DDEngine.SBH"   *OR*
+  '$Include "ProcessContainer.SBH"
+  Sub main
+
+      ProcessContainer
+
+  End Sub
+  </code>
+
+  Note, you cannot name the script "ProcessContainer".  As is the case for ALL
+  Robot executable scenarios, if a script has the same name as a library, Robot
+  will load the script executable even if we are looking for a library.
+  Thus, the routines in the library will not be available (and likely
+  the script will crash).
+
+  While this is a good tool for developing Application Map files, it is also
+  a good general purpose tool for retrieving and storing the full hierarchy of
+  a window and all of the properties and recognition methods of the window and
+  children--even if you do not intend to use this for data-driven automation.
+
+  When launched, the developer is presented with a dialog box allowing them
+  to identify which active window (really any GUI object on screen) they wish
+  captured and other pertinent information such as output file parameters.
+
+  This tool is intended to be used with the following Robot
+  Tools->GUI Playback Options:
+
+      Error Recovery:
+          Script Command Failure = Continue Execution
+
+      Playback:
+          Robot Window = Put Robot in Background
+
+  The purpose for these settings is to allow processing to continue even if
+  problems with Object Recognition (and Robot defects) occur.  Also, with
+  Robot properly positioned in the background you can see how well processing
+  is going by viewing Robot's Console Window as the script runs.
+
+  This is especially helpful if you are attempting to process a window that
+  may contain parent/child circular references.  If a child contains a reference
+  to a parent as one of its own children, then an endless loop of child
+  processing is likely to occur.  This can be seen in the console window as
+  child processing indents each line for each level of children.  If the
+  levels of indention keep going out further and further and further then it
+  is likely caught in one of these circular references.  In this case, abort
+  the script, check the output files, and you should be able to determine if
+  this was the case.
+  (Don't worry too much about this, however.  It is uncommon to find such a
+  circular reference.)<BR>
+
+  Make sure you TAB out or otherwise move the focus off of a control you have
+  changed the value on.  Robot does not seem to process the changes until you exit
+  the control.<BR>
+  <img src="ProcessContainer.GIF" alt="ProcessContainer GUI Interface"
+  width=381 height=521 align=left>
+  <B>CLIENT TYPE LISTBOX:</B>
+  Select the type of processing that
+  should be performed.
+
+  Select "<B>Windows Client</B>" when
+  processing a standard Windows
+  application environment like C\C++,
+  VB, etc.  These environments
+  generally use fairly straightforward
+  child recognition techniques.
+
+  Select "<B>Web Client</B>" when processing
+  web content in a browser.  Web
+  content must be handled differently
+  since Robot does not generally
+  consider the web content as a normal
+  child of the browser window.
+  Components are children of a topmost
+  "HTMLDocument", and the full
+  hierarchical path from that topmost
+  HTMLFrame or HTMLDocument must be
+  used to locate these components.
+
+  Select "<B>Java Client</B>" when processing
+  a Java desktop application.  Java
+  has many of the same issues as a web
+  client in that Robot does not see the
+  Java content as a normal child of the
+  topmost window, per se.  In the
+  topmost window there is a JavaWindow
+  in which all other JavaWindows and
+  JavaPanels reside. Again, we must use
+  the full hierarchical path from the
+  topmost JavaWindow to locate child Java components.
+
+
+  <B>WINDOW RECOGNITION METHOD:</B>
+  The caption or any other recognition syntax that is valid for Robot to find
+  the window you wish to process.  When you select the Client Type in the
+  preceeding ListBox, this field should be populated with the recommended form
+  of the recognition string for that client type.
+
+  For standard Windows, this might be just the topmost window. It
+  can also be the full hierarchy to an object including the parent window.
+
+  For Web browsers, this can be the WindowTAG=&lt;browser reference&gt;
+  that was given at the time the page was first created with StartBrowser
+  or some other appropriate command.  It can also just be the window
+  caption.  It should contain no other part of the object hierarchy.
+  Generally, using the browser's Caption is most effective.
+
+  For Java apps, like Web browsers, it is best to simply identify the Window
+  that contains the Java application.  It may just be the window
+  caption.  It should contain no other part of the object hierarchy.
+
+
+  <B>OBJECT RECOGNITION METHOD:</B>
+  For standard Windows this is typically the same recognition method used above
+  with the desktop parentage added.  When you select the Client Type, this field
+  should get populated with the recommended form and default recognition string
+  for the client type selected.  For standard Windows you usually would never
+  have to change the settings automatically provided.
+
+  For <B>Web objects</B>, we need to provide the hierarchy to the object within the
+  Browser.  This is necessary because the Window Recognition Method will only
+  find the Browser Window with the WindowTag=&lt;browser&gt; or the Caption or
+  whatever recognition method was used.  We need to then specify separately which
+  object we want in that browser.
+
+  An example of the needed syntax for the topmost Web Object Recognition Method
+  might be:
+
+      <B>Type=HTMLDocument;Index=1</B>    OR
+      Type=HTMLFrame;HTMLID=fContent;\;Type=HTMLTable;Index=1
+
+  If you specify a WindowTag at the time the URL is launched, ProcessContainer
+  will attempt to strip that out of child recognition methods when processing
+  children.  This can help reduce what otherwise is already a VERY LONG
+  recognition method for each Web object.
+
+  For <B>Java objects</B>, however, we need to provide the hierarchy to the Java object
+  within the JavaWindow.  This is necessary because the Window Recognition
+  Method will only find the standard "Window" for the Caption or whatever
+  recognition method was used.  We must then specify separately which object
+  we want in the embedded JavaWindow.
+
+  An example of the needed syntax for the topmost Java Object Recognition Method
+  might be:
+
+      <B>Type=JavaWindow;Index=1</B>
+
+
+  <B>WINDOW\OBJECT NAME:</B>
+  A short unique name to call the object you wish to capture.  This name will
+  prefix most of the other text in the remainder of the window to uniquely
+  identify descriptions and filenames. It is merely a convenience to speed
+  editing of the rest of the GUI items as as this will prefix many items.
+
+
+  <B>PROCESS CHILDREN:</B>
+  Instructs the tool to recursively process each child down through the hierarchy.
+  If selected, we will process each child displaying its list of children and
+  processing their children AND properties (if enabled).
+  If not selected, we will list the current object's children, but they will not
+  be processed any further.
+
+
+  <B>REMOVE PARENT INFO:</B>
+  If selected, hierarchical information is removed from displayed recognition
+  methods.  Only the recognition method for the object or child being referenced
+  is provided.  This is mostly for making really long recognition methods in our
+  output easier to read.  However, when processing standalone Windows applications
+  this can also be used to reduce the recognition method provided for application
+  mapping.  This reduction may or may not work correctly.  It depends on the
+  recognition method provided for the parent.  This determines if an appropriate
+  context is set for these recognition methods at runtime.
+
+  You normally want this selected for Web and Java processing.
+
+
+  <B>PROCESS PROPERTIES:</B>
+  With this selected, ProcessContainer will check all the properties of the
+  target object as well as all the properties of every child object (if Process
+  Children is enabled).  On complex applications this can take a very long time
+  and may be much more than is wanted.
+  With Process Properties unchecked, ProcessContainer will forego the retrieval of
+  properties for the object(s).
+
+
+  <B>SKIP CURRENTSTYLE:</B>
+  Primarily for the processing of browsers or other objects that inherit a large
+  number of CurrentStyle properties.  This control allows us to bypass the display
+  of individual &quot;currentStyle.&quot; properties when processing an object and,
+  specifically, a complete hierarchy of objects that may contain them.
+  They are generally duplicated in every object that supports them and do not
+  provide additional value when processing a full hierarchy.  This can make the
+  output VERY large without increasing the value of the information.
+  If you DO want to see the full set of these properties, it is recommended to
+  process only a single object that contains the CurrentStyle object and disable
+  the processing of children.
+
+
+  <B>PROCESS MENU:</B>
+  A Checkbox to enable or disable processing of a Window's Menu.  If this item
+  is enabled and the object does not have a recognizable menu then a menu output
+  file of 0 bytes will be created.  If the file already exists, it will likely
+  be overwritten.  Disable menu processing if the object does not have a menu or
+  you are only interested in the properties and children of the object.
+
+  A brief one line description for the menu should be provided in the associated
+  textbox.  This will be the first piece of information stored in the output file
+  for any menu (if processing the menu is enabled).
+
+
+  <B>OBJECT DESCRIPTION:</B>
+  A brief description for the Window.  This will be the first piece of information
+  stored in the output file for the item.
+
+
+  <B>OUTPUT DIRECTORY:</B>
+  The directory which will receive the output files.  There are potentially two
+  files created.  One for the window, and one for the menu (if processing is
+  enabled).
+
+
+  <B>OUTPUT FILENAME PREFIX:</B>
+  You can change the filename prefix used for the output files.  The files use the
+  Window\Object Name by default, but you can change that here.
+
+
+  <B>FILENAMES:</B>
+  Below the Output Filename Prefix are the current filenames that will be used
+  for output.  You modify the proposed filenames by changing the Output
+  FilenamePrefix field.
+
+  <a name="child_definitions"></a>
+  <B>APPEND APPMAP:</B>
+  This checkbox enables or disables appending the parent object and its children
+  as a new definition in the Application Map you specify in the accompanying
+  textbox.  If enabled, the parent object will define a new section appended to
+  the provided Application Map file.  It will inherit the Window\Object Name as
+  its name and the provided Object Recognition Method as its recognition method.
+
+  Each child found will be given a default name as can best be determined from
+  the recognition method (Name, ID, Type, Index, etc..).  Each will be assigned
+  the recognition method returned by the child itself modified as best as possible
+  to work with Robot.  All of these items can and probably should be subsequently
+  edited as necessary.
+
+  For example, the following AppMap sample shows how the child definitions may
+  appear and give you an idea of how the component names will have to me modified
+  to be more user friendly.  In addition, you may need to tweak the returned
+  recognition strings to make them more robust if they don't consistently work
+  as expected.
+
+     [MyLoginWindow]
+     MyLoginWindow="Type=Window;Caption..."
+     txtUserID="Type=TextBox...."
+     txtPWD="Type=TextBox..."
+     Generic3="Type=Generic..."
+     Generic4="Type=Generic..."
+     cmdOK="Type=Pushbutton...."
+
+
+  <B>Excel Support:</B>
+  ProcessContainer now supports output to Excel.  If the textbox filename ends
+  with ".XLS" then the AppMap output will be directed to Excel.  Output will be
+  appended to a worksheet matching the Window\Object Name.  If the workbook or
+  the worksheet do not exist, they will be created.
+  Use <a href="ExcelUtilities.htm#exportxls2inifile">ExportXLS2INIFile</a> to export this file format for use by the DDE.
+
+  (Note: If the provided Application Map filename does not exist it will be
+  created automatically. This is true for both Text and Excel formats.)
+
+
+  <B>ADD COMPONENT INFO:</B>
+  This option allows the user to additionally output the component type in a text
+  file Application Map.  This option is only available when the "Append Appmap:"
+  checkbox is selected.  The DDE cannot use an AppMap in this format.  This is
+  provided for other programs or utilities that might post-process or import an
+  application map of this format.
+
+  The output file will look like:
+
+      [SectionName]
+      ItemName=ItemValue|%|ComponentType
+      ItemName=ItemValue|%|ComponentType
+      ItemName=ItemValue|%|ComponentType
+
+  This option has no real effect on Excel output at this time.  The Excel output
+  mechanism automatically places Component Info in a separate column regardless
+  of this option setting.
+
+
+  <B>MAP JPG:</B>
+  This option allows the user to capture a JPG image of the target window or
+  component.  The JPG image will be stored in the specified output directory
+  using the window/object name and a .JPG extension.  This JPG capture is currently
+  done with the Capture and Export mechanism made available in ImageUtilities.
+  This requires the image processing tools of a full Rational install.  An Agent-
+  only install will not be sufficient.
+
+  NOTE: The image capture may fail to execute if the user has turned off logging in
+  TestManager via Robot's Tools settings.  You may have to enable TestManager logging
+  for the image capture to succeed.
+
+  MAP JPG will create a special INI file using the window/object name and a .INI
+  extension.  This INI file captures parent child information including an
+  initial proposed Name, the recognition string, component type, and coordinates
+  relative to the screen and to the parent for each component in the container.
+  This file may be used for coordinate-based reference and for other tools that
+  may become available for editing and manipulating Application Maps.
+
+
+  <B>OK BUTTON:</B>
+  After all the fields are satisfactory to the developer, clicking the OK button
+  will make the script process the window/object and create the output files.
+  When the script is done, it will launch notepad for viewing the created output
+  files.  The dialog box will remain active allowing you to process more windows
+  if desired.
+
+
+  <B>CANCEL BUTTON:</B>
+  Click the Cancel button to end the dialog cycle once you are done with all the
+  windows you wish to process.
+  (Note: the dialog should be unavailable for input while the script is actually
+  processing a window.  You will need to use Robot's Abort keystroke (F11) if you
+  wish to interrupt Robot while running the script.)
+
+
+  <B>HELP BUTTON:</B>
+  Click this button to launch this Help documentation.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "ProcessContainer.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="MenuUtilities.htm">MenuUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ImageUtilities.htm">ImageUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="MenuUtilities.htm">MenuUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>.SBH"
+<li>'$INCLUDE: "<a href="ImageUtilities.htm">ImageUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#processcontainer">ProcessContainer</a>        BasicLib ProcessContainer Alias "main"
+   Sub   <a href="#processexternalinput">ProcessExternalInput</a>    BasicLib ProcessContainer 
+   Sub   <a href="#launchmapjpgprocessor">launchMAPJPGProcessor</a>   BasicLib ProcessContainer 
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="processexternalinput"></a>
+  Sub ProcessExternalInput ( windowContext As String,
+                             objectID As String,
+                             filepath As String,
+                             Optional showProperties,
+                             Optional iProcessBrowser,
+                             Optional iProcessChildren,
+                             Optional iRemoveParentInfo,
+                             Optional iSkipCurrentStyle,
+                             Optional sObjectName,
+                             Optional iProcessMenu,
+                             Optional sMenuDescription,
+                             Optional iProcessJava,
+                             Optional iProcessWindow,
+                             Optional iAppendAppMap,
+                             Optional sAppMapPath,
+                             Optional iAddComponentInfo )
+
+ DESCRIPTION:
+
+  This routine is provided generally as a debugging tool for ComponentFunction
+  developers.  It can be called right in the midst of an executing routine
+  or script to capture information on a given window or component during runtime.
+
+  Currently little to no validation is performed on the input parameters.
+
+
+ PARAMETERS:
+
+  windowContext       the Robot recognition string for the active window.
+                      This is the WINDOW RECOGNITION METHOD.
+
+  objectID            the Robot recognition string for the component to capture.
+                      This is the OBJECT RECOGNITION METHOD.
+
+  filepath            the full path and\or filename to Open and output info.
+                      Filename only paths will be stored in the project's Datapool
+                      directory.
+
+  showProperties      (optional) 1 and properties will be processed.
+                      0 to prevent processing of properties (default).
+
+  iProcessBrowser     (optional) 1 to process window as a web browser.
+                      0 to process as a standard window (default).
+
+  iProcessChildren    (optional) 1 to recursively process any children (default).
+                      0 and children will not be processed.
+
+  iRemoveParentInfo   (optional) 1 to remove hierarchical info from recognition
+                      strings (default). 0 and the hierarchy information is retained.
+
+  iSkipCurrentStyle   (optional) 1 to prevent processing of currentStyle
+                      properties (default).  0 and currentStyle properties will be
+                      processed if processing of properties is enabled.
+
+  sObjectName         (optional) Name to use for the Window\Object.
+
+  iProcessMenu        (optional) 1 to process window menu.  * NOT YET ENABLED *
+                      0 to not process any menu (default).
+
+  sMenuDescription    (optional) Description header for the Menu output file.
+                      Will default to "&lt;objectname&gt; Menu".
+
+  iProcessJava        (optional) 1 to process window as a Java app.
+                      0 to process as a standard window (default).
+
+  iProcessWindow      (optional) 1 to process window as a standard Window (default).
+
+  iAppendAppMap       (optional) 1 to append an AppMap file.
+                      0 to not append any appmap (default).
+
+  sAppMapPath         (optional) Path to AppMap if appending.
+                      Defaults to "ApplicationMap.map" if needed.
+                      Filename only paths will be stored in the project's Datapool
+                      directory.
+
+  iAddComponentInfo   (optional) 1 to append component type information at the end
+                      of stored recognition strings.
+                      0 and the normal syntax is retained (default).
+
+
+ ERRORS:
+
+  (none)
+
+ Orig Author:
+ Orig   Date: MAY 26, 2000
+ History:
+
+      MAY 26, 2000    Original Release
+      JUN 30, 2000    (Carl Nagle) Added optional processing of properties.
+      APR 05, 2001    Significant additions for optional processing and
+                      handling of web browsers.
+      Nov 04, 2002    Added support for new application fields.
+      AUG 14, 2003    (Carl Nagle) Added support for DDUtilities directories.
+
+</pre>
+<hr>
+<pre>
+
+<a name="processcontainer"></a>
+  Sub ProcessContainer () Alias "main"
+
+ DESCRIPTION:
+
+  This is the routine that launches the entire process.
+
+  A "RunProcessContainer" script file like below is the simplest method:
+  <code>
+  '$Include "DDEngine.SBH"   *OR*
+  '$Include "ProcessContainer.SBH"
+  Sub main
+
+      ProcessContainer
+
+  End Sub
+  </code>
+
+  Note, you cannot name the script "ProcessContainer".  As is the case for ALL
+  Robot executable scenarios, if a script has the same name as a library, Robot
+  will load the script executable even if we are looking for a library.
+  Thus, the routines in the library will not be available (and likely
+  the script will crash).
+
+
+ PARAMETERS:
+
+  (none)
+
+ ERRORS:
+
+  (none)
+
+ Orig Author:
+ Orig   Date: APR 21, 2000
+ History:
+
+      APR 21, 2000    Original Release
+      APR 26, 2000    (Carl Nagle) Added Help and AppMap output
+      APR 05, 2001    Significant additions for optional processing and
+                      handling of web browsers.
+      MAY 07, 2002    Enabled AppMap appending to Excel.
+      OCT 01, 2002    (MOVONG) Added option to add component type.
+      OCT 31, 2002    (Carl Nagle) Added quicker AppMap creation for Web and Java.
+      Nov 04, 2002    Added support for new application fields.
+      AUG 14, 2003    (Carl Nagle) Added support for DDUtilities directories.
+      MAY 04, 2004    (Carl Nagle) Added stored settings across sessions.
+      MAY 13, 2004    (Carl Nagle) Fixes and enhancements to new position and offset info.
+      JUN 23, 2005    (Carl Nagle) Added support for converting HEX menu handles.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

@@ -1,0 +1,1368 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic MenuUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "MenuUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines for working with Window Menus and Popup Menus
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "MenuUtilities_X.SBH"
+<li>'$INCLUDE: "MenuUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>.SBH"
+<li>'$INCLUDE: "<a href="CWPHooker.htm">CWPHooker</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#mugetmenuitemstrings">MUGetMenuItemStrings</a>    BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemtextindex">MUGetMenuItemTextIndex</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemindextext">MUGetMenuItemIndexText</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmatchedmenuitemtextindex">MUGetMatchedMenuItemTextIndex</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemtextsubmenuhandle">MUGetMenuItemTextSubMenuHandle</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemindexsubmenuhandle">MUGetMenuItemIndexSubMenuHandle</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmatchedmenuitemtextstate">MUGetMatchedMenuItemTextState</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemindexstate">MUGetMenuItemIndexState</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemindexid">MUGetMenuItemIndexID</a>    BasicLib MenuUtilities                 
+Function <a href="#ismenuitemenabled">IsMenuItemEnabled</a>       BasicLib MenuUtilities                 
+Function <a href="#ismenuitemgrayed">IsMenuItemGrayed</a>        BasicLib MenuUtilities                 
+Function <a href="#ismenuitemchecked">IsMenuItemChecked</a>       BasicLib MenuUtilities                 
+Function <a href="#ismenuitemhilited">IsMenuItemHiLited</a>       BasicLib MenuUtilities                 
+Function <a href="#ismenuitemabitmap">IsMenuItemABitmap</a>       BasicLib MenuUtilities                 
+Function <a href="#ismenuitemdefault">IsMenuItemDefault</a>       BasicLib MenuUtilities                 
+Function <a href="#ismenuitemamenu">IsMenuItemAMenu</a>         BasicLib MenuUtilities                 
+Function <a href="#ismenuitemamenubarbreak">IsMenuItemAMenuBarBreak</a>  BasicLib MenuUtilities                 
+Function <a href="#ismenuitemamenubreak">IsMenuItemAMenuBreak</a>    BasicLib MenuUtilities                 
+Function <a href="#ismenuitemamenuseparator">IsMenuItemAMenuSeparator</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuitemstatestring">MUGetMenuItemStateString</a>  BasicLib MenuUtilities                 
+Function <a href="#muverifyteststatestring">MUVerifyTestStateString</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuhandleinfofromhierarchy">MUGetMenuHandleInfoFromHierarchy</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuinfofromhierarchy">MUGetMenuInfoFromHierarchy</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuhandleinfofrommenuid">MUGetMenuHandleInfoFromMenuID</a>  BasicLib MenuUtilities                 
+Function <a href="#mugetmenuinfofrommenuid">MUGetMenuInfoFromMenuID</a>  BasicLib MenuUtilities                 
+Function <a href="#muoutputmenuhandlestructure">MUOutputMenuHandleStructure</a>  BasicLib MenuUtilities                 
+Function <a href="#muoutputmenustructure">MUOutputMenuStructure</a>   BasicLib MenuUtilities                 
+Function <a href="#mugetactivepopupmenu">MUGetActivePopupMenu</a>    BasicLib MenuUtilities                 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+Const MUStateFailure = &HFFFFFFFF&      'WIN32 GetState Failure code
+Const MUStateFailureString = "MUStateFailure"
+
+Const MUHierarchySeparator = "->"
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+Type MenuInfo
+
+    hMenu       As Long
+    index       As Long
+    ID          As Long
+    state       As Long
+    menuText    As String
+
+End Type
+
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="mugetmenuitemstrings"></a>
+  Function MUGetMenuItemStrings(hMenu As Long, menuStrings() As String) As Integer
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and DIM'd string arraay the routine attempts to
+      fill the array with the Strings of all the menuitems.
+
+ PARAMETERS:
+
+      hMenu           The handle of the Menu
+
+      menuStrings     Dynamic string array to receive the names.  The array
+                      should have been initialized as follows:
+
+                          Dim menuStrings() As String
+
+
+ RETURNS:
+
+       N  the count of strings in the zero-based array
+
+      -1  on failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+      APR 19, 2004    (Carl Nagle) ANSI WIDE CHARACTER support.
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemtextindex"></a>
+  Function MUGetMenuItemTextIndex(hMenu as Long, menuText As String) As Integer
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and text string the routine attempts to
+      locate the position within the menu for the associated menuitem.
+      MenuItem text that contains one or more underlined characters is
+      represented in Windows by an ampersand (&) preceding each character
+      that is underlined.  Our text comparisons use these ampersands when
+      trying to match text as well.  This provides verification of the
+      visual cues given the user for what keyboard shortcuts can be used on
+      the menuitems.
+
+      However, if the existence or position of the ampersand (the underlined
+      character ) is NOT important, the menuText string can be provided void
+      of ALL ampersand characters.  This routine will recognize that NO
+      ampersands were provided and will strip the actual menuitem text of
+      ampersands when doing the comparison.  This may possibly result in
+      a false match (a match with the wrong menuitem), although this is
+      probably unlikely.
+
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      menuText    Case-sensitive text to identify the menuitem with.
+
+ RETURNS:
+
+       N  zero-based index into the associated menu for the item with
+          matching text.
+
+      -1  on failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+      APR 27, 2000    (Carl Nagle) Made ampersands optional in comparisons.
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmatchedmenuitemtextindex"></a>
+  Function MUGetMatchedMenuItemTextIndex(hMenu as Long,
+                                         menuText As String,
+                                         Optional occurrence) As Integer
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and text string the routine attempts to
+      locate the position within the menu for the menuitem containing the
+      provided menuText.  This is a partial match mechanism.  If the
+      optional occurrence argument is provided, then we look for the nth
+      successful partial match in the hierarchy.  If no occurrence argument
+      is provided, or it is invalid, then we seek the first match.
+
+      MenuItem text that contains one or more underlined characters is
+      represented in Windows by an ampersand (&) preceding each character
+      that is underlined.  Our text comparisons use these ampersands when
+      trying to match text as well.  This provides verification of the
+      visual cues given the user for what keyboard shortcuts can be used on
+      the menuitems.
+
+      However, if the existence or position of the ampersand (the underlined
+      character ) is NOT important, the menuText string can be provided void
+      of ALL ampersand characters.  This routine will recognize that NO
+      ampersands were provided and will strip the actual menuitem text of
+      ampersands when doing the comparison.  This may possibly result in
+      a false match (a match with the wrong menuitem), although this is
+      probably unlikely.
+
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      menuText    Case-sensitive text to identify the menuitem with.  We are
+                  only seeking a partial match.  The menuText must be found
+                  somewhere in a menuItem.
+
+      occurrence  Optional: an integer to specify which occurrence of the text
+                  to match in the menu hierarchy.  By default, we look for
+                  the first occurrence (occurrence=1) of the provided menuText.
+                  Minimum value must be 1.
+
+ RETURNS:
+
+       N  zero-based index into the associated menu for the item with
+          matching text.
+
+      -1  on failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 30, 2002
+ History:
+
+      APR 30, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemindexid"></a>
+  Function MUGetMenuItemIndexID(hMenu as Long, index As Long) As Long
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and item index the routine attempts to
+      return the menu ID for the associated menuitem.
+      Currently, all we do is call the WIN32 API GetMenuItemID.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      index       zero-based index into the menu for the menuitem.
+
+ RETURNS:
+
+       0      Item is a separator
+
+      -1      Item is a popup menu
+
+       N      the identifier for a true menuitem
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 02, 1999
+ History:
+
+      AUG 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemindextext"></a>
+  Function MUGetMenuItemIndexText(hMenu as Long, index As Long) As String
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and item index the routine attempts to
+      return the full text of the menuitem.
+      Currently, all we do is call the WIN32 API GetMenuString.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      index       zero-based index into the menu for the menuitem.
+
+ RETURNS:
+
+      The text of the menuItem on success, or an empty string on failure.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 30, 2002
+ History:
+
+      APR 30, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemtextstate"></a>
+  Function MUGetMenuItemTextState(hMenu as Long, menuText As String) As Long
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and text string the routine attempts to
+      return the state information for the menuitem.
+
+      The menuText can optionally include the ampersand character that
+      normally precedes any underlined character in the menuitem.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      menuText    Case-sensitive text to identify the menuitem with.
+
+ RETURNS:
+
+       state      Long status flag settings for the menuitem
+
+       MUStateFailure     On failure. (see <a href="#constants">CONSTANTS</a>)
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmatchedmenuitemtextstate"></a>
+  Function MUGetMatchedMenuItemTextState(hMenu as Long,
+                                         menuText As String,
+                                         Optional occurrence) As Long
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and text string the routine attempts to
+      return the state information for the menuitem containing the
+      provided menuText.  This is a partial match mechanism.  If the
+      optional occurrence argument is provided, then we look for the nth
+      successful partial match in the hierarchy.  If no occurrence argument
+      is provided, or it is invalid, then we seek the first match.
+
+      The menuText can optionally include the ampersand character that
+      normally precedes any underlined character in the menuitem.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      menuText    Case-sensitive text to identify the menuitem with.  We are
+                  only seeking a partial match.  The menuText must be found
+                  somewhere in a menuItem.
+
+      occurrence  Optional: an integer to specify which occurrence of the text
+                  to match in the menu hierarchy.  By default, we look for
+                  the first occurrence (occurrence=1) of the provided menuText.
+                  Minimum value must be 1.
+
+ RETURNS:
+
+       state      Long status flag settings for the menuitem
+
+       MUStateFailure     On failure. (see <a href="#constants">CONSTANTS</a>)
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 30, 2002
+ History:
+
+      APR 30, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemindexstate"></a>
+  Function MUGetMenuItemIndexState(hMenu as Long, index As Long) As Long
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and index the routine attempts to
+      return the state information for the menuitem.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      index       the zero-based index of the item in the menu to get the
+                  state information from
+
+ RETURNS:
+
+       state      Long status flag settings for the menuitem
+
+       MUStateFailure     On failure. (see <a href="#constants">CONSTANTS</a>)
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 02, 1999
+ History:
+
+      AUG 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemtextsubmenuhandle"></a>
+  Function MUGetMenuItemTextSubMenuHandle(hMenu as Long, menuText As String) As Long
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and text string the routine attempts to
+      return a submenu handle for the menuItem pointed to by menuText.
+      In other words, given a menu, find the menuitem whose text
+      matches that provided and if that item itself has submenu items then
+      return the handle to that submenu.
+
+      The menuText can optionally include the ampersand character that
+      normally precedes any underlined character in the menuitem.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      menuText    Case-sensitive text to identify the menuitem with.
+
+ RETURNS:
+
+       hMnu   Handle to the submenu of the provided menuitem text
+
+       0      failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemindexsubmenuhandle"></a>
+  Function MUGetMenuItemIndexSubMenuHandle(hMenu as Long, index As Long) As Long
+
+ DESCRIPTION:
+
+      Given a valid Menu handle and index the routine attempts to
+      return a submenu handle for the menuItem pointed to by the index.
+      In other words, given a menu, find the nth menuitem and if that item
+      itself has submenu items then return the handle to that submenu.
+
+ PARAMETERS:
+
+      hMenu       The handle of the Menu
+
+      index       zero-based index of item in the menu
+
+ RETURNS:
+
+       hMnu   Handle to the submenu of the provided menuitem text
+
+       0      failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 02, 1999
+ History:
+
+      AUG 02, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemenabled"></a>
+  Function IsMenuItemEnabled (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is Enabled
+
+       0  MenuItem is Disabled
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemgrayed"></a>
+  Function IsMenuItemGrayed (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is Grayed
+
+       0  MenuItem is Not Grayed
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemchecked"></a>
+  Function IsMenuItemChecked (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is Checked
+
+       0  MenuItem is Unchecked
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemhilited"></a>
+  Function IsMenuItemHiLited (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is HiLited
+
+       0  MenuItem is not HiLited
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemabitmap"></a>
+  Function IsMenuItemABitmap (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is a Bitmap
+
+       0  MenuItem is not a Bitmap
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemdefault"></a>
+  Function IsMenuItemDefault (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is the Default MenuItem
+
+       0  MenuItem is not the Default
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemamenu"></a>
+  Function IsMenuItemAMenu (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is a Menu
+
+       0  MenuItem is a regular MenuItem
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemamenubarbreak"></a>
+  Function IsMenuItemAMenuBarBreak (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is a MenuBarBreak
+
+       0  MenuItem is not a MenuBarBreak
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemamenubreak"></a>
+  Function IsMenuItemAMenuBreak (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is a MenuBreak
+
+       0  MenuItem is not a MenuBreak
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="ismenuitemamenuseparator"></a>
+  Function IsMenuItemAMenuSeparator (state As Long) As Integer
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine attempts to return a True/False/Failure status for the unique
+      state information requested.
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+       1  MenuItem is a Menu Separator
+
+       0  MenuItem is not a Menu Separator
+
+      -1  Failure occurred
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuitemstatestring"></a>
+  Function MUGetMenuItemStateString (state As Long) As String
+
+ DESCRIPTION:
+
+      Given state information gleaned from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>
+      the routine converts it to a space-delimited string of all the state
+      information known for the provided state.  Ex:
+
+                  "Enabled Unchecked Ungrayed Unhilited Default"   OR
+
+              "Enabled Unchecked Ungrayed Hilited Normal Menu With 5 MenuItems"
+
+      Valid States:
+
+          Enabled     Grayed      BarBreak                Bitmap
+          Disabled    Ungrayed    Separator               Break
+          Checked     Hilited     Default                 Menu With N MenuItems
+          Unchecked   Unhilited   Normal (not default)
+
+
+ PARAMETERS:
+
+      state       state information retrieved from <a href="#mugetmenuitemtextstate">MUGetMenuItemTextState</a>.
+
+ RETURNS:
+
+      String  Space-delimited string of state information.
+              If the state code provided = <a href="#constants">MUStateFailure</a> then
+              the return string contains that.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 29, 1999
+ History:
+
+      JUL 29, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="muverifyteststatestring"></a>
+  Function MUVerifyTestStateString (testState AS String,
+                                    menuState AS String) As Integer
+
+ DESCRIPTION:
+
+      Verify that each space-delimited state found in testState exists
+      as provided in the overall menuState string.
+
+      testState = "Enabled Menu With 5 MenuItems"
+
+          should match successfully with:
+
+      menuState = "Enabled Unchecked Ungrayed Hilited Normal Menu With 5 MenuItems"
+
+      Valid States:
+
+          Enabled     Grayed      BarBreak                Bitmap
+          Disabled    Ungrayed    Separator               Break
+          Checked     Hilited     Default                 Menu With N MenuItems
+          Unchecked   Unhilited   Normal (not default)
+
+
+ PARAMETERS:
+
+      testState   the particular STATE(s) we are looking to match.
+
+      menuState   the entire STATE string of the menuItem.
+
+ RETURNS:
+
+      1   on successful match of the state information.
+
+      0   on any error\failure.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuinfofromhierarchy"></a>
+  Function MUGetMenuInfoFromHierarchy (hWnd As Long, hierarchy As String,
+                                       info As MenuInfo, Optional match) As Integer
+
+ DESCRIPTION:
+
+      Given a menu hierarchy string of the form "Menu->Menu->MenuItem" the
+      routine attempts to locate the menuitem using the Window handle
+      provided.  If it finds the MenuItem within the menu it retrieves and
+      stores all the information about the menuitem into the provided
+      MenuInfo structure.
+
+      If the optional match parameter is set to 1 then we will perform
+      partial matches on our menuItem strings.
+
+ PARAMETERS:
+
+      hWnd        The handle of the Window to evaluate the menu structure on.
+
+      hierarchy   String representation of the hierarchy to evaluate.  Menus
+                  and Menuitems should be separated by "->" to signify the
+                  parent\child structure.  Ex: for the NT Explorer window,
+                  the sequence to identify File\New\Folder would be:
+
+                          "&File->Ne&w->&Folder"
+
+                  NOTE: the ampersands indicating an underlined menuitem are
+                  optional for a valid match.  Spaces and key combination
+                  text that may occur on the line with the menuitem are required
+                  unless the "match" parameter is provided and set to 1.
+
+      info        A MenuInfo structure to fill if the menuitem is found.
+                  Upon entry all numberic values are set to -1 except for the
+                  hMenu field which is set to 0.
+                  Text values are set to "".
+                  As the hierarchy is traversed the structure is filled with the
+                  information of the current item in the hierarchy.  Thus if
+                  the routine exits with failure at some point in the hierarchy
+                  a snapshot of where we were at is returned in the structure.
+
+      match       Optional: set to 1 to perform partial text matches on menuItems.
+                  Currently, we only match to the first occurrence of a matching
+                  menuItem substring on each menu level in the hierarchy.
+
+ RETURNS:
+
+      -1      successfully found the menuitem and filled the MenuInfo structure.
+
+       0      failed. Invalid Window handle, hierarchy string, or some other error.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 03, 1999
+ History:
+
+      AUG 03, 1999    Original Release
+      AUG 07, 2000    (Carl Nagle) Converted to shared GetHierarchyInfo routine.
+      APR 30, 2002    (Carl Nagle) Enabled partial text matches.
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuhandleinfofromhierarchy"></a>
+  Function MUGetMenuHandleInfoFromHierarchy (hmenu As Long, hierarchy As String,
+                                       info As MenuInfo, Optional match) As Integer
+
+ DESCRIPTION:
+
+      Given a menu hierarchy string of the form "Menu->Menu->MenuItem" the
+      routine attempts to locate the menuitem using the menu handle
+      provided.  If it finds the MenuItem within the menu it retrieves and
+      stores all the information about the menuitem into the provided
+      MenuInfo structure.
+
+      If the optional match parameter is set to 1 then we will perform
+      partial matches on our menuItem strings.
+
+ PARAMETERS:
+
+      hmenu       The handle of the menu to evaluate the structure on.
+
+      hierarchy   String representation of the hierarchy to evaluate.  Menus
+                  and Menuitems should be separated by "->" to signify the
+                  parent\child structure.  Ex: for the NT Explorer window,
+                  the sequence to identify File\New\Folder would be:
+
+                          "&File->Ne&w->&Folder"
+
+                  NOTE: the ampersands indicating an underlined menuitem are
+                  optional for a valid match.  Spaces and key combination
+                  text that may occur on the line with the menuitem are required
+                  unless the "match" parameter is provided and set to 1.
+
+      info        A MenuInfo structure to fill if the menuitem is found.
+                  Upon entry all numberic values are set to -1 except for the
+                  hMenu field.
+                  Text values are set to "".
+                  As the hierarchy is traversed the structure is filled with the
+                  information of the current item in the hierarchy.  Thus if
+                  the routine exits with failure at some point in the hierarchy
+                  a snapshot of where we were at is returned in the structure.
+
+      match       Optional: set to 1 to perform partial text matches on menuItems.
+                  Currently, we only match to the first occurrence of a matching
+                  menuItem substring on each menu level in the hierarchy.
+
+ RETURNS:
+
+      -1      successfully found the menuitem and filled the MenuInfo structure.
+
+       0      failed. Invalid handle, hierarchy string, or some other error.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+      APR 30, 2002    (Carl Nagle) Enabled partial text matches.
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuhandleinfofrommenuid"></a>
+  Function MUGetMenuHandleInfoFromMenuID (hmenu As Long, menuID As Long,
+                                       info As MenuInfo) As Integer
+
+ DESCRIPTION:
+
+      Given a menuID the routine attempts to locate the menuitem using the
+      menu handle provided.  If it finds the MenuItem within the menu it
+      retrieves and stores all the information about the menuitem into the
+      provided MenuInfo structure.
+
+ PARAMETERS:
+
+      hmenu       The handle of the menu to evaluate the structure on.
+
+      menuID      The menuID of the menuitem to evaluate.  This is generally
+                  used when the menuitem is a bitmap or other item that does
+                  not have text.  This value can be retrieved from the the menu
+                  by index or by manual lookup from a menu structure output
+                  from <a href="#muoutputmenustructure">MUOutputMenuStructure</a>.
+
+      info        A MenuInfo structure to fill if the menuitem is found.
+                  Upon entry all numberic values are set to -1 except for the
+                  hMenu field.  Text values are set to "".
+                  As the menu hierarchy is traversed the structure is filled with
+                  the information of the current item in the hierarchy.  Thus if
+                  the routine exits with failure at some point in the hierarchy
+                  a snapshot of where we were at is returned in the structure.
+
+ RETURNS:
+
+      -1      successfully found the menuitem and filled the MenuInfo structure.
+
+       0      failed. Invalid handle, menuID, or some other error.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetmenuinfofrommenuid"></a>
+  Function MUGetMenuInfoFromMenuID (hWnd As Long, menuID As Long,
+                                       info As MenuInfo) As Integer
+
+ DESCRIPTION:
+
+      Given a menuID the routine attempts to locate the menuitem using the
+      Window handle provided.  If it finds the MenuItem within the menu it
+      retrieves and stores all the information about the menuitem into the
+      provided MenuInfo structure.
+
+ PARAMETERS:
+
+      hWnd        The handle of the Window to evaluate the menu structure on.
+
+      menuID      The menuID of the menuitem to evaluate.  This is generally
+                  used when the menuitem is a bitmap or other item that does
+                  not have text.  This value can be retrieved from the the menu
+                  by index or by manual lookup from a menu structure output
+                  from <a href="#muoutputmenustructure">MUOutputMenuStructure</a>.
+
+      info        A MenuInfo structure to fill if the menuitem is found.
+                  Upon entry all numberic values are set to -1 except for the
+                  hMenu field which is set to 0.  Text values are set to "".
+                  As the menu hierarchy is traversed the structure is filled with
+                  the information of the current item in the hierarchy.  Thus if
+                  the routine exits with failure at some point in the hierarchy
+                  a snapshot of where we were at is returned in the structure.
+
+ RETURNS:
+
+      -1      successfully found the menuitem and filled the MenuInfo structure.
+
+       0      failed. Invalid Window handle, menuID, or some other error.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 03, 1999
+ History:
+
+      AUG 03, 1999    Original Release
+      AUG 07, 2000    (Carl Nagle) Added some parameter validation.
+
+</pre>
+<hr>
+<pre>
+
+<a name="muoutputmenuhandlestructure"></a>
+  Function MUOutputMenuHandleStructure (hmenu As Long, path as String,
+                                  overwrite As Integer, recurse As Integer,
+                                  showState As Integer, Optional description
+                                 ) As Integer
+
+ DESCRIPTION:
+
+      Given a valid handle the routine retrieves the menu structure, formats
+      it as text, and saves it to a file or outputs it to the SQAConsole.
+      You can choose to append or overwrite the existing file (if any) and
+      you can choose to do only one level or the entire menu system.
+
+ PARAMETERS:
+
+      hmenu       handle of the menu to work with
+
+      path        full path and name of file to use/make as output
+                  if path="" the output is directed to the console.
+
+      overwrite   <>1 = Append the file if it already exists.
+                   1 = Overwrite the file if it already exists.
+
+      recurse     <>1 = Output only the top level menu information.
+                   1  = Recursively output ALL menu information.
+
+      showState   <>1 = Do not show any state information
+                   1  = Show the state string of each menuitem
+
+      description   Optional text to place at start of output.
+                    This should be something which identifies which window
+                    or which state of the application the snapshot was
+                    taken from.  Without this, the output gives no indication
+                    of where it came from.
+
+ RETURNS:
+
+       0  success
+
+      +N  SQAError code resulting from call to file Open.
+     -99  Invalid parameters on entry
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="muoutputmenustructure"></a>
+  Function MUOutputMenuStructure (hWnd As Long, path as String,
+                                  overwrite As Integer, recurse As Integer,
+                                  showState As Integer, Optional description
+                                 ) As Integer
+
+ DESCRIPTION:
+
+      Given a valid handle the routine retrieves the menu structure, formats
+      it as text, and saves it to a file or outputs it to the SQAConsole.
+      You can choose to append or overwrite the existing file (if any) and
+      you can choose to do only one level or the entire menu system.
+
+ PARAMETERS:
+
+      hWnd        handle of the Window to work with
+
+      path        full path and name of file to use/make as output
+                  if path="" the output is directed to the console.
+
+      overwrite   <>1 = Append the file if it already exists.
+                   1 = Overwrite the file if it already exists.
+
+      recurse     <>1 = Output only the top level menu information.
+                   1  = Recursively output ALL menu information.
+
+      showState   <>1 = Do not show any state information
+                   1  = Show the state string of each menuitem
+
+      description   Optional text to place at start of output.
+                    This should be something which identifies which window
+                    or which state of the application the snapshot was
+                    taken from.  Without this, the output gives no indication
+                    of where it came from.
+
+ RETURNS:
+
+       0  success
+
+      +N  SQAError code resulting from call to file Open.
+      -1  Handle item does not have a menu.
+     -99  Invalid parameters on entry
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 30, 1999
+ History:
+
+      JUL 30, 1999    Original Release
+      AUG 07, 2000    (Carl Nagle) Mod to use OutputMenuHandleStructure
+
+</pre>
+<hr>
+<pre>
+
+<a name="mugetactivepopupmenu"></a>
+  Function MUGetActivePopupMenu () As Long
+
+ DESCRIPTION:
+
+      Attempts to retrieve the handle of the topmost active popup menu.
+      The routine will temporarily load and unload the CWPHooker.DLL if it
+      is not already active.  If the DLL is already loaded, this routine will
+      NOT unload it. (See <a href="CWPHooker.htm">CWPHooker</a> documentation on the use of this DLL.)
+
+      If we cannot find an active popup, the routine will attempt a keyboard
+      sequence of {Down} to force a WM_MENUSELECT message.  Thus, if you
+      call this routine when there is no active popup menu then your
+      application may receive this keyboard input and produce an unpredictable
+      application state.
+      (Note, however, we try to minimize this possibility by only sending
+       the keyboard {Down} if the topmost window is of the same class as
+       popup menus--#32768.)
+
+ PARAMETERS:
+
+      none
+
+ RETURNS:
+
+      Non-Zero handle to the active popup menu   OR
+      0   if an error occurred or no popup menu was found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 07, 2000
+ History:
+
+      AUG 07, 2000    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

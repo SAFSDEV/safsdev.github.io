@@ -1,0 +1,54 @@
+<HTML>
+<HEAD><TITLE>SAFS Framework Simplified</TITLE></HEAD>
+<BODY>
+<CENTER>
+    <H1>SAFS Framework Simplified</H1>
+    <H2>Extensible, Service-Oriented Framework</H2>
+</CENTER>
+<IMG SRC="image/service-oriented-framework.png" alt="SAFS Service-oriented Framework Diagram"/>
+<P>
+Application Maps = User-Generated Resource Mappings (NLS text and Object Mapping)<br>
+SPOM = Single Point Of Maintenance.<br>
+Test Designs = User-Generated Test Records, Test Scripts, or Test Programs.<br>
+<P>
+<H3>Description:</H3>
+<P>
+SAFS provides an extensible, open-source, service-oriented framework for software test automation.
+<P>
+SAFS provides integrated and shared services for:
+<P>
+<UL>
+    <LI>Logging
+    <LI>Variable/Dynamic Data
+    <LI>Resource Mapping
+    <LI>Test Input Parsing (Drivers)
+    <LI>Test Record Execution (Engines)
+</UL>
+<P>
+SAFS Engines:
+<P>
+<UL>
+    <LI>Implement the parsing and execution of <A HREF="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php" TITLE="SAFS Test Record Reference">SAFS Test Records</A>.
+    <LI>Provide Pass/Fail results and logging for each Test Record.
+    <LI>Libraries for several commercial and open-source automation tools already supported.
+    <LI>Engines for both traditional Object-Based, and <A HREF="SAFSImageBasedRecognition.htm" TITLE="SAFS Image-Based Testing">Image-Based Testing</A>.
+</UL>
+<P>
+There are two modes of using these services:
+<P>
+<DL>
+    <DT><B>Embedded</B> -- single runtime process
+	<P>
+	<DD>All SAFS services--including one Java-based Driver and one Java-based execution Engine--run in a single Process. &nbsp;This provides higher-performance test execution by eliminating inter-process communication delays between SAFS services, the Driver, and the test record execution Engine.
+	<P>
+	SAFS Services, additional Drivers, and additional runtime Engines normally available via STAF are NOT available outside this one Process.
+	<P>
+    <DT><B>STAF-Enabled</B> -- standalone, multi-process
+	<P>
+	<DD>All SAFS services are STAF-enabled making them available to all processes and tools on the local machine and other trusted machines on the network. &nbsp;Multiple test record execution Engines can be available concurrently and they do not have to be Java-based Engines. &nbsp;Multiple Drivers can be running concurrently and they do not have to be Java-based Drivers.
+	<P>
+	The <A HREF="http://staf.sourceforge.net" TITLE="STAF HomePage">STAF (Software Testing Automation Framework)</A> is used internally to provide inter-process communication and coordination among all participating tools and services. &nbsp;STAF can be used by custom tools and processes to interface with the running SAFS services locally, or from other trusted machines.
+</DL>
+<P>
+<HR><P>
+</HTML>

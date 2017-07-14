@@ -1,0 +1,183 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ComboListBoxFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ComboListBoxFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=COMBOLISTBOX objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAUtil.htm">SQAUtil</a>.SBH"
+<li>'$INCLUDE: "<a href="ListBoxFunctions.htm">ListBoxFunctions</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      Select                  'Select a text item in the drop down list
+      SelectIndex             'Select an item in the drop down list by index
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="combolistboxselect"></a>
+   Sub ComboListBoxSelect ()
+
+
+ DESCRIPTION:
+
+      Select an item by its text value from an exposed combobox dropdown list.
+      This method requires that the list already be exposed via a ComboBox
+      Click command.  To combine both the Click and the Selection in a single
+      command use the ComboBox Select command.
+
+      We first test to make sure the item to select is actually in the list.
+      If it is not, we report the failure and issue an ESCAPE character to
+      close the list.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      5   Field 5 should contain the case-sensitive text item to select.
+          You can enclose this text in double-quotes to ensure proper retrieval.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 26, 2000
+ History:
+
+      MAY 26, 2000    Original Release
+      JAN 05, 2001    (Carl Nagle) Enhancing object recognition.
+      NOV 15, 2002    (CHSCHR) Enable HTML handling Select.
+      DEC 09, 2003    (Carl Nagle) "Bug" in Select when list unretrievable fixed.
+      DEC 10, 2003    (Carl Nagle) Simple reordering of checks for List content.
+
+</pre>
+<hr>
+<pre>
+
+<a name="combolistboxselectindex"></a>
+   Sub ComboListBoxSelectIndex ()
+
+
+ DESCRIPTION:
+
+      Select an item by its index (0-based) from an exposed combobox dropdown
+      list. This method requires that the list already be exposed (e.g. via a
+      ComboBox Click command).
+
+      We first test to make sure the index of the item to select is not out
+      of bound. If it is, we report the failure and issue an ESCAPE character
+      to close the list.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      This command can be used when list item text can not be identified by Robot,
+      in which case ComboListBox Select will not work.
+
+ DATA TABLE PARAMETERS:
+
+      5   Field 5 should contain the index of the item to select.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: OCTOBER, 27 2001
+ History:
+
+      OCT 27, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process StepDriver ACTION COMMANDS on this object.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAR 27, 2000
+ History:
+
+      MAR 27, 2000    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

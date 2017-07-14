@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0063)http://members.aol.com/Carl Nagle/Data_Driven_Implementation.htm -->
+<HTML><HEAD><TITLE>*ONE* Implementation</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<META content="MSHTML 5.00.2722.2800" name=GENERATOR></HEAD>
+<BODY>
+<P align=center><STRONG><BIG><BIG><BIG>Data-Driven 
+Automation</BIG></BIG></BIG><BR><BIG><BIG>(*ONE* 
+Implementation)</BIG></BIG></STRONG></P>
+<P>Comments by <A href="mailto:safsdev@sas.com">Carl Nagle</A>&nbsp; last 
+updated March 24, 2000.</P>
+<P>The following are comments concerning a data-driven design based upon the 
+framework described in other notes on <A 
+href="Data_Driven_Decisions.htm" target=_blank>Deciding on 
+Data-Driven Automation</A> and other notes on a <A 
+href="DataDrivenTestAutomationFrameworks.htm#KeywordDrivenAutomationFrameworkModel" 
+target=external_viewer>Data-Driven Engine</A> illustration.&nbsp; The 
+implementation is becoming production quality&nbsp; and works to demonstrate one 
+possible implementation of data-driven concepts.&nbsp; It is also implemented in 
+a manner that is slightly different than the illustration.&nbsp; Most notably, 
+there is no separate or single dictionary defining the "vocabulary" of the data 
+files.</P>
+<P>Some folks having seen the engine and some of it's interworkings.&nbsp; A few 
+came up with questions or comments which I can share because they help further 
+explain some general principals.&nbsp; They can also bring to light some 
+issues.</P>
+<P>Keep in mind, this is but *ONE* implementation of a data-driven 
+framework.&nbsp; Noone proposes that this is the best or most correct 
+implementation.&nbsp; It is just one of many potential implementations.</P>
+<P>Edited comments follow:</P>
+<P><A 
+href="#where_dictionary"><STRONG>Where 
+is the "dictionary"?</STRONG></A><BR><STRONG><A 
+href="#input_data">How 
+does it input data to the application?</A></STRONG><BR><STRONG><A 
+href="#baseline_data">How 
+do you create a test baseline?</A></STRONG><BR><STRONG><A 
+href="#branching_records">How 
+is each record type or driver command resolved?</A></STRONG><BR><STRONG><A 
+href="#branching_tests">How 
+do you drive this thing without HUGE "Select Case" 
+statements?</A></STRONG><BR></P>
+<P><A name=where_dictionary></A><BIG><STRONG>1) Where is the 
+"dictionary"?</STRONG></BIG> </P>
+<P>There is no explicit single-place dictionary in this implementation. The 
+dictionary in this implementation is the combination of the APPLICATION MAP and 
+the action words that the Component Functions (illustrated simply as FUNCTIONS) 
+recognize. The APPLICATION MAP defines the window name and component name part 
+of the dictionary for the application being tested. </P>
+<P>Component function scripts or libraries like ButtonFunctions, 
+CheckboxFunctions, and WindowFunctions individually define which Action Words or 
+Commands the functions will respond to. Implementing a "dictionary" via the map 
+and the component functions allows the "dictionary" to grow without making any 
+changes to the core engine (StepDriver, SuiteDriver, and CycleDriver). It also 
+allows the same command or action word to mean different things to different 
+components when that is desirable.<BR></P>
+<P><A name=input_data></A><BIG><STRONG>2) How do we input data (like employee 
+name, address, ssn for a hire)? </STRONG></BIG></P>
+<P>With the current implementation of these Component Functions all the input 
+data is in the same data files used to drive navigation and verification. </P>
+<P>For example:</P>
+<P>t, LoginWin, PasswordBox, SetTextValue, mypassword</P>
+<P>SetTextValue is the command that will enter data into an EditBox. The data to 
+enter is the very next field in that record. But it doesn't have to be that 
+way.&nbsp; There can easily be an implementation that reads the next value (or a 
+set of values) from another file or whatever you choose to implement.&nbsp; </P>
+<P>Another example:</P>
+<P>t, UserWin, UserWin, AddUsers, UserData.data</P>
+<P>This could be implemented such that there is a routine that will key in any 
+number of users into a database.&nbsp; We give it a file containing all the user 
+data in a format we designed it to understand and off it goes.&nbsp; This same 
+routine can be made to verify each field, each record, or the entire "table" as 
+part of its functionality. &nbsp; It is all up to what you choose to implement 
+and is separate from the core engine.<BR></P>
+<P><A name=baseline_data></A><STRONG><BIG>3) How do you create a 
+baseline?</BIG></STRONG></P>
+<P>Currently, each of the component functions expects the baseline data to be in 
+the data file. Usually the last field in the current record. </P>
+<P>For example:</P>
+<P>t, LoginWin, PasswordBox, VerifyProperty, Text, mypassword</P>
+<P>The VerifyProperty command tells the EditBoxFunctions routines to verify the 
+Text property of the given EditBox is set to "mypassword".&nbsp; Again, you can 
+choose to implement this differently or provide multiple implementations. 
+Whatever works for a particular situation.</P>
+<P>We (me, myself, and I) discussed possible implementations where an actual 
+baseline is stored as a recorded testcase or verification point.&nbsp; One 
+reason we did not implement this from the beginning is that our engine does not 
+reside in the repository from which the tests are run. This potentially creates 
+problems, but I didn't know that for sure. &nbsp; </P>
+<P>Since then, I have found that regardless of where the running library is 
+physically located, calls to stored VPs will come from the active project's 
+repository (i.e. even if the call is coming from within the remotely located 
+library routine).&nbsp; Thus, as long as the engine makes a call to a VP that 
+exists in the calling script (the most recent one called or launching the 
+engine) we can implement the use of those VPs.&nbsp; </P>
+<P>To confirm&nbsp; this for myself, I have successfully implemented the 
+"VerifyImage" command in the most recent WindowsFunctions library.&nbsp; It 
+performs any WindowVP CompareImage using the baseline VPs previously stored in 
+the calling script.<BR></P>
+<P><A name=branching_records></A><STRONG><BIG>4) What is that "t,"?&nbsp; How 
+are your RECORD TYPES resolved; through the dictionary?</BIG></STRONG></P>
+<P>That "t,", the initial field on a valid record, tells the driver how to 
+handle that record. That initial field is referenced in the documentation as 
+specifying the RECORD TYPE. </P>
+<P>The note at the top of some of the data files also specifies the different 
+RECORD TYPES that might be found in those files. Example:</P>
+<P>' NOTE_....<BR>' b = BLOCKID - Defines the start of a named block within the 
+input file.<BR>' c = DRIVER COMMAND - Driver performs utility function other 
+than test.<BR>' s = SKIPPED TEST - A test which is temporarily disabled (and 
+logged as such).<BR>' t = TEST - A "test" to perform.&nbsp; Might be navigation, 
+changing values, or verifying data</P>
+<P>In this implementation the core engine interprets and responds to each of 
+these RECORD TYPES.&nbsp; It is not part of any external dictionary.&nbsp; The 
+engine would not know how to implement a new RECORD TYPE unless we code in the 
+functionality.&nbsp; Thus, these are CONSTANTS defined for the core 
+engine.<BR></P>
+<P><A name=branching_tests></A><STRONG><BIG>5) How does the engine drive the 
+individual tests? Sounds like a HUGE "Select Case" statement!</BIG></STRONG></P>
+<P>The primary goal of the deepest layer of the engine (StepDriver) is to 
+process the upfront RECORD TYPE.&nbsp; It forwards the test record to the 
+appropriate routine for the RECORD TYPE.&nbsp; There are currently only a small 
+handful (less than 8) RECORD TYPES for the engine.</P>
+<P>Each RECORD TYPE routine processes the record according to the syntax it 
+requires. &nbsp; The real issue of where the potential for a HUGE "Select Case" 
+is when we have to route TEST records since there exists the potential for a 
+huge number of different types of tests to perform.</P>
+<P>This engine deals with this not by having to branch for every possible action 
+that could be performed.&nbsp; Instead we branch according to the type of the 
+component this particular test record is manipulating.&nbsp; If the component is 
+a Button we call ButtonFunctions.&nbsp; If it is an EditBox we call 
+EditBoxFunctions.&nbsp; The engine doesn't deal with or care about any of the 
+syntax with the remainder of the record. &nbsp; Once it finds and determines the 
+component type, it forwards the record to the appropriate ComponentFunction 
+Script.</P>
+<P>The ComponentFunction routine would then parse the remaining record to 
+determine what it was being asked to do.</P>
+<P>Originally, this call was no issue because we used the dynamic Script calling 
+convention of the CallProcedure or CallScript function.&nbsp; In other words, if 
+the Component Type resolved to "EditBox" we simply did: CallScript CType &amp; 
+"Functions".&nbsp; This resolved to: CallScript "EditBoxFunctions". &nbsp; In 
+this manner we could constantly implement new component functions and never have 
+to recompile the main engine.&nbsp; The engine was oblivious to what component 
+types were implemented</P>
+<P>This works fine as long as the ComponentFunction Scripts are directly 
+accessible (located in the active project).. &nbsp; </P>
+<P>We later decided that this engine needed to be accessible and available to 
+run even if it was not in the active repository of the current project.&nbsp; 
+This would enable anyone to use it regardless of where they were testing from 
+and they could still use whatever repository they were using for test.&nbsp; To 
+enable this without a lot of mess and fuss, we placed these Scripts and the 
+entire compiled supporting library up somewhere where it was generally 
+accessible.&nbsp; </P>
+<P>Without further investigation, however, we did have to convert the core 
+engine to point to the location of these routines since they could be called 
+from anywhere on the intranet.&nbsp; This took away our dynamic calling 
+convention and made us resort to a "Select Case" scheme based on the Component 
+Type encountered in the record.&nbsp; While not what we consider ideal, the Case 
+statement is relatively small since it only has to deal with the types of 
+components encountered and not all the possible things you can do with them.</P>
+<HR>
+</BODY></HTML>

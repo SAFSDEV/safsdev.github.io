@@ -1,0 +1,161 @@
+<html>
+<head><title>SAFS Keywords Development</title></head>
+<body>
+<h1>SAFS Keywords Development</h1>
+<small>Last Updated by Carl Nagle: Mar 12, 2008</small>
+<p>
+This document provides information for the new developer to proceed with keyword development--including:
+<p>
+<a name="top" />
+1. <a href="#reviewsafsreference">Review SAFS Reference</a><br>
+2. <a href="#reviewsafsxml">Review SAFS XML</a><br>
+3. <a href="#reviewexistingsourcecode">Review Existing Sourcecode</a><br>
+4. <a href="#reviewtoolsapi">Review Tool API</a><br>
+5. <a href="#reviewmessageresources">Review Message Resources</a><br>
+6. <a href="#editandtestkeywordimplementation">Edit and Test Keyword Implementation</a><br>
+7. <a href="#editandtestxml">Edit and Test XML</a><br>
+<p>
+<a name="reviewsafsreference"/>
+<h3>Review SAFS Reference</h3>
+<p>
+Carefully review the <a href="http://safsdev.sourceforge.net/sqabasic2000/RRAFSReference.htm" alt="SAFS Keywords Reference" target="_blank">SAFS Keywords Reference</a>. &nbsp;Review the <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReferenceKey.htm" alt="SAFS Reference Key" target="_blank">SAFS Reference Key</a>.<br>
+The entire reference and many other assets are automatically generated from the XML used to define the Keywords--the testing language--of SAFS. &nbsp;As a developer edits sourcecode to add new keywords or to enhance existing keywords the developer is also responsible for the XML edits necessary to reflect this work.
+<br><small><a href="#top">(back to top)</a></small>
+<p>
+<a name="reviewsafsxml"/>
+<h3>Review SAFS XML</h3>
+<p>
+It is the XML files, XSL Stylesheets, and (Windows) Batch programs that enable us to automatically generate the Reference.  You can view the XML, XSL, DTD, and BAT files in your favorite text editor or IDE.
+<p>
+<b>In a SAFS install</b>:
+<p>
+<ul>
+<li>XML: C:\SAFS\keywords
+<li>XSL: C:\SAFS\keywords
+<li>DTD: C:\SAFS\keywords\keyword_library.dtd
+<li>BAT: C:\SAFS\bin
+</ul>
+<p>
+<b>In CVS</b>:
+<p>
+<ul>
+<li>XML: /safsdev/source/common/keywords
+<li>XSL: /safsdev/source/rrafs
+<li>DTD: /safsdev/source/rrafs/doc/keyword_library.dtd
+<li>BAT: /safsdev/source/rrafs
+</ul>
+<p>
+(Much of this predates the Java-based SAFS framework in source/common!)
+<p>
+<b>Key Files Associated with SAFS Reference Publishing</b>:
+<p><ul>
+<li><b>XSLDriverCommands.XML</b> &nbsp;List of XML files containing Driver Commands
+<li><b>XSLComponentFunctions.XML</b> &nbsp;List of XML files containing Component Functions
+<li><b>XSLCommonDDE.XSL</b>          &nbsp;Some common and reusable XSL templates for our reference material
+<li><b>XSLDDEngineReference.XSL</b>  &nbsp;HTML and templates for building the SAFS Reference and DDEngine Reference
+<li><b>XSLBuildDDEngineReference.BAT</b> &nbsp;Batch program to automatically build the reference
+</ul>
+<p>
+If all expected XML files exist and contain properly formatted XML, then all you have to do is run the XSLBuildDDEngineReference.BAT batch program. The results of any edits will appear in the C:\SAFS\doc directory.
+<br><small><a href="#top">(back to top)</a></small>
+<p>
+<a name="reviewexistingsourcecode"/>
+<h3>Review Existing Sourcecode</h3>
+<p>
+It is always a good idea to see how other keywords have been implemented. &nbsp;You shouldn't limit yourself to the sourcecode of your own tool, either. &nbsp;If you are working on a keyword that has been implemented in another engine it is often a good idea to review the sourcecode for the other engine to see how it was done. &nbsp;This also gives the developer a little more information as to what is expected of the keyword implementation beyond what the Reference might provide.
+<p>
+<b>CVS sourcecode for several engines</b>:
+<p>
+<ul>
+<li><b>RRAFS</b>: /safsdev/source/rrafs/libraries
+<li><b>&nbsp;RFT&nbsp;</b>: /safsdev/source/common/org/safs/rational
+<li><b>Selnm</b>: /safsdev/source/common/org/safs/selenium
+<li><b>Agent</b>: /safsdev/source/common/org/safs/jvmagent/agents
+</ul>
+<br><small><a href="#top">(back to top)</a></small>
+<p>
+<a name="reviewtoolapi"/>
+<h3>Review Tool API</h3>
+<p>
+By examining existing sourcecode you can get an idea of the API your testing tool offers.  However, you need to be able to reference your tool's API easily, and probably often.  API documentation is usually provided in your IDE Help System, in the install directories for the tool, or online by the tool provider.
+<p>
+<ul>
+<li><b>RRAFS</b>: Robot Help->SQABasic Language Reference
+<li><b>&nbsp;RFT&nbsp;</b>: Functional Test Perspective, Help->Functional Test API Reference
+<li><b>Selnm</b>: Online Documentation for <a href="http://selenium-rc.openqa.org/" alt="Selenium Remote Control Docs" target="_blank">Selenium Remote Control</a>
+<li><b>Agent</b>: Online Documentation for <a href="http://safsdev.sourceforge.net/doc/org/safs/jvmagent/agents/package-frame.html" alt="SAFS JVMAgents" target="_blank">SAFS JVMAgents</a>
+</ul>
+<small><a href="#top">(back to top)</a></small>
+<p>
+<a name="reviewmessageresources"/>
+<h3>Review Message Resources</h3>
+<p>
+Slowly but surely we are introducing the use of shared and localizable messages across Java tools. &nbsp;The messages are currently stored in localizable files:
+<p>
+<ul>
+<li>SAFSTextResourceBundle*.properties
+<li>failedSAFSTextResourceBundle*.properties
+</ul>
+<p>
+For Java, we have two classes that facilitate the use of these resource bundles:
+<p>
+<ul>
+<li><a href="http://safsdev.sourceforge.net/doc/org/safs/text/GENStrings.html" alt="SAFS GENStrings Class" target="_blank">org.safs.text.GENStrings</a>
+<li><a href="http://safsdev.sourceforge.net/doc/org/safs/text/FAILStrings.html" alt="SAFS FAILStrings Class" target="_blank">org.safs.text.FAILStrings</a>
+</ul>
+<p>
+Likely some (but not all) of the Java sourcecode you will see will show how to use these classes, or how they may exist as protected field objects available for use.  If in doubt, ask the forum.
+<p>
+There is also a great deal of old code where PASS\FAIL messages are of the type:
+<ul><pre>
+log.logMessage(testRecordData.getFac(),
+    <b>getClass().getName()</b>+ ", "+ testRecordData.getCommand() +...,
+    PASSED_MESSAGE);
+
+log.logMessage(testRecordData.getFac(),
+    <b>getClass().getName()</b>+ ", "+ testRecordData.getCommand() +...,
+    FAILED_MESSAGE);
+</pre></ul>
+<p>
+Specifically, where we use "<b>getClass().getName()</b>" to log the name of the executing Class as part of the PASSED or FAILED message. &nbsp;We need to get away from this and, over time, get this out of our code whereever it exists as part of PASS\FAIL messages. &nbsp;In DEBUG or INFO messages this should be OK.
+<p>
+We need to focus on using the localizable resource files and their localized counterparts everywhere we can:
+<p><ul>
+<li>SAFSTextResourceBundle_en_US..properties
+<li>failedSAFSTextResourceBundle_en_US..properties
+</ul><p>
+These are available to ComponentFunctions and DriverCommands via calls to genericText.convert and failedText.convert or similar routines:
+<ul><pre>
+log.logMessage(testRecordData.getFac(),
+    genericText.convert("success3a", altText, windowName, compName, action, use),
+    PASSED_MESSAGE);
+
+log.logMessage(testRecordData.getFac(),
+    genericText.convert(TXT_SUCCESS_3, altText, windowName, compName, action),
+    PASSED_MESSAGE);
+
+log.logMessage(testRecordData.getFac(),
+    failedText.convert("ignore_bad_param", action + someinfo,
+    action, someinfo));</pre></ul>
+<small><a href="#top">(back to top)</a></small>
+<p>
+<a name="editandtestkeywordimplementation"/>
+<h3>Edit and Test Keyword Implementation</h3>
+<p>
+Referring to the Keyword Reference, sourcecode for existing implementations, and the tool API for your engine, it is time to jump in and enhance or implement keywords.  Always try to output shared messages from the Resource Bundles.  If the right message isn't there, then add it to the appropriate Resource Bundle.  Use the messaging seen in other engines (like RRAFS) as a reference for your messages.  Across all engines we want the output messages to be pretty much the same.
+<p>
+Make sure you have the means (an application to test) that will allow you to test and debug your work against real components or targets. &nbsp;Once you have accurately implemented the keyword make sure you update the XML appropriately.
+<br><small><a href="#top">(back to top)</a></small>
+<p>
+<a name="editandtestxml"/>
+<h3>Edit and Test XML</h3>
+<p>
+You can edit the XML in a good text or XML editor.  The DTD can be used as reference to know what is valid and invalid--required or optional. &nbsp;However, the best source of info is in the tons of XML that is already there.
+<p>
+If the XML already has the keyword definition in it and you are simply adding support for the keyword in another engine then you typically only have to update the ENGINES tag with a new ENGINE definition.  If you copy an ENGINE definition from elsewhere make sure you make <b><i>ALL</i></b> the necessary changes.
+<p>
+As long as the DTD is in the same directory as the XML you can usually test your XML by trying to view it in a web browser. &nbsp;If the browser does not complain and shows the XML tree, then it is OK.  If the browser doesn't like it, the browser may give you hints as to where you have messed things up.
+<p>
+You should also test your XML by publishing the SAFS Reference locally.  Do this by running the <b>XSLBuildDDEngineReference.BAT</b> batch file in the C:\SAFS\bin directory.  You can then view a local copy of the reference from you C:\SAFS\doc directory.
+<br><small><a href="#top">(back to top)</a></small>
+</body></html>

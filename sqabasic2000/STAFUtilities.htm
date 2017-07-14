@@ -1,0 +1,1483 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic STAFUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "STAFUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Provides general-purpose routines for using STAF and SAFS services associated
+ with STAF.
+
+ For more information on STAF:  http://staf.sourceforge.net
+
+ The STAF User's Guide is where you can found information on the particular
+ services such as QUEUES and EVENTS allowed by this library:
+
+     http://staf.sourceforge.net/current/STAFUG.htm
+
+ It is important to note that this library is tightly coupled with one or
+ more DLLs in support of STAF and SAFS use of the STAF framework.  If your
+ local installation does not have STAF installed, then Rational will not even
+ successfully load this STAFUtilities module.  So you would not even be able
+ to attempt to call any of the functions in this library.
+
+ Of course, anyone hoping to use this library is expected to have STAF installed.
+ Core libraries attempting to use STAF as a primary or secondary mechanism
+ must be prepared for the event that STAF is NOT installed, or that it is NOT
+ running for some reason.  And they must handle this gracefully.
+
+ To trap these error conditions, any library or script hoping to call these
+ functions must use "On Error" trapping like that shown below:
+
+      On Error Goto NO_STAF
+      ...
+      call STAFUtilities functions here
+      ...
+      Exit Sub/Function
+
+  NO_STAF:
+
+      handle STAF NOT INSTALLED error here
+      ...
+      Exit Sub/Function
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE "STAFUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\STAFUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#stafregisterclassic">STAFregisterClassic</a>     BasicLib STAFUtilities                 
+Function <a href="#stafgetprocessinfo">STAFgetProcessInfo</a>      BasicLib STAFUtilities                 
+Function <a href="#lentagstafvalue">lentagSTAFValue</a>         BasicLib STAFUtilities                 
+Function <a href="#submitservicerequest">submitServiceRequest</a>    BasicLib STAFUtilities                 
+Function <a href="#submitservicerequest2">submitServiceRequest2</a>   BasicLib STAFUtilities                 
+Function <a href="#sendqueuemessage">sendQueueMessage</a>        BasicLib STAFUtilities                 
+Function <a href="#getqueuemessage">getQueueMessage</a>         BasicLib STAFUtilities                 
+Function <a href="#processtoolrequest">processToolRequest</a>      BasicLib STAFUtilities                 
+Function <a href="#setsafsvariable">setSAFSVariable</a>         BasicLib STAFUtilities                 
+Function <a href="#getsafsvariable">getSAFSVariable</a>         BasicLib STAFUtilities                 
+Function <a href="#setsafstestrecorddata">setSAFSTestRecordData</a>   BasicLib STAFUtilities                 
+Function <a href="#getsafstestrecorddata">getSAFSTestRecordData</a>   BasicLib STAFUtilities                 
+Function <a href="#stafwaitmutex">STAFwaitMutex</a>           BasicLib STAFUtilities                 
+Function <a href="#stafreleasemutex">STAFreleaseMutex</a>        BasicLib STAFUtilities                 
+Function <a href="#stafwaitevent">STAFwaitEvent</a>           BasicLib STAFUtilities                 
+Function <a href="#stafpostevent">STAFpostEvent</a>           BasicLib STAFUtilities                 
+Function <a href="#stafresetevent">STAFresetEvent</a>          BasicLib STAFUtilities                 
+Function <a href="#stafpulseevent">STAFpulseEvent</a>          BasicLib STAFUtilities                 
+Function <a href="#stafresetclassicevents">STAFresetClassicEvents</a>  BasicLib STAFUtilities                 
+Function <a href="#callsafshook">callSAFSHook</a>            BasicLib STAFUtilities                 
+Function <a href="#callsafsrobotjhook">callSAFSRobotJHook</a>      BasicLib STAFUtilities                 
+Function <a href="#istoolavailable">isToolAvailable</a>         BasicLib STAFUtilities                 
+Function <a href="#isserviceavailable">isServiceAvailable</a>      BasicLib STAFUtilities                 
+Function <a href="#issafsvarsavailable">isSAFSVARSAvailable</a>     BasicLib STAFUtilities                 
+Function <a href="#issafsmapsavailable">isSAFSMAPSAvailable</a>     BasicLib STAFUtilities                 
+Function <a href="#issafslogsavailable">isSAFSLOGSAvailable</a>     BasicLib STAFUtilities                 
+Function <a href="#isrobotjavailable">isRobotJAvailable</a>       BasicLib STAFUtilities                 
+Function <a href="#isdrivercommandsavailable">isDriverCommandsAvailable</a>  BasicLib STAFUtilities                 
+Function <a href="#isseleniumavailable">isSeleniumAvailable</a>     BasicLib STAFUtilities                 
+Function <a href="#stafunregisterclassic">STAFunregisterClassic</a>   BasicLib STAFUtilities                 
+Function <a href="#getstafmajorversion">getSTAFMajorVersion</a>     BasicLib STAFUtilities                 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+'for STAF EVENT (SEM) services
+Const SAFS_HOOK_TRD              = "SAFS/Hook/TRD"
+
+Const EVENT_START                = "Start"
+Const EVENT_READY                = "Ready"
+Const EVENT_DISPATCH             = "Dispatch"
+Const EVENT_RUNNING              = "Running"
+Const EVENT_RESULTS              = "Results"
+Const EVENT_DONE                 = "Done"
+Const EVENT_SHUTDOWN             = "Shutdown"
+
+'for SAFS STAF Environment
+Const SAFS_CYCLE_TRD_PREFIX      = "SAFS/Cycle/"
+Const SAFS_SUITE_TRD_PREFIX      = "SAFS/Suite/"
+Const SAFS_STEP_TRD_PREFIX       = "SAFS/Step/"
+Const SAFS_SHARED_TRD_PREFIX     = "SAFS/Hook/"
+
+Const SAFS_TRD_FILENAME          = "filename"
+Const SAFS_TRD_LINENUMBER        = "linenumber"
+Const SAFS_TRD_INPUTRECORD       = "inputrecord"
+Const SAFS_TRD_SEPARATOR         = "separator"
+Const SAFS_TRD_TESTLEVEL         = "testlevel"
+Const SAFS_TRD_APPMAPNAME        = "appmapname"
+Const SAFS_TRD_FAC               = "fac"
+Const SAFS_TRD_STATUSCODE        = "statuscode"
+Const SAFS_TRD_STATUSINFO        = "statusinfo"
+
+Const SAFS_ROBOTC_PROCESS        = "SAFS/RobotClassic"
+Const SAFS_ROBOTC_PROCESS_ID     = "SAFS/RobotClassicID"
+Const SAFS_ROBOTJ_PROCESS        = "SAFS/RobotJ"
+Const SAFS_ROBOTJ_PROCESS_ID     = "SAFS/RobotJID"
+
+Const SAFS_DRIVER_COMMANDS_PROCESS = "SAFS/DriverCommands"
+Const SAFS_DRIVER_COMMANDS_ID      = "SAFS/DriverCommandsID"
+
+Const SAFS_SELENIUM_PROCESS = "SAFS/Selenium"
+Const SAFS_SELENIUM_ID      = "SAFS/SeleniumID"
+
+Const SAFS_ROBOTJ_MUTEX          = SAFS_HOOK_TRD
+Const SAFS_ROBOTJ_EVENT_START    = SAFS_ROBOTJ_PROCESS & EVENT_START
+Const SAFS_ROBOTJ_EVENT_READY    = SAFS_ROBOTJ_PROCESS & EVENT_READY
+Const SAFS_ROBOTJ_EVENT_DISPATCH = SAFS_ROBOTJ_PROCESS & EVENT_DISPATCH
+Const SAFS_ROBOTJ_EVENT_RUNNING  = SAFS_ROBOTJ_PROCESS & EVENT_RUNNING
+Const SAFS_ROBOTJ_EVENT_RESULTS  = SAFS_ROBOTJ_PROCESS & EVENT_RESULTS
+Const SAFS_ROBOTJ_EVENT_DONE     = SAFS_ROBOTJ_PROCESS & EVENT_DONE
+Const SAFS_ROBOTJ_EVENT_SHUTDOWN = SAFS_ROBOTJ_PROCESS & EVENT_SHUTDOWN
+
+CONST STAF_SERVICELOADER_PROCESS = "STAF/Service/STAF/ServiceLoader"
+CONST STAF_SERVICELOADER_PROCESS_V3 = "STAF/Service/STAFServiceLoader1"
+CONST STAF_STAF_PROCESS          = "STAF_Process"
+Const SAFS_SAFSVARS_PROCESS      = "SAFSVariableService"
+Const SAFS_SAFSVARS_SERVICE      = "SAFSVARS"
+Const SAFS_SAFSMAPS_PROCESS      = "SAFSAppMapService"
+Const SAFS_SAFSMAPS_SERVICE      = "SAFSMAPS"
+Const SAFS_SAFSLOGS_PROCESS      = "STAF/Service/safslogsLog"
+Const SAFS_SAFSLOG_SERVICE       = "SAFSLOGS"
+Const SAFS_SAFSLOGLOG_SERVICE    = "SAFSLOGSLOG"
+
+Const SAFS_HOOK_SHUTDOWN_COMMAND = "SHUTDOWN_HOOK"
+
+'STAF result/error codes
+Const STAF_NOT_INSTALLED         = -1
+Const STAF_Ok = 0
+Const STAF_InvalidAPI = 1
+Const STAF_UnknownService = 2
+Const STAF_InvalidHandle = 3
+Const STAF_HandleAlreadyExists = 4
+Const STAF_HandleDoesNotExist = 5
+Const STAF_UnknownError = 6
+Const STAF_InvalidRequestString = 7
+Const STAF_InvalidServiceResult = 8
+Const STAF_REXXError = 9
+Const STAF_BaseOSError = 10
+Const STAF_ProcessAlreadyComplete = 11
+Const STAF_ProcessNotComplete = 12
+Const STAF_VariableDoesNotExist = 13
+Const STAF_UnResolvableString = 14
+Const STAF_InvalidResolveString = 15
+Const STAF_NoPathToMachine = 16
+Const STAF_FileOpenError = 17
+Const STAF_FileReadError = 18
+Const STAF_FileWriteError = 19
+Const STAF_FileDeleteError = 20
+Const STAF_STAFNotRunning = 21
+Const STAF_CommunicationError = 22
+Const STAF_TrusteeDoesNotExist = 23
+Const STAF_InvalidTrustLevel = 24
+Const STAF_AccessDenied = 25
+Const STAF_STAFRegistrationError = 26
+Const STAF_ServiceConfigurationError = 27
+Const STAF_QueueFull = 28
+Const STAF_NoQueueElement = 29
+Const STAF_NotifieeDoesNotExist = 30
+Const STAF_InvalidAPILevel = 31
+Const STAF_ServiceNotUnregisterable = 32
+Const STAF_ServiceNotAvailable = 33
+Const STAF_SemaphoreDoesNotExist = 34
+Const STAF_NotSemaphoreOwner = 35
+Const STAF_SemaphoreHasPendingRequests = 36
+Const STAF_Timeout = 37
+Const STAF_JavaError = 38
+Const STAF_ConverterError = 39
+Const STAF_ServiceAlreadyExists = 40
+Const STAF_InvalidObject = 41
+Const STAF_InvalidParm = 42
+Const STAF_RequestNumberNotFound = 43
+Const STAF_InvalidAsynchOption = 44
+Const STAF_RequestNotComplete = 45
+Const STAF_ProcessAuthenticationDenied = 46
+Const STAF_InvalidValue = 47
+Const STAF_DoesNotExist = 48
+Const STAF_AlreadyExists = 49
+Const STAF_DirectoryNotEmpty = 50
+Const STAF_DirectoryCopyError = 51
+
+Const STAF_UserDefined = 4000
+
+' STAF request submission syncOption
+Const STAF_ReqSync = 0
+Const STAF_ReqFireAndForget = 1
+Const STAF_ReqQueue = 2
+Const STAF_ReqRetain = 3
+Const STAF_ReqQueueRetain = 4
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+Type STAFResult
+    rc as Long
+    result as String
+End Type
+
+
+Type STAFQueueMessage
+    rc As Long
+    priority as long
+    timestamp as String
+    machine as String
+    process as String
+    handle as Long
+    message as String
+End Type
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="stafgetprocessinfo"></a>
+  Function STAFgetProcessInfo(processID as String) AS Long
+
+ DESCRIPTION:
+
+     Return the STAF process name and handle registered for Robot.
+
+
+ PARAMETERS:
+
+     String to receive processID or empty string on return
+
+
+ RETURNS:
+
+      0   if not registered with STAF
+      N   STAF handle for SAFS/RobotClassic
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 21, 2004
+ History:
+
+      OCT 21, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafregisterclassic"></a>
+  Function STAFregisterClassic() AS Long
+
+ DESCRIPTION:
+
+  Attempts to register this Robot Classic process with STAF.
+  If the attempt is successful, we will have a valid handle for performing
+  STAF requests.  We also record our STAF info in variable storage.
+  The variables containing these values are:
+
+      "SAFS/RobotClassic"     our registered process name
+      "SAFS/RobotClassicID"   our handle
+
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+      0   if successfully registered (or already registered)
+     -1   STAF_NOT_INSTALLED (may never get generated)
+      N   other STAF error codes
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JAN 05, 2010    (PMIESS) Added switch to look for the seriviceloader in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafunregisterclassic"></a>
+  Function STAFunregisterClassic() as Long
+
+ DESCRIPTION:
+
+  Attempts to unregister this Robot Classic process with STAF.
+  We also clear our STAF info in variable storage.
+  The variables containing these values are:
+
+      "SAFS/RobotClassic"     clear our registered process name
+      "SAFS/RobotClassicID"   clear our handle
+
+ PARAMETERS:
+
+  (none0
+
+ RETURNS:
+
+      0   if successfully unregistered (or not registered)
+     -1   STAF_NOT_INSTALLED (may never get generated)
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="lentagstafvalue"></a>
+  Function lentagSTAFValue(value As String) As String
+
+  DESCRIPTION:
+
+  Provides the length prefix tag needed for STAF values to avoid value
+  parsing errors.  This is a colon-delimited prefix that contains the length
+  of the value string.  This is often required to prevent character escaping
+  in quoted strings by STAF.  This STAF process can corrupt our values.
+
+  Output Examples:
+
+      :5:value
+      :2:Hi
+      :6:C:\Dir       character escaping avoided
+      :9:"c:\dir\"    quotes retained and char escaping avoided
+
+
+  PARAMETERS:
+
+      value   The value to length tag.
+
+
+  RETURNS:
+
+      New String with len tag prefix applied. 0-length values will not
+      receive the prefix.  The input value is not modified.
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      DEC 07, 2006    (Carl Nagle) Modified to support Unicode and NLS testing.
+
+</pre>
+<hr>
+<pre>
+
+<a name="submitservicerequest2"></a>
+  Function submitServiceRequest2(syncOption As Integer,
+                                where As String,
+                                service As String,
+                                message As String,
+                                result as STAFResult) As Long
+
+  DESCRIPTION:
+
+  Submit a request to STAF.  This is the workhorse routine.
+  Handles setting the messageLength, setting STAF associated pointers and
+  buffers for handling the call.
+
+  Upon a successful call, our private module variables will contain:
+
+     resultStr    will contain any text response from the STAF service.
+     resultLen    will contain the expected length of resultStr.
+
+  Note that some successful calls do not generate any resultStr response.
+  For example, a request for the value of a variable whose value is an empty,
+  zero-length string will have an empty zero-length response.
+
+
+  PARAMETERS:
+
+      syncOption  The synchronization mode for the request submission. This
+                  can be any of the following constants:
+
+                  STAF_ReqSync
+                  STAF_ReqFireAndForget
+                  STAF_ReqQueue
+                  STAF_ReqRetain
+                  STAF_ReqQueueRetain
+
+                  See STAF API reference for the explaination of these options.
+
+      where       The name of the destination machine for the request.
+
+      service     The name of the service to receive the STAF request.
+
+      message     The message to send to the service.
+
+      result      Structure to receive STAF return code and response string.
+
+
+  RETURNS:
+
+      The STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Yuesong Wang
+ Orig   Date: JUL 01, 2003
+ History:
+
+      JUL 01, 2003    Original Release
+      DEC 07, 2006    (Carl Nagle) Modified to support Unicode and NLS testing.
+
+</pre>
+<hr>
+<pre>
+
+<a name="submitservicerequest"></a>
+  Function submitServiceRequest(service As String,
+                                message As String,
+                                result as STAFResult) As Long
+
+  DESCRIPTION:
+
+  Submit a local, synchronous request to STAF using submitServiceRequest2.
+
+  See submitServiceRequest2 for details.
+
+  PARAMETERS:
+
+      service     The name of the service to receive the STAF request.
+
+      message     The message to send to the service.
+
+      result      Structure to receive STAF return code and response string.
+
+
+  RETURNS:
+
+      The STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JUL 01, 2003    (YWANG) Changed to call submitServiceRequest2
+
+</pre>
+<hr>
+<pre>
+
+<a name="istoolavailable"></a>
+  Function isToolAvailable(toolname as String) as Integer
+
+ DESCRIPTION:
+
+  Queries the STAF HANDLE service to see if a particular process name is
+  currently registered and running.
+
+  For example, the SAFSVARS service process name is "SAFSVariableService".
+
+  It is important to note that the check for the tool handle is a partial
+  match.  That is, the toolname provided can just be a substring of the
+  full name of the tool.  The routine will return TRUE if ANY tool containing
+  the toolname substring is has a handle listed.
+
+ PARAMETERS:
+
+  toolname    The name of the process of interest.  Check your documentation
+              to find the name normally registered by the tool of interest.
+              This check is a substring check.    The check is NOT case-sensitive.
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      SEP 22, 2003    (YWANG) Changed to perform case-insensitive query.
+      MAY 26, 2004    (Carl Nagle) Removed leading and trailing space from tool query.
+      JAN 05, 2010    (PMIESS) Added switch for listing all handles in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="isserviceavailable"></a>
+  Function isServiceAvailable(servicename as String) as Integer
+
+ DESCRIPTION:
+
+  Queries the STAF SERVICE service to see if a particular service is
+  currently registered and running.
+
+  For example, the SAFSVARS servicename is "SAFSVARS".
+
+  It is important to note that the check for the servicename is a partial
+  match.  That is, the name provided can just be a substring of the
+  full name of the service.  The routine will return TRUE if ANY service containing
+  the name substring is listed.  The check is NOT case-sensitive.
+
+ PARAMETERS:
+
+  servicename  The name of the service of interest.  Check your documentation
+               to find the name normally used for the service.
+               This check is a substring check.
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 03, 2004
+ History:
+
+      JUN 03, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="issafsvarsavailable"></a>
+  Function isSAFSVARSAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if our SAFSVARS service is registered and running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Updated to use isServiceAvailable
+
+</pre>
+<hr>
+<pre>
+
+<a name="issafsmapsavailable"></a>
+  Function isSAFSMAPSAvailable() as Integer
+
+ DESCRIPTION:
+
+  Check to see if our SAFSMAPS service is registered and running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Updated to use isServiceAvailable
+
+</pre>
+<hr>
+<pre>
+
+<a name="issafslogsavailable"></a>
+  Function isSAFSLOGSAvailable() as Integer
+
+ DESCRIPTION:
+
+  Check to see if our SAFSLOGS service is registered and running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 16, 2003
+ History:
+
+      SEP 16, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Updated to use isServiceAvailable
+
+</pre>
+<hr>
+<pre>
+
+<a name="isrobotjavailable"></a>
+  Function isRobotJAvailable() as Integer
+
+ DESCRIPTION:
+
+  Queries the STAF HANDLE service to see if all three conditions are met:
+
+      1) RobotJHook is running.
+      2) SAFSMAPS service is running.
+      3) SAFSVARS service is running.
+
+  All 3 items are necessary to successfully use the RobotJ hook.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 2003
+ History:
+
+      JUL 16, 2003    Original Release
+      JUN 03, 2003    (Carl Nagle) Removed persistence test.
+
+</pre>
+<hr>
+<pre>
+
+<a name="isdrivercommandsavailable"></a>
+  Function isDriverCommandsAvailable() as Integer
+
+ DESCRIPTION:
+
+  Queries the STAF HANDLE service to see if all three conditions are met:
+
+      1) Driver Commands Hook is running.
+      2) SAFSMAPS service is running.
+      3) SAFSVARS service is running.
+
+  All 3 items are necessary to successfully use the Driver Commands hook.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: NOV 18, 2003
+ History:
+
+      NOV 18, 2003    Original Release
+      JUN 03, 2003    (Carl Nagle) Removed persistence test.
+
+</pre>
+<hr>
+<pre>
+
+<a name="isdrivercommandsavailable"></a>
+  Function isDriverCommandsAvailable() as Integer
+
+ DESCRIPTION:
+
+  Queries the STAF HANDLE service to see if all three conditions are met:
+
+      1) Driver Commands Hook is running.
+      2) SAFSMAPS service is running.
+      3) SAFSVARS service is running.
+
+  All 3 items are necessary to successfully use the Driver Commands hook.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: NOV 18, 2003
+ History:
+
+      NOV 18, 2003    Original Release
+      JUN 03, 2003    (Carl Nagle) Removed persistence test.
+
+</pre>
+<hr>
+<pre>
+
+<a name="sendqueuemessage"></a>
+  Function sendQueueMessage(toolname as String, message as String,
+                            result As STAFResult) As Long
+
+ DESCRIPTION:
+
+  Send a STAF QUEUE message to a registered tool.  Not all tools attempt
+  to process QUEUE messages.  Make sure the tool of interest is designed
+  to process messages in its QUEUE.
+
+
+ PARAMETERS:
+
+      toolname    The process name of the tool to receive the queued message.
+
+      message     The message to queue to the tool.
+
+      result      A STAFResult to receive the STAF return code and
+                  STAF response string.
+
+
+ RETURNS:
+
+      The STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getqueuemessage"></a>
+  Function getQueueMessage(timeout as long, result as STAFQueueMessage) As Long
+
+ DESCRIPTION:
+
+  Check our Classic QUEUE for any message.  We will wait up to timeout
+  seconds for a message to appear.
+
+
+ PARAMETERS:
+
+  timeout     The number of seconds to wait for a message.
+              ( < 0 = wait indefinitely)
+
+  result      STAFQueueMessage containing return code and message information.
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="processtoolrequest"></a>
+  Function processToolRequest (toolname as String, request as String, _
+                               timeout as Long, result as STAFQueueMessage) As Long
+
+ DESCRIPTION:
+
+  Perform a complete exchange of sending a queue message to a tool, and
+  waiting for a queue message response from the tool.  This is just a
+  wrapper combining separate calls to sendQueueMessage and getQueueMessage
+  into a single call.
+
+
+ PARAMETERS:
+
+  toolname    The name of the tool to receive the queue message.
+
+  request     The message to send to the tool.
+
+  timeout     number of seconds to wait for the tool's queue response.
+              (< 0 = wait indefinitely)
+
+  result      STAFQueueMessage containing the results of the exchange.
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafresetevent"></a>
+  Function STAFresetEvent(event as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  RESET a single STAF SEMaphore EVENT
+
+
+ PARAMETERS:
+
+  event       the name of the event
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JAN 05, 2010    (PMIESS) Added switch for different syntax in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafresetclassicevents"></a>
+  Function STAFresetClassicEvents(result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  RESET key events specific to Robot Classic usage.  Right now,
+  there is only one?:
+
+      SAFS_ROBOTJ_EVENT_DONE
+
+
+ PARAMETERS:
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafpulseevent"></a>
+  Function STAFpulseEvent(event as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  PULSE a single STAF SEMaphore EVENT
+
+
+ PARAMETERS:
+
+  event       the name of the event
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JAN 05, 2010    (PMIESS) Added switch for different syntax in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafpostevent"></a>
+  Function STAFpostEvent(event as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  POST a single STAF SEMaphore EVENT
+
+
+ PARAMETERS:
+
+
+  event       the name of the event
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JAN 05, 2010    (PMIESS) Added switch for different syntax in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafwaitevent"></a>
+  Function STAFwaitEvent(event as String, delayseconds as Long,
+                         result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  WAIT for a single STAF SEMaphore EVENT
+
+
+ PARAMETERS:
+
+  event       the name of the event
+
+  delaySeconds  the number of seconds to wait ( < 0 = wait indefinitely)
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      DEC 07, 2004    (Carl Nagle) Loop for Waits to allow F11 ABORTS
+      JAN 05, 2010    (PMIESS) Added switch for different syntax in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafwaitmutex"></a>
+  Function STAFwaitMutex(mutex as String, delaySeconds as Long,
+                         result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  WAIT for a single STAF SEMaphore MUTEX
+
+
+ PARAMETERS:
+
+  mutex       the name of the mutex
+
+  delaySeconds  the number of seconds to wait ( < 0 = wait indefinitely)
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JAN 05, 2010    (PMIESS) Added switch for different syntax in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="stafreleasemutex"></a>
+  Function STAFreleaseMutex(mutex as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  RELEASE a single STAF SEMaphore MUTEX
+
+
+ PARAMETERS:
+
+  mutex       the name of the mutex
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      JAN 05, 2010    (PMIESS) Added switch for different syntax in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsafsvariable"></a>
+  Function getSAFSVariable(varname as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Get the value of a SAFSVARS variable.
+
+
+ PARAMETERS:
+
+  varname     the name of the variable
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setsafsvariable"></a>
+  Function setSAFSVariable(varname as String, varvalue as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Set the value of a SAFSVARS variable.
+
+
+ PARAMETERS:
+
+  varname     the name of the variable
+
+
+  varvalue    the value to assign the variable
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      APR 25, 2007    (Carl Nagle) Added lenTag mark in setSAFSVariable
+
+</pre>
+<hr>
+<pre>
+
+<a name="setsafstestrecorddata"></a>
+  Function setSAFSTestRecordData(guiinfo as AUGUIInfo, _
+                                 statusinfo as AUStatusInfo, _
+                                 result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Populates the shared "SAFS/Hook/" TestRecordData in SAFSVARS
+  This is used to pass info TO and FROM other tools (like RobotJ).
+
+
+ PARAMETERS:
+
+  guiinfo     AUGUIInfo containing data to send to SAFSVARS
+
+  statusInfo  AUStatusInfo containing data to send to SAFSVARS
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getsafstestrecorddata"></a>
+  Function getSAFSTestRecordData(guiinfo as AUGUIInfo, _
+                                 statusinfo as AUStatusInfo, _
+                                 result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Populates the guiinfo and statusinfo structures FROM shared "SAFS/Hook/"
+  TestRecordData in SAFSVARS.  This is used to pass info TO and FROM other
+  tools (like RobotJ).
+
+
+ PARAMETERS:
+
+  guiinfo     AUGUIInfo to receive data from SAFSVARS
+
+  statusInfo  AUStatusInfo to receive data from SAFSVARS
+
+  result      STAFResult to receive the STAF reponse
+
+
+ RETURNS:
+
+  STAF return code
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="callsafshook"></a>
+  Function callSAFSHook (hookname as String,
+                         guiinfo as AUGUIInfo, _
+                         statusinfo as AUStatusInfo, _
+                         timeout as long, result as STAFResult ) As Long
+
+ DESCRIPTION:
+
+  Perform the full event-driven exchange for Classic to invoke a SAFS hook
+  with the given hookname to process a test input record.  This routine can
+  only work with hooks exchanging data in the standard SAFS/HOOK/TRD space.
+
+
+ PARAMETERS:
+
+  guiInfo     AUGUIInfo containing most of the data needed for the exchange.
+              Of key importance is that the guiInfo.statuscode should contain
+              the hook's success or failure information in processing the record.
+              (If the overall exchange and processing was successful.)
+
+  statusInfo  AUStatusInfo containing the remaining data needed for the exchange.
+
+  timeout     number of seconds to allow for the hook response.
+              ( < 0 = wait indefinitely)
+
+  result      STAFResult to receive the STAF response
+
+
+ RETURNS:
+
+  STAF return code for the attempted actions.
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: NOV 18, 2003
+ History:
+
+      NOV 18, 2003    Original Release
+      DEC 09, 2004    (Carl Nagle) Added detection of external engine shutdown.
+      SEP 18, 2009    (Carl Nagle) Change DISPATCH Pulse to Post and Reset
+
+</pre>
+<hr>
+<pre>
+
+<a name="callsafsrobotjhook"></a>
+  Function callSAFSRobotJHook (guiinfo as AUGUIInfo, _
+                               statusinfo as AUStatusInfo, _
+                               timeout as long, result as STAFResult ) As Long
+
+ DESCRIPTION:
+
+  Perform the full event-driven exchange for Classic to invoke RobotJ
+  to process a test input record.
+
+
+ PARAMETERS:
+
+  guiInfo     AUGUIInfo containing most of the data needed for the exchange.
+              Of key importance is that the guiInfo.statuscode should contain
+              RobotJ's success or failure information in processing the record.
+              (If the overall exchange and processing was successful.)
+
+  statusInfo  AUStatusInfo containing the remaining data needed for the exchange.
+
+  timeout     number of seconds to allow for the RobotJ response.
+              ( < 0 = wait indefinitely)
+
+  result      STAFResult to receive the STAF response
+
+
+ RETURNS:
+
+  STAF return code for the attempted actions.
+
+
+ ERRORS:
+
+      Throws "Error in loading DLL" if STAF is not installed.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 19, 2003
+ History:
+
+      JUN 19, 2003    Original Release
+      NOV 18, 2003    (Carl Nagle) Mod to use callSAFSHook
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

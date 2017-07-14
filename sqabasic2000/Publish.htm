@@ -1,0 +1,190 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic Publish Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "Publish" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+  This tool provides a GUI front-end to the <a href="SQAPublisher.htm">SQAPublisher</a> tool.
+  It allows us to publish HTML documentation from properly formatted in-context
+  source code comments.
+  <img src="Publish.gif" align=left alt="GUI Interface for Publish">
+
+  FILE TYPE:
+  This lets us know whether the
+  file to publish is a Script or
+  a Library.  Robot stores these
+  different file types in
+  different directories.  The
+  source directory field will
+  update appropriately with this
+  selection.
+
+  SOURCE BASENAME:
+  The short name of the file to
+  publish.  This must not contain
+  the path or file extension
+  because the publisher needs to
+  be able to apply different
+  extensions for headers, scripts,
+  and library files during the course of its operation.
+
+
+  SOURCE DIRECTORY:
+  The location where the publisher can expect to find the source files to publish.
+  Normally this is set properly based upon the FILE TYPE selection.  You should
+  not have to change this value unless you are trying to publish files located in
+  a different Robot project or outside of the current repository.
+
+  OUTPUT DIRECTORY:
+  The location where the output HTML should be placed.  By default, a Doc
+  subdirectory in the Library folder of the current repository is used.
+
+  RUNTIME DIRECTORY:
+  Publication normally occurs locally.  It generally expects all files needed for
+  publishing to be local (the headers and source for the file to be published).
+  However, the tool was originally meant to publish doc for scripts and libraries
+  that were shared in a public non-local repository.  Thus, the documentation
+  needs to specify where it is that the headers and executables will actually be
+  located at production runtime.  Specify this location in this field.
+  IF THE RUNTIME ENVIRONMENT IS LOCAL TO THE PROJECT OR THE ROBOT INSTALLATION
+  THEN NO PATH INFORMATION SHOULD BE SPECIFIED.  THE FIELD CAN BE BLANK.
+
+  The public repository runtime directory is specified in the DDE_RUNTIME
+  environment variable.
+
+      &lt;\\Machine\RuntimeRepo&gt;
+
+  COPYRIGHT FILE:
+  The full path and name to an optional file that contains complete copyright
+  text to append to the output HTML.  This text will be appended to the
+  output file unmodified.
+
+  PUBLISHING:
+  Shows the path and filename of the output that will be created based on the
+  current settings of the Dialog Box.
+
+  OK BUTTON:
+  Once all settings are acceptable, press OK to publish the doc.
+  <a href="SQAPublisher.htm">SQAPublisher</a> will be invoked with these settings.  Once
+  completed (and if successful) the default web browser will be launched showing
+  the newly created file.  After a short pause, the dialog will reappear allowing
+  you to publish another doc.
+
+  CANCEL BUTTON:
+  Exits the dialog box and returns to normal Robot activities.
+
+  HELP BUTTON:
+  Launches the default web browser with this documentation.  The documentation is
+  expected to be found in the location specified by the DDE_RUNTIME environment
+  variable.  By default the doc is Publish.htm
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "Publish.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "Publish_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="SQAPublisher.htm">SQAPublisher</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SQAPublisher.htm">SQAPublisher</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#publish">Publish</a>                 BasicLib Publish                       Alias "Main"
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+CONST LIBRARY_FILE = 0
+CONST SCRIPT_FILE  = 1
+
+CONST FileType         = "FileType"
+CONST LibraryType      = "Library"
+Const ScriptType       = "Script"
+CONST BaseName         = "BaseName"
+CONST SourceDirectory  = "SourceDirectory"
+CONST OutputDirectory  = "OutputDirectory"
+CONST CopyrightPath    = "CopyrightPath"
+CONST RuntimeDirectory = "RuntimeDirectory"
+CONST FullFilename     = "FullFilename"
+CONST Help             = "Help"
+
+Const HELPFILE         = "Publish.htm"      'in DDE_RUNTIME location
+Const COPYRIGHTFILE    = "Copyright.txt"    ''
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="publish"></a>
+  Sub Publish () Alias "Main"
+
+ DESCRIPTION:
+
+  This routine is the main entry point which launches the Dialog Box,
+  invokes <a href="SQAPublisher.htm">SQAPublisher</a>, and loops to
+  do it any number of times until the user Cancels the Dialog Box.
+
+ PARAMETERS:
+
+  (none)
+
+ ERRORS:
+
+  (none)
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 26, 2000
+ History:
+
+      APR 26, 2000    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

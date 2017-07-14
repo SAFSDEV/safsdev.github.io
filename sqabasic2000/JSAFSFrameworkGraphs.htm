@@ -1,0 +1,75 @@
+<html>
+<head><title>Java SAFS Framework Implementation</title></head>
+<body><a name="top"/>
+<h2>Java SAFS Framework Implementation</h2>
+by Carl Nagle<br>
+Last Updated:
+<script language="JavaScript">document.write(document.lastModified)</script>
+<p>
+<small>
+See also:
+<a href="SAFSFramework.htm">SAFS Framework</a>,
+<a href="JSAFSFramework.htm">JSAFS Interfaces</a>,
+<a href="http://safsdev.sourceforge.net/doc/javadoc.html" target="api">JSAFS Javadoc</a>,
+<a href="http://sourceforge.net/docman/display_doc.php?docid=21702&group_id=56751" target="api">SAFS Driver Development</a>,
+<a href="http://safsdev.sourceforge.net">SAFSDEV Project</a>
+</small>
+<hr>
+<h4>Abstract Tool-Independent Driver Design:</h4>
+<center><b>(click a node for API info)</b></center>
+<center>
+<img src="JSAFSFrameworkAbstract.gif" alt="JSAFS Abstract" usemap="#abstract"/>
+</center>
+<p>
+The abstract DRIVER design interfaces with any number of pre-defined or user-defined classes that implement the appropriate interfaces.  Thus, the user can readily extend existing implementations to add custom functionality.  In extreme cases, the user can entirely replace our pre-defined implementations with those of their own.
+<map name="abstract">
+<area alt="InputInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/InputInterface.html" target="api" coords="115,192,223,246" shape="rect" />
+<area alt="MapsInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/MapsInterface.html" target="api" coords="190,90,300,142" shape="rect" />
+<area alt="VarsInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/vars/VarsInterface.html" target="api" coords="318,90,425,141" shape="rect" />
+<area alt="DriverInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/DriverInterface.html" target="api" coords="372,219,50" shape="circle" />
+<area alt="LogsInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/logs/LogsInterface.html" target="api" coords="443,90,548,139" shape="rect" />
+<area alt="EngineInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/EngineInterface.html" target="api" coords="545,141,668,293" shape="rect" />
+<area alt="EngineInterface" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/EngineInterface.html" target="api" coords="687,144,780,287" shape="rect" />
+<area alt="User-Defined Test Tables" noref coords="0,133,93,193" shape="rect"/>
+<area alt="User-Defined Benchmarks" noref coords="0,262,100,325" shape="rect"/>
+<area alt="User-Defined App Maps" noref coords="195,0,290,62" shape="rect"/>
+<area alt="Machine System Variables" noref coords="322,0,415,62" shape="rect"/>
+<area alt="Machine System Logging" noref coords="450,0,545,62" shape="rect"/>
+<area alt="Test Info" noref coords="180,382,272,443" shape="rect"/>
+<area alt="Tested Application" noref coords="805,141,857,295" shape="rect"/>
+<area alt="Color Legend" noref coords="568,388,870,424" shape="rect"/>
+</map>
+<hr>
+<p>
+<h4>SAFS/TIDriver Tool-Independent Driver Implementation:</h4>
+<center><b>(click a node for API info)</b></center>
+<center>
+<img src="JSAFSFrameworkClasses.gif" alt="JSAFS Abstract" usemap="#concrete"/>
+</center>
+<p>
+The default, concrete implementation of this design provides interfaces to our existing STAF services and engines.  The fully realized implementation also requires development of new services and/or features not currently implemented outside of the Robot Classic, or WinRunner engines.  These features include support for maintaining status information and driver stacks allowing re-entrant driver operations.
+<map name="concrete">
+<area alt="SAFSINPUT" href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/SAFSINPUT.html" target="api" coords="9,194,88,247" shape="rect" />
+<area alt="SAFSINPUT" href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/SAFSINPUT.html" target="api" coords="120,194,199,246" shape="rect" />
+<area alt="SAFSMAPS" href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/SAFSMAPS.html" target="api" coords="168,90,277,142" shape="rect" />
+<area alt="SAFSVARS" href="http://safsdev.sourceforge.net/doc/org/safs/tools/vars/SAFSVARS.html" target="api" coords="296,91,402,141" shape="rect" />
+<area alt="SAFSDRIVER" href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/SAFSDRIVER.html" target="api" coords="350,219,55" shape="circle" />
+<area alt="SAFSLOGS" href="http://safsdev.sourceforge.net/doc/org/safs/tools/logs/SAFSLOGS.html" target="api" coords="420,90,527,139" shape="rect" />
+<area alt="SAFSDRIVERCOMMANDS" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSDRIVERCOMMANDS.html" target="api" coords="548,13,691,64" shape="rect" />
+<area alt="TIDDriverCommands" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/TIDDriverCommands.html" target="api" coords="548,66,690,114" shape="rect" />
+<area alt="SAFSROBOTJ" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSROBOTJ.html" target="api" coords="523,141,645,189" shape="rect" />
+<area alt="SAFSSELENIUM" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSSELENIUM.html" target="api" coords="523,191,645,239" shape="rect" />
+<area alt="SAFSQTP" href="http://safsdev.sourceforge.net/doc/org/safs/tools/engines/SAFSQTP.html" target="api" coords="524,241,645,294" shape="rect" />
+<area alt="STAF" href="http://staf.sourceforge.net" target="api" coords="665,123,706,314" shape="rect"/>
+<area alt="Implemented Engines" noref coords="722,144,817,286" shape="rect"/>
+<area alt="User-Defined Test Tables" noref coords="0,101,93,164" shape="rect"/>
+<area alt="User-Defined Benchmarks" noref coords="0,278,103,340" shape="rect"/>
+<area alt="User-Defined App Maps" noref coords="31,0,125,62" shape="rect"/>
+<area alt="STAF SAFSMAPS" href="http://safsdev.sourceforge.net/doc/org/safs/staf/service/SAFSAppMapService.html" target="api" coords="174,0,267,63" shape="rect"/>
+<area alt="STAF SAFSVARS" href="http://safsdev.sourceforge.net/doc/org/safs/staf/service/SAFSVariableService.html" target="api" coords="301,0,395,63" shape="rect"/>
+<area alt="STAF SAFSLOGS" href="http://safsdev.sourceforge.net/doc/org/safs/staf/service/logging/SAFSLoggingService.html" target="api" coords="428,0,524,63" shape="rect"/>
+<area alt="Tested Application" noref coords="835,141,886,295" shape="rect"/>
+<area alt="Color Legend" noref coords="574,388,877,424" shape="rect"/>
+</map>
+<hr>
+</body></html>

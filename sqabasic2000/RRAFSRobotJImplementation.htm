@@ -1,0 +1,121 @@
+<HTML>
+<HEAD><TITLE>
+
+RRAFS RobotJ Implementation with STAF
+
+</TITLE></HEAD>
+<BODY bgcolor="#FFFFFF" color="#000000">
+<CENTER>
+<H1>
+
+RRAFS RobotJ Implementation with STAF
+
+</H1>
+
+Updated:
+<SCRIPT language="JavaScript">
+    document.write(document.lastModified)
+</SCRIPT>
+<BR />
+
+by Carl Nagle
+
+</CENTER>
+
+<HR />
+<!-- ================================================================================ -->
+
+<A NAME="overview" />
+<A HREF="#transparency"> Transparency </A>&nbsp;
+<A HREF="#services"> Services </A>&nbsp;
+<BR />
+
+<H3>Overview</H3>
+
+<P>
+This is an overview for the RobotJ Integration project that is currently in progress.  (See the <A HREF="RRAFSRobotJIntegration.htm">RRAFS RobotJ Integration</A> document.)  For brevity, Rational Robot Classic will be referred to as "Classic".  Rational RobotJ will be referred to as "RobotJ".
+</P>
+<P>
+The RobotJ implementation closely mimics the easy-to-expand modularity implemented with Classic.  Thus, for most of the new functionality, we have implemented a single "Driver" module which mimics a very small subset of the StepDriver functionality found in Classic.  We can do this because each call (test record) to RobotJ will have already been fully processed by the Classic StepDriver.
+</P>
+<P>
+The job of the Driver module is to route an incoming test record according to its record type.  Initially, the record types are likely going to be limited to Driver Commands and Component Functions.  (Other record types would have already been handled by Classic at this point.)
+</P>
+<P>
+As in the Classic StepDriver, the RobotJ Driver will invoke a Driver Command parser or a Component Functions router.  See Fig. 1 below.  Thus, the Driver Command parser function and Component Functions router function closely mirror their Classic implementations.
+</P>
+
+<P>
+<TABLE NAME="routingTable" ALIGN="center" BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR ALIGN="center">
+	<TD>
+	    <IMG NAME="routingImage" SRC="STAF_JRoute.GIF" ALT="RobotJ Routing" />
+	</TD>
+</TR>
+<TR ALIGN="center">
+	<TD> Fig. 1
+	</TD>
+</TR>
+</TABLE>
+</P>
+
+<P>
+This model of implementations is very beneficial.  We can easily enhance and add RobotJ Driver Commands and Component Functions in their respective modules without impacting other modules.  This will limit or eliminate changes or maintenance in the STAF support module to handle new features and functions.  For example, invoking any Driver Commmand or any Component Function in RobotJ goes through the same STAF function call.
+</P>
+
+<HR />
+<!-- ================================================================================ -->
+
+<A NAME="transparency" />
+<A HREF="#overview"> Overview </A>&nbsp;
+<A HREF="#services"> Services </A>&nbsp;
+<BR />
+
+<H3>Transparency</H3>
+
+<P>
+In order to minimize the burden on users to prepare their application for testing, we are striving to keep RobotJ usage as transparent as possible.  We must not require the user to build an Application Map for Classic AND have an Application Map for RobotJ.  Yet, if a user has a RobotJ Application Map available, we will take advantage of that.  Obviously, users who wish to enable or use RobotJ functionality will still have to make sure that the environment is properly enabled.
+</P>
+<P>
+Transparency will require that we are able to locate and properly identify the correct GUI object in RobotJ using the same information we provide to Classic.  That generally means we will use Classic recognition strings to locate RobotJ objects.  No small feat.  Yet, the overall algorithm becomes a tool-independent model for locating objects based on tool-independent recognition strings.  That is a nice step to be taking.
+</P>
+<P>
+Transparency also means that certain global services--like logging and DDVariable storage--must be generically handled such that Classic, RobotJ, and everything else are all logging to the same log, and referencing the same data storage.  We have implemented our own STAF services to accomplish this.  Visit the <A HREF="http://staf.sourceforge.net/index.php">STAF website</A> for more info on what STAF has to offer.
+</P>
+
+<HR />
+<!-- ================================================================================ -->
+
+<A NAME="services" />
+<A HREF="#overview"> Overview </A>&nbsp;
+<A HREF="#transparency"> Transparency </A>&nbsp;
+<BR />
+
+<H3>Services</H3>
+
+<P>
+One of the things we have needed for a very long time is to eliminate unnecessary dependence on a specific automation tool for services that can be rendered elsewhere.  As mentioned earlier, generic text or XML logging, file handling and parsing, and DDVariable storage are good examples of services that really should be tool independent.  (The DDVariableStore.DLL is tool independent, but not yet platform independent.  I also have concerns that it may not work properly across processes as intended.)
+</P>
+<P>
+The integration of RobotJ into the framework helps push us down that path a little sooner because we make both Classic and RobotJ log to the same log, access the same data storage--simply share the same reusable code and modules to avoid duplicate implementations.
+</P>
+<P>
+As mentioned earlier, we are initially targetting to integrate <A HREF="http://staf.sourceforge.net/index.php">STAF services</A> to accomplish this.
+</P>
+<P>
+Our first goal was to provide shared logging services since logging information and status is so critical.  Both Classic and RobotJ access the same log via the same service.  This migration for the Classic engine is intended to be transparent.  The existing LogUtilities API does not change.  The intent is to have zero impact on existing libraries and scripts.  Where the changes are NOT transparent, they will simply be surfaced in new features and functions that do not impact existing libraries and scripts.
+</P>
+<P>
+Beyond logging, we have services for shared variable storage and App Map handling.  Later we will have independent test file handling and parsing.  The ultimate goal is to only have to deal with tool-dependent Driver Commands and Component Functions.  Everything else should be independent and reusable for each new engine.
+</P>
+
+<!-- ================================================================================ -->
+
+<A HREF="#overview"> Overview </A>&nbsp;
+<A HREF="#transparency"> Transparency </A>&nbsp;
+<A HREF="#services"> Services </A>&nbsp;
+
+<HR />
+
+</BODY>
+</HTML>

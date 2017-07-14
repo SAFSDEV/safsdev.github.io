@@ -1,0 +1,125 @@
+<html>
+<head><title>SAFS Development Details</title></head>
+<body>
+<h1>SAFS Development Details</h1>
+<small>Last Updated by Carl Nagle: Dec 14, 2009</small>
+<p>
+This document suggests a specific order to learn more about the framework and framework tools to start a new developer down the active path of development in SAFS.  In many cases, we specifically talk about development in the <i>org.safs.rational</i> space, but the information applies to core SAFS and the space of other tools, as well.
+<p>
+<a name="top" />
+1. <a href="#createdevelopmentenvironment">Create Development Environment</a><br>
+2. <a href="#buildwithjarit">Build with JARIT</a><br>
+3. <a href="#validatewithruntidtest">Validate Core with runTIDTest</a><br>
+4. <a href="#exploredebuglog">Explore Debug Log</a><br>
+5. <a href="#explorestafprocesscontainer">Explore STAFProcessContainer</a><br>
+6. <a href="#explorehookscript">Explore 'Hook Script'</a><br>
+7. <a href="#reviewtypemaps">Review Standard Recognition Strings</a><br>
+8. <a href="#reviewkeywordsourcecode">Review Existing Keyword Source and Code</a><br>
+<p>
+<a name="createdevelopmentenvironment"/>
+<ol>
+<b><li>Successfully populate your development environment from CVS</b>
+<p><ul>
+     <li>Download sourcecode and prepare as documented.<br>
+     <a href="http://sourceforge.net/apps/mediawiki/safsdev/index.php?title=SAFSDEV_Developer_Environment"
+     target="dev">Developer Environment Doc</a>
+     <p>
+     <li>Remember to remove tool dependencies you don't support (like Selenium, Abbot, etc..)
+</ul><p>
+<a name="buildwithjarit"/>
+<b><li>Successfully build all classes in your environment</b>
+<p><ul>
+    <li>Use\Move\Modify <b>source/common/JARIT</b> as necessary.
+    <ul><li>Windows: JARIT.BAT</ul>
+    <p>
+	This file is usually placed in and executed from the root project directory.<br>
+	<a href="http://sourceforge.net/apps/mediawiki/safsdev/index.php?title=SAFSDEV_Developer_Environment#Project_File_Placement:" target="dev">Developer Environment Doc, Java File Placement</a>
+	<p>
+	You will need to remove or comment out sections that build tool-specific classes you don't support.  You may also need to edit any path information based on your environment and build output folders.
+	<p>
+	The default JARIT file assumes you are building output classes to a <b>"&lt;projectroot>/classes"</b> subdirectory.
+</ul><p>
+<a name="validatewithruntidtest"/>
+<b><li>Review and run <i>runTIDTest</i> to validate the core SAFS framework</b>
+<p><ul>
+   <li>View the runTIDTest script to see what a TID launch of SAFS looks like
+   <ul><li>Windows: <b>C:\SAFS\Project\runTIDTest.BAT</b></ul>
+   <p>
+   <li>View the <b>TIDTEST.INI</b> file to see what settings are there
+   <li>Run the runTIDTest script and check the output in <b>Project\Datapool\Logs</b>
+   <p>
+   <i>Do this with and without the Debug Log (below) to see framework coordination.</i>
+</ul><p>
+<a name="exploredebuglog"/>
+<b><li>Successfully explore the use of SAFS TestLog</b> (org.safs.Log aka Debug Log):
+<p><ul>
+   <li><a href="http://safsdev.sourceforge.net/doc/org/safs/Log.html" target="dev">
+   Debug Log or TestLog (org.safs.Log)</a><br>
+   Read the info and don't forget about 'SAFSTESTLOGShutdown'
+   <ul><li>Windows: <b>C:\SAFS\bin\SAFSTESTLOGShutdown.BAT</b></ul>
+</ul><p>
+<a name="explorestafprocesscontainer"/>
+<b><li>Successfully use and explore the use of the new STAFProcessContainer</b>
+<p>
+This new general-purpose Process Container tool is intended to talk to all compliant SAFS Engines.  It is intended to replace similar tool-specific scripts like Functional Tester's '<i>RunProcessContainer</i>' script.  Of course, only a 'compliant' SAFS engine that supports the "E" Engine Commands will respond properly to STAFProcessContainer requests for info.
+<p>
+The level of engine compliance can be determined from the <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSReference.php?rt=E&lib=EngineComponentCommands" target="_blank">Engine Commands Reference</a>.
+<p><ul>
+   <li><a href="http://safsdev.sourceforge.net/doc/org/safs/tools/drivers/STAFProcessContainer.html" target="dev">STAFProcessContainer JavaDoc</a><br>
+   This will allow you to explore the components and properties of supported applications.
+   <p>
+   <i>Do this with and without the Debug Log to see framework coordination.</i>
+</ul><p>
+<a name="explorehookscript"/>
+<b><li>Manually launch and shutdown the 'Hook Script' in normal and debug modes.</b>
+<p>The 'Hook Script' is what we call the tool-specific script or code that connects to STAF and registers that tool as a SAFS Engine.
+<p><ul>
+   <li>Generic <a href="http://safsdev.sourceforge.net/doc/org/safs/JavaHook.html" target="dev">Java Hook Superclass</a>
+   <li>IBM Rational Functional Tester Script: <b>'TestScript'</b>
+   <li>Selenium: <a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/SeleniumJavaHook.html" target="dev">Selenium Java Hook</a>
+   <p>
+   <li>Play with BreakPoints as desired
+   <p>
+   <li>don't forget about the manual 'Shutdown' mechanism for your Hook:
+   <ul><li>IBM Rational Functional Tester: <b>C:\SAFS\bin\SAFSRobotJShutdown.BAT</b>
+   </ul>
+</ul><p>
+<a name="reviewtypemaps"/>
+<b><li>Review the use and purpose of Standard Component Recognition:</b>
+<p>
+The following files are used in various engines and STAFProcessContainer as part of the implementation of <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSComponentRecognition.htm" target="dev">Standard Component Recognition</a>:
+<p><ul><b>
+   <li>JavaObjectsMap.dat
+   <li>SWTClassMap.dat
+   <li>ObjectTypesMap.dat
+   </b><p>
+   <li>These files are in multiple locations in JARS, but also:
+   <ul><li>Windows: <b>C:\SAFS\lib</b>
+   </ul></ul>
+   <p>Some class references providing more info:
+   <ul><p>
+   <li><a href="http://safsdev.sourceforge.net/doc/org/safs/GuiObjectRecognition.html" target="dev">GuiObjectRecognition</a>
+   <li><a href="http://safsdev.sourceforge.net/doc/org/safs/GuiClassData.html" target="dev">GuiClassData</a>
+   </ul>
+<p>
+<a name="reviewkeywordsourcecode"/>
+<b><li>Review sourcecode for existing keyword implementations and begin development</b>
+<p>
+In general, a developer can review the sourcecode for existing keywords and simply modify to accommodate new keywords.  When a new engine is being developed and no keywords yet exist then it is often beneficial to review the implementation in other engines.
+<p>
+Keywords are generally implemented in SAFS libraries conforming to a naming convention:
+<p><ul>
+   <li>Component Functions: <b>CF&lt;compType></b> as in, CFCheckBox
+   <li>Driver Commands: <b>DCDriver&lt;type>Commands</b> as in, DCDriverFlowCommands
+</ul>
+<p>Some JavaDoc examples:
+<p><ul>
+    <li><a href="http://safsdev.sourceforge.net/doc/org/safs/abbot/CFComponent.html" target="dev">Abbot Component Functions</a>
+    <li><a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/CFComponent.html" target="dev">Selenium Component Functions</a>
+    <li><a href="http://safsdev.sourceforge.net/doc/org/safs/rational/CFComponent.html" target="dev">IBM Rational Functional Tester Component Functions</a>
+</ul>
+</ol>
+<hr>
+More info will be added as feedback is provided.
+</body>
+</html>

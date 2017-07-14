@@ -1,0 +1,126 @@
+<HTML>
+<HEAD><TITLE>SQABasic Libraries</TITLE></HEAD>
+<BODY>
+<H1 align=center>SQABasic Libraries</H1>
+<P align=center>(Last Updated: Sep.10.2003)</P>
+<HR>
+
+<P>The following lists the libraries currently under development with various
+versions of Rational's TeamTest product (Rational Robot). Robot V2000 and beyond
+can use these libraries without issue.  The libraries must be compiled with the
+version of Robot that will run them.</P>
+<p>These are generally application independent libraries that are useful in an
+overall scheme of automated test with SQA Robot.� They are constantly being
+enhanced and refined and new libraries appear fairly often.</P>
+<P>
+<A href="SQABasicLibraries.htm#GeneralLibraries">General Libraries</A>,
+<A href="SQABasicLibraries.htm#UtilityLibraries">DD Utility Libraries</A>,
+<A href="SQABasicLibraries.htm#DDEngine">DDEngine Libraries</A>,
+<A href="SQABasicLibraries.htm#ComponentFunctions">Component Functions</A>
+<P>
+Consult the <A href="DDEngineReference.htm" target=_blank>Data-Driven Engine Reference</A>
+for a ready reference on DDE setup, commands, and syntax. (650K+)<br/>
+Consult the <A href="RRAFSReference.htm" target=_blank>RRAFS Detailed Reference</A>
+for a newer version/format of similar information (small downloads).
+Consult the <A href="RRAFSQuickReference.htm" target=_blank>RRAFS Quick Reference</A>
+for a single list of ALL supported action commands.(80K)<br/>
+<P>
+<A name=GeneralLibraries>General Libraries</A>:
+<UL>
+  <LI><A href="ApplicationUtilities.htm">ApplicationUtilities</A> Application-scope Utilities (Launch etc.)
+  <LI><A href="BufferUtilities.htm">BufferUtilities</A> Helper Utility for custom buffer/stack types.
+  <LI><A href="CWPHooker.htm">CWPHooker</A> DLL Library for Popup Menus.
+  <LI><A href="DatabaseUtilities.htm">DatabaseUtilities</A> for accessing ODBC databases.
+  <LI><A href="ExcelUtilities.htm">ExcelUtilities</A> Excel Automation Server routines.
+  <LI><A href="FileInfoFIFO.htm">FileInfoFIFO</A> A custom Buffer type using BufferUtilities.
+  <LI><A href="FileTestUtilities.htm">FileTestUtilities</A>: For testing files and directories (needs work).
+  <LI><A href="FileUtilities.htm">FileUtilities</A>: General Purpose File Utilities.
+  <LI><A href="ImageUtilities.htm">ImageUtilities</A>: Robot Image Capture and Compare.
+  <LI><A href="LogUtilities.htm">LogUtilities</A> Implements multipoint logging.
+  <LI><A href="MenuUtilities.htm">MenuUtilities</A> for working with Menus and Popups.
+  <LI><A href="NTCommandUtilities.htm">NTCommandUtilities</A> use some DOS-based commands.
+  <LI><A href="ProcessContainer.htm">ProcessContainer</A> to See GUI Children and Properties
+  <LI><A href="Publish.htm">Publish</A> to extract and publish HTML doc on all this!
+  <LI><A href="STAFUtilities.htm">STAFUtilities</A> STAF access functions. <a href="http://staf.sourceforge.net">STAF Home Page</a>
+  <LI><A href="StringUtilities.htm">StringUtilities</A> String parsing functions.
+  <LI><A href="XMLUtilities.htm">XMLUtilities</A> XML parsing and creation.
+  <LI><A href="WIN32.htm">WIN32 API</A> Header info for using the Win32 API.
+  <LI><A href="WinRegistryUtilities.htm">WINRegistryUtilities</A> Access the Windows Registry.
+  <LI><A href="WIN32Utilities.htm">WIN32Utilities</A> Routines using the Win32 API.
+</UL>
+<P><A name=UtilityLibraries>Utility</A> Libraries specifically intended for
+Data-Driven Automation:
+<UL>
+  <LI><A href="UsingCustomExtensions.htm">Using Custom DDE Extensions</A> for site-specific enhancements.</LI>
+  <LI><A href="CustomUtilities.htm">CustomUtilities</A> for custom DDE extensions.
+  <LI><A href="CustomRecordTypes.htm">CustomRecordTypes</A> for custom DDE Record Types.
+  <LI><A href="CustomDriverCommands.htm">CustomDriverCommands</A> for custom DDE Driver Commands.
+  <LI><A href="CustomLogUtilities.htm">CustomLogUtilities</A> for custom DDE Logging.
+  <LI><A href="CustomStatusUtilities.htm">CustomStatusUtilities</A> for custom DDE test status tracking.
+  <LI><A href="CustomTestCommands.htm">CustomTestCommands</A> for custom DDE Test Commands.
+  <LI><A href="DDGUIUtilities.htm">DDGUIUtilities</A> for working with Window objects.
+  <LI><A href="DDUtilities.htm">DDUtilities</A> for getting information on Robot or the DDE.
+  <LI><A href="DDVariableStore.htm">DDVariableStore</A> for variables in scripts and data tables.
+         See "<A href="UsingDDVariables.htm" target=_blank>How to...</A>"
+  <LI><A href="StepDriverStack.htm">StepDriverStack</A> for making the DDEngine reentrant.
+  <LI><A href="SuiteDriverStack.htm">SuiteDriverStack</A> for making the DDEngine reentrant.
+  <LI><A href="CycleDriverStack.htm">CycleDriverStack</A> for making the DDEngine reentrant. </LI>
+</UL>
+<P>
+<A name=DDEngine>The Core</A> Data-Driven Engine:
+<UL>
+  <LI><A href="StepDriver.htm">StepDriver</A>. The low-level data driven driver.
+  <LI><A href="SuiteDriver.htm">SuiteDriver</A>. Intermediate-level data driven driver.
+  <LI><A href="CycleDriver.htm">CycleDriver</A>. Highest-leve data driven driver. </LI>
+  <LI><A href="DDDriverCommands.htm">DDDriverCommands</A>. Commands (C) available to all three drivers.</LI>
+  <LI><A href="UsingDDVariables.htm">Using DDVariables</A> throughout the framework.</LI>
+  <LI><A href="UsingFlowControl.htm">Using Flow Control Commands</A> within all three drivers.</LI>
+  <LI><A href="UsingCustomExtensions.htm">Using Custom DDE Extensions</A> for site-specific enhancements.</LI>
+</UL>
+<P>
+<A name=ComponentFunctions>ComponentFunction</A> Script Libraries used by the Data-Driven Engine:
+<UL>
+  <LI><strong><A href="GenericMasterFunctions.htm">GenericMasterFunctions</A> Default Actions available to most ComponentFunctions that follow.<BR></strong></li>
+  <LI><A href="CheckBoxFunctions.htm">CheckBoxFunctions</A>
+  <LI><A href="ComboBoxFunctions.htm">ComboBoxFunctions</A>
+  <LI><A href="ComboEditBoxFunctions.htm">ComboEditBoxFunctions</A>
+  <LI><A href="ComboListBoxFunctions.htm">ComboListBoxFunctions</A>
+  <LI><A href="DatabaseFunctions.htm">DatabaseFunctions</A>
+  <LI><A href="EditBoxFunctions.htm">EditBoxFunctions</A>
+  <LI><A href="GenericObjectFunctions.htm">GenericObjectFunctions</A>
+  <LI><A href="GraphicControlFunctions.htm">GraphicControlFunctions</A>
+  <LI><A href="GroupBoxFunctions.htm">GroupBoxFunctions</A>
+  <LI><A href="HTMLDocumentFunctions.htm">HTMLDocumentFunctions</A>
+  <LI><A href="HTMLFunctions.htm">HTMLFunctions</A>
+  <LI><A href="HTMLImageFunctions.htm">HTMLImageFunctions</A>
+  <LI><A href="HTMLLinkFunctions.htm">HTMLLinkFunctions</A>
+  <LI><A href="HTMLTableFunctions.htm">HTMLTableFunctions</A>
+  <LI><A href="JavaMenuFunctions.htm">JavaMenuFunctions</A>
+  <LI><A href="JavaTableFunctions.htm">JavaTableFunctions (in development)</A>
+  <LI><A href="JavaTreeFunctions.htm">JavaTreeFunctions</A>
+  <LI><A href="LabelFunctions.htm">LabelFunctions</A>
+  <LI><A href="ListBoxFunctions.htm">ListBoxFunctions</A>
+  <LI><A href="ListViewFunctions.htm">ListViewFunctions</A>
+  <LI><A href="PopupMenuFunctions.htm">PopupMenuFunctions</A>
+  <LI><A href="PushButtonFunctions.htm">PushButtonFunctions</A>
+  <LI><A href="RadioButtonFunctions.htm">RadioButtonFunctions</A>
+  <LI><A href="ScrollBarFunctions.htm">ScrollBarFunctions</A>
+  <LI><A href="SSTreeFunctions.htm">SSTreeFunctions</A>
+  <LI><A href="TabControlFunctions.htm">TabControlFunctions</A>
+  <LI><A href="TreeViewFunctions.htm">TreeViewFunctions</A>
+  <LI><A href="VSFlexGridFunctions.htm">VSFlexGridFunctions</A>
+  <LI><A href="WindowFunctions.htm">WindowFunctions</A> </LI>
+</UL>
+<HR>
+<P>
+The above documentation was published in a completely automated fashion by
+developing the libraries with templates that allowed for in-context
+documentation that could then be post-processed for publication. The
+documentation is thus actually pulled right out of the source and header files
+and formatted for HTML publication.<BR>
+See <A href="SQAPublisher.htm">SQAPublisher</A> and its GUI front-end
+<A href="Publish.htm">Publish</A> for more information.
+<P>
+Contact <A href="mailto:safsdev@sas.com">safsdev@sas.com</A> if you
+have any additional questions.
+</BODY></HTML>

@@ -1,0 +1,375 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ListViewFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ListViewFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=LISTVIEW objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      VerifySelectedItem      'verify the text item is selected
+      VerifyItemUnselected    'verify the text item IS NOT selected
+
+      SelectTextItem          'Select an Item by Text Label (Single Click)
+      SelectTextItemCoords    'Select an Item by Text Label (Single Click at Coords)
+      SelectUnverifiedTextItem  'Select an Unverifiable Item by Text Label (Single Click)
+      SelectUnverifiedTextItemCoords  'Select an Unverifiable Item by Text Label (Single Click at Coords)
+
+      ActivateTextItem        'Select an Item by Text Label (Double Click)
+      ActivateTextItemCoords  'Select an Item by Text Label (Double Click at Coords)
+      ActivateUnverifiedTextItem  'Select an Unverifiable Item by Text Label (Double Click)
+      ActivateUnverifiedTextItemCoords  'Select an Unverifiable Item by Text Label (Double Click at Coords)
+
+      RightClickTextItem          'Right Click an Item by Text Label (Single Click)
+      RightClcikTextItemCoords    'Right Click an Item by Text Label (Single Click at Coords)
+      RightClickUnverifiedTextItem  'Right Click an Unverifiable Item by Text Label (Single Click)
+      RightClickUnverifiedTextItemCoords  'Right Click an Unverifiable Item by Text Label (Single Click at Coords)
+
+      SelectIndexItem         'Select an Item by Index Number (Single Click)
+      SelectIndexItemCoords   'Select an Item by Index Number (Single Click at Coords)
+      SelectRandomItems       'Select a number of unique items (CTRL+Single Click) by index number
+      AssignCellValue         'Assign the value of a cell to a variable
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifyselecteditem"></a>
+   Sub VerifySelectedItem ()
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular text item is selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2000
+ History:
+
+      APR 03, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyitemunselected"></a>
+   Sub VerifyItemUnselected ()
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular text item is NOT SELECTED.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2000
+ History:
+
+      APR 03, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+
+</pre>
+<hr>
+<pre>
+
+<a name="selecttextitem"></a>
+   Sub SelectTextItem (Optional mode, Optional coords, Optional action)
+
+ DESCRIPTION:
+
+      Routine to "Select"(single click), "Activate"(double click), or RightClick an item
+      according to its text value.
+
+ PARAMETERS:
+
+      mode  0: Verified (default)
+            1: Unverified
+
+      coords 0: standard command, no COORDS parameter (default)
+             1: COORDS parameter command
+
+      action ListView Click Action constant(Click, RightClick, DblClick)
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2000
+ History:
+
+      APR 03, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      NOV 15, 2002    (Meera Venkataramani) Added more "Unverified" and "Coords" commands.
+      DEC 02, 2003    (Carl Nagle) Enabled Nth text item matching.  Also modified
+                               this routine to handle ACTIVATE commands.
+                               KEYWORD usage doc strictly now in XML.
+      APR 18, 2005    (Carl Nagle) "Coords=" prefix is optional.
+      APR 26, 2005    (LAMART) add new parameter action - for right click
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectindexitem"></a>
+   Sub SelectIndexItem (Optional coords)
+
+
+ DESCRIPTION:
+
+      Routine to select (single click) an item according to its index number.
+
+      It is important to note that some ListViews index their values
+      differently.  For example, you may need to select an item by
+      text by using a property whose starting index is 1 [ex: ListItems(1).Text].
+      Yet, if you request to seek an item strictly by index, the starting
+      index is 0 [ex: <recmeth>;\;ItemIndex=0].
+      So, the test developer may need to evaluate their ListView object for these
+      differences.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+      For ...Coords commands:
+      The coordinate lookup is done with the component name of the record AND
+      Field #6.
+
+      Typical Data Table records:
+
+      (1) t Window MyList ...Coords  "2"  "5,20"
+      (2) t Window MyList ...Coords  "2"  "Coords=5,20"
+      (3) t Window MyList ...Coords  "2"  "Center"
+
+      #1 contains an example of specifying explicit coordinates to click.
+
+      #2 contains another example of specifying explicit coordinates to click.
+
+      #3 above will contain a "MyList=" entry in the "[Window]" section with
+         normal recognition information for it.  "MyList" will also have it's
+         own section in the Application Map in which there will be an entry like:
+
+         [Window]
+         Window="Type=Window;...."
+         MyList="Type=ListView;...."
+         ....
+
+         [MyList]
+         Center="5,20"
+         BottomRight="Coords=10,50"
+         ....
+
+         This will tell Robot to locate the MyList object and click at the coordinates
+         specified by the reference.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Index of node to select
+
+       6      Coordinates, or App Map reference to coordinates to click.
+              Only used for "Coords" Actions that specifically require this parameter.
+
+ ERRORS:
+
+      none
+
+ Orig Author: John Crunk
+ Orig   Date: Jan 18, 2002
+ History:
+
+      Jan 18, 2002    Original Release
+      Oct 25, 2002    (Audrey Shull) Allow zero-based index.
+      NOV 15, 2002    (Meera Venkataramani) Added more "Unverified" and "Coords" commands.
+      APR 18, 2005    (Carl Nagle) "Coords=" prefix is optional.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectrandomitems"></a>
+   Sub SelectRandomItems ()
+
+
+ DESCRIPTION:
+
+      Routine to randomly select (CTRL + single click) multiple items in the list.
+              The number of items to select is provided by the user in the ITEMCOUNT parameter.
+              Items already selected are NOT unselected first.  We add to items already
+              selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function. It will attempt to select a number of unique
+      items as passed in in field 5.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Quantity of Unique Items to select.
+
+ ERRORS:
+
+      none
+
+ Orig Author: John Crunk
+ Orig   Date: Jan 18, 2002
+ History:
+
+      Jan 18, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="assigncellvalue"></a>
+   Sub AssignCellValue ()
+
+
+ DESCRIPTION:
+
+      Routine to Assign a cell value from a listview into a variable.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Name of variable to assign value
+       6      Row coordinate
+       7      Column coordinate
+
+ ERRORS:
+
+      none
+
+ Orig Author: Dawn Coen
+ Orig   Date: SEP 02, 2004
+ History:
+
+      SEP 02, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a LISTVIEW.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 03, 2000
+ History:
+
+      APR 03, 2000    Original Release
+      JUL 30, 2002    (WPAGOT) Added ActivateUnverified (NV) commands.
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      NOV 15, 2002    (Meera Venkataramani) Added more "Unverified" and "Coords" commands.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      DEC 02, 2003    (Carl Nagle) Added support acting on the Nth match.  Also
+                               moved ActivateText support to SelectText routine.
+      SEP 02, 2004    (DCOEN)  Added AssignCellValue command.
+      APR 26, 2005    (lamart) Add Right click command
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

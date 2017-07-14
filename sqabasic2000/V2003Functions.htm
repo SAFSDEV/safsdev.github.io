@@ -1,0 +1,213 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic V2003Functions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "V2003Functions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Keyword commands only available to Robot V2003 and later.
+
+      These routines are not normally called by a user or developer but instead
+      are called by the various Component Scripts performing tests based on a
+      data table being processed by the StepDriver.  When that script needs
+      no special processing of a particular ACTION COMMAND it can call these
+      generic routines to perform the job.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+<li>Declare Function getWhereInfo BasicLib "<a href="GenericObjectFunctions.htm">GenericObjectFunctions</a>"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      HoverMouse              'Hovers the mouse over an object (Robot's MousePause)
+
+ This library is defined by:
+
+ V2003Functions.SBH      Export Header File
+ V2003Functions.SBL      Sourcecode and Detailed Documentation
+ V2003Functions.SBX      Compiled executable library
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="hovermouse"></a>
+   Function HoverMouse(TestCommand As String, guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+
+ DESCRIPTION:
+
+      Supported in V2003.06 and later ONLY.
+      This command assumes StepDriver globals have been provided for a
+      Step level test record.
+
+      For components that are unrecognized, like some web popup menus,
+      we can take action on these or any part of an object based on a stored x,y
+      coordinate or other component-specific criteria (like Table Col Header, etc.).
+      The object containing the coordinate is first given context and then the
+      HoverMouse command (i.e. Robot's MousePause) is generated where specified per the
+      syntax allowed by Robot for the component.
+
+      Thus, an item or object can be referenced by name even though it is only recognized
+      via coordinates.  If no such location is specified, Robot will perform the
+      HoverMouse command on the center of the component.
+
+      The "where" lookup is done with the component name of the record AND
+      Field #5.  If no matching App Map reference is found the text of Field#5 will
+      be used "as is".  That is, we will assume it is the "where" information itself.
+      "Coords=" will be prefixed to any "where" info beginning with numeric data (x,y coords).
+
+      Typical Data Table records:
+
+      (1) t MainWindow MainWindow  HoverMouse AnObject 1000
+      (2) t MainWindow FolderTree  HoverMouse Node1 2000
+      (3) t MainWindow FolderTree  HoverMouse                     (defaults to center)
+      (4) t MainWindow FolderTree  HoverMouse 10,15 3000          (use "as is")
+      (5) t MainWindow FolderTree  HoverMouse Coords=10,15 1000   (use "as is")
+
+      #1 above will contain an AnObject="3,10" entry in the MainWindow section
+         of the Application Map to hover at x=3, y=10 in the MainWindow.
+
+      #2 above will contain a FolderTree entry in the MainWindow section with
+         normal recognition information for it.  FolderTree will also have it's
+         own section in the Application Map in which there will be an entry like
+         Node1="15,30".  This will tell Robot to locate the FolderTree Generic
+         object and hover at the coordinates specified by the reference.
+
+ PARAMETERS:
+
+      TestCommand     PreParsed TestCommand from the record.
+      AUGUIInfo       from calling Driver
+      AUStatusInfo    from calling Driver
+                      (See <a href="ApplicationUtilities.htm#user_defined_types">ApplicationUtilities User-Defined Types</a> for
+                      the information available to you for the record
+                      being processed.)
+
+ RETURNS:
+
+     guiInfo.statuscode
+
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      (Optional) name of the AppMap subkey to lookup and use for the HoverMouse command.
+              If provided, we expect the AppMap to contain the item in the format "x,y".
+
+              [FolderTree]
+              Node1="33,120"      OR
+              Node1="Coords=33,120"
+              Node1="Icon" (or whatever is appropriate)
+
+              Numeric-prefixed results (ex: 15,30) from the lookup are appended to the
+              "Coords=" string used by the hover command in Robot (if necessary).
+              So any valid content used with the hover command can be part of
+              this AppMap entry.
+
+              Both Fields #3 and #5 are used to locate the item in the App Map.
+              This routine does not specify an App Map so only the current Map
+              is used and it is expected to be valid.
+
+       6      (Optional) number of milliseconds to hover.  The default is 2000 milliseconds.
+
+ ERRORS:
+      none
+
+ Orig Author: Bob Lawler
+ Orig   Date: Sep 22, 2005
+ History:
+
+      SEP 22, 2005    Original Release (Bob Lawler)
+
+</pre>
+<hr>
+<pre>
+
+<a name="v2003commands"></a>
+   Function V2003Commands (TestCommand As String, guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Routes commands according to the needs of the input parameters.
+
+ PARAMETERS:
+
+      TestCommand     PreParsed TestCommand (field #4) from the record.
+      AUGUIInfo       from calling Driver
+      AUStatusInfo    from calling Driver
+                      (See <a href="ApplicationUtilities.htm#user_defined_types">ApplicationUtilities User-Defined Types</a> for
+                      the information available to you for the record
+                      being processed.)
+
+ RETURNS:
+
+      Returns DDU_SCRIPT_NOT_EXECUTED if no appropriate match is found.
+      This custom processing should return the following values:
+
+            INCREMENTS *GENERAL* STATUS COUNTERS AUTOMATICALLY--BUT NOT TEST PASS/FAIL COUNTERS
+            ===================================================================================
+            DDU_NO_SCRIPT_FAILURE       = -1      'we DID process the record (failures may have been logged)
+            DDU_SCRIPT_WARNING          = -2      'a process failure OR unrecognized command
+            DDU_GENERAL_SCRIPT_FAILURE  = 0       'a general failure in the command handling
+            DDU_INVALID_FILE_IO         = 2       'an IO failure in command handling
+
+            DOES NOT INCREMENT ANY STATUS COUNTERS AUTOMATICALLY
+            =======================================================================
+            DDU_SCRIPT_NOT_EXECUTED     = 4       'generally means noone tried to process the record
+            DDU_EXIT_TABLE_COMMAND      = 8       'force immediate exit of current test table
+            DDU_IGNORE_RETURN_CODE      = 16      'drivers ignore this one
+
+ DATA TABLE PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Bob Lawler
+ Orig   Date: SEP 22, 2005
+ History:
+
+      SEP 22, 2005    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

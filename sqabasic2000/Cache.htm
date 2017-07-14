@@ -1,0 +1,220 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic Cache Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "Cache" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Description.
+
+
+      Cache TABLES FORMAT:
+
+
+      NOTE:
+               ****       ****        ****        ****        ****
+      SQARobot must be configured to "Continue Execution" upon Script Command
+      Failures in order for this to work properly.  Where appropriate we set
+      flags and status to recognize, report, and work with these failures.
+               ****       ****        ****        ****        ****
+
+ To actually make use of the library in another module the developer needs
+ to $Include this header file and these additional files:
+
+      LogUtilities_X.SBH              (Constants, Globals, Types etc.)
+      ApplicationUtilities_X.SBH      (Constants, Globals, Types etc.)
+      Cache_X.SBH                     (Constants, Globals, Types etc.)
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "Cache_X.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriver.htm">SuiteDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "Cache.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#cachegetlineinput">CacheGetLineInput</a>       BasicLib Cache                         
+Function <a href="#cacheinit">CacheInit</a>               BasicLib Cache                         
+Function <a href="#loadcache">LoadCache</a>               BasicLib Cache                         
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+Global  DataAvailable   As  Integer             'flag to control loops
+
+Global  currentCM       As  Long                'which table index is being use - usually the last unless working
+Global  CMinitialize    As  Integer             'in each driver, set this flag to initialize CM tables
+Global  CMindex()       As  Long                'for this execution of the table, this is CI table index to use
+Global  CMoffset()      As  Long                'for this execution of the table, where are we in it.
+Global  CMsize          As  Long                'size of the Cache MAP tables - used in resize
+Global  CMmaxUsed       AS  Long                'maximum number of entries used
+Global  CIfilename()    As  String
+Global  CIstart()       As  Long
+Global  CIend()         As  Long
+Global  CIseparator()   As  String              ' keep a copy of the separator for triming files.
+Global  CIsize          As  Long                'size of the Cache Info tables - used in resize
+Global  CIlast          As  Long                'final entry in the Cache Info tables may be less than total table size
+Global  cache()         As  String
+Global  CacheSize       As  Long               'size of the Cache tables - used in resize
+Global  CacheEnd        As  Long               'final entry in the cache, may be less than total table size
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="cachegetlineinput"></a>
+  Function CacheGetLineInput(fileref As Integer, info As AUStatusInfo, byref linein as string) As String
+
+ DESCRIPTION:
+
+      Routine returns the next line from the fileref provided
+      and increments the <a href="#globals">AUStatusInfo.linecount</a> counter.
+      The routine returns the line--which is a result of a Line Input #fileref
+      statement--unmodified.
+
+      All Driver routines which input records from a cached data table will
+      call this routine. Users would not normally call this routine directly.
+
+
+ PARAMETERS:
+
+      fileref     Integer from file's OPEN statement.
+      info        AUStatusInfo structure
+
+ RESULTS:
+
+      String  returned from Line Input statement unmodified.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Robert Ducharme
+ Orig   Date: APR 01, 2005
+ History:
+
+      APR 01, 2005    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="cacheinit"></a>
+  Function CacheInit(cdfac As LogFacility, stfac As LogFacility, sdfac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      Routine to initialize the cache information.
+
+
+ PARAMETERS:
+
+      cdfac As Cycle Driver LogFacility
+      stfac As Suite DriverLogFacility
+      sdfac As Step DriverLogFacility
+
+ RESULTS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Robert Ducharme
+ Orig   Date: APR 01, 2005
+ History:
+
+      APR 01, 2005    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="loadcache"></a>
+  Function LoadCache(fileref As Integer, info As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Routine to read data from the table and fill in the cache information.
+
+
+ PARAMETERS:
+
+      fileref     open file reference to file that needs to be cached.
+
+ RESULTS:
+
+      Indication whether or not loading the cache was successful. If good,
+      CurrentCM is set to point to the CM table entries that point to the
+      correct cache entry.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Robert Ducharme
+ Orig   Date: APR 01, 2005
+ History:
+
+      APR 01, 2005    Original Release
+
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

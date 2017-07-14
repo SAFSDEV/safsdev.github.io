@@ -1,0 +1,1141 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic SQAPublisher Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "SQAPublisher" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ SQA Robot Source Code In-Context Documentation Publisher for Robot V2001.
+
+ This standalone application attempts to parse SQARobot source and
+ header files that have been properly formatted for publication.  This requires
+ that the files maintain fairly strict compliance with the format developed for
+ this publication effort.
+
+ Note: A GUI front-end has been developed which is separate from SQAPublisher.
+ Consult the documentation for <a href="Publish.htm">Publish</a> to use SQAPublisher via a GUI interface.
+
+
+ The primary format is a 3-file system that embodies any one library.  The 3-file
+ system is comprised of:
+
+    Library.SBL   - source code.
+    Library_X.SBH - header file with constants, globals, and user-defined data types.
+    Library.SBH   - header file with public declarations for other modules to INCLUDE.
+
+ This application can also publish library header files where no source code exists.
+ This, then is a 2-file format comprised of:
+
+    Library_X.SBH - header file with constants, globals, and user-defined data types.
+    Library.SBH   - header file with public declarations for other modules to INCLUDE.
+
+ Such is the case when constructing header files for external libraries (like DLLs).
+ However, it might also be beneficial to create a SBL file consisting merely of
+ documentation blocks (no source code) for the module (DLL) and its available routines.
+ This provides maximum information and benefit for the users of the library.  When you
+ do this, note, that you must then conform to the 3-file system mentioned above.
+
+ Templates exist that contain the required structure for each file type.  They are:
+
+    SBLTemplate.sbl   - Library.SBL   template.
+    SBH_XTemplate.sbh - Library_X.SBH template.
+    SBHTemplate.sbh   - Library.SBH   template.
+
+ The SBL file contains the Functions and Subroutines used by the library.  These also
+ require structure and have their own templates:
+
+    FUNCTemplate.sbh  - Function template
+    SUBTemplate.sbh   - Sub      template
+
+ Another option is the 1-file script capability. Using this method all information is
+ expected in a single file.  This single file has a slightly different structure than
+ the alternative SBL source file.  This option was originally intended for coding the
+ functionality of various GUI components within a Data-Driven Engine.  Using this
+ format, CONSTANTS and USER-DEFINED TYPES will not get processed or published because
+ they are not considered public.
+
+ The template for this 1-file format is a modified version of the standard template:
+
+     TBD      - REC script template.
+
+
+ STRUCTURE CONVENTIONS:
+
+ As you will find in the templates, blocks of public documentation begin and end
+ with ('##) at the start of the first and last lines.  Documentation within the
+ block must follow the SQARobot convention of starting the line with the single
+ quote(').  Optionally, for readability, this utility also can work with lines
+ within a doc block that begin with ('#).  The extra character will be removed.
+
+
+ The first block in the SBL, REC, or SBH (not the _X.SBH) file will doc the intent
+ of the library/module.  This first block is required for proper operation of some
+ of the other publishing functions.  Additionally, if the MODULE DESCRIPTION
+ identifier is NOT present in this first block, then no doc will get published from
+ that first block.
+
+      '#########################################################################
+      '
+      '   Unpublished comments or other stuff here
+      '
+      '   MODULE DESCRIPTION:
+      '
+      '       published documentation in here
+      '
+      '   This library is defined by:
+      '
+      '      Unpublished comments or other stuff following
+      '
+      '##########################################################################
+
+
+ All remaining public documentation blocks in the file will precede and document
+ individual Function or Subroutines.  These doc block formats are less restrictive.
+ However, we attempt to provide a link target to each individual section by matching
+ header declarations with the &lt;function name&gt; in the corresponding doc block.
+
+      '##########################################################################
+      '
+      '  Function (or Sub) &lt;function name&gt; &lt;optional parameter documentation&gt;
+      '
+      '    documentation in here
+      '
+      '  different types of doc blocks have different internal structure.
+      '  For example, a SUB doc block will not have a section for Return values.
+      '  (see the templates for the internal structure of each type)
+      '
+      '##########################################################################
+
+
+ Critical sections of the files are also denoted by ('#) comment delimiters
+ and particular strings like:
+
+ '# MODULE DESCRIPTION:       (in first block of doc for the module)
+ '# LIBRARY CONSTANTS         (_X.SBH in 3-file system)
+ '# USER-DEFINED TYPES        (_X.SBH in 3-file system)
+ '# GLOBAL VARIABLES          (_X.SBH in 3-file system, SBL or REC in 1-file system)
+ '# SCRIPT CONSTANTS          (1-file system -- may no longer be processed)
+ '# EXPORTED DECLARATIONS
+ '# PUBLIC DEPENDENCIES       (SBL or REC)
+ '# PRIVATE DEPENDENCIES      (SBL or REC)
+
+ '# COPYRIGHT  &lt;a file specification&gt;
+    etc..
+
+
+ This is the way we cycle through the files looking for sections and the values
+ that are suppose to be in them:
+
+ We look for constants in the CONSTANTS section(s) of the appropriate _X.SBH header
+ file, but we will find them no matter where they are in the header file.
+ The difference is, when we find a CONSTANTS section we publish the entire section
+ including all comments and blank lines within the section.
+
+ This allows rich documentation provided you stick it all in the appropriate section.
+ A constant found outside an official CONSTANTS section will still get published,
+ but only that one line where it is found gets published.
+ The same is true for all the special sections and item types they contain.
+
+ Reminder, if the library or script source file does NOT use a header file for
+ CONSTANTS and USER-DEFINED TYPES, then these items are not considered Public.
+ We will not process nor publish the source SBL or REC file for non-public
+ CONSTANTS and USER-DEFINED TYPES.
+
+
+ The above critical section delimiters should be left intact for optimum publication
+ results.  However the order of the sections within the files can be rearranged or
+ even occur more than once as long as two sections of exactly the same type don't
+ follow each other.  For example, you would not want a LIBRARY CONSTANTS section
+ to be immediately followed by another LIBRARY CONSTANTS section.  There should be
+ at least one intervening section (or special delimiter) between similar sections.
+ <p>
+ Sections are delimited by its starting delimiter as shown above and ends with any
+ other special delimiter ('#) that is found subsequently.  The second block start
+ delimiter will be consumed as the end delimiter of the previous one.  Since all
+ sections of the same type are published in one pass, the second block will not
+ get recognized and its constants will only be published as out-of-section "one-liners".
+ <p>
+ The '# COPYRIGHT tag is one simple exception to the rules above.  The COPYRIGHT
+ tag is a single line tag that does not use any subsequent lines in its processing.
+ The COPYRIGHT tag expects the file specification to be on the same line as the
+ tag itself and will skip the line if the file specification is missing or invalid.
+ The first COPYRIGHT tag with a valid file specification will be processed, all
+ others will be ignored.  Only .SBL, .REC, and .SBH (not _X.SBH) files will be searched
+ for this tag.
+
+ If an SBL or REC file exists then the .SBH file will NOT be searched even
+ if the .SBL or .REC contains no COPYRIGHT tag.  See the AppendCopyrightFile routine
+ for more information on using the COPYRIGHT tag.
+ <p>
+ For best publication results it should be fairly obvious that other comments
+ within the files, not part of specific public documentation blocks, should NOT
+ start with the ('#) combination.
+
+ <hr>
+ With the introduction of shared Scripts and Libraries that do not reside in
+ the active repository a new process of publication and executable distribution
+ has been required.
+
+ In order for routines to be callable from anywhere they must be declared with
+ explicit UNC path naming conventions which point to the public runtime repository.
+ SQAPublisher has been modified to accomodate this by stripping path information
+ out when making links to other docs since they are all expected to be local
+ (same directory).
+ However, there are some issues the developer needs to be aware of.
+
+ Routines destined for sharing are normally developed, debugged, and documented
+ in the developer's local repository (or some repository that is not a runtime
+ repository).  Once everything is ready for public use the headers, documentation,
+ and the compiled executable are pushed to the runtime repository for everyone
+ to use.
+
+ SQAPublisher expects all the files it needs to publish to be located in the
+ directory provided.  That is, if you are attempting to publish doc on a file
+ like StepDriver.SBL and it has two header files (StepDriver.SBH and
+ StepDriver_X.SBH) then SQAPublisher expects to find those two header files
+ in the same directory as the SBL.  This only applies to header files for the
+ Library or Script in question.  Files for other libraries or scripts
+ referenced by '$INCLUDES or DECLARES (like, say, StringUtilities.SBH) do not
+ have to be present.
+
+ What this means is, when publishing doc using SQAPublisher you normally do
+ this on your local repository.  And while the library or script in question
+ should be referencing its runtime headers in the external runtime repository,
+ local copies of those headers need to be available in the same directory as
+ the file getting published.
+
+ This is a "feature" that must be evaluated at some other time.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "SQAPublisher_X.SBH"
+<li>'$INCLUDE: "SQAPublisher.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+   Sub   <a href="#sqapublisher">SQAPublisher</a>            BasicLib SQAPublisher                  Alias "Main"
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+Const BlockDelimiter = "'##"
+Const lenBlockDelimiter = 3
+
+Const CommentLineDelimiter = "'#"
+Const lenCommentLineDelimiter = 2
+
+Const PUBLISHER_TAG_DELIMITER = "'#"       'only if outside a doc block
+Const lenPUBLISHER_TAG_DELIMITER = 2
+
+Const PUBLISHER_XML_DELIMITER = "'#XML:"    'any line anywhere starting with this
+Const lenPUBLISHER_XML_DELIMITER = 6
+
+Const MAX_DELIMITER_TO_TAG_SPACE = 3       'spaces between '# and the tag
+
+Const PUBLISHER_MODULE_DESCRIPTION_TAG = "MODULE DESCRIPTION"
+Const PUBLISHER_ACTIONCOMMANDS_TAG = "SUPPORTED ACTION COMMANDS"
+Const PUBLISHER_AUTHOR_TAG = "ORIG AUTHOR"
+Const PUBLISHER_LIBRARY_DEFINED_BY_TAG = "THIS LIBRARY IS DEFINED BY"
+
+Const PUBLISHER_PRIVATE_DEPENDENCIES_TAG = "PRIVATE DEPENDENCIES"
+Const PUBLISHER_PUBLIC_DEPENDENCIES_TAG = "PUBLIC DEPENDENCIES"
+Const PUBLISHER_LIBCONSTANTS_TAG = "LIBRARY CONSTANTS"
+Const PUBLISHER_SCRIPTCONSTANTS_TAG = "SCRIPT CONSTANTS"
+Const PUBLISHER_GLOBALS_TAG = "GLOBAL VARIABLES"
+Const PUBLISHER_UDT_TAG = "USER-DEFINED TYPE"
+Const PUBLISHER_COPYRIGHT_TAG = "COPYRIGHT"
+
+Const PUBLISHER_INCLUDE_IDENTIFIER = "'$INCLUDE"
+Const lenPUBLISHER_INCLUDE_IDENTIFIER = 9
+
+Const PUBLISHER_DECLARE_IDENTIFIER = "DECLARE "
+Const lenPUBLISHER_DECLARE_IDENTIFIER = 8
+
+Const PUBLISHER_FUNCTION_IDENTIFIER = "FUNCTION"
+Const lenPUBLISHER_FUNCTION_IDENTIFIER = 8
+
+Const PUBLISHER_SUB_IDENTIFIER = "SUB"
+Const lenPUBLISHER_SUB_IDENTIFIER = 3
+
+Const PUBLISHER_BASICLIB_IDENTIFIER = "BASICLIB"
+Const PUBLISHER_DLL_IDENTIFIER = "LIB"
+Const PUBLISHER_ALIAS_IDENTIFIER = "ALIAS"
+
+Const PUBLISHER_CONSTANT_IDENTIFIER = "CONST "
+Const lenPUBLISHER_CONSTANT_IDENTIFIER = 6
+
+Const PUBLISHER_GLOBAL_IDENTIFIER = "GLOBAL "
+Const lenPUBLISHER_GLOBAL_IDENTIFIER = 7
+
+Const PUBLISHER_UDT_IDENTIFIER = "TYPE "
+Const lenPUBLISHER_UDT_IDENTIFIER = 5
+
+Const PUBLISHER_END_UDT_IDENTIFIER = "END TYPE"
+Const lenPUBLISHER_END_UDT_IDENTIFIER = 8
+
+Const quote =""""
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+Global LibName    As String    'base name of library to process.
+Global LibDirIn   As String    'directory where library and assoc. headers are.
+Global HTMLDirOut As String    'directory where HTML and XML output should go.
+Global RuntimeRepo As String   'optional path to expected runtime repository
+Global Copyright  As String    'optional path to copyright text to append to output file
+                               'this will be overridden by any Copyright tag found
+                               'in the files themselves
+
+'set <> 0 to bypass search for DDE Action Commands section in non-DDE scripts
+Global NoActionCommands As Integer  
+                               
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="shutdownio"></a>
+  Sub shutdownIO ()
+
+ DESCRIPTION:
+
+    Closes any and all input and output buffers flushing the output buffer prior
+    to closing it.  It also releases all these buffers by making them null.
+
+ PARAMETERS:
+
+      (the following are used but not passed in)
+
+      LibLReader      Module fileref
+      LibHReader      Module fileref
+      LibXReader      Module fileref
+      writer          Module fileref
+      XMLwriter       Module fileref
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="validateparameters"></a>
+  Function validateParameters () As Integer
+
+ DESCRIPTION:
+
+     Validates the global parameters provided to the application.
+     Checks to make sure the specified library directory is valid and exists.
+     Checks for the output directory.  If it doesn't exist it tries to create it.
+     Checks for a source files (SBL/REC) that match the short libname provided.
+     If it doesn't find any it proceeds with the assumption that the headers are
+     documenting a DLL library.
+     Checks for a libname.SBH file and a libname_X.SBH file.
+     Finally, provided all required files exist and have the correct read or
+     write priviledges it allocates the input and output buffers in order for
+     the main program function to proceed.
+
+ PARAMETERS:
+
+      LibDirIn   Global string identifying dir where libname should be found
+      HTMLDirOut  Global string identifying dir where HTML output should go
+      LibName Global string of library base name (no extension) to publish.
+
+ RETURNS:
+
+       0 on pass
+      -1 on failure
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="copydocblock"></a>
+  Function copyDocBlock (reader As Integer, outfile As Integer, _
+                         startLine As String, endLine As String, _
+                         link As Integer) As Integer
+
+ DESCRIPTION:
+
+      Finds the next BlockDelimiter start and copies all subsequent lines until
+      the closing delimiter.
+      If startLine and/or endLine strings are provided then it only copies
+      lines from the block starting with the first line containing the
+      startLine string (inclusive) and ending with the line just prior to the
+      endLine string (exclusive).  If startLine is not provided(null), it
+      copies from the beginning of the block.  If endLine is not
+      provided(null), it copies to the end of the block (which may be EOF).
+      This allows us to publish the entire doc block or just a specific portion
+      of it.  For example, we might just print the MODULE DESCRIPTION portion
+      of a source file doc block and not the other information in it that a
+      library user doesn't really need to see.
+
+ PARAMETERS:
+
+      reader      the input buffer to extract the doc block from.
+
+      outfile     the output buffer to send the doc block to.
+
+      startLine   a string to look for within the lines of the
+                  doc block to designate as the first line within the block
+                  to start output from.  Lines within the doc block prior to
+                  the line containing this string will not be output.
+                  If this parameter is null("") then output begins from the
+                  first line of the block.
+
+      endLine     a string to look for within the lines of the
+                  doc block to designate as the last line within the block
+                  to read from.  Lines within the doc block following and
+                  including the line containing this string will not be output.
+                  If this parameter is null("") then output will continue until the
+                  end of the block (which may be EOF).
+
+      link        1= tells the routine to create a named anchor out of the first
+                  line starting with the word "function" or "sub".  Normally,
+                  this is the first non-blank line of a function or sub
+                  documentation block.
+                  The anchor is given the name of the next word
+                  on the line--the function or sub name.
+                  These are the anchors to the Function/Sub
+                  detail documentation blocks linked to by the declarations
+                  section of the doc.
+                  Once a block has a named anchor all subsequent occurrences
+                  of "function" and "sub" within the block are ignored.
+
+                  0= ALL occurrences of "function" and "sub" are ignored.
+
+ RETURNS:
+
+       0 on normal errorless execution.
+
+      -1 if no block was found and/or end of file was reached.
+         This can be used as an indicator that there are no more
+         blocks to try to read in the provided buffer.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="starthtml"></a>
+  Sub startHTML (outfile As Integer)
+
+ DESCRIPTION:
+
+      Output HTML header information prior to any content.
+
+ PARAMETERS:
+
+      outfile     the output buffer for our HTML file
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="finishhtml"></a>
+  Sub finishHTML (outfile As Integer)
+
+ DESCRIPTION:
+
+      Ouput our closing HTML information.
+
+ PARAMETERS:
+
+      outfile     the output buffer for our HTML file
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="writelibinfo"></a>
+  Sub writeLibInfo (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Given a source file or an appropriate header file write out the MODULE
+    DESCRIPTION portion of the module level doc block.
+    Normally the MODULE DESCRIPTION is only used from the SBL or REC file.
+    However, in the case of documenting an external DLL there may be no
+    SBL or REC file to process.  In that case, the EXPORT HEADER file is
+    used to retrieve the MODULE DESCRIPTION.  To do this, the EXPORT HEADER
+    file's "EXPORT HEADER DESCRIPTION" should be relabelled as
+    "MODULE DESCRIPTION".
+
+ '#################################################################################
+ '#
+ '# Unpublished comments or other stuff here for standard 3-file source
+ '#
+ '# MODULE DESCRIPTION:
+ '#
+ '#   published documentation in here for SBL source or modified SBH header when
+ '#   no source file exists (like DLL headers and doc).
+ '#
+ '# This Library is defined by:
+ '#
+ '# Unpublished comments or other stuff following the Author identifier
+ '#
+ '#################################################################################
+
+    For Utility libraries this is delimited by the next block containing the
+    text "This library ".  However, for ComponentFunction files the next
+    delimiting block is "SUPPORTED ACTION COMMANDS".
+
+    These ComponentFunction Scripts are .REC files which have no header files
+    at all.  Consequently, if libOnly has been set true we will assume a
+    ComponentFunctions Script file and doc accordingly.
+
+ '#################################################################################
+ '#
+ '# Unpublished comments or other stuff here for a standard single source file
+ '#
+ '# MODULE DESCRIPTION:
+ '#
+ '#   published documentation in here for SBL source or modified SBH header when
+ '#   no source file exists (like DLL headers and doc).
+ '#
+ '# SUPPORTED ACTION COMMANDS:  (if omitted, the remainder of the block is published.
+ '#
+ '# Unpublished comments or other stuff following the Author identifier
+ '#
+ '#################################################################################
+
+
+ PARAMETERS:
+
+    reader   the source or header buffer to retrieve the doc block from.
+
+    outfile  the html output buffer to write to.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+      MAR 16, 2001    (Carl Nagle) Added gated processing.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writeactioncommandinfo"></a>
+  Sub writeActionCommandInfo (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Given a ComponentFunctions script file write out the SUPPORTED ACTION
+    COMMANDS portion of the module level doc block.
+
+    You can disable the output of an ACTION COMMAND section by setting the
+    Global variable NoActionCommands to any non-zero value.  You would do
+    this when publishing scripts or other single file libraries that are
+    not DDE related and contain no SUPPORTED ACTION COMMANDS section.
+
+
+ '#   (part of the first documentation block in the source file)
+ '#
+ '# SUPPORTED ACTION COMMANDS:
+ '#
+ '#   published Action Command or other comments in here
+ '#
+ '# Orig Author: AnyName here
+ '#
+ '#################################################################################
+
+ PARAMETERS:
+
+    reader   the source or header buffer to retrieve the doc block from
+
+    outfile  the html output buffer to write to
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+
+</pre>
+<hr>
+<pre>
+
+<a name="linkinclude"></a>
+  Function linkInclude (linein As String) As String
+
+ DESCRIPTION:
+
+    Evaluate if the provided line which should be an '$INCLUDE statement
+    references a library other than the one currently being processed.
+    If it does, then add a relative link to this include statement pointing to
+    the doc for that library.
+    If it doesn't, then just return the line unchanged.
+    No test is made to see if the linked doc exists or not.  It is assumed to
+    be (or will be) in the same directory as the html we are currently generating.
+    This routine is normally only called by the writeLibDependencies routine.
+
+    NOTE: We do not process multiple filenames on a single line.  Each referenced
+    file must be done on a separate line with its own INCLUDE statement.
+
+ PARAMETERS:
+
+    linein   a string expected to start with '$INCLUDE which will be
+             parsed to look for a different library name than the one
+             we are currently processing.
+
+ RETURNS:
+
+    String   the line with a link embedded if it was a reference to a
+             different library, OR, the input line unmodified if it was not.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+
+      AUG 20, 1999    Original Release
+      FEB 03, 2000    (Carl Nagle) Mod for pathed filenames.
+
+</pre>
+<hr>
+<pre>
+
+<a name="linkdeclare"></a>
+  Function linkDeclare (linein As String) As String
+
+ DESCRIPTION:
+
+    Evaluate if the provided line which should be an DECLARE statement
+    references a library other than the one currently being processed.
+    If it does, then add a relative link to this include statement pointing to
+    the doc for that library.
+    If it doesn't, then just return the line unchanged.
+    No test is made to see if the linked doc exists or not.  It is assumed to
+    be (or will be) in the same directory as the html we are currently generating.
+    This routine is normally only called by the writeLibDependencies routine
+    as it processes PRIVATE and PUBLIC DEPENDENCIES of external modules and
+    may not properly process FORWARD REFERENCES of a modules own routines.
+
+ PARAMETERS:
+
+    linein   a string expected to start with DECLARE which will be
+             parsed to look for a different library name than the one
+             we are currently processing.
+
+ RETURNS:
+
+    String   the line with a link embedded if it was a reference to a
+             different library, OR, the input line unmodified if it was not.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 30, 1999
+ History:
+
+      AUG 30, 1999    Original Release
+      FEB 03, 2000    (Carl Nagle) Mod for pathed filenames.
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writelibdependencies"></a>
+  Function writeLibDependencies (reader As Integer, outfile As Integer,
+                                 mode As Integer) As Integer
+
+ DESCRIPTION:
+
+ Parse the provided file listing for INCLUDE statements.
+ If a reference is found to another library then embed a relative link to it.
+
+ NOTE: Our Script and Library system requires that ALL includes reside in
+ the SBL file of a 3-file system or the 1-file system REC file.  NO Includes
+ can reside in the Libname.SBH or Libname_X.SBH due to Robot circular
+ reference problems.
+
+ For this reason, dependencies have been separated out int the SBL and REC
+ files into PRIVATE and PUBLIC DEPENDENCIES sections.  Additionally, there
+ is a FORWARD DECLARATIONS section for that purpose.  Also note that these
+ DEPENDENCIES can be in the form of an INCLUDE statment OR a DECLARE statement
+ for individual external routines.
+
+
+ PARAMETERS:
+
+    reader   the file to examine.
+
+    outfile  the output buffer to write to.
+
+    mode     0 =write PRIVATE DEPENDENCIES
+             <>0 =write PUBLIC DEPENDENCIES
+
+ RETURNS:
+
+    Integer   number of dependencies found in provided file
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+
+      AUG 20, 1999    Original Release
+      AUG 30, 1999    (Carl Nagle) Modified for new file system.
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writeexporteddeclarations"></a>
+  Sub writeExportedDeclarations (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Parse the provided file for all DECLARES found in it.
+    Attempt to isolate only the routine type (FUNCTION/SUB) and its name and
+    any 'Alias' if it is an aliased routine from a DLL.
+    Exported Declarations are normally only found in the .SBH file of a
+    3-file system library.
+
+ PARAMETERS:
+
+    reader   normally the libname.SBH
+
+    outfile  the output buffer to write to.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+
+      AUG 20, 1999    Original Release
+      AUG 30, 1999    (Carl Nagle) Modified for new file system.
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writelibconstants"></a>
+  Sub writeLibConstants (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Parse all library constants from the provided file.
+    For the 3-file system they should be in libname_X.SBH so that both the
+    library and a library user can see them.
+    For 1-file system scripts everything is in the libname.REC file.
+    However, we may choose NOT to publish CONSTANTS in a 1-file system
+    because these are generally never INCLUDED and, thus, are not public.
+
+    The routine looks for the '# LIBRARY CONSTANTS or # SCRIPT CONSTANTS
+    section of the file and will copy the entire section including random
+    comments to the html.
+    In fact, I believe it should be able to handle multiple such sections in
+    the same file as long as the second doesn't immediately follow the first.
+    It will also pick out any constants that for some reason are not in the
+    constant's section but no lines of comments before or after these will be
+    copied.
+
+ PARAMETERS:
+
+    reader  the libname_X.SBH (or other) to examine.
+
+    outfile  the output buffer to write to.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Fixed a CONSTANTS bug and Streamlining.
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writelibglobals"></a>
+  Sub writeLibGlobals (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Parse all global variables from the provided file.
+    For the 3-file system they should be in libname_X.SBH so that both the
+    library and a library user can see them.
+    For 1-file system scripts everything is in the libname.REC file.
+
+    The routine looks for the '# GLOBAL VARIABLES
+    section of the file and will copy the entire section including random
+    comments to the html.
+    In fact, I believe it should be able to handle multiple such sections in
+    the same file as long as the second doesn't immediately follow the first.
+    It will also pick out any globals that for some reason are not in the
+    global's section but no lines of comments before or after these will be
+    copied.
+
+ PARAMETERS:
+
+    reader  the libname_X.SBH (or other) to examine.
+
+    outfile  the output buffer to write to.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writelibudtypes"></a>
+  Sub writeLibUDTypes (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Parse all TYPES from the provided file.
+    For the 3-file system they should be in libname_X.SBH so that both the
+    library and a library user can see them.
+    For 1-file system scripts everything is in the libname.REC file.
+    However, we may choose NOT to publish UDTypes in a 1-file system
+    because these are generally never INCLUDED and, thus, are not public.
+
+    The routine looks for the '# USER-DEFINED TYPE
+    section of the file and will copy the entire section including random
+    comments to the html.
+    In fact, I believe it should be able to handle multiple such sections in
+    the same file as long as the second doesn't immediately follow the first.
+    It will also pick out any Types that for some reason are not in the
+    Type's section but no lines of comments before or after these will be
+    copied.
+
+ PARAMETERS:
+
+    reader  the libname_X.SBH (or other) to examine.
+
+    outfile  the output buffer to write to.
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writelibdetails"></a>
+  Sub writeLibDetails (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Parse and output the library source file for the doc comments of each routine.
+    Each routine is given an anchor which is linked from the declarations
+    section of the html.
+
+ PARAMETERS:
+
+    reader   the source file to retrieve doc from
+
+    outfile  the html output file to copy doc to
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 20, 1999
+ History:
+      AUG 20, 1999    Original Release
+      MAR 14, 2001    (Carl Nagle) Streamlining.
+
+</pre>
+<hr>
+<pre>
+
+<a name="writepreformatteddata"></a>
+  Sub writePreformattedData (filename As String, outfile As Integer)
+
+ DESCRIPTION:
+
+    Attempts to append the given filename to the current outfile.
+    The routine will delimit the first and last lines with <pre> and </pre>
+    HTML tags.  The file will be read and output unmodified line by line.
+
+ PARAMETERS:
+
+    filename the source file to append to the current outfile
+
+    outfile  the current html output file to copy doc to
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 08, 2000
+ History:
+
+      SEP 08, 2000    Original Release
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="appendcopyrightfile"></a>
+  Sub appendCopyrightFile (reader As Integer, outfile As Integer)
+
+ DESCRIPTION:
+
+    Search the reader source file for a Copyright tag specification or use
+    the Copyright Global variable.  If one is available, append the
+    preformatted text to the outfile.  A Copyright Tag specification within
+    the file overrides any existing Global variable setting.
+
+    The Copyright Tag specification should exist anywhere after the first
+    module description doc block and outside any other doc blocks.
+    It contains the following syntax:
+
+ '# COPYRIGHT <a file spec>
+
+ Example:
+
+ '# COPYRIGHT  Copyright.txt
+
+
+ We first try to use the spec explicitly as if it contained all path information.
+ If the file is not found, we will look for it in the SQABas32 Source directory,
+ the DDE_RUNTIME directory, then the SQABas32 directory off of RTHOME.
+
+
+ PARAMETERS:
+
+    reader   the source file to retrieve doc from
+
+    outfile  the html output file to copy doc to
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: Feb 07, 2001
+ History:
+      FEB 07, 2001    Original Release
+      JUN 15, 2001    (Carl Nagle) Modified for XML Handling.
+
+</pre>
+<hr>
+<pre>
+
+<a name="sqapublisher"></a>
+  Sub SQAPublisher () Alias "Main"
+
+ DESCRIPTION:
+
+    This is the main entry point for SQAPublisher.
+    Here we call all the routines to validate the parameters, parse any source
+    and header files, and write out our HTML documentation.
+
+    See the individual routines within this class to determine how we perform each
+    of the various parts of the process.
+
+    TO RUN THE APP:
+
+      Have a Shell script (some other script) set SQAPublisher's Global
+      variables and then call the script.
+
+      Example1:
+      <a href="Publish.htm">Publish</a> is a GUI front-end already developed and ready to run:
+
+      '$Include: "DDEngine.SBH"
+      Sub Main
+
+          NoActionCommands = 0   'set to 1 when processing non-DDE scripts
+          Publish
+
+      End Sub
+
+
+      Example2:
+      (The do-it-yourself approach)
+
+      '$INCLUDE: "DDEngine.SBH"
+
+      Sub Main()
+
+          Dim source As String
+
+          HTMLDirOut = SQAGetDir(SQA_DIR_SQABASIC_SRC) &"Doc\"
+
+          'path to runtime repo for headers
+          RuntimeRepo = ""                  'for local DDE runtimes
+          'RuntimeRepo = GetDDERuntimeRepo  'for non-local DDE runtimes
+
+          'path to Copyright text to append
+          Copyright = GetDDERuntimeRepo() &"Copyright.txt"
+
+          'do libraries first
+          LibDirIn   = SQAGetDir(SQA_DIR_SQABASIC_SRC)
+
+          source = Dir$(LibDirIn &"*.SBL", 0)
+
+          While (Len(source) > 0)
+              LibName    = GetField$(source, 1, ".")
+              SQAPublisher
+              source = Dir$
+          Wend
+
+          Reset   'just for good measure
+
+      End Sub
+
+
+ PARAMETERS:
+
+      none    (expects Global strings LibDirIn, HTMLDirOut, Libname,
+               and option Global string RuntimeRepo)
+
+ ERRORS:
+
+       none
+
+ Orig Author:
+ Orig   Date: AUG 20, 1999
+ History:
+
+      AUG 20, 1999    Original Release
+      FEB 03, 2000    (Carl Nagle) Mod for pathed filenames.
+      APR 26, 2000    (Carl Nagle) Mod for library use.
+      SEP 08, 2000    (Carl Nagle) Modified for adding Copyrights.
+      JAN 25, 2001    (Carl Nagle) Fixed Script2Library mode reset problem.
+      FEB 07, 2001    (Carl Nagle) Added overriding Copyright Tag.
+      MAR 14, 2001    (Carl Nagle) Non-Public Constants and UDTypes no longer published.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

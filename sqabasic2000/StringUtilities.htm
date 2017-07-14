@@ -1,0 +1,1741 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic StringUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "StringUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Utility routines for working with Strings.
+      Many of these routines now use an external ActiveX object to provide
+      their functionality.  In this way, the functionality is common to
+      ANY string processing application on Windows.
+
+      The Class is DDVariableStore.StringUtilities in DDVariableStore.DLL
+      This DLL is required and must be properly installed and/or registered
+      with the operating system.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "StringUtilities_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\StringUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#ltrimwhitespace">LTrimWhiteSpace</a>         BasicLib StringUtilities 
+Function <a href="#rtrimwhitespace">RTrimWhiteSpace</a>         BasicLib StringUtilities 
+Function <a href="#trimwhitespace">TrimWhiteSpace</a>          BasicLib StringUtilities 
+Function <a href="#lastinstr">LastInStr</a>               BasicLib StringUtilities 
+Function <a href="#gettrimmedfield">GetTrimmedField</a>         BasicLib StringUtilities 
+Function <a href="#getfixedwidthfield">GetFixedWidthField</a>      BasicLib StringUtilities 
+Function <a href="#gettrimmedfixedwidthfield">GetTrimmedFixedWidthField</a>  BasicLib StringUtilities 
+Function <a href="#findandreplace">FindAndReplace</a>          BasicLib StringUtilities 
+Function <a href="#getnextnonblankfieldindex">GetNextNonBlankFieldIndex</a>  BasicLib StringUtilities 
+Function <a href="#getnextfieldindex">GetNextFieldIndex</a>       BasicLib StringUtilities 
+Function <a href="#getnextdelimiterindex">GetNextDelimiterIndex</a>   BasicLib StringUtilities 
+Function <a href="#getfieldindex">GetFieldIndex</a>           BasicLib StringUtilities 
+Function <a href="#getfieldcount">GetFieldCount</a>           BasicLib StringUtilities 
+Function <a href="#getfieldarray">GetFieldArray</a>           BasicLib StringUtilities 
+Function <a href="#getliteralquotedfield">GetLiteralQuotedField</a>   BasicLib StringUtilities 
+Function <a href="#getliteralquotedrecordfield">GetLiteralQuotedRecordField</a>  BasicLib StringUtilities 
+Function <a href="#getnonblankfield">GetNonBlankField</a>        BasicLib StringUtilities 
+Function <a href="#getquotedstring">GetQuotedString</a>         BasicLib StringUtilities 
+Function <a href="#gettrimmedquotedstring">GetTrimmedQuotedString</a>  BasicLib StringUtilities 
+Function <a href="#getquotedfield">GetQuotedField</a>          BasicLib StringUtilities 
+Function <a href="#gettrimmedquotedfield">GetTrimmedQuotedField</a>   BasicLib StringUtilities 
+Function <a href="#getmultidelimitedfieldcount">GetMultiDelimitedFieldCount</a>  BasicLib StringUtilities 
+Function <a href="#getmultidelimitedfield">GetMultiDelimitedField</a>  BasicLib StringUtilities 
+Function <a href="#processexpression">ProcessExpression</a>       BasicLib StringUtilities 
+Function <a href="#processfieldexpressions">ProcessFieldExpressions</a>  BasicLib StringUtilities 
+Function <a href="#converthtmlentities">ConvertHTMLEntities</a>     BasicLib StringUtilities 
+Function <a href="#initializeregexp">InitializeRegExp</a>        BasicLib StringUtilities 
+Function <a href="#converthex2long">ConvertHex2Long</a>         BasicLib StringUtilities 
+Function <a href="#regexpexecute">RegExpExecute</a>           BasicLib StringUtilities 
+Function <a href="#regexptest">RegExpTest</a>              BasicLib StringUtilities 
+Function <a href="#regexpreplace">RegExpReplace</a>           BasicLib StringUtilities 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+Const gEGRP$ = ")"
+Const gBGRP$ = "("
+Const gQUOT$ = """"
+Const gEQ$ = "="
+Const gJN$ = "&"
+Const gADD$ = "+"
+Const gSUB$ = "-"
+Const gMUL$ = "*"
+Const gDIV$ = "/"
+Const gREM$ = "%"
+Const gSupportedOperators$   = "=&+-*/%()"
+Const gUnsupportedOperators$ = "[]<>!|"
+Const gOperatorPrecedence$   = "*/%+-&"
+Const lengOperatorPrecedence%= 6
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+Type RegExp
+    MatchAll    As Integer
+    IgnoreCase  As Integer
+    Pattern     As String
+End Type
+
+Type RegExpMatch
+    FirstIndex  As Long
+    Length      As Long
+    Value       As String
+End Type
+
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ltrimwhitespace"></a>
+  Function LTrimWhiteSpace (source As String) As String
+
+ DESCRIPTION:
+
+      This routine mimics the SQABasic LTrim$ function but also trims TAB
+      characters.
+
+ PARAMETERS:
+
+      source = the string to trim of leading tabs and spaces.
+
+ RETURNS:
+
+      A new string trimmed of leading tabs and spaces.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 27, 2000
+ History:
+
+      APR 27, 2000    Original Release
+      JUL 22, 2000    Speed Optimization
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="rtrimwhitespace"></a>
+  Function RTrimWhiteSpace (source As String) As String
+
+ DESCRIPTION:
+
+      This routine mimics the SQABasic RTrim$ function but also trims TAB
+      characters.
+
+ PARAMETERS:
+
+      source = the string to trim of trailing tabs and spaces.
+
+ RETURNS:
+
+      A new string trimmed of trailing tabs and spaces.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 27, 2000
+ History:
+
+      APR 27, 2000    Original Release
+      JUL 22, 2000    Speed Optimization
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="trimwhitespace"></a>
+  Function TrimWhiteSpace (source As String) As String
+
+ DESCRIPTION:
+
+      This routine mimics the SQABasic Trim$ function but also trims TAB
+      characters (leading and trailing).
+
+ PARAMETERS:
+
+      source = the string to trim of leading and trailing tabs and spaces.
+
+ RETURNS:
+
+      A new string trimmed of leading and trailing tabs and spaces.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 27, 2000
+ History:
+
+      APR 27, 2000    Original Release
+      JUL 22, 2000    Speed Optimization
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="lastinstr"></a>
+  Function LastInStr (source As String, match As String,
+                      noCase As Integer) As Integer
+
+ DESCRIPTION:
+
+      This mimics the SQA InStr function only indexes backwards through
+      the String.
+
+ PARAMETERS:
+
+      source      the string to examine for the last occurrence of match.
+      match       the substring to find the last occurrence within source.
+      noCase      0 means compare is case-sensitive. 1 means it is not.
+
+ RETURNS:
+
+      0   on failure or no match found.
+          Otherwise returns the index of the last occurrence of the substring
+          in the test string.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="gettrimmedfield"></a>
+  Function GetTrimmedField(inputRecord As String, fieldID As Integer,
+                           delimiter As String) As String
+
+ DESCRIPTION:
+
+      Given an InputRecord of delimited fields, return the nth(FieldID) Field
+      in the record.  The index is 1 based.  The field is trimmed of leading
+      and trailing spaces and tabs via <a href="#TrimWhiteSpace">TrimWhiteSpace</a>.
+
+ PARAMETERS:
+
+      inputRecord     string of delimited fields
+      fieldID         the one based index of the desired field
+      delimiter       the string (>0 characters) that delimits each field.
+                      As indicated this can be more than one character in
+                      length.
+
+ RETURNS:
+
+      A string of the indexed field trimmed of leading and trailing tabs and spaces.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided inputRecord or the provided delimiter is invalid.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 29, 1999
+ History:
+
+      JUN 29, 1999    Original Release
+      APR 27, 2000    (Carl Nagle) Added use of TrimWhiteSpace.
+      JUL 22, 2000    (Carl Nagle) Speed Optimizations and error trapping.
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfixedwidthfield"></a>
+  Function GetFixedWidthField(inputRecord As String, fieldID As Integer,
+                              fixedwidth As Integer) As String
+
+ DESCRIPTION:
+
+      Given an InputRecord of fixed-width fields, return the nth(FieldID) Field
+      in the record.  The index is 1 based.
+
+ PARAMETERS:
+
+      inputRecord     string of fixed-width fields
+      fieldID         the one based index of the desired field
+      fixedwidth      the fixed width for all fields in the record.
+
+ RETURNS:
+
+      A string of the fixed-width field.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided inputRecord.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Mark Butler
+ Orig   Date: JUN 05, 2002
+ History:
+
+      JUN 05, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="gettrimmedfixedwidthfield"></a>
+  Function GetTrimmedFixedWidthField(inputRecord As String, fieldID As Integer,
+                              fixedwidth As Integer) As String
+
+ DESCRIPTION:
+
+      Given an inputRecord of fixed-width fields, return the nth(FieldID) Field
+      in the record.  The index is 1 based.  The field will be trimmed of
+      any leading and/or trailing whitespace.
+
+ PARAMETERS:
+
+      inputRecord     string of fixed-width fields
+      fieldID         the one based index of the desired field
+      fixedwidth      the fixed width for all fields in the record.
+
+ RETURNS:
+
+      A string of the fixed-width field trimmed of leading and/or trailing whitespace.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided inputRecord.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Mark Butler
+ Orig   Date: JUN 05, 2002
+ History:
+
+      JUN 05, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="findandreplace"></a>
+  Function FindAndReplace(source As String, find As String,
+                          replace As String, Optional noCase) As String
+
+ DESCRIPTION:
+
+      Search the source string for all instances of the find string and
+      replace all instances with the replace string.  This is done on a
+      copy of the source string.  The routine returns this new string on
+      exit.  All strings are treated as case-sensitive unless the optional
+      noCase argument specifies otherwise.
+
+      NOTE: the routine can be used to only delete unwanted find strings
+      by providing a zero-length ("") replacement string.
+
+ PARAMETERS:
+
+      source      the String to copy and do find and replace on.
+                  It is not modified.
+
+      find        string to locate for replacement within source.
+
+      replace     string to substitute in place of find string.
+
+      noCase      (optional) if <> 0 then search/compare is case-insensitive.
+
+ RETURNS:
+
+      New String after FindAndReplace performed.  The input source string
+      is not modified.
+
+      If either the source or the find strings are invalid ("") then the
+      return value is "".
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 04, 1999
+ History:
+
+      AUG 04, 1999    Original Release
+      AUG 09, 1999    (Carl Nagle) Changed loop < lensource to <= lensource
+      AUG 16, 2001    Converted to DLL use
+      APR 29, 2002    (Carl Nagle) Added optional noCase argument.
+
+</pre>
+<hr>
+<pre>
+
+<a name="getnextnonblankfieldindex"></a>
+  Function GetNextNonBlankFieldIndex (inputRecord As String, startindex As Integer,
+                                      delimiters As String) As Integer
+
+ DESCRIPTION:
+
+      This function replaces GetNextFieldIndex.
+      This routine skips over blank fields looking for the index of the
+      first non-blank field.
+
+      The search begins at startindex within the inputRecord.
+      The index is 1-based.
+
+ PARAMETERS:
+
+      inputRecord     String to search for first non-delimiter character
+
+      startindex      Integer (1-based) start position for search in inputRecord
+
+      delimiters      String list of delimiters to find the end of.
+
+ RETURNS:
+
+      0   on error, invalid parameters, or end of inputRecord reached.
+      N   index of first non-delimiter character found.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 14, 2000
+ History:
+
+      JUL 14, 2000    Original Release
+      SEP 28, 2000    (Carl Nagle) Optimized
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getnextfieldindex"></a>
+  Function GetNextFieldIndex (inputRecord As String, startindex As Integer,
+                         delimiters As String) As Integer
+
+ DESCRIPTION:
+
+      This function has been deprecated.  Use <a href="#GetNextNonBlankFieldIndex">GetNextNonBlankFieldIndex</a> instead.
+      The name of this function did not intuitively indicate its purpose.
+
+ PARAMETERS:
+
+      inputRecord     String to search for first non-delimiter character.
+                      (blank fields are skipped)
+      startindex      Integer (1-based) start position for search in inputRecord.
+      delimiters      String list of delimiters to find the end of.
+
+ RETURNS:
+
+      See <a href="#GetNextNonBlankFieldIndex">GetNextNonBlankFieldIndex</a>
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 17, 1999
+ History:
+
+      AUG 17, 1999    Original Release
+      JUL 14, 2000    (Carl Nagle) deprecated in favor of GetNextNonBlankFieldIndex
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getnextdelimiterindex"></a>
+  Function GetNextDelimiterIndex (inputRecord As String, startindex As Integer,
+                                  delimiters As String) As Integer
+
+ DESCRIPTION:
+
+      Finds the index of the first character matching one of the provided delimiter
+      characters.  The search begins at startindex within the inputRecord.
+      The index is 1-based.
+
+ PARAMETERS:
+
+      inputRecord     String to search for first delimiter character
+
+      startindex      Integer (1-based) start position for search in inputRecord
+
+      delimiters      String list of delimiters to find.
+
+ RETURNS:
+
+      0   on error, invalid parameters, or end of inputRecord reached.
+      N   index of first delimiter character found.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 17, 1999
+ History:
+
+      AUG 17, 1999    Original Release
+      SEP 28, 2000    (Carl Nagle) Optimized
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfieldindex"></a>
+  Function GetFieldIndex (inputRecord As String, fieldID As Integer,
+                          startindex As Integer, delimiters As String) As Integer
+
+ DESCRIPTION:
+
+      Finds the index of the nth field within the inputRecord.
+      The search and field count begins at startindex within the inputRecord.
+      The field and index are 1-based.
+
+      Blank fields count, so finding any one delimiter in our delimiters string
+      will indicate the end of a field. The next field starts at the next
+      character index even if that char is also a delimiter.
+
+      Field #1 is always the same as startindex--even if the character at
+      the startindex position is a delimiter.
+
+ PARAMETERS:
+
+      inputRecord     String to search for first delimiter character
+
+      fieldID         Integer (1-based) of field # to find the start of.
+                      field #1 begins at startindex regardless of the true
+                      start of the inputRecord.
+
+      startindex      Integer (1-based) start position for search in inputRecord
+
+      delimiters      String list of delimiters that separate fields.
+
+ RETURNS:
+
+      0   on error, invalid parameters, or end of inputRecord reached.
+      N   index of first character in the specified field.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 14, 2000
+ History:
+
+      JUL 14, 2000    Original Release
+      JUL 22, 2000    (Carl Nagle) Speed Optimizations
+      SEP 28, 2000    (Carl Nagle) Optimized
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfieldcount"></a>
+  Function GetFieldCount (inputRecord As String, startindex As Integer,
+                          delimiters As String) As Integer
+
+ DESCRIPTION:
+
+      Finds the count of all fields within the inputRecord found from
+      startindex to the end of the inputRecord.
+      The field and index are 1-based.
+
+      Blank fields count, so finding any one delimiter in our delimiters string
+      will indicate the end of a field. The next field starts at the next
+      character index even if that char is also a delimiter.
+      If the last character in the inputRecord is a delimiter, then the
+      field it terminates is the last field in the inputRecord.
+
+      Field #1 index is always the same as startindex--even if the character at
+      the startindex position is a delimiter.
+
+ PARAMETERS:
+
+      inputRecord     String to count fields beginning at startindex.
+
+      startindex      Integer (1-based) start position for field count in
+                      inputRecord.
+
+      delimiters      String list of possible delimiters that separate fields.
+                      If there are no delimiters, then there is only 1 field.
+
+ RETURNS:
+
+      0   Indicates bad input (like 0-length inputRecord or a startindex
+          greater than the record length).
+
+      N   The number of fields found beginning at startindex.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 19, 2000
+ History:
+
+      JUL 19, 2000    Original Release
+      SEP 28, 2000    (Carl Nagle) Optimized
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getfieldarray"></a>
+  Function GetFieldArray (inputRecord As String, startindex As Integer,
+                          delimiters As String, array() As String) As Integer
+
+ DESCRIPTION:
+
+      Process the inputRecord and fill the provided array with all the
+      fields in the record subsequent to startindex.  To process the
+      entire inputRecord into an array of fields use startIndex = 1.
+
+      Blank fields count, so finding any one delimiter in our delimiters string
+      will indicate the end of a field. The next field starts at the next
+      character index even if that char is also a delimiter.  Back-to-back
+      delimiters indicate an empty field.
+
+      Fields are extracted unmodified.
+
+      If the last character in the inputRecord is a delimiter, then the
+      field it terminates is the last field in the inputRecord.
+
+
+ PARAMETERS:
+
+      inputRecord     String to parse for fields beginning at startindex.
+
+      startindex      Integer (1-based) start position for field count in
+                      inputRecord.
+
+      delimiters      String list of possible delimiters that separate fields.
+                      If there are no delimiters, then there is only 1 field.
+
+      array           String array to populate with the field data.
+                      Should be allocated or dimensioned as:
+
+                         Dim array() As String
+
+                      This routine will ReDim the array appropriately.
+                      The returned array will be 1-based.  That is, the
+                      first element of the array will be at index = 1.
+
+
+ RETURNS:
+
+      0   Indicates bad input (like 0-length inputRecord or a startindex
+          greater than the record length).
+
+      N   The number of fields returned in the array.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 28, 2001
+ History:
+
+      SEP 28, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getliteralquotedfield"></a>
+  Function GetLiteralQuotedField (inputRecord As String, fieldID As Integer,
+                          startindex As Integer, delimiters As String,
+                          value as String) As Integer
+
+ DESCRIPTION:
+
+      Return the nth field from the inputRecord into the "value" parameter.
+      Parse the field as a literal quoted string regardless of embedded
+      delimiters.  The search and field count begins at startindex within
+      the inputRecord.  The field and index are 1-based using <a href="#GetFieldIndex">GetFieldIndex</a>
+      to locate the beginning of the nth field.
+
+      Blank fields count, so finding any one delimiter in our delimiters string
+      will indicate the end of a field. The next field starts at the next
+      character index even if that char is also a delimiter.
+
+      Field #1 is always the same as startindex--even if the character at
+      the startindex position is a delimiter.
+
+      A literal quoted string is defined by a leading double-quote and a
+      trailing double-quote irregardless of any field separator currently in
+      force.  To include a double-quote within this string two double-quote
+      characters must exist with no intervening characters and neither of these
+      can be the outermost leading or trailing double-quote.
+
+      The outermost quotes will not be returned as part of the string.
+      A leading quote with no field ending quote will return everything
+      after the leading quote all the way to the end of the inputRecord.
+
+      Quoted String Examples (assume comma separated record fields):
+
+           Input:"Every day I say, ""Hello."""
+          Output:Every day I say, "Hello."
+          (note the 3 quotes at the end)
+
+           Input: Enter this: "Every day I say, ""Hello."""
+          Output:Every day I say, "Hello."
+          (note initial "Enter this: " is discarded)
+
+           Input: Enter this: "Every day I say, ""Hello.""" then exit
+          Output:Every day I say, "Hello."
+          (note initial "Enter this: " AND trailing " then exit" is discarded)
+
+      Note: Even though the record (not shown) is supposedly a group of comma
+      separated fields, this Get routine ignores the comma in the text and
+      continues on until the closing quote mark.
+
+
+ PARAMETERS:
+
+      inputRecord     record to extract field from.
+
+      fieldID         Integer (1-based) of field # to find.
+                      field #1 begins at startindex regardless of the true
+                      start of the inputRecord.  If the field # is not found
+                      to exist (due to record length) then it is treated as
+                      an empty (optional?) field ("").
+
+      startindex      Integer (1-based) start position for inputRecord field
+                      search.
+
+      delimiters      String list of delimiters that separate fields.  This is
+                      used to find the start of our field and then ignored.
+                      If fieldID = 1 then delimiters can be any string or empty
+                      since it will be ignored.
+
+      value           The string that will contain the resulting literal quoted
+                      field on exit.  It will be "" if an error is reported in
+                      the Integer result or if the field is valid but zero
+                      length.
+
+
+ RETURNS:
+
+      0               The function is still considered successful if the field #
+                      requested does not exist in the inputrecord (due to record
+                      length).  In this case, the index returned will be 0 and
+                      "value" will be "".  If the returned index is 0 but "value"
+                      is NOT zero length then we processed all the way to the
+                      end of the inputRecord.
+
+     +N               The index of the character following the ending quote mark.
+                      If we processed the last char in the inputRecord then this
+                      index will be set to 0.
+                      This can facilitate finding ALL literal quoted fields
+                      within a record by using the returned index as the startindex
+                      for the next call to this routine and always providing a
+                      fieldID of 1.  "value" will contain the literal quoted
+                      string on exit.
+
+      -1              Invalid or missing input parameters.
+      -2              Field found not a quoted field.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 14, 2000
+ History:
+
+      JUL 14, 2000    Original Release
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getliteralquotedrecordfield"></a>
+  Function GetLiteralQuotedRecordField (inputRecord As String,
+                                      fieldID As Integer,
+                                      value as String) As Integer
+
+ DESCRIPTION:
+
+      Return the nth field from the inputRecord into the "value" parameter.
+      Parse ALL fields as Literal Quoted Strings using <a href="#GetLiteralQuotedField">GetLiteralQuotedField</a>.
+      This means that anything can separate the fields as long as their is
+      at least one non-quote character between the end of one field and the
+      beginning of the next.  No characters inside the Literal Quoted Strings
+      are treated as delimiters (except the leading and trailing quote that
+      identifies the beginning and ending of the field).
+
+      A Literal Quoted String is defined by a leading double-quote and a
+      trailing double-quote irregardless of any field separator currently in
+      force.  To include a double-quote within this string two double-quote
+      characters must exist with no intervening characters and neither of these
+      can be the outermost leading or trailing double-quote.
+
+      The outermost quotes will not be returned as part of the string.
+      A leading quote with no field ending quote will return everything
+      after the leading quote all the way to the end of the inputRecord.
+
+      LiteralQuotedString Examples:
+
+          FIELD #1        FIELD #2            FIELD #3
+      ----------------    ----------------    -------------------
+      "This, is Field1" : "Then, Field #2" ,, "Lastly, comes Field #3"
+
+      Note the colons and commas between the fields?  They are ignored since
+      they are not within a quoted string.
+
+
+ PARAMETERS:
+
+      inputRecord     Literal Quoted String record to extract field from.
+
+      fieldID         Integer (1-based) of field # to find.
+                      field #1 begins at index 1 of the inputRecord.
+                      If the field # is not found to exist (due to record length)
+                      then it is treated as an empty (optional?) field ("").
+
+      value           The string that will contain the resulting Literal Quoted
+                      Field on exit.  It will be "" if an error is reported in
+                      the Integer result or if the field is valid but zero
+                      length.
+
+
+ RETURNS:
+
+      -1              Invalid or missing input parameters.
+
+      See Return Codes from <a href="#GetLiteralQuotedField">GetLiteralQuotedField</a> for
+      other return code values.  Generally, a negative number on failure.
+      0 or positive numbers represent success.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 14, 2000
+ History:
+
+      JUL 14, 2000    Original Release
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getnonblankfield"></a>
+  Function GetNonBlankField(inputRecord As String, fieldID As Integer,
+                        delimiter As String) As String
+
+ DESCRIPTION:
+
+      Given an InputRecord of delimited fields, return the nth(FieldID)
+      non-blank field in the record.  The index is 1 based.
+      Thus if you have back-to-back delimiters they are ignored and instead of
+      returning "" we continue our field search until the nth non-blank field
+      is found.
+      One example would be fields that are space delimited and multiple (and
+      variable numbers of) spaces separate the fields.
+
+      Use SQABasic's GetField when back-to-back delimiters are allowed indicating
+      a desirable zero-length (missing) string field.
+
+ PARAMETERS:
+
+      inputRecord     string of delimited fields
+      fieldID         the one based index of the desired field
+      delimiters      the string (>0 characters) that delimits each field.
+                      As indicated this can be more than one character in
+                      length.
+
+ RETURNS:
+
+      A string of the indexed field trimmed of leading and trailing spaces.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided inputRecord or the provided delimiter is invalid.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: AUG 17, 1999
+ History:
+
+      AUG 17, 1999    Original Release
+      SEP 28, 2000    (Carl Nagle) Optimized
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getquotedstring"></a>
+  Function GetQuotedString (sInput as String) As String
+
+ DESCRIPTION:
+
+      This routine is used to extract possibly quoted text from within the provided
+      text string.  It first trims the input text of any leading or trailing
+      whitespace looking for leading or trailing double-quotes.  If the trimmed text
+      contains leading or trailing quotes then the routine removes a single leading
+      and/or trailing double-quote mark from the text (whichever exist).
+
+      If there are no leading or trailing quote marks then this routine merely
+      returns the untrimmed text with all whitespace intact.
+
+      The purpose for this is to allow leading and trailing whitespace to exist
+      in a string and extract only the text from within the quote marks (which
+      might also include required leading and trailing whitespace).  It also allows
+      us to retain leading and trailing spaces on input text not containing leading
+      or trailing quote marks (for backward compatibility).
+
+      (Note: that in the examples below the outermost quotes shown on the
+      return value are shown only to convey the string start and stop points.
+      They are not actually returned as part of the return value.)
+
+               ----------------  returns:-----------------
+      Examples:   text field             "   text field"
+                 "text field"            "text field"
+                     "  text  "          "  text  "
+
+      Quote marks other than the leading and/or trailing quote mark are
+      retained.
+
+
+ PARAMETERS:
+
+      sInput    The input string to trim and extract text from.
+
+ RETURNS:
+
+      Text trimmed of leading and trailing whitespacespaces but retaining
+      whatever exists between a leading and/or trailing double-quote mark.
+
+      Text not containing leading or trailing quote marks (after trimming)
+      will be returned unmodified (untrimmed).
+
+ ERRORS:
+
+      none
+
+ Orig Author:
+ Orig   Date: APR 24, 2000
+ History:
+
+      APR 24, 2000    Original Release
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="gettrimmedquotedstring"></a>
+  Function GetTrimmedQuotedString (sInput as String) As String
+
+ DESCRIPTION:
+
+      Same as <a href="#GetQuotedString">GetQoutedString</a> except that this routine WILL trim leading
+      and trailing whitespace in the absence of quotation marks.
+
+ PARAMETERS:
+
+      sInput    The input string to trim and extract text from.
+
+ RETURNS:
+
+      Text trimmed of leading and trailing whitespace but retaining
+      whatever exists between a leading and/or trailing double-quote mark.
+      Text not containing leading or trailing quote marks (after trimming)
+      will be returned merely trimmed of leading and trailing whitespace.
+
+      Note the difference here with <a href="#GetQuotedString">GetQuotedString</a>
+      which will NOT trim leading and trailing whitespace in the absence of
+      quotation marks.
+
+ ERRORS:
+
+      none
+
+ Orig Author:
+ Orig   Date: APR 27, 2000
+ History:
+
+      APR 27, 2000    Original Release
+      JUL 22, 2000    (Carl Nagle) Speed Optimizations
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="getquotedfield"></a>
+  Function GetQuotedField(inputRecord As String, fieldID As Integer,
+                          delimiter As String) As String
+
+ DESCRIPTION:
+
+      Given an InputRecord of delimited fields, return the nth(FieldID) Field
+      in the record.  The index is 1 based.  The field is processed with
+      <a href="#GetQuotedString">GetQuotedString</a> before it is returned.
+
+ PARAMETERS:
+
+      inputRecord     string of delimited fields
+      fieldID         the one based index of the desired field
+      delimiter       the string (>0 characters) that delimits each field.
+
+ RETURNS:
+
+      A string of the indexed field processed with <a href="#GetQuotedString">GetQuotedString</a>.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided inputRecord or the provided delimiter is invalid.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 24, 2000
+ History:
+
+      APR 24, 2000    Original Release
+      JUL 22, 2000    (Carl Nagle) Added error trapping.
+      AUG 16, 2001    Converted to DLL use
+
+</pre>
+<hr>
+<pre>
+
+<a name="gettrimmedquotedfield"></a>
+  Function GetTrimmedQuotedField(inputRecord As String, fieldID As Integer,
+                          delimiter As String) As String
+
+ DESCRIPTION:
+
+      Given an InputRecord of delimited fields, return the nth(FieldID) Field
+      in the record.  The index is 1 based.  The field is processed with
+      <a href="#GetTrimmedQuotedString">GetTrimmedQuotedString</a> before it is returned.
+
+ PARAMETERS:
+
+      inputRecord     string of delimited fields
+      fieldID         the one based index of the desired field
+      delimiter       the string (>0 characters) that delimits each field.
+
+ RETURNS:
+
+      The processed string of the indexed field.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided inputRecord or the provided delimiter is invalid.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 27, 2000
+ History:
+
+      APR 27, 2000    Original Release
+      JUL 22, 2000    (Carl Nagle) Speed Optimizations
+      AUG 16, 2001    Converted to DLL use
+
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="getmultidelimitedfieldcount"></a>
+  Function GetMultiDelimitedFieldCount (inputRecord As String, startindex As Integer,
+                                        delimiter As String) As Integer
+
+ DESCRIPTION:
+
+      Finds the count of all fields within the inputRecord found from
+      startindex to the end of the inputRecord.  The field and index are 1-based.
+
+      Blank fields count The next field starts at the next
+      character index even if that char is also a delimiter.
+      If the last character in the inputRecord is a delimiter, then the
+      field it terminates is the last field in the inputRecord.
+
+      Field #1 index is always the same as startindex--even if the character at
+      the startindex position is a delimiter.
+
+      The delimiter string can contain multiple characters and this string is treated
+      as a single delimiter.
+
+      For example, if delimiter = "->" then the fields of the inputRecord
+      are expected to be delimited by the full delimiter string as in:
+
+      "field1->field2->field3"
+
+ PARAMETERS:
+
+      inputRecord     String to count fields beginning at startindex.
+
+      startindex      Integer (1-based) start position for field count in
+                      inputRecord.
+
+      delimiter       the string (>0 characters) that delimits each field.
+                      As indicated this can be more than one character in
+                      length.  The entire string counts as one delimiter.
+
+ RETURNS:
+
+      0   Indicates bad input (like 0-length inputRecord or a startindex
+          greater than the record length).
+
+      N   The number of fields found beginning at startindex.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 16, 2003
+ History:
+
+      JAN 16, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getmultidelimitedfield"></a>
+  Function GetMultiDelimitedField (inputRecord As String, fieldID as Integer,
+                                   startIndex as Integer, delimiter As String) As String
+
+ DESCRIPTION:
+
+      Given an inputRecord of delimited fields, return the nth(FieldID) Field
+      in the record from startIndex.  The startIndex and fieldID are 1 based.
+
+      The delimiter string can contain multiple characters and this string is treated
+      as a single delimiter.
+
+      For example, if delimiter = "->" then the fields of the inputRecord
+      are expected to be delimited by the full delimiter string as in:
+
+      "field1->field2->field3"
+
+
+ PARAMETERS:
+
+      inputRecord     string of delimited fields
+
+      fieldID         the one based index of the field to find and return. If < 1
+                      then we will use fieldID = 1.
+
+      startIndex      the one-based index within inputRecord to start from. If < 1
+                      then we will use startIndex = 1.
+
+      delimiter       the string (>0 characters) that delimits each field.
+                      As indicated this can be more than one character in
+                      length.  The entire string counts as one delimiter.
+
+
+ RETURNS:
+
+      A string of the indexed field.
+      An empty string ("") is returned if the fieldID is out of range for
+      the provided text or the provided delimiter is invalid.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 16, 2003
+ History:
+
+      JAN 16, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="convertvariableexpression"></a>
+  Function ConvertVariableExpression (expression As String, value as String) As Integer
+
+ DESCRIPTION:
+
+      Given an expression attempt to locate variable assignment references
+      and other operators and process the expressions into a result string.
+
+      Valid operators (default values):
+
+              ^                    '(Caret) Variable Prefix
+              =                    'Assignment operator
+              "                    'A single Double-Quote mark
+              &                    'String concatenate operator
+              +                    'Addition operator
+              -                    'Subtraction operator
+              *                    'Multiplication operator
+              /                    'Division operator
+              %                    'Modulus/Remainder operator
+              (                    'Open Group operator
+              )                    'Close Group operator
+
+      Double-quote marks are used to enclose literal text strings or values.
+
+      Examples:
+
+          INPUT:                      OUTPUT:
+          ======================      =======================
+          "some literal text"         some literal text
+          "82"                        82
+
+      To include a double-quote inside a literal text string use two
+      double-quote marks with no intervening characters.  These must appear
+      inside the outermost quote marks that delimit a literal text string.
+
+      Examples:
+
+          INPUT:                      OUTPUT:
+          """some literal text"""     "some literal text"
+          "some ""literal"" text"     some "literal" text
+
+      Oddly quoted strings that do not have operators can produce unexpected or
+      undefined results.  The results of some of these odd circumstances should
+      not be considered reliable and may change as the handling becomes better
+      defined in later releases.  To ensure proper results, always properly
+      quote input values and use appropriate expression operators.
+
+      Recent Odd Examples (Don't do stuff like this):
+
+          INPUT:  "nothing" "complicated"
+          OUTPUT: nothing" "complicated
+
+          INPUT:  "nothing" complicated"
+          OUTPUT: nothing" complicated
+
+
+      Precedence:
+
+      Groupings are processed first.  Within groupings, and after all groups
+      have been processed, operators are processed in the following order:
+
+          */%+-&
+
+
+      The expression will be trimmed of leading and trailing whitespace on
+      entry.  Use double-quote marks (literal text) to retain significant
+      leading and trailing whitespace.
+
+      Variable assignment references are identified by a leading caret (^)
+      immediately followed by the name of the variable, an equal sign (=),
+      and the value to assign to that variable. Whitespace can exist on either
+      side of the equal sign.
+
+      Variable names must conform to the ValidateVariableID routine.
+
+      Variable lookups(GET) and assignments(SET) will be done via the provided
+      DDVariables or GlobalVariables store.
+
+      If the proposed value is NOT another variable reference then the proposed
+      value will be trimmed of leading and trailing whitespace (spaces and tabs).
+      And, yes, a variable can be assigned the value of another variable.
+
+      Additionally, if there is text or operators that are not to be considered as
+      variables they should be enclosed in double-quote marks.
+
+
+      IMPORTANT NOTE:
+      ===============
+      Expressions containing groupings but no other legitimate operators may
+      produce unexpected results that may not be the same on later versions of
+      these routines.
+
+      Recent Odd Examples (Don't do stuff like this):
+
+          INPUT:  Now ( 2 ( groups ) with no quotes).
+          OUTPUT: Now "2 "groups" with no quotes".
+
+          INPUT:  "Now " ( "2" ( " groups" ) " with quotes" ) "."
+          OUTPUT: Now " "2" " groups" " with quotes" ".
+
+      To ensure proper results, always properly quote input values and use
+      appropriate expression operators.
+
+
+ PARAMETERS:
+
+      expression      string expression containing references to variables.
+                      This String will not be modified by this routine.  A copy
+                      will be created and modified for return.
+
+      value           String to receive the result of the expression processing.
+                      This will NOT be modified if the routine exits with error.
+
+ RETURNS:
+
+       0   successful processing of the expression
+      -1   general failure of the routine
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="processexpression"></a>
+  Function ProcessExpression (expression As String, variableStore as Object) As String
+
+ DESCRIPTION:
+
+      Given an expression attempt to locate variable assignment references
+      and other operators and process the expressions into a result string.
+
+      Valid operators (default values):
+
+              ^                    '(Caret) Variable Prefix
+              =                    'Assignment operator
+              "                    'A single Double-Quote mark
+              &                    'String concatenate operator
+              +                    'Addition operator
+              -                    'Subtraction operator
+              *                    'Multiplication operator
+              /                    'Division operator
+              %                    'Modulus/Remainder operator
+              (                    'Open Group operator
+              )                    'Close Group operator
+
+      Double-quote marks are used to enclose literal text strings or values.
+      To include a double-quote inside a literal text string use two
+      double-quote marks with no intervening characters.
+
+
+      Precedence:
+
+      Groupings are processed first.  Within groupings, and after all groups
+      have been processed, operators are processed in the following order:
+
+          */%+-&
+
+
+      The expression will be trimmed of leading and trailing whitespace on
+      entry.  Use double-quote marks (literal text) to retain significant
+      leading and trailing whitespace.
+
+      Variable assignment references are identified by a leading caret (^)
+      immediately followed by the name of the variable, an equal sign (=),
+      and the value to assign to that variable. Whitespace can exist on either
+      side of the equal sign.
+
+      Variable names must conform to the ValidateVariableID routine.
+
+      Variable lookups(GET) and assignments(SET) will be done via the provided
+      DDVariables or GlobalVariables store.
+
+      If the proposed value is NOT another variable reference then the proposed
+      value will be trimmed of leading and trailing whitespace (spaces and tabs).
+      And, yes, a variable can be assigned the value of another variable.
+
+      Additionally, if there is text or operators that are not to be considered as
+      variables they should be enclosed in double-quote marks.
+
+      NOTE:
+      Expressions containing groupings but no other legitimate operators may
+      produce unexpected results that may not be the same on later versions of
+      these routines.
+
+
+ PARAMETERS:
+
+      expression      string expression containing references to variables and/or
+                      operators.
+                      This String will not be modified by this routine.  A copy
+                      will be created and modified for return.
+
+      variableStore   A DDVariables or GlobalVariables Object from DDVariableStore.DLL
+                      for GETTING and SETTING variable values.  The routine will exit
+                      with expression unmodified if the provided Object is valid but is not
+                      of one of these types.  If the provided object is not valid,
+                      that is: "variableStore is Nothing" then we will process with
+                      the local ConvertVariableExpression routine using local
+                      DDVariableStore library routines.
+
+ RETURNS:
+
+      String          A copy of the input string with all expressions processed.
+                      Or, the expression unmodified if some error occurred.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 28, 2001
+ History:
+
+      SEP 28, 2001    Original Release
+      DEC 07, 2006    (Carl Nagle) Bypass DDVariableStore if SAFS available
+
+</pre>
+<hr>
+<pre>
+
+<a name="processfieldexpressions"></a>
+  Function ProcessFieldExpressions (inputrecord As String, fieldID as Integer,
+                                    delimiters as String, variableStore as Object
+                                   ) As String
+
+ DESCRIPTION:
+
+      Given an InputRecord of delimited fields, send each field--beginning
+      with the nth(FieldID) field--through the ProcessExpression function.
+      The fieldID index is 1 based.
+
+      To process all fields in the inputrecord the fieldID would be 1.
+
+
+ PARAMETERS:
+
+      inputRecord     string of delimited fields
+
+      fieldID         the one based index of the desired field
+
+      delimiters      the string (>0 characters) that delimits each field.
+
+      variablestore   A DDVariables or GlobalVariables Object from DDVariableStore.DLL
+                      for GETTING and SETTING variable values.  The routine will exit
+                      with expression unmodified if the provided Object is not
+                      of one of these types.
+
+ RETURNS:
+
+      String          A copy of the input string with all expressions processed.
+                      All processed fields will be quoted and re-delimited by the
+                      first character in the delimiters string as they are added
+                      back into the resulting record.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 28, 2001
+ History:
+
+      SEP 28, 2001    Original Release
+      JUN 04, 2002    (Carl Nagle) Quoted ProcessFieldExpressions output.
+      DEC 07, 2006    (Carl Nagle) Bypass DDVariableStore if SAFS available
+
+</pre>
+<hr>
+<pre>
+
+<a name="converthtmlentities"></a>
+  Function ConvertHTMLEntities(source As String) As String
+
+ DESCRIPTION:
+
+      If source string is of type HTML, this function will search for and
+      eliminate instances of HTML markup.  This is done on a
+      copy of the source string.  The routine returns this new string on
+      exit.  All strings are treated as case-insensitive.
+
+      Currently converts:
+
+          &nbsp;          &lt;
+          &#160;          &#060;
+          &quot;          &gt;
+          &#034;          &#062;
+          &amp;           &#032;
+          &#038;
+
+ PARAMETERS:
+
+      source      the String to seek and convert HTML tags on.
+                  It is not modified.
+
+ RETURNS:
+
+      New String after ConvertHTMLEntities is performed.  The input source string
+      is not modified.
+
+      If the source string is invalid ("") then the return value is "".
+
+ ERRORS:
+
+       none
+
+ Orig Author: Dawn Coen/Carl Nagle
+ Orig Date: FEB 11, 2002
+ History:
+
+      FEB 12, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="initializeregexp"></a>
+  Function InitializeRegExp( regexp As RegExp, pattern As String, Optional matchall, Optional ignorecase ) As Integer
+
+ DESCRIPTION:
+
+      Initilaizes the field values of a RegExp.
+
+      Use this function to initialize/reset a RegExp that can be used by other
+      regular expression functions.
+
+ PARAMETERS:
+
+      regexp      Required. RegExp whose fields are to be populated.
+
+      pattern     Required. Sets the Pattern field of regexp.
+                  A String that specifies the regular expression pattern being
+                  searched for. Must not be empty.
+
+      matchall    Optional. Sets the MatchAll field of regexp.
+                  True (-1) to match all occurrences of pattern in an entire
+                  string. False (0) to match only the first one. Default is
+                  True.
+
+      ignorecase  Optional. Sets the IgnoreCase field of regexp.
+                  True (-1) to do a case-insensitive search. False (0) to do
+                  a case-sensitive search. Default is False.
+
+ RETURNS:
+
+      0   if successful;
+      1   if failed (e.g. pattern is empty). regexp should not be used by
+          other regular expression functions in this case.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 08, 2002
+ History:
+
+      NOV 08, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="converthex2long"></a>
+  Function ConvertHex2Long(hexString As String) As Long
+
+ DESCRIPTION:
+
+      Convert a numeric HEX string to a Long value.
+      Allowed input formats:
+
+         &h00aaFF  (prefix &h or &H)
+         0x00aFF   (prefix 0x or 0X)
+         1af       (no prefix)
+
+      Note: No input validation is performed on the input string.
+
+ PARAMETERS:
+
+      hexString   the hex string to convert.
+
+ RETURNS:
+
+      Long decimal equivalent of hex value.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Jim Bartos ITI
+ Orig Date: AUG 05, 2004
+ History:
+
+      AUG 05, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="regexpexecute"></a>
+  Function RegExpExecute( regexp As RegExp, source As String, matches() As RegExpMatch ) As Long
+
+ DESCRIPTION:
+
+      Executes a regular expression search against a specified string.
+
+ PARAMETERS:
+
+      regexp      RegExp user type that specifies the regular expression to use.
+
+      source      The text string upon which the regular expression is executed.
+
+      matches     1-based dynamic array of RegExpMatch user type containing a
+                  RegExpMatch for each match found in source. This array will
+                  ReDim'ed by the function, and previous content will be overwritten.
+
+ RETURNS:
+
+      Number of matches found in the source string (i.e. the upper bound of matches).
+      0 if no match is found; -1 if other errors occured.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 08, 2002
+ History:
+
+      NOV 08, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="regexptest"></a>
+  Function RegExpTest( regexp As RegExp, source As String ) As Integer
+
+ DESCRIPTION:
+
+      Tests if a regular expression pattern match can be found in a string.
+
+ PARAMETERS:
+
+      regexp      RegExp user type that specifies the regular expression to use.
+
+      source      The text string upon which the regular expression is executed.
+
+ RETURNS:
+
+      True (-1)   if a match can be found;
+      False (0)   if no match can be found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 08, 2002
+ History:
+
+      NOV 08, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="regexpreplace"></a>
+  Function RegExpReplace( regexp As RegExp, source As String, replacewith As String, Optional modify ) As String
+
+ DESCRIPTION:
+
+      Replaces text found in a regular expression.
+
+ PARAMETERS:
+
+      regexp      Required. RegExp user type that specifies the regular
+                  expression to use.
+
+      source      Required. The string in which the text replacement is to
+                  occur.
+
+      replacewith Required. The string used to replace the matching text in
+                  source.
+
+      modify      Optional. True (-1) to modify source. False (0) if not.
+                  Default is True.
+
+ RETURNS:
+
+      A copy of source with the matching text replaced with replacewith. If
+      no match is found or error occured, a copy of source is returned
+      unchanged.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: NOV 08, 2002
+ History:
+
+      NOV 08, 2002    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

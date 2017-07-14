@@ -1,0 +1,646 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic WIN32Utilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "WIN32Utilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Misc routines using the WIN32 API.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="Win32.htm">Win32</a>_X.SBH"
+<li>'$INCLUDE: "Win32Utilities_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\WIN32Utilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="Win32.htm">Win32</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#getosinfo">GetOSInfo</a>               BasicLib WIN32Utilities                
+Function <a href="#startwin32process">StartWIN32Process</a>       BasicLib WIN32Utilities                
+Function <a href="#terminatewin32processid">TerminateWIN32ProcessID</a>  BasicLib WIN32Utilities                
+Function <a href="#terminatewin32process">TerminateWIN32Process</a>   BasicLib WIN32Utilities                
+   Sub   <a href="#getscreenresolution">GetScreenResolution</a>     BasicLib WIN32Utilities                
+Function <a href="#setscreenresolution">SetScreenResolution</a>     BasicLib WIN32Utilities                
+Function <a href="#getdisplaysettings">GetDisplaySettings</a>      BasicLib WIN32Utilities                
+Function <a href="#setdisplaysettings">SetDisplaySettings</a>      BasicLib WIN32Utilities                
+   Sub   <a href="#displaymode2console">DisplayMode2Console</a>     BasicLib WIN32Utilities                
+   Sub   <a href="#showdisplaycapabilities">ShowDisplayCapabilities</a>  BasicLib WIN32Utilities                
+Function <a href="#setcolorscheme">SetColorScheme</a>          BasicLib WIN32Utilities                
+Function <a href="#getcolorscheme">GetColorScheme</a>          BasicLib WIN32Utilities                
+Function <a href="#converttwipstopixels">ConvertTwipsToPixels</a>    BasicLib Win32Utilities                
+Function <a href="#wugetuserid">WUGetUserID</a>             BasicLib WIN32Utilities                
+Function <a href="#getinifilevalue">GetINIFileValue</a>         BasicLib WIN32Utilities                
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+Const DC0_TWIPS_PER_INCH = 1440
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="getosinfo"></a>
+  Function GetOSInfo() As String
+
+ DESCRIPTION:
+      Returns a string containing the platform, major version, minor
+      version, and build of the host system.
+      Valid OS Systems are:
+      Win31, Win95, Win98, WinNT
+
+ PARAMETERS:
+       none
+
+ RETURNS:
+      Returns a string containing the platform, major version, minor
+      version, and build of the host system in the following format:
+      "WinNT Version MajVer#.MinVer#.Build# Supp: Service Pack 4"
+          OR
+      "Win95 Version MajVer#.MinVer#.Build# Supp: Some Info"
+          etc.
+      Returns "FAILED" if the DLL function call was unsuccessful
+
+ ERRORS:
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 30, 1999
+ History:
+
+      JUN 30, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="startwin32process"></a>
+  Function StartWIN32Process (commandLine As String,
+                              sInfo As STARTUPINFO,
+                              pInfo As PROCESS_INFORMATION) As Integer
+
+ DESCRIPTION:
+
+      Launches an application in a new process using the WIN32 API
+      CreateProcess function.  CreateProcess uses the information provided
+      by the user in sInfo to start the application and returns the process
+      information and handle in pInfo.
+
+ PARAMETERS:
+
+      commandLine String including the full command line including the
+                  app to run and any command line parameters separated by
+                  whitespace.
+
+      sInfo       STARTUPINFO structure to provide to CreateProcess.
+
+      pInfo       PROCESS_INFORMATION structure to retain the new process
+                  information provided by CreateProcess.
+
+ RETURNS:
+
+       0 on failure (WIN32 FALSE)
+       1 on success (WIN32 TRUE ?)
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 30, 1999
+ History:
+
+      JUN 30, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="terminatewin32processid"></a>
+  Function TerminateWIN32ProcessID(process As Long) As Integer
+
+ DESCRIPTION:
+
+      Forces the termination of the application/process provided.
+      It is assumed that the application is hung when this procedure is
+      called.
+
+ PARAMETERS:
+
+      process     The process or task id for a given process.  This is
+                  generally the value returned by the SQA "Shell" function
+                  when an application is launched.  This is also the
+                  value stored in a PROCESS_INFO.dwProcessid field.
+
+ RETURNS:
+
+       <>0 on success (WIN32 TRUE ?)
+       0 on failure (WIN32 FALSE)
+         (If the process or task id appears to be invalid or the handle received
+          appears invalid or the call to the TerminateProcess fails.)
+
+ ERRORS:
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 22, 1999
+ History:
+
+      JUL 22, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="terminatewin32process"></a>
+  Function TerminateWIN32Process(pInfo As PROCESS_INFORMATION) As Integer
+
+ DESCRIPTION:
+
+      Forces the termination of the application/process provided in pInfo.
+      It is assumed that the application is hung when this procedure is
+      called.  This routine merely extracts the process id out of the
+      pInfo then calls <a href="#terminatewin32processid">TerminateWIN32ProcessID</a>.
+
+ PARAMETERS:
+
+      pInfo   PROCESS_INFORMATION structure on the process to terminate.
+              This would be the completed pInfo returned from
+              StartWIN32Process.
+
+ RETURNS:
+
+      see <a href="#terminatewin32processid">TerminateWIN32ProcessID</a>.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 30, 1999
+ History:
+
+      JUN 30, 1999    Original Release
+      JUL 22, 1999    (Carl Nagle) modified to use TerminateWIN32ProcessID
+
+</pre>
+<hr>
+<pre>
+
+<a name="getscreenresolution"></a>
+  Sub GetScreenResolution(x As Integer, y As Integer)
+
+ DESCRIPTION:
+
+      Fills x and y with the width and height (in pixels) of the current
+      screen resolution.
+
+ PARAMETERS:
+
+      x   exits with the width in pixels of the screen.
+      y   exits with the height in pixels of the screen.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 30, 1999
+ History:
+
+      JUN 30, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getdisplaysettings"></a>
+  Function GetDisplaySettings (mode As DEVMODE) As Integer
+
+ DESCRIPTION:
+
+  Retrieves the current DEVMODE (DeviceMode) of the display.  This will
+  contain the current BITSPERPIXEL, screen WIDTH, screen HEIGHT, and REFRESH
+  FREQUENCY settings for the currently active display device.
+
+  Consult the <a href="WIN32.htm#user_defined">WIN32 User-Defined Types</a> section
+  for more information on the fields within the DEVMODE.
+
+      .dmBitsPerPel       = bits per pixel
+      .dmPelsWidth        = screen width
+      .dmPelsHeight       = screen height
+      .dmDisplayFrequency = refresh frequency
+
+
+ PARAMETERS:
+
+  mode    Type DEVMODE as defined in <a href="WIN32.htm#user_defined">WIN32 User-Defined Types</a>.
+
+
+ RETURNS:
+
+      -1 on pass
+       0 on failure
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: NOV 01, 1999
+ History:
+
+      NOV 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setscreenresolution"></a>
+  Function SetScreenResolution(x As Integer, y As Integer) As Integer
+
+ DESCRIPTION:
+
+      Attempts to set the screen resolution to that of x and y.  This will
+      only work if the machine supports the resolution requested.
+
+ PARAMETERS:
+
+      x   the width in pixels to make the screen.
+      y   the height in pixels to make the screen.
+
+ RETURNS:
+
+      0   failure. Usually means the resolution is not supported.
+      1   success.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 30, 1999
+ History:
+
+      JUN 30, 1999    Original Release
+      OCT 29, 1999    (Carl Nagle) Attempts to check ChangeDisplaySettings
+                      return codes and update registry.
+      APR 19, 2004    (MCNAUGHTON) Fixed Overflow problem in SetScreenResolution.
+
+</pre>
+<hr>
+<pre>
+
+<a name="setdisplaysettings"></a>
+  Function SetDisplaySettings (colorBits As Integer, screenwidth As Integer,
+                               screenheight As Integer, frequency As Integer) As Integer
+
+ DESCRIPTION:
+
+  Sets the display properties for the desktop.  Enumerates through the
+  display's possible settings to see if one matches the parameters provided.
+  The mode will only be set if a match is found.
+
+  The mode is changed via the WIN32 API ChangeDisplaySettings call.
+
+
+ PARAMETERS:
+
+  colorBits           Integer value of BitsPerPixel.
+                      Valid values may include:
+
+                           0 (keep current setting)
+                           8 (256 Colors)
+                          16 (65536 Colors)
+                          32 (True Color)
+
+  screenwidth         Integer value for Screen Width.      0 means keep current setting.
+
+  screenheight        Integer value for Screen Height.     0 means keep current setting.
+
+  frequency           Integer value for Refresh Frequency. 0 means keep current setting.
+
+ RETURNS:
+
+      -1 on success
+       0 on fail
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: NOV 01, 1999
+ History:
+
+      NOV 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="displaymode2console"></a>
+  Sub DisplayMode2Console (mode As DEVMODE)
+
+ DESCRIPTION:
+
+  Display some of the contents of the DEVMODE provided.  The information is
+  sent to SQA's Console Window.  This should already have a valid DEVMODE
+  passed to it.  We do not fill the DEVMODE structure here.  We merely display
+  the values contained within it.   Items shown are:
+
+      Bits Per Pixel
+      Calculated # of colors based on Bits Per Pixel
+      Screen Width
+      Screen Height
+      Display Frequency
+      Display Flags
+
+
+ PARAMETERS:
+
+  mode    Type DEVMODE as defined in <a href="WIN32.htm#user_defined">WIN32 User-Defined Types</a>.
+
+ ERRORS:
+
+  none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: NOV 01, 1999
+ History:
+
+      NOV 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="showdisplaycapabilities"></a>
+  Sub ShowDisplayCapabilities ()
+
+ DESCRIPTION:
+
+  Enumerates the current display device capabilities to SQA's console window.
+  This uses EnumerateDisplaySettings to show first the current display
+  settings followed by each valid combination of display settings.
+  The information listed for each setting is:
+
+      Bits Per Pixel
+      Calculated # of colors based on Bits Per Pixel
+      Screen Width
+      Screen Height
+      Display Frequency
+      Display Flags
+
+
+ PARAMETERS:
+
+  none
+
+ ERRORS:
+
+  none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: NOV 01, 1999
+ History:
+
+      NOV 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setcolorscheme"></a>
+  Function SetColorScheme (scheme As String) As Integer
+
+ DESCRIPTION:
+
+      Uses Robot to activate and set the Windows Desktop Color Scheme through
+      The Display Properties Dialog.
+
+      This routine attempts to activate the Desktop's Popup Menu by clicking
+      in the top leftmost corner of the Desktop.  No windows, taskbars, or
+      icons should obscure this location of the entire routine will fail after
+      long timeout periods.  (A future enhancement might be to try other corners
+      if the first fails.)
+
+      If an invalid scheme is provided then a Script Command Failure
+      will be shown in the Console AND the active SQALog.  However,
+      the routine will continue and return with a failed status.
+      (This, of course, only if Script Command Failures are allowed
+       to continue.  See Tools\Playback Options\Error Recovery.)
+
+
+ PARAMETERS:
+
+      scheme  String of a valid installed Windows Desktop Color Scheme.
+              This is case-sensitive and should match an item in the Display
+              Properties Scheme ComboListBox exactly.
+
+
+ RETURNS:
+
+      -1 on pass
+       0 on fail
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: NOV 01, 1999
+ History:
+
+      NOV 01, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getcolorscheme"></a>
+  Function GetColorScheme () As String
+
+ DESCRIPTION:
+
+      Uses Robot to activate the Display Properties Dialog and get the
+      current active Windows Desktop Color Scheme.
+
+      This routine attempts to activate the Desktop's Popup Menu by clicking
+      in the top leftmost corner of the Desktop.  No windows, taskbars, or
+      icons should obscure this location of the entire routine will fail after
+      long timeout periods.  (A future enhancement might be to try other corners
+      if the first fails.)
+
+
+ PARAMETERS:
+
+      none
+
+ RETURNS:
+
+      On success returns the String name of the active Color Scheme.
+      On failure we return an empty String ("").
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: NOV 03, 1999
+ History:
+
+      NOV 03, 1999    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="converttwipstopixels"></a>
+  Function ConvertTwipsToPixels (lngTwips as Long, lngDirection as long) As Long
+
+
+ DESCRIPTION:
+
+      Used to convert Display/GUI Twips measures to Pixel measures.  Uses GetDC(0) for the
+      Context.
+
+      No error detection or correction is performed.  So don't provide bad values!
+
+
+ PARAMETERS:
+
+      lngTwips        the measure in Twips received from some API source.
+
+      lngDirection    0 if lngTwips represents a HORIZONTAL Twips measure to convert to Pixels.
+                      And other value will be treated as a VERTICAL Twips measure.
+
+
+ RETURNS:
+
+      The TwipsToPixel conversion value.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: John Crunk
+ Orig   Date: Jan 10, 2002
+ History:
+
+      Jan 10, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="wugetuserid"></a>
+  Function WUGetUserID () As String
+
+ DESCRIPTION:
+
+      Retrieve the currently logged-in UserID.
+
+ PARAMETERS:
+
+      none
+
+ RETURNS:
+
+      The current logged-in userid.
+      On failure we return an empty String ("").
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: APR 19, 2004
+ History:
+
+      APR 19, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getinifilevalue"></a>
+  Function GetINIFileValue (section as String, item as String, inipath as String) As String
+
+ DESCRIPTION:
+
+      Retrieve the value of a WIN32 INI file item from the specified ini file section.
+
+ PARAMETERS:
+
+      section    The section in the INI file to query.
+
+      item       The item in the specified section to query.
+
+      inipath    The full path to the INI file to query.
+
+ RETURNS:
+
+      The INI file value or an empty String ("") if not found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle (Carl Nagle)
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

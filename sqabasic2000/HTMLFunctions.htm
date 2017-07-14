@@ -1,0 +1,361 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic HTMLFunctions Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "HTMLFunctions" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=HTML objects in
+      Data-Driven Automation.
+
+ SUPPORTED ACTION COMMANDS:
+
+
+ Orig Author: Dawn Coen
+ Orig   Date: OCT 01, 2002
+ History:
+
+      OCT 01, 2002    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      OCT 25, 2002    (Carl Nagle) Added generic HTML ListBox support in here.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      APR 18, 2005    (Carl Nagle) Modified Click params so that "Coords=" is not assumed.
+                               Also allow explicit param values and not require App Map lookups.
+      OCT 19, 2005    (Carl Nagle) Removed Click.  Generic Click still supported.
+
+ Copyright (C) Cyborg Systems, Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "HTMLFunctions.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#hffindnexthtmloptgroup">HFFindNextHTMLOptGroup</a>  BasicLib HTMLFunctions                 
+Function <a href="#hfgethtmloptgrouplabelvalue">HFGetHTMLOptGroupLabelValue</a>  BasicLib HTMLFunctions                 
+Function <a href="#hfgethtmloptionvalue">HFGetHTMLOptionValue</a>    BasicLib HTMLFunctions                 
+Function <a href="#hffindnexthtmloption">HFFindNextHTMLOption</a>    BasicLib HTMLFunctions                 
+Function <a href="#hffindnexthtmlgrouporoption">HFFindNextHTMLGroupOrOption</a>  BasicLib HTMLFunctions                 
+Function <a href="#hfcounthtmlgroupsandoptions">HFCountHTMLGroupsAndOptions</a>  BasicLib HTMLFunctions                 
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="hffindnexthtmloptgroup"></a>
+  Function HFFindNextHTMLOptGroup(startindex as Integer, htmltext as String) as Integer
+
+ DESCRIPTION:
+
+      Attempts to locate the index of the next &lt;OPTGROUP" item in an HTML
+      SELECT list.  The list itself may be treated as a ComboBox or as a
+      ListBox by Robot depending on attribute values.
+
+      The htmltext parameter is expected to be the "innerText" of the list
+      item.  That generally means everything between the opening and closing
+      SELECT tags, but not the SELECT tags themselves.
+
+ PARAMETERS:
+
+      startindex  The index within htmltext to begin the search.
+
+      htmlindex   The SELECT innerText property string to search.
+
+
+ RETURNS:
+
+      0   If not found.
+      N   The 1-based index of the next OPTGROUP item.
+
+
+ ERRORS:
+
+       Whatever SQABasic InStr may possibly throw.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 25, 2002
+ History:
+
+      OCT 25, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="hfgethtmloptgrouplabelvalue"></a>
+  Function HFGetHTMLOptGroupLabelValue(htmltext as String) as String
+
+ DESCRIPTION:
+
+      Attempts to extract the text value of the LABEL attribute within the
+      provided htmltext.  htmltext is expected to ONLY contain the full text
+      of the opening OPTGROUP tag.
+
+
+ PARAMETERS:
+
+      htmltext    The &lt;OPTGROUP...label=....&gt; tag.
+
+
+ RETURNS:
+
+      The text value of the OPTGROUP label attribute or an empty string.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 25, 2002
+ History:
+
+      OCT 25, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="hfgethtmloptionvalue"></a>
+  Function HFGetHTMLOptionValue(htmltext as String) as String
+
+ DESCRIPTION:
+
+      Attempts to extract the value of the OPTION within the
+      provided htmltext.  htmltext is expected to contain the full text
+      of the opening OPTION tag, the element value, and the opening (&lt;)
+      to identify the end of the element value.
+
+      The value is everything between &gt;...&lt; following the
+      opening OPTION tag.
+
+
+ PARAMETERS:
+
+      htmltext    &lt;OPTION...&gt;element data&lt;
+
+
+ RETURNS:
+
+      The text value of the OPTION label attribute or an empty string.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 25, 2002
+ History:
+
+      OCT 25, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="hffindnexthtmloption"></a>
+  Function HFFindNextHTMLOption(startindex as Integer, htmltext as String) as Integer
+
+ DESCRIPTION:
+
+      Attempts to locate the index of the next &lt;OPTION" item in an HTML
+      SELECT list.  The list itself may be treated as a ComboBox or as a
+      ListBox by Robot depending on attribute values.
+
+      The htmltext parameter is expected to be the "innerText" of the list
+      item.  That generally means everything between the opening and closing
+      SELECT tags, but not the SELECT tags themselves.
+
+ PARAMETERS:
+
+      startindex  The index within htmltext to begin the search.
+
+      htmlindex   The SELECT innerText property string to search.
+
+
+ RETURNS:
+
+      0   If not found.
+      N   The 1-based index of the next OPTION item.
+
+
+ ERRORS:
+
+       Whatever SQABasic InStr may possibly throw.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 25, 2002
+ History:
+
+      OCT 25, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="hffindnexthtmlgrouporoption"></a>
+  Function HFFindNextHTMLGroupOrOption(startindex as Integer, htmltext as String) as Integer
+
+ DESCRIPTION:
+
+      Attempts to locate the index of the next closest &lt;OPTGROUP or
+      &lt;OPTION item in an HTML SELECT list.  The list itself may
+      be treated as a ComboBox or as a ListBox by Robot depending
+      on attribute values.
+
+      The htmltext parameter is expected to be the "innerText" of the list
+      item.  That generally means everything between the opening and closing
+      SELECT tags, but not the SELECT tags themselves.
+
+ PARAMETERS:
+
+      startindex  The index within htmltext to begin the search.
+
+      htmlindex   The SELECT innerText property string to search.
+
+
+ RETURNS:
+
+      0   If not found.
+      N   The 1-based index of the next closest OPTGROUP or OPTION item.
+
+
+ ERRORS:
+
+       Whatever SQABasic InStr may possibly throw.
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 25, 2002
+ History:
+
+      OCT 25, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="hfcounthtmlgroupsandoptions"></a>
+  Function HFCountHTMLGroupsAndOptions(htmltext as String) as Integer
+
+ DESCRIPTION:
+
+      Attempts to count the number of  &lt;OPTGROUP and &lt;OPTION
+      items in an HTML SELECT list.  The list itself may
+      be treated as a ComboBox or as a ListBox by Robot depending
+      on attribute values.
+
+      The htmltext parameter is expected to be the "innerText" of the list
+      item.  That generally means everything between the opening and closing
+      SELECT tags, but not the SELECT tags themselves.
+
+
+ PARAMETERS:
+
+      htmlindex   The SELECT innerText property string to search.
+
+
+ RETURNS:
+
+
+      0   If no items were found (hopefully unlikely).
+
+      N   The number of OPTGROUP and OPTION items in the list.
+
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: OCT 25, 2002
+ History:
+
+      OCT 25, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a HTML object.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will be processed by the
+      GenericMasterFunctions.GenericUnimplementedCommand routine.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Dawn Coen
+ Orig   Date: OCT 01, 2002
+ History:
+
+      OCT 01, 2002    Original Release
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      OCT 19, 2005    (Carl Nagle) Removed Click.  Generic Click still supported.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (2002,2003) Cyborg Systems, Inc.
+This program is free software; you can redistribute it and/or modify it under 
+the terms of the GNU General Public License Version 2 as published by the Free 
+Software Foundation. This license version can be viewed in its entirety at:
+http://www.opensource.org/licenses/gpl-license.php
+
+THIS CODE IS PROVIDED "AS IS".  THERE ARE NO REPRESENTATIONS OR WARRANTIES, 
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR ANY PARTICULAR PURPOSE, AND NONINFRINGEMENT.  IN NO EVENT SHALL 
+ANYONE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING IN CONNECTION 
+WITH THE CODE OR ITS USE.  
+
+You should have received a copy of the GNU General Public License along with 
+this program; if not, write to:
+the Free Software Foundation, Inc., 
+59 Temple Place, Suite 330
+Boston, MA 02111-1307 USA
+===============================================================================
+</pre>
+</BODY>
+</HTML>

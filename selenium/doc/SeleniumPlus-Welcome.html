@@ -292,7 +292,7 @@ When meeting any problem, please<br/>
 <ol>
 <li>Visit <a href=" http://safsdev.freeforums.net/board/6/faq" target="_blank">SE+ FAQ</a>
 <li>Post thread at <a href="http://safsdev.freeforums.net/board/13/general-discussion" target="_blank">SE+ Discussion</a>
-<li>Contact us at <a href="mailto:safsdev@yourCompany.com">SAFS DEV Group</a>
+<li>Contact us at <a href="mailto:safsdev@sas.com">SAFS DEV Group</a>
 </ol>
 <br>
 <p>
@@ -1520,9 +1520,9 @@ There are 3 ways:
     REM SET SAFS_LIB_UPDATE=https://github.com/SAFSDEV/UpdateSite/releases/download/safs/SAFS.LIB.UPDATE.ZIP</span>
 
     <span class="comments">REM Internal update resource</span>
-    SET SE_LIB_UPDATE=http://***REMOVED***:81/jenkins/job/SeleniumPlus/ws/updatesite/lib/latest/SEPLUS.LIB.UPDATE.ZIP
-    SET SE_PLUGIN_UPDATE=http://***REMOVED***:81/jenkins/job/SeleniumPlus/ws/updatesite/plugin/latest/SEPLUS.PLUGIN.UPDATE.ZIP
-    SET SAFS_LIB_UPDATE=http://***REMOVED***:81/jenkins/job/SAFS/ws/updatesite/lib/latest/SAFS.LIB.UPDATE.ZIP
+    SET SE_LIB_UPDATE=http://safsbuild:81/jenkins/job/SeleniumPlus/ws/updatesite/lib/latest/SEPLUS.LIB.UPDATE.ZIP
+    SET SE_PLUGIN_UPDATE=http://safsbuild:81/jenkins/job/SeleniumPlus/ws/updatesite/plugin/latest/SEPLUS.PLUGIN.UPDATE.ZIP
+    SET SAFS_LIB_UPDATE=http://safsbuild:81/jenkins/job/SAFS/ws/updatesite/lib/latest/SAFS.LIB.UPDATE.ZIP
     </pre>
     </div>
 <a href="#updatesoftware">[go back]</a>
@@ -2169,7 +2169,7 @@ We don't need to understand all of them  :) , the items below are listed by nece
 <p>
 There are some tools can record "selenium test" and store it into a file.<br/>
 <a href="http://seleniumbuilder.github.io/se-builder/">Selenium Builder</a> will store it in JSON format.<br/>
-<a href="http://***REMOVED***/wikipedia/SelRunner">SelRunner</a> can store it in HTML format.<br/>
+<a href="http://www.seleniumhq.org/projects/ide/">Selenium IDE</a> can store it in HTML format.<br/>
 This kind of file contains the "selenium test" and we call these files as "<b>Selenium Scripts</b>".<br/>
 This section explains how to execute "<b>Selenium Scripts</b>" through SeleniumPlus API <a href="http://safsdev.github.io/doc/org/safs/SAFSPlus.DriverCommand.html#CallScript(java.lang.String)">CallScript</a>.<br/>
 <ul>

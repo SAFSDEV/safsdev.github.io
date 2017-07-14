@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic CheckBoxFunctions Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "CheckBoxFunctions" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=CHECKBOX objects in
+      Data-Driven Automation.
+
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>(none)
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+ SUPPORTED ACTION COMMANDS:
+
+      Check                   'Check the CheckBox
+      UnCheck                 'UnCheck the CheckBox
+
+ UTILITY ROUTINES:
+
+  Function CheckboxState (winID As String, compID As String) As Integer
+
+
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="checkboxstate"></a>
+ Function CheckboxState (winID As String, compID As String) As Integer
+
+ DESCRIPTION:
+
+      Tries to determine if a checkbox is checked or unchecked.  The routine
+      will perform a SetContext on the winID before the attempt is made.
+      Currently, this handles most generic checkboxes and HTMLCheckboxes.
+
+ PARAMETERS:
+
+   winID      The recognition method for the Window containing the checkbox.
+
+   compID     The recognition method for the checkbox within the Window.
+
+ RETURNS:
+
+   -1 = checked
+    0 = not checked
+    1 = get environment error
+    2 = unrecognized property status information
+   +N = other SQA errors
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2000
+ History:
+
+      DEC 15, 2000    Original Release
+      JUL 23, 2001    Bernde Weber adding Java Support
+      SEP 25, 2002    (Audrey Shull) Fix for standard windows checkboxes
+      OCT 30, 2004    (Carl Nagle) Added .NET support
+
+</pre>
+<hr>
+<pre>
+
+<a name="setcheckboxstate"></a>
+  Sub SetCheckboxState (winID As String, compID As String, value as integer)
+
+ DESCRIPTION:
+
+      Set the state/value of the checkbox using SQASetProperty.
+      The routine will perform a SetContext on the winID before the attempt is
+      made. Currently, this handles most generic checkboxes and HTMLCheckboxes.
+
+ PARAMETERS:
+
+      winID   The recognition method for the Window containing the checkbox.
+
+      compID  The recognition method for the checkbox within the Window.
+
+      value   The value to set the chechbox state to.
+              -1 for checked.
+              0 for unchecked.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Yuesong Wang
+ Orig   Date: AUG 06, 2000
+ History:
+
+      AUG 06, 2000    Original Release
+      OCT 30, 2004    (Carl Nagle) Added .NET support
+
+</pre>
+<hr>
+<pre>
+
+<a name="checkboxcheck"></a>
+   Sub CheckBoxCheck ()
+
+
+ DESCRIPTION:
+
+ DESCRIPTION:
+
+      Tries to perform a Check on the Checkbox.  If the Checkbox does not
+      have a checkmark, it will set the checkmark.  If the Checkbox already
+      has a checkmark, then it should leave it alone.
+      Currently, this handles most generic checkboxes and HTMLCheckboxes.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2000
+ History:
+
+      DEC 15, 2000    Original Release
+      AUG 06, 2002    (YWANG) Added call to SetCheckboxState to force the state
+                      of the checkbox when CheckBox Click does not work.
+
+</pre>
+<hr>
+<pre>
+
+<a name="checkboxuncheck"></a>
+   Sub CheckBoxUnCheck ()
+
+
+ DESCRIPTION:
+
+      Tries to UnCheck the Checkbox.  If the Checkbox does not
+      have a checkmark, it will leave it alone.  If the Checkbox already
+      has a checkmark, then it should uncheck (deselect) it.
+      Currently, this handles most generic Checkboxes and HTMLCheckboxes.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      none
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2000
+ History:
+
+      DEC 15, 2000    Original Release
+      AUG 06, 2002    (YWANG) Added call to SetCheckboxState to force the state
+                      of the checkbox when CheckBox Click does not work.
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a CHECKBOX.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 27, 1999
+ History:
+
+      JUL 27, 1999    Original Release
+      JUL 15, 2000    (Carl Nagle) Added CLICK
+      DEC 15, 2000    (Carl Nagle) Added Check and UnCheck
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

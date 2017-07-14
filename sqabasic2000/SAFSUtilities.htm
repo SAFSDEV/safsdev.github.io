@@ -1,0 +1,2142 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic SAFSUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "SAFSUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ Provides general-purpose routines and wrappers for using STAFUtilities.
+ This helps isolate other libraries from the errors and exceptions that
+ can occur when STAF and associated DLLS are not installed.
+
+ For more information on STAF:  http://staf.sourceforge.net
+
+ It is important to note that this library is primarily a wrapper for our
+ STAFUtilities.  STAFUtilities is tightly coupled with one or more
+ DLLs in support of STAF and Robot's use of the SAFS framework.  If your
+ local installation does not have STAF installed, then Rational will not even
+ successfully load the STAFUtilities module.  So you would not even be able
+ to attempt to call any of the functions in that library.
+
+ This library helps to isolate the user from those problems by wrapping that
+ library and catching those errors.
+
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "SAFSUtilities_X.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>_X.SBH"
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\SAFSUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="STAFUtilities.htm">STAFUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="NTCommandUtilities.htm">NTCommandUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="WINRegistryUtilities.htm">WINRegistryUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#safsistoolavailable">SAFSisToolAvailable</a>     BasicLib SAFSUtilities                 
+Function <a href="#safsisserviceavailable">SAFSisServiceAvailable</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsisstafavailable">SAFSisSTAFAvailable</a>     BasicLib SAFSUtilities                 
+Function <a href="#safsissafsmapsavailable">SAFSisSAFSMAPSAvailable</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsissafsvarsavailable">SAFSisSAFSVARSAvailable</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsissafslogsavailable">SAFSisSAFSLOGSAvailable</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsisrobotjavailable">SAFSisRobotJAvailable</a>   BasicLib SAFSUtilities                 
+Function <a href="#safsisdrivercommandsavailable">SAFSisDriverCommandsAvailable</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsisseleniumavailable">SAFSisSeleniumAvailable</a>  BasicLib SAFSUtilities                 
+Function <a href="#safswaitfortool">SAFSWaitForTool</a>         BasicLib SAFSUtilities                 
+Function <a href="#safswaitforservice">SAFSWaitForService</a>      BasicLib SAFSUtilities                 
+Function <a href="#safswaitforstaf">SAFSWaitForSTAF</a>         BasicLib SAFSUtilities                 
+Function <a href="#safswaitfordrivercommands">SAFSWaitForDriverCommands</a>  BasicLib SAFSUtilities                 
+Function <a href="#safswaitforrobotj">SAFSWaitForRobotJ</a>       BasicLib SAFSUtilities                 
+Function <a href="#safswaitforselenium">SAFSWaitForSelenium</a>     BasicLib SAFSUtilities                 
+Function <a href="#safslaunchstaf">SAFSLaunchSTAF</a>          BasicLib SAFSUtilities                 
+Function <a href="#safslaunchsafsvars">SAFSLaunchSAFSVARS</a>      BasicLib SAFSUtilities                 
+Function <a href="#safslaunchsafsmaps">SAFSLaunchSAFSMAPS</a>      BasicLib SAFSUtilities                 
+Function <a href="#safslaunchsafslogs">SAFSLaunchSAFSLOGS</a>      BasicLib SAFSUtilities                 
+Function <a href="#safslaunchdrivercommands">SAFSLaunchDriverCommands</a>  BasicLib SAFSUtilities                 
+Function <a href="#safslaunchselenium">SAFSLaunchSelenium</a>      BasicLib SAFSUtilities                 
+Function <a href="#safslaunchrobotj">SAFSLaunchRobotJ</a>        BasicLib SAFSUtilities                 
+Function <a href="#safslaunchrobotjjar">SAFSLaunchRobotJJAR</a>     BasicLib SAFSUtilities                 
+Function <a href="#safssubmitservicerequest">SAFSsubmitServiceRequest</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsstafpulseevent">SAFSSTAFpulseEvent</a>      BasicLib SAFSUtilities                 
+Function <a href="#safsstafresetevent">SAFSSTAFresetEvent</a>      BasicLib SAFSUtilities                 
+Function <a href="#safssetsafsvariable">SAFSsetSAFSVariable</a>     BasicLib SAFSUtilities                 
+Function <a href="#safsgetsafsvariable">SAFSgetSAFSVariable</a>     BasicLib SAFSUtilities                 
+Function <a href="#safsclearappmapcache">SAFSclearAppMapCache</a>    BasicLib SAFSUtilities                 
+Function <a href="#safsgetcurrentappmap">SAFSgetCurrentAppMap</a>    BasicLib SAFSUtilities                 
+Function <a href="#safssetcurrentappmap">SAFSsetCurrentAppMap</a>    BasicLib SAFSUtilities                 
+Function <a href="#safsgetdefaultappmapsection">SAFSgetDefaultAppMapSection</a>  BasicLib SAFSUtilities                 
+Function <a href="#safssetdefaultappmapsection">SAFSsetDefaultAppMapSection</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsgetappmapitem">SAFSgetAppMapItem</a>       BasicLib SAFSUtilities                 
+Function <a href="#safsshutdownhookprocess">SAFSShutdownHookProcess</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsshutdownstaf">SAFSShutdownSTAF</a>        BasicLib SAFSUtilities                 
+Function <a href="#safsshutdownrobotj">SAFSShutdownRobotJ</a>      BasicLib SAFSUtilities                 
+Function <a href="#safsshutdowndrivercommands">SAFSShutdownDriverCommands</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsshutdownselenium">SAFSShutdownSelenium</a>    BasicLib SAFSUtilities                 
+Function <a href="#safsautolaunchsafstools">SAFSAutoLaunchSAFSTools</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsautolaunchrobotj">SAFSAutoLaunchRobotJ</a>    BasicLib SAFSUtilities                 
+Function <a href="#safsautolaunchdrivercommands">SAFSAutoLaunchDriverCommands</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsautolaunchselenium">SAFSAutoLaunchSelenium</a>  BasicLib SAFSUtilities                 
+Function <a href="#safsgetstafmajorversion">SAFSgetSTAFMajorVersion</a>  BasicLib SAFSUtilities                 
+</pre>
+<hr>
+<a name="constants"></a>
+<h2>Constants</h2>
+<pre>
+
+CONST SAFS_STAF_SERVICELOADER_PROCESS = "STAF/Service/STAF/ServiceLoader"
+CONST SAFS_STAF_SERVICELOADER_PROCESS_V3 = "STAF/Service/STAFServiceLoader1"
+CONST SAFS_STAF_PROCESS               = "STAF_Process"
+CONST SAFS_DRIVER_COMMAND_SECTION   = "SAFS_DRIVERCOMMANDS"
+CONST SAFS_ROBOTJ_SECTION           = "SAFS_ROBOTJ"
+CONST SAFS_SELENIUM_SECTION         = "SAFS_SELENIUM"
+CONST SAFS_SAFSVARS_SECTION         = "SAFSVARS"
+CONST SAFS_SAFSMAPS_SECTION         = "SAFSMAPS"
+CONST SAFS_SAFSLOGS_SECTION         = "SAFSLOGS"
+CONST SAFS_DRIVER_COMMAND_DEFAULTCLASS = "org.safs.DCJavaHook"
+CONST SAFS_SELENIUM_DEFAULTCLASS       = "org.safs.selenium.SeleniumJavaHook"
+CONST SAFS_ROBOTJ_DEFAULTCLASS         = "com.rational.test.ft.rational_ft"
+CONST SAFS_ROBOTJ_INSTALLDIR_PROPERTY  = "rational_ft.install.dir"
+CONST SAFS_CONFIG_AUTOLAUNCH        = "AUTOLAUNCH"
+CONST SAFS_CONFIG_JVM               = "JVM"
+CONST SAFS_CONFIG_CLASSPATH         = "CLASSPATH"
+CONST SAFS_CONFIG_HOOKCLASS         = "HOOKCLASS"
+CONST SAFS_CONFIG_OPTIONS           = "OPTIONS"
+CONST SAFS_CONFIG_INSTALLDIR        = "INSTALLDIR"
+CONST SAFS_CONFIG_JARPATH           = "JARPATH"
+CONST SAFS_CONFIG_PROJECTPATH       = "PROJECTPATH"
+CONST SAFS_CONFIG_DATASTORE         = "DATASTORE"
+CONST SAFS_CONFIG_PROJECT           = "PROJECT"
+CONST SAFS_CONFIG_BUILD             = "BUILD"
+CONST SAFS_CONFIG_HOOKSCRIPT        = "HOOKSCRIPT"
+CONST SAFS_CONFIG_PLAYBACK          = "PLAYBACK"
+CONST SAFS_CONFIG_HOOK              = "HOOK"
+CONST SAFS_ROBOTJ_DEFAULTHOOK       = "TestScript"
+CONST SAFS_CONFIG_LOGFOLDER         = "LOGFOLDER"
+CONST SAFS_CONFIG_LOG               = "LOG"
+CONST SAFS_CONFIG_USERID            = "USERID"
+CONST SAFS_CONFIG_PASSWORD          = "PASSWORD"
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+CONST SAFS_STAF_SERVICELOADER_PROCESS = "STAF/Service/STAF/ServiceLoader"
+CONST SAFS_STAF_SERVICELOADER_PROCESS_V3 = "STAF/Service/STAFServiceLoader1"
+CONST SAFS_STAF_PROCESS               = "STAF_Process"
+
+'RRAFS.INI Configuration Information
+CONST SAFS_DRIVER_COMMAND_SECTION   = "SAFS_DRIVERCOMMANDS"
+CONST SAFS_ROBOTJ_SECTION           = "SAFS_ROBOTJ"
+CONST SAFS_SELENIUM_SECTION         = "SAFS_SELENIUM"
+CONST SAFS_SAFSVARS_SECTION         = "SAFSVARS"
+CONST SAFS_SAFSMAPS_SECTION         = "SAFSMAPS"
+CONST SAFS_SAFSLOGS_SECTION         = "SAFSLOGS"
+
+CONST SAFS_DRIVER_COMMAND_DEFAULTCLASS = "org.safs.DCJavaHook"
+CONST SAFS_SELENIUM_DEFAULTCLASS       = "org.safs.selenium.SeleniumJavaHook"
+CONST SAFS_ROBOTJ_DEFAULTCLASS         = "com.rational.test.ft.rational_ft"
+CONST SAFS_ROBOTJ_INSTALLDIR_PROPERTY  = "rational_ft.install.dir"
+CONST SAFS_CONFIG_AUTOLAUNCH        = "AUTOLAUNCH"
+CONST SAFS_CONFIG_JVM               = "JVM"
+CONST SAFS_CONFIG_CLASSPATH         = "CLASSPATH"
+CONST SAFS_CONFIG_HOOKCLASS         = "HOOKCLASS"
+CONST SAFS_CONFIG_OPTIONS           = "OPTIONS"
+CONST SAFS_CONFIG_INSTALLDIR        = "INSTALLDIR"
+CONST SAFS_CONFIG_JARPATH           = "JARPATH"
+CONST SAFS_CONFIG_PROJECTPATH       = "PROJECTPATH"
+CONST SAFS_CONFIG_DATASTORE         = "DATASTORE"
+CONST SAFS_CONFIG_PROJECT           = "PROJECT"
+CONST SAFS_CONFIG_BUILD             = "BUILD"
+
+' PLAYBACK = HOOKSCRIPT = HOOK
+CONST SAFS_CONFIG_HOOKSCRIPT        = "HOOKSCRIPT"
+CONST SAFS_CONFIG_PLAYBACK          = "PLAYBACK"
+CONST SAFS_CONFIG_HOOK              = "HOOK"
+CONST SAFS_ROBOTJ_DEFAULTHOOK       = "TestScript"
+
+CONST SAFS_CONFIG_LOGFOLDER         = "LOGFOLDER"
+CONST SAFS_CONFIG_LOG               = "LOG"
+CONST SAFS_CONFIG_USERID            = "USERID"
+CONST SAFS_CONFIG_PASSWORD          = "PASSWORD"
+    (none)
+</pre>
+<hr>
+<a name="user_defined"></a>
+<h2>User-Defined Types</h2>
+<pre>
+
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="safsistoolavailable"></a>
+  Function SAFSisToolAvailable(toolname As String) as Integer
+
+ DESCRIPTION:
+
+  Wraps <a href="STAFUtilities.htm#isToolAvailable">STAFUtilities.isToolAvailable</a>
+
+
+ PARAMETERS:
+
+  toolname    name of the tool/process in STAF to seek.
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsisserviceavailable"></a>
+  Function SAFSisServiceAvailable(servicename As String) as Integer
+
+ DESCRIPTION:
+
+  Wraps <a href="STAFUtilities.htm#isServiceAvailable">STAFUtilities.isServiceAvailable</a>
+  Trapping possible errors.
+
+ PARAMETERS:
+
+  servicename  name substring of the service in STAF to seek.
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 03, 2004
+ History:
+
+      JUN 03, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safswaitfortool"></a>
+  Function SAFSWaitForTool(toolname as String, Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Wait for the availablility of the named process up to the
+  provided timeout.  By default, we will wait up to 5 seconds if the optional
+  timeout parameter is not provided.
+
+  This is normally called AFTER a command to launch the process, but can
+  also be called to simply verify the process is running.
+
+
+ PARAMETERS:
+
+  toolname    name of the tool/process in STAF to seek.
+
+  timeout     number of seconds maximum to wait for the process to
+              come into existence.  <=0 means a one-time check.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if the process is found to be running within the
+                          timeout period.
+
+  FAILURE/FALSE (zero) if the process was not found to be running for ANY
+                       reason.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+      MAY 26, 2004    (Carl Nagle) Removed automatic delay when tool is available.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safswaitforservice"></a>
+  Function SAFSWaitForService(servicename as String, Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Wait for the availablility of the named service up to the
+  provided timeout.  By default, we will wait up to 5 seconds if the optional
+  timeout parameter is not provided.
+
+  This is normally called AFTER a command to launch the service, but can
+  also be called to simply verify the service is running.
+
+
+ PARAMETERS:
+
+  toolname    name substring of the service in STAF to seek.
+
+  timeout     number of seconds maximum to wait for the service to
+              come into existence.  <=0 means a one-time check.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if the service is found to be running within the
+                          timeout period.
+
+  FAILURE/FALSE (zero) if the service was not found to be running for ANY
+                       reason.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 03, 2004
+ History:
+
+      JUN 03, 2004    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsisstafavailable"></a>
+  Function SAFSisSTAFAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the STAF_Process is running.  This is the main STAF daemon.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsissafsvarsavailable"></a>
+  Function SAFSisSAFSVARSAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the SAFSVARS service is running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Mod to use isServiceAvailable.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsissafsmapsavailable"></a>
+  Function SAFSisSAFSMAPSAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the SAFSMAPS service is running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Mod to use isServiceAvailable.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsissafslogsavailable"></a>
+  Function SAFSisSAFSLOGSAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the SAFSLOGS service is running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Mod to use isServiceAvailable.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsisdrivercommandsavailable"></a>
+  Function SAFSisDriverCommandsAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the SAFS/DriverCommands hook process is running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Mod to use isDriverCommandsAvailable.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsisseleniumavailable"></a>
+  Function SAFSisSeleniumAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the SAFS/Selenium hook process is running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      APR 13, 2007    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsisrobotjavailable"></a>
+  Function SAFSisRobotJAvailable() as Integer
+
+ DESCRIPTION:
+
+  Checks to see if the SAFS/RobotJ hook process is running.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  TRUE (non-zero) or FALSE (zero)
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      JUN 03, 2004    (Carl Nagle) Mod to use isRobotJAvailable.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchstaf"></a>
+  Function SAFSLaunchSTAF(Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the STAFProc.exe daemon.
+
+
+ PARAMETERS:
+
+  parms  Any commandline parameters to append to the call.
+         For normal use none are needed.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch STAF occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisSTAFAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch STAF.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      MAY 26, 2004    (Carl Nagle) Adding check for STAF ServiceLoader.
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+      JAN 05, 2010    (PMIESS) Added switch for waiting on the seriviceloader in STAF 3
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchsafsvars"></a>
+  Function SAFSLaunchSAFSVARS(Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFSVARS service.
+
+  RRAFS.INI section can be defined to override default behavior.
+
+  ;===================================================================
+  ;SAFSVARS Tool Options
+  ;AUTOLAUNCH -- Launch if needed and not running (TRUE/FALSE/YES/NO).
+  ;OPTIONS    -- Options or PARMS for the service commandline.
+  ;              Normal use requires no OPTIONS parameters.
+  ;===================================================================
+  [SAFSVARS]
+  AUTOLAUNCH=TRUE
+  ;OPTIONS=
+
+ PARAMETERS:
+
+  parms  Any commandline PARMS to append to the call to start the service.
+         For normal use none are needed and none are sent to the service.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch SAFSVARS occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisSAFSVARSAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch SAFSVARS.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      DEC 18, 2003    (Carl Nagle) Adding RRAFS.INI support
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchsafsmaps"></a>
+  Function SAFSLaunchSAFSMAPS(Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFSMAPS service.
+
+  RRAFS.INI section can be defined to override default behavior.
+
+  ;===================================================================
+  ;SAFSMAPS Tool Options
+  ;AUTOLAUNCH -- Launch if needed and not running (TRUE/FALSE/YES/NO).
+  ;OPTIONS    -- Options or PARMS for the service commandline.
+  ;              By default will use current Datapool\ directory for maps.
+  ;===================================================================
+  [SAFSMAPS]
+  AUTOLAUNCH=TRUE
+  ;OPTIONS=
+
+
+ PARAMETERS:
+
+  parms  Any commandline PARMS to append to the call to start the service.
+         For normal use none are needed.  By default the DIR parameter is
+         sent to the service with the current project's Datapool directory.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch SAFSMAPS occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisSAFSMAPSAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch SAFSMAPS.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      DEC 18, 2003    (Carl Nagle) Adding RRAFS.INI support
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+      FEB 25, 2009    (Carl Nagle) Adding support for spaces in project path
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchsafslogs"></a>
+  Function SAFSLaunchSAFSLOGS(Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFSLOGS service.
+
+  RRAFS.INI section can be defined to override default behavior.
+
+  ;===================================================================
+  ;SAFSLOGS Tool Options
+  ;AUTOLAUNCH -- Launch if needed and not running (TRUE/FALSE/YES/NO).
+  ;OPTIONS    -- Options or PARMS for the service commandline.
+  ;              By default will use current Logs\ directory.
+  ;===================================================================
+  [SAFSLOGS]
+  AUTOLAUNCH=TRUE
+  ;OPTIONS=
+
+
+ PARAMETERS:
+
+  parms  Any commandline PARMS to append to the call to start the service.
+         For normal use none are needed.  By default the DIR parameter is
+         sent to the service with the current project's Logs directory.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch SAFSLOGS occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisSAFSLOGSAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch SAFSLOGS.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      DEC 18, 2003    (Carl Nagle) Adding RRAFS.INI support
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+      FEB 25, 2009    (Carl Nagle) Adding support for spaces in project path
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchdrivercommands"></a>
+  Function SAFSLaunchDriverCommands(Optional jvm,
+                                    Optional classpath,
+                                    Optional hookclass,
+                                    Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFS/DriverCommands process.  Expects the following
+  information to be available in the RRAFS.INI configuration file:
+
+  Sample RRAFS.INI file segment:
+  ;===================================================================
+  ;SAFS/DriverCommands options
+  ;AUTOLAUNCH -- Launch if needed and not running (TRUE/FALSE/YES/NO).
+  ;JVM        -- Full path to an alternate java.exe (JVM).
+  ;              otherwise Java is assumed to be in the System PATH.
+  ;CLASSPATH  -- Alternative classpath when launching Java.
+  ;              Otherwise, Java's default classpath usage in effect.
+  ;HOOKCLASS  -- Alternate DriverCommands hook,
+  ;              Default: org.safs.DCJavahook
+  ;OPTIONS    -- Options for the hook's commandline:
+  ;              "LOG" -- option for developer debugging
+  ;===================================================================
+  [SAFS_DRIVERCOMMANDS]
+  AUTOLAUNCH=TRUE
+  ;JVM=<path to java.exe>
+  ;CLASSPATH=<alternate classpath for use with Java -cp argument>
+  ;HOOKCLASS=org.safs.DCJavaHook
+  ;OPTIONS=LOG
+
+
+ PARAMETERS:
+
+  jvm     Optional full path to an alternate JVM.  By default we run "java.exe"
+          expecting the system to find it in the system PATH.
+
+  classpath Optional CLASSPATH to provide the JVM via the -cp switch.  By
+            default we pass no -cp info thus reverting to the system's CLASSPATH setting.
+
+  hookclass Optional alternative DriverCommands hook to use.  By default we
+            use org.safs.DCJavaHook.
+
+  parms   Any parameters to pass to the java hook "main".
+          For normal use none are needed.  "LOG" is a recognized parameter
+          used by some developers during engine debugging.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch process occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisDriverCommandsAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch the process.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+      MAY 03, 2005    (Carl Nagle) Fixed handling of SPACE in JVM setting.
+      MAY 11, 2005    (Carl Nagle) Reset SEM Event SAFS/DriverCommandsShutdown.
+      Dec 25, 2009    (PMIESS) Switched to STAFResetEvent for STAF v3
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchselenium"></a>
+  Function SAFSLaunchSelenium ( Optional jvm,
+                                Optional classpath,
+                                Optional hook) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFS/Selenium process.  Expects the following
+  information to be available in the RRAFS.INI configuration file:
+
+  Sample RRAFS.INI file segment:
+  ;===================================================================
+  ;SAFS/Selenium options
+  ;AUTOLAUNCH -- Launch if needed and not running (TRUE/FALSE/YES/NO).
+  ;JVM        -- Full path to an alternate java.exe (V 1.5 or higher).
+  ;              otherwise Java is assumed to be in the System PATH.
+  ;CLASSPATH  -- Alternative classpath when launching Java.
+  ;              Otherwise, Java's default classpath usage in effect.
+  ;HOOK       -- Alternate Selenium hook,
+  ;              Default: org.safs.selenium.SeleniumJavaHook
+  ;BROWSER    -- See Selenium documentation for proper browser specification.
+  ;PROXY      -- Gateway information for Selenium localhost Proxy to use.
+  ;PORT       -- Port on Gateway for Selenium localhost Proxy to use.
+  ;===================================================================
+  [SAFS_SELENIUM]
+  AUTOLAUNCH=TRUE
+  JVM="C:\Java_15\bin\java.exe"
+  ;CLASSPATH=
+  ;HOOK=org.safs.selenium.SeleniumJavaHook
+  BROWSER="*custom C:\Program Files\Internet Explorer\IEXPLORE.EXE"
+  PROXY=your.proxy.host
+  PORT=80
+
+
+ PARAMETERS:
+
+  jvm     Optional full path to an alternate JVM.  By default we run "java.exe"
+          expecting the system to find it in the system PATH.  Selenium requires
+          Java 1.5 or higher.
+
+  classpath Optional CLASSPATH to provide the JVM via the -cp switch.  By
+            default we pass no -cp info thus reverting to the system's CLASSPATH setting.
+
+  hook    Optional alternative Selenium hook to use.  By default we
+            use 'org.safs.selenium.SeleniumJavaHook'
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch process occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisSeleniumAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch the process.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2007
+ History:
+
+      APR 13, 2007    Original Release
+              Dec 25, 2009    (PMIESS) Switched to STAFResetEvent for STAF v3
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchrobotj"></a>
+  Function SAFSLaunchRobotJ (Optional jvm,
+                             Optional classpath,
+                             Optional installdir,
+                             Optional datastore,
+                             Optional project,
+                             Optional build,
+                             Optional hookscript,
+                             Optional logfolder,
+                             Optional logname,
+                             Optional userid,
+                             Optional password,
+                             Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFS/RobotJ process.  Expects the following information
+  to be available in the RRAFS.INI configuration file:
+
+  [SAFS_ROBOTJ]
+  AUTOLAUNCH=TRUE
+  ;JVM=<path to java.exe>
+  ;CLASSPATH=<alternate classpath for use with Java -cp argument>
+  INSTALLDIR="C:\Program Files\Rational\RobotJ\hshell\plugins\com.rational.test.ft.wswplugin"
+  DATASTORE=C:\Somewhere\DatastoreJ
+  PROJECT=<path to>\SomeRobot.rsp
+  BUILD="Build 1"
+  PLAYBACK=TestScript
+  LOGFOLDER=Default
+  LOG=TestScript
+  USERID=Carl Nagle
+  PASSWORD=
+  OPTIONS=
+
+
+ PARAMETERS:
+
+  JVM        -- Optional Full path to an alternate java.exe (JVM).
+                otherwise Java is assumed to be in the System PATH.
+
+  CLASSPATH  -- Optional Alternative classpath when launching Java.
+                Otherwise, Java's default classpath usage in effect.
+
+  INSTALLDIR -- Full path to Rational\RobotJ\hshell\plugins\com.rational.test.ft.wswplugin
+                MUST exist in RRAFS.INI if not provided here.
+
+  DATASTORE  -- root directory for RobotJ project datastore,
+                Path relative to the Robot project or the full path.
+                MUST exist in RRAFS.INI if not provided here.
+
+  PROJECT    -- TestManager/Robot project .rsp file,
+                .rsp filename for the project or the full path to the
+                appropriate TestManager .rsp file.
+
+  BUILD      -- TestManager Build for logging
+
+  PLAYBACK   -- RobotJ Script that launches the SAFS Hook.
+                The Default used is "TestScript".
+
+  LOGFOLDER  -- TestManager LogFolder
+
+  LOGNAME    -- Alt Log filename to use. Will use HOOKSCRIPT by default.
+
+  USERID     -- Userid used to login to TestManager project (if any).
+
+  PASSWORD   -- Password used to login to TestManager project (if any).
+
+  PARMS      -- Any parameters to pass to the java hook "main".
+                For normal use none are needed.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch process occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisRobotJAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch the process.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 12, 2003
+ History:
+
+      DEC 12, 2003    Original Release
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+      MAY 03, 2005    (Carl Nagle) Fixed handling of SPACE in JVM setting.
+      MAY 11, 2005    (Carl Nagle) Added Reset of SEM Event SAFS/RobotJShutdown.
+      AUG 26, 2005    (CWOOLNER) Remove most REQUIRED parameters in support of use
+                                 without TestManager assets.
+      JAN 11, 2008    (Carl Nagle) Added RFT V7 AUTOLAUNCH support.
+              Dec 25, 2009    (PMIESS) Switched to STAFResetEvent for STAF v3
+
+</pre>
+<hr>
+<pre>
+
+<a name="safslaunchrobotjjar"></a>
+  Function SAFSLaunchRobotJJAR (Optional jvm,
+                               Optional jarpath,
+                               Optional projectpath,
+                               Optional datastore,
+                               Optional project,
+                               Optional build,
+                               Optional hookscript,
+                               Optional logfolder,
+                               Optional logname,
+                               Optional userid,
+                               Optional password,
+                               Optional parms) as Integer
+
+ DESCRIPTION:
+
+  Attempt to Launch the SAFS/RobotJ process using the Java -jar option for
+  executable JARs.  This is generally necessary for RFT V7 (and above?).
+
+  Expects something like this, minimally, in the RRAFS.INI file:
+
+    [SAFS_ROBOTJ]
+    AUTOLAUNCH=TRUE
+    DATASTORE="C:\Somewhere\DatastoreJ"
+
+
+ PARAMETERS:
+
+  JVM        -- Optional Full path to an alternate Java Playback JRE.
+                If not provided, will try the Rational Software Registry.
+                If not found Java is assumed to be in the System PATH.
+                Will seek this in RRAFS.INI if necessary.
+                Ex: "C:\Java\jdk\jre\bin\javaw.exe"
+
+  JARPATH    -- Full path to rational_ft.jar
+                If not provided attempt to derive from the Rational Software Registry.
+                Will seek this in RRAFS.INI if necessary.
+
+  PROJECTPATH -- Full path to required JAR files like STAF and SAFS and other
+                3rd party dependencies for SAFS.
+
+                If not provided we will attempt to derive the minimum required
+                setting from Environment Variables.
+                Will seek this in RRAFS.INI if necessary.
+
+  DATASTORE  -- root directory for RobotJ project datastore,
+                Path relative to the Robot project or the full path.
+                MUST exist in RRAFS.INI if not provided here.
+                Will seek this in RRAFS.INI if necessary.
+
+  PROJECT    -- TestManager/Robot project .rsp file,
+                .rsp filename for the project or the full path to the
+                appropriate TestManager .rsp file.
+                Will seek this in RRAFS.INI if necessary.
+
+  BUILD      -- TestManager Build for logging
+                Will seek this in RRAFS.INI if necessary.
+
+  PLAYBACK   -- RFT Script that launches the SAFS Hook.
+                By default this is "TestScript".
+                Will seek overrides in RRAFS.INI.
+
+  LOGFOLDER  -- TestManager LogFolder
+                Will seek this in RRAFS.INI if necessary.
+
+  LOGNAME    -- Alt Log filename to use. Will use PLAYBACK value by default.
+                Will seek this in RRAFS.INI if necessary.
+
+  USERID     -- Userid used to login to TestManager project (if any).
+                Will seek this in RRAFS.INI if necessary.
+
+  PASSWORD   -- Password used to login to TestManager project (if any).
+                Will seek this in RRAFS.INI if necessary.
+
+  PARMS      -- Any parameters to pass to the java hook "main".
+                For normal use none are needed.
+                Will seek this in RRAFS.INI if necessary.
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if an attempt to launch process occurred.  This
+                          doesn't mean the attempt was successful.  Use
+                          SAFSisRobotJAvailable to determine that.
+
+  FAILURE/FALSE (zero) if we could not successfully attempt to launch the process.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 08, 2008
+ History:
+
+      JAN 08, 2008    Original Release
+      Dec 25, 2009    (PMIESS) Switched to STAFResetEvent for STAF v3
+
+</pre>
+<hr>
+<pre>
+
+<a name="safssubmitservicerequest"></a>
+  Function SAFSsubmitServiceRequest(service as String, message as String,
+                                    result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the <a href="STAFUtilities.htm#submitservicerequest">STAFUtilities.submitServiceRequest</a> function catching all errors
+  that might occur if STAF is not installed or available.
+
+  This is a "local", synchronized submission to STAF.
+
+
+ PARAMETERS:
+
+      service     The name of the service to receive the STAF request.
+
+      message     The message to send to the service.
+
+      result      Structure to receive STAF return code and response string.
+
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsstafpulseevent"></a>
+  Function SAFSSTAFpulseEvent(event as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the <a href="STAFUtilities.htm#STAFpulseEvent">STAFUtilities.STAFpulseEvent</a> function catching all errors
+  that might occur if STAF is not installed or available.
+
+
+ PARAMETERS:
+
+      event       The name of the event to pulse.
+
+      result      Structure to receive STAF return code and response string.
+
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsstafresetevent"></a>
+  Function SAFSSTAFresetEvent(event as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the <a href="STAFUtilities.htm#STAFresetEvent">STAFUtilities.STAFresetEvent</a> function catching all errors
+  that might occur if STAF is not installed or available.
+
+
+ PARAMETERS:
+
+      event       The name of the event to reset.
+
+      result      Structure to receive STAF return code and response string.
+
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: JAN 13, 2010
+ History:
+
+      JAN 13, 2010    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safssetsafsvariable"></a>
+  Function SAFSsetSAFSVariable(varname as String, varvalue as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the <a href="STAFUtilities.htm#setSAFSVariable">STAFUtilities.setSAFSVariable</a> function catching all errors
+  that might occur if STAF is not installed or available.
+
+
+ PARAMETERS:
+
+      varname     The name of the variable.
+
+      varvalue    The value to set.
+
+      result      Structure to receive STAF return code and response string.
+
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsgetsafsvariable"></a>
+  Function SAFSgetSAFSVariable(varname as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the <a href="STAFUtilities.htm#getSAFSVariable">STAFUtilities.getSAFSVariable</a> function catching all errors
+  that might occur if STAF is not installed or available.
+
+
+ PARAMETERS:
+
+      varname     The name of the variable to lookup.
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safssetcurrentappmap"></a>
+  Function SAFSsetCurrentAppMap(mapid as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the SAFSMAPS DEFAULTMAP <mapid> command to set the current app map.
+
+
+ PARAMETERS:
+
+      mapid       The mapid to set as the "current" App Map.
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsgetcurrentappmap"></a>
+  Function SAFSgetCurrentAppMap(result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the SAFSMAPS DEFAULTMAP command to retrieve the current app map setting.
+
+
+ PARAMETERS:
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safssetdefaultappmapsection"></a>
+  Function SAFSsetDefaultAppMapSection(mapid as String, section as String, _
+                                       result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the SAFSMAPS DEFAULTMAPSECTION <mapid> SECTION <section> command.
+
+
+ PARAMETERS:
+
+      mapid       The mapid to set affect. Empty for "current" map.
+
+      section     The section to set as default.
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsgetdefaultappmapsection"></a>
+  Function SAFSgetDefaultAppMapSection(mapid as String, result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the SAFSMAPS DEFAULTMAPSECTION <mapid> command.
+
+
+ PARAMETERS:
+
+      mapid       The mapid to set affect. Empty for "current" map.
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsgetappmapitem"></a>
+  Function SAFSgetAppMapItem(mapid as String, _
+                             section as String, _
+                             item as String, _
+                             result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the SAFSMAPS GETITEM <mapid> command.
+
+
+ PARAMETERS:
+
+      mapid       The mapid to set affect. Empty for "current" map.
+
+      section     The section of the map to search.
+
+      item        The item in the section to find.
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsclearappmapcache"></a>
+  Function SAFSclearAppMapCache(result as STAFResult) as Long
+
+ DESCRIPTION:
+
+  Invoke the SAFSMAPS CLEARCACHE command.
+
+
+ PARAMETERS:
+
+      result      Structure to receive STAF return code and response string.
+                  result.result will be empty ("") if an error occurs.  So be
+                  sure to check the return code since an empty string is also
+                  a valid variable value.
+
+ RETURNS:
+
+      The STAF return code.
+
+      -1  if we could not successfully submit.  This can be an indication that
+          STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 07, 2006
+ History:
+
+      DEC 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safswaitfordrivercommands"></a>
+  Function SAFSWaitForDriverCommands(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Wait for the availablility of the SAFS/DriverCommands process.
+  Uses SAFSWaitForTool in this library.
+
+ PARAMETERS:
+
+  timeout     number of seconds maximum to wait for SAFS/DriverCommands to
+              come into existence.  <=0 means a one-time check.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if the process is found to be running within the
+                          timeout period.
+
+  FAILURE/FALSE (zero) if we the service was not found to be running for ANY
+                       reason.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safswaitforrobotj"></a>
+  Function SAFSWaitForRobotJ(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Wait for the availablility of the SAFS/RobotJ process.
+  Uses SAFSWaitForTool in this library.
+
+ PARAMETERS:
+
+  timeout     number of seconds maximum to wait for SAFS/RobotJ to
+              come into existence.  <=0 means a one-time check.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if the process is found to be running within the
+                          timeout period.
+
+  FAILURE/FALSE (zero) if we the service was not found to be running for ANY
+                       reason.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safswaitforselenium"></a>
+  Function SAFSWaitForSelenium(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Wait for the availablility of the SAFS/Selenium process.
+  Uses SAFSWaitForTool in this library.
+
+ PARAMETERS:
+
+  timeout     number of seconds maximum to wait for process to
+              come into existence.  <=0 means a one-time check.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if the process is found to be running within the
+                          timeout period.
+
+  FAILURE/FALSE (zero) if we the service was not found to be running for ANY
+                       reason.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2007
+ History:
+
+      APR 13, 2007    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safswaitforstaf"></a>
+  Function SAFSWaitForSTAF(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Wait for the availablility of the STAF_Process daemon.
+  Uses SAFSWaitForTool in this library.
+
+ PARAMETERS:
+
+  timeout     number of seconds maximum to wait for SAFS/RobotJ to
+              come into existence.  <=0 means a one-time check.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if the process is found to be running within the
+                          timeout period.
+
+  FAILURE/FALSE (zero) if we the service was not found to be running for ANY
+                       reason.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsshutdownhookprocess"></a>
+  Function SAFSShutdownHookProcess(hookname as String) as Long
+
+ DESCRIPTION:
+
+  Attempt to Shutdown the specified hook by dispatching the
+  "SHUTDOWN_HOOK" command in variable safs/hook/inputrecord as required.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  >=0    STAF RETURN CODEs
+
+  -1     if we could not successfully attempt the shutdown.  This can be an
+         indication that STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsshutdowndrivercommands"></a>
+  Function SAFSShutdownDriverCommands() as Long
+
+ DESCRIPTION:
+
+  Shutdown SAFS/DriverCommands via SAFSShutdownHookProcess
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  >=0    STAF RETURN CODEs
+
+  -1     if we could not successfully attempt the shutdown.  This can be an
+         indication that STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsshutdownrobotj"></a>
+  Function SAFSShutdownRobotJ() as Long
+
+ DESCRIPTION:
+
+  Shutdown SAFS/RobotJ via SAFSShutdownHookProcess
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  >=0    STAF RETURN CODEs
+
+  -1     if we could not successfully attempt the shutdown.  This can be an
+         indication that STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsshutdownselenium"></a>
+  Function SAFSShutdownSelenium() as Long
+
+ DESCRIPTION:
+
+  Shutdown SAFS/Selenium via SAFSShutdownHookProcess
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  >=0    STAF RETURN CODEs
+
+  -1     if we could not successfully attempt the shutdown.  This can be an
+         indication that STAF is not installed or running.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2007
+ History:
+
+      APR 13, 2007    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsshutdownstaf"></a>
+  Function SAFSShutdownSTAF() as Long
+
+ DESCRIPTION:
+
+  Shutdown entire STAF process, tools, and services.
+
+
+ PARAMETERS:
+
+  (none)
+
+
+ RETURNS:
+
+  >=0    STAF RETURN CODEs
+
+  -1     if we could not successfully attempt the shutdown.  This can be an
+         indication that STAF is not installed or running.
+
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+      OCT 21, 2004    (Carl Nagle) Enabled Automatic Shutdown on User-Abort (F11)
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsautolaunchsafstools"></a>
+  Function SAFSAutoLaunchSAFSTools(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  Launch SAFSVARS, SAFSMAPS, and SAFSLOGS if not already runniing.
+  We will use default/RRAFS.INI values for all tools.
+
+  If a tool has AUTOLAUNCH set to FALSE in RRAFS.INI then it will not
+  be launched.
+
+  If tools get running, we will perform some tool initialization.
+  Currently, that only consists of InitSAFSConstants for SAFSVARS if
+  SAFSVARS was launched.
+
+
+ PARAMETERS:
+
+  timeout     maximum number of seconds to verify tools are running.
+              Default value of 15 seconds will be used if not provided.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if all AUTOLAUNCH enabled tools successfully launched.
+
+  FAILURE/FALSE (zero) if any AUTOLAUNCH enabled tool failed to become available.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsautolaunchdrivercommands"></a>
+  Function SAFSAutoLaunchDriverCommands(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  AutoLaunch all SAFS tools AND SAFS/DriverCommands process if not already running.
+  We will use default/RRAFS.INI values.
+
+
+ PARAMETERS:
+
+  timeout     maximum number of seconds to verify process is running.
+              Default value of 15 seconds will be used if not provided.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if process successfully launched.
+
+  FAILURE/FALSE (zero) if the process failed to become available.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsautolaunchrobotj"></a>
+  Function SAFSAutoLaunchRobotJ(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  AutoLaunch all SAFS tools AND SAFS/RobotJ process if not already running.
+  We will use default/RRAFS.INI values or deduce certain values from the
+  Rational Software Registry and Environment Variables.
+
+  Depending on INI settings and\or failed launch attempts, this routine may try
+  one or both of <a href="#SAFSLaunchRobotJ">SAFSLaunchRobotJ</a> and <a href="#SAFSLaunchRobotJJAR">SAFSLaunchRobotJJAR</a>.
+
+ PARAMETERS:
+
+  timeout     maximum number of seconds to verify process is running.
+              Default value of 45 seconds will be used if not provided.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if process successfully launched.
+
+  FAILURE/FALSE (zero) if the process failed to become available.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: DEC 15, 2003
+ History:
+
+      DEC 15, 2003    Original Release
+      JAN 11, 2008    (Carl Nagle) Update to recognize RFT V7
+      FEB 12, 2008    (Carl Nagle) Upgrade RFT detection and retry.
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsautolaunchselenium"></a>
+  Function SAFSAutoLaunchSelenium(Optional timeout) as Integer
+
+ DESCRIPTION:
+
+  AutoLaunch all SAFS tools AND SAFS/Selenium process if not already running.
+  We will use default/RRAFS.INI values.
+
+
+ PARAMETERS:
+
+  timeout     maximum number of seconds to verify process is running.
+              Default value of 45 seconds will be used if not provided.
+
+
+ RETURNS:
+
+  SUCCESS/TRUE (non-zero) if process successfully launched.
+
+  FAILURE/FALSE (zero) if the process failed to become available.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 13, 2007
+ History:
+
+      APR 13, 2007    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="safsgetstafmajorversion"></a>
+  Function SAFSgetSTAFMajorVersion(result as STAFResult) as Integer
+
+ DESCRIPTION:
+
+  Returns the major portion of the STAF version -- 2 or 3, etc..
+  Catches all errors that might occur if STAF is not installed or available.
+  If the call to the STAF MISC service fails then 0 is returned.
+  If the call to STAF throws an error then STAF_NOT_INSTALLED (-1) is returned
+  in result.rc
+
+
+ PARAMETERS:
+
+  result      STAFResult used in call to STAFUtilities.getSTAFMajorVersion
+
+
+ RETURNS:
+
+  Integer major version 2 or 3, etc.., or
+
+  0 if a problem occurred, or -1 if STAF_NOT_INSTALLED.
+
+
+ ERRORS:
+
+  (none)
+
+
+ Orig Author: Philip Miess
+ Orig   Date: Jan 16, 2010
+ History:
+
+      Jan 16, 2010    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

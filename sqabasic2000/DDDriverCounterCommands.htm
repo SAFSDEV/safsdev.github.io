@@ -1,0 +1,246 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDDriverCounterCommands Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDDriverCounterCommands" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ The documentation for each function is provided as reference for DDE users
+ when developing DDE test tables.  This DDE format and syntax information IS
+ intended for public use and does not normally change with the underlying code.
+
+ The routines themselves are not intended for public use.
+ Their internal functionality and their declaration prototypes
+ are subject to change as deemed necessary to support the drivers
+ mentioned above.
+
+
+ This library is defined by:
+
+ DDDriverCounterCommands.SBL      Sourcecode and Detailed Documentation
+ DDDriverCounterCommands.SBX      Compiled executable library
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 2002
+ History:
+
+      JUL 16, 2002    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented CF and CW record types.
+
+ Copyright (2001) SAS Institute Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>(none)
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+   *** NO SUPPORTED ACTION COMMANDS SECTION FOUND ***
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddedrivercountercommand"></a>
+  Function DDEDriverCounterCommand(DriverCMD as String, guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Processes a DDE DRIVER COMMAND from the AUGUIInfo.InputRecord provided.
+      Driver commands are not treated as test commands but instructions to
+      the Drivers for setting parameters of the test environment, running
+      other scripts, or other stuff (whatever gets in here).
+
+      Different driver commands have different parameters as described below.
+      For reference, the first fields are defined below:
+
+      Field #1:   The "C" = DRIVER COMMAND.
+      Field #2:   The Driver Command to execute. (see definitions below).
+
+      Example:
+
+          c , SetApplicationMap , "AppMap.map"
+
+
+      Parameters must be placed in the order specified.
+      Parameters numbered in brackets are optional.
+      However, to use an optional parameter which follows other optional
+      parameters all the preceding parameters must exist or at least have
+      field delimited space reserved for them.
+
+
+         COMMAND         Fld# PARAMETER
+      ==============      ====================================================
+
+      StartCounter     3 - counterID
+                           Consult <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+                           for more information on private counters.
+                      [4]- optional additional descriptive string
+
+
+      StopCounter     3 - counterID
+                          Consult <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+                          for more information on private counters.
+                     [4]- optional additional descriptive string
+
+
+      ResetCounter     3 - counterID
+                           Consult <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+                           for more information on private counters.
+                      [4]- optional additional descriptive string
+
+
+      DeleteCounter     3 - counterID
+                            Consult <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+                            for more information on private counters.
+                       [4]- optional additional descriptive string
+
+
+      StoreCounterInfo     3 - counterID
+                           4 - unique variable basename used to create new DDVariables.
+                               This basename will be the prefix for several DDVariables
+                               holding the counter status information.
+                               Consult <a href="ApplicationUtilities.htm#auvariablestorestatusinfo" target="_blank">ApplicationUtilities</a>
+                               and <a href="UsingDDVariables.htm" target="_blank">Using DDVariables</a>
+                               for more information on referencing these DDVariables in
+                               your tests.
+
+
+      LogCounterInfo     3 - counterID
+                         4 - (Future) Optional. The name of a specific Log Facility to use.
+                             Consult <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+                             for more information on private counters.
+
+
+      SetCounterMode     3 - counterID
+                         4 - status counting mode. Currently supported modes are:
+
+                             "AllStatusInfo" or "1"
+                             "StepTestsOnly" or "2"
+
+                           Consult <a href="ApplicationUtilities.htm" target="_blank">ApplicationUtilities</a>
+                           for more information on private counters.
+
+
+      SuspendStatusCounts  [3] - optional additional descriptive string
+                           [4] - (Future) The optional name of a Log Facility, other than
+                                 the current one, to receive the resumption notice.
+
+                            Consult <a href="ApplicationUtilities.htm#aususpendstatuscounting" target="_blank">AUSuspendStatusCounting</a>
+                            for more information on counters.
+
+
+      ResumeStatusCounts  [3] - optional additional descriptive string
+                          [4] - (Future) The optional name of a Log Facility, other than
+                                the current one, to receive the resumption notice.
+
+                            Consult <a href="ApplicationUtilities.htm#auresumestatuscounting" target="_blank">AUResumeStatusCounting</a>
+                            for more information on counters.
+
+
+      StartTestcase       3 - TESTCASE ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StopTestcase        3 - TESTCASE ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StartRequirement    3 - Requirement ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StopRequirement     3 - REQUIREMENT ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StartProcedure      3 - Procedure ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StopProcedure       3 - Procedure ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StartSuite          3 - Suite ID/Name (a logical test Suite, not a Suite table)
+                         [4]- optional additional descriptive string
+
+
+      StopSuite           3 - Suite ID/Name (a logical Suite, not a Suite table)
+                         [4]- optional additional descriptive string
+
+
+      StartCycle          3 - Cycle ID/Name
+                         [4]- optional additional descriptive string
+
+
+      StopCycle           3 - Cycle ID/Name
+                         [4]- optional additional descriptive string
+
+
+
+      This DDEDriver Command routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      DriverCMD       from the calling DDDriverCommands library.
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+      Returns DDU_SCRIPT_NOT_EXECUTED if no matching driver command was found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUL 16, 2002
+ History:
+
+      JUL 16, 2002    Original Release
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented CF and CW record types.
+      APR 26, 2005    (Carl Nagle) Removed that warning.  Duplicate warnings issued.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

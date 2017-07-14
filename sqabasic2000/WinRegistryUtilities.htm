@@ -1,0 +1,465 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic WinRegistryUtilities Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "WinRegistryUtilities" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines to play with the registry.  We can create keys, get, and set
+      the values of keys in the registry.
+
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>_X.SBH"
+<li>'$INCLUDE: "WinRegistryUtilities.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="WIN32.htm">WIN32</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#createregistrykey">CreateRegistryKey</a>       BasicLib WinRegistryUtilities 
+Function <a href="#setregistrystring">SetRegistryString</a>       BasicLib WinRegistryUtilities 
+Function <a href="#setregistrydword">SetRegistryDWord</a>        BasicLib WinRegistryUtilities 
+Function <a href="#getregistrystring">GetRegistryString</a>       BasicLib WinRegistryUtilities 
+Function <a href="#getregistrydwordasstring">GetRegistryDWordAsString</a>  BasicLib WinRegistryUtilities 
+Function <a href="#wshregread">WSHRegRead</a>              BasicLib WinRegistryUtilities 
+Function <a href="#wshregwrite">WSHRegWrite</a>             BasicLib WinRegistryUtilities 
+Function <a href="#regobjread">RegObjRead</a>              BasicLib WinRegistryUtilities 
+Function <a href="#regobjwrite">RegObjWrite</a>             BasicLib WinRegistryUtilities 
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="createregistrykey"></a>
+  Function CreateRegistryKey ( hKey As Long, lpSubKey As String ) As Long
+
+ DESCRIPTION:
+
+      Creates a subkey in the specified hKey hive.  This is a subkey and
+      not an item with a stored value.
+      Works for NT and 95/98.  The subkey is created with ALL_ACCESS access
+      and then closed.  If the key already exists, it is merely opened and
+      then closed.
+
+      Note: we cannot create keys in HKEY_LOCAL_MACHINE or HKEY_USERS.
+
+ PARAMETERS:
+
+       hKey       Long value of which Registry Hive to open.
+                  The valid values are defined in the <a href="WIN32.htm#registry">WIN32</a> Library
+                  Note: we cannot create keys in HKEY_LOCAL_MACHINE or HKEY_USERS.
+                  (Example: HKEY_CURRENT_USER)
+
+       lpSubKey   String value of the subkey to create in the hKey hive.
+                  This should not have leading or trailing slashes.
+                  (Example: "Software\Procurement Vision\Preferences")
+
+ RETURNS:
+
+       ERROR_SUCCESS (0) on success of creating the subkey item, OR
+       error codes from RegCreateKeyEx if unsuccessful.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 05, 2000
+ History:
+
+      APR 05, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setregistrystring"></a>
+  Function SetRegistryString(hKey As Long, lpSubKey As String,
+                             sItem As String, sValue As String) As Long
+
+ DESCRIPTION:
+
+      Sets the string value of the specified registry entry.
+      If the key does not exist on entry the routine attempts to create it.
+      Works for NT and 95/98.  The key is opened with SET_VALUE access.
+      If the key does not exist then it is created with ALL_ACCESS access.
+      The value is then set and the key is closed.
+
+      Note that we cannot create keys in HKEY_LOCAL_MACHINE or HKEY_USERS.
+
+ PARAMETERS:
+
+       hKey       Long value of which Registry Hive to open.
+                  The valid values are defined in the <a href="WIN32.htm#registry">WIN32</a> Library
+                  (Example: HKEY_CURRENT_USER)
+
+       lpSubKey   String value of the subkey within the hive to access.
+                  This should not have leading or trailing slashes.
+                  (Example: "Software\Procurement Vision\Preferences")
+
+       sItem      String value of the key or item to create/set.
+                  (Example: "appheight")
+                  If "" then the routine sets the value of the
+                  Default item in 95/98.  This will be an unnamed item in NT if
+                  it exists.
+
+       sValue     String value to assign to sItem in the registry.  Windows
+                  reference suggests NOT storing data of length greater than
+                  2048 bytes in the registry.  Store large data in files and
+                  store the filename in the registry.
+
+ RETURNS:
+
+       ERROR_SUCCESS (0) on success of creating/setting key item value, OR
+       error codes from RegOpenKeyEx/CreateKeyEx or RegSetValueEx if unsuccessful.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 05, 2000
+ History:
+
+      APR 05, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="setregistrydword"></a>
+  Function SetRegistryDWord(hKey As Long, lpSubKey As String,
+                             sItem As String, lValue As Long) As Long
+
+ DESCRIPTION:
+
+      Sets the DWORD value of the specified registry entry.
+      If the key does not exist on entry the routine attempts to create it.
+      Works for NT and 95/98.  The key is opened with SET_VALUE access.
+      If the key does not exist then it is created with ALL_ACCESS access.
+      The value is then set and the key is closed.
+
+      Note that we cannot create keys in HKEY_LOCAL_MACHINE or HKEY_USERS.
+
+ PARAMETERS:
+
+       hKey       Long value of which Registry Hive to open.
+                  The valid values are defined in the <a href="WIN32.htm#registry">WIN32</a> Library
+                  (Example: HKEY_CURRENT_USER)
+
+       lpSubKey   String value of the subkey within the hive to access.
+                  This should not have leading or trailing slashes.
+                  (Example: "Software\Procurement Vision\Preferences")
+
+       sItem      String value of the key or item to create/set.
+                  (Example: "appheight")
+                  If "" then the routine sets the value of the
+                  Default item in 95/98.  This will be an unnamed item in NT if
+                  it exists.
+
+       lValue     DWORD value to assign to sItem in the registry.
+
+ RETURNS:
+
+       ERROR_SUCCESS (0) on success of creating/setting key item value, OR
+       error codes from RegOpenKeyEx/CreateKeyEx or RegSetValueEx if unsuccessful.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Mark Butler (Russell.com)
+ Orig   Date: JUN 08, 2000
+ History:
+
+      JUN 08, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getregistrystring"></a>
+  Function GetRegistryString (hKey As Long, lpSubKey As String,
+                              sItem As String) As String
+
+ DESCRIPTION:
+
+      Retrieve the string value of the specified registry entry.
+      Works for NT and 95/98.  The key is opened with QUERY_VALUE access,
+      read, and then closed.
+
+ PARAMETERS:
+
+       hKey       Long value of which Registry Hive to open.
+                  The valid values are defined in the <a href="WIN32.htm#registry">WIN32</a> Library
+                  (Example: HKEY_CURRENT_USER)
+
+       lpSubKey   String value of the subkey within the hive to access.
+                  This should not have leading or trailing slashes.
+                  (Example: "Software\Procurement Vision\Preferences")
+
+       sItem      String value of the key or item to retrieve.
+                  (Example: "appheight")
+                  If "" then the routine returns the value of the
+                  Default item in 95/98.  There is normally no Default item in NT,
+                  but there may be one unnamed item.
+
+ RETURNS:
+
+      The string value stored in sItem or "" if unsuccessful.  Limited in
+      length to 1024 characters.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 05, 2000
+ History:
+
+      APR 05, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="getregistrydwordasstring"></a>
+  Function GetRegistryDWordAsString (hKey As Long, lpSubKey As String,
+                                     sItem As String) As String
+
+ DESCRIPTION:
+
+      Retrieve the DWord value of the specified registry entry as a String.
+      Works for NT and 95/98.  The key is opened with QUERY_VALUE access,
+      read, and then closed.
+
+ PARAMETERS:
+
+       hKey       Long value of which Registry Hive to open.
+                  The valid values are defined in the <a href="WIN32.htm#registry">WIN32</a> Library
+                  (Example: HKEY_CURRENT_USER)
+
+       lpSubKey   String value of the subkey within the hive to access.
+                  This should not have leading or trailing slashes.
+                  (Example: "Software\Procurement Vision\Preferences")
+
+       sItem      String value of the key or item to retrieve.
+                  (Example: "appheight")
+                  If "" then the routine returns the value of the
+                  Default item in 95/98.  There is normally no Default item in NT,
+                  but there may be one unnamed item.
+
+ RETURNS:
+
+      The DWord value stored in sItem or "" if unsuccessful.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Mark Butler (Russell.com)
+ Orig   Date: JUN 02, 2000
+ History:
+
+      JUN 02, 2000    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="wshregread"></a>
+ Function WSHRegRead (sName As String) as String,
+
+ DESCRIPTION:
+
+      Retrieve the value of the specified registry entry as a String, using
+      Windows Scripting Host. Works for NT and 95/98 where WSH is installed.
+      If sName ends with backslash ("\"), this method returns the key instead
+      of the value. sName must must begin with one of following root key names:
+
+      HKCU   HKEY_CURRENT_USER
+      HKLM   HKEY_LOCAL_MACHINE
+      HKCR   HKEY_CLASSES_ROOT
+             HKEY_USERS
+             HKEY_CURRENT_CONFIG
+
+ PARAMETERS:
+
+       sName       String value of which Registry Hive, path and key to open.
+
+ RETURNS:
+
+      The registry key or value named by sName.
+
+ ERRORS:
+
+      The RegRead method supports only REG_SZ, REG_EXPAND_SZ, REG_DWORD, REG_BINARY,
+      and REG_MULTI_SZ data types. If the registry has other data types, RegRead returns
+      DISP_E_TYPEMISMATCH.
+
+ Author : Paul Downes, paul_downes@providian.com
+ Date   : MAY 07, 2001
+ History:
+
+      MAY 07, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="wshregwrite"></a>
+ Function WSHRegWrite(sName As String, vValue As Variant, _
+                   Optional vDataType as Variant) As String
+
+ DESCRIPTION:
+
+      Sets the registry key or value named by sName, using Windows Scripting
+      Host. Works for NT and 95/98 where WSH is installed.  If sName ends
+      with backslash ("\"), this method writes the key instead of the value.
+      sName must must begin with one of following root key names:
+
+      HKCU   HKEY_CURRENT_USER
+      HKLM   HKEY_LOCAL_MACHINE
+      HKCR   HKEY_CLASSES_ROOT
+             HKEY_USERS
+             HKEY_CURRENT_CONFIG
+
+ PARAMETERS:
+
+      sName     = Key or value name to write.
+
+      vValue    = The value data to write into the key or registry value.
+
+      vDataType = (Optional) The data type for the value being stored in the registry.
+
+      RegWrite supports REG_SZ, REG_EXPAND_SZ, REG_DWORD, and REG_BINARY types.
+      If another data type is passed, RegWrite returns E_INVALIDARG.
+
+      RegWrite automatically converts vValue to a string when vDataType is
+      REG_SZ or REG_EXPAND_SZ. If vDataType is REG_DWORD, vValue is converted
+      to an integer. If vDataType is REG_BINARY, vValue must be an integer.
+
+ RETURNS:
+
+      Zero, if successful.
+
+ ERRORS:
+
+      If an unsupported data type is passed, RegWrite returns E_INVALIDARG.
+
+ Author : Paul Downes, paul_downes@providian.com
+ Date   : MAY 07, 2001
+ History:
+
+      MAY 07, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="regobjread"></a>
+ Function RegObjRead(sRegPath_IN as String, sKeyName_IN as String, _
+           vValue_OUT as Variant, Optional vType_OUT as Variant) as Integer
+
+ DESCRIPTION:
+
+      Retrieve the value of the specified registry entry as a String, using
+      Microsoft Registry Object. The Registry Object (regobj.dll) must be
+      present and registered; (should) work for NT and 95/98 where installed.
+
+ PARAMETERS:
+
+      sRegPath_IN = hive\path for the key/value, e.g.
+      "\HKEY_CURRENT_USER\Software\Rational Software\Rational Test\8\Robot\Robot"
+
+      sKeyName_IN = name of the key/value, e.g. "LastScript"
+
+      vValue_OUT  = return the value data for the key/value
+
+      vType_OUT   = (Optional) return the data type for vValue_OUT
+                    May be one of: REG_NONE, REG_SZ, REG_EXPAND_SZ,
+                                   REG_BINARY, REG_DWORD, REG_MULTI_SZ
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail if error, 440 if the name is not in use
+      for a subkey or named value
+
+ ERRORS:
+
+
+ Author : Paul Downes, paul_downes@providian.com
+ Date   : MAY 08, 2001
+ History:
+
+      MAY 08, 2001    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="regobjwrite"></a>
+ Function RegObjWrite(sRegPath_IN as String, sKeyName_IN as String, _
+        vValueData_IN as Variant, Optional vType_IN as Variant) as Integer
+
+ DESCRIPTION:
+
+      Set value data of the specified registry entry, using the Microsoft
+      Registry Object. The Registry Object (regobj.dll) must be present
+      and registered; (should) work for NT and 95/98 where installed.
+
+ PARAMETERS:
+
+      sRegPath_IN = hive\path for the key/value, e.g.
+      "\HKEY_CURRENT_USER\Software\Rational Software\Rational Test\8\Robot\Robot"
+
+      sKeyName_IN = name of the key/value, e.g. "LastScript"
+
+      vValueData_IN = value to store for the named key/value
+
+      vType_IN = (Optional) data type for key/value
+
+ RETURNS:
+
+      sqaPass if successful, sqaFail if error, 440 if regisry path specified
+      is invalid
+
+ ERRORS:
+
+
+ Author : Paul Downes, paul_downes@providian.com
+ Date   : MAY 08, 2001
+ History:
+
+      MAY 08, 2001    Original Release
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

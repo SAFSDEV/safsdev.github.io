@@ -1,0 +1,701 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ListBoxFunctions Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ListBoxFunctions" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=LISTBOX objects in
+      Data-Driven Automation.
+
+ SUPPORTED ACTION COMMANDS:
+
+      SelectTextItem          'Select a Text Item (Single Click)
+      SelectAnotherTextItem   'Select another Text Item (Single Ctrl+Click)
+      ActivateTextItem        'Activate a Text Item (Double Click)
+      SelectPartialMatch      'Select an Item by partial Text match (Single Click)
+      ActivatePartialMatch    'Activate an Item by partial Text match (Double Click)
+
+      SelectUnverifiedTextItem        'Select a Text Item (Single Click--No post-Verification)
+      SelectAnotherUnverifiedTextItem 'Select another Text Item (Single Ctrl+Click--No post-Verification)
+      ActivateUnverifiedTextItem      'Activate a Text Item (Double Click--No post-Verification)
+      SelectUnverifiedPartialMatch    'Select an Item by partial Text match (Single Click--No post-Verification)
+      ActivateUnverifiedPartialMatch  'Activate an Item by partial Text match (Double Click--No post-Verification)
+
+      VerifySelectedItem      'verify the text item is selected
+      VerifyItemUnselected    'verify the text item IS NOT selected
+      VerifySelectedPartialMatch 'verify the item is selected based on a partial match.
+
+      VerifyListContains          'Verify that a list contains a particular item.
+      VerifyListDoesNotContain    'Verify that a list does NOT contain a particular item.
+      VerifyListContainsPartialMatch        'Verify that a list contains a particular item substring.
+      VerifyListDoesNotContainPartialMatch  'Verify that a list does NOT contain a particular item substring.
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 04, 2000
+ History:
+
+      APR 04, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      FEB 12, 2002    (DCOEN) Added html tag handling for
+                                  GetListBoxTextIndex and
+                                  VerifyTextItemSelection functions
+      MAY 06, 2002    (Carl Nagle) Added partial text match ability.
+      JUN 04, 2002    (Carl Nagle) Fixed certain partial text match problems.
+      JUN 05, 2002    (BWEBER) Added some support for Java.
+      JUN 07, 2002    (Carl Nagle) Added UNVERIFIED commands to disable post-Verification.
+                               Also consolidated routines to reduce duplication.
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      OCT 24, 2002    (ASPOTT\Carl Nagle) Enhanced ConvertHTMLEntities usage.
+      OCT 25, 2002    (Carl Nagle) Moved generic HTML ListBox support to HTMLFunctions.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      JAN 30, 2003    (YWANG)  Modified SelectTextItem to cope with VB item longer than 100 chars.
+                               Fixed conflicts between "Unverified" and "PartialMatch"
+      NOV 18, 2003    (Carl Nagle) Added support for Activate on Java ListBox and fixed
+                               an "out of range" box on listitem indices.
+      DEC 09, 2003    (Meera Venkataramani) Added SelectAnotherTextItem Command
+                               Added SelectAnotherUnverifiedTextItem command.
+      DEC 09, 2003    (Carl Nagle) Catching "Out of Range" errors when no data is available
+      APR 05, 2004    (JCRUNK) Added VerifyListContains and VerifyListDoesNotContain Commands
+      AUG 04, 2004    (Carl Nagle) SkipVerify on SelectAnotherTextItem for HTML.
+      OCT 28, 2004    (Carl Nagle) Added VerifyListContainsPartialMatch and VerifyListDoesNotContainPartialMatch
+      OCT 13, 2005    (DCOEN)  Modified VerifyListDoesNotContain to Pass on a 0-sized ListBox
+
+ Copyright (C) SAS Institute Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "ListBoxFunctions.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="HTMLFunctions.htm">HTMLFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="sqautil.htm">sqautil</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#getlistboxindextext">GetListBoxIndexText</a>     BasicLib ListBoxFunctions 
+Function <a href="#getlistboxtextindex">GetListBoxTextIndex</a>     BasicLib ListBoxFunctions 
+Function <a href="#getlistboxselection">GetListBoxSelection</a>     BasicLib ListBoxFunctions 
+Function <a href="#verifylistboxtextselection">VerifyListBoxTextSelection</a>  BasicLib ListBoxFunctions 
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifyselecteditem"></a>
+   Sub VerifySelectedItem (Optional match, Optional unselected)
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular text item is selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to verify as selected.
+
+ INTERNAL USE SUBROUTINE PARAMETERS (subject to change at a whim):
+
+      match       Optional parameter to enable partial matches (match=1).
+                  This is for the PartialMatch set of commands.
+
+      unselected  Optional parameter to test that an item is NOT selected (unselected=1).
+                  This is for the Unselected set of commands.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 04, 2000
+ History:
+
+      APR 04, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      MAY 06, 2002    (Carl Nagle) Added partial text match ability.
+      JUN 07, 2002    (Carl Nagle) Added unselected option to reduce duplicate code.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyitemunselected"></a>
+   Sub VerifyItemUnselected
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular text item is NOT SELECTED.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to verify as NOT selected.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 04, 2000
+ History:
+
+      APR 04, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      MAY 06, 2002    (Carl Nagle) Added partial text match ability.
+      JUN 07, 2002    (Carl Nagle) Merged into VerifySelectedItem.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selecttextitem"></a>
+   Sub SelectTextItem (Optional activate, Optional match, Optional skipVerify)
+
+
+
+ DESCRIPTION:
+
+      Routine to Click an item according to its text value.  After the selection
+      we attempt to verify that the item is actually selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select and verify selection.
+
+ INTERNAL USE SUBROUTINE PARAMETERS (subject to change at a whim):
+
+      activate    Optional parameter to DblClick (activate=1) instead of single click.
+                  This is for the Activate set of commands.
+
+      match       Optional parameter to enable partial matches (match=1).
+                  This is for the PartialMatch set of commands.
+
+      skipVerify  Optional parameter to disable (skipVerify=1) post-selection verifications.
+                  This is for the Unverified set of commands.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 04, 2000
+ History:
+
+      APR 04, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      MAY 06, 2002    (Carl Nagle) Added partial text match ability.
+      JUN 04, 2002    (Carl Nagle) Fixed certain partial text match problems.
+      JUN 07, 2002    (Carl Nagle) Added activate to reduce duplicate code.
+                               Added skipVerify option to disable post-Verification.
+      JAN 15, 2003    (Carl Nagle) SkipVerify will not fail if list cannot be
+                               retrieved prior to selection.
+      JAN 29, 2003    (YWANG)  Modified to cope with long item text.
+                               Fixed conflicts between "Unverified" and "PartialMatch"
+      NOV 18, 2003    (Carl Nagle) Added support for Activate on Java ListBox.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectunverifiedtextitem"></a>
+   Sub SelectUnverifiedTextItem
+
+
+
+ DESCRIPTION:
+
+      Routine to Click an item according to its text value.
+      No check is performed after the selection to verify success.
+      This is typically done for cases when the listbox is only temporary
+      in nature and disappears immediately upon a selection.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 07, 2002
+ History:
+
+      JUN 07, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="activatetextitem"></a>
+   Sub ActivateTextItem
+
+
+ DESCRIPTION:
+
+      Routine to activate (double click) an item according to its text value.
+      After the selection we attempt to verify that the item is actually selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to DblClick and verify.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 04, 2000
+ History:
+
+      APR 04, 2000    Original Release
+      APR 27, 2000    (Carl Nagle) Enabled optional quoted text
+      MAY 06, 2002    (Carl Nagle) Added partial text match ability.
+      JUN 04, 2002    (Carl Nagle) Fixed certain partial text match problems.
+      JUN 07, 2002    (Carl Nagle) Merged with SelectTextItem.
+
+</pre>
+<hr>
+<pre>
+
+<a name="activateunverifiedtextitem"></a>
+   Sub ActivateUnverifiedTextItem
+
+
+ DESCRIPTION:
+
+      Routine to DblClick an item according to its text value.
+      No check is performed after the selection to verify success.
+      This is typically done for cases when the listbox is only temporary
+      in nature and disappears immediately upon a selection.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to DblClick.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 07, 2002
+ History:
+
+      JUN 07, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectpartialmatch"></a>
+   Sub SelectPartialMatch
+
+
+
+ DESCRIPTION:
+
+      Routine to Click and Verify selection of an item according to a partial text match.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive substring of node to select and verify.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 06, 2002
+ History:
+
+      MAY 06, 2002    Original Release
+      JUN 07, 2002    (Carl Nagle) Merged with SelectTextItem.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectunverifiedpartialmatch"></a>
+   Sub SelectUnverifiedPartialMatch
+
+
+ DESCRIPTION:
+
+      Routine to Click an item according to a partial text match.
+      No post-select verification of the selection is performed.
+      This is typically done for cases when the listbox is only temporary
+      in nature and disappears immediately upon a selection.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive substring of node to select.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 07, 2002
+ History:
+
+      JUN 07, 2002    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="activatepartialmatch"></a>
+   Sub ActivatePartialMatch ()
+
+
+ DESCRIPTION:
+
+      Routine to DblClick an item according to a partial text match.
+      After the selection the item is verified as being selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive substring of node to select and verify.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 06, 2002
+ History:
+
+      MAY 06, 2002    Original Release
+      JUN 07, 2002    (Carl Nagle) Merged with SelectTextItem.
+
+</pre>
+<hr>
+<pre>
+
+<a name="activateunverifiedpartialmatch"></a>
+   Sub ActivateUnverifiedPartialMatch ()
+
+
+ DESCRIPTION:
+
+      Routine to DblClick an item according to a partial text match.
+      No check is done after the selection to verify success.  This is typically done
+      when the ListBox is only temporary in nature and disappears immediately after a
+      selection.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive substring of node to DblClick.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: JUN 07, 2002
+ History:
+
+      JUN 07, 2006    Original Release
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifyselectedpartialmatch"></a>
+   Sub VerifySelectedPartialMatch
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular text item is selected based on a partial text match.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive substring of node to verify.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: MAY 06, 2002
+ History:
+
+      MAY 06, 2002    Original Release
+      JUN 07, 2002    (Carl Nagle) Merged with VerifySelectedItem.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectanothertextitem"></a>
+   Sub SelectAnotherTextItem (Optional match, Optional skipVerify)
+
+ DESCRIPTION:
+
+      Routine to Control+Click an item according to its text value. Routine
+      is used when you want to select more that one item in a list Box at the same time.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select and verify selection.
+
+ INTERNAL USE SUBROUTINE PARAMETERS (subject to change at a whim):
+
+      match       Optional parameter to enable partial matches (match=1).
+                  This is for the PartialMatch set of commands.
+
+      skipVerify  Optional parameter to disable (skipVerify=1) post-selection verifications.
+                  This is for the Unverified set of commands.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Meera Venkataramani
+ Orig   Date: DEC 09, 2003
+ History:
+
+      DEC 09, 2003    Original Release
+      AUG 04, 2004    (Carl Nagle) SkipVerify on SelectAnotherTextItem for HTML.
+
+</pre>
+<hr>
+<pre>
+
+<a name="selectanotherunverifiedtextitem"></a>
+   Sub SelectAnotherUnverifiedTextItem (Optional match, Optional skipVerify)
+
+ DESCRIPTION:
+
+      Routine to Control+Click an item according to its text value. Routine is
+      used when you want to select more than one item in a list Box at the same time.
+      No post-select verification of the selection is performed.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of node to select and verify selection.
+
+ INTERNAL USE SUBROUTINE PARAMETERS (subject to change at a whim):
+
+
+      match       Optional parameter to enable partial matches (match=1).
+                  This is for the PartialMatch set of commands.
+
+      skipVerify  Optional parameter to disable (skipVerify=1) post-selection verifications.
+                  This is for the Unverified set of commands.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Meera Venkataramani
+ Orig   Date: DEC 09, 2003
+ History:
+
+      DEC 09, 2003    Original Release
+</pre>
+<hr>
+<pre>
+
+<a name="verifylistcontains"></a>
+   Sub VerifyListContains(Optional mode, Optional fuzzy)
+
+ DESCRIPTION:
+
+      Routine to Verify that a Certain item exists (or doesn't) in a listbox.
+      This routine satisfies:
+
+          VerifyListContains
+          VerifyListDoesNotContain
+          VerifyListContainsPartialMatch
+          VerifyListDoesNotContainPartialMatch
+
+ PARAMETERS:
+
+      mode   0=Contains
+             1=DoesNotContain
+
+      fuzzy  0=full string
+             1=partial match
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Text to look for in the Listbox object
+       6      Optional flag for CaseSensitive verification valid values are
+              "True" and "CASE-SENSITIVE".
+              The default is false or NOT case-sensitive
+
+ ERRORS:
+
+      none
+
+ Orig Author: John Crunk
+ Orig   Date: APR 05, 2004
+ History:
+
+      APR 05, 2004    Original Release
+      OCT 28, 2004    (Carl Nagle) Fixed untrapped errors.
+                      Also combined with DoesNotContain and PartialMatch commands.
+      OCT 13, 2005    (DCOEN)  Modified to Pass on a 0-sized ListBox
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a LISTBOX.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 04, 2000
+ History:
+
+      APR 04, 2000    Original Release
+      MAY 06, 2002    (Carl Nagle) Added partial text match ability.
+      JUN 07, 2002    (Carl Nagle) Added UNVERIFIED commands to disable post-Verification.
+                               Also consolidated routines to reduce duplication.
+      OCT 17, 2002    (Carl Nagle) Reroute fallback to GenericObjectFunctions.
+      OCT 22, 2002    (Carl Nagle) Warn of unimplemented TF and TW record types.
+      DEC 12, 2002    (Carl Nagle) Added support for XSLComponentActions.MAP
+      DEC 09, 2003    (Meera Venkataramani) Added SelectAnotherTextItem command.
+                               Added SelectAnotherUnverifiedTextItem command.
+      APR 05, 2004    (JCRUNK) Added VerifyListContains and VerifyListDoesNotContain
+      OCT 28, 2004    (Carl Nagle) Added VerifyListContainsPartialMatch and VerifyListDoesNotContainPartialMatch
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

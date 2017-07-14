@@ -1,0 +1,409 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic SuiteDriver Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "SuiteDriver" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Application-independent driver for data driven automation with SQA.
+      Used in conjunction with <a href="CycleDriver.htm">CycleDriver</a> and <a href="StepDriver.htm">StepDriver</a>.
+      The three driver routines form the primary data-driven engine for test
+      automation.
+
+      <a href="StepDriver.htm">StepDriver</a> is the primary GUI driver, exercising the AUT and verifying
+      AUT status and data via lists or tables of user-defined instructions.
+      The format of these instructions is easy to understand, is AUT
+      independent, is automation tool independent, and can be used as scripts
+      for manual testing.  They are generally very short, performing only
+      a few simple steps to drive, test, or verify a small piece of a particular
+      application state or function.  For example, one table may verify the text
+      of a set of controls or window.  Another may check that particular
+      menuitems are present and in the proper state.  Another may activate a
+      particular control and ensure the AUT responded accordingly.
+
+      SuiteDriver is the mid-level driver whose data tables are generally
+      user-defined lists of StepDriver tables.  Here the simple StepDriver tables
+      are linked together to form more complex sets of tests.  Each Suite might
+      test an entire area of functionality for a given AUT.
+      For example, there may be a Suite to test the entire Reports section of an
+      app, another to fully test Data entry.
+
+      <a href="CycleDriver.htm">CycleDriver</a> is the highest level driver whose
+      data-tables are generally lists of Suites to provide the SuiteDriver.  Thus
+      this defines the total test for the AUT through the data-driven engine.
+      Since CycleDriver is the highest level of data-driven automation, it is generally
+      invoked by a Robot Script which has been setup to perform a particular Test
+      Cycle.  For example, there may be an Integration Test Cycle, a Systems Test Cycle,
+      a Build Verification Cycle, a Regression Test Cycle, as well as versions of these
+      for different versions of the AUT.
+
+
+      DATA TABLE FORMAT:
+
+          Each command line or record in the provided filename represents the
+          start of a new record/command/entry.
+
+          It is possible for a single command to use multiple lines if its syntax
+          or implementation provides that capability.  This routine, at this time,
+          expects the information it needs to reside on the current command line.
+
+          Blank Lines are ignored.
+
+          For each valid record:
+
+          Field #1:   Represents one of our <a href="#recordtypes">RECORD TYPES</a>.
+          Remaining Fields (2-N) are interpreted based on the RECORD TYPE.
+          Consult the various routines of this driver to determine the format
+          and number of fields needed for each RECORD TYPE.
+
+          If Field #1 is empty, the entire record is skipped.
+
+          If Field #1 contains an entry other than a known record type, we
+          will assume it is the name of a runnable Robot script and will attempt
+          to execute it.  This is called IMPLIED SCRIPT EXECUTION.
+
+          Comment Lines begin with a comment delimiter(s) RECORD TYPE.
+          (Generally, ['] and [;] will be treated as comment lines as well as
+           and record whose first field is empty.)
+
+          All fields not containing variables (see below) within a record can
+          be enclosed in quotation marks to help visually delimit field.
+
+          Valid record fields can be used to set and receive variable values
+          that can be used for the current table and any subsequent tables.
+          Where a field is used to set a value it is also immediately replaced
+          by that value for immediate use.  Variables are references by immediately
+          preceding their names with a caret (^).  The symbol must be the first
+          non-whitespace character in the field. Variable references cannot reside
+          inside of quotation marks or they will be left as literal strings.
+
+          It is important to note that a field that is replaced by a variable's
+          value will be enclosed in quotes.
+
+          See <a href="DDVariableStore.htm">DDVariableStore</a> for more information on the use of variables in
+          these data tables.  Specifically, <a href="DDVariableStore.htm#DDVSubstituteVariables">DDVSubstituteVariables</a> and
+          <a href="DDVariableStore.htm#DDVExtractVariables">DDVExtractVariables</a>.
+
+
+      SAMPLE DATA TABLE:
+
+      ' Data Table Sample
+      ' Some Record Types:
+      ' B = Define a Named Block within the file
+      ' C = Driver Command
+      ' S = SKIP this Record
+      ' T = Perform a ComponentFunction action or test
+
+      c_ Version "1.0"
+      c_ SetApplicationMap_ "AppMap.map"
+      c_   WaitForGUI     _ LoginWindow_ LoginWindow_ 30
+
+      ' Do some Data Driven Login tests here....
+      t_ Login _ "," _ ^userid = "MyUserID" _ ^password = "MyPassword"
+      t_ VerifyLogin _ ","
+
+
+      A user or developer would normally only call the <a href="#stsuitedriver">STSuiteDriver</a>
+      routine.  This is the entry point used by <a href="CycleDriver.htm">CycleDriver</a> to
+      perform data-driven automation.  All other routines are called by the <a href="#stsuitedriver">STSuiteDriver</a>
+      routine as required.
+      (Some multi-line test commands may eventually call <a href="#stgetlineinput">STGetLineInput</a>.)
+
+      NOTE:
+               ****       ****        ****        ****        ****
+      SQARobot must be configured to "Continue Execution" upon Script Command
+      Failures in order for this to work properly.  Where appropriate we set
+      flags and status to recognize, report, and work with these failures.
+               ****       ****        ****        ****        ****
+
+ This library is defined by:
+
+ SuiteDriver.SBH      Export Header File
+ SuiteDriver_X.SBH    Constants, Globals, Types etc.
+ SuiteDriver.SBL      Sourcecode and Detailed Documentation
+ SuiteDriver.SBX      Compiled executable library
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 02, 1999
+ History:
+
+      SEP 02, 1999    Original Release
+      SEP 07, 1999    (Carl Nagle) Added stepFac to some routines.
+      JUL 20, 2000    (Carl Nagle) Modified for variables and streamlined.
+      JAN 21, 2001    (Carl Nagle) Redesigned reentrancy and the STACK.
+      APR 23, 2001    (Carl Nagle) Removed STCallScriptMode Global and related constants.
+                               Consolidated functionality into DDDriverCommands lib.
+      OCT 01, 2001    (Carl Nagle) Enabling DEBUG MODES and enhanced expressions.
+      OCT 18, 2002    (Carl Nagle) Added Expected Failure support.
+      APR 01, 2005    (RDUCHARME) Added logic to support table caching
+      MAY 14, 2005    (Carl Nagle) Fixed EOF detection for non-cached branching.
+      JUN 06, 2005    (Carl Nagle) Fixed blank field 1 handling to treat as comment.
+      DEC 13, 2005    (Carl Nagle) Added support for safsActiveSuite DDVariable.
+      FEB 07, 2006    (Carl Nagle) Added support .statusinfo and BRANCH_TO_BLOCKID return code
+      MAR 20, 2007    (Carl Nagle) Added support to ignore UTF-8 leader characters.
+
+ Copyright (C) SAS Institute Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriver.htm">SuiteDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="Cache.htm">Cache</a>_X.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="BufferUtilities.htm">BufferUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="CycleDriverSTACK.htm">CycleDriverSTACK</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriverSTACK.htm">SuiteDriverSTACK</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriverSTACK.htm">StepDriverSTACK</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="SQAUTIL.htm">SQAUTIL</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="DDVariableStore.htm">DDVariableStore</a>.SBH"
+<li>'$INCLUDE: "<a href="FileUtilities.htm">FileUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="CycleDriverSTACK.htm">CycleDriverSTACK</a>.SBH"
+<li>'$INCLUDE: "<a href="SuiteDriverSTACK.htm">SuiteDriverSTACK</a>.SBH"
+<li>'$INCLUDE: "<a href="StepDriverSTACK.htm">StepDriverSTACK</a>.SBH"
+<li>'$INCLUDE: "<a href="CycleDriver.htm">CycleDriver</a>.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>.SBH"
+<li>'$INCLUDE: "<a href="Cache.htm">Cache</a>.SBH"
+<li>'$INCLUDE: "<a href="DDDriverCommands.htm">DDDriverCommands</a>.SBH"
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+   *** NO SUPPORTED ACTION COMMANDS SECTION FOUND ***
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="stprocesstestrecord"></a>
+  Function STProcessTestRecord (stepFac As LogFacility) As Integer
+
+ DESCRIPTION:
+
+      At this point the Driver has determined we are dealing with a Test Record.
+      A Test Record is one containing a data table filename for StepDriver to execute.
+
+      Field #1:   The TEST record type (T).
+
+      Subsequent fields would be as follows (with a separator between each field):
+
+      Field:  #2                 #3
+      ================      =============
+      StepDataFilename        Separator
+
+      FILENAME:   A filename or path suitable for the <a href="StepDriver.htm#sdstepdriver">StepDriver.SDStepDriver</a> routine.
+                  (No error checking is done here.  It is done in StepDriver.)
+
+      SEPARATOR:  (Optional)  Character(s) to use as the field separator for
+                  specified file.  Normally, you would only specify this if the
+                  separator is different than the one currently in use.
+                  The default is to use the one currently in use by SuiteDriver.
+
+      NOTE:
+      A user or developer would not normally call this routine.  This
+      routine is intended to be called from the STSuiteDriver routine as
+      deemed necessary by the input records of the data table provided to
+      the STSuiteDriver routine.
+
+ PARAMETERS:
+
+      stepFac     LogFacility to log StepDriver messages to.
+
+ RETURNS:
+
+      STGeneralScriptFailure if we were unable to call StepDriver
+                             (generally, a missing table filename)
+
+      STNoScriptFailure      if we DID call StepDriver
+                             (StepDriver failures CAN have occurred, however)
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 02, 1999
+ History:
+
+      SEP 02, 1999    Original Release
+      SEP 07, 1999    (Carl Nagle) Added stepFac to some routines.
+      JUL 20, 2000    (Carl Nagle) Modified for variables and streamlined.
+      OCT 01, 2001    (Carl Nagle) Enabling DEBUG MODE.
+
+</pre>
+<hr>
+<pre>
+
+<a name="stsuitedriver"></a>
+  Sub STSuiteDriver (filename As String, separator As String,
+                     fac As LogFacility, stepFac As LogFacility, Optional mode)
+
+ DESCRIPTION:
+
+      This is the routine that the CycleDriver or other user utility should
+      call within this library.  All the other routines are called from this
+      routine based upon the input records of the provided data table.
+
+      DATA TABLE FORMAT:
+
+          Each command line or record in the provided filename represents the
+          start of a new record/command/entry.
+          It is possible for a single command to use multiple lines if its syntax
+          or implementation provides that capability.  This routine, at this time,
+          expects the information it needs (only the record type) to reside on the
+          current command line.
+
+          Blank Lines are ignored.
+
+          For each valid record:
+          Field #1:   Represents one of the driver <a href="#recordtypes">RECORD TYPES</a>.
+          Remaining Fields (2-N) are interpreted based on the RECORD TYPE.
+          Consult the various routines of this driver and <a href="DDDriverCommands.htm">DDDriverCommands</a> to
+          determine the format and number of fields needed for each RECORD TYPE.
+
+          If Field #1 is empty, then the entire record is skipped.
+
+          If Field #1 is an unrecognized record type, the Driver will attempt to
+          execute it as a Script.  In that case, subsequent fields in the input
+          record can contain any parameters or DDVariables the script might want or need.
+          See <a href="UsingDDVariables.htm">Using DDVariables</a> for more information on this nifty capability!
+
+          Comment Lines begin with a comment delimiter RECORD TYPE--a single quote (').
+          Lines whose first non-blank character is a semicolon (;) are also ignored.
+
+      The routine does not have a return value since it is a subroutine.
+      However, upon exit, the <a href="#globals">GLOBAL</a> SuiteDriverInfo will contain all the status
+      information available on the results of the call.
+
+ PARAMETERS:
+
+      filename    String filename to the data table to use as input.
+                  The routine tries to locate the file as if it were a full path.
+                  If it doesn't find it then it attempts to locate the file
+                  relative to the repository, the project, the project\datapool.
+
+      separator   field separator string to isolate fields within each
+                  data table record.
+                  If not provided(""), uses last defined separator.
+                  If none ever provided then uses a comma (,).
+
+      fac         LogFacility to use for SuiteDriver logging.
+
+      stepFac     LogFacility to use for StepDriver logging.
+
+      mode        Optional parameter specifying in what mode SuiteDriver should
+                  be running.  By default, SuiteDriver runs in StandAlone mode
+                  and outputs additional test information for each
+                  data table it processes.  In a Cycle Driven mode this additional
+                  information may not be desirable.
+                  See <a href="#modes">Suite Driver Modes</a> in the CONSTANTS section
+                  for valid SuiteDriver modes.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 02, 1999
+ History:
+
+      SEP 02, 1999    Original Release
+      SEP 07, 1999    (Carl Nagle) Added stepFac to some routines.
+      JUL 20, 2000    (Carl Nagle) Modified for variables and streamlined.
+      JAN 21, 2001    (Carl Nagle) Redesigned reentrancy and the STACK.
+      APR 23, 2001    (Carl Nagle) Removed STCallScriptMode Global and related constants.
+                               Consolidated functionality into DDDriverCommands lib.
+      JUN 20, 2001    (Carl Nagle) Added FlowControl and Error Recovery Handling.
+      JUN 21, 2001    (Carl Nagle) Changed Error return to DDU_SCRIPT_NOT_EXECUTED.
+      OCT 01, 2001    (Carl Nagle) Enabling DEBUG MODES and enhanced expressions.
+      OCT 18, 2002    (Carl Nagle) Added Expected Failure support.
+      APR 01, 2005    (RDUCHARME) Added logic to support table caching
+      Apr 22, 2005    (Carl Nagle) Update to allow initialization of caching.
+      MAY 14, 2005    (Carl Nagle) Fixed EOF detection for non-cached branching.
+      JUN 06, 2005    (Carl Nagle) Fixed blank field 1 handling to treat as comment.
+      DEC 13, 2005    (Carl Nagle) Added support for safsActiveSuite DDVariable.
+      FEB 07, 2006    (Carl Nagle) Added support .statusinfo and BRANCH_TO_BLOCKID return code
+      MAR 20, 2007    (Carl Nagle) Added support to ignore UTF-8 leader characters.
+
+</pre>
+<hr>
+<pre>
+
+<a name="stgetlineinput"></a>
+  Function STGetLineInput(fileref As Integer) As String
+
+ DESCRIPTION:
+
+      Routine retrieves and returns the next line from the fileref provided
+      and increments the <a href="#globals">SuiteDriverInfo.linecount</a> counter.
+      The routine returns the line--which is a result of a Line Input #fileref
+      statement--unmodified.
+
+      All routines which input records from the SuiteDriver data table should
+      call this routine for their line input in order to maintain an accurate
+      linecount.
+
+
+ PARAMETERS:
+
+      fileref     Integer from file's OPEN statement.
+
+ RESULTS:
+
+      String  returned from Line Input statement unmodified.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Carl Nagle
+ Orig   Date: SEP 02, 1999
+ History:
+
+      SEP 02, 1999    Original Release
+      APR 01, 2005    (RDUCHARME) Added logic to support table caching
+      MAY 14, 2005    (Carl Nagle) Fixed EOF detection for non-cached branching.
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

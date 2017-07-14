@@ -1,0 +1,318 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic ToolBarFunctions Library</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "ToolBarFunctions" Library</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+      Routines and utilities to work on SQA Type=TOOLBAR objects in
+      Data-Driven Automation.
+      At this time, the library cannot support Robot V2003 .NET proxies.
+      For V2003 .NET resort to the Generic Click command requiring coordinates.
+
+ SUPPORTED ACTION COMMANDS:
+
+      ClickButtonText                 'Click a toolbar button using the button's text
+      ClickButton                     'Same as ClickButtonText (backwards compatibility)
+      ClickUnverifiedButtonID         'Click a toolbar button using the button's ID
+      ClickUnverifiedButtonText       'Click a toolbar button using the button's text
+      VerifyButtonClicked             'Verify the button item is clicked or selected
+      VerifyButtonUnClicked           'Verify the button item is not clicked or selected
+      VerifyButtonText                'Verify the button item is exists
+      VerifyButtonCount               'Verify the button count
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: FEB 18, 2003
+ History:
+
+      FEB 18, 2003    Original Release
+      JUL 01, 2005    Added ClickButtonItemID command (chschr)
+      JUL 01, 2005    Removed itemID and case sensitivity parameters
+                      from ClickUnverifiedButtonText (chschr)
+      JUL 08, 2005    Removed verify processing from ClickButtonText.
+                      This command is now ClickUnverifiedButtonText (chschr)
+      AUG 03, 2005    (Carl Nagle) Cleanup and 'CaseInsensitive' support added.
+
+ Copyright (2003) Management Science Associates Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#declarations">Declarations</a> 
+ <a href="#constants">Constants</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#user_defined">User-Defined Types</a>
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "C:\Program Files\Rational\Rational Test\sqabas32\ToolBarFunctions.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="ApplicationUtilities.htm">ApplicationUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDUtilities.htm">DDUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StepDriver.htm">StepDriver</a>_X.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>_X.SBH"
+<li>'$INCLUDE: "<a href="DDGUIUtilities.htm">DDGUIUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="GenericMasterFunctions.htm">GenericMasterFunctions</a>.SBH"
+<li>'$INCLUDE: "<a href="LogUtilities.htm">LogUtilities</a>.SBH"
+<li>'$INCLUDE: "<a href="StringUtilities.htm">StringUtilities</a>.SBH"
+</ul>
+<hr>
+<a name="declarations"></a>
+<h2>Exported Declarations</h2>
+<pre>
+Function <a href="#gettoolbarindextext">GetToolBarIndexText</a>     BasicLib ToolBarFunctions 
+Function <a href="#gettoolbartextindex">GetToolBarTextIndex</a>     BasicLib ToolBarFunctions 
+Function <a href="#gettoolbarselection">GetToolBarSelection</a>     BasicLib ToolBarFunctions 
+Function <a href="#verifytoolbarbuttontextselection">VerifyToolBarButtonTextSelection</a>  BasicLib ToolBarFunctions 
+Function <a href="#verifytoolbarbuttontextexists">VerifyToolBarButtonTextExists</a>  BasicLib ToolBarFunctions 
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="verifybuttoncount"></a>
+   Sub VerifyButtonCount ()
+
+
+ DESCRIPTION:
+
+      Routine to verify total button presents in the Toolbar.  Count includes buttons which are not
+      visible as well.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Integer Value (Button count) on the Toolbar.
+
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: Feb 21, 2003
+ History:
+
+      FEB 21, 2003    Original Release
+      FEB 28, 2006    (Carl Nagle) Added .NET support
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifybuttontext"></a>
+   Sub VerifyButtonText ()
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular Button Text item exists.  If comparison value is missing or
+      wrongly populated then default comparison is case-sensitive.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of button to verify as exists.
+      [6]     Optional string comparison mode. (Default to case-sensitive mode).
+              [1] For Case-insensitive comparison.
+              [CASEINSENSITIVE] For Case-insensitive comparison.
+              [CASE-INSENSITIVE] For Case-insensitive comparison.
+              Omit or set to any other value to perform a case-sensitive string comparison.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: Feb 21, 2003
+ History:
+
+      FEB 21, 2003    Original Release
+      AUG 03, 2005    (Carl Nagle) Cleanup and 'CaseInsensitive' support added.
+
+</pre>
+<hr>
+<pre>
+
+<a name="verifybuttonclicked"></a>
+   Sub VerifyButtonClicked (Optional unselected)
+
+
+ DESCRIPTION:
+
+      Routine to verify a particular Button item is clicked.  Button Text comparison is
+      case-sensitive by default.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of button to verify as clicked.
+
+ INTERNAL USE SUBROUTINE PARAMETERS (subject to change at a whim):
+
+      unselected  Optional parameter to test that an item is NOT selected (unselected=1).
+                  This is for the Unselected set of commands.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: Feb 19, 2003
+ History:
+
+      FEB 19, 2003    Original Release
+      AUG 02, 2005    (Carl Nagle) refactored to use TBFVerifyButtonTextSelection
+
+</pre>
+<hr>
+<pre>
+
+<a name="clickunverifiedbuttonid"></a>
+   Sub ClickUnverifiedButtonID ()
+
+
+ DESCRIPTION:
+
+      Routine to Click a toolbar button according to its ID.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      ID of button to click.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Chris Schroter
+ Orig   Date: JUL 01, 2005
+ History:
+
+      JUL 01, 2005    Original Release
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="clickbuttontext"></a>
+   Sub ClickButtonText (Optional skipVerify)
+
+
+ DESCRIPTION:
+
+      Routine to Click an item(Button) according to its text(Key) value.  After the selection
+      we attempt to verify that the item is actually selected.
+
+      The routine expects that the given object already has Context or Focus.
+      It also expects that Global StepDriverTestInfo contains all the information
+      it needs to perform its function.
+
+ DATA TABLE PARAMETERS:
+
+      FLD     CONTENT
+      ---     ------------------------------
+       5      Case-sensitive text of button to click and verify click.
+
+      [6]     Optional string comparison mode. (Default to case-sensitive mode).
+              [1] For Case-insensitive comparison.
+              [CASEINSENSITIVE] For case-insensitive comparison
+              [CASE-INSENSITIVE] For case-insensitive comparison
+              Omit or set to any other value to perform a case-sensitive string comparison.
+
+ INTERNAL USE SUBROUTINE PARAMETERS (subject to change at a whim):
+
+      skipVerify  Optional parameter to disable (skipVerify=1) post-selection verifications.
+                  This is for the Unverified set of commands.
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: FEB 19, 2003
+ History:
+
+      FEB 19, 2003    Original Release
+      AUG 03, 2005    (Carl Nagle) Cleanup and 'CaseInsensitive' support added.
+
+
+</pre>
+<hr>
+<pre>
+
+<a name="main"></a>
+   Sub Main ()
+
+ DESCRIPTION:
+
+      Entry point to process a StepDriver ACTION COMMAND on a TOOLBAR.
+      The routine merely reads the Global StepDriverTestInfo.testcommand and
+      calls the appropriate subroutine to process it.
+
+      If the testcommand is unrecognized it will log a WARNING_MESSAGE and
+      exit with a WARNING status.
+
+ DATA TABLE PARAMETERS:
+
+      none    -   the called subroutine has the requirements
+
+ ERRORS:
+
+      none
+
+ Orig Author: Natarajan Balashanmugam (Nat)
+ Orig   Date: FEB 18, 2003
+ History:
+
+      FEB 18, 2003    Original Release
+      JUL 01, 2005    Added ClickButtonItemID command (chschr)
+      JUL 01, 2005    Removed itemID and case sensitivity parameters
+                      from ClickUnverifiedButtonText (chschr)
+      JUL 08, 2005    Removed verify processing from ClickButtonText.
+                      This command is now ClickUnverifiedButtonText (chschr)
+      FEB 28, 2006    (Carl Nagle) added support for .NET
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

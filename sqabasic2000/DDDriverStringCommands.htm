@@ -1,0 +1,355 @@
+<HTML>
+<HEAD>
+<TITLE>SQABasic DDDriverStringCommands Script</TITLE>
+</HEAD>
+<BODY>
+<H2>SQABasic "DDDriverStringCommands" Script</H2>
+<pre>
+ MODULE DESCRIPTION:
+
+ The documentation for each function is provided as reference for DDE users
+ when developing DDE test tables.  This DDE format and syntax information IS
+ intended for public use and does not normally change with the underlying code.
+
+ The routines themselves are not intended for public use.
+ Their internal functionality and their declaration prototypes
+ are subject to change as deemed necessary to support the drivers
+ mentioned above.
+
+
+ This library is defined by:
+
+ DDDriverStringCommands.SBL      Sourcecode and Detailed Documentation
+ DDDriverStringCommands.SBX      Compiled executable library
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 26, 2005
+ History:
+
+      APR 26, 2005    Original Release
+      OCT 24, 2005    DCOEN - Added Get Field Function
+      DEC 21, 2005    Carl Nagle for RDANTONI -- many new string handling commands
+
+ Copyright (2005) SAS Institute Inc. All rights reserved.
+ GNU General Public License: http://www.opensource.org/licenses/gpl-license.php
+</pre>
+<a href="#actioncommands">Action Commands</a> 
+ <a href="#globals">Global Variables</a> 
+ <a href="#routine_details">Routine Details</a>
+<hr>
+<h2>User Dependencies:</h2>
+(stuff the developer's library/script $INCLUDES at compile time.)<br>
+(Note: The order of items may matter and may be different for your code.)
+<p>
+<ul>
+<li>'$INCLUDE: "<a href="DDEngine.htm">DDEngine</a>.SBH"
+</ul>
+<h2>Internal Dependencies:</h2>
+(stuff this library needs at compile time.)
+<ul>
+<li>(none)
+</ul>
+<hr>
+<a name="actioncommands"></a>
+<h2>DDE Action Commands</h2>
+<pre>
+   *** NO SUPPORTED ACTION COMMANDS SECTION FOUND ***
+</pre>
+<hr>
+<a name="globals"></a>
+<h2>Globals</h2>
+<pre>
+    (none)
+</pre>
+<hr>
+<a name="routine_details"></a>
+<h2>Routine Details</h2>
+<pre>
+<pre>
+
+<a name="ddedriverstringcommand"></a>
+  Function DDEDriverStringCommand(DriverCMD As String, guiInfo As AUGUIInfo, statusInfo As AUStatusInfo) As Integer
+
+ DESCRIPTION:
+
+      Processes a DDE DRIVER COMMAND from the AUGUIInfo.InputRecord provided.
+      Driver commands are not treated as test commands but instructions to
+      the Drivers for setting parameters of the test environment, running
+      other scripts, or other stuff (whatever gets in here).
+
+      Different driver commands have different parameters as described below.
+      For reference, the first fields are defined below:
+
+      Field #1:   The "C" = DRIVER COMMAND.
+      Field #2:   The Driver Command to execute. (see definitions below).
+
+      Example:
+
+          c , SetApplicationMap , "AppMap.map"
+
+
+      Parameters must be placed in the order specified.
+      Parameters numbered in brackets are optional.
+      However, to use an optional parameter which follows other optional
+      parameters all the preceding parameters must exist or at least have
+      field delimited space reserved for them.
+
+ GetField -- store a specific field from a larger record into a DDVariable.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3 = The input string which contains the field to be returned
+       4 = index, which field to return (0 is 1st field)
+       5 = delimiter(s) - one or more single characters used as delimiters
+       6 = the variable name to receive the returned field value
+
+
+ GetSystemEnviron -- store a system environment value into a DDVariable
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3 = Environ variable name
+       4 = resultVar variable name
+
+
+ Length -- Store the length of a string in a DDVariable
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to retrieve the length from.
+       4      variablename to receive the length value.
+
+
+ Concatenate -- concatenates 2 strings together
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      String1 to concatenate.
+       4      String2 to concatenate.
+       5      variable name to receive the result of string1 & string2
+
+
+ ToUpperCase -- Converts all source characters to upper case.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      variable name to receive the new string
+
+
+ ToLowerCase -- Converts all source characters to lower case.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      variable name to receive the new string
+
+
+ LeftTrim -- Trim all leading space and tab characters from the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      variable name to receive the new string
+
+
+ RightTrim -- Trim all trailing space and tab characters from the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      variable name to receive the new string
+
+
+ Trim -- Trim all leading and trailing space and tab characters from the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      variable name to receive the new string
+
+
+ Left -- Retrieve the leftmost N character substring from the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      length (The number of characters to copy).
+       5      variable name to receive the new string
+
+
+ Right -- Retrieve the rightmost N character substring from the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      length (The number of characters to copy).
+       5      variable name to receive the new string
+
+
+ Substring -- Retrieve a substring from the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      start (The 0-based index to begin the copy).
+       5      length (The number of characters to copy).
+       6      variable name to receive the new string
+
+
+ Index -- find the location (index) of a substring in the source.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      start (The position in sourceString$ to begin the search. (0=first character in string)).
+       4      sourceString (The string to search).
+       5      findString (The string to find).
+       6      variable name to receive the new string
+      [7]     Optional an integer for the method of comparison. (Default to case-sensitive mode).
+              [0 or CASESENSITIVE] For Case-sensitive comparison.
+              [1 or CASEINSENSITIVE] For Case-insensitive comparison.
+              Omit or set to any other value to perform a case-sensitive string comparison.
+
+              returns -1 under the following conditions:
+              start%   is greater than the length of findString$.
+              findString$ is not found.
+
+              If findString$ is a null string (""), returns the value of start.
+
+
+ CleanString -- clean source of all chars not between ASC 31 and 127.
+                Replace "bad" chars with space.
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString
+       4      variable name to receive the new string
+
+
+ Replace -- This routine mimics the FindAndReplace library routine implemented in StringUtilities.sbl
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to copy and do find and replace on. It is not modified.
+       4      find    (string to locate for replacement within source.)
+       5      replace (string to substitute in place of find string.)
+       6      variable name to receive the new string
+      [7]     Optional an integer for the method of comparison. (Default to case-sensitive mode).
+              [0 or CASESENSITIVE] For Case-sensitive comparison.
+              [1 or CASEINSENSITIVE] For Case-insensitive comparison.
+              Omit or set to any other value to perform a case-sensitive string comparison.
+
+
+ GetTrimmedField -- retrieve a trimmed field from a delimited string
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to parse.
+       4      0-based field to extract from sourceString
+       5      delimiter used in sourceString to separate fields
+       6      variable name to receive the trimmed field
+
+
+ GetFixedWidthField - retrieve the nth field in sourceString from fields having common widths
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to parse
+       4      0-based field to extract from sourceString
+       5      fixed width used for all fields
+       6      variable name to receive the field value
+
+
+ GetNextDelimiterIndex -- find the 1-based index of the next delimiter in sourceString
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to parse
+       4      0-based start index to begin the search
+       5      delimiter(s) to search for
+       6      variable name to receive the index
+
+              returns 0 if the no delimiter is found
+
+
+ GetFieldCount -- return the number of delimited fields found in the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to parse
+       4      0-based start index to begin the search
+       5      individual delimiter(s) used to separate fields
+       6      variable name to receive the field count
+
+
+ GetMultiDelimitedFieldCount -- return the number of delimited fields found in the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to parse
+       4      1-based start index to begin the search
+       5      delimiter (multiple char substring acting as one delimiter)
+       6      variable name to receive the field count
+
+
+ GetMultiDelimitedField -- return the Nth multidelimited field found in the source
+
+      FLD     CONTENT
+      ---     ------------------------------
+       3      sourceString to parse
+       4      1-based field index to retrieve
+       5      1-based start index for the search
+       6      delimiter (multiple char substring acting as one delimiter)
+       7      variable name to receive the field value
+
+
+ GetSystemUser -- return the name of the current system user
+
+      FLD     CONTENT
+      ---     ------------------------------
+       6      variable name to receive the user id
+
+
+  See the Keywords Reference document for supported keywords and syntax.
+
+      This DDEDriver Command routine is not intended for public use.
+      Internal functionality and declaration prototypes
+      are subject to change as deemed necessary to support the core drivers.
+
+
+ PARAMETERS:
+
+      DriverCMD       from the calling DDDriverCommands library.
+      AUGUIInfo       from the calling Driver
+      AUStatusInfo    from the calling Driver
+
+ RETURNS:
+
+      Normally DDU_NO_SCRIPT_FAILURE unless something unforeseen causes the
+      routine to exit prematurely.
+
+      Returns DDU_SCRIPT_NOT_EXECUTED if no matching driver command was found.
+
+ ERRORS:
+
+       none
+
+ Orig Author: Carl Nagle
+ Orig   Date: APR 26, 2005
+ History:
+
+      APR 26, 2005    Original Release
+      OCT 24, 2005    DCOEN - GetField command added
+      NOV 08, 2005    (Carl Nagle) - Added var index for GetField to work.
+      DEC 21, 2005    Carl Nagle for RDANTONI -- many new string handling commands
+
+</pre>
+<hr>
+</pre>
+<pre>
+Copyright (C) SAS Institute
+GNU General Public License: http://www.opensource.org/licenses/gpl-license.php 
+==============================================================================
+</pre>
+</BODY>
+</HTML>

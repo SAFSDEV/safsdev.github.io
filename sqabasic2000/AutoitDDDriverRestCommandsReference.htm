@@ -1,0 +1,1079 @@
+<HTML xmlns="http://www.w3.org/TR/REC-html40"><HEAD>
+<TITLE>Autoit DDDriverRestCommands</TITLE>
+<LINK rel="stylesheet" href="rrafs.css" type="text/css"/>
+</HEAD><BODY><DIV NAME="top" ID="top">
+		  <H3>Autoit DDDriverRestCommands</H3>
+		  <SMALL>Last Updated:<script language="JavaScript">document.write(document.lastModified)</script></SMALL>
+<BR/>
+<BR/>
+<DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+				REST Driver Commands for handling Response like store,
+				delete etc.
+			</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+					This keyword library provides Driver Commands that
+					can be used by all three DDE Drivers--CycleDriver,
+					SuiteDriver, and StepDriver. That means they can be
+					used in any keyword driven test tables regardless of
+					the test tables level--Cycle, Suite, or Step.
+				</p>
+<p>
+					Each different driver command has different
+					parameters as described in its documentation. For
+					reference, the first fields of ALL Driver Command
+					test records are defined below:
+				</p>
+<dl>
+<dt>Field #1</dt>
+<dd>
+						The "C" = DRIVER COMMAND record type specifier.
+					</dd>
+<dt>Field #2</dt>
+<dd>The Driver Command keyword.</dd>
+</dl>
+<p>Example:</p><code>
+					C, RestStoreResponse, responseId, varnamePrefix
+				</code><p>
+					Driver Command parameters must be placed in the test
+					record in the field position specified in the
+					documentation. Some parameters are optional.
+					However, the field associated with that parameter
+					must be honored. If you wish to skip an optional
+					parameter you must still provide an empty field for
+					that parameter.
+				</p>
+<p>Example:</p><code>
+					C, LaunchApplication, NOTEPAD, NOTEPAD.EXE, , , "AppMap.map"
+				</code><p>
+					The above example shows two optional fields after
+					NOTEPAD.EXE which are given no value(skipped).
+				</p></detailed_desc><BR/>
+		</DIV>
+</DIV>
+<BR/>
+		<DIV NAME="list" ID="list">
+		  <A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<TABLE cellspacing="3" border="1" cellpadding="2">
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestCleanResponseMap' HREF='#detail_RestCleanResponseMap' >RestCleanResponseMap</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Delete REST response (and request if it is stored) from the internal Map.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestDeleteResponse' HREF='#detail_RestDeleteResponse' >RestDeleteResponse</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+					Delete a REST response (and request if stored) from the persistent storages.
+				</TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestDeleteResponseStore' HREF='#detail_RestDeleteResponseStore' >RestDeleteResponseStore</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Delete ALL REST responses (and requests if stored) from the persistent storages.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadersLoad' HREF='#detail_RestHeadersLoad' >RestHeadersLoad</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Load headers from a file.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestStoreResponse' HREF='#detail_RestStoreResponse' >RestStoreResponse</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>Save a REST response into a persistent storage.</TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestVerifyResponse' HREF='#detail_RestVerifyResponse' >RestVerifyResponse</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>Verify a REST response is what is expected.</TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestVerifyResponseContains' HREF='#detail_RestVerifyResponseContains' >RestVerifyResponseContains</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>Verify a REST response contains what is expected.</TD>
+</TR>
+</TABLE>
+<HR/>
+</DIV>
+		<DIV NAME="detail" ID="detail">
+		  <H3><A NAME='detail_RestCleanResponseMap'></A>Autoit DDDriverRestCommands::<BIG>RestCleanResponseMap</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Delete REST response (and request if it is stored) from the internal Map.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    Delete a REST response (and request if it is stored) from the internal Map.
+                    The REST response/request is stored internally in a Map of pair (responsID, Response).
+                    <b>
+                        BE CAREFUL WHNE CALLING THIS KEYWORD! It will clean Response from internal Map, and
+                        can cause other keyword failing to work.
+                    </b></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>[ <B>responseID</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The ID used to delete Response Object from internal Map.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            Every single Request generates a new Response, which will be stored
+                            in a map internally. This responseID is the key to get that Response
+                            Object from that map. This responseID should be generated by SAFS after
+                            executing a REST request, such as GET, POST, DELETE, PUT etc.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestCleanResponseMap, responseID</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Delete Response identified by 'responseID' from internal Map.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestCleanResponseMap</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Delete all Responses from internal Map, which means the internal Map
+                            will be cleaned up.<br><b>BE CAREFUL WHNE CALLING THIS KEYWORD! It can cause other keyword fails to work.</b></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestDeleteResponse'></A>Autoit DDDriverRestCommands::<BIG>RestDeleteResponse</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+					Delete a REST response (and request if stored) from the persistent storages.
+				</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+					Delete a REST response (and request if stored) from the persistent storages.
+					The REST response/request is supposed to be in the persistent storages.
+					The response/request can be in more than one type of persistence storage, and
+					it can be a series of variables, a file or something else, please refer to 
+					explanation of parameters of keyword <a href="#detail_RestStoreResponse"><b>RestStoreResponse</b></a>.
+					For example, if the Response/Request is stored be in a XML file, a JSON file 
+					and "a series of variables" at the same time, then this keyword will delete 
+					all of them (XML file, JSON file and variables).
+				</detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>responseID</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+							The ID of the Response/Request (stored in persistence storages) to be deleted.
+						</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                                The Response/Request can stored be in more than one type of persistence storage; 
+                                For example, it can be in a XML file, a JSON file and "a series of variables" at the same time. 
+                                This keyword will delete all of them.<br>
+	                            Please refer to keyword <a href="#detail_RestStoreResponse"><b>RestStoreResponse</b></a> if you want to know exactly what type
+	                            of persistence storage can be used to save a REST response/request.
+                            </p></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestDeleteResponse, ResponseID</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+							Delete REST response/request (identified by ResponseID) from persistence storages.
+						</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+						    If the response/request (identified by ResponseID) has be stored to
+						    <b>variables</b> prefixed with 'BayerCustomerGet' and <b>JSON</b> file 'BayerCustomerGet.json'.
+                            The variables listed as below will be deleted:
+                            <ul>
+<li>BayerCustomerGet.Response.Id</li>
+<li>BayerCustomerGet.Response.StatusCode</li>
+<li>BayerCustomerGet.Response.HttpVersion</li>
+<li>etc...</li>
+</ul>
+<ul>
+<li>BayerCustomerGet.Request.Method</li>
+<li>BayerCustomerGet.Request.URI</li>
+<li>etc...</li>
+</ul>
+	                        The file 'BayerCustomerGet.json' will also be deleted.
+						</detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestDeleteResponseStore'></A>Autoit DDDriverRestCommands::<BIG>RestDeleteResponseStore</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Delete ALL REST responses (and requests if stored) from the persistent storages.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    Delete ALL REST responses (and requests if stored) from the persistent storages. 
+                    The REST response/request is supposed to be in the persistent storages.
+                    The response/request can be in more than one type of persistence storage, and
+                    it can be a series of variables, a file or something else, please refer to 
+                    explanation of parameters of keyword <a href="#detail_RestStoreResponse"><b>RestStoreResponse</b></a>.
+                    For example, if there are 2 Responses/Requests have been persisted, 
+                    one is stored be in a XML file, a JSON file and "a series of variables" at the same time,
+                    the other is stored in JSON file and "a series of variables", then this keyword will delete 
+                    all of them (XML file, JSON file and variables of the first Response/Request, 
+                    JSON file and "a series of variables" of the second Response/Request).
+                </detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestDeleteResponseStore</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Delete ALL REST responses (and requests if stored) from the persistent storages.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+		                    For example, if there are 2 Responses/Requests have been persisted, 
+		                    one is stored be in a XML file, a JSON file and "a series of variables" at the same time,
+		                    the other is stored in JSON file and "a series of variables", then this keyword will delete 
+		                    all of them (XML file, JSON file and variables of the first Response/Request, 
+		                    JSON file and "a series of variables" of the second Response/Request).
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadersLoad'></A>Autoit DDDriverRestCommands::<BIG>RestHeadersLoad</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Load headers from a file.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    This might be called before invoking a REST action, like RESTGetXML etc.
+                    And the loaded headers will be used when executing that REST action 
+                    if no headers are provided as parameter of that REST action.
+                </detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>headersFile</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The path to file holding headers information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The content is to be decided.<!-- TODO what is the format, a properties file, a json file, XML file? -->
+                            JSON=single/multi-line header<br>
+                            XML=single/multi-line header<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>method</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The method is used to load the "headers" from a file.<br>
+                            If this parameter is not provided, then "headers" of all methods will be loaded.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The possible methods are listed below:
+                            <ul>
+<li>DELETE</li>
+<li>GET</li>
+<li>HEAD</li>
+<li>PATCH</li>
+<li>POST</li>
+<li>PUT</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>type</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The type is used to load the "headers" from a file.<br>
+                            If this parameter is not provided, then "headers" of all types will be loaded.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The possible types are listed below:
+                            <ul>
+<li>BINARY</li>
+<li>CSS</li>
+<li>CUSTOM</li>
+<li>HTML</li>
+<li>JSON</li>
+<li>IMAGE</li>
+<li>SCRIPT</li>
+<li>TEXT</li>
+<li>XML</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile, GET, JSON</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load the "headers" of type "JSON" for method "GET" from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile, DELETE</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load the "headers" of all types for method "DELETE" from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile, , JSON</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load the "headers" of type "JSON" for all methods from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestHeadersLoad, C:\SAFS\projects\rest\HeadersFile</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Load all "headers" from file HeadersFile. 
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestStoreResponse'></A>Autoit DDDriverRestCommands::<BIG>RestStoreResponse</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Save a REST response into a persistent storage.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    Retrieve a REST response according to the responseID, and store the response into
+                    a persistent storage. The persistent storage can be a series of variables, a file 
+                    or something else, please refer to explanation of parameters.
+                </detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>responseID</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The ID used to retrieve Response Object from internal Map.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            Every single Request generates a new Response, which will be stored
+                            in a map internally. This responseID is the key to get that Response
+                            Object from that map. This responseID should be generated by SAFS after
+                            executing a REST request, such as GET, POST, DELETE, PUT etc.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>variablePrefix</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The prefix of the variables to store the information of a REST response/request if parameter <b>persistenceType</b> is VARIABLE.<br>
+                            Or the file name holding the information of a REST response/request if parameter <b>persistenceType</b> is FILE.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+	                            If this parameter means a '<b>variable prefix</b>'.<br>
+	                            The variablePrefix is used to deduce variables to store a REST response.
+	                            Deduced variables are listed as below:
+	                            <ul>
+<li>variablePrefix.Response.Id</li>
+<li>variablePrefix.Response.StatusCode</li>
+<li>variablePrefix.Response.HttpVersion</li>
+<li>variablePrefix.Response.ContentType</li>
+<li>variablePrefix.Response.EntityBody</li>
+<li>variablePrefix.Response.EntityLength</li>
+<li>variablePrefix.Response.Headers</li><!-- maybe in json format? -->
+<li>to be added ...</li>
+</ul>
+	                            If the parameter <b>storeRequest</b> is true, then the originating REST Request 
+	                            will also be stored in the deduced variables listed as below:
+	                            <ul>
+<li>variablePrefix.Request.Method</li>
+<li>variablePrefix.Request.URI</li>
+<li>variablePrefix.Request.HttpVersion</li>
+<li>variablePrefix.Request.Headers</li><!-- maybe in json format? -->
+<li>variablePrefix.Request.MessageBody</li>
+<li>to be added ...</li>
+</ul>
+</p>
+<p>
+								If this parameter means a <b>file name</b>, then the information of a REST Response 
+								(and Request if the parameter <b>storeRequest</b> is true) will be stored in a file.<br>
+								The file could be a property file, a json file, or an XML file, examples as below:<br>
+								Please pay attention to the <b>special characters</b> (new-line, double-quote, &lt;?XML etc.)
+								escaped by the <font color="red">escape character</font> shown in read as below.<br><pre>
+    a <b>JSON</b> file example
+    {
+    "Response":{
+      "StatusCode": "200",
+      "Headers" : "{Date=Tue, 13 Dec 2016 03:32:13 GMT, Content-Length=4574, Content-Type=application/xml}",
+      "EntityBody" : "&lt;?xml version=<font color="red">\"</font>1.0<font color="red">\"</font>?&gt;&lt;CUSTOMERList xmlns:xlink=<font color="red">\"</font>http://www.w3.org/1999/xlink<font color="red">\"</font>&gt;<font color="red">\n</font>    &lt;CUSTOMER xlink:href=<font color="red">\"</font>http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/<font color="red">\"</font>&gt;0&lt;/CUSTOMER&gt;    <font color="red">\n</font>&lt;/CUSTOMERList&gt;",
+      "Request": {
+         "Method": "GET",
+         "Headers": "{Date=Tue, 06 Dec 2016 03:08:12 GMT, Content-Length=4574}"
+      }
+     }
+    }
+    
+    an <b>XML</b> file example:
+    &lt;Response&gt;
+      &lt;StatusCode&gt;200&lt;/StatusCode&gt;
+      &lt;Headers&gt;{Date=Tue, 13 Dec 2016 03:29:27 GMT, Content-Length=4574, Connection=keep-alive, Content-Type=application/xml}&lt;/Headers&gt;
+      &lt;EntityBody&gt;<font color="red">&lt;![CDATA[</font><font color="green">&lt;?xml</font> version="1.0"?&gt;&lt;CUSTOMERList xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+        &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/"&gt;0&lt;/CUSTOMER&gt;
+        &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/49/"&gt;49&lt;/CUSTOMER&gt;
+        &lt;/CUSTOMERList&gt;<font color="red">]]&gt;</font>&lt;/EntityBody&gt;
+      &lt;Request&gt;
+        &lt;Method&gt;GET&lt;/Method&gt;
+        &lt;Headers&gt;
+          Content-Type:application/octet-stream, Accept:application/octet-stream
+        &lt;/Headers&gt;
+      &lt;/Request&gt;
+    &lt;/Response&gt;
+    
+    a <b>Properties</b> file example:
+    Response.ContentType : application/xml
+    Response.EntityBody : &lt;?xml version="1.0"?&gt;&lt;CUSTOMERList xmlns:xlink="http://www.w3.org/1999/xlink"&gt;<font color="red">\</font><br><font color="red">\n</font>    &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/"&gt;0&lt;/CUSTOMER&gt;<font color="red">\</font><br><font color="red">\n</font>    &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/1/"&gt;1&lt;/CUSTOMER&gt;<font color="red">\</font><br><font color="red">\n</font>  &lt;/CUSTOMERList&gt;
+    Response.EntityLength : 0
+    Response.Headers : {Date=Mon, 12 Dec 2016 05:17:19 GMT, Content-Length=4762, Via=1.1 inetgw38 (squid), Connection=keep-alive, Content-Type=application/xml, X-Cache=MISS from inetgw38, Server=Apache-Coyote/1.1}
+    Response.Request.Headers : Content-Type:application/octet-stream
+    Accept:application/octet-stream
+ </pre>
+</p></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>storeRequest</B> = False ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Store the originating Request information if this parameter is true. The default value is false.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/><LI>[ <B>persistenceType</B> = VARIABLE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The type of the persistence storage to save the Response/Request information.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The valid parameter values are listed below:
+                            <ul>
+<li>FILE</li>
+<li>VARIABLE</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>fileType</B> = JSON ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The valid parameter values are listed below:
+                            <ul>
+<li>JSON</li>
+<li>PROPERTIES</li><!-- TODO not supported yet -->
+<li>XML</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestStoreResponse, ResponseID, BayerCustomerGet</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Store a REST response into a series of variables prefixed by "BayerCustomerGet".
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            After executing a REST GET request on "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", SAFS
+                            returns a ResponseID. This keyword is going to store the Response into a series of 
+                            variables prefixed by "BayerCustomerGet", such as:
+                            <ul>
+<li>BayerCustomerGet.Response.StatusCode</li>
+<li>BayerCustomerGet.Response.ContentType</li>
+<li>BayerCustomerGet.Response.EntityBody</li>
+<li>etc...</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestStoreResponse, ^ResponseIDVar, BayerCustomerGet</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Store a REST response into a series of variables prefixed by "BayerCustomerGet".
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            After executing a REST GET request on "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", SAFS
+                            returns a ResponseID stored in variable ResponseIDVar. This keyword is going to store
+                            the Response into a series of variables prefixed by "BayerCustomerGet", such as:
+                            <ul>
+<li>BayerCustomerGet.Response.StatusCode</li>
+<li>BayerCustomerGet.Response.ContentType</li>
+<li>BayerCustomerGet.Response.EntityBody</li>
+<li>etc...</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestStoreResponse, ResponseID, BayerCustomerGet, True</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Store a REST response and originating request into a series of variables prefixed by "BayerCustomerGet".
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            After executing a REST GET request on "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", SAFS
+                            returns a ResponseID. This keyword is going to store the Response into a series of 
+                            variables prefixed by "BayerCustomerGet", such as:
+                            <ul>
+<li>BayerCustomerGet.Response.StatusCode</li>
+<li>BayerCustomerGet.Response.ContentType</li>
+<li>BayerCustomerGet.Response.EntityBody</li>
+<li>etc...</li>
+</ul>
+                            and at the same time it is going to store the originating REST Request 
+                            into a series of variables prefixed by "BayerCustomerGet", such as:
+                            <ul>
+<li>BayerCustomerGet.Request.Method</li>
+<li>BayerCustomerGet.Request.URI</li>
+<li>BayerCustomerGet.Request.Headers</li>
+<li>BayerCustomerGet.Request.MessageBody</li>
+<li>etc...</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestStoreResponse, ResponseID, persistentFile, False, FILE</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Store a REST response into a persistent file of default type (refer to parameter <b>fileType</b>)
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            After executing a REST GET request on "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", SAFS
+                            returns a ResponseID stored in variable ResponseIDVar. This keyword is going to store 
+                            the Response into a persistent file of default type (refer to parameter <b>fileType</b>)
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestStoreResponse, ResponseID, persistentFile, False, FILE, JSON</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Store a REST response into a JSON file.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            After executing a REST GET request on "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", SAFS
+                            returns a ResponseID stored in variable ResponseIDVar. This keyword is going to store 
+                            the Response into a JSON file.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestStoreResponse, ResponseID, persistentFile, False, FILE, XML</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Store a REST response into a XML file.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            After executing a REST GET request on "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", SAFS
+                            returns a ResponseID stored in variable ResponseIDVar. This keyword is going to store 
+                            the Response into a XML file.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestVerifyResponse'></A>Autoit DDDriverRestCommands::<BIG>RestVerifyResponse</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Verify a REST response is what is expected.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    Retrieve a REST response according to the responseID, and compare the response with
+                    the content stored in a bench file.<br>
+                    The comparison should be defined by parameter <b>verifyRequest</b>, <b>valueContains</b> and <b>valueCaseSensitive</b>.
+                </detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>responseID</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The ID used to retrieve Response Object from internal Map.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            Every single Request generates a new Response, which will be stored
+                            in a map internally. This responseID is the key to get that Response
+                            Object from that map. This responseID should be generated by SAFS after
+                            executing a REST request, such as GET, POST, DELETE, PUT etc.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>benchFile</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The bench file for verifying a REST response.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The bench file can be a property file, a json file, or an XML file. Examples listed as below:<br>
+                            Please pay attention to the <b>special characters</b> (new-line, double-quote, &lt;?XML etc.)
+                            escaped by the <font color="red">escape character</font> shown in read as below.<br><pre>
+    a <b>JSON</b> file example
+    {
+    "Response":{
+      "StatusCode": "200",
+      "Headers" : "{Date=Tue, 13 Dec 2016 03:32:13 GMT, Content-Length=4574, Content-Type=application/xml}",
+      "EntityBody" : "&lt;?xml version=<font color="red">\"</font>1.0<font color="red">\"</font>?&gt;&lt;CUSTOMERList xmlns:xlink=<font color="red">\"</font>http://www.w3.org/1999/xlink<font color="red">\"</font>&gt;<font color="red">\n</font>    &lt;CUSTOMER xlink:href=<font color="red">\"</font>http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/<font color="red">\"</font>&gt;0&lt;/CUSTOMER&gt;    <font color="red">\n</font>&lt;/CUSTOMERList&gt;",
+      "Request": {
+         "Method": "GET",
+         "Headers": "{Date=Tue, 06 Dec 2016 03:08:12 GMT, Content-Length=4574}"
+      }
+     }
+    }
+    
+    an <b>XML</b> file example:
+    &lt;Response&gt;
+      &lt;StatusCode&gt;200&lt;/StatusCode&gt;
+      &lt;Headers&gt;{Date=Tue, 13 Dec 2016 03:29:27 GMT, Content-Length=4574, Connection=keep-alive, Content-Type=application/xml}&lt;/Headers&gt;
+      &lt;EntityBody&gt;<font color="red">&lt;![CDATA[</font><font color="green">&lt;?xml</font> version="1.0"?&gt;&lt;CUSTOMERList xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+        &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/"&gt;0&lt;/CUSTOMER&gt;
+        &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/49/"&gt;49&lt;/CUSTOMER&gt;
+        &lt;/CUSTOMERList&gt;<font color="red">]]&gt;</font>&lt;/EntityBody&gt;
+      &lt;Request&gt;
+        &lt;Method&gt;GET&lt;/Method&gt;
+        &lt;Headers&gt;
+          Content-Type:application/octet-stream, Accept:application/octet-stream
+        &lt;/Headers&gt;
+      &lt;/Request&gt;
+    &lt;/Response&gt;
+    
+    a <b>Properties</b> file example:
+    Response.ContentType : application/xml
+    Response.EntityBody : &lt;?xml version="1.0"?&gt;&lt;CUSTOMERList xmlns:xlink="http://www.w3.org/1999/xlink"&gt;<font color="red">\</font><br><font color="red">\n</font>    &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/"&gt;0&lt;/CUSTOMER&gt;<font color="red">\</font><br><font color="red">\n</font>    &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/1/"&gt;1&lt;/CUSTOMER&gt;<font color="red">\</font><br><font color="red">\n</font>  &lt;/CUSTOMERList&gt;
+    Response.EntityLength : 0
+    Response.Headers : {Date=Mon, 12 Dec 2016 05:17:19 GMT, Content-Length=4762, Via=1.1 inetgw38 (squid), Connection=keep-alive, Content-Type=application/xml, X-Cache=MISS from inetgw38, Server=Apache-Coyote/1.1}
+    Response.Request.Headers : Content-Type:application/octet-stream
+    Accept:application/octet-stream
+ </pre></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>fileType</B> = JSON ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The valid parameter values are listed below:
+                            <ul>
+<li>JSON</li>
+<li>PROPERTIES</li><!-- TODO not supported yet -->
+<li>XML</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>result</B> = &lt;responseID&gt;.verification.result ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The variable holding the verification result.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            If this parameter is not provided, then the 'verification result' will be automatically saved
+                            to a deduced variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>verifyRequest</B> = FALSE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            If it is true, then verify also the Request; otherwise only the Response will be verified.
+                            The default value is 'false', which means only the Response will be verified.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/><LI>[ <B>valueContains</B> = FALSE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            If true, then verify that Response/Request field's value contains that in benchFile;<br>
+                            Otherwise, then verify that Response/Request field's value matches wholly with that in benchFile;<br>
+                            The default value is false;<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/><LI>[ <B>valueCaseSensitive</B> = TRUE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            If true, then verify that Response/Request field's value matches case sensitively with that in benchFile;<br>
+                            Otherwise, then verify that Response/Request field's value matches case insensitively with that in benchFile;<br>
+                            The default value is true;<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestVerifyResponse, ResponseID, BenchFile</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Compare the Response identified by ResponseID with the content stored in the JSON BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be compared with the content stored in the JSON BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponse, ResponseID, BenchFile, XML</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Compare the Response identified by ResponseID with the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be compared with the content stored in the XML BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponse, ResponseID, BenchFile, XML, verifyResult</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Compare the Response identified by ResponseID with the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be compared with the content stored in the XML BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "verifyResult".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponse, ResponseID, BenchFile, XML, , true</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Compare the Response (including Request) identified by ResponseID with the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response(including Request) object will be retrieved from the internal Map
+                            storage, and it will be compared with the content stored in the XML BenchFile.<br>
+                            The field's value of Response(including Request) object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponse, ResponseID, BenchFile, XML, , true, true, false</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Compare the Response (including Request) identified by ResponseID with the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response (including Request) object will be retrieved from the internal Map
+                            storage, and it will be compared with the content stored in the XML BenchFile.<br>
+                            The field's value of Response(including Request) object should contain the value in bench file case-insensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponse, ResponseID, BenchFile, XML, , false, false, false</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Compare the Response identified by ResponseID with the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be compared with the content stored in the XML BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-insensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestVerifyResponseContains'></A>Autoit DDDriverRestCommands::<BIG>RestVerifyResponseContains</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Verify a REST response contains what is expected.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                    Retrieve a REST response according to the responseID, and verify that the response contains
+                    the content stored in a bench file.<br>
+                    The <b>Contains</b> in keyword RestVerifyResponseContains means the Response/Request contains the fields
+                    defined in the bench file, that is to say not all fields of Response/Request should be matched<br>
+                    For the field's value, it should be defined by parameter <b>valueContains</b> and <b>valueCaseSensitive</b>.
+                </detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>responseID</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The ID used to retrieve Response Object from internal Map.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            Every single Request generates a new Response, which will be stored
+                            in a map internally. This responseID is the key to get that Response
+                            Object from that map. This responseID should be generated by SAFS after
+                            executing a REST request, such as GET, POST, DELETE, PUT etc.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>benchFile</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The bench file for verifying a REST response.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The bench file can be a property file, a json file, or an XML file. Examples listed as below:<br>
+                            Please pay attention to the <b>special characters</b> (new-line, double-quote, &lt;?XML etc.)
+                            escaped by the <font color="red">escape character</font> shown in read as below.<br><pre>
+    a <b>JSON</b> file example
+    {
+    "Response":{
+      "StatusCode": "200",
+      "Headers" : "{Date=Tue, 13 Dec 2016 03:32:13 GMT, Content-Length=4574, Content-Type=application/xml}",
+      "EntityBody" : "&lt;?xml version=<font color="red">\"</font>1.0<font color="red">\"</font>?&gt;&lt;CUSTOMERList xmlns:xlink=<font color="red">\"</font>http://www.w3.org/1999/xlink<font color="red">\"</font>&gt;<font color="red">\n</font>    &lt;CUSTOMER xlink:href=<font color="red">\"</font>http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/<font color="red">\"</font>&gt;0&lt;/CUSTOMER&gt;    <font color="red">\n</font>&lt;/CUSTOMERList&gt;",
+      "Request": {
+         "Method": "GET",
+         "Headers": "{Date=Tue, 06 Dec 2016 03:08:12 GMT, Content-Length=4574}"
+      }
+     }
+    }
+    
+    an <b>XML</b> file example:
+    &lt;Response&gt;
+      &lt;StatusCode&gt;200&lt;/StatusCode&gt;
+      &lt;Headers&gt;{Date=Tue, 13 Dec 2016 03:29:27 GMT, Content-Length=4574, Connection=keep-alive, Content-Type=application/xml}&lt;/Headers&gt;
+      &lt;EntityBody&gt;<font color="red">&lt;![CDATA[</font><font color="green">&lt;?xml</font> version="1.0"?&gt;&lt;CUSTOMERList xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+        &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/"&gt;0&lt;/CUSTOMER&gt;
+        &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/49/"&gt;49&lt;/CUSTOMER&gt;
+        &lt;/CUSTOMERList&gt;<font color="red">]]&gt;</font>&lt;/EntityBody&gt;
+      &lt;Request&gt;
+        &lt;Method&gt;GET&lt;/Method&gt;
+        &lt;Headers&gt;
+          Content-Type:application/octet-stream, Accept:application/octet-stream
+        &lt;/Headers&gt;
+      &lt;/Request&gt;
+    &lt;/Response&gt;
+    
+    a <b>Properties</b> file example:
+    Response.ContentType : application/xml
+    Response.EntityBody : &lt;?xml version="1.0"?&gt;&lt;CUSTOMERList xmlns:xlink="http://www.w3.org/1999/xlink"&gt;<font color="red">\</font><br><font color="red">\n</font>    &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/0/"&gt;0&lt;/CUSTOMER&gt;<font color="red">\</font><br><font color="red">\n</font>    &lt;CUSTOMER xlink:href="http://www.thomas-bayer.com/sqlrest/CUSTOMER/1/"&gt;1&lt;/CUSTOMER&gt;<font color="red">\</font><br><font color="red">\n</font>  &lt;/CUSTOMERList&gt;
+    Response.EntityLength : 0
+    Response.Headers : {Date=Mon, 12 Dec 2016 05:17:19 GMT, Content-Length=4762, Via=1.1 inetgw38 (squid), Connection=keep-alive, Content-Type=application/xml, X-Cache=MISS from inetgw38, Server=Apache-Coyote/1.1}
+    Response.Request.Headers : Content-Type:application/octet-stream
+    Accept:application/octet-stream
+ </pre></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>fileType</B> = JSON ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The Type of file to save Response/Request, ONLY useful when persistenceType is "FILE"</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The valid parameter values are listed below:
+                            <ul>
+<li>JSON</li>
+<li>PROPERTIES</li><!-- TODO not supported yet -->
+<li>XML</li>
+</ul></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>result</B> = &lt;responseID&gt;.verification.result ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            The variable holding the verification result.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            If this parameter is not provided, then the 'verification result' will be automatically saved
+                            to a deduced variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>verifyRequest</B> = FALSE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            If it is true, then verify also the Request; otherwise only the Response will be verified.
+                            The default value is 'false', which means only the Response will be verified.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/><LI>[ <B>valueContains</B> = FALSE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            If true, then verify that Response/Request field's value contains that in benchFile;<br>
+                            Otherwise, then verify that Response/Request field's value matches wholly with that in benchFile;<br>
+                            The default value is false;<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/><LI>[ <B>valueCaseSensitive</B> = TRUE ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            If true, then verify that Response/Request field's value matches case sensitively with that in benchFile;<br>
+                            Otherwise, then verify that Response/Request field's value matches case insensitively with that in benchFile;<br>
+                            The default value is true;<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, RestVerifyResponseContains, ResponseID, BenchFile</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Verify that the Response identified by ResponseID contains the content stored in the JSON BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be used to verify containing the content stored in the the JSON BenchFile.<br>
+                            Not all fields of Response will be checked, only those defined in the JSON BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponseContains, ResponseID, BenchFile, XML</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Verify that the Response identified by ResponseID contains the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be used to verify containing the content stored in the the XML BenchFile.<br>
+                            Not all fields of Response will be checked, only those defined in the XML BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponseContains, ResponseID, BenchFile, XML, verifyResult</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Verify that the Response identified by ResponseID contains the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response object will be retrieved from the internal Map
+                            storage, and it will be used to verify containing the content stored in the the XML BenchFile.<br>
+                            Not all fields of Response will be checked, only those defined in the XML BenchFile.<br>
+                            The field's value of Response object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "verifyResult".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponseContains, ResponseID, BenchFile, XML, , true</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Verify that the Response (including Request) identified by ResponseID contains the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response (including Request) object will be retrieved from the internal Map
+                            storage, and it will be used to verify containing the content stored in the the XML BenchFile.<br>
+                            Not all fields of Response(including Request) will be checked, only those defined in the XML BenchFile.<br>
+                            The field's value of Response(including Request) object should match the value in bench file case-sensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, RestVerifyResponseContains, ResponseID, BenchFile, XML, , true, true, false</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Verify that the Response (including Request) identified by ResponseID contains the content stored in the XML BenchFile.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            According to the ResponseID, a Response (including Request) object will be retrieved from the internal Map
+                            storage, and it will be used to verify containing the content stored in the the XML BenchFile.<br>
+                            Not all fields of Response(including Request) will be checked, only those defined in the XML BenchFile.<br>
+                            The field's value of Response(including Request) object should contain the value in bench file case-insensitively.<br>
+                            The 'verification result' will be automatically saved to the variable "&lt;responseID&gt;.verification.result".
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+</DIV>
+		</BODY>
+</HTML>
+	
