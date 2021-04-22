@@ -219,6 +219,14 @@
               </TD>
 </TR>
 <TR>
+<TD nowrap="true" width="27%"><A NAME='list_DeleteNetworkConditions' HREF='#detail_DeleteNetworkConditions' >DeleteNetworkConditions</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>Delete network conditions.</TD>
+</TR>
+<TR>
 <TD nowrap="true" width="27%"><A NAME='list_DisableDomain' HREF='#detail_DisableDomain' >DisableDomain</A></TD><TD width="12%" align="CENTER">
 <TABLE><TR>
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='Rational RobotJ'>RJ</SPAN></TD>
@@ -287,6 +295,14 @@
 		  <TD> 
                 Get the pause between two records, and assigns the value to a DDVariable. 
               </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_GetNetworkConditions' HREF='#detail_GetNetworkConditions' >GetNetworkConditions</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>Get network conditions.</TD>
 </TR>
 <TR>
 <TD nowrap="true" width="27%"><A NAME='list_GetRegistryKeyValue' HREF='#detail_GetRegistryKeyValue' >GetRegistryKeyValue</A></TD><TD width="12%" align="CENTER">
@@ -648,6 +664,14 @@
 		  <TD> 
                  Turn on or trun off the multi-thread-search way to search an image.
               </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_SetNetworkConditions' HREF='#detail_SetNetworkConditions' >SetNetworkConditions</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>Set network conditions.</TD>
 </TR>
 <TR>
 <TD nowrap="true" width="27%"><A NAME='list_SetProjectDirectory' HREF='#detail_SetProjectDirectory' >SetProjectDirectory</A></TD><TD width="12%" align="CENTER">
@@ -1755,6 +1779,34 @@
 <SMALL><B>[How To Read This Reference]</B></SMALL>
 </A>
 <HR/></DIV>
+<H3><A NAME='detail_DeleteNetworkConditions'></A>DDDriverCommands::<BIG>DeleteNetworkConditions</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Delete network conditions.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+<DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><value xmlns="">
+       	     This keyword only works for chrome browser for now.<br> 
+       	     We must have called keyword 'StartWebBrowser' with parameter <a href="../doc/org/safs/Constants.BrowserConstants.html#KEY_SET_NETWORK_CONDITIONS" target="reference">setNetworkConditions</a></value><BR/>
+</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, DeleteNetworkConditions</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Delete network condition.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
 <H3><A NAME='detail_DisableDomain'></A>DDDriverCommands::<BIG>DisableDomain</BIG>   <TABLE><TR>
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='Rational RobotJ'>RJ</SPAN></TD>
 </TR></TABLE>
@@ -2119,6 +2171,43 @@
 <B><usage xmlns="">C, GetMillisBetweenRecords, "millisBetweenRecords"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
                  Get the pause between two records, and assigns to DDVariable ^millisBetweenRecords
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_GetNetworkConditions'></A>DDDriverCommands::<BIG>GetNetworkConditions</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Get network conditions.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+<DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><value xmlns="">
+       	     This keyword only works for chrome browser for now.<br> 
+       	     We must have called keyword 'StartWebBrowser' with parameter <a href="../doc/org/safs/Constants.BrowserConstants.html#KEY_SET_NETWORK_CONDITIONS" target="reference">setNetworkConditions</a></value><BR/>
+</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>NetworkConditionsVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 The variable to hold the network's conditions.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, GetNetworkConditions, "networkConditionsVar"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Get network condition and save it to variable .
               </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
@@ -3463,7 +3552,7 @@
                       HTML tag pass into message to display message into HTML format.
                 </detailed_desc><BR/>
 		</DIV>
-<DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><value xmlns="">Prerequisite: Provide mail setting in <a href="http://safsdev.sourceforge.net/sqabasic2000/JSAFSFrameworkContent.htm#configfile">configuration file (.ini)</a>, 
+<DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><value xmlns="">Prerequisite: Provide mail setting in <a href="../sqabasic2000/JSAFSFrameworkContent.htm#configfile">configuration file (.ini)</a>, 
                                          you could ask your IT administrator to set them correctly.<br><b>[SAFS_DRIVERCOMMANDS]</b><br><span class="property_key">OUT_MAILSERVER</span>="mail server"<br><span class="property_key">OUT_MAILSERVERPORT</span>=25|465|587<br><span class="property_key">OUT_MAILSERVERPROTOCOL</span>=SMTP|SMTPS|TLS<br><span class="property_key">OUT_MAILUSER</span>=user.name@mail.com<br><span class="property_key">OUT_MAILPASS</span>=user.password<br></value><BR/>
 </DIV>
 <BR/>
@@ -3893,7 +3982,7 @@
                  Enabling image debugging allows the system to output full-resolution BMP images into the 
                  Datapool\Test directory instead of JPG images.  It also writes more verbose debug information 
                  into the SAFS Debug Log if the user has the Debug Log running during the test. 
-                 See: <a href="http://safsdev.sourceforge.net/doc/org/safs/Log.html" target="blank">Debug Log Doc</a></p></detailed_desc><BR/>
+                 See: <a href="../doc/org/safs/Log.html" target="blank">Debug Log Doc</a></p></detailed_desc><BR/>
 		</DIV>
 <BR/>
 <DIV NAME="list" ID="other">
@@ -4060,6 +4149,43 @@
 <B><usage xmlns="">C, SetProjectDirectory, "On" </usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
                  This lets SAFS to search an image on screen by multi-thread.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_SetNetworkConditions'></A>DDDriverCommands::<BIG>SetNetworkConditions</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">Set network conditions.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+<DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><value xmlns="">
+       	     This keyword only works for chrome browser for now.<br> 
+       	     We must have called keyword 'StartWebBrowser' with parameter <a href="../doc/org/safs/Constants.BrowserConstants.html#KEY_SET_NETWORK_CONDITIONS" target="reference">setNetworkConditions</a></value><BR/>
+</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>NetworkConditions</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 The network's conditions to set.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, SetNetworkConditions, {"offline":false, "latency":5, "download_throughput":5000 , "upload_throughput":5000}</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Set network condition as {"offline":false, "latency":5, "download_throughput":5000 , "upload_throughput":5000}.
               </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
@@ -4690,7 +4816,7 @@ SAFSWebBrowserPath="C:\Program Files\Mozilla Firefox\firefox.exe"
 		  </LI>
 <BR/><LI>[ <B>ExtraParamKey</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""><B>SE2</B>The extra parameter key. You can use one of 
-				<a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/webdriver/lib/SelectBrowser.html#getExtraParameterKeys()" target="reference" alt="Extra parameter keys">Extra parameter keys</a>.
+				<a href="../doc/org/safs/Constants.BrowserConstants.html#getExtraParameterKeys--" target="reference" alt="Extra parameter keys">Extra parameter keys</a>.
              </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
@@ -4793,6 +4919,20 @@ SAFSWebBrowserPath="C:\Program Files\Mozilla Firefox\firefox.exe"
                  this browser will be stored with ID 'GoogleMain' and on this page the search of webelement has a timeout of 20 seconds.<br>
                  The value "disable-component-update; ignore-certificate-errors" can also be separated by comma if semicolon conflicts with your test-record-separator
               </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "setNetworkConditions", "{"offline":false, "latency":5, "download_throughput":500000 , "upload_throughput":500000}"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><B>SE2</B>Launch a new chrome browser with network conditions {"offline":false, "latency":5, "download_throughput":500000 , "upload_throughput":500000},
+                 Google page will be loaded, this browser will be stored with ID 'GoogleMain' and on this page the search of webelement has a timeout of 20 seconds.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "setNetworkConditions", ""</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><B>SE2</B>Launch a new chrome browser with "network conditions control" ability turned on,
+                 Google page will be loaded, this browser will be stored with ID 'GoogleMain' and on this page the search of webelement has a timeout of 20 seconds.<br></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
 </LI>
@@ -5790,7 +5930,7 @@ SAFSWebBrowserPath="C:\Program Files\Mozilla Firefox\firefox.exe"
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
 		Note: the TID supports this command using 
-		<a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">Image-Based Testing</a> 
+		<a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">Image-Based Testing</a> 
 		techniques and App Map entries.
 		</p></detailed_desc><BR/>
 		</DIV>
@@ -5874,7 +6014,7 @@ SAFSWebBrowserPath="C:\Program Files\Mozilla Firefox\firefox.exe"
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
 		Note: the TID supports this command using 
-		<a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">Image-Based Testing</a> 
+		<a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">Image-Based Testing</a> 
 		techniques and App Map entries.
 		</p></detailed_desc><BR/>
 		</DIV>

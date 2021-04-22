@@ -42,22 +42,6 @@
                        </detailed_desc><BR/>
 		</DIV>
 		  </LI>
-<BR/><LI>
-<B>headers</B>
-<BR/>
-		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
-                        </short_desc></DIV>
-<BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                           It can be
-                           <ol>
-<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
-<li>a map item holding the literal-string or header-file-path.</li>
-<li>a project-relative-path or full-path to a file holding the literal header string.</li>
-</ol></detailed_desc><BR/>
-		</DIV>
-		  </LI>
 <BR/><LI>[ <B>body</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
 <BR/>
@@ -69,6 +53,20 @@
 </ol>
                            The body's content-type could be defined in the headers.
                         </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
 		</DIV>
 		  </LI>
 <BR/><LI>[ <B>authentication</B> =  ]<BR/>
@@ -89,7 +87,7 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestDeleteCustom, "relativeURL", "ResponseIDVariable", customHeader</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestDeleteCustom, "relativeURL", "ResponseIDVariable", , customHeader</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a DELETE method on REST service URL formed by prepending the <b>base-URL</b> to 
                                the relative-URI "relativeURL", the method will be requested with custom header defined by map item 'customHeader'</p></short_desc></DIV>
 <BR/>
@@ -105,7 +103,7 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestDeleteCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable", "rest\customHeader.txt"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestDeleteCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable", , "rest\customHeader.txt"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a DELETE method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -115,7 +113,7 @@
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
                             The file "&lt;project&gt;\rest\customHeader.txt" holds the header information with which to make request.
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>

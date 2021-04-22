@@ -17,7 +17,7 @@
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The base URL to be stored with a session.</short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                           This base URL will be prepended to a relative URI to form a REST service URL for the 
+                           This base URL will be prepended in front of a relative URI to form a REST service URL for the 
                            later invocation of other REST actions. 
                        </detailed_desc><BR/>
 		</DIV>
@@ -28,8 +28,8 @@
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                            Normally, the authentication information will be loaded from "JVM -D parameters", "Map", or global
-                            external file, those settings are considered to be global. This parameter can
+                            Normally, the authentication information will be loaded from <a href="#authSettings">"JVM -D parameters", "Map", or global
+                            external file</a>, those settings are considered to be global. This parameter can
                             be used to alternate the authentication information, it will override the global settings.<br>
                             It is normally provided as a file name holding the authentication information. The file is relative
                             to the project's root directory, and it can contain sub directories.<br>
@@ -45,11 +45,12 @@
                             Start a session for a REST service based on URL "http://www.thomas-bayer.com/".
                         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p></detailed_desc><BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p>
+<p>This session will use the <a href="#authSettings">global authentication</a> if exists.</p></detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", configure/simpleauth.xml</usage></B>
+<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", "configure/simpleauth.xml"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
                             Start a session for a REST service based on URL "http://www.thomas-bayer.com/", and this session will use
                             authentication information stored in file &lt;project&gt;/configure/simpleauth.xml.
@@ -63,6 +64,16 @@
     &lt;userName&gt;Mark&lt;/userName&gt;
   &lt;/SimpleAuth&gt;
 </pre></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", "NOAUTHENTICATION"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Start a session for a REST service based on URL "http://www.thomas-bayer.com/".
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p>
+<p>This session will NOT use any authentication even if the <a href="#authSettings">global authentication</a> exists.</p></detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/></UL>

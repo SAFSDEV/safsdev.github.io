@@ -58,7 +58,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -82,36 +82,59 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceItem, RestRequest, PUT, "sqlrest/PRODUCT/61/", "BayerProductPutResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestRequest, GET, "sqlrest/PRODUCT/", "ResponseIDVariable", "", "Accept: text/xml"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                            Execute a PUT method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/61/"
+                            Execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/"
                         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
-                            Execute a PUT method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/61/"
-                            It will send XML body "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;" to sever so that "product #61" will be created.
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br><p>
+                            It will GET XML content from the sever.
                             </p>
 <p>
-                            The <b>base-URL</b> is gotten according to sessionID "BayerProductService" (assigned when executing keyword <b>RestStartServiceSession</b>).
-                            If it is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerProductPutResponseIDVariable.
+                            The <b>base-URL</b> is gotten according to sessionID "ServiceSession001" (assigned when executing keyword <b>RestStartServiceSession</b>).
+                            If it is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/PRODUCT/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                             </p></detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceItemNonExist, RestPut, PUT, "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/", "BayerProductPutResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestRequest, PUT, "sqlrest/PRODUCT/61/", "ResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Execute a PUT method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/61/"
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br><p>
+                            It will send XML body "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;" to sever so that "product #61" will be created.
+                            </p>
+<p>
+                            The <b>base-URL</b> is gotten according to sessionID "ServiceSession001" (assigned when executing keyword <b>RestStartServiceSession</b>).
+                            If it is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                            </p></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestRequest, PUT, "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/", "ResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
                             Execute a PUT method on REST service URL "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
                         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
-                            Execute a PUT method on REST service URL "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br><p>
                             It will send XML body "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;" to sever so that "product #61" will be created.
                             </p>
 <p>
-                            The map item <b>BayerServiceItemNonExist</b> does <b>NOT exist</b>, this action is handled as one-shot connection.
-                            The parameter <b>relativeURI</b> is provided a <b>full path URL</b> "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerProductPutResponseIDVariable.
+                            The map item <b>ServiceIdItemNonExist</b> does <b>NOT exist</b>, this action is handled as one-shot connection.
+                            The parameter <b>relativeURI</b> is provided as a <b>full path URL</b> "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                             </p></detailed_desc><BR/>
 		</DIV>
 </LI>

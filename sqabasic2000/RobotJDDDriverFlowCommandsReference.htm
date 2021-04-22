@@ -116,6 +116,16 @@
               </TD>
 </TR>
 <TR>
+<TD nowrap="true" width="27%"><A NAME='list_CallTestNG' HREF='#detail_CallTestNG' >CallTestNG</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD> 
+                 Invoke TestNG tests using the provided TestNG parameters.
+              </TD>
+</TR>
+<TR>
 <TD nowrap="true" width="27%"><A NAME='list_ExitCycle' HREF='#detail_ExitCycle' >ExitCycle</A></TD><TD width="12%" align="CENTER">
 <TABLE><TR>
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
@@ -604,11 +614,11 @@
                  set variable values for use by SAFS test tables.
                  </p><p>With Robot, the script can get/set variable values from the <a href="UsingDDVariables.htm#in_scripts">DDVariableStore</a>.
                  </p><p>With Rational Functional Tester, the custom script should follow this <a href="../doc/org/safs/rational/Script.html" target="_blank">Script Javadoc</a>.
-                 </p><p>For Apple IOS, consult the <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSIOSDevelopersGuide.htm#callscript" target="_blank">SAFS IOS Developer's Guide</a>.
+                 </p><p>For Apple IOS, consult the <a href="../sqabasic2000/SAFSIOSDevelopersGuide.htm#callscript" target="_blank">SAFS IOS Developer's Guide</a>.
                  </p></detailed_desc><BR/>
 		</DIV>
 <DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN><SPAN CLASS='domainMarker' TITLE='HTML Domain'>HTM</SPAN> : <value xmlns="">Selenium 2.0 support executes a SeBuilder JSON Script while supporting PAUSE, STEP, and STEP RETRY of indidividual 
-		Script Steps through the <a href="http://safsdev.sourceforge.net/sqabasic2000/UsingSAFSMonitor.htm" target="_blank">SAFS Monitor</a>.
+		Script Steps through the <a href="../sqabasic2000/UsingSAFSMonitor.htm" target="_blank">SAFS Monitor</a>.
 		<p>The SAFS Monitor must be enabled and running to take advantage of these modes of execution.</p>
 <p>This implementation does NOT yet support the provision of passing parameters to the SeBuilder script from the 
 		CallScript InputRecord.</p></value><BR/>
@@ -810,6 +820,80 @@
               </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_CallTestNG'></A>RobotJ DDDriverFlowCommands::<BIG>CallTestNG</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Invoke TestNG tests using the provided <a href="https://javadoc.jitpack.io/com/github/cbeust/testng/master/javadoc/org/testng/TestNG.html" target="_blank">TestNG parameters</a>.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                 If properly configured with SAFS RuntimeDataAwareness (dependency injection of SAFS Driver instances) the TestNG 
+                 test has full access to all SAFS services including SAFS App Map data and SAFS Variable storage.
+                 </p>
+<p>TestNG tests can be intermixed with other SAFS tests.</p></detailed_desc><BR/>
+		</DIV>
+<DIV ID="note_desc"><SPAN CLASS='note'>NOTE:</SPAN><BR/><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN><SPAN CLASS='domainMarker' TITLE='HTML Domain'>HTM</SPAN> : <value xmlns="">
+			    All SeleniumPlus actions, command, and libraries are available.  <br>
+			    Access SeleniumPlus actions and commands through the SeleniumPlus static methods and fields.
+			</value><BR/>
+</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="3" ><LI>
+<B>TestNGParameters</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 The <a href="https://javadoc.jitpack.io/com/github/cbeust/testng/master/javadoc/org/testng/TestNG.html" target="_blank">parameters</a> accepted by TestNG.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                 The <a href="https://javadoc.jitpack.io/com/github/cbeust/testng/master/javadoc/org/testng/TestNG.html" target="_blank">parameters</a> accepted by TestNG.
+                 Such as "testng.xml", "-testclass class_name", "-sourcedir src1;src2", "-groups g1,g2" etc.
+              </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">C, CallTestNG, "testng.xml" </usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Run the TestNG tests defined in testng.xml.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                 Run the TestNG tests defined in testng.xml.
+              </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C	CallTestNG	"-testclass testng.TestNGTest -groups first,middle"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Run the TestNG tests of group "first" and "middle" in class testng.TestNGTest.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                 Run the TestNG tests of group "first" and "middle" in class testng.TestNGTest.
+              </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C	CallTestNG	"-testclass testng.TestNGTest -excludegroups last"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                 Run the TestNG tests of each group except "last" in class testng.TestNGTest.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                 Run the TestNG tests of each group except "last" in class testng.TestNGTest.
+              </detailed_desc><BR/>
+		</DIV>
 </LI>
 <BR/></UL>
 <A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">

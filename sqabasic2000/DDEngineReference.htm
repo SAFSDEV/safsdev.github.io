@@ -492,6 +492,18 @@
 </LI>
 </UL>
 </LI>
+<LI><FONT color="#000000"><B>DeleteNetworkConditions</B>
+</FONT>
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+<SMALL><SMALL><FONT color="#0000FF">(
+                
+                )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">C, DeleteNetworkConditions</FONT></LI>
+</UL>
+</LI>
 <LI><FONT color="#000000"><B>DisableDomain</B>
 </FONT>
 <TABLE><TR>
@@ -694,6 +706,26 @@
 <FONT color="#000080"><detailed_desc xmlns=""> 
                  The name of the variable to receive the pause between two records.
               </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI><FONT color="#000000"><B>GetNetworkConditions</B>
+</FONT>
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+<SMALL><SMALL><FONT color="#0000FF">(
+                
+                )</FONT></SMALL></SMALL>
+<UL>
+<LI><FONT color="#800080"><usage xmlns="">C, GetNetworkConditions, "networkConditionsVar"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    3 :<B>NetworkConditionsVar</B><BR/><short_desc xmlns=""> 
+                 The variable to hold the network's conditions.
+              </short_desc></FONT><BR/>
 </LI>
 </UL>
 </LI>
@@ -1674,6 +1706,26 @@
 </LI>
 </UL>
 </LI>
+<LI><FONT color="#000000"><B>SetNetworkConditions</B>
+</FONT>
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+<SMALL><SMALL><FONT color="#0000FF">(
+                
+                )</FONT></SMALL></SMALL>
+<UL>
+<LI><FONT color="#800080"><usage xmlns="">C, SetNetworkConditions, {"offline":false, "latency":5, "download_throughput":5000 , "upload_throughput":5000}</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    3 :<B>NetworkConditions</B><BR/><short_desc xmlns=""> 
+                 The network's conditions to set.
+              </short_desc></FONT><BR/>
+</LI>
+</UL>
+</LI>
+</UL>
+</LI>
 <LI><FONT color="#000000"><B>SetProjectDirectory</B>
 </FONT>
 <TABLE><TR>
@@ -1954,7 +2006,9 @@
 <LI type="circle"><FONT color="#800080">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "user-data-dir", "c:\chrome_custom_data"</FONT></LI>
 <LI type="circle"><FONT color="#800080">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "user-data-dir", "C:\Users\xxx\AppData\Local\Google\Chrome\User Data"</FONT></LI>
 <LI type="circle"><FONT color="#800080">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "user-data-dir", "C:\Users\xxx\AppData\Local\Google\Chrome\User Data", "profile-directory", "Profile 1"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "excludeSwitches", "disable-component-update; ignore-certificate-errors"</usage></FONT>
+<LI type="circle"><FONT color="#800080">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "excludeSwitches", "disable-component-update; ignore-certificate-errors"</FONT></LI>
+<LI type="circle"><FONT color="#800080">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "setNetworkConditions", "{"offline":false, "latency":5, "download_throughput":500000 , "upload_throughput":500000}"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "setNetworkConditions", ""</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    [3]:<B>URL</B><BR/><short_desc xmlns=""> 
@@ -2006,7 +2060,7 @@
 <LI><FONT color="#008000">Field 
 	    [8]:<B>ExtraParamKey</B><BR/><short_desc xmlns=""> 
 				<B>SE2</B>The extra parameter key. You can use one of 
-				<a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/webdriver/lib/SelectBrowser.html#getExtraParameterKeys()" target="reference" alt="Extra parameter keys">Extra parameter keys</a>.
+				<a href="../doc/org/safs/Constants.BrowserConstants.html#getExtraParameterKeys--" target="reference" alt="Extra parameter keys">Extra parameter keys</a>.
              </short_desc></FONT><BR/>
 </LI>
 <LI><FONT color="#008000">Field 
@@ -5941,6 +5995,32 @@
 	    [5]:<B>ParameterName</B><BR/><short_desc xmlns=""> 
                  One or more parameter values to send to the suite--each in their own field.
               </short_desc></FONT><BR/>
+</LI>
+</UL>
+</LI>
+</UL>
+</LI>
+<LI><FONT color="#000000"><B>CallTestNG</B>
+</FONT>
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+<SMALL><SMALL><FONT color="#0000FF">(
+                
+                )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">C, CallTestNG, "testng.xml" </FONT></LI>
+<LI type="circle"><FONT color="#800080">C	CallTestNG	"-testclass testng.TestNGTest -groups first,middle"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">C	CallTestNG	"-testclass testng.TestNGTest -excludegroups last"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    3 :<B>TestNGParameters</B><BR/><short_desc xmlns=""> 
+                 The <a href="https://javadoc.jitpack.io/com/github/cbeust/testng/master/javadoc/org/testng/TestNG.html" target="_blank">parameters</a> accepted by TestNG.
+              </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                 The <a href="https://javadoc.jitpack.io/com/github/cbeust/testng/master/javadoc/org/testng/TestNG.html" target="_blank">parameters</a> accepted by TestNG.
+                 Such as "testng.xml", "-testclass class_name", "-sourcedir src1;src2", "-groups g1,g2" etc.
+              </detailed_desc></FONT>
 </LI>
 </UL>
 </LI>
@@ -14059,7 +14139,7 @@
                 command.
 		<p>
 		Note: the TID supports this command using 
-		<a href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/CreateUnicodeMap.html" target="reference" alt="SAFS InputKeys Support Doc">InputKeys Support</a>.
+		<a href="../doc/org/safs/tools/input/CreateUnicodeMap.html" target="reference" alt="SAFS InputKeys Support Doc">InputKeys Support</a>.
 		</p>
               </detailed_desc></FONT>
 </LI>
@@ -14382,7 +14462,7 @@
 <FONT color="#000080"><detailed_desc xmlns="">
                 String of keystrokes to send.
 		Note: the TID supports this command using 
-		<a href="http://safsdev.sourceforge.net/doc/org/safs/tools/input/CreateUnicodeMap.html" target="reference" alt="SAFS InputKeys Support Doc">InputKeys Support</a>.
+		<a href="../doc/org/safs/tools/input/CreateUnicodeMap.html" target="reference" alt="SAFS InputKeys Support Doc">InputKeys Support</a>.
               </detailed_desc></FONT>
 </LI>
 </UL>
@@ -14445,7 +14525,9 @@
 <UL>
 <LI type="circle"><FONT color="#800080">T, Browser, HTMLTable, VerifyBinaryFileToFile, bFilename.ext, aFilename.ext, "", ""</FONT></LI>
 <LI type="circle"><FONT color="#800080">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.ext, c:\Dir\aFilename.ext</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.png, c:\Dir\aFilename.png, "Tolerance", "90"</usage></FONT>
+<LI type="circle"><FONT color="#800080">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.png, c:\Dir\aFilename.png, "Tolerance", "90"</FONT></LI>
+<LI type="circle"><FONT color="#800080">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.png, c:\Dir\aFilename.png, "Tolerance", "90", "SHADE", "0.9"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.pdf, c:\Dir\aFilename.pdf, "Tolerance", "90", "TINT", "0.9", "100"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>BenchmarkFile</B><BR/><short_desc xmlns=""> 
@@ -14488,6 +14570,35 @@
                 If the filter is "TOLERANCE", this value should be an integer between 0 and 100.
                 100 means only 100% match, 2 images will be considered matched;
                 0 means even no bits match, 2 images will be considered matched.<br> 
+              </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>AlterImageStyle</B><BR/><short_desc xmlns=""> 
+                It is used to alter the diff image when 2 image/PDF doesn't match.
+              </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                It is used to alter the diff image when 2 image/PDF doesn't match.<br>
+                It can be one of <a href="../doc/org/safs/image/ImageUtils.AlterImageStyle.html" target="api">enum AlterImageStyle</a><br>
+              </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [10]:<B>AlterImageFactor</B><BR/><short_desc xmlns=""> 
+                How much lighter or darker to alter the original pixel (with no difference), it is a double number between 0 and 1.
+              </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                How much lighter or darker to alter the original pixel (with no difference), it is a double number between 0 and 1.<br>
+				It only takes effect if the parameter 'alterImageStyle' is "TINT" or "SHADE".<br>
+				For SHADE, the bigger the factor, the darker the shade.<br>
+				For TINT, the bigger the factor, the lighter the tint.<br>
+              </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [11]:<B>PdfResolution</B><BR/><short_desc xmlns=""> 
+                The resolution (DPI) used to convert PDF to image.
+              </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                The resolution (DPI) used to convert PDF to image.<br>
+                The default is <a href="../doc/org/safs/Constants.html#IMAGE_PDF_CONVERSION_RESOLUTION_DEFAULT" target="api">75</a>.<br>
               </detailed_desc></FONT>
 </LI>
 </UL>
@@ -15388,6 +15499,71 @@
 <LI type="circle"><A HREF="GenericObjectFunctions.htm" target="_blank">
 <FONT color="#000000">GenericObjectFunctions Documentation.</FONT></A>
 </LI>
+<LI><FONT color="#000000"><B>AltClick</B>
+</FONT>
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='Selenium2.0'>SE2</SPAN></TD>
+</TR></TABLE>
+<SMALL><SMALL><FONT color="#0000FF">(
+                
+                )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, WINDOW, WINDOW, ALTCLICK</FONT></LI>
+<LI type="circle"><FONT color="#800080">T, WINDOW, WINDOW, ALTCLICK, , False</FONT></LI>
+<LI type="circle"><FONT color="#800080">T, WINDOW, WINDOW, ALTCLICK, AnObject</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, WINDOW, AnObject, ALTCLICK, ASubObject</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    [5]:<B>AppMapSubkey</B><BR/><short_desc xmlns="">
+                (Optional) Name of the AppMap subkey to lookup and use for the ALT-click.
+              </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                Without this we should click the center of the object.
+                <p>Name of the AppMap subkey to lookup and use for the ALT-click.
+                We expect the AppMap to contain the item in the format "x,y":</p>
+                <p><pre>
+                [ToolItem]
+                PrintTool="33,120"      OR
+                PrintTool="Coords=33,120"
+                </pre></p>
+                <p>
+                The results from the lookup are appended to the "Coords=" string
+                used by the GenericObject Alt_Click command in Robot (if necessary).
+                So any valid content used with the Alt_Click command can be
+                part of this AppMap entry.</p>
+                <p>
+                Both Fields #3 and #5 are used to locate the item in the App Map.
+                This routine does not specify an App Map so only the current Map
+                is used and it is expected to be valid.
+				</p><p>
+				Engines should also attempt to support coordinates separated by alternate separators.  
+				The most common separators that should be supported would be:
+				<ul>
+				<li>"," (comma) Example: "50,200"</li>
+				<li>";" (semi-colon) Example: "50;200"</li>
+				<li>" " (space) Example: "50 200"</li>
+				</ul>
+				</p><p>
+                <b>Important Abbot note.</b> Presently, there is no support for AppMapSubkey
+                specification (5th field).
+                </p>
+              </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [6]:<B>AutoScroll</B><BR/><short_desc xmlns=""> 
+                (Optional) True|False. If the component will be scrolled into view automatically before clicking. The default value is true.
+              </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                If the component is out of view, the click action will not succeed. Normally we will scroll the component into view,
+                and then perform the click action. But sometimes, the component is partially shown and click could work and user does not
+                want the component shift, then we could turn off the auto-scroll ability by setting this parameter to false.<br>
+                If this auto-scroll is turned off, user needs to make sure that component is shown by himself.
+              </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
+</LI>
 <LI><FONT color="#000000"><B>AltLeftDrag</B>
 </FONT>
 <TABLE><TR>
@@ -15493,7 +15669,7 @@
 				<li>" " (space) Example: "50 200"</li>
 				</ul>
 				</p>
-                <p><b>Important TID note.</b> The <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
+                <p><b>Important TID note.</b> The <a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
                 this parameter instead of an AppMapSubKey.  If the value retrieved from 
                 this field is NOT found to exist in the App Map as a Sub Key then it 
                 will be used as literal text as if it HAD been retrieved from the App Map.
@@ -16045,7 +16221,7 @@
 				<li>" " (space) Example: "50 200"</li>
 				</ul>
 				</p>
-                <p><b>Important TID note.</b> The <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
+                <p><b>Important TID note.</b> The <a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
                 this parameter instead of an AppMapSubKey.  If the value retrieved from 
                 this field is NOT found to exist in the App Map as a Sub Key then it 
                 will be used as literal text as if it HAD been retrieved from the App Map.
@@ -16509,7 +16685,7 @@
                 Both Fields #3 and #5 are used to locate the item in the App Map.
                 This routine does not specify an App Map so only the current Map
                 is used and it is expected to be valid.</p>
-                <p><b>Important TID note.</b> The <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
+                <p><b>Important TID note.</b> The <a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
                 this parameter instead of an AppMapSubKey.  If the value retrieved from 
                 this field is NOT found to exist in the App Map as a Sub Key then it 
                 will be used as literal text as if it HAD been retrieved from the App Map.
@@ -16630,7 +16806,7 @@
                 This routine does not specify an App Map so only the current Map
                 is used and it is expected to be valid.
                 </p>
-                <p><b>Important TID note.</b> The <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
+                <p><b>Important TID note.</b> The <a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
                 this parameter instead of an AppMapSubKey.  If the value retrieved from 
                 this field is NOT found to exist in the App Map as a Sub Key then it 
                 will be used as literal text as if it HAD been retrieved from the App Map.
@@ -16680,7 +16856,7 @@
                 However, this differentiation is not required.
 		<p>
 		Note: the TID supports this command using 
-		<a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">Image-Based Testing</a> 
+		<a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">Image-Based Testing</a> 
 		techniques and App Map entries as well as literal text coordinates.
 		</p>
               </detailed_desc></FONT>
@@ -16775,7 +16951,7 @@
 				<li>";" (semi-colon) Example: "50;200"</li>
 				<li>" " (space) Example: "50 200"</li>
 				</ul>				
-                </p><p><b>Important TID note.</b> The <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
+                </p><p><b>Important TID note.</b> The <a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
                 this parameter instead of an AppMapSubKey.  If the value retrieved from 
                 this field is NOT found to exist in the App Map as a Sub Key then it 
                 will be used as literal text as if it HAD been retrieved from the App Map.
@@ -16940,7 +17116,7 @@
                 Both Fields #3 and #5 are used to locate the item in the App Map.
                 This routine does not specify an App Map so only the current Map
                 is used and it is expected to be valid.</p>
-                <p><b>Important TID note.</b> The <a href="http://safsdev.sourceforge.net/sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
+                <p><b>Important TID note.</b> The <a href="../sqabasic2000/SAFSImageBasedRecognition.htm" target="imagebased" alt="SAFS Image-Based Recognition Doc">TID IBT implementation</a> supports using literal text in 
                 this parameter instead of an AppMapSubKey.  If the value retrieved from 
                 this field is NOT found to exist in the App Map as a Sub Key then it 
                 will be used as literal text as if it HAD been retrieved from the App Map.
@@ -22860,7 +23036,7 @@
 <LI><FONT color="#800080"><usage xmlns=""> T  WINDOW  MyList  AssignCellValue  "^variablename"  2   3   </usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
-	    5 :<B>Varibale</B><BR/><short_desc xmlns=""> 
+	    5 :<B>Variable</B><BR/><short_desc xmlns=""> 
                  Name of variable to assign value
               </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns=""> 
@@ -25051,8 +25227,8 @@
                 
                 )</FONT></SMALL></SMALL>
 <UL>
-<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestDeleteCustom, "relativeURL", "ResponseIDVariable", customHeader</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestDeleteCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable", "rest\customHeader.txt"</usage></FONT>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestDeleteCustom, "relativeURL", "ResponseIDVariable", , customHeader</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestDeleteCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable", , "rest\customHeader.txt"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25070,8 +25246,19 @@
                        </detailed_desc></FONT>
 </LI>
 <LI><FONT color="#008000">Field 
-	    7 :<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25080,17 +25267,6 @@
                            <li>a map item holding the literal-string or header-file-path.</li>
                            <li>a project-relative-path or full-path to a file holding the literal header string.</li>
                            </ol> 
-                        </detailed_desc></FONT>
-</LI>
-<LI><FONT color="#008000">Field 
-	    [8]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
-<FONT color="#000080"><detailed_desc xmlns="">
-                           It can be
-                           <ol>
-                           <li>a literal text string for something simple.</li>
-                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
-                           </ol>
-                           The body's content-type could be defined in the headers.
                         </detailed_desc></FONT>
 </LI>
 <LI><FONT color="#008000">Field 
@@ -25181,8 +25357,8 @@
                 
                 )</FONT></SMALL></SMALL>
 <UL>
-<LI type="circle"><FONT color="#800080">T, SAFSREST, BayerServiceIdItem, RestGetBinary, "sqlrest/CUSTOMER/", "BayerCustomerGetResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, BayerServiceIdItemNonExist, RestGet, "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", "BayerCustomerGetResponseIDVariable"</usage></FONT>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, BayerServiceIdItem, RestGetBinary, "sqlrest/CUSTOMER/", "BayerCustomerResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, BayerServiceIdItemNonExist, RestGetBinary, "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", "BayerCustomerResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25212,7 +25388,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                	       The headers to be included in this REST request.
+                	       The custom headers to be included in this REST request.
                 	    </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                 	       It can be
@@ -25252,7 +25428,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetCSS, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCSS, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCSS, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25282,7 +25458,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25321,8 +25497,8 @@
                 
                 )</FONT></SMALL></SMALL>
 <UL>
-<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetCustom, "relativeURL", "ResponseIDVariable", customHeader</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable", "rest\customHeader.txt"</usage></FONT>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetCustom, "relativeURL", "ResponseIDVariable", , customHeader</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable", , "rest\customHeader.txt"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25340,8 +25516,19 @@
                        </detailed_desc></FONT>
 </LI>
 <LI><FONT color="#008000">Field 
-	    7 :<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    8 :<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25350,17 +25537,6 @@
                            <li>a map item holding the literal-string or header-file-path.</li>
                            <li>a project-relative-path or full-path to a file holding the literal header string.</li>
                            </ol> 
-                        </detailed_desc></FONT>
-</LI>
-<LI><FONT color="#008000">Field 
-	    [8]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
-<FONT color="#000080"><detailed_desc xmlns="">
-                           It can be
-                           <ol>
-                           <li>a literal text string for something simple.</li>
-                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
-                           </ol>
-                           The body's content-type could be defined in the headers.
                         </detailed_desc></FONT>
 </LI>
 <LI><FONT color="#008000">Field 
@@ -25392,7 +25568,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetCustom, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25422,7 +25598,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25462,7 +25638,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetImage, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetImage, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetImage, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25492,7 +25668,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25532,7 +25708,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetJSON, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetJSON, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetJSON, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25562,7 +25738,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25602,7 +25778,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetScript, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetScript, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetScript, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25632,7 +25808,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25672,7 +25848,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetText, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetText, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetText, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25702,7 +25878,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25742,7 +25918,7 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestGetXML, "relativeURL", "ResponseIDVariable"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetXML, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></FONT>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetXML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
@@ -25772,7 +25948,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [8]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be
@@ -25805,74 +25981,632 @@
 <LI><FONT color="#000000"><B>RestHeadBinary</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadBinary, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadBinary, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadCSS</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadCSS, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadCSS, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadCustom</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadCustom, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadHTML</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadHTML, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadHTML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadImage</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadImage, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadImage, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadJSON</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadJSON, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadJSON, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadScript</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadScript, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadScript, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadText</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadText, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadText, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestHeadXML</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestHeadXML, "relativeURL", "ResponseIDVariable"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadXML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPatchBinary</B>
 </FONT>
@@ -25941,10 +26675,73 @@
 <LI><FONT color="#000000"><B>RestPatchXML</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPatchXML, "users/1", "ResponseIDVariable", partialUserEntity.xml</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPatchXML, "http://www.service.com/users/1/", "ResponseIDVariable", partialUserEntity.xml</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be a part of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPostBinary</B>
 </FONT>
@@ -26013,10 +26810,73 @@
 <LI><FONT color="#000000"><B>RestPostXML</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPostXML, "users/", "ResponseIDVariable", wholeUserEntity.xml</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPostXML, "http://www.service.com/users/", "ResponseIDVariable", wholeUserEntity.xml</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to a collection, such as "users/".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity of collection indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutBinary</B>
 </FONT>
@@ -26029,26 +26889,215 @@
 <LI><FONT color="#000000"><B>RestPutCSS</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutCSS, "cssContents/1", "ResponseIDVariable", wholeUserStyleEntity.css</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutCSS, "http://www.service.com/cssContents/1/", "ResponseIDVariable", wholeUserStyleEntity.css</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "cssContents/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutCustom</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutCustom, "entities/1", "ResponseIDVariable", "entityFile", "customHeader.txt"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutCustom, "http://www.service.com/entities/1/", "ResponseIDVariable", "entityFile", "customHeader.txt"</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "entities/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutHTML</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutHTML, "htmlContents/1", "ResponseIDVariable", wholeUserEntity.html</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutHTML, "http://www.service.com/htmlContents/1/", "ResponseIDVariable", wholeUserEntity.html</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "htmlContents/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutImage</B>
 </FONT>
@@ -26061,34 +27110,286 @@
 <LI><FONT color="#000000"><B>RestPutJSON</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutJSON, "users/1", "ResponseIDVariable", wholeUserEntity.json</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutJSON, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.json</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutScript</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutText, "users/1", "ResponseIDVariable", wholeUserEntity.txt</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutText, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.txt</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutText</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutText, "users/1", "ResponseIDVariable", wholeUserEntity.txt</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutText, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.txt</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestPutXML</B>
 </FONT>
 <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 <SMALL><SMALL><FONT color="#0000FF">(
                 
                 )</FONT></SMALL></SMALL>
+<UL>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestPutXML, "users/1", "ResponseIDVariable", wholeUserEntity.xml</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutXML, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.xml</usage></FONT>
+<UL type="circle">
+<LI><FONT color="#008000">Field 
+	    5 :<B>relativeURI</B><BR/><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    6 :<B>responseIdVar</B><BR/><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [7]:<B>body</B><BR/><short_desc xmlns="">The body to send with this REST request.</short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal text string for something simple.</li>
+                           <li>a project-relative or full path to a file of larger body content in the proper format.</li>
+                           </ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [8]:<B>headers</B><BR/><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+                           <li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+                           <li>a map item holding the literal-string or header-file-path.</li>
+                           <li>a project-relative-path or full-path to a file holding the literal header string.</li>
+                           </ol> 
+                        </detailed_desc></FONT>
+</LI>
+<LI><FONT color="#008000">Field 
+	    [9]:<B>authentication</B><BR/><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></FONT><BR/>
+<FONT color="#000080"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+                           <li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+                           <li>a map item holding the auth-file-path.</li>
+                           </ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br>
+                        </detailed_desc></FONT>
+</LI>
+</UL>
+</LI>
+</UL>
 </LI>
 <LI><FONT color="#000000"><B>RestRequest</B>
 </FONT>
@@ -26099,8 +27400,9 @@
                 
                 )</FONT></SMALL></SMALL>
 <UL>
-<LI type="circle"><FONT color="#800080">T, SAFSREST, BayerServiceItem, RestRequest, PUT, "sqlrest/PRODUCT/61/", "BayerProductPutResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, BayerServiceItemNonExist, RestPut, PUT, "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/", "BayerProductPutResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></FONT>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestRequest, GET, "sqlrest/PRODUCT/", "ResponseIDVariable", "", "Accept: text/xml"</FONT></LI>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, ServiceIdItem, RestRequest, PUT, "sqlrest/PRODUCT/61/", "ResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestRequest, PUT, "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/", "ResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>HTTPMethod</B><BR/><short_desc xmlns="">The HTTP method to execute.</short_desc></FONT><BR/>
@@ -26130,7 +27432,7 @@
 </LI>
 <LI><FONT color="#008000">Field 
 	    [9]:<B>headers</B><BR/><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
                            It can be a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".<br>
@@ -26164,12 +27466,13 @@
                 )</FONT></SMALL></SMALL>
 <UL>
 <LI type="circle"><FONT color="#800080">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/"</FONT></LI>
-<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", configure/simpleauth.xml</usage></FONT>
+<LI type="circle"><FONT color="#800080">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", "configure/simpleauth.xml"</FONT></LI>
+<LI><FONT color="#800080"><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", "NOAUTHENTICATION"</usage></FONT>
 <UL type="circle">
 <LI><FONT color="#008000">Field 
 	    5 :<B>baseURL</B><BR/><short_desc xmlns="">The base URL to be stored with a session.</short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
-                           This base URL will be prepended to a relative URI to form a REST service URL for the 
+                           This base URL will be prepended in front of a relative URI to form a REST service URL for the 
                            later invocation of other REST actions. 
                        </detailed_desc></FONT>
 </LI>
@@ -26178,8 +27481,8 @@
                            The file holding authentication information to be used during this session.
                         </short_desc></FONT><BR/>
 <FONT color="#000080"><detailed_desc xmlns="">
-                            Normally, the authentication information will be loaded from "JVM -D parameters", "Map", or global
-                            external file, those settings are considered to be global. This parameter can
+                            Normally, the authentication information will be loaded from <a href="#authSettings">"JVM -D parameters", "Map", or global
+                            external file</a>, those settings are considered to be global. This parameter can
                             be used to alternate the authentication information, it will override the global settings.<br>
                             It is normally provided as a file name holding the authentication information. The file is relative
                             to the project's root directory, and it can contain sub directories.<br>

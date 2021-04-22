@@ -1195,6 +1195,14 @@
 <TD>Invoke a Suite table (from StepDriver or SuiteDriver)</TD>
 </TR>
 <TR>
+<TD width="30%" nowrap="true">CallTestNG</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Invoke TestNG tests using the provided TestNG parameters.</TD>
+</TR>
+<TR>
 <TD width="30%" nowrap="true">ExitCycle</TD>
 <TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
@@ -1957,7 +1965,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Verify the current contents of a binary file with a benchmark file.</TD>
+<TD>Verify the current contents of a binary (image, PDF etc.) file with a benchmark file.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">VerifyFileToFile</TD>
@@ -2244,7 +2252,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the binary content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is binary before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetCSS</TD>
@@ -2252,7 +2260,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the css text content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is css before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetCustom</TD>
@@ -2260,7 +2268,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service with headers defined by user.</TD>
+<TD>Perform the "GET" method on a REST service with headers defined by user, and return the content.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetHTML</TD>
@@ -2268,7 +2276,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the html text content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is html before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetImage</TD>
@@ -2276,7 +2284,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the image content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is image before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetJSON</TD>
@@ -2284,7 +2292,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the json text content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is json before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetScript</TD>
@@ -2292,7 +2300,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the javascript text content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is javascript before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetText</TD>
@@ -2300,7 +2308,7 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the plain text content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is text before returning it.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestGetXML</TD>
@@ -2308,7 +2316,151 @@
 <TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
 </TR></TABLE>
 </TD>
-<TD>Perform the "GET" method on a REST service, and try to get back the xml text content.</TD>
+<TD>Perform the "GET" method on a REST service, and verify the returned content is xml before returning it.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadBinary</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is binary before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadCSS</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is css before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadCustom</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method (with headers defined by user) on a REST service, and get back the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadHTML</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is html before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadImage</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is image before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadJSON</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is json before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadScript</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is javascript before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadText</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is text before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestHeadXML</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "HEAD" method on a REST service, and verify the returned content is xml before returning the header part.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPatchXML</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PATCH" method on a REST service, and verify the returned status code is 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPostXML</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "POST" method on a REST service, and verify the returned status code is 201 ("created").</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutCSS</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutCustom</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutHTML</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutJSON</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutScript</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutText</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
+</TR>
+<TR>
+<TD width="30%" nowrap="true">RestPutXML</TD>
+<TD width="12%" nowrap="true" align="CENTER"><TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+<TD>Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.</TD>
 </TR>
 <TR>
 <TD width="30%" nowrap="true">RestRequest</TD>
