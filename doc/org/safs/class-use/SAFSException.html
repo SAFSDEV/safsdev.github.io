@@ -1080,6 +1080,67 @@ the given variable name.</div>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#isPropertyExist--">isPropertyExist</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killBrowserDriver-java.lang.String-java.lang.String-">killBrowserDriver</a></span>(java.lang.String&nbsp;host,
+                 java.lang.String&nbsp;browserName)</code>
+<div class="block">Kill the driver process by browserName.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killChromeDriver-java.lang.String-">killChromeDriver</a></span>(java.lang.String&nbsp;host)</code>
+<div class="block">Kill the process 'chromedriver.exe' on windows, or "chromedrver" on linux.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killExtraProcess-java.lang.String-java.lang.String-">killExtraProcess</a></span>(java.lang.String&nbsp;host,
+                java.lang.String&nbsp;processName)</code>
+<div class="block">Kill the process launched from executables located in %SAFSDIR%\samples\Selenium2.0\extra\ or %SELENIUM_PLUS%\extra\</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killGeckoDriver-java.lang.String-">killGeckoDriver</a></span>(java.lang.String&nbsp;host)</code>
+<div class="block">Kill the process 'geckodriver.exe/geckodriver_64.exe' on windows, or "geckodriver/geckodriver_64" on linux.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killIEDriverServer-java.lang.String-">killIEDriverServer</a></span>(java.lang.String&nbsp;host)</code>
+<div class="block">Kill the process 'IEDriverServer.exe'.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killMicrosoftWebDriver-java.lang.String-">killMicrosoftWebDriver</a></span>(java.lang.String&nbsp;host)</code>
+<div class="block">Kill the process 'MicrosoftWebDriver.exe'.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killMSEdgeDriver-java.lang.String-">killMSEdgeDriver</a></span>(java.lang.String&nbsp;host)</code>
+<div class="block">Kill the process 'msedgedriver.exe'.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killProcess-java.lang.String-java.lang.String-java.lang.String-">killProcess</a></span>(java.lang.String&nbsp;host,
+           java.lang.String&nbsp;processName,
+           java.lang.String&nbsp;commandline)</code>
+<div class="block">Kill the process according to the process name and partial command line.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">UtilsIndependent.</span><code><span class="memberNameLink"><a href="../../../org/safs/UtilsIndependent.html#killProcess-java.lang.String-java.lang.String-java.lang.String-java.lang.String-">killProcess</a></span>(java.lang.String&nbsp;host,
+           java.lang.String&nbsp;processName,
+           java.lang.String&nbsp;commandline,
+           java.lang.String&nbsp;notCommandline)</code>
+<div class="block">Kill the process according to the process name and partial command line.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#logMessage-java.lang.String-java.lang.String-">logMessage</a></span>(java.lang.String&nbsp;facname,
           java.lang.String&nbsp;message)</code>
@@ -1088,63 +1149,63 @@ the given variable name.</div>
  log reported as running in SAFSLOGS.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">StringUtils.</span><code><span class="memberNameLink"><a href="../../../org/safs/StringUtils.html#matchRegex-java.lang.String-java.lang.String-">matchRegex</a></span>(java.lang.String&nbsp;expression,
           java.lang.String&nbsp;value)</code>
 <div class="block"><br><em>Purpose:</em> match a regular expression to a value.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#maximize--">maximize</a></span>()</code>
 <div class="block">Maximize the current window.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.Window.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.Window.html#maximize--">maximize</a></span>()</code>
 <div class="block">Maximize the current window</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#minimize--">minimize</a></span>()</code>
 <div class="block">Minimize the current window.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.Window.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.Window.html#minimize--">minimize</a></span>()</code>
 <div class="block">Minimize the current window</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">Processor.</span><code><span class="memberNameLink"><a href="../../../org/safs/Processor.html#paramsFailedMsg--">paramsFailedMsg</a></span>()</code>
 <div class="block"><br><em>Purpose:</em> log a FAILED_MESSAGE about the wrong number of parameters;
  this version is used by DriverCommands</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">Processor.</span><code><span class="memberNameLink"><a href="../../../org/safs/Processor.html#paramsFailedMsg-java.lang.String-java.lang.String-">paramsFailedMsg</a></span>(java.lang.String&nbsp;windowName,
                java.lang.String&nbsp;compName)</code>
 <div class="block"><br><em>Purpose:</em> log a FAILED_MESSAGE about the wrong number of parameters</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static java.lang.Object</code></td>
 <td class="colLast"><span class="typeNameLabel">Utils.</span><code><span class="memberNameLink"><a href="../../../org/safs/Utils.html#parseValue-java.lang.Class-java.lang.Object-">parseValue</a></span>(java.lang.Class&lt;?&gt;&nbsp;expectedType,
           java.lang.Object&nbsp;value)</code>
 <div class="block">Convert the parameter 'value' to an appropriate Object according to the expectedType.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#performDrag--">performDrag</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#performHoverMouse-java.awt.Point-int-">performHoverMouse</a></span>(java.awt.Point&nbsp;point,
                  int&nbsp;milliseconds)</code>
@@ -1152,11 +1213,11 @@ the given variable name.</div>
  Subclass may need to give a specific implementation by tools (RJ, Selenium etc.) API.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#performScorll--">performScorll</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">TestRecordHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestRecordHelper.html#populateDataFromVar--">populateDataFromVar</a></span>()</code>
 <div class="block"><br><em>Purpose:</em> populate data from the VAR pool using STAF, basically
@@ -1177,13 +1238,13 @@ the given variable name.</div>
  <br><em>Assumptions:</em>  none</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#postEvent-java.lang.String-">postEvent</a></span>(java.lang.String&nbsp;event)</code>
 <div class="block"><br><em>Purpose:</em> post a single staf event (sem service)</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#postNextHookTestEvent-java.lang.String-java.lang.String-org.safs.TestRecordData-">postNextHookTestEvent</a></span>(java.lang.String&nbsp;process_name,
                      java.lang.String&nbsp;trd_root,
@@ -1192,25 +1253,25 @@ the given variable name.</div>
  a test record.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#pulseEvent-java.lang.String-">pulseEvent</a></span>(java.lang.String&nbsp;event)</code>
 <div class="block"><br><em>Purpose:</em> pulse a single staf event (sem service)</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#releaseSTAFMutex-java.lang.String-">releaseSTAFMutex</a></span>(java.lang.String&nbsp;mutex)</code>
 <div class="block">Function STAFreleaseMutex(String mutex)</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#resetEvent-java.lang.String-">resetEvent</a></span>(java.lang.String&nbsp;event)</code>
 <div class="block"><br><em>Purpose:</em> reset a single staf event (sem service)</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#resetEvents--">resetEvents</a></span>()</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
@@ -1218,29 +1279,29 @@ the given variable name.</div>
 </div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#resetHookEvents-java.lang.String-">resetHookEvents</a></span>(java.lang.String&nbsp;process_name)</code>
 <div class="block">Reset staf hook events (ready, dispatch, running, results, done, shutdown) for the given process.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#restore--">restore</a></span>()</code>
 <div class="block">Restore the current window.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.Window.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.Window.html#restore--">restore</a></span>()</code>
 <div class="block">Restore the current window.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#selectMenuItem-boolean-">selectMenuItem</a></span>(boolean&nbsp;fuzzy)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">TestRecordHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestRecordHelper.html#sendbackResponse--">sendbackResponse</a></span>()</code>
 <div class="block"><br><em>Purpose:</em> sendback response, the statusCode is sent back
@@ -1248,24 +1309,24 @@ the given variable name.</div>
  <br><em>Assumptions:</em>  none</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#sendEvent--">sendEvent</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">TestStepProcessor.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestStepProcessor.html#setActiveWindow--">setActiveWindow</a></span>()</code>
 <div class="block"><br><em>Note:</em>              This method will make the top window to become the active window.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#setHookTestResults-java.lang.String-">setHookTestResults</a></span>(java.lang.String&nbsp;process_name)</code>
 <div class="block">setHookTestResults:
  makes call to 'setHookTestResultsWTimeout(process_name, 12);'</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#setHookTestResultsWTimeout-java.lang.String-long-">setHookTestResultsWTimeout</a></span>(java.lang.String&nbsp;process_name,
                           long&nbsp;timeoutseconds)</code>
@@ -1274,37 +1335,37 @@ the given variable name.</div>
  This routines will drive the RESULTS event true.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">DatabaseCommandsHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/DatabaseCommandsHelper.html#setJdbcDriver-org.safs.Processor-">setJdbcDriver</a></span>(<a href="../../../org/safs/Processor.html" title="class in org.safs">Processor</a>&nbsp;pr)</code>
 <div class="block"><br><em>Purpose:</em> setJdbcDriver</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#setPosition--">setPosition</a></span>()</code>
 <div class="block">perform SetPosition to move Main Window, resize it and set its status.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#setPropertyValue--">setPropertyValue</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#setSAFSTestRecordData-java.lang.String-org.safs.TestRecordData-">setSAFSTestRecordData</a></span>(java.lang.String&nbsp;trd_root,
                      <a href="../../../org/safs/TestRecordData.html" title="class in org.safs">TestRecordData</a>&nbsp;trd)</code>
 <div class="block">Set the SAFSVARS Test Record Data for the given trd_root.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#setSTAFVariable-java.lang.String-java.lang.String-">setSTAFVariable</a></span>(java.lang.String&nbsp;var,
                java.lang.String&nbsp;val)</code>
 <div class="block"><br><em>Purpose:</em> set the STAF SYSTEM variable value.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#setTestResults--">setTestResults</a></span>()</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
@@ -1312,7 +1373,7 @@ the given variable name.</div>
 </div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">DCDriverStringCommands.</span><code><span class="memberNameLink"><a href="../../../org/safs/DCDriverStringCommands.html#setVar-java.lang.String-java.lang.String-">setVar</a></span>(java.lang.String&nbsp;varName,
       java.lang.String&nbsp;val)</code>
@@ -1320,19 +1381,19 @@ the given variable name.</div>
  then sets statusCode to GENERAL_SCRIPT_FAILURE and logs warning</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#setVariable-java.lang.String-java.lang.String-">setVariable</a></span>(java.lang.String&nbsp;var,
            java.lang.String&nbsp;val)</code>
 <div class="block"><br><em>Purpose:</em> setup a variable with it's value using STAF safsvars service.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">Processor.</span><code><span class="memberNameLink"><a href="../../../org/safs/Processor.html#setVariable-java.lang.String-java.lang.String-">setVariable</a></span>(java.lang.String&nbsp;var,
            java.lang.String&nbsp;val)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#showComponentAsMuchPossible-boolean-boolean-">showComponentAsMuchPossible</a></span>(boolean&nbsp;verify,
                            boolean&nbsp;refresh)</code>
@@ -1340,7 +1401,7 @@ the given variable name.</div>
  as possible.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>com.ibm.staf.STAFResult</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#submit2WithVar-java.lang.String-java.lang.String-java.lang.String-java.lang.String-">submit2WithVar</a></span>(java.lang.String&nbsp;sysName,
               java.lang.String&nbsp;srvName,
@@ -1350,134 +1411,134 @@ the given variable name.</div>
  into variable storage (SAFSVARS).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">TestRecordHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestRecordHelper.html#targetIsComponent--">targetIsComponent</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">TestRecordHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestRecordHelper.html#targetIsWindow--">targetIsWindow</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#unRegister--">unRegister</a></span>()</code>
 <div class="block">unregister, passed along to 'handle'</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyClipboardToFile--">verifyClipboardToFile</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">DatabaseCommandsHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/DatabaseCommandsHelper.html#verifyDatabaseNullValue-org.safs.Processor-">verifyDatabaseNullValue</a></span>(<a href="../../../org/safs/Processor.html" title="class in org.safs">Processor</a>&nbsp;pr)</code>
 <div class="block"><br><em>Purpose:</em> verifyDatabaseNullValue
  <br> Verifies that the value of a field in a database table is NULL.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">DatabaseCommandsHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/DatabaseCommandsHelper.html#verifyDatabaseValue-org.safs.Processor-">verifyDatabaseValue</a></span>(<a href="../../../org/safs/Processor.html" title="class in org.safs">Processor</a>&nbsp;pr)</code>
 <div class="block"><br><em>Purpose:</em> verifyDatabaseValue:
  <br> Verifies the case-sensitive value of a field in a database table.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">DatabaseCommandsHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/DatabaseCommandsHelper.html#verifyDBNullValue-org.safs.Processor-">verifyDBNullValue</a></span>(<a href="../../../org/safs/Processor.html" title="class in org.safs">Processor</a>&nbsp;pr)</code>
 <div class="block"><br><em>Purpose:</em> verifyDBNullValue: same as verifyDatabaseNullValue</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static void</code></td>
 <td class="colLast"><span class="typeNameLabel">DatabaseCommandsHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/DatabaseCommandsHelper.html#verifyDBValue-org.safs.Processor-">verifyDBValue</a></span>(<a href="../../../org/safs/Processor.html" title="class in org.safs">Processor</a>&nbsp;pr)</code>
 <div class="block"><br><em>Purpose:</em> verifyDBValue: same as verifyDatabaseValue</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyFileToFile-boolean-">verifyFileToFile</a></span>(boolean&nbsp;isTextFile)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyMenuItem-boolean-">verifyMenuItem</a></span>(boolean&nbsp;fuzzy)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyObjectDataToFile--">verifyObjectDataToFile</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyPropertiesToFile--">verifyPropertiesToFile</a></span>()</code>
 <div class="block"><br><em>Purpose:</em> verifyPropertiesToFile</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyProperty--">verifyProperty</a></span>()</code>
 <div class="block"><br><em>Purpose:</em> verifyProperty</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyPropertyContains--">verifyPropertyContains</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyPropertyToFile-boolean-">verifyPropertyToFile</a></span>(boolean&nbsp;array)</code>
 <div class="block"><br><em>Purpose:</em> verifyArrayPropertyToFile/verifyPropertyToFile/verifyPropertiesToFile</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyValueContains--">verifyValueContains</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#verifyValues--">verifyValues</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#waitEvent-java.lang.String-long-">waitEvent</a></span>(java.lang.String&nbsp;event,
          long&nbsp;delaySeconds)</code>
 <div class="block">staf event wait indefinitely or for a set number of seconds.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#waitEventMillis-java.lang.String-int-">waitEventMillis</a></span>(java.lang.String&nbsp;event,
                int&nbsp;delayMillis)</code>
 <div class="block">staf event wait for n milliseconds.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#waitEventWaiter-java.lang.String-long-">waitEventWaiter</a></span>(java.lang.String&nbsp;event,
                long&nbsp;delaySeconds)</code>
 <div class="block">staf event wait indefinitely or for a set number of seconds for an event waiter.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#waitForGUI--">waitForGUI</a></span>()</code>
 <div class="block">Waits for the object to be present on the screen, waits up to the timeout defined in
  the parameters or a default of 15 seconds.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected int</code></td>
 <td class="colLast"><span class="typeNameLabel">TestStepProcessor.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestStepProcessor.html#waitForObject-boolean-">waitForObject</a></span>(boolean&nbsp;isWindow)</code>
 <div class="block">Wait for the window/component occur.<br></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected int</code></td>
 <td class="colLast"><span class="typeNameLabel">ComponentFunction.</span><code><span class="memberNameLink"><a href="../../../org/safs/ComponentFunction.html#waitForObject-java.lang.String-java.lang.String-java.lang.String-int-">waitForObject</a></span>(java.lang.String&nbsp;mapname,
              java.lang.String&nbsp;windowName,
              java.lang.String&nbsp;compName,
              int&nbsp;secii)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>abstract int</code></td>
 <td class="colLast"><span class="typeNameLabel">DDGUIUtilities.</span><code><span class="memberNameLink"><a href="../../../org/safs/DDGUIUtilities.html#waitForObject-java.lang.String-java.lang.String-java.lang.String-long-">waitForObject</a></span>(java.lang.String&nbsp;appMapName,
              java.lang.String&nbsp;windowName,
@@ -1486,7 +1547,7 @@ the given variable name.</div>
 <div class="block">Wait up to a maximum timeout value for the specified component to "exist".</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">TestStepProcessor.</span><code><span class="memberNameLink"><a href="../../../org/safs/TestStepProcessor.html#waitForObjectAndCheck-boolean-">waitForObjectAndCheck</a></span>(boolean&nbsp;isWindow)</code>
 <div class="block">Wait for the window/component to occur, and check if window/component can be found or not.<br>
@@ -1496,7 +1557,7 @@ the given variable name.</div>
    otherwise log error and set status-code to "Failure".<br></div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">STAFHelper.</span><code><span class="memberNameLink"><a href="../../../org/safs/STAFHelper.html#waitSTAFMutex-java.lang.String-long-">waitSTAFMutex</a></span>(java.lang.String&nbsp;mutex,
              long&nbsp;delaySeconds)</code>
@@ -4938,43 +4999,59 @@ the given variable name.</div>
 <tr class="altColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killBrowserDriver-java.lang.String-java.lang.String-">killBrowserDriver</a></span>(java.lang.String&nbsp;host,
-                 java.lang.String&nbsp;browserName)</code>&nbsp;</td>
+                 java.lang.String&nbsp;browserName)</code>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killBrowserDriver-java.lang.String-java.lang.String-"><code>UtilsIndependent.killBrowserDriver(String, String)</code></a> instead.</span></div>
+</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killChromeDriver-java.lang.String-">killChromeDriver</a></span>(java.lang.String&nbsp;host)</code>
-<div class="block">Kill the process 'chromedriver.exe' on windows, or "chromedrver" on linux.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killChromeDriver-java.lang.String-"><code>UtilsIndependent.killChromeDriver(String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killExtraProcess-java.lang.String-java.lang.String-">killExtraProcess</a></span>(java.lang.String&nbsp;host,
                 java.lang.String&nbsp;processName)</code>
-<div class="block">Kill the process launched from executables located in %SAFSDIR%\samples\Selenium2.0\extra\ or %SELENIUM_PLUS%\extra\</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use UtilsIndependent instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killGeckoDriver-java.lang.String-">killGeckoDriver</a></span>(java.lang.String&nbsp;host)</code>
-<div class="block">Kill the process 'geckodriver.exe/geckodriver_64.exe' on windows, or "geckodriver/geckodriver_64" on linux.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killGeckoDriver-java.lang.String-"><code>UtilsIndependent.killGeckoDriver(String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killIEDriverServer-java.lang.String-">killIEDriverServer</a></span>(java.lang.String&nbsp;host)</code>
-<div class="block">Kill the process 'IEDriverServer.exe'.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killIEDriverServer-java.lang.String-"><code>UtilsIndependent.killIEDriverServer(String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killMicrosoftWebDriver-java.lang.String-">killMicrosoftWebDriver</a></span>(java.lang.String&nbsp;host)</code>
-<div class="block">Kill the process 'MicrosoftWebDriver.exe'.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killMicrosoftWebDriver-java.lang.String-"><code>UtilsIndependent.killMicrosoftWebDriver(String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static java.util.List&lt;<a href="../../../org/safs/tools/GenericProcessMonitor.ProcessInfo.html" title="class in org.safs.tools">GenericProcessMonitor.ProcessInfo</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killMSEdgeDriver-java.lang.String-">killMSEdgeDriver</a></span>(java.lang.String&nbsp;host)</code>
-<div class="block">Kill the process 'msedgedriver.exe'.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killMSEdgeDriver-java.lang.String-"><code>UtilsIndependent.killMSEdgeDriver(String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -4982,7 +5059,9 @@ the given variable name.</div>
 <td class="colLast"><span class="typeNameLabel">WDLibrary.</span><code><span class="memberNameLink"><a href="../../../org/safs/selenium/webdriver/lib/WDLibrary.html#killProcess-java.lang.String-java.lang.String-java.lang.String-">killProcess</a></span>(java.lang.String&nbsp;host,
            java.lang.String&nbsp;processName,
            java.lang.String&nbsp;commandline)</code>
-<div class="block">Kill the process according to the process name and partial command line.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killProcess-java.lang.String-java.lang.String-java.lang.String-"><code>UtilsIndependent.killProcess(String, String, String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -4991,7 +5070,9 @@ the given variable name.</div>
            java.lang.String&nbsp;processName,
            java.lang.String&nbsp;commandline,
            java.lang.String&nbsp;notCommandline)</code>
-<div class="block">Kill the process according to the process name and partial command line.</div>
+<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
+<div class="block"><span class="deprecationComment">Please use <a href="../../../org/safs/UtilsIndependent.html#killProcess-java.lang.String-java.lang.String-java.lang.String-java.lang.String-"><code>UtilsIndependent.killProcess(String, String, String, String)</code></a> instead.</span></div>
+</div>
 </td>
 </tr>
 <tr class="rowColor">
