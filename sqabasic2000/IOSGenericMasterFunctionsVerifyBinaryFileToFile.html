@@ -3,17 +3,22 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
-             Verify the current contents of a binary file with a benchmark file.
+             Verify the current contents of a binary (image, PDF etc.) file with a benchmark file.
               </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-             Verify the current contents of a binary file with a benchmark file.<br>
+             Verify the current contents of a binary (image, PDF etc.) file with a benchmark file.<br>
              Typically, benchmarks are stored in the Datapool\Bench directory.  
              Typically, files to test are stored in the Datapool\Test directory.  
              In that event, the filename.ext is needed for both files.<br>
              The Window and Component objects are not validated and have no role.
              The Window and Component strings can be any text, but they cannot be blank.
              <p>
+             If the files are image, a diff image will be created if there are considered different.
+             If the files are PDF, they will be converted to image files and then compared as image file. Each PDF page
+             will be converted to an image, so comparison of 2 PDF files might be comparison of 2 set of image files.
+             </p>
+<p>
              The command may produce a WARNING if a diff tool for which we 
              have no means to verify the results is configured for use.  
              Consequently, if these warnings are expected, the user can use the 
@@ -75,6 +80,38 @@
                 0 means even no bits match, 2 images will be considered matched.<br></detailed_desc><BR/>
 		</DIV>
 		  </LI>
+<BR/><LI>[ <B>AlterImageStyle</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                It is used to alter the diff image when 2 image/PDF doesn't match.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                It is used to alter the diff image when 2 image/PDF doesn't match.<br>
+                It can be one of <a href="../doc/org/safs/image/ImageUtils.AlterImageStyle.html" target="api">enum AlterImageStyle</a><br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>AlterImageFactor</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                How much lighter or darker to alter the original pixel (with no difference), it is a double number between 0 and 1.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                How much lighter or darker to alter the original pixel (with no difference), it is a double number between 0 and 1.<br>
+				It only takes effect if the parameter 'alterImageStyle' is "TINT" or "SHADE".<br>
+				For SHADE, the bigger the factor, the darker the shade.<br>
+				For TINT, the bigger the factor, the lighter the tint.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>PdfResolution</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+                The resolution (DPI) used to convert PDF to image.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                The resolution (DPI) used to convert PDF to image.<br>
+                The default is <a href="../doc/org/safs/Constants.html#IMAGE_PDF_CONVERSION_RESOLUTION_DEFAULT" target="api">75</a>.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, Browser, HTMLTable, VerifyBinaryFileToFile, bFilename.ext, aFilename.ext, "", ""</usage></B>
@@ -112,6 +149,36 @@
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""> 
                Verify a test image file with the benchmark image file, with bit-tolerance as 90%.
                If the 2 image files have 90% bits matched, then the verification will succeed.
+              </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.png, c:\Dir\aFilename.png, "Tolerance", "90", "SHADE", "0.9"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+               Verify a test image file with the benchmark image file, with bit-tolerance as 90%.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""> 
+               Verify a test image file with the benchmark image file, with bit-tolerance as 90%.
+               If the 2 image files have 90% bits matched, then the verification will succeed.
+               Otherwise, a diff image will be created, the pixels considered different will be highlighted in red.
+               the pixels considered same will be turned darker 90%, they are almost black.
+              </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, Anything, AtAll, VerifyBinaryFileToFile, c:\Dir\bFilename.pdf, c:\Dir\aFilename.pdf, "Tolerance", "90", "TINT", "0.9", "100"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""> 
+               Verify a test PDF file with the benchmark PDF file, with bit-tolerance as 90%.
+              </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""> 
+               Verify a test PDF file with the benchmark PDF file, with bit-tolerance as 90%.<br>
+               The PDF file will be converted to image files with resolution "100".<br>
+               Then we compare the 2 set of image files one by one.<br>
+               If the 2 image files have 90% bits matched, then the verification will succeed.
+               Otherwise, a diff image will be created, the pixels considered different will be highlighted in red.
+               the pixels considered same will be turned lighter 90%, they are almost white.
               </detailed_desc><BR/>
 		</DIV>
 </LI>

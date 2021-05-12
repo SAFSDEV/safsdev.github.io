@@ -70,7 +70,7 @@
 <dt><span id="field_RESTAction">Field #4</span></dt>
 <dd>The REST Action keyword.</dd>
 </dl>
-<p><b><h2>Authentication/Authorization settings</h2></b></p>
+<p><b><h2 id="authSettings">Authentication/Authorization settings</h2></b></p>
                 Some REST service needs Authentication/Authorization before requesting.<br>
                 It can be globally set via .ini configuration file or VM parameter as below:<br><ul>
 <li>.ini configuration file<br>
@@ -127,7 +127,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-					Perform the "GET" method on a REST service, and try to get back the binary content.
+					Perform the "GET" method on a REST service, and verify the returned content is binary before returning it.
 				</TD>
 </TR>
 <TR>
@@ -137,7 +137,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the css text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is css before returning it.
                 </TD>
 </TR>
 <TR>
@@ -147,7 +147,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service with headers defined by user.
+                    Perform the "GET" method on a REST service with headers defined by user, and return the content.
                 </TD>
 </TR>
 <TR>
@@ -157,7 +157,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the html text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is html before returning it.
                 </TD>
 </TR>
 <TR>
@@ -167,7 +167,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the image content.
+                    Perform the "GET" method on a REST service, and verify the returned content is image before returning it.
                 </TD>
 </TR>
 <TR>
@@ -177,7 +177,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the json text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is json before returning it.
                 </TD>
 </TR>
 <TR>
@@ -187,7 +187,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the javascript text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is javascript before returning it.
                 </TD>
 </TR>
 <TR>
@@ -197,7 +197,7 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the plain text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is text before returning it.
                 </TD>
 </TR>
 <TR>
@@ -207,7 +207,187 @@
 </TR></TABLE>
 </TD>
 		  <TD>
-                    Perform the "GET" method on a REST service, and try to get back the xml text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is xml before returning it.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadBinary' HREF='#detail_RestHeadBinary' >RestHeadBinary</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is binary before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadCSS' HREF='#detail_RestHeadCSS' >RestHeadCSS</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is css before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadCustom' HREF='#detail_RestHeadCustom' >RestHeadCustom</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method (with headers defined by user) on a REST service, and get back the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadHTML' HREF='#detail_RestHeadHTML' >RestHeadHTML</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is html before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadImage' HREF='#detail_RestHeadImage' >RestHeadImage</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is image before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadJSON' HREF='#detail_RestHeadJSON' >RestHeadJSON</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is json before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadScript' HREF='#detail_RestHeadScript' >RestHeadScript</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is javascript before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadText' HREF='#detail_RestHeadText' >RestHeadText</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is text before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestHeadXML' HREF='#detail_RestHeadXML' >RestHeadXML</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "HEAD" method on a REST service, and verify the returned content is xml before returning the header part.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPatchXML' HREF='#detail_RestPatchXML' >RestPatchXML</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PATCH" method on a REST service, and verify the returned status code is 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPostXML' HREF='#detail_RestPostXML' >RestPostXML</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "POST" method on a REST service, and verify the returned status code is 201 ("created").
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutCSS' HREF='#detail_RestPutCSS' >RestPutCSS</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutCustom' HREF='#detail_RestPutCustom' >RestPutCustom</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutHTML' HREF='#detail_RestPutHTML' >RestPutHTML</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutJSON' HREF='#detail_RestPutJSON' >RestPutJSON</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutScript' HREF='#detail_RestPutScript' >RestPutScript</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutText' HREF='#detail_RestPutText' >RestPutText</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </TD>
+</TR>
+<TR>
+<TD nowrap="true" width="27%"><A NAME='list_RestPutXML' HREF='#detail_RestPutXML' >RestPutXML</A></TD><TD width="12%" align="CENTER">
+<TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</TD>
+		  <TD>
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
                 </TD>
 </TR>
 <TR>
@@ -278,22 +458,6 @@
                        </detailed_desc><BR/>
 		</DIV>
 		  </LI>
-<BR/><LI>
-<B>headers</B>
-<BR/>
-		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
-                        </short_desc></DIV>
-<BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                           It can be
-                           <ol>
-<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
-<li>a map item holding the literal-string or header-file-path.</li>
-<li>a project-relative-path or full-path to a file holding the literal header string.</li>
-</ol></detailed_desc><BR/>
-		</DIV>
-		  </LI>
 <BR/><LI>[ <B>body</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
 <BR/>
@@ -305,6 +469,20 @@
 </ol>
                            The body's content-type could be defined in the headers.
                         </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
 		</DIV>
 		  </LI>
 <BR/><LI>[ <B>authentication</B> =  ]<BR/>
@@ -325,7 +503,7 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestDeleteCustom, "relativeURL", "ResponseIDVariable", customHeader</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestDeleteCustom, "relativeURL", "ResponseIDVariable", , customHeader</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a DELETE method on REST service URL formed by prepending the <b>base-URL</b> to 
                                the relative-URI "relativeURL", the method will be requested with custom header defined by map item 'customHeader'</p></short_desc></DIV>
 <BR/>
@@ -341,7 +519,7 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestDeleteCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable", "rest\customHeader.txt"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestDeleteCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable", , "rest\customHeader.txt"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a DELETE method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -351,7 +529,7 @@
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
                             The file "&lt;project&gt;\rest\customHeader.txt" holds the header information with which to make request.
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -393,12 +571,13 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-					Perform the "GET" method on a REST service, and try to get back the binary content.
+					Perform the "GET" method on a REST service, and verify the returned content is binary before returning it.
 				</short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
 				        This action will send the "GET" method with Headers containing "Accept : application/octet-stream".
 				        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+				        This action will verify the reponse's headers containing "Content-Type: application/octet-stream" to make sure the returned content is binary.
 				    </p>
 <p>
 						If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
@@ -448,7 +627,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                	       The headers to be included in this REST request.
+                	       The custom headers to be included in this REST request.
                 	    </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -478,8 +657,8 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceIdItem, RestGetBinary, "sqlrest/CUSTOMER/", "BayerCustomerGetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/CUSTOMER/"</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, BayerServiceIdItem, RestGetBinary, "sqlrest/CUSTOMER/", "BayerCustomerResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : application/octet-stream") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/CUSTOMER/"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
 							The item "BayerServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -487,13 +666,13 @@
 							BayerServiceIdItem=BayerServiceSession001<br><br>
 							The session is identified by sessionID "BayerServiceSession001", according to which the base-URL is gotten.
                             If the base-URL is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerGetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerResponseIDVariable.
 						</detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceIdItemNonExist, RestGet, "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", "BayerCustomerGetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, BayerServiceIdItemNonExist, RestGetBinary, "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", "BayerCustomerResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : application/octet-stream") on REST service URL "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
 							The item "BayerServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -501,7 +680,7 @@
                             BayerServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided a <b>full path URL</b> "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerGetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerResponseIDVariable.
 						</detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -515,7 +694,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the css text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is css before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -570,7 +749,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -601,7 +780,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetCSS, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : text/css") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -614,8 +793,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCSS, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCSS, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : text/css") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -623,7 +802,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -637,7 +816,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service with headers defined by user.
+                    Perform the "GET" method on a REST service with headers defined by user, and return the content.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -676,22 +855,6 @@
                        </detailed_desc><BR/>
 		</DIV>
 		  </LI>
-<BR/><LI>
-<B>headers</B>
-<BR/>
-		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
-                        </short_desc></DIV>
-<BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                           It can be
-                           <ol>
-<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
-<li>a map item holding the literal-string or header-file-path.</li>
-<li>a project-relative-path or full-path to a file holding the literal header string.</li>
-</ol></detailed_desc><BR/>
-		</DIV>
-		  </LI>
 <BR/><LI>[ <B>body</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
 <BR/>
@@ -703,6 +866,22 @@
 </ol>
                            The body's content-type could be defined in the headers.
                         </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>headers</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
 		</DIV>
 		  </LI>
 <BR/><LI>[ <B>authentication</B> =  ]<BR/>
@@ -723,7 +902,7 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetCustom, "relativeURL", "ResponseIDVariable", customHeader</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetCustom, "relativeURL", "ResponseIDVariable", , customHeader</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to 
                                the relative-URI "relativeURL", the method will be requested with custom header defined by map item 'customHeader'</p></short_desc></DIV>
 <BR/>
@@ -739,7 +918,7 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable", "rest\customHeader.txt"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable", , "rest\customHeader.txt"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -749,7 +928,7 @@
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
                             The file "&lt;project&gt;\rest\customHeader.txt" holds the header information with which to make request.
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -763,7 +942,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the html text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is html before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -818,7 +997,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -849,7 +1028,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetCustom, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : text/html") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -862,8 +1041,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : text/html") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -871,7 +1050,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -885,7 +1064,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the image content.
+                    Perform the "GET" method on a REST service, and verify the returned content is image before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -940,7 +1119,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -971,7 +1150,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetImage, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : image") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -984,8 +1163,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetImage, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetImage, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : image") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -993,7 +1172,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -1007,7 +1186,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the json text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is json before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -1062,7 +1241,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -1093,7 +1272,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetJSON, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : application/json") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -1106,8 +1285,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetJSON, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetJSON, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : application/json") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -1115,7 +1294,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -1129,7 +1308,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the javascript text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is javascript before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -1184,7 +1363,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -1215,7 +1394,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetScript, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : application/javascript") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -1228,8 +1407,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetScript, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetScript, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : application/javascript") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -1237,7 +1416,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -1251,7 +1430,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the plain text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is text before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -1306,7 +1485,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -1337,7 +1516,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetText, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : text/plain") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -1350,8 +1529,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetText, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetText, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : text/plain") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -1359,7 +1538,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -1373,7 +1552,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the xml text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is xml before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -1428,7 +1607,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -1459,7 +1638,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetXML, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : text/xml") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -1472,8 +1651,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetXML, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetXML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : text/xml") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -1481,7 +1660,2221 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadBinary'></A>IOS TIDRestFunctions::<BIG>RestHeadBinary</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is binary before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : application/octet-stream".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadBinary, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : application/octet-stream") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadBinary, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : application/octet-stream") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadCSS'></A>IOS TIDRestFunctions::<BIG>RestHeadCSS</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is css before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : text/css".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadCSS, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : text/css") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadCSS, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : text/css") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadCustom'></A>IOS TIDRestFunctions::<BIG>RestHeadCustom</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method (with headers defined by user) on a REST service, and get back the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers defined by user.
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadCustom, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers defined by user) on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadCustom, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers defined by user) on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadHTML'></A>IOS TIDRestFunctions::<BIG>RestHeadHTML</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is html before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : text/html".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadHTML, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : text/html") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadHTML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : text/html") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadImage'></A>IOS TIDRestFunctions::<BIG>RestHeadImage</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is image before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : image".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadImage, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : image") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadImage, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : image") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadJSON'></A>IOS TIDRestFunctions::<BIG>RestHeadJSON</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is json before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : application/json".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadJSON, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : application/json") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadJSON, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : application/json") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadScript'></A>IOS TIDRestFunctions::<BIG>RestHeadScript</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is javascript before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : application/javascript".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadScript, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : application/javascript") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadScript, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : application/javascript") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadText'></A>IOS TIDRestFunctions::<BIG>RestHeadText</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is text before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : text/plain".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadText, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : text/plain") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadText, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : text/plain") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestHeadXML'></A>IOS TIDRestFunctions::<BIG>RestHeadXML</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "HEAD" method on a REST service, and verify the returned content is xml before returning the header part.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "HEAD" method with Headers containing "Accept : text/xml".
+                        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The body's content-type could be defined in the headers.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestHeadXML, "relativeURL", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a HEAD method (with Headers containing "Accept : text/xml") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestHeadXML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a HEAD method (with Headers containing "Accept : text/xml") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPatchXML'></A>IOS TIDRestFunctions::<BIG>RestPatchXML</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PATCH" method on a REST service, and verify the returned status code is 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PATCH" method with Headers containing "Content-Type : text/xml".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be a part of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPatchXML, "users/1", "ResponseIDVariable", partialUserEntity.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PATCH method (with Headers containing "Content-Type : text/xml") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "users/1"</p>
+<p>the parameter partialUserEntity.xml is the file under the test project, and it contains the xml content (a part of the user entity) to send as body part with PATCH command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPatchXML, "http://www.service.com/users/1/", "ResponseIDVariable", partialUserEntity.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PATCH method (with Headers containing "Content-Type : text/xml") on REST service URL "http://www.service.com/users/1/".</p>
+<p>the parameter partialUserEntity.xml is the file under the test project, and it contains the xml content (a part of the user entity) to send as body part with PATCH command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPostXML'></A>IOS TIDRestFunctions::<BIG>RestPostXML</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "POST" method on a REST service, and verify the returned status code is 201 ("created").
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "POST" method with Headers containing "Content-Type : text/xml".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to a collection, such as "users/".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity of collection indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPostXML, "users/", "ResponseIDVariable", wholeUserEntity.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a POST method (with Headers containing "Content-Type : text/xml") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "users/"</p>
+<p>the parameter wholeUserEntity.xml is the file under the test project, and it contains the xml content (the entirety of entity user) to send as body part with POST command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/users/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPostXML, "http://www.service.com/users/", "ResponseIDVariable", wholeUserEntity.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a POST method (with Headers containing "Content-Type : text/xml") on REST service URL "http://www.service.com/users/".</p>
+<p>the parameter wholeUserEntity.xml is the file under the test project, and it contains the xml content (the entirety of entity user) to send as body part with POST command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/users/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutCSS'></A>IOS TIDRestFunctions::<BIG>RestPutCSS</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : text/css".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "cssContents/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutCSS, "cssContents/1", "ResponseIDVariable", wholeUserStyleEntity.css</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : text/css") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "cssContents/1"</p>
+<p>the parameter wholeUserStyleEntity.css is the file under the test project, and it contains the css content (the entirety of entity user's style) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/cssContents/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutCSS, "http://www.service.com/cssContents/1/", "ResponseIDVariable", wholeUserStyleEntity.css</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : text/css") on REST service URL "http://www.service.com/cssContents/1/".</p>
+<p>the parameter wholeUserStyleEntity.css is the file under the test project, and it contains the css content (the entirety of entity user's style) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/cssContents/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutCustom'></A>IOS TIDRestFunctions::<BIG>RestPutCustom</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers defined by user.
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "entities/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutCustom, "entities/1", "ResponseIDVariable", "entityFile", "customHeader.txt"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers defined in project-relative file "customHeader.txt") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "entities/1"</p>
+<p>the parameter "entityFile" is the file under the test project, and it contains the some content (the entirety of an entity) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/entities/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutCustom, "http://www.service.com/entities/1/", "ResponseIDVariable", "entityFile", "customHeader.txt"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers defined in project-relative file "customHeader.txt") on REST service URL "http://www.service.com/entities/1/".</p>
+<p>the parameter "entityFile" is the file under the test project, and it contains the some content (the entirety of an entity) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/entities/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutHTML'></A>IOS TIDRestFunctions::<BIG>RestPutHTML</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : text/html".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "htmlContents/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutHTML, "htmlContents/1", "ResponseIDVariable", wholeUserEntity.html</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : text/html") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "htmlContents/1"</p>
+<p>the parameter wholeUserEntity.html is the file under the test project, and it contains the html content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/htmlContents/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutHTML, "http://www.service.com/htmlContents/1/", "ResponseIDVariable", wholeUserEntity.html</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : text/html") on REST service URL "http://www.service.com/htmlContents/1/".</p>
+<p>the parameter wholeUserEntity.html is the file under the test project, and it contains the html content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/htmlContents/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutJSON'></A>IOS TIDRestFunctions::<BIG>RestPutJSON</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : application/json".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutJSON, "users/1", "ResponseIDVariable", wholeUserEntity.json</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : application/json") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "users/1"</p>
+<p>the parameter wholeUserEntity.json is the file under the test project, and it contains the json content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutJSON, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.json</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : application/json") on REST service URL "http://www.service.com/users/1/".</p>
+<p>the parameter wholeUserEntity.json is the file under the test project, and it contains the json content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutScript'></A>IOS TIDRestFunctions::<BIG>RestPutScript</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : application/javascript".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutText, "users/1", "ResponseIDVariable", wholeUserEntity.txt</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : application/javascript") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "users/1"</p>
+<p>the parameter wholeUserEntity.txt is the file under the test project, and it contains the text content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutText, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.txt</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : application/javascript") on REST service URL "http://www.service.com/users/1/".</p>
+<p>the parameter wholeUserEntity.txt is the file under the test project, and it contains the text content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutText'></A>IOS TIDRestFunctions::<BIG>RestPutText</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : text/plain".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutText, "users/1", "ResponseIDVariable", wholeUserEntity.txt</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : text/plain") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "users/1"</p>
+<p>the parameter wholeUserEntity.txt is the file under the test project, and it contains the text content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutText, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.txt</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : text/plain") on REST service URL "http://www.service.com/users/1/".</p>
+<p>the parameter wholeUserEntity.txt is the file under the test project, and it contains the text content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+<H3><A NAME='detail_RestPutXML'></A>IOS TIDRestFunctions::<BIG>RestPutXML</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : text/xml".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "users/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutXML, "users/1", "ResponseIDVariable", wholeUserEntity.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : text/xml") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "users/1"</p>
+<p>the parameter wholeUserEntity.xml is the file under the test project, and it contains the xml content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutXML, "http://www.service.com/users/1/", "ResponseIDVariable", wholeUserEntity.xml</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : text/xml") on REST service URL "http://www.service.com/users/1/".</p>
+<p>the parameter wholeUserEntity.xml is the file under the test project, and it contains the xml content (the entirety of entity user) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/users/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -1550,7 +3943,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -1574,36 +3967,59 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceItem, RestRequest, PUT, "sqlrest/PRODUCT/61/", "BayerProductPutResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestRequest, GET, "sqlrest/PRODUCT/", "ResponseIDVariable", "", "Accept: text/xml"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                            Execute a PUT method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/61/"
+                            Execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/"
                         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
-                            Execute a PUT method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/61/"
-                            It will send XML body "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;" to sever so that "product #61" will be created.
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br><p>
+                            It will GET XML content from the sever.
                             </p>
 <p>
-                            The <b>base-URL</b> is gotten according to sessionID "BayerProductService" (assigned when executing keyword <b>RestStartServiceSession</b>).
-                            If it is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerProductPutResponseIDVariable.
+                            The <b>base-URL</b> is gotten according to sessionID "ServiceSession001" (assigned when executing keyword <b>RestStartServiceSession</b>).
+                            If it is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/PRODUCT/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                             </p></detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceItemNonExist, RestPut, PUT, "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/", "BayerProductPutResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestRequest, PUT, "sqlrest/PRODUCT/61/", "ResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Execute a PUT method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/PRODUCT/61/"
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br><p>
+                            It will send XML body "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;" to sever so that "product #61" will be created.
+                            </p>
+<p>
+                            The <b>base-URL</b> is gotten according to sessionID "ServiceSession001" (assigned when executing keyword <b>RestStartServiceSession</b>).
+                            If it is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                            </p></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestRequest, PUT, "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/", "ResponseIDVariable", "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;", "Content-Type: text/xml"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
                             Execute a PUT method on REST service URL "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
                         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
-                            Execute a PUT method on REST service URL "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br><p>
                             It will send XML body "&lt;resource&gt;&lt;NAME&gt;CarSeat&lt;/NAME&gt;&lt;PRICE&gt;125.00&lt;/PRICE&gt;&lt;/resource&gt;" to sever so that "product #61" will be created.
                             </p>
 <p>
-                            The map item <b>BayerServiceItemNonExist</b> does <b>NOT exist</b>, this action is handled as one-shot connection.
-                            The parameter <b>relativeURI</b> is provided a <b>full path URL</b> "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerProductPutResponseIDVariable.
+                            The map item <b>ServiceIdItemNonExist</b> does <b>NOT exist</b>, this action is handled as one-shot connection.
+                            The parameter <b>relativeURI</b> is provided as a <b>full path URL</b> "http://www.thomas-bayer.com/sqlrest/PRODUCT/61/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                             </p></detailed_desc><BR/>
 		</DIV>
 </LI>
@@ -1631,7 +4047,7 @@
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The base URL to be stored with a session.</short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                           This base URL will be prepended to a relative URI to form a REST service URL for the 
+                           This base URL will be prepended in front of a relative URI to form a REST service URL for the 
                            later invocation of other REST actions. 
                        </detailed_desc><BR/>
 		</DIV>
@@ -1642,8 +4058,8 @@
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
-                            Normally, the authentication information will be loaded from "JVM -D parameters", "Map", or global
-                            external file, those settings are considered to be global. This parameter can
+                            Normally, the authentication information will be loaded from <a href="#authSettings">"JVM -D parameters", "Map", or global
+                            external file</a>, those settings are considered to be global. This parameter can
                             be used to alternate the authentication information, it will override the global settings.<br>
                             It is normally provided as a file name holding the authentication information. The file is relative
                             to the project's root directory, and it can contain sub directories.<br>
@@ -1659,11 +4075,12 @@
                             Start a session for a REST service based on URL "http://www.thomas-bayer.com/".
                         </short_desc></DIV>
 <BR/>
-	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p></detailed_desc><BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p>
+<p>This session will use the <a href="#authSettings">global authentication</a> if exists.</p></detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", configure/simpleauth.xml</usage></B>
+<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", "configure/simpleauth.xml"</usage></B>
 <BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
                             Start a session for a REST service based on URL "http://www.thomas-bayer.com/", and this session will use
                             authentication information stored in file &lt;project&gt;/configure/simpleauth.xml.
@@ -1677,6 +4094,16 @@
     &lt;userName&gt;Mark&lt;/userName&gt;
   &lt;/SimpleAuth&gt;
 </pre></detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, BayerSessionID, RestStartServiceSession, "http://www.thomas-bayer.com/", "NOAUTHENTICATION"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                            Start a session for a REST service based on URL "http://www.thomas-bayer.com/".
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>This session will be assigned with ID as value of map item BayerSessionID under section SAFSREST.</p>
+<p>This session will NOT use any authentication even if the <a href="#authSettings">global authentication</a> exists.</p></detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/></UL>

@@ -3,7 +3,7 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                    Perform the "GET" method on a REST service, and try to get back the xml text content.
+                    Perform the "GET" method on a REST service, and verify the returned content is xml before returning it.
                 </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
@@ -58,7 +58,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                           The headers to be included in this REST request.
+                           The custom headers to be included in this REST request.
                         </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -89,7 +89,7 @@
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
 <B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestGetXML, "relativeURL", "ResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : text/xml") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "relativeURL"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -102,8 +102,8 @@
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetXML, "http://www.service.com/relativeURL/", "GetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestGetXML, "http://www.service.com/relativeURL/", "ResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : text/xml") on REST service URL "http://www.service.com/relativeURL/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
                             The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -111,7 +111,7 @@
                             ServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/relativeURL/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable GetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
                         </detailed_desc><BR/>
 		</DIV>
 </LI>

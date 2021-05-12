@@ -22,8 +22,11 @@ org.safs.autoit.test
 org.safs.control
 org.safs.control.swing
 org.safs.cukes
+org.safs.cukes.ai.selenium
 org.safs.cukes.steps
 org.safs.custom
+org.safs.data.model
+org.safs.data.model.ekspreso
 org.safs.image
 org.safs.image.filter
 org.safs.install
@@ -96,6 +99,7 @@ org.safs.staf.service.map
 org.safs.staf.service.queue
 org.safs.staf.service.sem
 org.safs.staf.service.var
+org.safs.testrail
 org.safs.text
 org.safs.tools
 org.safs.tools.consoles
@@ -106,6 +110,7 @@ org.safs.tools.engines
 org.safs.tools.expression
 org.safs.tools.input
 org.safs.tools.logs
+org.safs.tools.logs.processor
 org.safs.tools.mail
 org.safs.tools.ocr
 org.safs.tools.ocr.gocr

@@ -3,12 +3,13 @@
 </TR></TABLE>
 </H3>
 	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-					Perform the "GET" method on a REST service, and try to get back the binary content.
+					Perform the "GET" method on a REST service, and verify the returned content is binary before returning it.
 				</short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
 				        This action will send the "GET" method with Headers containing "Accept : application/octet-stream".
 				        It only tells the server what type of content is expected, and it is not guarantee that the server will return it.
+				        This action will verify the reponse's headers containing "Content-Type: application/octet-stream" to make sure the returned content is binary.
 				    </p>
 <p>
 						If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
@@ -58,7 +59,7 @@
 		  </LI>
 <BR/><LI>[ <B>headers</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
-                	       The headers to be included in this REST request.
+                	       The custom headers to be included in this REST request.
                 	    </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
@@ -88,8 +89,8 @@
 		  </LI>
 <BR/></OL ><B>Examples:</B><BR/><UL>
 <LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceIdItem, RestGetBinary, "sqlrest/CUSTOMER/", "BayerCustomerGetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/CUSTOMER/"</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, BayerServiceIdItem, RestGetBinary, "sqlrest/CUSTOMER/", "BayerCustomerResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a GET method (with Headers containing "Accept : application/octet-stream") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "sqlrest/CUSTOMER/"</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
 							The item "BayerServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
@@ -97,13 +98,13 @@
 							BayerServiceIdItem=BayerServiceSession001<br><br>
 							The session is identified by sessionID "BayerServiceSession001", according to which the base-URL is gotten.
                             If the base-URL is "http://www.thomas-bayer.com/", then the full REST Service URL is "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerGetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerResponseIDVariable.
 						</detailed_desc><BR/>
 		</DIV>
 </LI>
 <BR/><LI>
-<B><usage xmlns="">T, SAFSREST, BayerServiceIdItemNonExist, RestGet, "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", "BayerCustomerGetResponseIDVariable"</usage></B>
-<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method on REST service URL "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".</p></short_desc></DIV>
+<B><usage xmlns="">T, SAFSREST, BayerServiceIdItemNonExist, RestGetBinary, "http://www.thomas-bayer.com/sqlrest/CUSTOMER/", "BayerCustomerResponseIDVariable"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a GET method (with Headers containing "Accept : application/octet-stream") on REST service URL "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".</p></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
 							The item "BayerServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
@@ -111,7 +112,7 @@
                             BayerServiceIdItemNonExist=<br><br>
                             This action is handled as one-shot connection.
                             The parameter "relativeURI" is provided a <b>full path URL</b> "http://www.thomas-bayer.com/sqlrest/CUSTOMER/".
-                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerGetResponseIDVariable.
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable BayerCustomerResponseIDVariable.
 						</detailed_desc><BR/>
 		</DIV>
 </LI>

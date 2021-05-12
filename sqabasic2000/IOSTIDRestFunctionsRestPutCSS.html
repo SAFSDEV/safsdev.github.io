@@ -1,0 +1,126 @@
+<DIV NAME="detail" ID="detail" xmlns="http://www.w3.org/TR/REC-html40"><H3><A NAME='detail_RestPutCSS'></A>IOS TIDRestFunctions::<BIG>RestPutCSS</BIG>   <TABLE><TR>
+<TD class="borderStyle"><SPAN CLASS='Support' TITLE='SAFS TID Commands'>TID</SPAN></TD>
+</TR></TABLE>
+</H3>
+	  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                    Perform the "PUT" method on a REST service, and verify the returned status code is 201 ("created") or 200 or 204.
+                </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns=""><p>
+                        This action will send the "PUT" method with Headers containing "Content-Type : text/css".
+                    </p>
+<p>
+                        If the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>provided</b> in the map, the keyword <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> SHOULD be executed 
+                        before executing this action, which will be handled within a session.<br>
+                        Otherwise, it will be considered as a one-shot connection, 
+                        and NO <a href="#detail_RestStartServiceSession">RestStartServiceSession</a> needs to be called and user may need to provide authentication information.
+                    </p></detailed_desc><BR/>
+		</DIV>
+<BR/>
+<DIV NAME="list" ID="other">
+<B>Fields: [ ]</B>=<SMALL>Optional with Default Value</SMALL><BR/>
+	  <OL start="5" ><LI>
+<B>relativeURI</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The relative URI combined with a base-URL (stored in a session) to form a REST service URL.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           This is normally a relative URI (the base-URL is provided in a session).
+                           BUT it should be <b>full path URL</b> if the field <a href="#field_SessionIDItem">SessionIDItem</a> is <b>not provided</b> or <b>invalid</b>.<br>
+                           This URL should point to an entity to be updated, such as "cssContents/{id}".
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>
+<B>responseIdVar</B>
+<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                          The name of the variable holding "response ID", which is used by rest driver commands to verify/delete response.  
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                          The ID is generated internally, and it is used to get the Response Object from the internal Map.
+                       </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>body</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">The body to send with this REST request.</short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal text string for something simple.</li>
+<li>a project-relative or full path to a file of larger body content in the proper format.</li>
+</ol>
+                           The content should be the ENTIRETY of the entity indicated by the parameter 'relativeURI'.
+                        </detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>headers</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom headers to be included in this REST request.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be
+                           <ol>
+<li>a literal string, such as "If-Modified-Since: Sat, 29 OCT 1994 19:43:31 GMT".</li>
+<li>a map item holding the literal-string or header-file-path.</li>
+<li>a project-relative-path or full-path to a file holding the literal header string.</li>
+</ol></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/><LI>[ <B>authentication</B> =  ]<BR/>
+		  <DIV NAME="list" ID="short_desc"><short_desc xmlns="">
+                           The custom authentication/authorization information.
+                        </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                           It can be 
+                           <ul>
+<li>a project-relative-path or full-path to a file holding the authentication/authorization information.</li>
+<li>a map item holding the auth-file-path.</li>
+</ul>
+                           This custom authentication/authorization information will override the global settings (in .ini file or by VM parameter.)<br>
+                           and take effect only in this keyword execution. In the next keyword execution, the global authentication/authorization setting<br>
+                           will still be taken in account if no custom auth information is specified.<br></detailed_desc><BR/>
+		</DIV>
+		  </LI>
+<BR/></OL ><B>Examples:</B><BR/><UL>
+<LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItem, RestPutCSS, "cssContents/1", "ResponseIDVariable", wholeUserStyleEntity.css</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Within a session, execute a PUT method (with Headers containing "Content-Type : text/css") on REST service URL formed by prepending the <b>base-URL</b> to the relative-URI "cssContents/1"</p>
+<p>the parameter wholeUserStyleEntity.css is the file under the test project, and it contains the css content (the entirety of entity user's style) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItem" <b>MUST</b> be defined in the map such as:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItem=ServiceSession001<br><br>
+                            The session is identified by sessionID "ServiceSession001", according to which the base-URL is gotten.
+                            If the base-URL is "http://www.service.com/", then the full REST Service URL is "http://www.service.com/cssContents/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">T, SAFSREST, ServiceIdItemNonExist, RestPutCSS, "http://www.service.com/cssContents/1/", "ResponseIDVariable", wholeUserStyleEntity.css</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><p>Without session, execute a PUT method (with Headers containing "Content-Type : text/css") on REST service URL "http://www.service.com/cssContents/1/".</p>
+<p>the parameter wholeUserStyleEntity.css is the file under the test project, and it contains the css content (the entirety of entity user's style) to send as body part with PUT command</p></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"><detailed_desc xmlns="">
+                            The item "ServiceIdItemNonExist" should <b>NOT</b> be defined, or defined with an empty value in the map:<br>
+                            [SAFSREST]<br>
+                            ServiceIdItemNonExist=<br><br>
+                            This action is handled as one-shot connection.
+                            The parameter "relativeURI" is provided as a <b>full path URL</b> "http://www.service.com/cssContents/1/".
+                            The Response Object will be stored in an internal Map with a generated ID, which will be saved to a variable ResponseIDVariable.
+                        </detailed_desc><BR/>
+		</DIV>
+</LI>
+<BR/></UL>
+<A href="SAFSReferenceKey.htm" alt="Reference Legend or Key">
+<SMALL><B>[How To Read This Reference]</B></SMALL>
+</A>
+<HR/></DIV>
+</DIV>
+	

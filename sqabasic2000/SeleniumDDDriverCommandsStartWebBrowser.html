@@ -99,7 +99,7 @@ SAFSWebBrowserPath="C:\Program Files\Mozilla Firefox\firefox.exe"
 		  </LI>
 <BR/><LI>[ <B>ExtraParamKey</B> =  ]<BR/>
 		  <DIV NAME="list" ID="short_desc"><short_desc xmlns=""><B>SE2</B>The extra parameter key. You can use one of 
-				<a href="http://safsdev.sourceforge.net/doc/org/safs/selenium/webdriver/lib/SelectBrowser.html#getExtraParameterKeys()" target="reference" alt="Extra parameter keys">Extra parameter keys</a>.
+				<a href="../doc/org/safs/Constants.BrowserConstants.html#getExtraParameterKeys--" target="reference" alt="Extra parameter keys">Extra parameter keys</a>.
              </short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
@@ -202,6 +202,20 @@ SAFSWebBrowserPath="C:\Program Files\Mozilla Firefox\firefox.exe"
                  this browser will be stored with ID 'GoogleMain' and on this page the search of webelement has a timeout of 20 seconds.<br>
                  The value "disable-component-update; ignore-certificate-errors" can also be separated by comma if semicolon conflicts with your test-record-separator
               </short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "setNetworkConditions", "{"offline":false, "latency":5, "download_throughput":500000 , "upload_throughput":500000}"</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><B>SE2</B>Launch a new chrome browser with network conditions {"offline":false, "latency":5, "download_throughput":500000 , "upload_throughput":500000},
+                 Google page will be loaded, this browser will be stored with ID 'GoogleMain' and on this page the search of webelement has a timeout of 20 seconds.<br></short_desc></DIV>
+<BR/>
+	<DIV NAME="list" ID="detail_desc"/>
+</LI>
+<BR/><LI>
+<B><usage xmlns="">C, StartWebBrowser, "http://www.google.com", "", "GoogleMain", "chrome", 20, "", "setNetworkConditions", ""</usage></B>
+<BR/><DIV NAME="list" ID="short_desc"><short_desc xmlns=""><B>SE2</B>Launch a new chrome browser with "network conditions control" ability turned on,
+                 Google page will be loaded, this browser will be stored with ID 'GoogleMain' and on this page the search of webelement has a timeout of 20 seconds.<br></short_desc></DIV>
 <BR/>
 	<DIV NAME="list" ID="detail_desc"/>
 </LI>
